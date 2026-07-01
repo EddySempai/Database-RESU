@@ -39,7 +39,7 @@ const OperativesShowcase = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
                 
                 <img 
-                  src={`/src/assets/operativos/${char.img}`} 
+                  src={`/operativos/${char.img}`} 
                   alt={char.name}
                   className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
                     isHovered ? 'scale-105 grayscale-0 object-top' : 'scale-100 grayscale object-top'
