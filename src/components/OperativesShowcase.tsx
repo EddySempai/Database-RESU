@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
 
 const topCharacters = [
   { id: 'leon', name: 'Leon S. Kennedy', img: 'character-LeonSKennedy-visual.png', role: 'Asalto / Liderazgo' },
@@ -12,6 +13,7 @@ const topCharacters = [
 
 const OperativesShowcase = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
+  const navigate = useNavigate();
 
   return (
     <section className="relative py-24 z-10 bg-[#050505] border-t border-gray-900">
@@ -66,7 +68,10 @@ const OperativesShowcase = () => {
                     </p>
                     
                     <div className="hidden md:block">
-                      <button className="bg-blood-red/20 border border-blood-red text-white font-mono text-xs px-6 py-2 uppercase tracking-widest hover:bg-blood-red transition-colors backdrop-blur-sm">
+                      <button 
+                        onClick={() => navigate('/operativos')}
+                        className="bg-blood-red/20 border border-blood-red text-white font-mono text-xs px-6 py-2 uppercase tracking-widest hover:bg-blood-red transition-colors backdrop-blur-sm"
+                      >
                         Desplegar Expediente
                       </button>
                     </div>
@@ -78,6 +83,16 @@ const OperativesShowcase = () => {
           })}
         </div>
         
+        {/* View All Button */}
+        <div className="mt-12 text-center relative z-20">
+          <Link 
+            to="/operativos"
+            className="inline-block border border-gray-600 text-gray-300 font-mono text-sm px-8 py-3 uppercase tracking-widest hover:border-blood-red hover:text-white hover:bg-blood-red/10 transition-all duration-300"
+          >
+            Ver Todos Los Operativos
+          </Link>
+        </div>
+
       </div>
     </section>
   );
