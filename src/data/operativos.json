@@ -1,0 +1,298 @@
+[
+  {
+    "id": "operative",
+    "name": "Operative",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-operative-visual.png"
+  },
+  {
+    "id": "kate",
+    "name": "Kate",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-kate-visual.png"
+  },
+  {
+    "id": "leon",
+    "name": "Leon S. Kennedy",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-LeonSKennedy-visual.png",
+    "stats": {
+      "health": 176000,
+      "attack": 4590,
+      "defense": 1980,
+      "combatPower": 481530
+    }
+  },
+  {
+    "id": "claire",
+    "name": "Claire Redfield",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-ClaireRedfield-visual.png",
+    "stats": {
+      "health": 88000,
+      "attack": 9265,
+      "defense": 605,
+      "combatPower": 1440957
+    }
+  },
+  {
+    "id": "jill",
+    "name": "Jill Valentine",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JillValentine-visual.png",
+    "stats": {
+      "health": 88000,
+      "attack": 10710,
+      "defense": 770,
+      "combatPower": 240125
+    }
+  },
+  {
+    "id": "carlos",
+    "name": "Carlos Oliveira",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-CarlosOliveira-visual.png",
+    "stats": {
+      "health": 136400,
+      "attack": 3400,
+      "defense": 1980,
+      "combatPower": 921020
+    }
+  },
+  {
+    "id": "ada",
+    "name": "Ada Wong",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AdaWong-visual.png",
+    "stats": {
+      "health": 121000,
+      "attack": 6460,
+      "defense": 770,
+      "combatPower": 482615
+    }
+  },
+  {
+    "id": "mikhail",
+    "name": "Mikhail Victor",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MikhailVictor-visual.png",
+    "stats": {
+      "health": 74800,
+      "attack": 5755,
+      "defense": 880,
+      "combatPower": 754073
+    }
+  },
+  {
+    "id": "marvin",
+    "name": "Marvin Branagh",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MarvinBranagh-visual.png",
+    "stats": {
+      "health": 88000,
+      "attack": 4335,
+      "defense": 935,
+      "combatPower": 772880
+    }
+  },
+  {
+    "id": "becca",
+    "name": "Becca Woolett",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BeccaWoolett-visual.png",
+    "stats": {
+      "health": 74800,
+      "attack": 6205,
+      "defense": 385,
+      "combatPower": 755225
+    }
+  },
+  {
+    "id": "tyrone",
+    "name": "Tyrone Henry",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-TyroneHenry-visual.png",
+    "stats": {
+      "health": 101200,
+      "attack": 1700,
+      "defense": 1980,
+      "combatPower": 590347
+    }
+  },
+  {
+    "id": "murphy",
+    "name": "Murphy Seeker",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MurphySeeker-visual.png",
+    "stats": {
+      "health": 61600,
+      "attack": 4811,
+      "defense": 242,
+      "combatPower": 506619
+    }
+  },
+  {
+    "id": "alyssa",
+    "name": "Alyssa Ashcroft",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AlyssaAshcroft-visual.png",
+    "stats": {
+      "health": 70400,
+      "attack": 5780,
+      "defense": 880,
+      "combatPower": 599617
+    }
+  },
+  {
+    "id": "katherine",
+    "name": "Katherine Warren",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-KatherineWarren-visual.png",
+    "stats": {
+      "health": 41800,
+      "attack": 8840,
+      "defense": 330,
+      "combatPower": 522162
+    }
+  },
+  {
+    "id": "mark",
+    "name": "Mark Wilkins",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MarkWilkins-visual.png",
+    "stats": {
+      "health": 118800,
+      "attack": 1700,
+      "defense": 1100,
+      "combatPower": 772130
+    }
+  },
+  {
+    "id": "barry",
+    "name": "Barry Burton",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BarryBurton-visual.png",
+    "stats": {
+      "health": 66000,
+      "attack": 6800,
+      "defense": 440,
+      "combatPower": 945130
+    }
+  },
+  {
+    "id": "tyrell",
+    "name": "Tyrell Patrick",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-TyrellPatrick-visual.png",
+    "stats": {
+      "health": 70400,
+      "attack": 6120,
+      "defense": 660,
+      "combatPower": 772505
+    }
+  },
+  {
+    "id": "robert",
+    "name": "Robert Kendo",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-RobertKendo-visual.png",
+    "stats": {
+      "health": 92400,
+      "attack": 3400,
+      "defense": 1320,
+      "combatPower": 736907
+    }
+  },
+  {
+    "id": "brad",
+    "name": "Brad Vickers",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BradVickers-visual.png",
+    "stats": {
+      "health": 52799,
+      "attack": 5508,
+      "defense": 237,
+      "combatPower": 506994
+    }
+  },
+  {
+    "id": "chris",
+    "name": "Chris Redfield",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-ChrisRedfield-visual.png",
+    "stats": {
+      "health": 154500,
+      "attack": 5040,
+      "defense": 1680,
+      "combatPower": 1036302
+    }
+  },
+  {
+    "id": "rebecca",
+    "name": "Rebecca Chambers",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-RebeccaChambers-visual.png",
+    "stats": {
+      "health": 84600,
+      "attack": 11690,
+      "defense": 855,
+      "combatPower": 451360
+    }
+  },
+  {
+    "id": "billy",
+    "name": "Billy Coen",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BillyCoen-visual.png",
+    "stats": {
+      "health": 93000,
+      "attack": 11530,
+      "defense": 570,
+      "combatPower": 1149720
+    }
+  },
+  {
+    "id": "ashley",
+    "name": "Ashley Graham",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AshleyGraham-visual.png",
+    "stats": {
+      "health": 92329,
+      "attack": 11261,
+      "defense": 2028,
+      "combatPower": 386336
+    }
+  },
+  {
+    "id": "luis",
+    "name": "Luis Serra Navarro",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-LuisSerraNavarro-visual.png",
+    "stats": {
+      "health": 101335,
+      "attack": 10134,
+      "defense": 2253,
+      "combatPower": 730878
+    }
+  },
+  {
+    "id": "jack",
+    "name": "Jack Krauser",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JackKrauser-visual.png",
+    "stats": {
+      "health": 112593,
+      "attack": 6757,
+      "defense": 4505,
+      "combatPower": 318512
+    }
+  },
+  {
+    "id": "jake",
+    "name": "Jake Muller",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JakeMuller-visual.png",
+    "stats": {
+      "health": 150796,
+      "attack": 9606,
+      "defense": 3101,
+      "combatPower": null
+    }
+  },
+  {
+    "id": "sherry",
+    "name": "Sherry Birkin",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-SherryBirkin-visual.png",
+    "stats": {
+      "health": 114312,
+      "attack": 12160,
+      "defense": 3039,
+      "combatPower": null
+    }
+  },
+  {
+    "id": "piers",
+    "name": "Piers Nivans",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-PiersNivans-visual.png",
+    "stats": {
+      "health": 99719,
+      "attack": 14714,
+      "defense": 2979,
+      "combatPower": 511617
+    }
+  }
+]

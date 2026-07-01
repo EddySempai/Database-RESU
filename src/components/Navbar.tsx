@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Shield, BookOpen, Calculator, Newspaper, Trophy } from 'lucide-react';
+import { Menu, X, Shield, BookOpen, Calculator, Trophy, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -17,8 +17,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Inicio', icon: <Shield size={16} />, href: '/' },
+    { name: 'Operativos', icon: <Users size={16} />, href: '/operativos' },
     { name: 'Guías', icon: <BookOpen size={16} />, href: '#' },
-    { name: 'Noticias', icon: <Newspaper size={16} />, href: '#' },
     { name: 'Calculadoras', icon: <Calculator size={16} />, href: '/calculadoras' },
     { name: 'Tier List', icon: <Trophy size={16} />, href: '#' },
   ];

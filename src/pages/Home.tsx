@@ -1,7 +1,7 @@
 import Hero from '../components/Hero';
 import NewsSection from '../components/NewsSection';
 import QuickLinks from '../components/QuickLinks';
-import OperativesCarousel from '../components/OperativesCarousel';
+import OperativesShowcase from '../components/OperativesShowcase';
 
 const Home = () => {
   return (
@@ -9,7 +9,7 @@ const Home = () => {
       <Hero />
       <NewsSection />
       <QuickLinks />
-      <OperativesCarousel />
+      <OperativesShowcase />
     </>
   );
 };

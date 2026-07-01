@@ -1,12 +1,23 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Particles from './components/Particles';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Calculadoras from './pages/Calculadoras';
+import Operativos from './pages/Operativos';
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen bg-umbrella-black text-white font-inter relative overflow-hidden flex flex-col">
         <Particles />
         <Navbar />
@@ -15,6 +26,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/calculadoras" element={<Calculadoras />} />
+            <Route path="/operativos" element={<Operativos />} />
           </Routes>
         </main>
         
