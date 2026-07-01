@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Calculadoras from './pages/Calculadoras';
 import Operativos from './pages/Operativos';
+import OperativoDetalle from './pages/OperativoDetalle';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -27,6 +28,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/calculadoras" element={<Calculadoras />} />
             <Route path="/operativos" element={<Operativos />} />
+            <Route path="/operativos/:id" element={<OperativoDetalle />} />
           </Routes>
         </main>
         
