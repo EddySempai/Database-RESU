@@ -1,15 +1,5 @@
 [
   {
-    "id": "operative",
-    "name": "Operative",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-operative-visual.png"
-  },
-  {
-    "id": "kate",
-    "name": "Kate",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-kate-visual.png"
-  },
-  {
     "id": "leon",
     "name": "Leon S. Kennedy",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-LeonSKennedy-visual.png",
@@ -18,7 +8,19 @@
       "attack": 4590,
       "defense": 1980,
       "combatPower": 481530
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Defensor",
+        "value": "260.23%"
+      },
+      {
+        "label": "Poder de defensa de Defensor",
+        "value": "260.23%"
+      }
+    ],
+    "unitType": "Defensor",
+    "rarity": "Legendario"
   },
   {
     "id": "claire",
@@ -29,7 +31,19 @@
       "attack": 9265,
       "defense": 605,
       "combatPower": 1440957
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Atacante",
+        "value": "200.18%"
+      },
+      {
+        "label": "Poder de defensa de Atacante",
+        "value": "200.18%"
+      }
+    ],
+    "unitType": "Atacante",
+    "rarity": "Legendario"
   },
   {
     "id": "jill",
@@ -40,7 +54,19 @@
       "attack": 10710,
       "defense": 770,
       "combatPower": 240125
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Ranger",
+        "value": "200.18%"
+      },
+      {
+        "label": "Poder de defensa de Ranger",
+        "value": "200.18%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Legendario"
   },
   {
     "id": "carlos",
@@ -51,7 +77,19 @@
       "attack": 3400,
       "defense": 1980,
       "combatPower": 921020
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Defensor",
+        "value": "200.18%"
+      },
+      {
+        "label": "Poder de defensa de Defensor",
+        "value": "200.18%"
+      }
+    ],
+    "unitType": "Defensor",
+    "rarity": "Legendario"
   },
   {
     "id": "ada",
@@ -62,7 +100,19 @@
       "attack": 6460,
       "defense": 770,
       "combatPower": 482615
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Atacante",
+        "value": "200.18%"
+      },
+      {
+        "label": "Poder de defensa de Atacante",
+        "value": "200.18%"
+      }
+    ],
+    "unitType": "Atacante",
+    "rarity": "Legendario"
   },
   {
     "id": "mikhail",
@@ -73,7 +123,19 @@
       "attack": 5755,
       "defense": 880,
       "combatPower": 754073
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Ranger",
+        "value": "140.12%"
+      },
+      {
+        "label": "Poder de defensa de Ranger",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Épico"
   },
   {
     "id": "marvin",
@@ -84,7 +146,19 @@
       "attack": 4335,
       "defense": 935,
       "combatPower": 772880
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Defensor",
+        "value": "140.12%"
+      },
+      {
+        "label": "Poder de defensa de Defensor",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Defensor",
+    "rarity": "Épico"
   },
   {
     "id": "becca",
@@ -95,7 +169,19 @@
       "attack": 6205,
       "defense": 385,
       "combatPower": 755225
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Atacante",
+        "value": "140.12%"
+      },
+      {
+        "label": "Poder de defensa de Atacante",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Atacante",
+    "rarity": "Épico"
   },
   {
     "id": "tyrone",
@@ -106,7 +192,19 @@
       "attack": 1700,
       "defense": 1980,
       "combatPower": 590347
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Defensor",
+        "value": "140.12%"
+      },
+      {
+        "label": "Poder de defensa de Defensor",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Defensor",
+    "rarity": "Épico"
   },
   {
     "id": "murphy",
@@ -117,7 +215,19 @@
       "attack": 4811,
       "defense": 242,
       "combatPower": 506619
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Atacante",
+        "value": "90.09%"
+      },
+      {
+        "label": "Poder de defensa de Atacante",
+        "value": "90.09%"
+      }
+    ],
+    "unitType": "Atacante",
+    "rarity": "Épico"
   },
   {
     "id": "alyssa",
@@ -128,7 +238,19 @@
       "attack": 5780,
       "defense": 880,
       "combatPower": 599617
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Atacante",
+        "value": "140.12%"
+      },
+      {
+        "label": "Poder de defensa de Atacante",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Atacante",
+    "rarity": "Épico"
   },
   {
     "id": "katherine",
@@ -139,7 +261,19 @@
       "attack": 8840,
       "defense": 330,
       "combatPower": 522162
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Atacante",
+        "value": "140.12%"
+      },
+      {
+        "label": "Poder de defensa de Atacante",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Atacante",
+    "rarity": "Épico"
   },
   {
     "id": "mark",
@@ -150,7 +284,19 @@
       "attack": 1700,
       "defense": 1100,
       "combatPower": 772130
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Defensor",
+        "value": "140.12%"
+      },
+      {
+        "label": "Poder de defensa de Defensor",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Defensor",
+    "rarity": "Épico"
   },
   {
     "id": "barry",
@@ -161,7 +307,19 @@
       "attack": 6800,
       "defense": 440,
       "combatPower": 945130
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Ranger",
+        "value": "140.12%"
+      },
+      {
+        "label": "Poder de defensa de Ranger",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Épico"
   },
   {
     "id": "tyrell",
@@ -172,7 +330,19 @@
       "attack": 6120,
       "defense": 660,
       "combatPower": 772505
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Ranger",
+        "value": "140.12%"
+      },
+      {
+        "label": "Poder de defensa de Ranger",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Épico"
   },
   {
     "id": "robert",
@@ -183,7 +353,19 @@
       "attack": 3400,
       "defense": 1320,
       "combatPower": 736907
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Defensor",
+        "value": "140.12%"
+      },
+      {
+        "label": "Poder de defensa de Defensor",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Defensor",
+    "rarity": "Épico"
   },
   {
     "id": "brad",
@@ -194,7 +376,19 @@
       "attack": 5508,
       "defense": 237,
       "combatPower": 506994
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Ranger",
+        "value": "90.09%"
+      },
+      {
+        "label": "Poder de defensa de Ranger",
+        "value": "90.09%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Épico"
   },
   {
     "id": "chris",
@@ -205,7 +399,19 @@
       "attack": 5040,
       "defense": 1680,
       "combatPower": 1036302
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Defensor",
+        "value": "240.21%"
+      },
+      {
+        "label": "Poder de defensa de Defensor",
+        "value": "240.21%"
+      }
+    ],
+    "unitType": "Defensor",
+    "rarity": "Legendario"
   },
   {
     "id": "rebecca",
@@ -216,7 +422,19 @@
       "attack": 11690,
       "defense": 855,
       "combatPower": 451360
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Atacante",
+        "value": "240.21%"
+      },
+      {
+        "label": "Poder de defensa de Atacante",
+        "value": "240.21%"
+      }
+    ],
+    "unitType": "Atacante",
+    "rarity": "Legendario"
   },
   {
     "id": "billy",
@@ -227,7 +445,19 @@
       "attack": 11530,
       "defense": 570,
       "combatPower": 1149720
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Ranger",
+        "value": "240.21%"
+      },
+      {
+        "label": "Poder de defensa de Ranger",
+        "value": "240.21%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Legendario"
   },
   {
     "id": "ashley",
@@ -238,7 +468,19 @@
       "attack": 11261,
       "defense": 2028,
       "combatPower": 386336
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Ranger",
+        "value": "290.26%"
+      },
+      {
+        "label": "Poder de defensa de Ranger",
+        "value": "290.26%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Legendario"
   },
   {
     "id": "luis",
@@ -249,7 +491,19 @@
       "attack": 10134,
       "defense": 2253,
       "combatPower": 730878
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Atacante",
+        "value": "290.26%"
+      },
+      {
+        "label": "Poder de defensa de Atacante",
+        "value": "290.26%"
+      }
+    ],
+    "unitType": "Atacante",
+    "rarity": "Legendario"
   },
   {
     "id": "jack",
@@ -260,7 +514,19 @@
       "attack": 6757,
       "defense": 4505,
       "combatPower": 318512
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Defensor",
+        "value": "290.26%"
+      },
+      {
+        "label": "Poder de defensa de Defensor",
+        "value": "290.26%"
+      }
+    ],
+    "unitType": "Defensor",
+    "rarity": "Legendario"
   },
   {
     "id": "jake",
@@ -271,7 +537,19 @@
       "attack": 9606,
       "defense": 3101,
       "combatPower": null
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Defensor",
+        "value": "370.33%"
+      },
+      {
+        "label": "Poder de defensa de Defensor",
+        "value": "370.33%"
+      }
+    ],
+    "unitType": "Defensor",
+    "rarity": "Legendario"
   },
   {
     "id": "sherry",
@@ -282,7 +560,19 @@
       "attack": 12160,
       "defense": 3039,
       "combatPower": null
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Atacante",
+        "value": "370.33%"
+      },
+      {
+        "label": "Poder de defensa de Atacante",
+        "value": "370.33%"
+      }
+    ],
+    "unitType": "Atacante",
+    "rarity": "Legendario"
   },
   {
     "id": "piers",
@@ -293,6 +583,18 @@
       "attack": 14714,
       "defense": 2979,
       "combatPower": 511617
-    }
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Ranger",
+        "value": "370.33%"
+      },
+      {
+        "label": "Poder de defensa de Ranger",
+        "value": "370.33%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Legendario"
   }
 ]

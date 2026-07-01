@@ -1,9 +1,28 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronLeft, Shield, Sword, Heart, Star, BookOpen } from 'lucide-react';
+import { ChevronLeft, Shield, Sword, Heart, Star, BookOpen, Users, Crosshair } from 'lucide-react';
 import operativosData from '../data/operativos.json';
 import { calculateRequiredExp, calculateRequiredContracts, calculateSkillBooks, getMaxSkillsByRarity } from '../utils/calculators';
+import EquipamientoView from '../components/EquipamientoView';
+
+const getUnitIcon = (type: string) => {
+  switch(type) {
+    case 'Defensor': return <Shield size={14} />;
+    case 'Atacante': return <Sword size={14} />;
+    case 'Ranger': return <Crosshair size={14} />;
+    default: return null;
+  }
+};
+
+const getUnitColor = (type: string) => {
+  switch(type) {
+    case 'Defensor': return 'text-blue-400 bg-blue-900/40 border-blue-500/50';
+    case 'Atacante': return 'text-blood-red bg-blood-red/20 border-blood-red/50';
+    case 'Ranger': return 'text-green-400 bg-green-900/40 border-green-500/50';
+    default: return 'text-gray-400 bg-gray-800 border-gray-600';
+  }
+};
 
 const OperativoDetalle = () => {
   const { id } = useParams();
@@ -37,18 +56,16 @@ const OperativoDetalle = () => {
   }
 
   // Determine rarity from stats or mock it (Legendary = 6 skills, Epic = 5)
-  // For now, if their max health > 100k let's call them Legendary, otherwise Epic/Common just for demonstration.
-  // We can add "rarity" to the JSON later.
-  const isLegendary = op.stats ? op.stats.health > 120000 : false;
-  const rarity = isLegendary ? 'Legendario' : 'Épico';
+  const rarity = op.rarity || 'Épico';
   const maxSkills = getMaxSkillsByRarity(rarity);
 
   const localImage = `/operativos/${op.imageUrl.split('/').pop()}`;
 
   return (
-    <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col md:flex-row gap-8">
+    <div className={`pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col ${activeTab === 'equipment' ? '' : 'md:flex-row'} gap-8`}>
       
       {/* Left Column: Visual & Stats */}
+      {activeTab !== 'equipment' && (
       <motion.div 
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -63,7 +80,14 @@ const OperativoDetalle = () => {
           <h1 className="font-bebas text-4xl text-white tracking-widest relative z-10 drop-shadow-[0_0_10px_rgba(255,42,42,0.5)]">
             {op.name}
           </h1>
-          <p className="font-mono text-neon-red text-xs uppercase tracking-widest mb-6 relative z-10">Expediente Táctico</p>
+          <div className="flex items-center gap-3 mb-6 relative z-10">
+            <p className="font-mono text-gray-500 text-xs uppercase tracking-widest">Expediente Táctico</p>
+            {op.unitType && op.unitType !== 'Desconocido' && (
+              <div className={`flex items-center gap-1 px-2 py-1 border text-[10px] font-mono uppercase tracking-widest ${getUnitColor(op.unitType)}`}>
+                {getUnitIcon(op.unitType)} {op.unitType}
+              </div>
+            )}
+          </div>
           
           <div className="aspect-[3/4] relative z-10 mb-6">
             <img 
@@ -90,21 +114,39 @@ const OperativoDetalle = () => {
               </div>
             </div>
           )}
+
+          {op.fieldStats && op.fieldStats.length > 0 && (
+            <div className="mt-6 border-t border-gray-800 pt-6 relative z-10">
+              <h3 className="font-mono text-blood-red text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
+                <Sword size={14} /> Bonificaciones de Campo
+              </h3>
+              <div className="space-y-3">
+                {op.fieldStats.map((stat: any, idx: number) => (
+                  <div key={idx} className="flex justify-between items-center bg-blood-red/10 border border-blood-red/20 p-3">
+                    <span className="text-gray-400 font-mono text-[10px] uppercase w-2/3">{stat.label}</span>
+                    <span className="text-neon-red font-bebas text-lg tracking-widest">{stat.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </motion.div>
+      )}
 
       {/* Right Column: Tabs & Calculators */}
       <motion.div 
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
-        className="w-full md:w-2/3 flex flex-col"
+        className={`w-full flex flex-col ${activeTab === 'equipment' ? '' : 'md:w-2/3'}`}
       >
         <div className="flex flex-wrap gap-2 mb-6 border-b border-gray-800 pb-2">
           {[
             { id: 'skills', label: 'Habilidades' },
             { id: 'exp', label: 'Calc. Experiencia' },
             { id: 'stars', label: 'Calc. Ascenso (Contratos)' },
-            { id: 'books', label: 'Calc. Libros Habilidad' }
+            { id: 'books', label: 'Calc. Libros Habilidad' },
+            { id: 'equipment', label: 'Equipamiento' }
           ].map(tab => (
             <button
               key={tab.id}
@@ -120,6 +162,9 @@ const OperativoDetalle = () => {
           ))}
         </div>
 
+        {activeTab === 'equipment' ? (
+          <EquipamientoView op={op} />
+        ) : (
         <div className="bg-[#050505] border border-gray-800 p-6 flex-1 relative overflow-hidden">
           
           {/* TAB: Habilidades */}
@@ -131,7 +176,22 @@ const OperativoDetalle = () => {
               <div className="text-gray-400 font-mono text-sm mb-8 leading-relaxed">
                 Este operativo es de rareza <span className="text-white">{rarity}</span>, por lo que dispone de <span className="text-neon-red font-bold">{maxSkills}</span> habilidades activas y pasivas en total. (Datos específicos de habilidad se añadirán pronto).
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-4 mt-6">
+                <div className="bg-black border border-gray-800 p-3">
+                  <div className="text-gray-500 font-mono text-[10px] uppercase tracking-widest mb-1 flex items-center gap-2">
+                    <Shield className="w-3 h-3 text-blood-red" /> Poder de Combate
+                  </div>
+                  <div className="text-white font-bebas text-2xl tracking-widest">{((op as any).stats?.combatPower || 0).toLocaleString()}</div>
+                </div>
+                <div className="bg-black border border-gray-800 p-3">
+                  <div className="text-gray-500 font-mono text-[10px] uppercase tracking-widest mb-1 flex items-center gap-2">
+                    <Users className="w-3 h-3 text-blood-red" /> Tropas Base
+                  </div>
+                  <div className="text-white font-bebas text-2xl tracking-widest">{((op as any).stats?.troops || 0).toLocaleString()}</div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                 <div className="border border-gray-800 p-4 bg-black/50">
                   <h3 className="font-mono text-blood-red uppercase tracking-widest border-b border-gray-800 pb-2 mb-4">Habilidades de Campo</h3>
                   <div className="space-y-4">
@@ -237,13 +297,15 @@ const OperativoDetalle = () => {
                       if (currentStar > i) fillPercent = 100;
                       else if (currentStar === i) fillPercent = (currentNode / 5) * 100;
                       
+                      const starColor = currentStar === 6 ? 'text-fuchsia-500 fill-fuchsia-500' : 'text-yellow-500 fill-yellow-500';
+                      
                       return (
                         <div key={i} onClick={() => { setCurrentStar(i + 1); setCurrentNode(0); }} className="relative w-8 h-8 md:w-10 md:h-10 transition-transform hover:scale-110">
                           {/* Empty Star */}
                           <Star className="absolute inset-0 text-gray-800 w-full h-full" strokeWidth={1.5} />
                           {/* Filled Star */}
-                          <div className="absolute inset-0 overflow-hidden" style={{ width: `${fillPercent}%` }}>
-                            <Star className="w-8 h-8 md:w-10 md:h-10 text-yellow-500 fill-yellow-500" strokeWidth={1} />
+                          <div className="absolute inset-0 overflow-hidden transition-all duration-300" style={{ width: `${fillPercent}%` }}>
+                            <Star className={`w-8 h-8 md:w-10 md:h-10 transition-colors duration-500 ${starColor}`} strokeWidth={1} />
                           </div>
                         </div>
                       );
@@ -263,9 +325,15 @@ const OperativoDetalle = () => {
                     >-</button>
                     
                     <div className="flex gap-2">
-                       {[1, 2, 3, 4, 5].map(n => (
-                          <div key={n} className={`w-3 h-3 rotate-45 transition-colors duration-300 ${currentStar === 6 ? 'bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.8)]' : (n <= currentNode ? 'bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.8)]' : 'bg-gray-900 border border-gray-700')}`} />
-                       ))}
+                       {[1, 2, 3, 4, 5].map(n => {
+                          const nodeColor = currentStar === 6 
+                            ? 'bg-fuchsia-500 shadow-[0_0_5px_rgba(217,70,239,0.8)]' 
+                            : 'bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.8)]';
+                          const isActive = currentStar === 6 || n <= currentNode;
+                          return (
+                            <div key={n} className={`w-3 h-3 rotate-45 transition-colors duration-300 ${isActive ? nodeColor : 'bg-gray-900 border border-gray-700'}`} />
+                          );
+                       })}
                     </div>
 
                     <button 
@@ -296,13 +364,15 @@ const OperativoDetalle = () => {
                       if (targetStar > i) fillPercent = 100;
                       else if (targetStar === i) fillPercent = (targetNode / 5) * 100;
                       
+                      const starColor = targetStar === 6 ? 'text-fuchsia-500 fill-fuchsia-500' : 'text-yellow-500 fill-yellow-500';
+                      
                       return (
                         <div key={i} onClick={() => { setTargetStar(i + 1); setTargetNode(0); }} className="relative w-8 h-8 md:w-10 md:h-10 transition-transform hover:scale-110">
                           {/* Empty Star */}
                           <Star className="absolute inset-0 text-gray-800 w-full h-full" strokeWidth={1.5} />
                           {/* Filled Star */}
-                          <div className="absolute inset-0 overflow-hidden" style={{ width: `${fillPercent}%` }}>
-                            <Star className="w-8 h-8 md:w-10 md:h-10 text-yellow-500 fill-yellow-500" strokeWidth={1} />
+                          <div className="absolute inset-0 overflow-hidden transition-all duration-300" style={{ width: `${fillPercent}%` }}>
+                            <Star className={`w-8 h-8 md:w-10 md:h-10 transition-colors duration-500 ${starColor}`} strokeWidth={1} />
                           </div>
                         </div>
                       );
@@ -322,9 +392,15 @@ const OperativoDetalle = () => {
                     >-</button>
                     
                     <div className="flex gap-2">
-                       {[1, 2, 3, 4, 5].map(n => (
-                          <div key={n} className={`w-3 h-3 rotate-45 transition-colors duration-300 ${targetStar === 6 ? 'bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.8)]' : (n <= targetNode ? 'bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.8)]' : 'bg-gray-900 border border-gray-700')}`} />
-                       ))}
+                       {[1, 2, 3, 4, 5].map(n => {
+                          const nodeColor = targetStar === 6 
+                            ? 'bg-fuchsia-500 shadow-[0_0_5px_rgba(217,70,239,0.8)]' 
+                            : 'bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.8)]';
+                          const isActive = targetStar === 6 || n <= targetNode;
+                          return (
+                            <div key={n} className={`w-3 h-3 rotate-45 transition-colors duration-300 ${isActive ? nodeColor : 'bg-gray-900 border border-gray-700'}`} />
+                          );
+                       })}
                     </div>
 
                     <button 
@@ -421,6 +497,7 @@ const OperativoDetalle = () => {
           )}
 
         </div>
+        )}
       </motion.div>
     </div>
   );

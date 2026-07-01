@@ -1,0 +1,184 @@
+[
+  {
+    "name": "Luis Serra Navarro",
+    "fieldStats": [
+      { "label": "Poder de ataque de Atacante", "value": "290.26%" },
+      { "label": "Poder de defensa de Atacante", "value": "290.26%" }
+    ]
+  },
+  {
+    "name": "Carlos Oliveira",
+    "fieldStats": [
+      { "label": "Poder de ataque de Defensor", "value": "200.18%" },
+      { "label": "Poder de defensa de Defensor", "value": "200.18%" }
+    ]
+  },
+  {
+    "name": "Billy Coen",
+    "fieldStats": [
+      { "label": "Poder de ataque de Ranger", "value": "240.21%" },
+      { "label": "Poder de defensa de Ranger", "value": "240.21%" }
+    ]
+  },
+  {
+    "name": "Chris Redfield",
+    "fieldStats": [
+      { "label": "Poder de ataque de Defensor", "value": "240.21%" },
+      { "label": "Poder de defensa de Defensor", "value": "240.21%" }
+    ]
+  },
+  {
+    "name": "Jill Valentine",
+    "fieldStats": [
+      { "label": "Poder de ataque de Ranger", "value": "200.18%" },
+      { "label": "Poder de defensa de Ranger", "value": "200.18%" }
+    ]
+  },
+  {
+    "name": "Jake Muller",
+    "fieldStats": [
+      { "label": "Poder de ataque de Defensor", "value": "370.33%" },
+      { "label": "Poder de defensa de Defensor", "value": "370.33%" }
+    ]
+  },
+  {
+    "name": "Sherry Birkin",
+    "fieldStats": [
+      { "label": "Poder de ataque de Atacante", "value": "370.33%" },
+      { "label": "Poder de defensa de Atacante", "value": "370.33%" }
+    ]
+  },
+  {
+    "name": "Jack Krauser",
+    "fieldStats": [
+      { "label": "Poder de ataque de Defensor", "value": "290.26%" },
+      { "label": "Poder de defensa de Defensor", "value": "290.26%" }
+    ]
+  },
+  {
+    "name": "Ashley Graham",
+    "fieldStats": [
+      { "label": "Poder de ataque de Ranger", "value": "290.26%" },
+      { "label": "Poder de defensa de Ranger", "value": "290.26%" }
+    ]
+  },
+  {
+    "name": "Rebecca Chambers",
+    "fieldStats": [
+      { "label": "Poder de ataque de Atacante", "value": "240.21%" },
+      { "label": "Poder de defensa de Atacante", "value": "240.21%" }
+    ]
+  },
+  {
+    "name": "Ada Wong",
+    "fieldStats": [
+      { "label": "Poder de ataque de Atacante", "value": "200.18%" },
+      { "label": "Poder de defensa de Atacante", "value": "200.18%" }
+    ]
+  },
+  {
+    "name": "Leon S. Kennedy",
+    "fieldStats": [
+      { "label": "Poder de ataque de Defensor", "value": "260.23%" },
+      { "label": "Poder de defensa de Defensor", "value": "260.23%" }
+    ]
+  },
+  {
+    "name": "Murphy Seeker",
+    "fieldStats": [
+      { "label": "Poder de ataque de Atacante", "value": "90.09%" },
+      { "label": "Poder de defensa de Atacante", "value": "90.09%" }
+    ]
+  },
+  {
+    "name": "Brad Vickers",
+    "fieldStats": [
+      { "label": "Poder de ataque de Ranger", "value": "90.09%" },
+      { "label": "Poder de defensa de Ranger", "value": "90.09%" }
+    ]
+  },
+  {
+    "name": "Piers Nivans",
+    "fieldStats": [
+      { "label": "Poder de ataque de Ranger", "value": "370.33%" },
+      { "label": "Poder de defensa de Ranger", "value": "370.33%" }
+    ]
+  },
+  {
+    "name": "Katherine Warren",
+    "fieldStats": [
+      { "label": "Poder de ataque de Atacante", "value": "140.12%" },
+      { "label": "Poder de defensa de Atacante", "value": "140.12%" }
+    ]
+  },
+  {
+    "name": "Robert Kendo",
+    "fieldStats": [
+      { "label": "Poder de ataque de Defensor", "value": "140.12%" },
+      { "label": "Poder de defensa de Defensor", "value": "140.12%" }
+    ]
+  },
+  {
+    "name": "Alyssa Ashcroft",
+    "fieldStats": [
+      { "label": "Poder de ataque de Atacante", "value": "140.12%" },
+      { "label": "Poder de defensa de Atacante", "value": "140.12%" }
+    ]
+  },
+  {
+    "name": "Tyrone Henry",
+    "fieldStats": [
+      { "label": "Poder de ataque de Defensor", "value": "140.12%" },
+      { "label": "Poder de defensa de Defensor", "value": "140.12%" }
+    ]
+  },
+  {
+    "name": "Mikhail Victor",
+    "fieldStats": [
+      { "label": "Poder de ataque de Ranger", "value": "140.12%" },
+      { "label": "Poder de defensa de Ranger", "value": "140.12%" }
+    ]
+  },
+  {
+    "name": "Becca Woollett",
+    "fieldStats": [
+      { "label": "Poder de ataque de Atacante", "value": "140.12%" },
+      { "label": "Poder de defensa de Atacante", "value": "140.12%" }
+    ]
+  },
+  {
+    "name": "Mark Wilkins",
+    "fieldStats": [
+      { "label": "Poder de ataque de Defensor", "value": "140.12%" },
+      { "label": "Poder de defensa de Defensor", "value": "140.12%" }
+    ]
+  },
+  {
+    "name": "Barry Burton",
+    "fieldStats": [
+      { "label": "Poder de ataque de Ranger", "value": "140.12%" },
+      { "label": "Poder de defensa de Ranger", "value": "140.12%" }
+    ]
+  },
+  {
+    "name": "Marvin Branagh",
+    "fieldStats": [
+      { "label": "Poder de ataque de Defensor", "value": "140.12%" },
+      { "label": "Poder de defensa de Defensor", "value": "140.12%" }
+    ]
+  },
+  {
+    "name": "Tyrell Patrick",
+    "fieldStats": [
+      { "label": "Poder de ataque de Ranger", "value": "140.12%" },
+      { "label": "Poder de defensa de Ranger", "value": "140.12%" }
+    ]
+  },
+  {
+    "name": "Claire Redfield",
+    "fieldStats": [
+      { "label": "Poder de ataque de Atacante", "value": "200.18%" },
+      { "label": "Poder de defensa de Atacante", "value": "200.18%" }
+    ]
+  }
+]
