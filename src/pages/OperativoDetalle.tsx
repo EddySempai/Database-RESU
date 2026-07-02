@@ -183,13 +183,7 @@ const OperativoDetalle = () => {
               <div className="text-gray-400 font-mono text-sm mb-8 leading-relaxed">
                 Este operativo es de rareza <span className="text-white">{rarity}</span>, por lo que dispone de <span className="text-neon-red font-bold">{maxSkills}</span> habilidades activas y pasivas en total. (Datos específicos de habilidad se añadirán pronto).
               </div>
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                <div className="bg-black border border-gray-800 p-3">
-                  <div className="text-gray-500 font-mono text-[10px] uppercase tracking-widest mb-1 flex items-center gap-2">
-                    <Shield className="w-3 h-3 text-blood-red" /> Poder de Combate
-                  </div>
-                  <div className="text-white font-bebas text-2xl tracking-widest">{((op as any).stats?.combatPower || 0).toLocaleString()}</div>
-                </div>
+              <div className="mt-6">
                 <div className="bg-black border border-gray-800 p-3">
                   <div className="text-gray-500 font-mono text-[10px] uppercase tracking-widest mb-1 flex items-center gap-2">
                     <Users className="w-3 h-3 text-blood-red" /> Tropas Base

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+
 import { AnimatePresence } from 'framer-motion';
 import Particles from './components/Particles';
 import Navbar from './components/Navbar';
@@ -9,6 +9,7 @@ import Operativos from './pages/Operativos';
 import OperativoDetalle from './pages/OperativoDetalle';
 import ComingSoon from './pages/ComingSoon';
 import PageTransition from './components/PageTransition';
+import Comparador from './pages/Comparador';
 
 
 
@@ -20,6 +21,7 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/calculadoras" element={<PageTransition><Calculadoras /></PageTransition>} />
+        <Route path="/comparador" element={<PageTransition><Comparador /></PageTransition>} />
         <Route path="/operativos" element={<PageTransition><Operativos /></PageTransition>} />
         <Route path="/operativos/:id" element={<PageTransition><OperativoDetalle /></PageTransition>} />
         <Route path="*" element={<PageTransition><ComingSoon /></PageTransition>} />

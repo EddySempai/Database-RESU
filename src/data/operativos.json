@@ -6,8 +6,7 @@
     "stats": {
       "health": 176000,
       "attack": 4590,
-      "defense": 1980,
-      "combatPower": 481530
+      "defense": 1980
     },
     "fieldStats": [
       {
@@ -29,8 +28,7 @@
     "stats": {
       "health": 88000,
       "attack": 9265,
-      "defense": 605,
-      "combatPower": 1440957
+      "defense": 605
     },
     "fieldStats": [
       {
@@ -52,8 +50,7 @@
     "stats": {
       "health": 88000,
       "attack": 10710,
-      "defense": 770,
-      "combatPower": 240125
+      "defense": 770
     },
     "fieldStats": [
       {
@@ -75,8 +72,7 @@
     "stats": {
       "health": 136400,
       "attack": 3400,
-      "defense": 1980,
-      "combatPower": 921020
+      "defense": 1980
     },
     "fieldStats": [
       {
@@ -98,8 +94,7 @@
     "stats": {
       "health": 121000,
       "attack": 6460,
-      "defense": 770,
-      "combatPower": 482615
+      "defense": 770
     },
     "fieldStats": [
       {
@@ -121,8 +116,7 @@
     "stats": {
       "health": 74800,
       "attack": 5755,
-      "defense": 880,
-      "combatPower": 754073
+      "defense": 880
     },
     "fieldStats": [
       {
@@ -144,8 +138,7 @@
     "stats": {
       "health": 88000,
       "attack": 4335,
-      "defense": 935,
-      "combatPower": 772880
+      "defense": 935
     },
     "fieldStats": [
       {
@@ -167,8 +160,7 @@
     "stats": {
       "health": 74800,
       "attack": 6205,
-      "defense": 385,
-      "combatPower": 755225
+      "defense": 385
     },
     "fieldStats": [
       {
@@ -190,8 +182,7 @@
     "stats": {
       "health": 101200,
       "attack": 1700,
-      "defense": 1980,
-      "combatPower": 590347
+      "defense": 1980
     },
     "fieldStats": [
       {
@@ -213,8 +204,7 @@
     "stats": {
       "health": 61600,
       "attack": 4811,
-      "defense": 242,
-      "combatPower": 506619
+      "defense": 242
     },
     "fieldStats": [
       {
@@ -236,8 +226,7 @@
     "stats": {
       "health": 70400,
       "attack": 5780,
-      "defense": 880,
-      "combatPower": 599617
+      "defense": 880
     },
     "fieldStats": [
       {
@@ -259,8 +248,7 @@
     "stats": {
       "health": 41800,
       "attack": 8840,
-      "defense": 330,
-      "combatPower": 522162
+      "defense": 330
     },
     "fieldStats": [
       {
@@ -282,8 +270,7 @@
     "stats": {
       "health": 118800,
       "attack": 1700,
-      "defense": 1100,
-      "combatPower": 772130
+      "defense": 1100
     },
     "fieldStats": [
       {
@@ -305,8 +292,7 @@
     "stats": {
       "health": 66000,
       "attack": 6800,
-      "defense": 440,
-      "combatPower": 945130
+      "defense": 440
     },
     "fieldStats": [
       {
@@ -328,8 +314,7 @@
     "stats": {
       "health": 70400,
       "attack": 6120,
-      "defense": 660,
-      "combatPower": 772505
+      "defense": 660
     },
     "fieldStats": [
       {
@@ -351,8 +336,7 @@
     "stats": {
       "health": 92400,
       "attack": 3400,
-      "defense": 1320,
-      "combatPower": 736907
+      "defense": 1320
     },
     "fieldStats": [
       {
@@ -374,8 +358,7 @@
     "stats": {
       "health": 52799,
       "attack": 5508,
-      "defense": 237,
-      "combatPower": 506994
+      "defense": 237
     },
     "fieldStats": [
       {
@@ -397,8 +380,7 @@
     "stats": {
       "health": 154500,
       "attack": 5040,
-      "defense": 1680,
-      "combatPower": 1036302
+      "defense": 1680
     },
     "fieldStats": [
       {
@@ -420,8 +402,7 @@
     "stats": {
       "health": 84600,
       "attack": 11690,
-      "defense": 855,
-      "combatPower": 451360
+      "defense": 855
     },
     "fieldStats": [
       {
@@ -443,8 +424,7 @@
     "stats": {
       "health": 93000,
       "attack": 11530,
-      "defense": 570,
-      "combatPower": 1149720
+      "defense": 570
     },
     "fieldStats": [
       {
@@ -466,8 +446,7 @@
     "stats": {
       "health": 92329,
       "attack": 11261,
-      "defense": 2028,
-      "combatPower": 386336
+      "defense": 2028
     },
     "fieldStats": [
       {
@@ -489,8 +468,7 @@
     "stats": {
       "health": 101335,
       "attack": 10134,
-      "defense": 2253,
-      "combatPower": 730878
+      "defense": 2253
     },
     "fieldStats": [
       {
@@ -512,8 +490,7 @@
     "stats": {
       "health": 112593,
       "attack": 6757,
-      "defense": 4505,
-      "combatPower": 318512
+      "defense": 4505
     },
     "fieldStats": [
       {
@@ -535,8 +512,7 @@
     "stats": {
       "health": 150796,
       "attack": 9606,
-      "defense": 3101,
-      "combatPower": null
+      "defense": 3101
     },
     "fieldStats": [
       {
@@ -558,8 +534,7 @@
     "stats": {
       "health": 114312,
       "attack": 12160,
-      "defense": 3039,
-      "combatPower": null
+      "defense": 3039
     },
     "fieldStats": [
       {
@@ -581,8 +556,7 @@
     "stats": {
       "health": 99719,
       "attack": 14714,
-      "defense": 2979,
-      "combatPower": 511617
+      "defense": 2979
     },
     "fieldStats": [
       {

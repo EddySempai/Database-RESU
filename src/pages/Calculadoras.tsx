@@ -1,6 +1,6 @@
 import TrainingCalculator from '../components/TrainingCalculator';
 import RedQueenAI from '../components/RedQueenAI';
-import { motion } from 'framer-motion';
+
 
 const Calculadoras = () => {
   return (
