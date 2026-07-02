@@ -24,7 +24,13 @@ const OperativesShowcase = () => {
           <h2 className="font-bebas text-5xl md:text-6xl tracking-wider text-white">Vanguardia Operativa</h2>
         </div>
 
-        <div className="flex flex-col md:flex-row h-[600px] gap-2 w-full">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row h-[600px] gap-2 w-full"
+        >
           {topCharacters.map((char, index) => {
             const isHovered = hoveredIndex === index;
             
@@ -81,7 +87,7 @@ const OperativesShowcase = () => {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
         
         {/* View All Button */}
         <div className="mt-12 text-center relative z-20">

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -17,32 +18,48 @@ const Hero = () => {
       />
 
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ staggerChildren: 0.2 }}
         className="relative z-10 text-center flex flex-col items-center px-4 mt-10"
       >
-        <span className="font-mono text-neon-red text-sm tracking-[0.3em] uppercase mb-4 border border-neon-red/30 bg-black/50 px-4 py-1">
+        <motion.span 
+          variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+          className="font-mono text-neon-red text-sm tracking-[0.3em] uppercase mb-4 border border-neon-red/30 bg-black/50 px-4 py-1"
+        >
           Archivo Táctico Global
-        </span>
-        <h1 className="font-bebas text-6xl md:text-8xl tracking-widest text-white drop-shadow-[0_0_15px_rgba(255,42,42,0.2)] mb-2 uppercase">
+        </motion.span>
+        <motion.h1 
+          variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+          className="font-bebas text-6xl md:text-8xl tracking-widest text-white drop-shadow-[0_0_15px_rgba(255,42,42,0.2)] mb-2 uppercase"
+        >
           RE: Survival Unit
-        </h1>
-        <div className="h-[2px] w-full max-w-sm bg-gradient-to-r from-transparent via-blood-red to-transparent mb-6" />
+        </motion.h1>
+        <motion.div 
+          variants={{ hidden: { opacity: 0, scaleX: 0 }, visible: { opacity: 1, scaleX: 1 } }}
+          className="h-[2px] w-full max-w-sm bg-gradient-to-r from-transparent via-blood-red to-transparent mb-6" 
+        />
         
-        <p className="font-inter text-gray-300 max-w-2xl text-base md:text-lg mb-10 leading-relaxed">
+        <motion.p 
+          variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+          className="font-inter text-gray-300 max-w-2xl text-base md:text-lg mb-10 leading-relaxed"
+        >
           Bienvenido al hub definitivo de guías, estrategias y noticias.
           Domina la gestión de tu refugio, maximiza el poder de tus operativos y sobrevive al asedio biológico.
-        </p>
+        </motion.p>
 
-        <div className="flex gap-4">
-          <button className="bg-blood-red hover:bg-neon-red text-white font-bebas text-xl tracking-widest px-8 py-3 transition-colors duration-300 shadow-[0_0_15px_rgba(158,0,0,0.4)]">
+        <motion.div 
+          variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+          className="flex gap-4"
+        >
+          <Link to="/guias" className="bg-blood-red hover:bg-neon-red text-white font-bebas text-xl tracking-widest px-8 py-3 transition-colors duration-300 shadow-[0_0_15px_rgba(158,0,0,0.4)]">
             Guía para Principiantes
-          </button>
-          <button className="bg-transparent border border-gray-600 hover:border-white text-white font-bebas text-xl tracking-widest px-8 py-3 transition-colors duration-300">
+          </Link>
+          <Link to="/tier-list" className="bg-transparent border border-gray-600 hover:border-white text-white font-bebas text-xl tracking-widest px-8 py-3 transition-colors duration-300">
             Ver Tier List
-          </button>
-        </div>
+          </Link>
+        </motion.div>
       </motion.div>
     </section>
   );

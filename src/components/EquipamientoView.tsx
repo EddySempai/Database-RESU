@@ -85,7 +85,7 @@ export default function EquipamientoView({ op }: { op: any }) {
             initial={{ opacity: 0, scale: 0.95, x: "-50%", y: "-50%" }}
             animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
             exit={{ opacity: 0, scale: 0.95, x: "-50%", y: "-50%" }}
-            className="absolute top-1/2 left-1/2 z-50 w-[95%] max-w-2xl bg-[#0a0a0a] border border-blood-red/50 shadow-[0_0_50px_rgba(0,0,0,0.9)] p-6 backdrop-blur-md"
+            className="fixed top-1/2 left-1/2 z-50 w-[95%] max-w-2xl bg-[#0a0a0a] border border-blood-red/50 shadow-[0_0_50px_rgba(0,0,0,0.9)] p-6 backdrop-blur-md"
           >
             <button onClick={() => setSelectedSlotId(null)} className="absolute top-4 right-4 text-gray-500 hover:text-white">
               <X size={20} />

@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import NewsSection from '../components/NewsSection';
 import QuickLinks from '../components/QuickLinks';

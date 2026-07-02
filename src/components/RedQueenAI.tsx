@@ -5,7 +5,7 @@ const RedQueenAI = () => {
   const [messages, setMessages] = useState<{role: 'user'|'ai', text: string}[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [currentTypedText, setCurrentTypedText] = useState('');
-  const endOfMessagesRef = useRef<HTMLDivElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   const simulateAIResponse = (userText: string) => {
     setIsTyping(true);
@@ -38,7 +38,9 @@ const RedQueenAI = () => {
   };
 
   useEffect(() => {
-    endOfMessagesRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
   }, [messages, currentTypedText]);
 
   return (
@@ -64,7 +66,10 @@ const RedQueenAI = () => {
           </div>
 
           {/* Console Screen */}
-          <div className="flex-1 p-6 overflow-y-auto font-mono text-sm space-y-4 bg-[#020202]">
+          <div 
+            ref={chatContainerRef}
+            className="flex-1 p-6 overflow-y-auto font-mono text-sm space-y-4 bg-[#020202]"
+          >
             <div className="text-gray-500">
               <p>Iniciando protocolo de enlace táctico...</p>
               <p>Conexión segura establecida con Mainframe.</p>
@@ -91,7 +96,6 @@ const RedQueenAI = () => {
                 </div>
               </div>
             )}
-            <div ref={endOfMessagesRef} />
           </div>
 
           {/* Input Area */}

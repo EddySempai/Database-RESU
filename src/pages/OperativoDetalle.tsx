@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, Shield, Sword, Heart, Star, BookOpen, Users, Crosshair } from 'lucide-react';
 import operativosData from '../data/operativos.json';
 import { calculateRequiredExp, calculateRequiredContracts, calculateSkillBooks, getMaxSkillsByRarity } from '../utils/calculators';
@@ -166,10 +166,17 @@ const OperativoDetalle = () => {
           <EquipamientoView op={op} />
         ) : (
         <div className="bg-[#050505] border border-gray-800 p-6 flex-1 relative overflow-hidden">
-          
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+            >
           {/* TAB: Habilidades */}
           {activeTab === 'skills' && (
-            <div className="animate-in fade-in duration-500">
+            <div>
               <h2 className="font-bebas text-3xl tracking-widest text-white mb-6 flex items-center gap-3">
                 <Star className="text-neon-red" /> Archivos de Habilidad
               </h2>
@@ -230,7 +237,7 @@ const OperativoDetalle = () => {
 
           {/* TAB: Calc Experiencia */}
           {activeTab === 'exp' && (
-            <div className="animate-in fade-in duration-500">
+            <div>
               <h2 className="font-bebas text-3xl tracking-widest text-white mb-2 flex items-center gap-3">
                 Calculadora de Experiencia
               </h2>
@@ -278,7 +285,7 @@ const OperativoDetalle = () => {
 
           {/* TAB: Calc Contratos (Estrellas) */}
           {activeTab === 'stars' && (
-            <div className="animate-in fade-in duration-500">
+            <div>
               <h2 className="font-bebas text-3xl tracking-widest text-white mb-2 flex items-center gap-3">
                 Calculadora de Ascenso
               </h2>
@@ -433,7 +440,7 @@ const OperativoDetalle = () => {
 
           {/* TAB: Calc Libros */}
           {activeTab === 'books' && (
-            <div className="animate-in fade-in duration-500">
+            <div>
               <h2 className="font-bebas text-3xl tracking-widest text-white mb-2 flex items-center gap-3">
                 <BookOpen className="text-neon-red" /> Calculadora de Libros
               </h2>
@@ -483,19 +490,20 @@ const OperativoDetalle = () => {
                 {/* Costos por Nivel */}
                 <div className="mt-6 flex justify-center">
                   <div className="flex flex-wrap gap-4 text-xs font-mono text-gray-400 border border-gray-800 bg-black/50 px-4 py-2">
-                    <span><strong className="text-white">Nv. 1 ➔ 2:</strong> 10</span>
+                    <span><strong className="text-white">Nv. 1 ➔ 2 :</strong> 10</span>
                     <span className="text-gray-600">|</span>
-                    <span><strong className="text-white">Nv. 2 ➔ 3:</strong> 30</span>
+                    <span><strong className="text-white">Nv. 2 ➔ 3 :</strong> 30</span>
                     <span className="text-gray-600">|</span>
-                    <span><strong className="text-white">Nv. 3 ➔ 4:</strong> 50</span>
+                    <span><strong className="text-white">Nv. 3 ➔ 4 :</strong> 50</span>
                     <span className="text-gray-600">|</span>
-                    <span><strong className="text-white">Nv. 4 ➔ 5:</strong> 75</span>
+                    <span><strong className="text-white">Nv. 4 ➔ 5 :</strong> 75</span>
                   </div>
                 </div>
               </div>
             </div>
           )}
-
+            </motion.div>
+          </AnimatePresence>
         </div>
         )}
       </motion.div>

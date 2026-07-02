@@ -198,10 +198,8 @@ const Operativos = () => {
       </motion.div>
       
       {filteredOperativos.length === 0 && (
-        <div className="text-center py-20">
-          <p className="font-mono text-gray-500 uppercase tracking-widest text-xl">
-            No se encontraron operativos
-          </p>
+        <div className="text-center py-20 font-mono text-gray-500">
+          No se encontraron operativos con los parámetros especificados.
         </div>
       )}
     </div>

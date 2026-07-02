@@ -18,9 +18,9 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Inicio', icon: <Shield size={16} />, href: '/' },
     { name: 'Operativos', icon: <Users size={16} />, href: '/operativos' },
-    { name: 'Guías', icon: <BookOpen size={16} />, href: '#' },
+    { name: 'Guías', icon: <BookOpen size={16} />, href: '/guias' },
     { name: 'Calculadoras', icon: <Calculator size={16} />, href: '/calculadoras' },
-    { name: 'Tier List', icon: <Trophy size={16} />, href: '#' },
+    { name: 'Tier List', icon: <Trophy size={16} />, href: '/tier-list' },
   ];
 
   return (
@@ -51,6 +51,11 @@ const Navbar = () => {
               <Link 
                 key={idx} 
                 to={link.href}
+                onClick={() => {
+                  if (window.location.pathname === link.href) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
                 className="group flex items-center gap-2 font-mono text-sm text-gray-300 hover:text-white transition-colors"
               >
                 <span className="text-gray-600 group-hover:text-neon-red transition-colors">{link.icon}</span>
@@ -84,7 +89,12 @@ const Navbar = () => {
                   key={idx} 
                   to={link.href}
                   className="flex items-center gap-4 border-b border-gray-800 pb-4 text-gray-300 hover:text-neon-red transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    if (window.location.pathname === link.href) {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }}
                 >
                   <span className="text-neon-red">{link.icon}</span>
                   <span className="font-bebas text-2xl tracking-widest">{link.name}</span>

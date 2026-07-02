@@ -1,35 +1,42 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Particles from './components/Particles';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Calculadoras from './pages/Calculadoras';
 import Operativos from './pages/Operativos';
 import OperativoDetalle from './pages/OperativoDetalle';
+import ComingSoon from './pages/ComingSoon';
+import PageTransition from './components/PageTransition';
 
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
+
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  
+  return (
+    <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+        <Route path="/calculadoras" element={<PageTransition><Calculadoras /></PageTransition>} />
+        <Route path="/operativos" element={<PageTransition><Operativos /></PageTransition>} />
+        <Route path="/operativos/:id" element={<PageTransition><OperativoDetalle /></PageTransition>} />
+        <Route path="*" element={<PageTransition><ComingSoon /></PageTransition>} />
+      </Routes>
+    </AnimatePresence>
+  );
 };
 
 function App() {
   return (
     <Router>
-      <ScrollToTop />
       <div className="min-h-screen bg-umbrella-black text-white font-inter relative overflow-hidden flex flex-col">
         <Particles />
         <Navbar />
         
         <main className="flex-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/calculadoras" element={<Calculadoras />} />
-            <Route path="/operativos" element={<Operativos />} />
-            <Route path="/operativos/:id" element={<OperativoDetalle />} />
-          </Routes>
+          <AnimatedRoutes />
         </main>
         
         <footer className="relative z-10 py-12 border-t border-gray-900 bg-[#020202] text-center mt-auto">
