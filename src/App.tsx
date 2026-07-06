@@ -20,10 +20,10 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-        <Route path="/calculadoras" element={<PageTransition><Calculadoras /></PageTransition>} />
+        <Route path="/herramientas" element={<PageTransition><Calculadoras /></PageTransition>} />
         <Route path="/comparador" element={<PageTransition><Comparador /></PageTransition>} />
-        <Route path="/operativos" element={<PageTransition><Operativos /></PageTransition>} />
-        <Route path="/operativos/:id" element={<PageTransition><OperativoDetalle /></PageTransition>} />
+        <Route path="/heroes" element={<PageTransition><Operativos /></PageTransition>} />
+        <Route path="/heroes/:id" element={<PageTransition><OperativoDetalle /></PageTransition>} />
         <Route path="*" element={<PageTransition><ComingSoon /></PageTransition>} />
       </Routes>
     </AnimatePresence>

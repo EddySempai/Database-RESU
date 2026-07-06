@@ -17,9 +17,9 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Inicio', icon: <Shield size={16} />, href: '/' },
-    { name: 'Operativos', icon: <Users size={16} />, href: '/operativos' },
+    { name: 'Héroes', icon: <Users size={16} />, href: '/heroes' },
     { name: 'Comparar', icon: <BarChart2 size={16} />, href: '/comparador' },
-    { name: 'Calculadoras', icon: <Calculator size={16} />, href: '/calculadoras' },
+    { name: 'Herramientas', icon: <Calculator size={16} />, href: '/herramientas' },
     { name: 'Guías', icon: <BookOpen size={16} />, href: '/guias' },
     { name: 'Tier List', icon: <Trophy size={16} />, href: '/tier-list' },
   ];

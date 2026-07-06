@@ -4,10 +4,15 @@ import { Calculator, Zap, FastForward, Clock, Plus, Trash2, ArrowRight, UploadCl
 import { v4 as uuidv4 } from 'uuid';
 import { analyzeScreenshot } from '../services/geminiService';
 
-// Base de Datos: Puntos por Categoría (T1 - T11)
 const POINTS_PER_UNIT: Record<number, number> = {
   1: 90, 2: 120, 3: 180, 4: 265, 5: 385, 6: 595,
   7: 830, 8: 1130, 9: 1485, 10: 1960, 11: 2490
+};
+
+// Base de Datos: Puntos por Categoría (T1 - T11) para el Evento SvS
+const SVS_POINTS_PER_UNIT: Record<number, number> = {
+  1: 2, 2: 3, 3: 5, 4: 8, 5: 12, 6: 18,
+  7: 25, 8: 35, 9: 45, 10: 60, 11: 75
 };
 
 interface QueueItem {
@@ -125,9 +130,11 @@ const TrainingCalculator = () => {
     }
   };
 
+  const activePoints = eventMode === 'cumbres' ? POINTS_PER_UNIT : SVS_POINTS_PER_UNIT;
+
   const results = useMemo(() => {
     if (mode === 'direct') {
-      return { totalPoints: troops * (POINTS_PER_UNIT[level] || 0), totalTroops: troops, queueResults: [] };
+      return { totalPoints: troops * (activePoints[level] || 0), totalTroops: troops, queueResults: [] };
     } 
     
     // Inventory total seconds
@@ -135,8 +142,8 @@ const TrainingCalculator = () => {
 
     // Evaluate queues
     const evaluatedQueues = queues.map(q => {
-      const pDest = POINTS_PER_UNIT[q.toLevel] || 0;
-      const pSrc = POINTS_PER_UNIT[q.fromLevel] || 0;
+      const pDest = activePoints[q.toLevel] || 0;
+      const pSrc = activePoints[q.fromLevel] || 0;
       const pointsGain = q.type === 'upgrade' ? Math.max(0, pDest - pSrc) : pDest;
       
       const batchSecs = (q.batchTime.days * 86400) + (q.batchTime.hours * 3600) + (q.batchTime.minutes * 60) + q.batchTime.seconds;
@@ -178,7 +185,7 @@ const TrainingCalculator = () => {
     const totalUsedDays = totalUsedSecs / 86400;
 
     return { totalPoints, totalTroops, accelSecs, totalUsedSecs, totalUsedDays, queueResults: finalQueues };
-  }, [mode, level, troops, queues, gen1m, gen5m, gen1h, gen3h, gen8h, trp1m, trp5m, trp1h]);
+  }, [mode, eventMode, level, troops, queues, gen1m, gen5m, gen1h, gen3h, gen8h, trp1m, trp5m, trp1h, activePoints]);
 
   return (
     <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative z-10 py-12 px-6 max-w-7xl mx-auto">
@@ -192,7 +199,7 @@ const TrainingCalculator = () => {
           </div>
           <div className="flex bg-black border border-gray-800 p-1 rounded-sm">
             <button onClick={() => setEventMode('cumbres')} className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors ${eventMode === 'cumbres' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>Cumbres de Ases</button>
-            <button disabled className="px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-gray-700 cursor-not-allowed border-l border-gray-800">SvS (Próximamente)</button>
+            <button onClick={() => setEventMode('svs')} className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors border-l border-gray-800 ${eventMode === 'svs' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>SvS</button>
           </div>
         </div>
         
@@ -214,7 +221,7 @@ const TrainingCalculator = () => {
                   <div>
                     <label className="block font-mono text-gray-400 text-xs uppercase tracking-widest mb-2">Nivel de Tropa (Categoría)</label>
                     <select value={level} onChange={(e) => setLevel(Number(e.target.value))} className="w-full bg-black border border-gray-700 text-white font-bebas text-xl p-3 outline-none focus:border-blood-red cursor-pointer appearance-none">
-                      {[...Array(11)].map((_, i) => (<option key={i+1} value={i+1}>T{i+1} ({POINTS_PER_UNIT[i+1]} pts/u)</option>))}
+                      {[...Array(11)].map((_, i) => (<option key={i+1} value={i+1}>T{i+1} ({activePoints[i+1]} pts/u)</option>))}
                     </select>
                   </div>
                   <div>
@@ -266,8 +273,8 @@ const TrainingCalculator = () => {
                               </div>
                               <div className="text-[10px] font-mono text-gray-500 text-center">
                                 {q.type === 'upgrade' 
-                                  ? `Gana ${Math.max(0, POINTS_PER_UNIT[q.toLevel] - POINTS_PER_UNIT[q.fromLevel])} pts/u` 
-                                  : `Gana ${POINTS_PER_UNIT[q.toLevel]} pts/u`}
+                                  ? `Gana ${Math.max(0, activePoints[q.toLevel] - activePoints[q.fromLevel])} pts/u` 
+                                  : `Gana ${activePoints[q.toLevel]} pts/u`}
                               </div>
                             </div>
                             

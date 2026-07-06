@@ -21,7 +21,7 @@ const OperativesShowcase = () => {
         
         <div className="mb-12 text-center">
           <h3 className="font-mono text-neon-red text-sm tracking-widest uppercase mb-2">Base de Datos Táctica</h3>
-          <h2 className="font-bebas text-5xl md:text-6xl tracking-wider text-white">Vanguardia Operativa</h2>
+          <h2 className="font-bebas text-5xl md:text-6xl tracking-wider text-white">Héroes Destacados</h2>
         </div>
 
         <motion.div 
@@ -75,7 +75,7 @@ const OperativesShowcase = () => {
                     
                     <div className="hidden md:block">
                       <button 
-                        onClick={() => navigate('/operativos')}
+                        onClick={() => navigate('/heroes')}
                         className="bg-blood-red/20 border border-blood-red text-white font-mono text-xs px-6 py-2 uppercase tracking-widest hover:bg-blood-red transition-colors backdrop-blur-sm"
                       >
                         Desplegar Expediente
@@ -92,10 +92,10 @@ const OperativesShowcase = () => {
         {/* View All Button */}
         <div className="mt-12 text-center relative z-20">
           <Link 
-            to="/operativos"
+            to="/heroes"
             className="inline-block border border-gray-600 text-gray-300 font-mono text-sm px-8 py-3 uppercase tracking-widest hover:border-blood-red hover:text-white hover:bg-blood-red/10 transition-all duration-300"
           >
-            Ver Todos Los Operativos
+            Ver Todos Los Héroes
           </Link>
         </div>
 

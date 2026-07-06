@@ -51,7 +51,7 @@ const Hero = () => {
 
         <motion.div 
           variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-          className="flex gap-4"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <Link to="/guias" className="bg-blood-red hover:bg-neon-red text-white font-bebas text-xl tracking-widest px-8 py-3 transition-colors duration-300 shadow-[0_0_15px_rgba(158,0,0,0.4)]">
             Guía para Principiantes
@@ -59,6 +59,9 @@ const Hero = () => {
           <Link to="/tier-list" className="bg-transparent border border-gray-600 hover:border-white text-white font-bebas text-xl tracking-widest px-8 py-3 transition-colors duration-300">
             Ver Tier List
           </Link>
+          <a href="https://ko-fi.com/eddsempai" target="_blank" rel="noreferrer" className="bg-transparent border border-neon-red hover:bg-neon-red/10 text-neon-red font-bebas text-xl tracking-widest px-8 py-3 transition-colors duration-300 shadow-[0_0_15px_rgba(255,42,42,0.2)]">
+            Apoyar Proyecto (Donar)
+          </a>
         </motion.div>
       </motion.div>
     </section>

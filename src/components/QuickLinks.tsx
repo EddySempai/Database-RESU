@@ -5,32 +5,32 @@ import { Link } from 'react-router-dom';
 const QuickLinks = () => {
   const features = [
     {
-      title: "Construcción de Base",
-      desc: "Guías óptimas para subir de nivel tu refugio y proteger tus recursos.",
-      image: "bg-gradient-to-br from-gray-800 to-black",
-      label: "Guía",
-      href: "#"
-    },
-    {
-      title: "Gestión de Tropas",
-      desc: "Maximiza tu poder de ataque con formaciones tácticas avanzadas.",
-      image: "bg-gradient-to-br from-gray-900 to-[#1a0000]",
-      label: "Estrategia",
-      href: "#"
-    },
-    {
-      title: "Calculadora de Daño",
-      desc: "Simula ataques contra hordas o jugadores antes de desplegar.",
+      title: "Compara Héroes",
+      desc: "Simulación de combate táctico. Compara dos héroes de la misma clase con ayuda de la IA.",
       image: "bg-gradient-to-br from-[#1a0000] to-black border-blood-red/50",
-      label: "Herramienta",
-      href: "/calculadoras"
+      label: "IA Integrada",
+      href: "/comparador"
     },
     {
-      title: "Tier List de Operativos",
+      title: "Calcula Tus Puntos",
+      desc: "Lector de inventario automático. Optimiza tu entrenamiento de tropas para eventos como SvS.",
+      image: "bg-gradient-to-br from-gray-900 to-[#1a0000]",
+      label: "Herramienta",
+      href: "/herramientas"
+    },
+    {
+      title: "Tier List de Héroes",
       desc: "Descubre quiénes son los mejores personajes para el meta actual.",
       image: "bg-gradient-to-br from-gray-800 to-black",
       label: "Análisis",
-      href: "#"
+      href: "/tier-list"
+    },
+    {
+      title: "Base de Datos de Héroes",
+      desc: "Expedientes completos, habilidades, y estadísticas de todos los operativos de combate.",
+      image: "bg-gradient-to-br from-gray-800 to-black",
+      label: "Database",
+      href: "/heroes"
     }
   ];
 
