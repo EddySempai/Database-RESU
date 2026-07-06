@@ -1,0 +1,785 @@
+[
+  [
+    "Personaje",
+    "Rareza",
+    "Tipo de Habilidad",
+    "Nombre Habilidad",
+    "Nivel",
+    "Descripción",
+    "Estado"
+  ],
+  [
+    "Luis Serra Navarro",
+    "Legendario",
+    "Exploración",
+    "Salud / Poder de ataque",
+    "80",
+    "Salud: 80,548 >> 101,335 | Poder de ataque: 8,056 >> 10,134 | Defensa: 1,791 >> 2,253",
+    "Completo"
+  ],
+  [
+    "Luis Serra Navarro",
+    "Legendario",
+    "Campo",
+    "¡Sígueme, Sancho Panza!",
+    "5",
+    "En combate, las unidades aliadas que incluyen a este héroe tienen un 50% de probabilidad de aumentar 50% el daño que reciben los enemigos.",
+    "Completo"
+  ],
+  [
+    "Luis Serra Navarro",
+    "Legendario",
+    "Exploración",
+    "Colocación de Dinamita",
+    "5",
+    "Lanza dinamita a la ubicación designada e inflige a los enemigos cercanos daño equivalente al 1710% del ataque.",
+    "Completo"
+  ],
+  [
+    "Luis Serra Navarro",
+    "Legendario",
+    "Exploración",
+    "Munición Experimental",
+    "5",
+    "Las unidades aliadas que incluyen a este héroe tienen un 50% de probabilidad de aumentar 50% el daño infligido a los enemigos en combate.",
+    "Completo"
+  ],
+  [
+    "Piers Nivans",
+    "Legendario",
+    "Exploración",
+    "Rifle antimaterial",
+    "3",
+    "Nivans saca un rifle antimaterial y dispara. El proyectil atraviesa a todos los objetivos en una línea estrecha, inflige daño equivalente al 555% del ataque y los aturde durante 2 s.",
+    "Completo"
+  ],
+  [
+    "Piers Nivans",
+    "Legendario",
+    "Campo",
+    "Tiro a larga distancia",
+    "3",
+    "Las unidades aliadas que incluyen a este héroe reducen 12% el daño infligido por los enemigos en combate.",
+    "Completo"
+  ],
+  [
+    "Piers Nivans",
+    "Legendario",
+    "Exploración",
+    "Concentración innata",
+    "3",
+    "Al realizar un ataque normal, el ataque aumenta en 2.4% durante 3 s. Este efecto se acumula hasta 15 veces.",
+    "Completo"
+  ],
+  [
+    "Piers Nivans",
+    "Legendario",
+    "Campo",
+    "Ajuste a cero",
+    "3",
+    "Cada vez que una unidad aliada que incluya a este héroe ataque 3 veces, el ataque de los rangers aumenta en 6% en el siguiente turno. Este efecto se acumula y dura hasta el final del combate.",
+    "Completo"
+  ],
+  [
+    "Piers Nivans",
+    "Legendario",
+    "Exploración",
+    "Lanzamiento de bomba",
+    "3",
+    "Lanza una bomba hacia la ubicación del objetivo más lejano, provocando una explosión que inflige daño equivalente al 190% del ataque.",
+    "Completo"
+  ],
+  [
+    "Cazador",
+    "Legendario",
+    "Exploración",
+    "Nitro de sierpe",
+    "1",
+    "Ataca al objetivo frontal con 2 estocadas poderosas, inflige daño equivalente al 220% del ATQ e instala un nitro de sierpe. Cuando el cazador golpea a un objetivo con el nitro de sierpe, este recibe daño...",
+    "Cortado"
+  ],
+  [
+    "Cazador",
+    "Legendario",
+    "Campo",
+    "Impacto detonante",
+    "1",
+    "Durante el combate, los Defensores aliados de la tropa de este héroe tienen una probabilidad de 4% cada 2 turnos de aturdir al tipo de tropa objetivo durante 1 turno. Si el objetivo es un objetivo de caza de Monster Hunter, la probabilidad será de 6%. (Máximo 3 intentos de aturdimiento por...",
+    "Cortado"
+  ],
+  [
+    "Cazador",
+    "Legendario",
+    "Exploración",
+    "Fuego de wyvern",
+    "1",
+    "Tras cargar energía con el arma de cuadriga, genera una explosión que causa daño equivalente al 440% del ATQ a los enemigos en un área en abanico y los aturde durante 2 s.",
+    "Completo"
+  ],
+  [
+    "Cazador",
+    "Legendario",
+    "Campo",
+    "Fuego ráfaga",
+    "1",
+    "Descarga un poderoso golpe con el arma de cuadriga sobre los enemigos en un área en abanico e inflige daño equivalente al 188% del ATQ. Después, genera una explosión que causa daño...",
+    "Cortado"
+  ],
+  [
+    "Cazador",
+    "Legendario",
+    "Campo",
+    "Bombardeo de grieta",
+    "1",
+    "Cuando este héroe forma parte de una unidad aliada, aumenta en 4% el daño recibido por el enemigo durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en 50%.",
+    "Completo"
+  ],
+  [
+    "Cazador",
+    "Legendario",
+    "Campo",
+    "Guardia acorazada",
+    "1",
+    "Cuando este héroe forma parte de una tropa aliada, el daño recibido del enemigo disminuye en 2% durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, disminuye en 6%.",
+    "Completo"
+  ],
+  [
+    "Carlos Oliveira",
+    "Legendario",
+    "General",
+    "Info Base",
+    "80",
+    "Poder de Combate: 921,020 | Salud: 111,600 >> 136,400 | Ataque: 2,800 >> 3,400 | Defensa: 1,620 >> 1,980",
+    "Completo"
+  ],
+  [
+    "Brad Vickers",
+    "Raro",
+    "Exploración",
+    "Último recurso",
+    "5",
+    "Lanza un letrero que empuja a los enemigos dentro de un área circular, inflige daño equivalente al 327% del poder de ataque y lo aturde durante 0,2 segundos. Los enemigos alcanzados por el letrero...",
+    "Cortado"
+  ],
+  [
+    "Brad Vickers",
+    "Raro",
+    "Campo",
+    "Gestión de combustible",
+    "5",
+    "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de petróleo aumenta 25%.",
+    "Completo"
+  ],
+  [
+    "Brad Vickers",
+    "Raro",
+    "Exploración",
+    "Instinto del cobarde",
+    "5",
+    "Cada 15 segundos, aumenta el poder de defensa de todos los aliados en 70%. (Durante 8 segundos)",
+    "Completo"
+  ],
+  [
+    "Brad Vickers",
+    "Raro",
+    "Exploración",
+    "Confianza",
+    "5",
+    "El daño del ataque normal contra enemigos con velocidad de movimiento reducida aumenta 38%.",
+    "Completo"
+  ],
+  [
+    "Billy Coen",
+    "Legendario",
+    "General",
+    "Info Base",
+    "80",
+    "Poder de Combate: 1,149,720 | Salud: 79,560 >> 93,000 | Ataque: 9,898 >> 11,530 | Defensa: 490 >> 570",
+    "Completo"
+  ],
+  [
+    "Billy Coen",
+    "Legendario",
+    "Exploración",
+    "Pistolero",
+    "1",
+    "y, tras 1 segundo, reciben daño equivalente al 543% del...",
+    "Cortado"
+  ],
+  [
+    "Chris Redfield",
+    "Legendario",
+    "General",
+    "Info Base",
+    "80",
+    "Poder de Combate: 1,036,302 | Salud: 129,300 >> 154,500 | Ataque: 4,230 >> 5,040 | Defensa: 1,410 >> 1,680",
+    "Completo"
+  ],
+  [
+    "Chris Redfield",
+    "Legendario",
+    "Campo",
+    "Mira de Punto Rojo",
+    "5",
+    "Aumento de Poder de...",
+    "Cortado"
+  ],
+  [
+    "Jill Valentine",
+    "Legendario",
+    "General",
+    "Info Base",
+    "80",
+    "Poder de Combate: 240,125 | Salud: 49,600 >> 88,000 | Ataque: 6,174 >> 10,710 | Defensa: 434 >> 770",
+    "Completo"
+  ],
+  [
+    "Jill Valentine",
+    "Legendario",
+    "Campo",
+    "Tiro técnico",
+    "1",
+    "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta 5% en combate.",
+    "Completo"
+  ],
+  [
+    "Jill Valentine",
+    "Legendario",
+    "Exploración",
+    "Cañón de riel",
+    "1",
+    "Dispara un cañón de riel que inflige daño equivalente al 1250% del poder de ataque a los enemigos en una línea recta.",
+    "Completo"
+  ],
+  [
+    "Jill Valentine",
+    "Legendario",
+    "Campo",
+    "Disparo de granada",
+    "1",
+    "Cada 2 turnos, los rangers aliados de la unidad con este héroe tienen 4% de probabilidad de aturdir al tipo de tropa objetivo durante 1 turno. (Máx. 3 intentos de aturdimiento por objetivo cada...",
+    "Cortado"
+  ],
+  [
+    "Jill Valentine",
+    "Legendario",
+    "Campo",
+    "Delta Force",
+    "1",
+    "Cada 10 segundos, aumenta el poder de ataque de todos los aliados en 5,5%. (Durante 8 segundos)",
+    "Completo"
+  ],
+  [
+    "Sherry Birkin",
+    "Legendario",
+    "Exploración",
+    "Modo ráfaga",
+    "1",
+    "Los atacantes aliados de la unidad que incluye a este héroe tienen un 20% de probabilidad de atacar una vez más al enemigo e infligir daño en combate.",
+    "Completo"
+  ],
+  [
+    "Sherry Birkin",
+    "Legendario",
+    "Campo",
+    "Fuego de apoyo",
+    "1",
+    "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta 6% en combate.",
+    "Completo"
+  ],
+  [
+    "Sherry Birkin",
+    "Legendario",
+    "Campo",
+    "Granada cegadora",
+    "1",
+    "Lanza una granada cegadora y aturde a los objetivos dentro de un área circular durante 1 segundo(s).",
+    "Completo"
+  ],
+  [
+    "Sherry Birkin",
+    "Legendario",
+    "Campo",
+    "Voluntad de sobrevivir",
+    "1",
+    "En combate, las unidades aliadas que incluyen a este héroe tienen 4% de probabilidad de evadir los ataques enemigos.",
+    "Completo"
+  ],
+  [
+    "Sherry Birkin",
+    "Legendario",
+    "Exploración",
+    "Superchica",
+    "1",
+    "Sherry Birkin recupera salud equivalente al 21,4% de su salud máxima cada 15 s.",
+    "Completo"
+  ],
+  [
+    "Sherry Birkin",
+    "Legendario",
+    "Exploración",
+    "Comandante Bear",
+    "1",
+    "Saca el rifle de asalto BC y dispara 30 balas en línea recta. Cada enemigo alcanzado por las balas recibe daño equivalente al 20% del ataque.",
+    "Completo"
+  ],
+  [
+    "Jake Muller",
+    "Legendario",
+    "General",
+    "Info Base",
+    "80",
+    "Salud: 33,252 >> 150,796 | Ataque: 2,116 >> 9,606 | Defensa: 683 >> 3,101",
+    "Completo"
+  ],
+  [
+    "Jake Muller",
+    "Legendario",
+    "Campo",
+    "Esto tiene un costo adicional.",
+    "1",
+    "Los defensores aliados de la unidad que incluye a este héroe tienen un 10% de probabilidad de infligir daño adicional al enemigo y aumentar en 3% el daño que recibe en combate.",
+    "Completo"
+  ],
+  [
+    "Jake Muller",
+    "Legendario",
+    "Campo",
+    "No hago descuentos.",
+    "1",
+    "Cuando Jake Muller recibe daño, obtiene inmunidad a estados alterados durante 5 s y reduce el daño recibido en 37%.",
+    "Completo"
+  ],
+  [
+    "Jake Muller",
+    "Legendario",
+    "Campo",
+    "Postura defensiva de combate cuerpo a cuerpo",
+    "1",
+    "Durante el combate, cada vez que los defensores aliados de la unidad que incluye a este héroe atacan 4 veces, renuncian a atacar en el siguiente turno. A cambio, el daño que reciben los defensores de los...",
+    "Cortado"
+  ],
+  [
+    "Jake Muller",
+    "Legendario",
+    "Campo",
+    "Ataque cargado",
+    "1",
+    "Jake Muller toma impulso y lanza un golpe con la mano, infligiendo daño equivalente al 408% del ataque a los enemigos en un área rectangular frontal.",
+    "Completo"
+  ],
+  [
+    "Jake Muller",
+    "Legendario",
+    "Campo",
+    "Arma humana",
+    "1",
+    "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta 4% en combate.",
+    "Completo"
+  ],
+  [
+    "Murphy Seeker",
+    "Raro",
+    "Exploración",
+    "Dios de la puntería",
+    "5",
+    "Apunta a las piernas de todos los enemigos dentro de un área en forma de abanico, infligiendo daño equivalente al 476% del poder de ataque y reduciendo su velocidad de movimiento en un 30%....",
+    "Cortado"
+  ],
+  [
+    "Murphy Seeker",
+    "Raro",
+    "Campo",
+    "Disparo decisivo",
+    "1",
+    "durante 1 turno. (Máx. 3 intentos de aturdimiento por objetivo cada...",
+    "Cortado"
+  ],
+  [
+    "Katherine Warren",
+    "Épico",
+    "Campo",
+    "Recolectar madera",
+    "5",
+    "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de madera aumenta 25%.",
+    "Completo"
+  ],
+  [
+    "Katherine Warren",
+    "Épico",
+    "Campo",
+    "Instinto del superviviente",
+    "5",
+    "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce 20% en combate.",
+    "Completo"
+  ],
+  [
+    "Katherine Warren",
+    "Épico",
+    "Exploración",
+    "Apoyo",
+    "1",
+    "Aumenta el poder de defensa de todos los aliados en 35%.",
+    "Completo"
+  ],
+  [
+    "Katherine Warren",
+    "Épico",
+    "Exploración",
+    "Lanzallamas",
+    "2",
+    "Saca el lanzallamas, causando daño equivalente al 65,5% del poder de ataque a los enemigos dentro de un área en forma de abanico. Los enemigos alcanzados sufren...",
+    "Cortado"
+  ],
+  [
+    "Katherine Warren",
+    "Épico",
+    "Exploración",
+    "Municiones de alto rendimiento",
+    "2",
+    "Aumenta el daño infligido de los ataques comunes en 41%.",
+    "Completo"
+  ],
+  [
+    "Cazadora",
+    "Legendario",
+    "Campo",
+    "Vitalidad de combate",
+    "3",
+    "Cuando este héroe forma parte de una tropa aliada, su salud aumenta en 15% durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en 45%.",
+    "Completo"
+  ],
+  [
+    "Cazadora",
+    "Legendario",
+    "Exploración",
+    "Perforante",
+    "1",
+    "Dispara un perforante hacia el frente que atraviesa a todos los enemigos en una línea estrecha e inflige daño equivalente al 72,5% del ATQ.",
+    "Completo"
+  ],
+  [
+    "Cazadora",
+    "Legendario",
+    "Campo",
+    "Mejora de munición perforante",
+    "3",
+    "Cuando este héroe forma parte de una tropa aliada, su penetración aumenta en 15% durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en 150%.",
+    "Completo"
+  ],
+  [
+    "Cazadora",
+    "Legendario",
+    "Campo",
+    "Inicio de fuego rápido",
+    "4",
+    "Los Rangers de la unidad aliada que incluye a este héroe tienen una probabilidad de 20% de realizar un ataque adicional contra el enemigo e infligir daño. Si el objetivo es un objetivo de caza de...",
+    "Cortado"
+  ],
+  [
+    "Cazadora",
+    "Legendario",
+    "Exploración",
+    "D explosivo",
+    "1",
+    "Dispara un explosivo perforante a un objetivo dentro del alcance para infligir daño equivalente al 29,5% del ATQ. Después de 2 s, provoca una explosión que inflige daño equivalente al 125% del ATQ a los...",
+    "Cortado"
+  ],
+  [
+    "Cazadora",
+    "Legendario",
+    "Exploración",
+    "Lacerante",
+    "1",
+    "Dispara un lacerante a un objetivo dentro del alcance para infligir daño equivalente al 29,5% del ATQ. Después de 2 s, explota e inflige daño cortante equivalente al 20% del ATQ 5 veces seguidas.",
+    "Completo"
+  ],
+  [
+    "Jack Krauser",
+    "Legendario",
+    "Exploración",
+    "Técnica con Daga",
+    "1",
+    "Cuando un enemigo se acerca, blande un cuchillo e inflige 2 veces 250% de daño de ataque a los enemigos cercanos.",
+    "Completo"
+  ],
+  [
+    "Jack Krauser",
+    "Legendario",
+    "Campo",
+    "Carisma",
+    "1",
+    "La salud de las unidades aliadas que incluyen a este héroe aumenta 5% en combate.",
+    "Completo"
+  ],
+  [
+    "Jack Krauser",
+    "Legendario",
+    "Campo",
+    "Instructor",
+    "1",
+    "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce 4% en combate.",
+    "Completo"
+  ],
+  [
+    "Jack Krauser",
+    "Legendario",
+    "Exploración",
+    "Flecha Explosiva",
+    "1",
+    "Al impactar, la flecha explosiva inflige 300% de daño de ataque a los enemigos cercanos y 688% de daño adicional en el área.",
+    "Completo"
+  ],
+  [
+    "Jack Krauser",
+    "Legendario",
+    "Campo",
+    "Tajo Ascendente",
+    "1",
+    "Las unidades aliadas que incluyen a este héroe reducen 4% el ataque de los enemigos en combate.",
+    "Completo"
+  ],
+  [
+    "Jack Krauser",
+    "Legendario",
+    "Exploración",
+    "Liberación Mutante",
+    "1",
+    "Desata el poder de Las Plagas y muta su brazo para causar 3 golpes con daño equivalente al 45% del ataque al enemigo. Además, recupera HP equivalente al 15% del daño causado.",
+    "Completo"
+  ],
+  [
+    "Robert Kendo",
+    "Épico",
+    "Exploración",
+    "¡Toma esto!",
+    "5",
+    "...El enemigo repelido queda aturdido por 2 segundos y luego explota, causando daño equivalente al...",
+    "Cortado"
+  ],
+  [
+    "Alyssa Ashcroft",
+    "Épico",
+    "Campo",
+    "Instinto de reportero",
+    "5",
+    "Al desplegar una unidad que incluya a este héroe, la velocidad de despliegue contra infectados y mutantes aumenta 100%.",
+    "Completo"
+  ],
+  [
+    "Alyssa Ashcroft",
+    "Épico",
+    "Campo",
+    "Detección de crisis",
+    "5",
+    "Las unidades aliadas que incluyen a este héroe reducen 20% el daño infligido por los enemigos en combate.",
+    "Completo"
+  ],
+  [
+    "Alyssa Ashcroft",
+    "Épico",
+    "Exploración",
+    "Lanzamiento de V-JOLT",
+    "2",
+    "Lanza un frasco de solución especial que inflige 260% de daño de ataque a los objetivos en un área circular.",
+    "Completo"
+  ],
+  [
+    "Tyrone Henry",
+    "Épico",
+    "Exploración",
+    "Tacleo de hombro",
+    "5",
+    "Las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de aumentar 20% el daño infligido a los enemigos durante 3 turnos en combate.",
+    "Completo"
+  ],
+  [
+    "Tyrone Henry",
+    "Campo",
+    "Rally",
+    "1",
+    "Cada 12 segundos, eleva la moral del equipo y aumenta el poder de defensa de todos los aliados en 50%. (Durante 8 segundos)",
+    "Completo",
+    ""
+  ],
+  [
+    "Tyrone Henry",
+    "Épico",
+    "Campo",
+    "Conocimientos de primeros auxilios",
+    "5",
+    "Aumenta la velocidad de tratamiento en el hospital en 50%.",
+    "Completo"
+  ],
+  [
+    "Becca Woollett",
+    "Épico",
+    "Campo",
+    "Trance total",
+    "5",
+    "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta 25% en combate.",
+    "Completo"
+  ],
+  [
+    "Becca Woollett",
+    "Épico",
+    "Exploración",
+    "Postura de disparo",
+    "5",
+    "Cada 10 segundos, la velocidad de ataque de Becca aumenta en un 40%. (Durante 7,5 segundos) Vista previa de mejoras Aumento de velocidad de",
+    "Cortado"
+  ],
+  [
+    "Becca Woollett",
+    "Épico",
+    "Exploración",
+    "Chaleco antibalas",
+    "5",
+    "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce 20% en combate.",
+    "Completo"
+  ],
+  [
+    "Becca Woollett",
+    "Épico",
+    "Exploración",
+    "Tiro al blanco",
+    "5",
+    "Al realizar un ataque normal, hay un 30% de probabilidad de que el daño del ataque normal aumente 286%.",
+    "Completo"
+  ],
+  [
+    "Ashley Graham",
+    "Legendario",
+    "Campo",
+    "Armadura de Ashley",
+    "1",
+    "En combate, las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de reducir 10% el daño infligido por los enemigos durante 2 turnos.",
+    "Completo"
+  ],
+  [
+    "Ashley Graham",
+    "Legendario",
+    "Exploración",
+    "Iluminación de farol",
+    "1",
+    "Identifica al enemigo con la luz del farol y expone su punto débil. La defensa del objetivo se reduce en 26,5% durante 2 segundo(s).",
+    "Completo"
+  ],
+  [
+    "Ashley Graham",
+    "Legendario",
+    "Exploración",
+    "Farol encendido",
+    "1",
+    "Ashley no ataca directamente, pero brinda apoyo a sus aliados con un farol. Su intensa luz aturde a los enemigos dentro del alcance durante 2 segundo(s) y reduce su velocidad de movimiento en 30%,",
+    "Cortado"
+  ],
+  [
+    "Ashley Graham",
+    "Legendario",
+    "Campo",
+    "Valentía renacida",
+    "1",
+    "Las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de aumentar 8% el daño infligido a los enemigos durante 3 turnos en combate.",
+    "Completo"
+  ],
+  [
+    "Ashley Graham",
+    "Legendario",
+    "Exploración",
+    "Nombramiento de Escolta Exclusivo",
+    "1",
+    "Ashley, en proporción a su propio ataque, aumenta en 75% el ataque del aliado más fuerte y le otorga un escudo de 43,7%.",
+    "Completo"
+  ],
+  [
+    "Ashley Graham",
+    "Legendario",
+    "Exploración",
+    "Lazo de Compasión",
+    "1",
+    "La salud de las unidades aliadas que incluyen a este héroe aumenta 5% en combate.",
+    "Completo"
+  ],
+  [
+    "Rebecca Chambers",
+    "Legendario",
+    "Campo",
+    "Conocimientos de Medicina Militar",
+    "2",
+    "En combate, el ataque de las unidades aliadas que incluyen a este héroe aumenta 6% y su defensa aumenta 4%.",
+    "Completo"
+  ],
+  [
+    "Rebecca Chambers",
+    "Legendario",
+    "Exploración",
+    "Activador",
+    "2",
+    "En combate, al atacar, las unidades aliadas que incluyen a este héroe tienen un 25% de probabilidad de aumentar 140% el daño infligido al enemigo.",
+    "Completo"
+  ],
+  [
+    "Rebecca Chambers",
+    "Legendario",
+    "Exploración",
+    "Sedante",
+    "1",
+    "Las unidades aliadas que incluyen a este héroe tienen un 40% de probabilidad de reducir 10% el daño recibido de los enemigos en combate.",
+    "Completo"
+  ],
+  [
+    "Tyrell Patrick",
+    "Épico",
+    "Campo",
+    "Inteligencia del hacker",
+    "5",
+    "...Aumento de velocidad de...",
+    "Cortado"
+  ],
+  [
+    "Tyrell Patrick",
+    "Épico",
+    "Exploración",
+    "Ametralladora automática",
+    "5",
+    "...La ametralladora tiene un poder de ataque equivalente al 22,8% según el poder de ataque de...",
+    "Cortado"
+  ],
+  [
+    "Marvin Branagh",
+    "Épico",
+    "Exploración",
+    "Disparo a la pierna",
+    "5",
+    "...causando daño equivalente al 342% del poder de ataque y reduciendo su velocidad de...",
+    "Cortado"
+  ],
+  [
+    "Barry Burton",
+    "Épico",
+    "Exploración",
+    "Entrenamiento físico",
+    "5",
+    "...Reducción del consumo de...",
+    "Cortado"
+  ],
+  [
+    "Claire Redfield",
+    "Legendario",
+    "Campo",
+    "Fuego de supresión",
+    "5",
+    "...(Máx. 3 intentos de aturdimiento por objetivo cada...",
+    "Cortado"
+  ],
+  [
+    "Claire Redfield",
+    "Legendario",
+    "Exploración",
+    "Disparo eléctrico",
+    "1",
+    "...ataque a 1 enemigo y lo aturde durante 3 segundos. Tras 3 segundos, el objetivo aturdido...",
+    "Cortado"
+  ]
+]

@@ -1,32 +1,41 @@
 import { useState, useEffect, useRef } from 'react';
+import { getRedQueenResponse } from '../services/geminiService';
 
 const RedQueenAI = () => {
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState<{role: 'user'|'ai', text: string}[]>([]);
+  const [messages, setMessages] = useState<{role: 'user'|'model', text: string}[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [currentTypedText, setCurrentTypedText] = useState('');
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  const simulateAIResponse = (userText: string) => {
+  const simulateAIResponse = async (userText: string) => {
     setIsTyping(true);
     setCurrentTypedText('');
     
     // Add user message immediately
-    setMessages(prev => [...prev, { role: 'user', text: userText }]);
+    const updatedMessages = [...messages, { role: 'user' as const, text: userText }];
+    setMessages(updatedMessages);
     
-    const fakeResponse = "ANALIZANDO SITUACIÓN... \nADVERTENCIA: Probabilidad de supervivencia táctica reducida al 14.3%. \nRECOMENDACIÓN: Evacuar el perímetro inmediatamente o redirigir el fuego de supresión al sector este. \nQUE TENGAS UN BUEN DÍA.";
+    // Format history for Gemini (excluding the last user message we just sent)
+    const history = messages.map(m => ({
+      role: m.role,
+      parts: [{ text: m.text }]
+    })) as any;
+
+    const response = await getRedQueenResponse(history, userText);
+    
+    // Typewriter effect for the response
     let i = 0;
-    
     const typeInterval = setInterval(() => {
-      setCurrentTypedText(fakeResponse.substring(0, i + 1));
+      setCurrentTypedText(response.substring(0, i + 1));
       i++;
-      if (i >= fakeResponse.length) {
+      if (i >= response.length) {
         clearInterval(typeInterval);
         setIsTyping(false);
-        setMessages(prev => [...prev, { role: 'ai', text: fakeResponse }]);
+        setMessages(prev => [...prev, { role: 'model', text: response }]);
         setCurrentTypedText('');
       }
-    }, 40); // typing speed
+    }, 20); // Faster typing speed
   };
 
   const handleSubmit = (e: React.FormEvent) => {

@@ -1,7 +1,8 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calculator, Zap, FastForward, Clock, Plus, Trash2, ArrowRight } from 'lucide-react';
+import { Calculator, Zap, FastForward, Clock, Plus, Trash2, ArrowRight, UploadCloud, Loader2 } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
+import { analyzeScreenshot } from '../services/geminiService';
 
 // Base de Datos: Puntos por Categoría (T1 - T11)
 const POINTS_PER_UNIT: Record<number, number> = {
@@ -51,6 +52,8 @@ const InventoryItem = ({ label, value, onChange, isTroop, rarity }: any) => {
 const TrainingCalculator = () => {
   const [mode, setMode] = useState<'direct' | 'advanced'>('direct');
   const [eventMode, setEventMode] = useState<'cumbres' | 'svs'>('cumbres');
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   
   // Direct Mode
   const [level, setLevel] = useState<number>(11);
@@ -82,6 +85,44 @@ const TrainingCalculator = () => {
   };
   const removeQueue = (id: string) => {
     if (queues.length > 1) setQueues(q => q.filter(item => item.id !== id));
+  };
+
+  const handleScreenshotUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    try {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64data = reader.result as string;
+        try {
+          const json = await analyzeScreenshot(base64data, file.type);
+          
+          if (json.general) {
+            if (json.general['1m'] !== undefined) setGen1m(json.general['1m']);
+            if (json.general['5m'] !== undefined) setGen5m(json.general['5m']);
+            if (json.general['1h'] !== undefined) setGen1h(json.general['1h']);
+            if (json.general['3h'] !== undefined) setGen3h(json.general['3h']);
+            if (json.general['8h'] !== undefined) setGen8h(json.general['8h']);
+          }
+          if (json.training) {
+            if (json.training['1m'] !== undefined) setTrp1m(json.training['1m']);
+            if (json.training['5m'] !== undefined) setTrp5m(json.training['5m']);
+            if (json.training['1h'] !== undefined) setTrp1h(json.training['1h']);
+          }
+        } catch(err: any) {
+          console.error("AI Analysis error", err);
+          alert("Error de la Red Queen: " + (err.message || err.toString()));
+        } finally {
+          setIsUploading(false);
+        }
+      };
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.error("Error analizando imagen:", error);
+      setIsUploading(false);
+    }
   };
 
   const results = useMemo(() => {
@@ -269,10 +310,34 @@ const TrainingCalculator = () => {
                   </div>
 
                   {/* Inventario */}
-                  <div className="bg-[#0a0a0a] border border-gray-800 p-4">
+                  <div className="bg-[#0a0a0a] border border-gray-800 p-4 relative">
+                    {isUploading && (
+                      <div className="absolute inset-0 bg-black/80 z-20 flex flex-col items-center justify-center border border-blood-red">
+                        <Loader2 className="text-neon-red animate-spin mb-2" size={32} />
+                        <span className="font-mono text-blood-red text-xs uppercase tracking-widest animate-pulse">Red Queen analizando imagen...</span>
+                      </div>
+                    )}
                     <div className="flex justify-between items-center mb-4">
-                      <label className="font-mono text-neon-red text-xs uppercase tracking-widest">Inventario de Aceleradores</label>
-                      <span className="font-mono text-[10px] text-gray-500 bg-black px-2 py-1 border border-gray-800">Total Disp: {((results as any).accelSecs / 3600 || 0).toFixed(1)}h</span>
+                      <label className="font-mono text-neon-red text-xs uppercase tracking-widest flex items-center gap-2">
+                        Inventario de Aceleradores
+                      </label>
+                      <div className="flex items-center gap-3">
+                        <input 
+                          type="file" 
+                          accept="image/*" 
+                          ref={fileInputRef} 
+                          onChange={handleScreenshotUpload} 
+                          className="hidden" 
+                        />
+                        <button 
+                          onClick={() => fileInputRef.current?.click()}
+                          className="flex items-center gap-1 font-mono text-[9px] uppercase tracking-widest bg-blood-red/10 text-neon-red border border-blood-red/30 px-2 py-1 hover:bg-blood-red hover:text-white transition-colors"
+                          title="Subir captura de pantalla para auto-rellenar"
+                        >
+                          <UploadCloud size={12} /> Auto-Llenado IA
+                        </button>
+                        <span className="font-mono text-[10px] text-gray-500 bg-black px-2 py-1 border border-gray-800">Total Disp: {((results as any).accelSecs / 3600 || 0).toFixed(1)}h</span>
+                      </div>
                     </div>
                     
                     <div className="space-y-6">

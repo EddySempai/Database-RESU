@@ -196,14 +196,14 @@ const OperativoDetalle = () => {
                 <div className="border border-gray-800 p-4 bg-black/50">
                   <h3 className="font-mono text-blood-red uppercase tracking-widest border-b border-gray-800 pb-2 mb-4">Habilidades de Campo</h3>
                   <div className="space-y-4">
-                    {[1, 2, maxSkills === 6 ? 3 : null].filter(Boolean).map(i => (
-                      <div key={i} className="flex gap-4 items-start">
+                    {((op as any).skills || []).filter((s: any) => s.type === 'Campo').map((skill: any, idx: number) => (
+                      <div key={idx} className="flex gap-4 items-start">
                         <div className="w-10 h-10 bg-gray-900 border border-gray-700 flex-shrink-0 flex items-center justify-center font-bebas text-gray-500">
-                          H{i}
+                          C{idx + 1}
                         </div>
                         <div>
-                          <h4 className="text-white font-bebas tracking-widest">Habilidad Campo {i}</h4>
-                          <p className="text-xs text-gray-500 font-inter mt-1">Pendiente de extracción de datos oficiales.</p>
+                          <h4 className="text-white font-bebas tracking-widest">{skill.name}</h4>
+                          <p className="text-xs text-gray-500 font-inter mt-1">{skill.description}</p>
                         </div>
                       </div>
                     ))}
@@ -212,14 +212,14 @@ const OperativoDetalle = () => {
                 <div className="border border-gray-800 p-4 bg-black/50">
                   <h3 className="font-mono text-blue-500 uppercase tracking-widest border-b border-gray-800 pb-2 mb-4">Habilidades de Exploración</h3>
                   <div className="space-y-4">
-                    {[1, 2, 3].map(i => (
-                      <div key={i} className="flex gap-4 items-start">
+                    {((op as any).skills || []).filter((s: any) => s.type === 'Exploración').map((skill: any, idx: number) => (
+                      <div key={idx} className="flex gap-4 items-start">
                         <div className="w-10 h-10 bg-gray-900 border border-gray-700 flex-shrink-0 flex items-center justify-center font-bebas text-gray-500">
-                          E{i}
+                          E{idx + 1}
                         </div>
                         <div>
-                          <h4 className="text-white font-bebas tracking-widest">Habilidad Exp. {i}</h4>
-                          <p className="text-xs text-gray-500 font-inter mt-1">Pendiente de extracción de datos oficiales.</p>
+                          <h4 className="text-white font-bebas tracking-widest">{skill.name}</h4>
+                          <p className="text-xs text-gray-500 font-inter mt-1">{skill.description}</p>
                         </div>
                       </div>
                     ))}

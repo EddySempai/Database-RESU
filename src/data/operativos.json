@@ -19,7 +19,8 @@
       }
     ],
     "unitType": "Defensor",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": []
   },
   {
     "id": "claire",
@@ -41,7 +42,19 @@
       }
     ],
     "unitType": "Atacante",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Fuego de supresión",
+        "description": "...(Máx. 3 intentos de aturdimiento por objetivo cada..."
+      },
+      {
+        "type": "Exploración",
+        "name": "Disparo eléctrico",
+        "description": "...ataque a 1 enemigo y lo aturde durante 3 segundos. Tras 3 segundos, el objetivo aturdido..."
+      }
+    ]
   },
   {
     "id": "jill",
@@ -63,7 +76,29 @@
       }
     ],
     "unitType": "Ranger",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Tiro técnico",
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta 5% en combate."
+      },
+      {
+        "type": "Exploración",
+        "name": "Cañón de riel",
+        "description": "Dispara un cañón de riel que inflige daño equivalente al 1250% del poder de ataque a los enemigos en una línea recta."
+      },
+      {
+        "type": "Campo",
+        "name": "Disparo de granada",
+        "description": "Cada 2 turnos, los rangers aliados de la unidad con este héroe tienen 4% de probabilidad de aturdir al tipo de tropa objetivo durante 1 turno. (Máx. 3 intentos de aturdimiento por objetivo cada..."
+      },
+      {
+        "type": "Campo",
+        "name": "Delta Force",
+        "description": "Cada 10 segundos, aumenta el poder de ataque de todos los aliados en 5,5%. (Durante 8 segundos)"
+      }
+    ]
   },
   {
     "id": "carlos",
@@ -85,7 +120,8 @@
       }
     ],
     "unitType": "Defensor",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": []
   },
   {
     "id": "ada",
@@ -107,7 +143,8 @@
       }
     ],
     "unitType": "Atacante",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": []
   },
   {
     "id": "mikhail",
@@ -129,7 +166,8 @@
       }
     ],
     "unitType": "Ranger",
-    "rarity": "Épico"
+    "rarity": "Épico",
+    "skills": []
   },
   {
     "id": "marvin",
@@ -151,7 +189,14 @@
       }
     ],
     "unitType": "Defensor",
-    "rarity": "Épico"
+    "rarity": "Épico",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Disparo a la pierna",
+        "description": "...causando daño equivalente al 342% del poder de ataque y reduciendo su velocidad de..."
+      }
+    ]
   },
   {
     "id": "becca",
@@ -173,7 +218,8 @@
       }
     ],
     "unitType": "Atacante",
-    "rarity": "Épico"
+    "rarity": "Épico",
+    "skills": []
   },
   {
     "id": "tyrone",
@@ -195,7 +241,24 @@
       }
     ],
     "unitType": "Defensor",
-    "rarity": "Épico"
+    "rarity": "Épico",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Tacleo de hombro",
+        "description": "Las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de aumentar 20% el daño infligido a los enemigos durante 3 turnos en combate."
+      },
+      {
+        "type": "Rally",
+        "name": "1",
+        "description": "Completo"
+      },
+      {
+        "type": "Campo",
+        "name": "Conocimientos de primeros auxilios",
+        "description": "Aumenta la velocidad de tratamiento en el hospital en 50%."
+      }
+    ]
   },
   {
     "id": "murphy",
@@ -217,7 +280,19 @@
       }
     ],
     "unitType": "Atacante",
-    "rarity": "Épico"
+    "rarity": "Épico",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Dios de la puntería",
+        "description": "Apunta a las piernas de todos los enemigos dentro de un área en forma de abanico, infligiendo daño equivalente al 476% del poder de ataque y reduciendo su velocidad de movimiento en un 30%...."
+      },
+      {
+        "type": "Campo",
+        "name": "Disparo decisivo",
+        "description": "durante 1 turno. (Máx. 3 intentos de aturdimiento por objetivo cada..."
+      }
+    ]
   },
   {
     "id": "alyssa",
@@ -239,7 +314,24 @@
       }
     ],
     "unitType": "Atacante",
-    "rarity": "Épico"
+    "rarity": "Épico",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Instinto de reportero",
+        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de despliegue contra infectados y mutantes aumenta 100%."
+      },
+      {
+        "type": "Campo",
+        "name": "Detección de crisis",
+        "description": "Las unidades aliadas que incluyen a este héroe reducen 20% el daño infligido por los enemigos en combate."
+      },
+      {
+        "type": "Exploración",
+        "name": "Lanzamiento de V-JOLT",
+        "description": "Lanza un frasco de solución especial que inflige 260% de daño de ataque a los objetivos en un área circular."
+      }
+    ]
   },
   {
     "id": "katherine",
@@ -261,7 +353,34 @@
       }
     ],
     "unitType": "Atacante",
-    "rarity": "Épico"
+    "rarity": "Épico",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Recolectar madera",
+        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de madera aumenta 25%."
+      },
+      {
+        "type": "Campo",
+        "name": "Instinto del superviviente",
+        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce 20% en combate."
+      },
+      {
+        "type": "Exploración",
+        "name": "Apoyo",
+        "description": "Aumenta el poder de defensa de todos los aliados en 35%."
+      },
+      {
+        "type": "Exploración",
+        "name": "Lanzallamas",
+        "description": "Saca el lanzallamas, causando daño equivalente al 65,5% del poder de ataque a los enemigos dentro de un área en forma de abanico. Los enemigos alcanzados sufren..."
+      },
+      {
+        "type": "Exploración",
+        "name": "Municiones de alto rendimiento",
+        "description": "Aumenta el daño infligido de los ataques comunes en 41%."
+      }
+    ]
   },
   {
     "id": "mark",
@@ -283,7 +402,8 @@
       }
     ],
     "unitType": "Defensor",
-    "rarity": "Épico"
+    "rarity": "Épico",
+    "skills": []
   },
   {
     "id": "barry",
@@ -305,7 +425,14 @@
       }
     ],
     "unitType": "Ranger",
-    "rarity": "Épico"
+    "rarity": "Épico",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Entrenamiento físico",
+        "description": "...Reducción del consumo de..."
+      }
+    ]
   },
   {
     "id": "tyrell",
@@ -327,7 +454,19 @@
       }
     ],
     "unitType": "Ranger",
-    "rarity": "Épico"
+    "rarity": "Épico",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Inteligencia del hacker",
+        "description": "...Aumento de velocidad de..."
+      },
+      {
+        "type": "Exploración",
+        "name": "Ametralladora automática",
+        "description": "...La ametralladora tiene un poder de ataque equivalente al 22,8% según el poder de ataque de..."
+      }
+    ]
   },
   {
     "id": "robert",
@@ -349,7 +488,14 @@
       }
     ],
     "unitType": "Defensor",
-    "rarity": "Épico"
+    "rarity": "Épico",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "¡Toma esto!",
+        "description": "...El enemigo repelido queda aturdido por 2 segundos y luego explota, causando daño equivalente al..."
+      }
+    ]
   },
   {
     "id": "brad",
@@ -371,7 +517,29 @@
       }
     ],
     "unitType": "Ranger",
-    "rarity": "Épico"
+    "rarity": "Épico",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Último recurso",
+        "description": "Lanza un letrero que empuja a los enemigos dentro de un área circular, inflige daño equivalente al 327% del poder de ataque y lo aturde durante 0,2 segundos. Los enemigos alcanzados por el letrero..."
+      },
+      {
+        "type": "Campo",
+        "name": "Gestión de combustible",
+        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de petróleo aumenta 25%."
+      },
+      {
+        "type": "Exploración",
+        "name": "Instinto del cobarde",
+        "description": "Cada 15 segundos, aumenta el poder de defensa de todos los aliados en 70%. (Durante 8 segundos)"
+      },
+      {
+        "type": "Exploración",
+        "name": "Confianza",
+        "description": "El daño del ataque normal contra enemigos con velocidad de movimiento reducida aumenta 38%."
+      }
+    ]
   },
   {
     "id": "chris",
@@ -393,7 +561,14 @@
       }
     ],
     "unitType": "Defensor",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Mira de Punto Rojo",
+        "description": "Aumento de Poder de..."
+      }
+    ]
   },
   {
     "id": "rebecca",
@@ -415,7 +590,24 @@
       }
     ],
     "unitType": "Atacante",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Conocimientos de Medicina Militar",
+        "description": "En combate, el ataque de las unidades aliadas que incluyen a este héroe aumenta 6% y su defensa aumenta 4%."
+      },
+      {
+        "type": "Exploración",
+        "name": "Activador",
+        "description": "En combate, al atacar, las unidades aliadas que incluyen a este héroe tienen un 25% de probabilidad de aumentar 140% el daño infligido al enemigo."
+      },
+      {
+        "type": "Exploración",
+        "name": "Sedante",
+        "description": "Las unidades aliadas que incluyen a este héroe tienen un 40% de probabilidad de reducir 10% el daño recibido de los enemigos en combate."
+      }
+    ]
   },
   {
     "id": "billy",
@@ -437,7 +629,14 @@
       }
     ],
     "unitType": "Ranger",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Pistolero",
+        "description": "y, tras 1 segundo, reciben daño equivalente al 543% del..."
+      }
+    ]
   },
   {
     "id": "ashley",
@@ -459,7 +658,39 @@
       }
     ],
     "unitType": "Ranger",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Armadura de Ashley",
+        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de reducir 10% el daño infligido por los enemigos durante 2 turnos."
+      },
+      {
+        "type": "Exploración",
+        "name": "Iluminación de farol",
+        "description": "Identifica al enemigo con la luz del farol y expone su punto débil. La defensa del objetivo se reduce en 26,5% durante 2 segundo(s)."
+      },
+      {
+        "type": "Exploración",
+        "name": "Farol encendido",
+        "description": "Ashley no ataca directamente, pero brinda apoyo a sus aliados con un farol. Su intensa luz aturde a los enemigos dentro del alcance durante 2 segundo(s) y reduce su velocidad de movimiento en 30%,"
+      },
+      {
+        "type": "Campo",
+        "name": "Valentía renacida",
+        "description": "Las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de aumentar 8% el daño infligido a los enemigos durante 3 turnos en combate."
+      },
+      {
+        "type": "Exploración",
+        "name": "Nombramiento de Escolta Exclusivo",
+        "description": "Ashley, en proporción a su propio ataque, aumenta en 75% el ataque del aliado más fuerte y le otorga un escudo de 43,7%."
+      },
+      {
+        "type": "Exploración",
+        "name": "Lazo de Compasión",
+        "description": "La salud de las unidades aliadas que incluyen a este héroe aumenta 5% en combate."
+      }
+    ]
   },
   {
     "id": "luis",
@@ -481,7 +712,29 @@
       }
     ],
     "unitType": "Atacante",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Salud / Poder de ataque",
+        "description": "Salud: 80,548 >> 101,335 | Poder de ataque: 8,056 >> 10,134 | Defensa: 1,791 >> 2,253"
+      },
+      {
+        "type": "Campo",
+        "name": "¡Sígueme, Sancho Panza!",
+        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen un 50% de probabilidad de aumentar 50% el daño que reciben los enemigos."
+      },
+      {
+        "type": "Exploración",
+        "name": "Colocación de Dinamita",
+        "description": "Lanza dinamita a la ubicación designada e inflige a los enemigos cercanos daño equivalente al 1710% del ataque."
+      },
+      {
+        "type": "Exploración",
+        "name": "Munición Experimental",
+        "description": "Las unidades aliadas que incluyen a este héroe tienen un 50% de probabilidad de aumentar 50% el daño infligido a los enemigos en combate."
+      }
+    ]
   },
   {
     "id": "jack",
@@ -503,7 +756,39 @@
       }
     ],
     "unitType": "Defensor",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Técnica con Daga",
+        "description": "Cuando un enemigo se acerca, blande un cuchillo e inflige 2 veces 250% de daño de ataque a los enemigos cercanos."
+      },
+      {
+        "type": "Campo",
+        "name": "Carisma",
+        "description": "La salud de las unidades aliadas que incluyen a este héroe aumenta 5% en combate."
+      },
+      {
+        "type": "Campo",
+        "name": "Instructor",
+        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce 4% en combate."
+      },
+      {
+        "type": "Exploración",
+        "name": "Flecha Explosiva",
+        "description": "Al impactar, la flecha explosiva inflige 300% de daño de ataque a los enemigos cercanos y 688% de daño adicional en el área."
+      },
+      {
+        "type": "Campo",
+        "name": "Tajo Ascendente",
+        "description": "Las unidades aliadas que incluyen a este héroe reducen 4% el ataque de los enemigos en combate."
+      },
+      {
+        "type": "Exploración",
+        "name": "Liberación Mutante",
+        "description": "Desata el poder de Las Plagas y muta su brazo para causar 3 golpes con daño equivalente al 45% del ataque al enemigo. Además, recupera HP equivalente al 15% del daño causado."
+      }
+    ]
   },
   {
     "id": "jake",
@@ -525,7 +810,34 @@
       }
     ],
     "unitType": "Defensor",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Esto tiene un costo adicional.",
+        "description": "Los defensores aliados de la unidad que incluye a este héroe tienen un 10% de probabilidad de infligir daño adicional al enemigo y aumentar en 3% el daño que recibe en combate."
+      },
+      {
+        "type": "Campo",
+        "name": "No hago descuentos.",
+        "description": "Cuando Jake Muller recibe daño, obtiene inmunidad a estados alterados durante 5 s y reduce el daño recibido en 37%."
+      },
+      {
+        "type": "Campo",
+        "name": "Postura defensiva de combate cuerpo a cuerpo",
+        "description": "Durante el combate, cada vez que los defensores aliados de la unidad que incluye a este héroe atacan 4 veces, renuncian a atacar en el siguiente turno. A cambio, el daño que reciben los defensores de los..."
+      },
+      {
+        "type": "Campo",
+        "name": "Ataque cargado",
+        "description": "Jake Muller toma impulso y lanza un golpe con la mano, infligiendo daño equivalente al 408% del ataque a los enemigos en un área rectangular frontal."
+      },
+      {
+        "type": "Campo",
+        "name": "Arma humana",
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta 4% en combate."
+      }
+    ]
   },
   {
     "id": "sherry",
@@ -547,7 +859,39 @@
       }
     ],
     "unitType": "Atacante",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Modo ráfaga",
+        "description": "Los atacantes aliados de la unidad que incluye a este héroe tienen un 20% de probabilidad de atacar una vez más al enemigo e infligir daño en combate."
+      },
+      {
+        "type": "Campo",
+        "name": "Fuego de apoyo",
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta 6% en combate."
+      },
+      {
+        "type": "Campo",
+        "name": "Granada cegadora",
+        "description": "Lanza una granada cegadora y aturde a los objetivos dentro de un área circular durante 1 segundo(s)."
+      },
+      {
+        "type": "Campo",
+        "name": "Voluntad de sobrevivir",
+        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen 4% de probabilidad de evadir los ataques enemigos."
+      },
+      {
+        "type": "Exploración",
+        "name": "Superchica",
+        "description": "Sherry Birkin recupera salud equivalente al 21,4% de su salud máxima cada 15 s."
+      },
+      {
+        "type": "Exploración",
+        "name": "Comandante Bear",
+        "description": "Saca el rifle de asalto BC y dispara 30 balas en línea recta. Cada enemigo alcanzado por las balas recibe daño equivalente al 20% del ataque."
+      }
+    ]
   },
   {
     "id": "piers",
@@ -569,6 +913,33 @@
       }
     ],
     "unitType": "Ranger",
-    "rarity": "Legendario"
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Rifle antimaterial",
+        "description": "Nivans saca un rifle antimaterial y dispara. El proyectil atraviesa a todos los objetivos en una línea estrecha, inflige daño equivalente al 555% del ataque y los aturde durante 2 s."
+      },
+      {
+        "type": "Campo",
+        "name": "Tiro a larga distancia",
+        "description": "Las unidades aliadas que incluyen a este héroe reducen 12% el daño infligido por los enemigos en combate."
+      },
+      {
+        "type": "Exploración",
+        "name": "Concentración innata",
+        "description": "Al realizar un ataque normal, el ataque aumenta en 2.4% durante 3 s. Este efecto se acumula hasta 15 veces."
+      },
+      {
+        "type": "Campo",
+        "name": "Ajuste a cero",
+        "description": "Cada vez que una unidad aliada que incluya a este héroe ataque 3 veces, el ataque de los rangers aumenta en 6% en el siguiente turno. Este efecto se acumula y dura hasta el final del combate."
+      },
+      {
+        "type": "Exploración",
+        "name": "Lanzamiento de bomba",
+        "description": "Lanza una bomba hacia la ubicación del objetivo más lejano, provocando una explosión que inflige daño equivalente al 190% del ataque."
+      }
+    ]
   }
 ]
