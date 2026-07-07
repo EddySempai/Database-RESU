@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, Shield, Sword, Heart, Star, BookOpen, Users, Crosshair } from 'lucide-react';
+import { BookOpen, Star, Sword, Shield, Heart, ChevronLeft, Crosshair, Users } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import operativosData from '../data/operativos.json';
 import { calculateRequiredExp, calculateRequiredContracts, calculateSkillBooks, getMaxSkillsByRarity } from '../utils/calculators';
 import EquipamientoView from '../components/EquipamientoView';
@@ -25,6 +26,7 @@ const getUnitColor = (type: string) => {
 };
 
 const OperativoDetalle = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState('skills'); // skills, exp, stars, books
   
@@ -99,17 +101,17 @@ const OperativoDetalle = () => {
 
           {op.stats && (
             <div className="space-y-4 border-t border-gray-800 pt-6 relative z-10">
-              <h3 className="font-mono text-gray-500 text-xs uppercase tracking-widest mb-2">Estadísticas Máximas</h3>
+              <h3 className="font-mono text-gray-500 text-xs uppercase tracking-widest mb-2">{t('op_detail.max_stats')}</h3>
               <div className="flex items-center justify-between bg-black/50 p-3 border border-gray-800/50">
-                <div className="flex items-center gap-2 text-green-500"><Heart size={16} /> <span className="font-bebas tracking-widest">SALUD</span></div>
+                <div className="flex items-center gap-2 text-green-500"><Heart size={16} /> <span className="font-bebas tracking-widest">{t('heroes.health')}</span></div>
                 <span className="font-mono text-white">{op.stats.health.toLocaleString()}</span>
               </div>
               <div className="flex items-center justify-between bg-black/50 p-3 border border-gray-800/50">
-                <div className="flex items-center gap-2 text-blood-red"><Sword size={16} /> <span className="font-bebas tracking-widest">ATAQUE</span></div>
+                <div className="flex items-center gap-2 text-blood-red"><Sword size={16} /> <span className="font-bebas tracking-widest">{t('heroes.attack')}</span></div>
                 <span className="font-mono text-white">{op.stats.attack.toLocaleString()}</span>
               </div>
               <div className="flex items-center justify-between bg-black/50 p-3 border border-gray-800/50">
-                <div className="flex items-center gap-2 text-blue-500"><Shield size={16} /> <span className="font-bebas tracking-widest">DEFENSA</span></div>
+                <div className="flex items-center gap-2 text-blue-500"><Shield size={16} /> <span className="font-bebas tracking-widest">{t('heroes.defense')}</span></div>
                 <span className="font-mono text-white">{op.stats.defense.toLocaleString()}</span>
               </div>
             </div>
@@ -118,7 +120,7 @@ const OperativoDetalle = () => {
           {op.fieldStats && op.fieldStats.length > 0 && (
             <div className="mt-6 border-t border-gray-800 pt-6 relative z-10">
               <h3 className="font-mono text-blood-red text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
-                <Sword size={14} /> Bonificaciones de Campo
+                <Sword size={14} /> {t('op_detail.field_bonuses')}
               </h3>
               <div className="space-y-3">
                 {op.fieldStats.map((stat: any, idx: number) => (
@@ -186,7 +188,7 @@ const OperativoDetalle = () => {
               <div className="mt-6">
                 <div className="bg-black border border-gray-800 p-3">
                   <div className="text-gray-500 font-mono text-[10px] uppercase tracking-widest mb-1 flex items-center gap-2">
-                    <Users className="w-3 h-3 text-blood-red" /> Tropas Base
+                    <Users className="w-3 h-3 text-blood-red" /> {t('op_detail.base_troops')}
                   </div>
                   <div className="text-white font-bebas text-2xl tracking-widest">{((op as any).stats?.troops || 0).toLocaleString()}</div>
                 </div>
@@ -194,7 +196,7 @@ const OperativoDetalle = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
                 <div className="border border-gray-800 p-4 bg-black/50">
-                  <h3 className="font-mono text-blood-red uppercase tracking-widest border-b border-gray-800 pb-2 mb-4">Habilidades de Campo</h3>
+                  <h3 className="font-mono text-blood-red uppercase tracking-widest border-b border-gray-800 pb-2 mb-4">{t('op_detail.field_skills')}</h3>
                   <div className="space-y-4">
                     {((op as any).skills || []).filter((s: any) => s.type === 'Campo').map((skill: any, idx: number) => (
                       <div key={idx} className="flex gap-4 items-start">
@@ -210,7 +212,7 @@ const OperativoDetalle = () => {
                   </div>
                 </div>
                 <div className="border border-gray-800 p-4 bg-black/50">
-                  <h3 className="font-mono text-blue-500 uppercase tracking-widest border-b border-gray-800 pb-2 mb-4">Habilidades de Exploración</h3>
+                  <h3 className="font-mono text-blue-500 uppercase tracking-widest border-b border-gray-800 pb-2 mb-4">{t('op_detail.explore_skills')}</h3>
                   <div className="space-y-4">
                     {((op as any).skills || []).filter((s: any) => s.type === 'Exploración').map((skill: any, idx: number) => (
                       <div key={idx} className="flex gap-4 items-start">
@@ -233,13 +235,13 @@ const OperativoDetalle = () => {
           {activeTab === 'exp' && (
             <div>
               <h2 className="font-bebas text-3xl tracking-widest text-white mb-2 flex items-center gap-3">
-                Calculadora de Experiencia
+                {t('op_detail.tab_exp')}
               </h2>
               <p className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-8">Planifica tus recursos de entrenamiento táctico</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div>
-                  <label className="block text-gray-400 font-mono text-xs uppercase mb-2">Nivel Actual (1-80)</label>
+                  <label className="block text-gray-400 font-mono text-xs uppercase mb-2">{t('op_detail.curr_level')}</label>
                   <input 
                     type="number" min="1" max="80" 
                     value={currentLevel} 
@@ -253,7 +255,7 @@ const OperativoDetalle = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-400 font-mono text-xs uppercase mb-2">Nivel Deseado (1-80)</label>
+                  <label className="block text-gray-400 font-mono text-xs uppercase mb-2">{t('op_detail.target_level')}</label>
                   <input 
                     type="number" min="1" max="80" 
                     value={targetLevel} 
@@ -269,7 +271,7 @@ const OperativoDetalle = () => {
               </div>
 
               <div className="bg-blood-red/10 border border-blood-red/30 p-6 text-center">
-                <p className="font-mono text-gray-400 text-sm uppercase mb-2">Experiencia Total Requerida</p>
+                <p className="font-mono text-gray-400 text-sm uppercase mb-2">{t('op_detail.total_exp_req')}</p>
                 <div className="font-bebas text-5xl md:text-6xl text-neon-red tracking-widest">
                   {calculateRequiredExp(currentLevel, targetLevel).toLocaleString()}
                 </div>
@@ -281,15 +283,15 @@ const OperativoDetalle = () => {
           {activeTab === 'stars' && (
             <div>
               <h2 className="font-bebas text-3xl tracking-widest text-white mb-2 flex items-center gap-3">
-                Calculadora de Ascenso
+                {t('op_detail.ascension_calc')}
               </h2>
-              <p className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-8">Contratos de Operativo necesarios</p>
+              <p className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-8">{t('op_detail.req_contracts')}</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 bg-black/30 p-6 border border-gray-800">
                 
                 {/* ESTADO ACTUAL */}
                 <div className="flex flex-col items-center justify-center space-y-6 border-b md:border-b-0 md:border-r border-gray-800 pb-6 md:pb-0 md:pr-6">
-                  <h3 className="font-mono text-neon-red text-sm tracking-widest uppercase mb-2">Estado Actual</h3>
+                  <h3 className="font-mono text-neon-red text-sm tracking-widest uppercase mb-2">{t('op_detail.curr_state')}</h3>
                   
                   {/* Visual Stars */}
                   <div className="flex gap-1 cursor-pointer">
@@ -350,13 +352,13 @@ const OperativoDetalle = () => {
                   </div>
                   
                   <div className="text-xs text-gray-500 font-mono tracking-widest uppercase mt-2">
-                    {currentStar} Estrella{currentStar !== 1 ? 's' : ''} / {currentNode} Asta{currentNode !== 1 ? 's' : ''}
+                    {currentStar} {t('op_detail.star')} / {currentNode} {t('op_detail.node')}
                   </div>
                 </div>
 
                 {/* ESTADO DESEADO */}
                 <div className="flex flex-col items-center justify-center space-y-6 pt-6 md:pt-0 md:pl-6">
-                  <h3 className="font-mono text-yellow-500 text-sm tracking-widest uppercase mb-2">Objetivo</h3>
+                  <h3 className="font-mono text-yellow-500 text-sm tracking-widest uppercase mb-2">{t('op_detail.target')}</h3>
                   
                   {/* Visual Stars */}
                   <div className="flex gap-1 cursor-pointer">
@@ -417,17 +419,17 @@ const OperativoDetalle = () => {
                   </div>
                   
                   <div className="text-xs text-gray-500 font-mono tracking-widest uppercase mt-2">
-                    {targetStar} Estrella{targetStar !== 1 ? 's' : ''} / {targetNode} Asta{targetNode !== 1 ? 's' : ''}
+                    {targetStar} {t('op_detail.star')} / {targetNode} {t('op_detail.node')}
                   </div>
                 </div>
               </div>
 
               <div className="bg-yellow-900/10 border border-yellow-500/30 p-6 text-center">
-                <p className="font-mono text-gray-400 text-sm uppercase mb-2">Contratos Totales Requeridos</p>
+                <p className="font-mono text-gray-400 text-sm uppercase mb-2">{t('op_detail.total_contracts_req')}</p>
                 <div className="font-bebas text-5xl md:text-6xl text-yellow-400 tracking-widest drop-shadow-[0_0_10px_rgba(234,179,8,0.5)]">
                   {calculateRequiredContracts(currentStar, currentNode, targetStar, targetNode).toLocaleString()}
                 </div>
-                <p className="text-xs text-gray-500 mt-2 font-inter">No incluye los 10 contratos iniciales para desbloquear al personaje.</p>
+                <p className="text-xs text-gray-500 mt-2 font-inter">{t('op_detail.contracts_note')}</p>
               </div>
             </div>
           )}
@@ -436,13 +438,13 @@ const OperativoDetalle = () => {
           {activeTab === 'books' && (
             <div>
               <h2 className="font-bebas text-3xl tracking-widest text-white mb-2 flex items-center gap-3">
-                <BookOpen className="text-neon-red" /> Calculadora de Libros
+                <BookOpen className="text-neon-red" /> {t('op_detail.books_calc')}
               </h2>
-              <p className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-8">Mejora de una Habilidad Específica</p>
+              <p className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-8">{t('op_detail.upgrade_skill')}</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div>
-                  <label className="block text-gray-400 font-mono text-xs uppercase mb-2">Nivel Actual (1-5)</label>
+                  <label className="block text-gray-400 font-mono text-xs uppercase mb-2">{t('op_detail.curr_skill_level')}</label>
                   <input 
                     type="number" min="1" max="5" 
                     value={currentSkillLevel} 
@@ -456,7 +458,7 @@ const OperativoDetalle = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-gray-400 font-mono text-xs uppercase mb-2">Nivel Deseado (1-5)</label>
+                  <label className="block text-gray-400 font-mono text-xs uppercase mb-2">{t('op_detail.target_skill_level')}</label>
                   <input 
                     type="number" min="1" max="5" 
                     value={targetSkillLevel} 
@@ -472,13 +474,13 @@ const OperativoDetalle = () => {
               </div>
 
               <div className="bg-yellow-900/10 border border-yellow-500/30 p-6 text-center">
-                <p className="font-mono text-gray-400 text-sm uppercase mb-2">Libros de Habilidad Requeridos</p>
+                <p className="font-mono text-gray-400 text-sm uppercase mb-2">{t('op_detail.req_books')}</p>
                 <div className="font-bebas text-5xl md:text-6xl text-yellow-500 tracking-widest drop-shadow-[0_0_10px_rgba(234,179,8,0.5)]">
                   {calculateSkillBooks(currentSkillLevel, targetSkillLevel).toLocaleString()}
                 </div>
                 <div className="mt-4 border-t border-gray-800 pt-4 text-xs font-mono text-gray-500 flex flex-col md:flex-row justify-center gap-6">
-                  <span>Costo Máximo (1 Habilidad): 165</span>
-                  <span>Costo Máximo (Total {rarity}): {165 * maxSkills}</span>
+                  <span>{t('op_detail.max_cost_1')} 165</span>
+                  <span>{t('op_detail.max_cost_total')}{rarity}{t('op_detail.max_cost_total_2')} {165 * maxSkills}</span>
                 </div>
                 
                 {/* Costos por Nivel */}

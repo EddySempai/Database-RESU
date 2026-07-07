@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
 import { AnimatePresence } from 'framer-motion';
 import Particles from './components/Particles';
@@ -10,6 +10,7 @@ import OperativoDetalle from './pages/OperativoDetalle';
 import ComingSoon from './pages/ComingSoon';
 import PageTransition from './components/PageTransition';
 import Comparador from './pages/Comparador';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -24,6 +25,8 @@ const AnimatedRoutes = () => {
         <Route path="/comparador" element={<PageTransition><Comparador /></PageTransition>} />
         <Route path="/heroes" element={<PageTransition><Operativos /></PageTransition>} />
         <Route path="/heroes/:id" element={<PageTransition><OperativoDetalle /></PageTransition>} />
+        {/* Backwards compatibility redirects */}
+        <Route path="/operativos" element={<Navigate to="/heroes" replace />} />
         <Route path="*" element={<PageTransition><ComingSoon /></PageTransition>} />
       </Routes>
     </AnimatePresence>
@@ -31,6 +34,7 @@ const AnimatedRoutes = () => {
 };
 
 function App() {
+  const { t } = useTranslation();
   return (
     <Router>
       <div className="min-h-screen bg-umbrella-black text-white font-inter relative overflow-hidden flex flex-col">
@@ -49,8 +53,7 @@ function App() {
               <a href="https://discord.com/invite/3q63SSBeeW" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white font-mono text-xs tracking-widest uppercase transition-colors">Discord</a>
             </div>
             <p className="text-xs text-gray-700 font-inter max-w-xl leading-relaxed">
-              Este es un sitio web informativo creado por fans para fines educativos y de guía. 
-              Resident Evil: Survival Unit es un juego co-desarrollado por Aniplex, JOYCITY y Capcom.
+              {t('footer.disclaimer')}
               <br/><br/>
               © 2026 UMBRELLA CORP. TACTICAL DATABASE HUB.
             </p>

@@ -1,33 +1,35 @@
 import { motion } from 'framer-motion';
 import { ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const QuickLinks = () => {
+  const { t } = useTranslation();
   const features = [
     {
-      title: "Compara Héroes",
-      desc: "Simulación de combate táctico. Compara dos héroes de la misma clase con ayuda de la IA.",
+      title: t('quicklinks.compare_title'),
+      desc: t('quicklinks.compare_desc'),
       image: "bg-gradient-to-br from-[#1a0000] to-black border-blood-red/50",
-      label: "IA Integrada",
+      label: "IA",
       href: "/comparador"
     },
     {
-      title: "Calcula Tus Puntos",
-      desc: "Lector de inventario automático. Optimiza tu entrenamiento de tropas para eventos como SvS.",
+      title: t('quicklinks.calc_title'),
+      desc: t('quicklinks.calc_desc'),
       image: "bg-gradient-to-br from-gray-900 to-[#1a0000]",
-      label: "Herramienta",
+      label: "Tool",
       href: "/herramientas"
     },
     {
-      title: "Tier List de Héroes",
-      desc: "Descubre quiénes son los mejores personajes para el meta actual.",
+      title: t('quicklinks.tier_title'),
+      desc: t('quicklinks.tier_desc'),
       image: "bg-gradient-to-br from-gray-800 to-black",
-      label: "Análisis",
+      label: "Meta",
       href: "/tier-list"
     },
     {
-      title: "Base de Datos de Héroes",
-      desc: "Expedientes completos, habilidades, y estadísticas de todos los operativos de combate.",
+      title: t('quicklinks.db_title'),
+      desc: t('quicklinks.db_desc'),
       image: "bg-gradient-to-br from-gray-800 to-black",
       label: "Database",
       href: "/heroes"
@@ -38,7 +40,7 @@ const QuickLinks = () => {
     <section className="relative z-10 py-20 px-6 md:px-12 max-w-7xl mx-auto">
       <div className="flex items-center gap-4 mb-10 border-b border-gray-800 pb-4">
         <ShieldCheck className="text-neon-red" size={32} />
-        <h2 className="font-bebas text-4xl text-white tracking-widest">Base de Datos Principal</h2>
+        <h2 className="font-bebas text-4xl text-white tracking-widest">{t('quicklinks.title')}</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -62,7 +64,7 @@ const QuickLinks = () => {
               </div>
               
               <div className="relative z-10 mt-auto font-mono text-xs text-gray-500 group-hover:text-white flex items-center justify-between transition-colors">
-                <span>Acceder</span>
+                <span>{t('quicklinks.access')}</span>
                 <span className="transform group-hover:translate-x-2 transition-transform">→</span>
               </div>
             </motion.div>

@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Shield, BookOpen, Calculator, Trophy, Users, BarChart2 } from 'lucide-react';
+import { Menu, X, Shield, BookOpen, Calculator, Trophy, Users, BarChart2, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Navbar = () => {
+  const { t, i18n } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -16,13 +18,17 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Inicio', icon: <Shield size={16} />, href: '/' },
-    { name: 'Héroes', icon: <Users size={16} />, href: '/heroes' },
-    { name: 'Comparar', icon: <BarChart2 size={16} />, href: '/comparador' },
-    { name: 'Herramientas', icon: <Calculator size={16} />, href: '/herramientas' },
-    { name: 'Guías', icon: <BookOpen size={16} />, href: '/guias' },
-    { name: 'Tier List', icon: <Trophy size={16} />, href: '/tier-list' },
+    { name: t('nav.home'), icon: <Shield size={16} />, href: '/' },
+    { name: t('nav.heroes'), icon: <Users size={16} />, href: '/heroes' },
+    { name: t('nav.compare'), icon: <BarChart2 size={16} />, href: '/comparador' },
+    { name: t('nav.tools'), icon: <Calculator size={16} />, href: '/herramientas' },
+    { name: t('nav.guides'), icon: <BookOpen size={16} />, href: '/guias' },
+    { name: t('nav.tierlist'), icon: <Trophy size={16} />, href: '/tier-list' },
   ];
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <>
@@ -63,6 +69,19 @@ const Navbar = () => {
                 <span className="uppercase tracking-wider">{link.name}</span>
               </Link>
             ))}
+
+            {/* Language Switcher */}
+            <div className="relative group ml-4">
+              <button className="flex items-center gap-2 text-gray-300 hover:text-white font-mono text-xs uppercase transition-colors">
+                <Globe size={16} className="text-neon-red" />
+                {i18n.language.toUpperCase()}
+              </button>
+              <div className="absolute right-0 top-full mt-2 w-32 bg-black border border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col">
+                <button onClick={() => changeLanguage('es')} className={`px-4 py-3 text-left font-mono text-xs uppercase hover:bg-blood-red/20 hover:text-white transition-colors ${i18n.language === 'es' ? 'text-white border-l-2 border-blood-red' : 'text-gray-400'}`}>ES Español</button>
+                <button onClick={() => changeLanguage('en')} className={`px-4 py-3 text-left font-mono text-xs uppercase hover:bg-blood-red/20 hover:text-white transition-colors ${i18n.language === 'en' ? 'text-white border-l-2 border-blood-red' : 'text-gray-400'}`}>EN English</button>
+                <button onClick={() => changeLanguage('ja')} className={`px-4 py-3 text-left font-mono text-xs uppercase hover:bg-blood-red/20 hover:text-white transition-colors ${i18n.language === 'ja' ? 'text-white border-l-2 border-blood-red' : 'text-gray-400'}`}>JA 日本語</button>
+              </div>
+            </div>
           </div>
 
           {/* Mobile Menu Toggle */}

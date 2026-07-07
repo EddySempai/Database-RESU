@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const topCharacters = [
   { id: 'leon', name: 'Leon S. Kennedy', img: 'character-LeonSKennedy-visual.png', role: 'Asalto / Liderazgo' },
@@ -12,6 +13,7 @@ const topCharacters = [
 ];
 
 const OperativesShowcase = () => {
+  const { t } = useTranslation();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
   const navigate = useNavigate();
 
@@ -20,8 +22,8 @@ const OperativesShowcase = () => {
       <div className="max-w-[1400px] mx-auto px-6">
         
         <div className="mb-12 text-center">
-          <h3 className="font-mono text-neon-red text-sm tracking-widest uppercase mb-2">Base de Datos Táctica</h3>
-          <h2 className="font-bebas text-5xl md:text-6xl tracking-wider text-white">Héroes Destacados</h2>
+          <h3 className="font-mono text-neon-red text-sm tracking-widest uppercase mb-2">{t('showcase.tag')}</h3>
+          <h2 className="font-bebas text-5xl md:text-6xl tracking-wider text-white">{t('showcase.title')}</h2>
         </div>
 
         <motion.div 
@@ -29,7 +31,7 @@ const OperativesShowcase = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row h-[600px] gap-2 w-full"
+          className="flex flex-col md:flex-row md:h-[600px] gap-2 w-full"
         >
           {topCharacters.map((char, index) => {
             const isHovered = hoveredIndex === index;
@@ -38,8 +40,9 @@ const OperativesShowcase = () => {
               <motion.div
                 key={char.id}
                 onMouseEnter={() => setHoveredIndex(index)}
-                className={`relative h-full overflow-hidden cursor-pointer border border-gray-800 transition-all duration-500 ease-[cubic-bezier(0.25,0.8,0.25,1)] ${
-                  isHovered ? 'md:flex-[4] border-blood-red' : 'md:flex-[1]'
+                onClick={() => setHoveredIndex(index)}
+                className={`relative overflow-hidden cursor-pointer border border-gray-800 transition-all duration-500 ease-[cubic-bezier(0.25,0.8,0.25,1)] ${
+                  isHovered ? 'h-[300px] md:h-full md:flex-[4] border-blood-red' : 'h-[100px] md:h-full md:flex-[1]'
                 }`}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
@@ -55,6 +58,13 @@ const OperativesShowcase = () => {
                 {/* Vertical Text for non-hovered state (hidden on mobile) */}
                 <div className={`hidden md:flex absolute bottom-12 left-1/2 -translate-x-1/2 z-20 transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
                   <span className="font-bebas text-3xl text-gray-400 tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>
+                    {char.name}
+                  </span>
+                </div>
+
+                {/* Horizontal Text for non-hovered state (mobile only) */}
+                <div className={`flex md:hidden absolute bottom-4 left-6 z-20 transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
+                  <span className="font-bebas text-2xl text-gray-400 tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                     {char.name}
                   </span>
                 </div>
@@ -78,7 +88,7 @@ const OperativesShowcase = () => {
                         onClick={() => navigate('/heroes')}
                         className="bg-blood-red/20 border border-blood-red text-white font-mono text-xs px-6 py-2 uppercase tracking-widest hover:bg-blood-red transition-colors backdrop-blur-sm"
                       >
-                        Desplegar Expediente
+                        {t('showcase.btn_profile')}
                       </button>
                     </div>
                   </motion.div>
@@ -95,7 +105,7 @@ const OperativesShowcase = () => {
             to="/heroes"
             className="inline-block border border-gray-600 text-gray-300 font-mono text-sm px-8 py-3 uppercase tracking-widest hover:border-blood-red hover:text-white hover:bg-blood-red/10 transition-all duration-300"
           >
-            Ver Todos Los Héroes
+            {t('showcase.btn_viewall')}
           </Link>
         </div>
 

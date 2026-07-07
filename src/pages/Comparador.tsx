@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Crosshair, Heart, Zap, Search, X, Loader2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import operativosData from '../data/operativos.json';
+import { useTranslation } from 'react-i18next';
+import { useOperativos } from '../hooks/useOperativos';
 import { getRedQueenResponse } from '../services/geminiService';
 
 interface Operativo {
@@ -22,6 +23,8 @@ interface Operativo {
 }
 
 const Comparador = () => {
+  const { t } = useTranslation();
+  const operativosData = useOperativos();
   const [slot1, setSlot1] = useState<Operativo | null>(null);
   const [slot2, setSlot2] = useState<Operativo | null>(null);
   const [selectingSlot, setSelectingSlot] = useState<1 | 2 | null>(null);
@@ -68,7 +71,7 @@ const Comparador = () => {
       setAiAnalysis(response);
     } catch (e) {
       console.error(e);
-      setAiAnalysis("ERROR DE SISTEMA. IMPOSIBLE COMUNICARSE CON EL MAINFRAME.");
+      setAiAnalysis("t('comparador.sys_error')");
     } finally {
       setIsAnalyzing(false);
     }
@@ -225,103 +228,114 @@ const Comparador = () => {
           </div>
 
           {/* Hero Skills Comparison */}
-          <div className="mt-8 border-t border-gray-800 pt-8">
-            <h4 className="font-bebas text-xl text-blood-red tracking-widest text-center mb-6">Archivos de Habilidad</h4>
+          <div className="mt-16 text-center max-w-5xl mx-auto border-t border-gray-800 pt-12">
+            <h2 className="font-bebas text-3xl tracking-widest text-neon-red mb-12 uppercase">
+              {t('comparador.skill_archives')}
+            </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Slot 1 Skills */}
-              <div className="space-y-4">
-                {slot1.skills?.map((skill, i) => (
-                  <div key={i} className="flex gap-4 items-start bg-black/50 p-4 border border-gray-800/50">
-                    <div className={`w-8 h-8 flex-shrink-0 flex items-center justify-center font-bebas text-gray-500 border ${skill.type === 'Campo' ? 'border-blood-red bg-blood-red/10' : 'border-blue-500 bg-blue-500/10'}`}>
-                      {skill.type ? skill.type.charAt(0) : 'S'}
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bebas tracking-widest">{skill.name}</h4>
-                      <p className="text-[11px] text-gray-500 font-inter mt-1 leading-relaxed">{skill.description}</p>
-                    </div>
+              <div className="bg-[#080808] border border-gray-800 p-6 min-h-[200px] flex flex-col relative group">
+                <div className="absolute inset-0 bg-blood-red/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                {slot1.skills && slot1.skills.length > 0 ? (
+                  <div className="space-y-4 text-left relative z-10">
+                    {slot1.skills.map((skill, i) => (
+                      <div key={i} className="border-l-2 border-gray-700 pl-3">
+                        <span className="font-mono text-neon-red text-[9px] uppercase tracking-widest mb-1 block">{skill.type}</span>
+                        <h4 className="font-bebas text-lg text-white tracking-wider mb-1">{skill.name}</h4>
+                        <p className="font-inter text-gray-400 text-xs leading-relaxed">{skill.description}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-                {!slot1.skills?.length && (
-                  <div className="text-gray-600 font-mono text-[10px] text-center uppercase tracking-widest">Sin registros de habilidad</div>
+                ) : (
+                  <div className="h-full flex items-center justify-center relative z-10">
+                    <span className="font-mono text-gray-600 text-xs uppercase tracking-widest">{t('comparador.no_skills')}</span>
+                  </div>
                 )}
               </div>
               {/* Slot 2 Skills */}
-              <div className="space-y-4">
-                {slot2.skills?.map((skill, i) => (
-                  <div key={i} className="flex gap-4 items-start bg-black/50 p-4 border border-gray-800/50">
-                    <div className={`w-8 h-8 flex-shrink-0 flex items-center justify-center font-bebas text-gray-500 border ${skill.type === 'Campo' ? 'border-blood-red bg-blood-red/10' : 'border-blue-500 bg-blue-500/10'}`}>
-                      {skill.type ? skill.type.charAt(0) : 'S'}
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bebas tracking-widest">{skill.name}</h4>
-                      <p className="text-[11px] text-gray-500 font-inter mt-1 leading-relaxed">{skill.description}</p>
-                    </div>
+              <div className="bg-[#080808] border border-gray-800 p-6 min-h-[200px] flex flex-col relative group">
+                <div className="absolute inset-0 bg-blood-red/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                {slot2.skills && slot2.skills.length > 0 ? (
+                  <div className="space-y-4 text-left relative z-10">
+                    {slot2.skills.map((skill, i) => (
+                      <div key={i} className="border-l-2 border-gray-700 pl-3">
+                        <span className="font-mono text-neon-red text-[9px] uppercase tracking-widest mb-1 block">{skill.type}</span>
+                        <h4 className="font-bebas text-lg text-white tracking-wider mb-1">{skill.name}</h4>
+                        <p className="font-inter text-gray-400 text-xs leading-relaxed">{skill.description}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-                {!slot2.skills?.length && (
-                  <div className="text-gray-600 font-mono text-[10px] text-center uppercase tracking-widest">Sin registros de habilidad</div>
+                ) : (
+                  <div className="h-full flex items-center justify-center relative z-10">
+                    <span className="font-mono text-gray-600 text-xs uppercase tracking-widest">{t('comparador.no_skills')}</span>
+                  </div>
                 )}
               </div>
             </div>
           </div>
 
           {/* AI Analysis */}
-          <div className="mt-8 border border-blood-red/30 bg-blood-red/5 p-6 relative overflow-hidden group">
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] mix-blend-overlay opacity-20" />
-            
-            {!aiAnalysis && !isAnalyzing && (
-              <div className="text-center relative z-10">
-                <Zap size={24} className="mx-auto text-blood-red mb-3 drop-shadow-[0_0_8px_rgba(255,42,42,0.8)] group-hover:scale-110 transition-transform" />
-                <h4 className="font-bebas text-2xl tracking-widest text-white mb-4">Análisis Táctico de Red Queen</h4>
+          <div className="mt-16 text-center max-w-5xl mx-auto">
+            <div className="bg-gradient-to-b from-[#0a0202] to-black border border-blood-red/20 p-8 md:p-12 relative overflow-hidden">
+              {/* Decorative elements */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-neon-red to-transparent opacity-50" />
+              
+              <Zap className="mx-auto text-neon-red mb-4" size={32} />
+              <h2 className="font-bebas text-3xl md:text-4xl tracking-widest text-white mb-8 uppercase">
+                {t('comparador.ai_analysis')}
+              </h2>
+              
+              {!aiAnalysis ? (
                 <button 
                   onClick={handleAnalyze}
-                  className="bg-blood-red/20 hover:bg-blood-red text-white border border-blood-red px-6 py-2 font-mono text-xs uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(255,42,42,0.3)] hover:shadow-[0_0_25px_rgba(255,42,42,0.6)]"
+                  disabled={isAnalyzing}
+                  className={`
+                    px-8 py-4 font-mono text-sm uppercase tracking-widest border transition-all duration-300
+                    border-blood-red text-neon-red hover:bg-blood-red hover:text-white shadow-[0_0_15px_rgba(158,0,0,0.3)]
+                  `}
                 >
-                  Solicitar Evaluación
+                  {isAnalyzing ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <Loader2 className="animate-spin" size={16} /> {t('comparador.analyzing')}
+                    </span>
+                  ) : (
+                    t('comparador.btn_evaluate')
+                  )}
                 </button>
-              </div>
-            )}
-
-            {isAnalyzing && (
-              <div className="text-center relative z-10 py-6">
-                <Loader2 className="animate-spin mx-auto text-blood-red mb-3" size={32} />
-                <p className="font-mono text-blood-red text-xs uppercase tracking-widest animate-pulse">Red Queen analizando tácticas de combate...</p>
-              </div>
-            )}
-
-            {aiAnalysis && !isAnalyzing && (
-              <div className="relative z-10 text-left">
-                <div className="flex items-center gap-3 mb-4 border-b border-blood-red/30 pb-3">
-                  <span className="w-2 h-2 rounded-full bg-blood-red animate-pulse"></span>
-                  <h4 className="font-bebas text-2xl tracking-widest text-blood-red m-0">Resolución Táctica</h4>
+              ) : (
+                <div className="relative z-10 text-left">
+                  <div className="flex items-center gap-3 mb-4 border-b border-blood-red/30 pb-3">
+                    <span className="w-2 h-2 rounded-full bg-blood-red animate-pulse"></span>
+                    <h4 className="font-bebas text-2xl tracking-widest text-blood-red m-0">Resolución Táctica</h4>
+                  </div>
+                  <div className="font-mono text-sm text-gray-300 leading-relaxed max-w-none">
+                    <ReactMarkdown 
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        h1: ({node, ...props}) => <h1 className="font-bebas text-3xl text-white my-4 tracking-widest" {...props} />,
+                        h2: ({node, ...props}) => <h2 className="font-bebas text-2xl text-white my-3 tracking-widest border-b border-gray-800 pb-2" {...props} />,
+                        h3: ({node, ...props}) => <h3 className="font-bebas text-xl text-blood-red my-3 tracking-widest" {...props} />,
+                        h4: ({node, ...props}) => <h4 className="font-bold text-white my-2" {...props} />,
+                        p: ({node, ...props}) => <p className="mb-4" {...props} />,
+                        strong: ({node, ...props}) => <strong className="text-white font-bold" {...props} />,
+                        table: ({node, ...props}) => <div className="overflow-x-auto mb-4"><table className="w-full text-left border-collapse border border-gray-800" {...props} /></div>,
+                        thead: ({node, ...props}) => <thead className="bg-blood-red/10 border-b border-gray-800" {...props} />,
+                        th: ({node, ...props}) => <th className="p-2 border border-gray-800 text-blood-red font-mono text-xs uppercase" {...props} />,
+                        td: ({node, ...props}) => <td className="p-2 border border-gray-800" {...props} />,
+                        ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-4 space-y-1" {...props} />,
+                        li: ({node, ...props}) => <li {...props} />,
+                        blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-blood-red pl-4 italic text-gray-400 my-4 bg-black/50 py-2" {...props} />
+                      }}
+                    >
+                      {aiAnalysis}
+                    </ReactMarkdown>
+                  </div>
+                  <div className="mt-6 text-center">
+                     <button onClick={() => setAiAnalysis(null)} className="text-[10px] font-mono text-gray-500 hover:text-white uppercase underline">Cerrar Evaluación</button>
+                  </div>
                 </div>
-                <div className="font-mono text-sm text-gray-300 leading-relaxed max-w-none">
-                  <ReactMarkdown 
-                    remarkPlugins={[remarkGfm]}
-                    components={{
-                      h1: ({node, ...props}) => <h1 className="font-bebas text-3xl text-white my-4 tracking-widest" {...props} />,
-                      h2: ({node, ...props}) => <h2 className="font-bebas text-2xl text-white my-3 tracking-widest border-b border-gray-800 pb-2" {...props} />,
-                      h3: ({node, ...props}) => <h3 className="font-bebas text-xl text-blood-red my-3 tracking-widest" {...props} />,
-                      h4: ({node, ...props}) => <h4 className="font-bold text-white my-2" {...props} />,
-                      p: ({node, ...props}) => <p className="mb-4" {...props} />,
-                      strong: ({node, ...props}) => <strong className="text-white font-bold" {...props} />,
-                      table: ({node, ...props}) => <div className="overflow-x-auto mb-4"><table className="w-full text-left border-collapse border border-gray-800" {...props} /></div>,
-                      thead: ({node, ...props}) => <thead className="bg-blood-red/10 border-b border-gray-800" {...props} />,
-                      th: ({node, ...props}) => <th className="p-2 border border-gray-800 text-blood-red font-mono text-xs uppercase" {...props} />,
-                      td: ({node, ...props}) => <td className="p-2 border border-gray-800" {...props} />,
-                      ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-4 space-y-1" {...props} />,
-                      li: ({node, ...props}) => <li {...props} />,
-                      blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-blood-red pl-4 italic text-gray-400 my-4 bg-black/50 py-2" {...props} />
-                    }}
-                  >
-                    {aiAnalysis}
-                  </ReactMarkdown>
-                </div>
-                <div className="mt-6 text-center">
-                   <button onClick={() => setAiAnalysis(null)} className="text-[10px] font-mono text-gray-500 hover:text-white uppercase underline">Cerrar Evaluación</button>
-                </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </motion.div>
       )}
@@ -353,7 +367,7 @@ const Comparador = () => {
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
                   <input 
                     type="text" 
-                    placeholder="Buscar por nombre..." 
+                    placeholder={t('comparador.search_name')} 
                     value={searchTerm}
                     onChange={e => setSearchTerm(e.target.value)}
                     className="w-full bg-black border border-gray-700 text-white pl-10 pr-4 py-3 font-mono focus:border-blood-red outline-none"

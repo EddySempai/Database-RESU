@@ -1,33 +1,35 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const NewsSection = () => {
+  const { t } = useTranslation();
   const news = [
     {
       date: "15 NOV 2025",
-      tag: "Actualización",
-      title: "Parche v1.2: Evento 'Invasión Nemesis' Activo",
-      excerpt: "Nuevas mecánicas de defensa contra el asedio biológico. Obtén recursos dobles en misiones de asalto."
+      tag: t('home.update'),
+      title: t('home.news_1_title'),
+      excerpt: t('home.news_1_desc')
     },
     {
       date: "02 NOV 2025",
-      tag: "Nuevo Operativo",
-      title: "Claire Redfield se une a la lucha",
-      excerpt: "Añade a Claire a tu escuadrón. Experta en manejo de armas explosivas y bonos de recolección rápida."
+      tag: t('home.new_op'),
+      title: t('home.news_2_title'),
+      excerpt: t('home.news_2_desc')
     },
     {
       date: "28 OCT 2025",
-      tag: "Comunidad",
-      title: "Guía Oficial de Supervivencia: Primeros Pasos",
-      excerpt: "Conoce los errores más comunes que debes evitar al mejorar el centro de mando al nivel 10."
+      tag: t('home.community'),
+      title: t('home.news_3_title'),
+      excerpt: t('home.news_3_desc')
     }
   ];
 
   return (
     <section className="relative z-10 py-16 px-6 md:px-12 max-w-7xl mx-auto bg-black/40">
       <div className="flex justify-between items-end mb-8 border-b border-gray-800 pb-4">
-        <h2 className="font-bebas text-4xl text-white tracking-widest">Últimas Noticias</h2>
+        <h2 className="font-bebas text-4xl text-white tracking-widest">{t('home.news_title')}</h2>
         <a href="#" className="font-mono text-sm text-blood-red hover:text-neon-red transition-colors uppercase tracking-widest">
-          Ver Todo →
+          {t('home.view_all')}
         </a>
       </div>
 

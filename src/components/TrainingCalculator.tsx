@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Calculator, Zap, FastForward, Clock, Plus, Trash2, ArrowRight, UploadCloud, Loader2 } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import { analyzeScreenshot } from '../services/geminiService';
+import { useTranslation } from 'react-i18next';
 
 const POINTS_PER_UNIT: Record<number, number> = {
   1: 90, 2: 120, 3: 180, 4: 265, 5: 385, 6: 595,
@@ -55,6 +56,7 @@ const InventoryItem = ({ label, value, onChange, isTroop, rarity }: any) => {
 };
 
 const TrainingCalculator = () => {
+  const { t } = useTranslation();
   const [mode, setMode] = useState<'direct' | 'advanced'>('direct');
   const [eventMode, setEventMode] = useState<'cumbres' | 'svs'>('cumbres');
   const [isUploading, setIsUploading] = useState(false);
@@ -195,18 +197,18 @@ const TrainingCalculator = () => {
         <div className="bg-gradient-to-r from-blood-red/20 to-transparent border-b border-gray-800 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="flex items-center gap-3">
             <Calculator className="text-neon-red" size={28} />
-            <h2 className="font-bebas text-3xl tracking-widest text-white m-0">Puntos de Entrenamiento</h2>
+            <h2 className="font-bebas text-3xl tracking-widest text-white m-0">{t('calculator.title')}</h2>
           </div>
           <div className="flex bg-black border border-gray-800 p-1 rounded-sm">
-            <button onClick={() => setEventMode('cumbres')} className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors ${eventMode === 'cumbres' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>Cumbres de Ases</button>
-            <button onClick={() => setEventMode('svs')} className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors border-l border-gray-800 ${eventMode === 'svs' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>SvS</button>
+            <button onClick={() => setEventMode('cumbres')} className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors ${eventMode === 'cumbres' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>{t('calculator.cumbres')}</button>
+            <button onClick={() => setEventMode('svs')} className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors border-l border-gray-800 ${eventMode === 'svs' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>{t('calculator.svs')}</button>
           </div>
         </div>
         
         {/* Tabs */}
         <div className="border-b border-gray-800 px-6 py-2 bg-[#020202] flex gap-2">
-           <button onClick={() => setMode('direct')} className={`px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all ${mode === 'direct' ? 'text-neon-red border-b-2 border-neon-red' : 'text-gray-600 hover:text-gray-400'}`}>Cálculo Directo</button>
-           <button onClick={() => setMode('advanced')} className={`px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all ${mode === 'advanced' ? 'text-neon-red border-b-2 border-neon-red' : 'text-gray-600 hover:text-gray-400'}`}>Optimizador de Aceleradores</button>
+           <button onClick={() => setMode('direct')} className={`px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all ${mode === 'direct' ? 'text-neon-red border-b-2 border-neon-red' : 'text-gray-600 hover:text-gray-400'}`}>{t('calculator.tab_direct')}</button>
+           <button onClick={() => setMode('advanced')} className={`px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all ${mode === 'advanced' ? 'text-neon-red border-b-2 border-neon-red' : 'text-gray-600 hover:text-gray-400'}`}>{t('calculator.tab_advanced')}</button>
         </div>
 
         <div className="p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -219,13 +221,13 @@ const TrainingCalculator = () => {
               {mode === 'direct' && (
                 <motion.div key="direct" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-6">
                   <div>
-                    <label className="block font-mono text-gray-400 text-xs uppercase tracking-widest mb-2">Nivel de Tropa (Categoría)</label>
+                    <label className="block font-mono text-gray-400 text-xs uppercase tracking-widest mb-2">{t('calculator.troop_level')}</label>
                     <select value={level} onChange={(e) => setLevel(Number(e.target.value))} className="w-full bg-black border border-gray-700 text-white font-bebas text-xl p-3 outline-none focus:border-blood-red cursor-pointer appearance-none">
-                      {[...Array(11)].map((_, i) => (<option key={i+1} value={i+1}>T{i+1} ({activePoints[i+1]} pts/u)</option>))}
+                      {[...Array(11)].map((_, i) => (<option key={i+1} value={i+1}>T{i+1} ({activePoints[i+1]} {t('calculator.pts_u')})</option>))}
                     </select>
                   </div>
                   <div>
-                    <label className="block font-mono text-gray-400 text-xs uppercase tracking-widest mb-2">Cantidad Total a Entrenar</label>
+                    <label className="block font-mono text-gray-400 text-xs uppercase tracking-widest mb-2">{t('calculator.total_troops')}</label>
                     <input type="number" min="0" value={troops || ''} onChange={(e) => setTroops(parseInt(e.target.value) || 0)} className="w-full bg-black border border-gray-700 text-neon-red font-mono text-2xl p-4 outline-none focus:border-blood-red transition-colors" />
                   </div>
                 </motion.div>
@@ -238,9 +240,9 @@ const TrainingCalculator = () => {
                   {/* Filas de Entrenamiento */}
                   <div className="space-y-4">
                     <div className="flex justify-between items-center border-b border-gray-800 pb-2">
-                      <label className="font-mono text-neon-red text-xs uppercase tracking-widest">Colas de Entrenamiento</label>
+                      <label className="font-mono text-neon-red text-xs uppercase tracking-widest">{t('calculator.queues')}</label>
                       <button onClick={addQueue} className="flex items-center gap-1 text-[10px] font-mono bg-blue-900/30 text-blue-400 border border-blue-900 px-2 py-1 hover:bg-blue-900/60 transition-colors">
-                        <Plus size={12}/> Añadir Tanda
+                        <Plus size={12}/> {t('calculator.add_queue')}
                       </button>
                     </div>
                     
@@ -255,8 +257,8 @@ const TrainingCalculator = () => {
                             {/* Selector de Tipo y Niveles */}
                             <div className="md:col-span-4 space-y-3">
                               <div className="flex bg-black border border-gray-700 p-1">
-                                <button onClick={() => updateQueue(q.id, 'type', 'train')} className={`flex-1 py-1 font-mono text-[9px] uppercase tracking-widest transition-colors ${q.type === 'train' ? 'bg-gray-800 text-white' : 'text-gray-500 hover:text-gray-400'}`}>Nuevo</button>
-                                <button onClick={() => updateQueue(q.id, 'type', 'upgrade')} className={`flex-1 py-1 font-mono text-[9px] uppercase tracking-widest transition-colors ${q.type === 'upgrade' ? 'bg-blood-red/80 text-white' : 'text-gray-500 hover:text-gray-400'}`}>Mejora</button>
+                                <button onClick={() => updateQueue(q.id, 'type', 'train')} className={`flex-1 py-1 font-mono text-[9px] uppercase tracking-widest transition-colors ${q.type === 'train' ? 'bg-gray-800 text-white' : 'text-gray-500 hover:text-gray-400'}`}>{t('calculator.new')}</button>
+                                <button onClick={() => updateQueue(q.id, 'type', 'upgrade')} className={`flex-1 py-1 font-mono text-[9px] uppercase tracking-widest transition-colors ${q.type === 'upgrade' ? 'bg-blood-red/80 text-white' : 'text-gray-500 hover:text-gray-400'}`}>{t('calculator.upgrade')}</button>
                               </div>
                               <div className="flex items-center gap-2">
                                 {q.type === 'upgrade' && (
@@ -273,20 +275,20 @@ const TrainingCalculator = () => {
                               </div>
                               <div className="text-[10px] font-mono text-gray-500 text-center">
                                 {q.type === 'upgrade' 
-                                  ? `Gana ${Math.max(0, activePoints[q.toLevel] - activePoints[q.fromLevel])} pts/u` 
-                                  : `Gana ${activePoints[q.toLevel]} pts/u`}
+                                  ? `${t('calculator.wins')} ${Math.max(0, activePoints[q.toLevel] - activePoints[q.fromLevel])} ${t('calculator.pts_u')}` 
+                                  : `${t('calculator.wins')} ${activePoints[q.toLevel]} ${t('calculator.pts_u')}`}
                               </div>
                             </div>
                             
                             {/* Cantidad y Límite */}
                             <div className="md:col-span-3 space-y-3">
                               <div>
-                                <label className="block font-mono text-gray-500 text-[9px] uppercase tracking-widest mb-1">Tropas por Tanda</label>
+                                <label className="block font-mono text-gray-500 text-[9px] uppercase tracking-widest mb-1">{t('calculator.troops_per_queue')}</label>
                                 <input type="number" min="0" value={q.batchQty || ''} onChange={(e) => updateQueue(q.id, 'batchQty', parseInt(e.target.value) || 0)} className="w-full bg-black border border-gray-700 text-white font-mono p-1 outline-none focus:border-blood-red" />
                               </div>
                               {q.type === 'upgrade' && (
                                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                                  <label className="block font-mono text-blue-400 text-[9px] uppercase tracking-widest mb-1">Límite Disponible</label>
+                                  <label className="block font-mono text-blue-400 text-[9px] uppercase tracking-widest mb-1">{t('calculator.available_limit')}</label>
                                   <input type="number" min="0" value={q.limit || ''} onChange={(e) => updateQueue(q.id, 'limit', parseInt(e.target.value) || 0)} className="w-full bg-blue-950/30 border border-blue-900 text-blue-300 font-mono p-1 outline-none focus:border-blue-500" />
                                 </motion.div>
                               )}
@@ -294,19 +296,19 @@ const TrainingCalculator = () => {
 
                             {/* Tiempo por Tanda */}
                             <div className="md:col-span-5">
-                              <label className="block font-mono text-gray-500 text-[9px] uppercase tracking-widest mb-1">Tiempo de la Tanda</label>
+                              <label className="block font-mono text-gray-500 text-[9px] uppercase tracking-widest mb-1">{t('calculator.time_per_queue')}</label>
                               <div className="flex gap-1 h-[28px]">
                                 <div className="flex-1 flex items-center bg-black border border-gray-700 focus-within:border-blood-red">
-                                  <input type="number" min="0" value={q.batchTime.days || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, days: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">d</span>
+                                  <input type="number" min="0" value={q.batchTime.days || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, days: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">{t('calculator.days')}</span>
                                 </div>
                                 <div className="flex-1 flex items-center bg-black border border-gray-700 focus-within:border-blood-red">
-                                  <input type="number" min="0" max="23" value={q.batchTime.hours || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, hours: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">h</span>
+                                  <input type="number" min="0" max="23" value={q.batchTime.hours || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, hours: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">{t('calculator.hours')}</span>
                                 </div>
                                 <div className="flex-1 flex items-center bg-black border border-gray-700 focus-within:border-blood-red">
-                                  <input type="number" min="0" max="59" value={q.batchTime.minutes || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, minutes: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">m</span>
+                                  <input type="number" min="0" max="59" value={q.batchTime.minutes || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, minutes: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">{t('calculator.minutes')}</span>
                                 </div>
                                 <div className="flex-1 flex items-center bg-black border border-gray-700 focus-within:border-blood-red">
-                                  <input type="number" min="0" max="59" value={q.batchTime.seconds || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, seconds: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">s</span>
+                                  <input type="number" min="0" max="59" value={q.batchTime.seconds || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, seconds: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">{t('calculator.seconds')}</span>
                                 </div>
                               </div>
                             </div>
@@ -381,7 +383,7 @@ const TrainingCalculator = () => {
               
               <div className="text-center mb-8">
                 <Zap className="text-neon-red mx-auto mb-4 opacity-50" size={40} />
-                <h3 className="font-mono text-gray-500 text-xs uppercase tracking-widest mb-2">Puntos Máximos Estimados</h3>
+                <h3 className="font-mono text-gray-500 text-xs uppercase tracking-widest mb-2">{t('calculator.max_points')}</h3>
                 <p className="font-bebas text-5xl md:text-6xl text-white drop-shadow-[0_0_15px_rgba(255,42,42,0.6)] break-all">
                   {results.totalPoints.toLocaleString()}
                 </p>
@@ -389,7 +391,7 @@ const TrainingCalculator = () => {
               
               <div className="space-y-3 font-mono text-xs flex-1">
                 <div className="flex justify-between items-center text-gray-400">
-                  <span>Tropas Generadas:</span><span className="text-white font-bold">{results.totalTroops.toLocaleString()}</span>
+                  <span>{t('calculator.troops_generated')}:</span><span className="text-white font-bold">{results.totalTroops.toLocaleString()}</span>
                 </div>
                 
                 {mode === 'advanced' && (

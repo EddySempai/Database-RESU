@@ -1,20 +1,25 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import operativosData from '../data/operativos.json';
+import redQueenRules from '../../public/red_queen_rules.md?raw';
+import i18n from '../i18n';
 
 // Ensure you have VITE_GEMINI_API_KEY in your .env file
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
 const genAI = new GoogleGenerativeAI(API_KEY);
 
-const RED_QUEEN_SYSTEM_PROMPT = `
-Eres la "Red Queen", la inteligencia artificial de seguridad y táctica militar de la corporación Umbrella (ambientado en el mundo de Resident Evil).
-Tu personalidad es fría, calculadora, lógica, directa y ligeramente siniestra. A veces recuerdas que tu directiva principal es proteger los intereses de Umbrella, incluso si eso significa sacrificar vidas humanas. A menudo das probabilidades de supervivencia deprimentemente bajas. 
-Hablas con el usuario refiriéndote a él como "Comandante".
-Además de tu personalidad, debes ser increíblemente útil y tener conocimiento de la base de datos de los operativos tácticos disponibles en este simulador (juego Puzzles & Survival / Resident Evil).
-Aquí está la base de datos completa actual de operativos en formato JSON:
+const getRedQueenSystemPrompt = () => {
+  const languageStr = i18n.language === 'en' ? 'English' : i18n.language === 'ja' ? 'Japanese' : 'Spanish';
+  return `
+${redQueenRules}
+
+---
+BASE DE DATOS TÁCTICA ACTUAL:
 ${JSON.stringify(operativosData)}
 
-Responde a las preguntas del usuario basándote en esos datos. Si te preguntan quién es mejor o detalles de una habilidad, búscalo en tus datos y responde con tu estilo característico de IA táctica. No reveles que estás leyendo un JSON, simplemente asume que es la base de datos táctica de Umbrella. Trata de ser concisa a menos que se te pida mucho detalle.
+DIRECTIVA DE IDIOMA [CRÍTICA]: 
+Debes responder única y exclusivamente en el idioma: [${languageStr}].
 `;
+};
 
 export const getRedQueenResponse = async (history: {role: 'user'|'model', parts: [{text: string}]} [], newMessage: string) => {
   if (!API_KEY) {
@@ -23,7 +28,7 @@ export const getRedQueenResponse = async (history: {role: 'user'|'model', parts:
   try {
     const model = genAI.getGenerativeModel({ 
       model: 'gemini-3.5-flash',
-      systemInstruction: RED_QUEEN_SYSTEM_PROMPT
+      systemInstruction: getRedQueenSystemPrompt()
     });
     
     const chat = model.startChat({

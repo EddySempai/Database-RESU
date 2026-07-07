@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Hero = () => {
+  const { t } = useTranslation();
   return (
     <section className="relative h-[80vh] min-h-[600px] flex flex-col items-center justify-center overflow-hidden z-10 pt-20">
       {/* Background Image & Vignette */}
@@ -28,7 +30,7 @@ const Hero = () => {
           variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
           className="font-mono text-neon-red text-sm tracking-[0.3em] uppercase mb-4 border border-neon-red/30 bg-black/50 px-4 py-1"
         >
-          Archivo Táctico Global
+          {t('hero.tag')}
         </motion.span>
         <motion.h1 
           variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
@@ -45,8 +47,7 @@ const Hero = () => {
           variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
           className="font-inter text-gray-300 max-w-2xl text-base md:text-lg mb-10 leading-relaxed"
         >
-          Bienvenido al hub definitivo de guías, estrategias y noticias.
-          Domina la gestión de tu refugio, maximiza el poder de tus operativos y sobrevive al asedio biológico.
+          {t('hero.desc')}
         </motion.p>
 
         <motion.div 
@@ -54,13 +55,13 @@ const Hero = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <Link to="/guias" className="bg-blood-red hover:bg-neon-red text-white font-bebas text-xl tracking-widest px-8 py-3 transition-colors duration-300 shadow-[0_0_15px_rgba(158,0,0,0.4)]">
-            Guía para Principiantes
+            {t('hero.btn_guides')}
           </Link>
           <Link to="/tier-list" className="bg-transparent border border-gray-600 hover:border-white text-white font-bebas text-xl tracking-widest px-8 py-3 transition-colors duration-300">
-            Ver Tier List
+            {t('hero.btn_tierlist')}
           </Link>
           <a href="https://ko-fi.com/eddsempai" target="_blank" rel="noreferrer" className="bg-transparent border border-neon-red hover:bg-neon-red/10 text-neon-red font-bebas text-xl tracking-widest px-8 py-3 transition-colors duration-300 shadow-[0_0_15px_rgba(255,42,42,0.2)]">
-            Apoyar Proyecto (Donar)
+            {t('hero.btn_donate')}
           </a>
         </motion.div>
       </motion.div>
