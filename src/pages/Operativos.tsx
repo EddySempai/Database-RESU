@@ -5,22 +5,23 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useOperativos } from '../hooks/useOperativos';
 
+const isDefender = (type: string) => type?.toLowerCase().includes('defen') || type?.includes('ディフェン');
+const isAttacker = (type: string) => type?.toLowerCase().includes('atac') || type?.toLowerCase().includes('attack') || type?.includes('アタッカー');
+const isRanger = (type: string) => type?.toLowerCase().includes('rang') || type?.includes('レンジャー');
+const isLegendary = (rarity: string) => rarity?.toLowerCase().includes('legen') || rarity?.includes('レジェン');
+
 const getUnitIcon = (type: string) => {
-  switch(type) {
-    case 'Defensor': return <Shield size={14} />;
-    case 'Atacante': return <Sword size={14} />;
-    case 'Ranger': return <Crosshair size={14} />;
-    default: return null;
-  }
+  if (isDefender(type)) return <Shield size={14} />;
+  if (isAttacker(type)) return <Sword size={14} />;
+  if (isRanger(type)) return <Crosshair size={14} />;
+  return null;
 };
 
 const getUnitColor = (type: string) => {
-  switch(type) {
-    case 'Defensor': return 'text-blue-400 bg-blue-900/40 border-blue-500/50';
-    case 'Atacante': return 'text-blood-red bg-blood-red/20 border-blood-red/50';
-    case 'Ranger': return 'text-green-400 bg-green-900/40 border-green-500/50';
-    default: return 'text-gray-400 bg-gray-800 border-gray-600';
-  }
+  if (isDefender(type)) return 'text-blue-400 bg-blue-900/40 border-blue-500/50';
+  if (isAttacker(type)) return 'text-blood-red bg-blood-red/20 border-blood-red/50';
+  if (isRanger(type)) return 'text-green-400 bg-green-900/40 border-green-500/50';
+  return 'text-gray-400 bg-gray-800 border-gray-600';
 };
 
 const Heroes = () => {
@@ -92,7 +93,7 @@ const Heroes = () => {
               <div>
                 <h4 className="font-mono text-gray-500 text-[10px] uppercase tracking-widest mb-3">Clase</h4>
                 <div className="flex flex-wrap gap-2">
-                  {['Todos', 'Atacante', 'Defensor', 'Ranger'].map(type => (
+                  {['Todos', ...Array.from(new Set(operativosData.map((o:any) => o.unitType).filter(t => t && !t.includes('Desconocido') && !t.includes('Unknown') && !t.includes('不明'))))].map(type => (
                     <button
                       key={type}
                       onClick={() => setFilterType(type)}
@@ -107,7 +108,7 @@ const Heroes = () => {
               <div>
                 <h4 className="font-mono text-gray-500 text-[10px] uppercase tracking-widest mb-3">Rareza</h4>
                 <div className="flex flex-wrap gap-2">
-                  {['Todos', 'Legendario', 'Épico'].map(rarity => (
+                  {['Todos', ...Array.from(new Set(operativosData.map((o:any) => getRarity(o))))].map(rarity => (
                     <button
                       key={rarity}
                       onClick={() => setFilterRarity(rarity)}
@@ -135,13 +136,13 @@ const Heroes = () => {
             <Link 
               to={`/heroes/${op.id}`}
               key={idx} 
-              className={`group relative bg-[#050505] border ${op.rarity === 'Legendario' ? 'border-yellow-600/30 hover:border-yellow-500/80 shadow-[0_0_10px_rgba(202,138,4,0.05)] hover:shadow-[0_0_15px_rgba(202,138,4,0.2)]' : 'border-gray-800 hover:border-neon-red'} overflow-hidden cursor-pointer transition-all duration-300 flex flex-col h-[280px]`}
+              className={`group relative bg-[#050505] border ${isLegendary(op.rarity) ? 'border-yellow-600/30 hover:border-yellow-500/80 shadow-[0_0_10px_rgba(202,138,4,0.05)] hover:shadow-[0_0_15px_rgba(202,138,4,0.2)]' : 'border-gray-800 hover:border-neon-red'} overflow-hidden cursor-pointer transition-all duration-300 flex flex-col h-[280px]`}
             >
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.05 }}
-                className={`flex flex-col h-full bg-gradient-to-t ${op.rarity === 'Legendario' ? 'from-[#1a1400] to-[#111]' : 'from-[#0a0a0a] to-[#111]'} relative overflow-hidden`}
+                className={`flex flex-col h-full bg-gradient-to-t ${isLegendary(op.rarity) ? 'from-[#1a1400] to-[#111]' : 'from-[#0a0a0a] to-[#111]'} relative overflow-hidden`}
               >
                 
                 {op.unitType && op.unitType !== 'Desconocido' && (

@@ -103,8 +103,8 @@
     "base_troops": "TROPAS BASE",
     "field_skills": "HABILIDADES DE CAMPO",
     "explore_skills": "HABILIDADES DE EXPLORACIÓN",
-    "rarity_desc_1": "Este operativo es de rareza ",
-    "rarity_desc_2": ", por lo que dispone de ",
+    "rarity_desc_1": "Este operativo es de rareza",
+    "rarity_desc_2": ", por lo que dispone de",
     "rarity_desc_3": " habilidades activas y pasivas en total. (Datos específicos de habilidad se añadirán pronto).",
     "exp_plan": "PLANIFICA TUS RECURSOS DE ENTRENAMIENTO TÁCTICO",
     "curr_level": "NIVEL ACTUAL",
@@ -152,7 +152,8 @@
     "tab_exp": "Calc. Experiencia",
     "tab_stars": "Calc. Ascenso (Contratos)",
     "tab_books": "Calc. Libros Habilidad",
-    "tab_equipment": "Equipamiento"
+    "tab_equipment": "Equipamiento",
+    "rarity_info": "Este operativo es de rareza <span className=\"text-white font-mono\">{{rarity}}</span>, por lo que dispone de <span className=\"text-neon-red font-bold font-mono\">{{maxSkills}}</span> habilidades activas y pasivas en total. (Datos específicos de habilidad se añadirán pronto)."
   },
   "footer": {
     "disclaimer": "Este es un sitio web informativo creado por fans para fines educativos y de guía. Resident Evil: Survival Unit es un juego co-desarrollado por Aniplex, JOYCITY y Capcom."
@@ -173,5 +174,11 @@
   "tools_page": {
     "tactical_tools": "Herramientas Tácticas",
     "tools_desc": "Calcula la producción de tropas y simula escenarios de combate con la asistencia directa de la IA Red Queen."
+  },
+  "common": {
+    "restricted": "ÁREA",
+    "area": "RESTRINGIDA",
+    "restricted_desc": "ESTA SECCIÓN DE LA BASE DE DATOS SE ENCUENTRA ACTUALMENTE EN CONSTRUCCIÓN O REQUIERE UN NIVEL DE AUTORIZACIÓN SUPERIOR. VUELVE PRONTO PARA NUEVAS ACTUALIZACIONES.",
+    "back_home": "VOLVER AL INICIO"
   }
 }

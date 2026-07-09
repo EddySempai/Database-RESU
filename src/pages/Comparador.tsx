@@ -112,7 +112,7 @@ const Comparador = () => {
             className="flex-1 border-2 border-dashed border-gray-700 hover:border-blood-red hover:bg-blood-red/5 flex flex-col items-center justify-center text-gray-500 hover:text-white transition-all group"
           >
             <Search className="mb-4 w-12 h-12 group-hover:scale-110 transition-transform" />
-            <span className="font-bebas text-2xl tracking-widest">SELECCIONAR OPERATIVO</span>
+            <span className="font-bebas text-2xl tracking-widest">{t('comparador.select_op')}</span>
             {((slot === 2 && slot1) || (slot === 1 && slot2)) && (
               <span className="font-mono text-xs text-blood-red mt-2 uppercase">Debe ser {slot1 ? slot1.unitType : slot2?.unitType}</span>
             )}

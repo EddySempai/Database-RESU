@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, Lock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function ComingSoon() {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen pt-32 pb-20 px-6 flex flex-col items-center justify-center relative overflow-hidden">
       {/* Background Decorators */}
@@ -22,12 +24,11 @@ export default function ComingSoon() {
         </div>
         
         <h1 className="font-bebas text-5xl md:text-7xl text-white tracking-widest mb-4 drop-shadow-md">
-          ÁREA <span className="text-blood-red">RESTRINGIDA</span>
+          {t('common.restricted')} <span className="text-blood-red">{t('common.area')}</span>
         </h1>
         
         <p className="font-mono text-gray-400 mb-12 uppercase tracking-widest text-sm leading-relaxed">
-          Esta sección de la base de datos se encuentra actualmente en construcción o requiere un nivel de autorización superior.
-          Vuelve pronto para nuevas actualizaciones.
+          {t('common.restricted_desc')}
         </p>
 
         <Link 
@@ -36,7 +37,7 @@ export default function ComingSoon() {
         >
           <div className="absolute inset-0 w-full h-full bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-out"></div>
           <ChevronLeft size={24} />
-          VOLVER AL INICIO
+          {t('common.back_home')}
         </Link>
       </motion.div>
       

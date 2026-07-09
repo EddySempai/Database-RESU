@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Sword, Shield, Crosshair, ChevronRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { calculateWeaponExp, calculateWeaponPlus, convertWeaponExpToMaterials } from '../utils/weaponCalculators';
 
 interface SlotState {
@@ -13,14 +14,16 @@ interface SlotState {
   targetPlus: number;
 }
 
-const initialSlots: SlotState[] = [
-  { id: 'armaGrande', name: 'Arma Grande', type: 'Penetración', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 20 },
-  { id: 'pistola', name: 'Pistola', type: 'Penetración', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 20 },
-  { id: 'revolver', name: 'Revólver', type: 'Vida', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 20 },
-  { id: 'cuchillo', name: 'Cuchillo', type: 'Vida', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 20 }
-];
-
 export default function EquipamientoView({ op }: { op: any }) {
+  const { t } = useTranslation();
+  
+  const initialSlots: SlotState[] = [
+    { id: 'armaGrande', name: t('op_detail.big_gun'), type: 'Penetración', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 20 },
+    { id: 'pistola', name: t('op_detail.pistol'), type: 'Penetración', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 20 },
+    { id: 'revolver', name: t('op_detail.revolver'), type: 'Vida', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 20 },
+    { id: 'cuchillo', name: t('op_detail.knife'), type: 'Vida', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 20 }
+  ];
+
   const [slots, setSlots] = useState<SlotState[]>(initialSlots);
   const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
 
@@ -98,36 +101,34 @@ export default function EquipamientoView({ op }: { op: any }) {
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Exp Editor */}
-              <div className="bg-black/50 border border-gray-800 p-4">
-                <h4 className="font-mono text-xs text-gray-400 uppercase mb-4 text-center">Nivel Base (Experiencia)</h4>
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex-1">
-                    <label className="text-[10px] font-mono text-gray-500 uppercase">Actual</label>
-                    <input 
-                      type="number" min="0" max="100" 
-                      value={selectedSlot.currentLevel}
-                      onChange={(e) => updateSlot(selectedSlot.id, { currentLevel: Math.min(100, Math.max(0, Number(e.target.value))) })}
-                      className="w-full bg-transparent border-b border-gray-700 text-white font-bebas text-2xl outline-none focus:border-neon-red text-center"
-                    />
-                  </div>
-                  <ChevronRight className="text-gray-600" />
-                  <div className="flex-1">
-                    <label className="text-[10px] font-mono text-gray-500 uppercase">Objetivo</label>
-                    <input 
-                      type="number" min="0" max="100" 
-                      value={selectedSlot.targetLevel}
-                      onChange={(e) => updateSlot(selectedSlot.id, { targetLevel: Math.min(100, Math.max(0, Number(e.target.value))) })}
-                      className="w-full bg-transparent border-b border-gray-700 text-neon-red font-bebas text-2xl outline-none focus:border-neon-red text-center"
-                    />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
+                <div className="border border-gray-800 p-6 bg-black/50">
+                  <h4 className="font-mono text-gray-400 text-xs uppercase tracking-widest text-center mb-6">{t('op_detail.base_level')}</h4>
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex-1">
+                      <label className="block text-[10px] text-gray-600 font-mono uppercase mb-2">ACTUAL</label>
+                      <input 
+                        type="number" min="1" max="100" 
+                        value={selectedSlot.currentLevel}
+                        onChange={e => updateSlot(selectedSlot.id, { currentLevel: Math.min(100, Math.max(1, parseInt(e.target.value) || 1)) })}
+                        className="w-full bg-transparent border-b-2 border-gray-800 text-white text-3xl font-bebas text-center focus:border-neon-red outline-none pb-1"
+                      />
+                    </div>
+                    <ChevronRight className="text-gray-700" size={24} />
+                    <div className="flex-1">
+                      <label className="block text-[10px] text-gray-600 font-mono uppercase mb-2 text-right">OBJETIVO</label>
+                      <input 
+                        type="number" min="1" max="100" 
+                        value={selectedSlot.targetLevel}
+                        onChange={e => updateSlot(selectedSlot.id, { targetLevel: Math.min(100, Math.max(1, parseInt(e.target.value) || 1)) })}
+                        className="w-full bg-transparent border-b-2 border-blood-red text-neon-red text-3xl font-bebas text-center focus:border-white outline-none pb-1"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Plus Editor */}
-              <div className="bg-black/50 border border-gray-800 p-4">
-                <h4 className="font-mono text-xs text-gray-400 uppercase mb-4 text-center">Nivel Plus (+)</h4>
+                <div className="border border-gray-800 p-6 bg-black/50">
+                  <h4 className="font-mono text-gray-400 text-xs uppercase tracking-widest text-center mb-6">{t('op_detail.plus_level')}</h4>
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex-1">
                     <label className="text-[10px] font-mono text-gray-500 uppercase">Actual</label>
@@ -155,24 +156,25 @@ export default function EquipamientoView({ op }: { op: any }) {
         )}
       </AnimatePresence>
 
-      {/* Global Summary */}
-      <div className="w-full mt-12 bg-[#050505] border border-gray-800">
-        <div className="bg-blood-red/10 border-b border-blood-red/30 p-4 text-center">
-          <h2 className="font-bebas text-3xl text-white tracking-widest">Resumen Total de Equipamiento</h2>
-          <p className="font-mono text-xs text-gray-400 uppercase">Proyección de recursos combinados</p>
+      {/* Equipment Total Summary */}
+      <div className="w-full max-w-4xl mt-12 bg-[#050505] border-t border-gray-900 pt-12">
+        <div className="text-center mb-10">
+          <h2 className="font-bebas text-4xl text-white tracking-widest">{t('op_detail.equip_summary')}</h2>
+          <p className="font-mono text-xs text-gray-500 uppercase tracking-widest">{t('op_detail.proj_resources')}</p>
         </div>
-        
-        <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Individual Breakdown */}
-          <div>
-            <h3 className="font-mono text-sm text-gray-500 uppercase mb-4 border-b border-gray-800 pb-2">Desglose por Arma</h3>
-            <div className="space-y-3">
-              {slotCosts.map(sc => (
-                <div key={sc.id} className="flex justify-between items-center text-sm font-mono bg-black/50 p-2 border border-gray-900">
-                  <span className="text-gray-300">{sc.name}</span>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* Detailed Breakdown */}
+          <div className="border border-gray-800 p-6 bg-black/40">
+            <h3 className="font-mono text-xs text-gray-500 uppercase tracking-widest mb-6 border-b border-gray-800 pb-2">{t('op_detail.breakdown')}</h3>
+            <div className="space-y-4">
+              {slotCosts.map((s, i) => (
+                <div key={i} className="flex justify-between items-center border border-gray-800/50 p-4">
+                  <span className="font-mono text-sm text-gray-300">{s.name}</span>
                   <div className="text-right">
-                    <div className="text-neon-red">{sc.exp.toLocaleString()} EXP</div>
-                    <div className="text-yellow-500">{sc.plus.toLocaleString()} Componentes</div>
+                    <div className="font-bebas text-xl text-neon-red tracking-widest">{s.exp.toLocaleString()} EXP</div>
+                    <div className="font-mono text-xs text-yellow-500">{s.plus.toLocaleString()} {t('op_detail.components')}</div>
                   </div>
                 </div>
               ))}
@@ -180,29 +182,29 @@ export default function EquipamientoView({ op }: { op: any }) {
           </div>
 
           {/* Grand Totals */}
-          <div className="flex flex-col justify-center space-y-6">
-            <div className="bg-black border border-gray-800 p-4 text-center">
-              <span className="block font-mono text-xs text-gray-500 uppercase mb-1">Costo Total de Experiencia</span>
-              <span className="font-bebas text-5xl text-neon-red">{totalExp.toLocaleString()}</span>
+          <div className="space-y-6">
+            <div className="border border-gray-800 p-6 bg-black/40 text-center">
+              <h3 className="font-mono text-xs text-gray-500 uppercase tracking-widest mb-2">{t('op_detail.total_exp_cost')}</h3>
+              <div className="font-bebas text-6xl text-neon-red tracking-widest mb-8">{totalExp.toLocaleString()}</div>
               
               {/* Materials Conversion */}
               {totalExp > 0 && (
                 <div className="mt-4 pt-4 border-t border-gray-800 text-left">
-                  <p className="font-mono text-[10px] text-gray-500 uppercase mb-2">Equivalencias de EXP (Cualquiera de estas opciones te sirve):</p>
+                  <p className="font-mono text-[10px] text-gray-500 uppercase mb-2">{t('op_detail.exp_equivalents')}</p>
                   <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-                    <div className="bg-green-900/20 text-green-400 border border-green-500/30 p-1 flex justify-between"><span>Mat. Verde:</span> <span>{materials.materialesVerdes.toLocaleString()}</span></div>
-                    <div className="bg-purple-900/20 text-purple-400 border border-purple-500/30 p-1 flex justify-between"><span>Mat. Morado:</span> <span>{materials.materialesMorados.toLocaleString()}</span></div>
-                    <div className="bg-gray-800 text-gray-300 border border-gray-600 p-1 flex justify-between"><span>Arma Gris:</span> <span>{materials.armasGrises.toLocaleString()}</span></div>
-                    <div className="bg-green-900/10 text-green-500 border border-green-700/50 p-1 flex justify-between"><span>Arma Verde:</span> <span>{materials.armasVerdes.toLocaleString()}</span></div>
-                    <div className="bg-blue-900/10 text-blue-400 border border-blue-700/50 p-1 flex justify-between"><span>Arma Azul:</span> <span>{materials.armasAzules.toLocaleString()}</span></div>
-                    <div className="bg-purple-900/10 text-purple-400 border border-purple-700/50 p-1 flex justify-between"><span>Arma Morada:</span> <span>{materials.armasMoradas.toLocaleString()}</span></div>
+                    <div className="bg-green-900/20 text-green-400 border border-green-500/30 p-1 flex justify-between"><span>{t('op_detail.mat_green')}</span> <span>{materials.materialesVerdes.toLocaleString()}</span></div>
+                    <div className="bg-purple-900/20 text-purple-400 border border-purple-500/30 p-1 flex justify-between"><span>{t('op_detail.mat_purple')}</span> <span>{materials.materialesMorados.toLocaleString()}</span></div>
+                    <div className="bg-gray-800 text-gray-300 border border-gray-600 p-1 flex justify-between"><span>{t('op_detail.gun_gray')}</span> <span>{materials.armasGrises.toLocaleString()}</span></div>
+                    <div className="bg-green-900/10 text-green-500 border border-green-700/50 p-1 flex justify-between"><span>{t('op_detail.gun_green')}</span> <span>{materials.armasVerdes.toLocaleString()}</span></div>
+                    <div className="bg-blue-900/10 text-blue-400 border border-blue-700/50 p-1 flex justify-between"><span>{t('op_detail.gun_blue')}</span> <span>{materials.armasAzules.toLocaleString()}</span></div>
+                    <div className="bg-purple-900/10 text-purple-400 border border-purple-700/50 p-1 flex justify-between"><span>{t('op_detail.gun_purple')}</span> <span>{materials.armasMoradas.toLocaleString()}</span></div>
                   </div>
                 </div>
               )}
             </div>
 
             <div className="bg-black border border-gray-800 p-4 text-center">
-              <span className="block font-mono text-xs text-gray-500 uppercase mb-1">Costo Total Componentes (+)</span>
+              <span className="block font-mono text-xs text-gray-500 uppercase mb-1">{t('op_detail.total_comp_cost')}</span>
               <span className="font-bebas text-5xl text-yellow-500">{totalPlus.toLocaleString()}</span>
             </div>
           </div>

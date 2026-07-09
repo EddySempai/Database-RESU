@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, Star, Sword, Shield, Heart, ChevronLeft, Crosshair, Users } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import operativosData from '../data/operativos.json';
+import { useOperativos } from '../hooks/useOperativos';
 import { calculateRequiredExp, calculateRequiredContracts, calculateSkillBooks, getMaxSkillsByRarity } from '../utils/calculators';
 import EquipamientoView from '../components/EquipamientoView';
 
@@ -27,10 +27,11 @@ const getUnitColor = (type: string) => {
 
 const OperativoDetalle = () => {
   const { t } = useTranslation();
+  const operativosData = useOperativos();
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState('skills'); // skills, exp, stars, books
   
-  const op = operativosData.find(o => o.id === id);
+  const op = operativosData.find((o: any) => o.id === id);
 
   // States for calculators
   const [currentLevel, setCurrentLevel] = useState(1);
@@ -51,8 +52,8 @@ const OperativoDetalle = () => {
   if (!op) {
     return (
       <div className="pt-32 text-center text-white h-screen">
-        <h1 className="text-4xl font-bebas text-neon-red">Operativo no encontrado</h1>
-        <Link to="/operativos" className="text-gray-400 hover:text-white mt-4 inline-block">Volver a Base de Datos</Link>
+        <h1 className="text-4xl font-bebas text-neon-red">{t('op_detail.not_found')}</h1>
+        <Link to="/operativos" className="text-gray-400 hover:text-white mt-4 inline-block">{t('op_detail.back_db')}</Link>
       </div>
     );
   }
@@ -74,7 +75,7 @@ const OperativoDetalle = () => {
         className="w-full md:w-1/3 flex flex-col"
       >
         <Link to="/operativos" className="flex items-center gap-2 text-gray-500 hover:text-white font-mono text-xs uppercase tracking-widest mb-6 transition-colors">
-          <ChevronLeft size={16} /> Volver a Base de Datos
+          <ChevronLeft size={16} /> {t('op_detail.back_db')}
         </Link>
         
         <div className="bg-[#050505] border border-gray-800 p-6 relative overflow-hidden group rounded-sm flex-1">
@@ -83,7 +84,7 @@ const OperativoDetalle = () => {
             {op.name}
           </h1>
           <div className="flex items-center gap-3 mb-6 relative z-10">
-            <p className="font-mono text-gray-500 text-xs uppercase tracking-widest">Expediente Táctico</p>
+            <p className="font-mono text-gray-500 text-xs uppercase tracking-widest">{t('op_detail.tactical_dossier')}</p>
             {op.unitType && op.unitType !== 'Desconocido' && (
               <div className={`flex items-center gap-1 px-2 py-1 border text-[10px] font-mono uppercase tracking-widest ${getUnitColor(op.unitType)}`}>
                 {getUnitIcon(op.unitType)} {op.unitType}
@@ -144,11 +145,11 @@ const OperativoDetalle = () => {
       >
         <div className="flex flex-wrap gap-2 mb-6 border-b border-gray-800 pb-2">
           {[
-            { id: 'skills', label: 'Habilidades' },
-            { id: 'exp', label: 'Calc. Experiencia' },
-            { id: 'stars', label: 'Calc. Ascenso (Contratos)' },
-            { id: 'books', label: 'Calc. Libros Habilidad' },
-            { id: 'equipment', label: 'Equipamiento' }
+            { id: 'skills', label: t('op_detail.tab_skills') },
+            { id: 'exp', label: t('op_detail.tab_exp') },
+            { id: 'stars', label: t('op_detail.tab_stars') },
+            { id: 'books', label: t('op_detail.tab_books') },
+            { id: 'equipment', label: t('op_detail.tab_equipment') }
           ].map(tab => (
             <button
               key={tab.id}
@@ -180,17 +181,17 @@ const OperativoDetalle = () => {
           {activeTab === 'skills' && (
             <div>
               <h2 className="font-bebas text-3xl tracking-widest text-white mb-6 flex items-center gap-3">
-                <Star className="text-neon-red" /> Archivos de Habilidad
+                <Star className="text-neon-red" /> {t('comparador.skill_archives')}
               </h2>
               <div className="text-gray-400 font-mono text-sm mb-8 leading-relaxed">
-                Este operativo es de rareza <span className="text-white">{rarity}</span>, por lo que dispone de <span className="text-neon-red font-bold">{maxSkills}</span> habilidades activas y pasivas en total. (Datos específicos de habilidad se añadirán pronto).
+                {t('op_detail.rarity_desc_1')} <span className="text-white font-mono">{rarity}</span>{t('op_detail.rarity_desc_2')} <span className="text-neon-red font-bold font-mono">{maxSkills}</span>{t('op_detail.rarity_desc_3')}
               </div>
               <div className="mt-6">
                 <div className="bg-black border border-gray-800 p-3">
                   <div className="text-gray-500 font-mono text-[10px] uppercase tracking-widest mb-1 flex items-center gap-2">
-                    <Users className="w-3 h-3 text-blood-red" /> {t('op_detail.base_troops')}
+                    <Users size={12} /> {t('op_detail.base_troops')}
                   </div>
-                  <div className="text-white font-bebas text-2xl tracking-widest">{((op as any).stats?.troops || 0).toLocaleString()}</div>
+                  <div className="text-white font-bebas text-xl tracking-widest">{((op as any).stats?.troops || 0).toLocaleString()}</div>
                 </div>
               </div>
 
@@ -237,7 +238,7 @@ const OperativoDetalle = () => {
               <h2 className="font-bebas text-3xl tracking-widest text-white mb-2 flex items-center gap-3">
                 {t('op_detail.tab_exp')}
               </h2>
-              <p className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-8">Planifica tus recursos de entrenamiento táctico</p>
+              <p className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-8">{t('op_detail.exp_plan')}</p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                 <div>

@@ -103,9 +103,9 @@
     "base_troops": "基本部隊",
     "field_skills": "フィールドスキル",
     "explore_skills": "探索スキル",
-    "rarity_desc_1": "この工作員は ",
-    "rarity_desc_2": " レアリティで、合計 ",
-    "rarity_desc_3": " 個のアクティブおよびパッシブスキルを持ちます。（詳細なスキルデータは近日追加予定）。",
+    "rarity_desc_1": "このオペレーターのレアリティは",
+    "rarity_desc_2": "です。合計",
+    "rarity_desc_3": "のパッシブスキルおよびアクティブスキルを持っています。（詳細は後日追加予定）。",
     "exp_plan": "戦術訓練リソースを計画する",
     "curr_level": "現在のレベル",
     "target_level": "目標レベル",
@@ -152,7 +152,8 @@
     "tab_exp": "経験値計算",
     "tab_stars": "昇進計算 (契約書)",
     "tab_books": "スキルブック計算",
-    "tab_equipment": "装備"
+    "tab_equipment": "装備",
+    "rarity_info": "このオペレーターのレアリティは<span className=\"text-white font-mono\">{{rarity}}</span>です。合計<span className=\"text-neon-red font-bold font-mono\">{{maxSkills}}</span>のパッシブスキルおよびアクティブスキルを持っています。（詳細は後日追加予定）。"
   },
   "footer": {
     "disclaimer": "このサイトは、教育およびガイドを目的としたファン作成の情報ウェブサイトです。Resident Evil: Survival Unitは、Aniplex、JOYCITY、およびカプコンが共同開発したゲームです。"
@@ -173,5 +174,11 @@
   "tools_page": {
     "tactical_tools": "戦術ツール",
     "tools_desc": "部隊の生産を計算し、レッドクイーンAIの直接支援を受けて戦闘シナリオをシミュレートします。"
+  },
+  "common": {
+    "restricted": "制限",
+    "area": "エリア",
+    "restricted_desc": "データベースのこのセクションは現在構築中であるか、より高いアクセス権限が必要です。今後の更新をお待ちください。",
+    "back_home": "ホームに戻る"
   }
 }
