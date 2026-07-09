@@ -23,7 +23,7 @@ Debes responder única y exclusivamente en el idioma: [${languageStr}].
 
 export const getRedQueenResponse = async (history: {role: 'user'|'model', parts: [{text: string}]} [], newMessage: string) => {
   if (!API_KEY) {
-    return "ERROR CRÍTICO: FALTA LA API KEY DE GEMINI EN EL ARCHIVO .env (O DEBES REINICIAR EL SERVIDOR VITE). PROBABILIDAD DE SUPERVIVENCIA: 0%.";
+    return "ERROR CRÍTICO: REINICIA EL SERVIDOR.";
   }
   try {
     const model = genAI.getGenerativeModel({ 
@@ -39,7 +39,7 @@ export const getRedQueenResponse = async (history: {role: 'user'|'model', parts:
     return result.response.text();
   } catch (error) {
     console.error("Error with Gemini:", error);
-    return "ERROR DE SISTEMA. CONEXIÓN CON MAINFRAME PERDIDA. PROBABILIDAD DE SUPERVIVENCIA: 0%.";
+    return "ERROR DE SISTEMA.";
   }
 };
 

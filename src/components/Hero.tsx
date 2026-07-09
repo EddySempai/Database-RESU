@@ -9,7 +9,7 @@ const Hero = () => {
       {/* Background Image & Vignette */}
       <div 
         className="absolute inset-0 z-0 opacity-40 bg-cover bg-center"
-        style={{ backgroundImage: 'url(/hero_bg.png)' }}
+        style={{ backgroundImage: 'url(/hero_bg.webp)' }}
       />
       <div className="absolute inset-0 z-0 bg-radial-vignette" />
       

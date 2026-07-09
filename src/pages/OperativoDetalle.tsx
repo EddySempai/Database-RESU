@@ -244,6 +244,7 @@ const OperativoDetalle = () => {
                 <div>
                   <label className="block text-gray-400 font-mono text-xs uppercase mb-2">{t('op_detail.curr_level')}</label>
                   <input 
+                    placeholder='0'
                     type="number" min="1" max="80" 
                     value={currentLevel} 
                     onChange={e => {
@@ -258,6 +259,7 @@ const OperativoDetalle = () => {
                 <div>
                   <label className="block text-gray-400 font-mono text-xs uppercase mb-2">{t('op_detail.target_level')}</label>
                   <input 
+                    placeholder='0'
                     type="number" min="1" max="80" 
                     value={targetLevel} 
                     onChange={e => {
@@ -447,6 +449,7 @@ const OperativoDetalle = () => {
                 <div>
                   <label className="block text-gray-400 font-mono text-xs uppercase mb-2">{t('op_detail.curr_skill_level')}</label>
                   <input 
+                    placeholder='0'
                     type="number" min="1" max="5" 
                     value={currentSkillLevel} 
                     onChange={e => {
@@ -461,6 +464,7 @@ const OperativoDetalle = () => {
                 <div>
                   <label className="block text-gray-400 font-mono text-xs uppercase mb-2">{t('op_detail.target_skill_level')}</label>
                   <input 
+                    placeholder='0'
                     type="number" min="1" max="5" 
                     value={targetSkillLevel} 
                     onChange={e => {
