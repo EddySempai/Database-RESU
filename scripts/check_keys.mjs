@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const ensureKeys = (lang) => {
-  const p = path.join(__dirname, 'src', 'locales', lang, 'translation.json');
+  const p = path.join(__dirname, '..', 'src', 'locales', lang, 'translation.json');
   const data = JSON.parse(fs.readFileSync(p, 'utf8'));
   
   if (!data.op_detail) data.op_detail = {};

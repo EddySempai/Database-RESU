@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const localesPath = path.join(__dirname, 'src', 'locales');
+const localesPath = path.join(__dirname, '..', 'src', 'locales');
 
 const newTranslations = {
   es: {
@@ -73,7 +73,9 @@ const newTranslations = {
       gun_green: "Arma Verde:",
       gun_blue: "Arma Azul:",
       gun_purple: "Arma Morada:",
-      total_comp_cost: "COSTO TOTAL COMPONENTES (+)"
+      total_comp_cost: "COSTO TOTAL COMPONENTES (+)",
+      base_level: "Nivel Base",
+      plus_level: "Nivel de Mejora (+)"
     },
     comparador: {
       analysis: "Análisis ",
@@ -160,7 +162,9 @@ const newTranslations = {
       gun_green: "Green Gun:",
       gun_blue: "Blue Gun:",
       gun_purple: "Purple Gun:",
-      total_comp_cost: "TOTAL COMPONENT COST (+)"
+      total_comp_cost: "TOTAL COMPONENT COST (+)",
+      base_level: "Base Level",
+      plus_level: "Plus Level (+)"
     },
     comparador: {
       analysis: "Analysis ",
@@ -247,7 +251,9 @@ const newTranslations = {
       gun_green: "緑の銃:",
       gun_blue: "青の銃:",
       gun_purple: "紫の銃:",
-      total_comp_cost: "合計コンポーネントコスト (+)"
+      total_comp_cost: "合計コンポーネントコスト (+)",
+      base_level: "ベースレベル",
+      plus_level: "強化レベル (+)"
     },
     comparador: {
       analysis: "分析 ",

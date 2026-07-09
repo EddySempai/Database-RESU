@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Read .env file for API KEY
-const envPath = join(__dirname, '.env');
+const envPath = join(__dirname, '..', '.env');
 let apiKey = '';
 if (fs.existsSync(envPath)) {
   const envContent = fs.readFileSync(envPath, 'utf8');
@@ -24,7 +24,7 @@ if (!apiKey) {
 const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({ model: 'gemini-3.5-flash' });
 
-const operativosPath = join(__dirname, 'src', 'data', 'operativos.json');
+const operativosPath = join(__dirname, '..', 'src', 'data', 'operativos.json');
 const data = JSON.parse(fs.readFileSync(operativosPath, 'utf8'));
 
 async function translateTo(targetLang, outputPath) {
@@ -58,8 +58,8 @@ Output ONLY the raw valid JSON array, no markdown formatting.
 }
 
 async function main() {
-  await translateTo('English', join(__dirname, 'src', 'locales', 'en', 'operativos.json'));
-  await translateTo('Japanese', join(__dirname, 'src', 'locales', 'ja', 'operativos.json'));
+  await translateTo('English', join(__dirname, '..', 'src', 'locales', 'en', 'operativos.json'));
+  await translateTo('Japanese', join(__dirname, '..', 'src', 'locales', 'ja', 'operativos.json'));
 }
 
 main();

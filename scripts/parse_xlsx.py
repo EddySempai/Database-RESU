@@ -1,6 +1,9 @@
 import zipfile
 import xml.etree.ElementTree as ET
 import json
+import os
+
+base_dir = os.path.dirname(os.path.abspath(__file__))
 
 def parse_xlsx(filepath):
     with zipfile.ZipFile(filepath, 'r') as archive:
@@ -38,11 +41,13 @@ def parse_xlsx(filepath):
                         current_row.append('')
                 rows.append(current_row)
             
-            with open('src/habilidades_dump.json', 'w', encoding='utf-8') as out:
+            output_path = os.path.join(base_dir, 'raw-data', 'habilidades_dump.json')
+            with open(output_path, 'w', encoding='utf-8') as out:
                 json.dump(rows, out, ensure_ascii=False, indent=2)
 
 try:
-    parse_xlsx('src/Base_Datos_Habilidades_Resident_Evil.xlsx')
+    xlsx_path = os.path.join(base_dir, 'raw-data', 'Base_Datos_Habilidades_Resident_Evil.xlsx')
+    parse_xlsx(xlsx_path)
     print("Parsed successfully!")
 except Exception as e:
     print(f"Error parsing: {e}")

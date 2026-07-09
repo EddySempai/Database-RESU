@@ -1,11 +1,16 @@
 import json
+import os
+
+base_dir = os.path.dirname(os.path.abspath(__file__))
 
 def merge_skills():
     try:
-        with open('src/habilidades_dump.json', 'r', encoding='utf-8') as f:
+        dump_path = os.path.join(base_dir, 'raw-data', 'habilidades_dump.json')
+        with open(dump_path, 'r', encoding='utf-8') as f:
             dump_rows = json.load(f)
             
-        with open('src/data/operativos.json', 'r', encoding='utf-8') as f:
+        operativos_path = os.path.join(base_dir, '..', 'src', 'data', 'operativos.json')
+        with open(operativos_path, 'r', encoding='utf-8') as f:
             operativos = json.load(f)
 
         skills_map = {}
@@ -36,7 +41,7 @@ def merge_skills():
             else:
                 op['skills'] = []
 
-        with open('src/data/operativos.json', 'w', encoding='utf-8') as f:
+        with open(operativos_path, 'w', encoding='utf-8') as f:
             json.dump(operativos, f, ensure_ascii=False, indent=2)
 
         print("Merged skills successfully!")

@@ -13,7 +13,7 @@ const replaceInFile = (filePath, replacements) => {
   fs.writeFileSync(filePath, content, 'utf8');
 };
 
-const opDetallePath = path.join(__dirname, 'src', 'pages', 'OperativoDetalle.tsx');
+const opDetallePath = path.join(__dirname, '..', 'src', 'pages', 'OperativoDetalle.tsx');
 
 replaceInFile(opDetallePath, [
   [
@@ -166,7 +166,7 @@ replaceInFile(opDetallePath, [
   ]
 ]);
 
-const comparadorPath = path.join(__dirname, 'src', 'pages', 'Comparador.tsx');
+const comparadorPath = path.join(__dirname, '..', 'src', 'pages', 'Comparador.tsx');
 replaceInFile(comparadorPath, [
   [
     `ERROR DE SISTEMA. IMPOSIBLE COMUNICARSE CON EL MAINFRAME.`,

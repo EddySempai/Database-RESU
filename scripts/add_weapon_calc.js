@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const rawData = `
 0-1 / 10
@@ -165,5 +166,5 @@ export const convertWeaponExpToMaterials = (totalExp: number) => {
 };
 \`;
 
-fs.appendFileSync('src/utils/calculators.ts', newCode);
+fs.appendFileSync(path.join(__dirname, '..', 'src', 'utils', 'calculators.ts'), newCode);
 console.log("Calculadoras de armas añadidas a src/utils/calculators.ts");

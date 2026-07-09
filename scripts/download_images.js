@@ -6,8 +6,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const dataPath = path.join(__dirname, 'src', 'data', 'operativos.json');
-const outDir = path.join(__dirname, 'src', 'assets', 'operativos');
+const dataPath = path.join(__dirname, '..', 'src', 'data', 'operativos.json');
+const outDir = path.join(__dirname, '..', 'src', 'assets', 'operativos');
 
 if (!fs.existsSync(outDir)) {
   fs.mkdirSync(outDir, { recursive: true });

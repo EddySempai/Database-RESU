@@ -18,7 +18,7 @@ const replaceInFile = (filePath, searchReplaceList) => {
 };
 
 // 1. Fix Operativos.tsx
-const opsPath = path.join(__dirname, 'src', 'pages', 'Operativos.tsx');
+const opsPath = path.join(__dirname, '..', 'src', 'pages', 'Operativos.tsx');
 replaceInFile(opsPath, [
   [
     `const getUnitIcon = (type: string) => {
@@ -76,7 +76,7 @@ const getUnitIcon = (type: string) => {
 ]);
 
 // 2. Fix OperativoDetalle.tsx
-const opDetallePath = path.join(__dirname, 'src', 'pages', 'OperativoDetalle.tsx');
+const opDetallePath = path.join(__dirname, '..', 'src', 'pages', 'OperativoDetalle.tsx');
 replaceInFile(opDetallePath, [
   [
     `const getUnitIcon = (type: string) => {
@@ -118,7 +118,7 @@ const getUnitIcon = (type: string) => {
 ]);
 
 // 3. Fix ComingSoon.tsx (Restricted Area)
-const comingSoonPath = path.join(__dirname, 'src', 'pages', 'ComingSoon.tsx');
+const comingSoonPath = path.join(__dirname, '..', 'src', 'pages', 'ComingSoon.tsx');
 let comingSoonContent = fs.readFileSync(comingSoonPath, 'utf8');
 if (!comingSoonContent.includes('useTranslation')) {
   comingSoonContent = comingSoonContent.replace(
@@ -145,7 +145,7 @@ if (!comingSoonContent.includes('useTranslation')) {
 }
 
 // 4. Fix Comparador.tsx static texts
-const compPath = path.join(__dirname, 'src', 'pages', 'Comparador.tsx');
+const compPath = path.join(__dirname, '..', 'src', 'pages', 'Comparador.tsx');
 replaceInFile(compPath, [
   [
     `ANÁLISIS <span className="text-neon-red">COMPARATIVO</span>`,
@@ -167,7 +167,7 @@ replaceInFile(compPath, [
 
 // 5. Add translations to locales
 const addTranslations = (lang, newKeys) => {
-  const p = path.join(__dirname, 'src', 'locales', lang, 'translation.json');
+  const p = path.join(__dirname, '..', 'src', 'locales', lang, 'translation.json');
   if (fs.existsSync(p)) {
     const data = JSON.parse(fs.readFileSync(p, 'utf8'));
     for (const [key, value] of Object.entries(newKeys)) {

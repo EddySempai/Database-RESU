@@ -1,5 +1,9 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const statsData = {
   "luis": { health: 101335, attack: 10134, defense: 2253, combatPower: 730878 },
@@ -30,7 +34,7 @@ const statsData = {
   "claire": { health: 88000, attack: 9265, defense: 605, combatPower: 1440957 }
 };
 
-const dataPath = path.join(process.cwd(), 'src/data/operativos.json');
+const dataPath = path.join(__dirname, '..', 'src', 'data', 'operativos.json');
 const rawData = fs.readFileSync(dataPath, 'utf8');
 const data = JSON.parse(rawData);
 

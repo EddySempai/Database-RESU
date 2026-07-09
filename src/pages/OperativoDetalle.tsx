@@ -53,7 +53,7 @@ const OperativoDetalle = () => {
     return (
       <div className="pt-32 text-center text-white h-screen">
         <h1 className="text-4xl font-bebas text-neon-red">{t('op_detail.not_found')}</h1>
-        <Link to="/operativos" className="text-gray-400 hover:text-white mt-4 inline-block">{t('op_detail.back_db')}</Link>
+        <Link to="/operativos" className="text-gray-400 hover:text-white mt-4 inline-block">{t('op_detail.back_to_db')}</Link>
       </div>
     );
   }
@@ -75,7 +75,7 @@ const OperativoDetalle = () => {
         className="w-full md:w-1/3 flex flex-col"
       >
         <Link to="/operativos" className="flex items-center gap-2 text-gray-500 hover:text-white font-mono text-xs uppercase tracking-widest mb-6 transition-colors">
-          <ChevronLeft size={16} /> {t('op_detail.back_db')}
+          <ChevronLeft size={16} /> {t('op_detail.back_to_db')}
         </Link>
         
         <div className="bg-[#050505] border border-gray-800 p-6 relative overflow-hidden group rounded-sm flex-1">

@@ -1,8 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const mainStatsFile = path.join(process.cwd(), 'src/data/operativos.json');
-const extraStatsFile = path.join(process.cwd(), 'src/data/extra_stats.json');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const mainStatsFile = path.join(__dirname, '..', 'src', 'data', 'operativos.json');
+const extraStatsFile = path.join(__dirname, '..', 'src', 'data', 'extra_stats.json');
 
 const mainStats = JSON.parse(fs.readFileSync(mainStatsFile, 'utf8'));
 const extraStats = JSON.parse(fs.readFileSync(extraStatsFile, 'utf8'));

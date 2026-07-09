@@ -13,7 +13,7 @@ const replaceInFile = (filePath, replacements) => {
   fs.writeFileSync(filePath, content, 'utf8');
 };
 
-const equipPath = path.join(__dirname, 'src', 'components', 'EquipamientoView.tsx');
+const equipPath = path.join(__dirname, '..', 'src', 'components', 'EquipamientoView.tsx');
 
 replaceInFile(equipPath, [
   ['<span>Mat. Verde:</span>', '<span>{t(\'op_detail.mat_green\')}</span>'],
