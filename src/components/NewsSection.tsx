@@ -39,7 +39,7 @@ const NewsSection = () => {
             key={idx}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false, amount: 0.2 }}
             transition={{ delay: idx * 0.1 }}
             className="bg-[#0a0a0a] border-l-2 border-l-gray-800 hover:border-l-blood-red p-6 transition-all duration-300"
           >

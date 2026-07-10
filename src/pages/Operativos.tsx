@@ -9,6 +9,7 @@ const isDefender = (type: string) => type?.toLowerCase().includes('defen') || ty
 const isAttacker = (type: string) => type?.toLowerCase().includes('atac') || type?.toLowerCase().includes('attack') || type?.includes('アタッカー');
 const isRanger = (type: string) => type?.toLowerCase().includes('rang') || type?.includes('レンジャー');
 const isLegendary = (rarity: string) => rarity?.toLowerCase().includes('legen') || rarity?.includes('レジェン');
+const isCommon = (rarity: string) => rarity?.toLowerCase().includes('com') || rarity?.includes('コモン');
 
 const getUnitIcon = (type: string) => {
   if (isDefender(type)) return <Shield size={14} />;
@@ -136,13 +137,13 @@ const Heroes = () => {
             <Link 
               to={`/heroes/${op.id}`}
               key={idx} 
-              className={`group relative bg-[#050505] border ${isLegendary(op.rarity) ? 'border-yellow-600/30 hover:border-yellow-500/80 shadow-[0_0_10px_rgba(202,138,4,0.05)] hover:shadow-[0_0_15px_rgba(202,138,4,0.2)]' : 'border-gray-800 hover:border-neon-red'} overflow-hidden cursor-pointer transition-all duration-300 flex flex-col h-[280px]`}
+              className={`group relative bg-[#050505] border ${isLegendary(op.rarity) ? 'border-yellow-600/30 hover:border-yellow-500/80 shadow-[0_0_10px_rgba(202,138,4,0.05)] hover:shadow-[0_0_15px_rgba(202,138,4,0.2)] card-shine' : (isCommon(op.rarity) ? 'border-blue-900/50 hover:border-blue-500/80' : 'border-purple-900/50 hover:border-purple-500/80')} overflow-hidden cursor-pointer transition-all duration-300 flex flex-col h-[280px]`}
             >
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.05 }}
-                className={`flex flex-col h-full bg-gradient-to-t ${isLegendary(op.rarity) ? 'from-[#1a1400] to-[#111]' : 'from-[#0a0a0a] to-[#111]'} relative overflow-hidden`}
+                className={`flex flex-col h-full bg-gradient-to-t ${isLegendary(op.rarity) ? 'from-[#1a1400] to-[#111]' : (isCommon(op.rarity) ? 'from-[#000a1a] to-[#111]' : 'from-[#1a001a] to-[#111]')} relative overflow-hidden`}
               >
                 
                 {op.unitType && op.unitType !== 'Desconocido' && (

@@ -7,22 +7,22 @@ import { useOperativos } from '../hooks/useOperativos';
 import { calculateRequiredExp, calculateRequiredContracts, calculateSkillBooks, getMaxSkillsByRarity } from '../utils/calculators';
 import EquipamientoView from '../components/EquipamientoView';
 
+const isDefender = (type: string) => type?.toLowerCase().includes('defen') || type?.includes('ディフェン');
+const isAttacker = (type: string) => type?.toLowerCase().includes('atac') || type?.toLowerCase().includes('attack') || type?.includes('アタッカー');
+const isRanger = (type: string) => type?.toLowerCase().includes('rang') || type?.includes('レンジャー');
+
 const getUnitIcon = (type: string) => {
-  switch(type) {
-    case 'Defensor': return <Shield size={14} />;
-    case 'Atacante': return <Sword size={14} />;
-    case 'Ranger': return <Crosshair size={14} />;
-    default: return null;
-  }
+  if (isDefender(type)) return <Shield size={14} />;
+  if (isAttacker(type)) return <Sword size={14} />;
+  if (isRanger(type)) return <Crosshair size={14} />;
+  return null;
 };
 
 const getUnitColor = (type: string) => {
-  switch(type) {
-    case 'Defensor': return 'text-blue-400 bg-blue-900/40 border-blue-500/50';
-    case 'Atacante': return 'text-blood-red bg-blood-red/20 border-blood-red/50';
-    case 'Ranger': return 'text-green-400 bg-green-900/40 border-green-500/50';
-    default: return 'text-gray-400 bg-gray-800 border-gray-600';
-  }
+  if (isDefender(type)) return 'text-blue-400 bg-blue-900/40 border-blue-500/50';
+  if (isAttacker(type)) return 'text-blood-red bg-blood-red/20 border-blood-red/50';
+  if (isRanger(type)) return 'text-green-400 bg-green-900/40 border-green-500/50';
+  return 'text-gray-400 bg-gray-800 border-gray-600';
 };
 
 const OperativoDetalle = () => {

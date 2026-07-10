@@ -1,1 +1,945 @@
-[{"id":"leon","name":"Leon S. Kennedy","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-LeonSKennedy-visual.png","stats":{"health":176000,"attack":4590,"defense":1980},"fieldStats":[{"label":"Defender Attack Power","value":"260.23%"},{"label":"Defender Defense Power","value":"260.23%"}],"unitType":"Defender","rarity":"Legendary","skills":[]},{"id":"claire","name":"Claire Redfield","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-ClaireRedfield-visual.png","stats":{"health":88000,"attack":9265,"defense":605},"fieldStats":[{"label":"Attacker Attack Power","value":"200.18%"},{"label":"Attacker Defense Power","value":"200.18%"}],"unitType":"Attacker","rarity":"Legendary","skills":[{"type":"Campo","name":"Suppressing Fire","description":"...(Max 3 stun attempts per target every..."},{"type":"Exploración","name":"Electric Shot","description":"...attacks 1 enemy and stuns them for 3 seconds. After 3 seconds, the stunned target..."}]},{"id":"jill","name":"Jill Valentine","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-JillValentine-visual.png","stats":{"health":88000,"attack":10710,"defense":770},"fieldStats":[{"label":"Ranger Attack Power","value":"200.18%"},{"label":"Ranger Defense Power","value":"200.18%"}],"unitType":"Ranger","rarity":"Legendary","skills":[{"type":"Campo","name":"Technical Shot","description":"Damage dealt to enemies by allied units including this hero increases by 5% in combat."},{"type":"Exploración","name":"Railgun","description":"Fires a railgun that deals damage equal to 1250% of attack power to enemies in a straight line."},{"type":"Campo","name":"Grenade Shot","description":"Every 2 turns, allied rangers of the unit with this hero have a 4% chance to stun the target troop type for 1 turn. (Max 3 stun attempts per target every..."},{"type":"Campo","name":"Delta Force","description":"Every 10 seconds, increases the attack power of all allies by 5.5%. (For 8 seconds)"}]},{"id":"carlos","name":"Carlos Oliveira","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-CarlosOliveira-visual.png","stats":{"health":136400,"attack":3400,"defense":1980},"fieldStats":[{"label":"Defender Attack Power","value":"200.18%"},{"label":"Defender Defense Power","value":"200.18%"}],"unitType":"Defender","rarity":"Legendary","skills":[]},{"id":"ada","name":"Ada Wong","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-AdaWong-visual.png","stats":{"health":121000,"attack":6460,"defense":770},"fieldStats":[{"label":"Attacker Attack Power","value":"200.18%"},{"label":"Attacker Defense Power","value":"200.18%"}],"unitType":"Attacker","rarity":"Legendary","skills":[]},{"id":"mikhail","name":"Mikhail Victor","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-MikhailVictor-visual.png","stats":{"health":74800,"attack":5755,"defense":880},"fieldStats":[{"label":"Ranger Attack Power","value":"140.12%"},{"label":"Ranger Defense Power","value":"140.12%"}],"unitType":"Ranger","rarity":"Epic","skills":[]},{"id":"marvin","name":"Marvin Branagh","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-MarvinBranagh-visual.png","stats":{"health":88000,"attack":4335,"defense":935},"fieldStats":[{"label":"Defender Attack Power","value":"140.12%"},{"label":"Defender Defense Power","value":"140.12%"}],"unitType":"Defender","rarity":"Epic","skills":[{"type":"Exploración","name":"Leg Shot","description":"...dealing damage equal to 342% of attack power and reducing their speed of..."}]},{"id":"becca","name":"Becca Woolett","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-BeccaWoolett-visual.png","stats":{"health":74800,"attack":6205,"defense":385},"fieldStats":[{"label":"Attacker Attack Power","value":"140.12%"},{"label":"Attacker Defense Power","value":"140.12%"}],"unitType":"Attacker","rarity":"Epic","skills":[]},{"id":"tyrone","name":"Tyrone Henry","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-TyroneHenry-visual.png","stats":{"health":101200,"attack":1700,"defense":1980},"fieldStats":[{"label":"Defender Attack Power","value":"140.12%"},{"label":"Defender Defense Power","value":"140.12%"}],"unitType":"Defender","rarity":"Epic","skills":[{"type":"Exploración","name":"Shoulder Tackle","description":"Allied units including this hero have a 20% chance to increase damage dealt to enemies by 20% for 3 turns in combat."},{"type":"Rally","name":"1","description":"Complete"},{"type":"Campo","name":"First Aid Knowledge","description":"Increases hospital treatment speed by 50%."}]},{"id":"murphy","name":"Murphy Seeker","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-MurphySeeker-visual.png","stats":{"health":61600,"attack":4811,"defense":242},"fieldStats":[{"label":"Attacker Attack Power","value":"90.09%"},{"label":"Attacker Defense Power","value":"90.09%"}],"unitType":"Attacker","rarity":"Epic","skills":[{"type":"Exploración","name":"God of Marksmanship","description":"Aims at the legs of all enemies within a fan-shaped area, dealing damage equal to 476% of attack power and reducing their movement speed by 30%...."},{"type":"Campo","name":"Decisive Shot","description":"for 1 turn. (Max 3 stun attempts per target every..."}]},{"id":"alyssa","name":"Alyssa Ashcroft","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-AlyssaAshcroft-visual.png","stats":{"health":70400,"attack":5780,"defense":880},"fieldStats":[{"label":"Attacker Attack Power","value":"140.12%"},{"label":"Attacker Defense Power","value":"140.12%"}],"unitType":"Attacker","rarity":"Epic","skills":[{"type":"Campo","name":"Reporter's Instinct","description":"When deploying a unit that includes this hero, deployment speed against infected and mutants increases by 100%."},{"type":"Campo","name":"Crisis Detection","description":"Allied units including this hero reduce damage dealt by enemies in combat by 20%."},{"type":"Exploración","name":"V-JOLT Toss","description":"Throws a flask of special solution that deals 260% attack damage to targets in a circular area."}]},{"id":"katherine","name":"Katherine Warren","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-KatherineWarren-visual.png","stats":{"health":41800,"attack":8840,"defense":330},"fieldStats":[{"label":"Attacker Attack Power","value":"140.12%"},{"label":"Attacker Defense Power","value":"140.12%"}],"unitType":"Attacker","rarity":"Epic","skills":[{"type":"Campo","name":"Gather Wood","description":"When deploying a unit that includes this hero, wood gathering speed increases by 25%."},{"type":"Campo","name":"Survivor's Instinct","description":"Damage received from enemies by allied units including this hero is reduced by 20% in combat."},{"type":"Exploración","name":"Support","description":"Increases the defense power of all allies by 35%."},{"type":"Exploración","name":"Flamethrower","description":"Pulls out the flamethrower, dealing damage equal to 65.5% of attack power to enemies within a fan-shaped area. Affected enemies suffer..."},{"type":"Exploración","name":"High-Performance Ammo","description":"Increases damage dealt by common attacks by 41%."}]},{"id":"mark","name":"Mark Wilkins","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-MarkWilkins-visual.png","stats":{"health":118800,"attack":1700,"defense":1100},"fieldStats":[{"label":"Defender Attack Power","value":"140.12%"},{"label":"Defender Defense Power","value":"140.12%"}],"unitType":"Defender","rarity":"Epic","skills":[]},{"id":"barry","name":"Barry Burton","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-BarryBurton-visual.png","stats":{"health":66000,"attack":6800,"defense":440},"fieldStats":[{"label":"Ranger Attack Power","value":"140.12%"},{"label":"Ranger Defense Power","value":"140.12%"}],"unitType":"Ranger","rarity":"Epic","skills":[{"type":"Exploración","name":"Physical Training","description":"...Reduction of consumption of..."}]},{"id":"tyrell","name":"Tyrell Patrick","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-TyrellPatrick-visual.png","stats":{"health":70400,"attack":6120,"defense":660},"fieldStats":[{"label":"Ranger Attack Power","value":"140.12%"},{"label":"Ranger Defense Power","value":"140.12%"}],"unitType":"Ranger","rarity":"Epic","skills":[{"type":"Campo","name":"Hacker's Intelligence","description":"...Increased speed of..."},{"type":"Exploración","name":"Automatic Machine Gun","description":"...The machine gun has an attack power equal to 22.8% based on the attack power of..."}]},{"id":"robert","name":"Robert Kendo","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-RobertKendo-visual.png","stats":{"health":92400,"attack":3400,"defense":1320},"fieldStats":[{"label":"Defender Attack Power","value":"140.12%"},{"label":"Defender Defense Power","value":"140.12%"}],"unitType":"Defender","rarity":"Epic","skills":[{"type":"Exploración","name":"Take this!","description":"...The knocked back enemy is stunned for 2 seconds and then explodes, causing damage equal to the..."}]},{"id":"brad","name":"Brad Vickers","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-BradVickers-visual.png","stats":{"health":52799,"attack":5508,"defense":237},"fieldStats":[{"label":"Ranger Attack Power","value":"90.09%"},{"label":"Ranger Defense Power","value":"90.09%"}],"unitType":"Ranger","rarity":"Epic","skills":[{"type":"Exploración","name":"Last Resort","description":"Throws a sign that pushes enemies within a circular area, deals damage equal to 327% of attack power, and stuns them for 0.2 seconds. Enemies hit by the sign..."},{"type":"Campo","name":"Fuel Management","description":"When deploying a unit that includes this hero, oil gathering speed increases by 25%."},{"type":"Exploración","name":"Coward's Instinct","description":"Every 15 seconds, increases the defense power of all allies by 70%. (For 8 seconds)"},{"type":"Exploración","name":"Confidence","description":"Normal attack damage against enemies with reduced movement speed increases by 38%."}]},{"id":"chris","name":"Chris Redfield","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-ChrisRedfield-visual.png","stats":{"health":154500,"attack":5040,"defense":1680},"fieldStats":[{"label":"Defender Attack Power","value":"240.21%"},{"label":"Defender Defense Power","value":"240.21%"}],"unitType":"Defender","rarity":"Legendary","skills":[{"type":"Campo","name":"Red Dot Sight","description":"Increased Power of..."}]},{"id":"rebecca","name":"Rebecca Chambers","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-RebeccaChambers-visual.png","stats":{"health":84600,"attack":11690,"defense":855},"fieldStats":[{"label":"Attacker Attack Power","value":"240.21%"},{"label":"Attacker Defense Power","value":"240.21%"}],"unitType":"Attacker","rarity":"Legendary","skills":[{"type":"Campo","name":"Military Medicine Knowledge","description":"In combat, the attack of allied units including this hero increases by 6% and their defense increases by 4%."},{"type":"Exploración","name":"Activator","description":"In combat, when attacking, allied units including this hero have a 25% chance to increase damage dealt to the enemy by 140%."},{"type":"Exploración","name":"Sedative","description":"Allied units including this hero have a 40% chance to reduce damage received from enemies in combat by 10%."}]},{"id":"billy","name":"Billy Coen","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-BillyCoen-visual.png","stats":{"health":93000,"attack":11530,"defense":570},"fieldStats":[{"label":"Ranger Attack Power","value":"240.21%"},{"label":"Ranger Defense Power","value":"240.21%"}],"unitType":"Ranger","rarity":"Legendary","skills":[{"type":"Exploración","name":"Gunslinger","description":"and, after 1 second, they receive damage equal to 543% of the..."}]},{"id":"ashley","name":"Ashley Graham","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-AshleyGraham-visual.png","stats":{"health":92329,"attack":11261,"defense":2028},"fieldStats":[{"label":"Ranger Attack Power","value":"290.26%"},{"label":"Ranger Defense Power","value":"290.26%"}],"unitType":"Ranger","rarity":"Legendary","skills":[{"type":"Campo","name":"Ashley's Armor","description":"In combat, allied units including this hero have a 20% chance to reduce damage dealt by enemies for 2 turns by 10%."},{"type":"Exploración","name":"Lantern Illumination","description":"Identifies the enemy with the light of the lantern and exposes their weak point. Target's defense is reduced by 26.5% for 2 second(s)."},{"type":"Exploración","name":"Lit Lantern","description":"Ashley does not attack directly, but provides support to her allies with a lantern. Its intense light stuns enemies within range for 2 second(s) and reduces their movement speed by 30%,"},{"type":"Campo","name":"Reborn Courage","description":"Allied units including this hero have a 20% chance to increase damage dealt to enemies by 8% for 3 turns in combat."},{"type":"Exploración","name":"Exclusive Escort Appointment","description":"Ashley, in proportion to her own attack, increases the attack of the strongest ally by 75% and grants them a 43.7% shield."},{"type":"Exploración","name":"Bond of Compassion","description":"The health of allied units including this hero increases by 5% in combat."}]},{"id":"luis","name":"Luis Serra Navarro","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-LuisSerraNavarro-visual.png","stats":{"health":101335,"attack":10134,"defense":2253},"fieldStats":[{"label":"Attacker Attack Power","value":"290.26%"},{"label":"Attacker Defense Power","value":"290.26%"}],"unitType":"Attacker","rarity":"Legendary","skills":[{"type":"Exploración","name":"Health / Attack Power","description":"Health: 80,548 >> 101,335 | Attack Power: 8,056 >> 10,134 | Defense: 1,791 >> 2,253"},{"type":"Campo","name":"Follow me, Sancho Panza!","description":"In combat, allied units including this hero have a 50% chance to increase the damage enemies receive by 50%."},{"type":"Exploración","name":"Dynamite Placement","description":"Throws dynamite at the designated location and deals damage equal to 1710% of attack to nearby enemies."},{"type":"Exploración","name":"Experimental Ammo","description":"Allied units including this hero have a 50% chance to increase damage dealt to enemies in combat by 50%."}]},{"id":"jack","name":"Jack Krauser","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-JackKrauser-visual.png","stats":{"health":112593,"attack":6757,"defense":4505},"fieldStats":[{"label":"Defender Attack Power","value":"290.26%"},{"label":"Defender Defense Power","value":"290.26%"}],"unitType":"Defender","rarity":"Legendary","skills":[{"type":"Exploración","name":"Dagger Technique","description":"When an enemy approaches, swings a knife and deals 250% attack damage 2 times to nearby enemies."},{"type":"Campo","name":"Charisma","description":"The health of allied units including this hero increases by 5% in combat."},{"type":"Campo","name":"Instructor","description":"Damage received from enemies by allied units including this hero is reduced by 4% in combat."},{"type":"Exploración","name":"Explosive Arrow","description":"On impact, the explosive arrow deals 300% attack damage to nearby enemies and 688% additional area damage."},{"type":"Campo","name":"Rising Slash","description":"Allied units including this hero reduce enemy attack by 4% in combat."},{"type":"Exploración","name":"Mutant Release","description":"Unleashes the power of Las Plagas and mutates his arm to deal 3 strikes with damage equal to 45% of attack to the enemy. Additionally, recovers HP equal to 15% of the damage dealt."}]},{"id":"jake","name":"Jake Muller","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-JakeMuller-visual.png","stats":{"health":150796,"attack":9606,"defense":3101},"fieldStats":[{"label":"Defender Attack Power","value":"370.33%"},{"label":"Defender Defense Power","value":"370.33%"}],"unitType":"Defender","rarity":"Legendary","skills":[{"type":"Campo","name":"This comes with an extra cost.","description":"Allied defenders of the unit that includes this hero have a 10% chance to deal additional damage to the enemy and increase the damage they receive in combat by 3%."},{"type":"Campo","name":"I don't give discounts.","description":"When Jake Muller receives damage, he gains immunity to status ailments for 5 s and reduces damage received by 37%."},{"type":"Campo","name":"Melee Defensive Stance","description":"During combat, every time allied defenders of the unit including this hero attack 4 times, they forgo attacking on the next turn. In exchange, the damage received by defenders from..."},{"type":"Campo","name":"Charged Attack","description":"Jake Muller builds up momentum and delivers a hand strike, dealing damage equal to 408% of attack to enemies in a frontal rectangular area."},{"type":"Campo","name":"Human Weapon","description":"Damage dealt to enemies by allied units including this hero increases by 4% in combat."}]},{"id":"sherry","name":"Sherry Birkin","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-SherryBirkin-visual.png","stats":{"health":114312,"attack":12160,"defense":3039},"fieldStats":[{"label":"Attacker Attack Power","value":"370.33%"},{"label":"Attacker Defense Power","value":"370.33%"}],"unitType":"Attacker","rarity":"Legendary","skills":[{"type":"Exploración","name":"Burst Mode","description":"Allied attackers of the unit including this hero have a 20% chance to attack the enemy one more time and deal damage in combat."},{"type":"Campo","name":"Support Fire","description":"Damage dealt to enemies by allied units including this hero increases by 6% in combat."},{"type":"Campo","name":"Flash Grenade","description":"Throws a flash grenade and stuns targets within a circular area for 1 second(s)."},{"type":"Campo","name":"Will to Survive","description":"In combat, allied units including this hero have a 4% chance to evade enemy attacks."},{"type":"Exploración","name":"Supergirl","description":"Sherry Birkin recovers health equal to 21.4% of her maximum health every 15 s."},{"type":"Exploración","name":"Bear Commander","description":"Pulls out the BC assault rifle and fires 30 bullets in a straight line. Each enemy hit by the bullets receives damage equal to 20% of attack."}]},{"id":"piers","name":"Piers Nivans","imageUrl":"https://www.residentevil-survivalunit.com/assets/images/common/character-PiersNivans-visual.png","stats":{"health":99719,"attack":14714,"defense":2979},"fieldStats":[{"label":"Ranger Attack Power","value":"370.33%"},{"label":"Ranger Defense Power","value":"370.33%"}],"unitType":"Ranger","rarity":"Legendary","skills":[{"type":"Exploración","name":"Anti-Material Rifle","description":"Nivans pulls out an anti-material rifle and fires. The projectile pierces through all targets in a narrow line, dealing damage equal to 555% of attack and stunning them for 2 s."},{"type":"Campo","name":"Long-Distance Shot","description":"Allied units including this hero reduce damage dealt by enemies in combat by 12%."},{"type":"Exploración","name":"Innate Focus","description":"When performing a normal attack, attack increases by 2.4% for 3 s. This effect stacks up to 15 times."},{"type":"Campo","name":"Zeroing In","description":"Each time an allied unit including this hero attacks 3 times, rangers' attack increases by 6% in the next turn. This effect stacks and lasts until the end of combat."},{"type":"Exploración","name":"Bomb Toss","description":"Throws a bomb towards the location of the furthest target, causing an explosion that deals damage equal to 190% of attack."}]}]
+[
+  {
+    "id": "leon",
+    "name": "Leon S. Kennedy",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-LeonSKennedy-visual.png",
+    "stats": {
+      "health": 176000,
+      "attack": 4590,
+      "defense": 1980
+    },
+    "fieldStats": [
+      {
+        "label": "Defender Attack Power",
+        "value": "260.23%"
+      },
+      {
+        "label": "Defender Defense Power",
+        "value": "260.23%"
+      }
+    ],
+    "unitType": "Defender",
+    "rarity": "Legendary",
+    "skills": []
+  },
+  {
+    "id": "claire",
+    "name": "Claire Redfield",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-ClaireRedfield-visual.png",
+    "stats": {
+      "health": 88000,
+      "attack": 9265,
+      "defense": 605
+    },
+    "fieldStats": [
+      {
+        "label": "Attacker Attack Power",
+        "value": "200.18%"
+      },
+      {
+        "label": "Attacker Defense Power",
+        "value": "200.18%"
+      }
+    ],
+    "unitType": "Attacker",
+    "rarity": "Legendary",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Suppressing Fire",
+        "description": "...(Max 3 stun attempts per target every..."
+      },
+      {
+        "type": "Exploración",
+        "name": "Electric Shot",
+        "description": "...attacks 1 enemy and stuns them for 3 seconds. After 3 seconds, the stunned target..."
+      }
+    ]
+  },
+  {
+    "id": "jill",
+    "name": "Jill Valentine",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JillValentine-visual.png",
+    "stats": {
+      "health": 88000,
+      "attack": 10710,
+      "defense": 770
+    },
+    "fieldStats": [
+      {
+        "label": "Ranger Attack Power",
+        "value": "200.18%"
+      },
+      {
+        "label": "Ranger Defense Power",
+        "value": "200.18%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Legendary",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Technical Shot",
+        "description": "Damage dealt to enemies by allied units including this hero increases by 5% in combat."
+      },
+      {
+        "type": "Exploración",
+        "name": "Railgun",
+        "description": "Fires a railgun that deals damage equal to 1250% of attack power to enemies in a straight line."
+      },
+      {
+        "type": "Campo",
+        "name": "Grenade Shot",
+        "description": "Every 2 turns, allied rangers of the unit with this hero have a 4% chance to stun the target troop type for 1 turn. (Max 3 stun attempts per target every..."
+      },
+      {
+        "type": "Campo",
+        "name": "Delta Force",
+        "description": "Every 10 seconds, increases the attack power of all allies by 5.5%. (For 8 seconds)"
+      }
+    ]
+  },
+  {
+    "id": "carlos",
+    "name": "Carlos Oliveira",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-CarlosOliveira-visual.png",
+    "stats": {
+      "health": 136400,
+      "attack": 3400,
+      "defense": 1980
+    },
+    "fieldStats": [
+      {
+        "label": "Defender Attack Power",
+        "value": "200.18%"
+      },
+      {
+        "label": "Defender Defense Power",
+        "value": "200.18%"
+      }
+    ],
+    "unitType": "Defender",
+    "rarity": "Legendary",
+    "skills": []
+  },
+  {
+    "id": "ada",
+    "name": "Ada Wong",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AdaWong-visual.png",
+    "stats": {
+      "health": 121000,
+      "attack": 6460,
+      "defense": 770
+    },
+    "fieldStats": [
+      {
+        "label": "Attacker Attack Power",
+        "value": "200.18%"
+      },
+      {
+        "label": "Attacker Defense Power",
+        "value": "200.18%"
+      }
+    ],
+    "unitType": "Attacker",
+    "rarity": "Legendary",
+    "skills": []
+  },
+  {
+    "id": "mikhail",
+    "name": "Mikhail Victor",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MikhailVictor-visual.png",
+    "stats": {
+      "health": 74800,
+      "attack": 5755,
+      "defense": 880
+    },
+    "fieldStats": [
+      {
+        "label": "Ranger Attack Power",
+        "value": "140.12%"
+      },
+      {
+        "label": "Ranger Defense Power",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Epic",
+    "skills": []
+  },
+  {
+    "id": "marvin",
+    "name": "Marvin Branagh",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MarvinBranagh-visual.png",
+    "stats": {
+      "health": 88000,
+      "attack": 4335,
+      "defense": 935
+    },
+    "fieldStats": [
+      {
+        "label": "Defender Attack Power",
+        "value": "140.12%"
+      },
+      {
+        "label": "Defender Defense Power",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Defender",
+    "rarity": "Epic",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Leg Shot",
+        "description": "...dealing damage equal to 342% of attack power and reducing their speed of..."
+      }
+    ]
+  },
+  {
+    "id": "becca",
+    "name": "Becca Woolett",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BeccaWoolett-visual.png",
+    "stats": {
+      "health": 74800,
+      "attack": 6205,
+      "defense": 385
+    },
+    "fieldStats": [
+      {
+        "label": "Attacker Attack Power",
+        "value": "140.12%"
+      },
+      {
+        "label": "Attacker Defense Power",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Attacker",
+    "rarity": "Epic",
+    "skills": []
+  },
+  {
+    "id": "tyrone",
+    "name": "Tyrone Henry",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-TyroneHenry-visual.png",
+    "stats": {
+      "health": 101200,
+      "attack": 1700,
+      "defense": 1980
+    },
+    "fieldStats": [
+      {
+        "label": "Defender Attack Power",
+        "value": "140.12%"
+      },
+      {
+        "label": "Defender Defense Power",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Defender",
+    "rarity": "Epic",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Shoulder Tackle",
+        "description": "Allied units including this hero have a 20% chance to increase damage dealt to enemies by 20% for 3 turns in combat."
+      },
+      {
+        "type": "Rally",
+        "name": "1",
+        "description": "Complete"
+      },
+      {
+        "type": "Campo",
+        "name": "First Aid Knowledge",
+        "description": "Increases hospital treatment speed by 50%."
+      }
+    ]
+  },
+  {
+    "id": "murphy",
+    "name": "Murphy Seeker",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MurphySeeker-visual.png",
+    "stats": {
+      "health": 61600,
+      "attack": 4811,
+      "defense": 242
+    },
+    "fieldStats": [
+      {
+        "label": "Attacker Attack Power",
+        "value": "90.09%"
+      },
+      {
+        "label": "Attacker Defense Power",
+        "value": "90.09%"
+      }
+    ],
+    "unitType": "Attacker",
+    "rarity": "Common",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "God of Marksmanship",
+        "description": "Aims at the legs of all enemies within a fan-shaped area, dealing damage equal to 476% of attack power and reducing their movement speed by 30%...."
+      },
+      {
+        "type": "Campo",
+        "name": "Decisive Shot",
+        "description": "for 1 turn. (Max 3 stun attempts per target every..."
+      }
+    ]
+  },
+  {
+    "id": "alyssa",
+    "name": "Alyssa Ashcroft",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AlyssaAshcroft-visual.png",
+    "stats": {
+      "health": 70400,
+      "attack": 5780,
+      "defense": 880
+    },
+    "fieldStats": [
+      {
+        "label": "Attacker Attack Power",
+        "value": "140.12%"
+      },
+      {
+        "label": "Attacker Defense Power",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Attacker",
+    "rarity": "Epic",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Reporter's Instinct",
+        "description": "When deploying a unit that includes this hero, deployment speed against infected and mutants increases by 100%."
+      },
+      {
+        "type": "Campo",
+        "name": "Crisis Detection",
+        "description": "Allied units including this hero reduce damage dealt by enemies in combat by 20%."
+      },
+      {
+        "type": "Exploración",
+        "name": "V-JOLT Toss",
+        "description": "Throws a flask of special solution that deals 260% attack damage to targets in a circular area."
+      }
+    ]
+  },
+  {
+    "id": "katherine",
+    "name": "Katherine Warren",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-KatherineWarren-visual.png",
+    "stats": {
+      "health": 41800,
+      "attack": 8840,
+      "defense": 330
+    },
+    "fieldStats": [
+      {
+        "label": "Attacker Attack Power",
+        "value": "140.12%"
+      },
+      {
+        "label": "Attacker Defense Power",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Attacker",
+    "rarity": "Epic",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Gather Wood",
+        "description": "When deploying a unit that includes this hero, wood gathering speed increases by 25%."
+      },
+      {
+        "type": "Campo",
+        "name": "Survivor's Instinct",
+        "description": "Damage received from enemies by allied units including this hero is reduced by 20% in combat."
+      },
+      {
+        "type": "Exploración",
+        "name": "Support",
+        "description": "Increases the defense power of all allies by 35%."
+      },
+      {
+        "type": "Exploración",
+        "name": "Flamethrower",
+        "description": "Pulls out the flamethrower, dealing damage equal to 65.5% of attack power to enemies within a fan-shaped area. Affected enemies suffer..."
+      },
+      {
+        "type": "Exploración",
+        "name": "High-Performance Ammo",
+        "description": "Increases damage dealt by common attacks by 41%."
+      }
+    ]
+  },
+  {
+    "id": "mark",
+    "name": "Mark Wilkins",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MarkWilkins-visual.png",
+    "stats": {
+      "health": 118800,
+      "attack": 1700,
+      "defense": 1100
+    },
+    "fieldStats": [
+      {
+        "label": "Defender Attack Power",
+        "value": "140.12%"
+      },
+      {
+        "label": "Defender Defense Power",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Defender",
+    "rarity": "Epic",
+    "skills": []
+  },
+  {
+    "id": "barry",
+    "name": "Barry Burton",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BarryBurton-visual.png",
+    "stats": {
+      "health": 66000,
+      "attack": 6800,
+      "defense": 440
+    },
+    "fieldStats": [
+      {
+        "label": "Ranger Attack Power",
+        "value": "140.12%"
+      },
+      {
+        "label": "Ranger Defense Power",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Epic",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Physical Training",
+        "description": "...Reduction of consumption of..."
+      }
+    ]
+  },
+  {
+    "id": "tyrell",
+    "name": "Tyrell Patrick",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-TyrellPatrick-visual.png",
+    "stats": {
+      "health": 70400,
+      "attack": 6120,
+      "defense": 660
+    },
+    "fieldStats": [
+      {
+        "label": "Ranger Attack Power",
+        "value": "140.12%"
+      },
+      {
+        "label": "Ranger Defense Power",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Epic",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Hacker's Intelligence",
+        "description": "...Increased speed of..."
+      },
+      {
+        "type": "Exploración",
+        "name": "Automatic Machine Gun",
+        "description": "...The machine gun has an attack power equal to 22.8% based on the attack power of..."
+      }
+    ]
+  },
+  {
+    "id": "robert",
+    "name": "Robert Kendo",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-RobertKendo-visual.png",
+    "stats": {
+      "health": 92400,
+      "attack": 3400,
+      "defense": 1320
+    },
+    "fieldStats": [
+      {
+        "label": "Defender Attack Power",
+        "value": "140.12%"
+      },
+      {
+        "label": "Defender Defense Power",
+        "value": "140.12%"
+      }
+    ],
+    "unitType": "Defender",
+    "rarity": "Epic",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Take this!",
+        "description": "...The knocked back enemy is stunned for 2 seconds and then explodes, causing damage equal to the..."
+      }
+    ]
+  },
+  {
+    "id": "brad",
+    "name": "Brad Vickers",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BradVickers-visual.png",
+    "stats": {
+      "health": 52799,
+      "attack": 5508,
+      "defense": 237
+    },
+    "fieldStats": [
+      {
+        "label": "Ranger Attack Power",
+        "value": "90.09%"
+      },
+      {
+        "label": "Ranger Defense Power",
+        "value": "90.09%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Common",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Last Resort",
+        "description": "Throws a sign that pushes enemies within a circular area, deals damage equal to 327% of attack power, and stuns them for 0.2 seconds. Enemies hit by the sign..."
+      },
+      {
+        "type": "Campo",
+        "name": "Fuel Management",
+        "description": "When deploying a unit that includes this hero, oil gathering speed increases by 25%."
+      },
+      {
+        "type": "Exploración",
+        "name": "Coward's Instinct",
+        "description": "Every 15 seconds, increases the defense power of all allies by 70%. (For 8 seconds)"
+      },
+      {
+        "type": "Exploración",
+        "name": "Confidence",
+        "description": "Normal attack damage against enemies with reduced movement speed increases by 38%."
+      }
+    ]
+  },
+  {
+    "id": "chris",
+    "name": "Chris Redfield",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-ChrisRedfield-visual.png",
+    "stats": {
+      "health": 154500,
+      "attack": 5040,
+      "defense": 1680
+    },
+    "fieldStats": [
+      {
+        "label": "Defender Attack Power",
+        "value": "240.21%"
+      },
+      {
+        "label": "Defender Defense Power",
+        "value": "240.21%"
+      }
+    ],
+    "unitType": "Defender",
+    "rarity": "Legendary",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Red Dot Sight",
+        "description": "Increased Power of..."
+      }
+    ]
+  },
+  {
+    "id": "rebecca",
+    "name": "Rebecca Chambers",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-RebeccaChambers-visual.png",
+    "stats": {
+      "health": 84600,
+      "attack": 11690,
+      "defense": 855
+    },
+    "fieldStats": [
+      {
+        "label": "Attacker Attack Power",
+        "value": "240.21%"
+      },
+      {
+        "label": "Attacker Defense Power",
+        "value": "240.21%"
+      }
+    ],
+    "unitType": "Attacker",
+    "rarity": "Legendary",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Military Medicine Knowledge",
+        "description": "In combat, the attack of allied units including this hero increases by 6% and their defense increases by 4%."
+      },
+      {
+        "type": "Exploración",
+        "name": "Activator",
+        "description": "In combat, when attacking, allied units including this hero have a 25% chance to increase damage dealt to the enemy by 140%."
+      },
+      {
+        "type": "Exploración",
+        "name": "Sedative",
+        "description": "Allied units including this hero have a 40% chance to reduce damage received from enemies in combat by 10%."
+      }
+    ]
+  },
+  {
+    "id": "billy",
+    "name": "Billy Coen",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BillyCoen-visual.png",
+    "stats": {
+      "health": 93000,
+      "attack": 11530,
+      "defense": 570
+    },
+    "fieldStats": [
+      {
+        "label": "Ranger Attack Power",
+        "value": "240.21%"
+      },
+      {
+        "label": "Ranger Defense Power",
+        "value": "240.21%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Legendary",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Gunslinger",
+        "description": "and, after 1 second, they receive damage equal to 543% of the..."
+      }
+    ]
+  },
+  {
+    "id": "ashley",
+    "name": "Ashley Graham",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AshleyGraham-visual.png",
+    "stats": {
+      "health": 92329,
+      "attack": 11261,
+      "defense": 2028
+    },
+    "fieldStats": [
+      {
+        "label": "Ranger Attack Power",
+        "value": "290.26%"
+      },
+      {
+        "label": "Ranger Defense Power",
+        "value": "290.26%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Legendary",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "Ashley's Armor",
+        "description": "In combat, allied units including this hero have a 20% chance to reduce damage dealt by enemies for 2 turns by 10%."
+      },
+      {
+        "type": "Exploración",
+        "name": "Lantern Illumination",
+        "description": "Identifies the enemy with the light of the lantern and exposes their weak point. Target's defense is reduced by 26.5% for 2 second(s)."
+      },
+      {
+        "type": "Exploración",
+        "name": "Lit Lantern",
+        "description": "Ashley does not attack directly, but provides support to her allies with a lantern. Its intense light stuns enemies within range for 2 second(s) and reduces their movement speed by 30%,"
+      },
+      {
+        "type": "Campo",
+        "name": "Reborn Courage",
+        "description": "Allied units including this hero have a 20% chance to increase damage dealt to enemies by 8% for 3 turns in combat."
+      },
+      {
+        "type": "Exploración",
+        "name": "Exclusive Escort Appointment",
+        "description": "Ashley, in proportion to her own attack, increases the attack of the strongest ally by 75% and grants them a 43.7% shield."
+      },
+      {
+        "type": "Exploración",
+        "name": "Bond of Compassion",
+        "description": "The health of allied units including this hero increases by 5% in combat."
+      }
+    ]
+  },
+  {
+    "id": "luis",
+    "name": "Luis Serra Navarro",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-LuisSerraNavarro-visual.png",
+    "stats": {
+      "health": 101335,
+      "attack": 10134,
+      "defense": 2253
+    },
+    "fieldStats": [
+      {
+        "label": "Attacker Attack Power",
+        "value": "290.26%"
+      },
+      {
+        "label": "Attacker Defense Power",
+        "value": "290.26%"
+      }
+    ],
+    "unitType": "Attacker",
+    "rarity": "Legendary",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Health / Attack Power",
+        "description": "Health: 80,548 >> 101,335 | Attack Power: 8,056 >> 10,134 | Defense: 1,791 >> 2,253"
+      },
+      {
+        "type": "Campo",
+        "name": "Follow me, Sancho Panza!",
+        "description": "In combat, allied units including this hero have a 50% chance to increase the damage enemies receive by 50%."
+      },
+      {
+        "type": "Exploración",
+        "name": "Dynamite Placement",
+        "description": "Throws dynamite at the designated location and deals damage equal to 1710% of attack to nearby enemies."
+      },
+      {
+        "type": "Exploración",
+        "name": "Experimental Ammo",
+        "description": "Allied units including this hero have a 50% chance to increase damage dealt to enemies in combat by 50%."
+      }
+    ]
+  },
+  {
+    "id": "jack",
+    "name": "Jack Krauser",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JackKrauser-visual.png",
+    "stats": {
+      "health": 112593,
+      "attack": 6757,
+      "defense": 4505
+    },
+    "fieldStats": [
+      {
+        "label": "Defender Attack Power",
+        "value": "290.26%"
+      },
+      {
+        "label": "Defender Defense Power",
+        "value": "290.26%"
+      }
+    ],
+    "unitType": "Defender",
+    "rarity": "Legendary",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Dagger Technique",
+        "description": "When an enemy approaches, swings a knife and deals 250% attack damage 2 times to nearby enemies."
+      },
+      {
+        "type": "Campo",
+        "name": "Charisma",
+        "description": "The health of allied units including this hero increases by 5% in combat."
+      },
+      {
+        "type": "Campo",
+        "name": "Instructor",
+        "description": "Damage received from enemies by allied units including this hero is reduced by 4% in combat."
+      },
+      {
+        "type": "Exploración",
+        "name": "Explosive Arrow",
+        "description": "On impact, the explosive arrow deals 300% attack damage to nearby enemies and 688% additional area damage."
+      },
+      {
+        "type": "Campo",
+        "name": "Rising Slash",
+        "description": "Allied units including this hero reduce enemy attack by 4% in combat."
+      },
+      {
+        "type": "Exploración",
+        "name": "Mutant Release",
+        "description": "Unleashes the power of Las Plagas and mutates his arm to deal 3 strikes with damage equal to 45% of attack to the enemy. Additionally, recovers HP equal to 15% of the damage dealt."
+      }
+    ]
+  },
+  {
+    "id": "jake",
+    "name": "Jake Muller",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JakeMuller-visual.png",
+    "stats": {
+      "health": 150796,
+      "attack": 9606,
+      "defense": 3101
+    },
+    "fieldStats": [
+      {
+        "label": "Defender Attack Power",
+        "value": "370.33%"
+      },
+      {
+        "label": "Defender Defense Power",
+        "value": "370.33%"
+      }
+    ],
+    "unitType": "Defender",
+    "rarity": "Legendary",
+    "skills": [
+      {
+        "type": "Campo",
+        "name": "This comes with an extra cost.",
+        "description": "Allied defenders of the unit that includes this hero have a 10% chance to deal additional damage to the enemy and increase the damage they receive in combat by 3%."
+      },
+      {
+        "type": "Campo",
+        "name": "I don't give discounts.",
+        "description": "When Jake Muller receives damage, he gains immunity to status ailments for 5 s and reduces damage received by 37%."
+      },
+      {
+        "type": "Campo",
+        "name": "Melee Defensive Stance",
+        "description": "During combat, every time allied defenders of the unit including this hero attack 4 times, they forgo attacking on the next turn. In exchange, the damage received by defenders from..."
+      },
+      {
+        "type": "Campo",
+        "name": "Charged Attack",
+        "description": "Jake Muller builds up momentum and delivers a hand strike, dealing damage equal to 408% of attack to enemies in a frontal rectangular area."
+      },
+      {
+        "type": "Campo",
+        "name": "Human Weapon",
+        "description": "Damage dealt to enemies by allied units including this hero increases by 4% in combat."
+      }
+    ]
+  },
+  {
+    "id": "sherry",
+    "name": "Sherry Birkin",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-SherryBirkin-visual.png",
+    "stats": {
+      "health": 114312,
+      "attack": 12160,
+      "defense": 3039
+    },
+    "fieldStats": [
+      {
+        "label": "Attacker Attack Power",
+        "value": "370.33%"
+      },
+      {
+        "label": "Attacker Defense Power",
+        "value": "370.33%"
+      }
+    ],
+    "unitType": "Attacker",
+    "rarity": "Legendary",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Burst Mode",
+        "description": "Allied attackers of the unit including this hero have a 20% chance to attack the enemy one more time and deal damage in combat."
+      },
+      {
+        "type": "Campo",
+        "name": "Support Fire",
+        "description": "Damage dealt to enemies by allied units including this hero increases by 6% in combat."
+      },
+      {
+        "type": "Campo",
+        "name": "Flash Grenade",
+        "description": "Throws a flash grenade and stuns targets within a circular area for 1 second(s)."
+      },
+      {
+        "type": "Campo",
+        "name": "Will to Survive",
+        "description": "In combat, allied units including this hero have a 4% chance to evade enemy attacks."
+      },
+      {
+        "type": "Exploración",
+        "name": "Supergirl",
+        "description": "Sherry Birkin recovers health equal to 21.4% of her maximum health every 15 s."
+      },
+      {
+        "type": "Exploración",
+        "name": "Bear Commander",
+        "description": "Pulls out the BC assault rifle and fires 30 bullets in a straight line. Each enemy hit by the bullets receives damage equal to 20% of attack."
+      }
+    ]
+  },
+  {
+    "id": "piers",
+    "name": "Piers Nivans",
+    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-PiersNivans-visual.png",
+    "stats": {
+      "health": 99719,
+      "attack": 14714,
+      "defense": 2979
+    },
+    "fieldStats": [
+      {
+        "label": "Ranger Attack Power",
+        "value": "370.33%"
+      },
+      {
+        "label": "Ranger Defense Power",
+        "value": "370.33%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Legendary",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Anti-Material Rifle",
+        "description": "Nivans pulls out an anti-material rifle and fires. The projectile pierces through all targets in a narrow line, dealing damage equal to 555% of attack and stunning them for 2 s."
+      },
+      {
+        "type": "Campo",
+        "name": "Long-Distance Shot",
+        "description": "Allied units including this hero reduce damage dealt by enemies in combat by 12%."
+      },
+      {
+        "type": "Exploración",
+        "name": "Innate Focus",
+        "description": "When performing a normal attack, attack increases by 2.4% for 3 s. This effect stacks up to 15 times."
+      },
+      {
+        "type": "Campo",
+        "name": "Zeroing In",
+        "description": "Each time an allied unit including this hero attacks 3 times, rangers' attack increases by 6% in the next turn. This effect stacks and lasts until the end of combat."
+      },
+      {
+        "type": "Exploración",
+        "name": "Bomb Toss",
+        "description": "Throws a bomb towards the location of the furthest target, causing an explosion that deals damage equal to 190% of attack."
+      }
+    ]
+  }
+]
