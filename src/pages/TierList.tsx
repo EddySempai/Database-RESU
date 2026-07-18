@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Swords, Star, Filter, Shield, Crosshair } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import { useOperativos } from '../hooks/useOperativos';
 import { Link } from 'react-router-dom';
 
@@ -132,7 +133,7 @@ export default function TierList() {
             <div className="flex-1 flex flex-col items-center gap-2 md:gap-4 w-full">
               {/* Vanguardia (Frente) */}
               <div className="flex justify-center gap-8 md:gap-12 mb-2 w-full">
-                {mockTeam.slice(0, 2).map((op: any, i) => {
+                {mockTeam.slice(0, 2).map((op: any) => {
                   const localImage = op.iconUrl || `/operativos/${op.imageUrl.split('/').pop()}`;
                   return (
                     <div key={op.id} className="flex flex-col items-center group cursor-pointer w-20 md:w-28">
@@ -156,7 +157,7 @@ export default function TierList() {
 
               {/* Retaguardia (Atrás) */}
               <div className="flex justify-center gap-4 md:gap-8 w-full">
-                {mockTeam.slice(2, 5).map((op: any, i) => {
+                {mockTeam.slice(2, 5).map((op: any) => {
                   const localImage = op.iconUrl || `/operativos/${op.imageUrl.split('/').pop()}`;
                   return (
                     <div key={op.id} className="flex flex-col items-center group cursor-pointer w-20 md:w-28">
@@ -214,7 +215,14 @@ export default function TierList() {
   };
 
   return (
-    <div className="pt-32 pb-20 px-6 max-w-6xl mx-auto min-h-screen relative z-10">
+    <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10">
+      <Helmet>
+        <title>Tier List de Héroes | RE: Survival Unit Hub</title>
+        <meta name="description" content="Descubre cuáles son los mejores operativos (SS, S, A, B) en el meta actual. Análisis táctico de vanguardia y retaguardia." />
+        <meta property="og:title" content="Tier List de Héroes | RE: Survival Unit Hub" />
+        <meta property="og:description" content="Descubre cuáles son los mejores operativos (SS, S, A, B) en el meta actual." />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=1200&auto=format&fit=crop" />
+      </Helmet>
       
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 border-b border-gray-800 pb-6">

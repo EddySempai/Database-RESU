@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Helmet } from 'react-helmet-async';
 import { BookOpen, Star, Sword, Shield, Heart, ChevronLeft, Crosshair, Users } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useOperativos } from '../hooks/useOperativos';
@@ -66,6 +67,15 @@ const OperativoDetalle = () => {
 
   return (
     <div className={`pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col ${activeTab === 'equipment' ? '' : 'md:flex-row'} gap-8`}>
+      <Helmet>
+        <title>{op.name} | RE: Survival Unit Hub</title>
+        <meta name="description" content={`${op.name} - Operativo de rareza ${rarity}. Revisa sus habilidades, estadísticas máximas y equipo recomendado.`} />
+        <meta property="og:title" content={`${op.name} | RE: Survival Unit Hub`} />
+        <meta property="og:description" content={`${op.name} - Operativo de rareza ${rarity}. Revisa sus habilidades, estadísticas máximas y equipo recomendado.`} />
+        <meta property="og:image" content={op.iconUrl || `https://www.residentevil-survivalunit.com/operativos/${op.imageUrl.split('/').pop()}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+
       
       {/* Left Column: Visual & Stats */}
       {activeTab !== 'equipment' && (

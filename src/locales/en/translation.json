@@ -182,5 +182,16 @@
     "area": "AREA",
     "restricted_desc": "THIS SECTION OF THE DATABASE IS CURRENTLY UNDER CONSTRUCTION OR REQUIRES A HIGHER CLEARANCE LEVEL. CHECK BACK LATER FOR UPDATES.",
     "back_home": "BACK TO HOME"
+  },
+  "treasures": {
+    "current_tier": "CURRENT T.",
+    "target_tier": "TARGET T.",
+    "select_current": "SELECT CURRENT LEVEL",
+    "select_target": "SELECT TARGET LEVEL",
+    "total_resources": "TOTAL RESOURCES",
+    "gold_frag": "GOLD FRAG",
+    "polish": "POLISH",
+    "blueprint": "BLUEPRINT",
+    "advance_polish": "ADVANCE POLISH"
   }
 }

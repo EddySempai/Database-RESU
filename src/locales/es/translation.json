@@ -182,5 +182,16 @@
     "area": "RESTRINGIDA",
     "restricted_desc": "ESTA SECCIÓN DE LA BASE DE DATOS SE ENCUENTRA ACTUALMENTE EN CONSTRUCCIÓN O REQUIERE UN NIVEL DE AUTORIZACIÓN SUPERIOR. VUELVE PRONTO PARA NUEVAS ACTUALIZACIONES.",
     "back_home": "VOLVER AL INICIO"
+  },
+  "treasures": {
+    "current_tier": "T. ACTUAL",
+    "target_tier": "T. OBJETIVO",
+    "select_current": "SELECCIONAR NIVEL ACTUAL",
+    "select_target": "SELECCIONAR NIVEL OBJETIVO",
+    "total_resources": "TOTAL DE RECURSOS",
+    "gold_frag": "GOLD FRAG",
+    "polish": "POLISH",
+    "blueprint": "BLUEPRINT",
+    "advance_polish": "ADVANCE POLISH"
   }
 }

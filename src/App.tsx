@@ -1,36 +1,41 @@
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
-
 import { AnimatePresence } from 'framer-motion';
 import Particles from './components/Particles';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Calculadoras from './pages/Calculadoras';
-import Operativos from './pages/Operativos';
-import OperativoDetalle from './pages/OperativoDetalle';
-import ComingSoon from './pages/ComingSoon';
-import TierList from './pages/TierList';
 import PageTransition from './components/PageTransition';
-import Comparador from './pages/Comparador';
+import LoadingScreen from './components/LoadingScreen';
 import { useTranslation } from 'react-i18next';
 
-
+// Code Splitting for performance optimization
+const Home = React.lazy(() => import('./pages/Home'));
+const Calculadoras = React.lazy(() => import('./pages/Calculadoras'));
+const Operativos = React.lazy(() => import('./pages/Operativos'));
+const OperativoDetalle = React.lazy(() => import('./pages/OperativoDetalle'));
+const ComingSoon = React.lazy(() => import('./pages/ComingSoon'));
+const TierList = React.lazy(() => import('./pages/TierList'));
+const Comparador = React.lazy(() => import('./pages/Comparador'));
+const Guias = React.lazy(() => import('./pages/Guias'));
 
 const AnimatedRoutes = () => {
   const location = useLocation();
   
   return (
     <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-        <Route path="/herramientas" element={<PageTransition><Calculadoras /></PageTransition>} />
-        <Route path="/comparador" element={<PageTransition><Comparador /></PageTransition>} />
-        <Route path="/heroes" element={<PageTransition><Operativos /></PageTransition>} />
-        <Route path="/heroes/:id" element={<PageTransition><OperativoDetalle /></PageTransition>} />
-        <Route path="/tier-list" element={<PageTransition><TierList /></PageTransition>} />
-        {/* Backwards compatibility redirects */}
-        <Route path="/operativos" element={<Navigate to="/heroes" replace />} />
-        <Route path="*" element={<PageTransition><ComingSoon /></PageTransition>} />
-      </Routes>
+      <Suspense fallback={<LoadingScreen />}>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+          <Route path="/herramientas" element={<PageTransition><Calculadoras /></PageTransition>} />
+          <Route path="/comparador" element={<PageTransition><Comparador /></PageTransition>} />
+          <Route path="/heroes" element={<PageTransition><Operativos /></PageTransition>} />
+          <Route path="/heroes/:id" element={<PageTransition><OperativoDetalle /></PageTransition>} />
+          <Route path="/tier-list" element={<PageTransition><TierList /></PageTransition>} />
+          <Route path="/guias" element={<PageTransition><Guias /></PageTransition>} />
+          {/* Backwards compatibility redirects */}
+          <Route path="/operativos" element={<Navigate to="/heroes" replace />} />
+          <Route path="*" element={<PageTransition><ComingSoon /></PageTransition>} />
+        </Routes>
+      </Suspense>
     </AnimatePresence>
   );
 };

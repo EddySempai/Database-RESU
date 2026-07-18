@@ -182,5 +182,16 @@
     "area": "エリア",
     "restricted_desc": "データベースのこのセクションは現在構築中であるか、より高いアクセス権限が必要です。今後の更新をお待ちください。",
     "back_home": "ホームに戻る"
+  },
+  "treasures": {
+    "current_tier": "現在のTier",
+    "target_tier": "目標Tier",
+    "select_current": "現在のレベルを選択",
+    "select_target": "目標レベルを選択",
+    "total_resources": "合計リソース",
+    "gold_frag": "ゴールドフラグ",
+    "polish": "ポリッシュ",
+    "blueprint": "ブループリント",
+    "advance_polish": "アドバンスポリッシュ"
   }
 }
