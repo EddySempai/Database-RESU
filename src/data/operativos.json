@@ -20,7 +20,8 @@
     ],
     "unitType": "Defensor",
     "rarity": "Legendario",
-    "skills": []
+    "skills": [],
+    "iconUrl": "/portraits/PortraitBust_LEON_L01.webp"
   },
   {
     "id": "claire",
@@ -54,7 +55,8 @@
         "name": "Disparo eléctrico",
         "description": "...ataque a 1 enemigo y lo aturde durante 3 segundos. Tras 3 segundos, el objetivo aturdido..."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_CLAIRE_L01.webp"
   },
   {
     "id": "jill",
@@ -98,7 +100,8 @@
         "name": "Delta Force",
         "description": "Cada 10 segundos, aumenta el poder de ataque de todos los aliados en 5,5%. (Durante 8 segundos)"
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_JILL_L01.webp"
   },
   {
     "id": "carlos",
@@ -121,7 +124,8 @@
     ],
     "unitType": "Defensor",
     "rarity": "Legendario",
-    "skills": []
+    "skills": [],
+    "iconUrl": "/portraits/PortraitBust_CARLOS_L01.webp"
   },
   {
     "id": "ada",
@@ -144,7 +148,8 @@
     ],
     "unitType": "Atacante",
     "rarity": "Legendario",
-    "skills": []
+    "skills": [],
+    "iconUrl": "/portraits/PortraitBust_ADA_L01.webp"
   },
   {
     "id": "mikhail",
@@ -167,7 +172,8 @@
     ],
     "unitType": "Ranger",
     "rarity": "Épico",
-    "skills": []
+    "skills": [],
+    "iconUrl": "/portraits/PortraitBust_MIKHAIL_E01.webp"
   },
   {
     "id": "marvin",
@@ -196,7 +202,8 @@
         "name": "Disparo a la pierna",
         "description": "...causando daño equivalente al 342% del poder de ataque y reduciendo su velocidad de..."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_MARVIN_E01.webp"
   },
   {
     "id": "becca",
@@ -219,7 +226,8 @@
     ],
     "unitType": "Atacante",
     "rarity": "Épico",
-    "skills": []
+    "skills": [],
+    "iconUrl": "/portraits/PortraitBust_BECCA_E01.webp"
   },
   {
     "id": "tyrone",
@@ -258,7 +266,8 @@
         "name": "Conocimientos de primeros auxilios",
         "description": "Aumenta la velocidad de tratamiento en el hospital en 50%."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_TYRONE_E01.webp"
   },
   {
     "id": "murphy",
@@ -292,7 +301,8 @@
         "name": "Disparo decisivo",
         "description": "durante 1 turno. (Máx. 3 intentos de aturdimiento por objetivo cada..."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_MURPHY_R01.webp"
   },
   {
     "id": "alyssa",
@@ -331,7 +341,8 @@
         "name": "Lanzamiento de V-JOLT",
         "description": "Lanza un frasco de solución especial que inflige 260% de daño de ataque a los objetivos en un área circular."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_ALYSSA_E01.webp"
   },
   {
     "id": "katherine",
@@ -380,7 +391,8 @@
         "name": "Municiones de alto rendimiento",
         "description": "Aumenta el daño infligido de los ataques comunes en 41%."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_KATHERINE_E01.webp"
   },
   {
     "id": "mark",
@@ -403,7 +415,8 @@
     ],
     "unitType": "Defensor",
     "rarity": "Épico",
-    "skills": []
+    "skills": [],
+    "iconUrl": "/portraits/PortraitBust_MARK_E01.webp"
   },
   {
     "id": "barry",
@@ -432,7 +445,8 @@
         "name": "Entrenamiento físico",
         "description": "...Reducción del consumo de..."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_BARRY_E01.webp"
   },
   {
     "id": "tyrell",
@@ -466,7 +480,8 @@
         "name": "Ametralladora automática",
         "description": "...La ametralladora tiene un poder de ataque equivalente al 22,8% según el poder de ataque de..."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_TYRELL_E01.webp"
   },
   {
     "id": "robert",
@@ -495,7 +510,8 @@
         "name": "¡Toma esto!",
         "description": "...El enemigo repelido queda aturdido por 2 segundos y luego explota, causando daño equivalente al..."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_ROBERT_R01.webp"
   },
   {
     "id": "brad",
@@ -539,7 +555,8 @@
         "name": "Confianza",
         "description": "El daño del ataque normal contra enemigos con velocidad de movimiento reducida aumenta 38%."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_BRAD_R01.webp"
   },
   {
     "id": "chris",
@@ -568,7 +585,8 @@
         "name": "Mira de Punto Rojo",
         "description": "Aumento de Poder de..."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_CHRIS_L01.webp"
   },
   {
     "id": "rebecca",
@@ -607,7 +625,8 @@
         "name": "Sedante",
         "description": "Las unidades aliadas que incluyen a este héroe tienen un 40% de probabilidad de reducir 10% el daño recibido de los enemigos en combate."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_REBECCA_L01.webp"
   },
   {
     "id": "billy",
@@ -636,7 +655,8 @@
         "name": "Pistolero",
         "description": "y, tras 1 segundo, reciben daño equivalente al 543% del..."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_BILLY_L01.webp"
   },
   {
     "id": "ashley",
@@ -690,7 +710,8 @@
         "name": "Lazo de Compasión",
         "description": "La salud de las unidades aliadas que incluyen a este héroe aumenta 5% en combate."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_ASHLEY_L01.webp"
   },
   {
     "id": "luis",
@@ -734,7 +755,8 @@
         "name": "Munición Experimental",
         "description": "Las unidades aliadas que incluyen a este héroe tienen un 50% de probabilidad de aumentar 50% el daño infligido a los enemigos en combate."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_LUIS_L01.webp"
   },
   {
     "id": "jack",
@@ -788,7 +810,8 @@
         "name": "Liberación Mutante",
         "description": "Desata el poder de Las Plagas y muta su brazo para causar 3 golpes con daño equivalente al 45% del ataque al enemigo. Además, recupera HP equivalente al 15% del daño causado."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_JACK_L01.webp"
   },
   {
     "id": "jake",
@@ -837,7 +860,8 @@
         "name": "Arma humana",
         "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta 4% en combate."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_JAKE_L01.webp"
   },
   {
     "id": "sherry",
@@ -891,7 +915,8 @@
         "name": "Comandante Bear",
         "description": "Saca el rifle de asalto BC y dispara 30 balas en línea recta. Cada enemigo alcanzado por las balas recibe daño equivalente al 20% del ataque."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_SHERRY_L01.webp"
   },
   {
     "id": "piers",
@@ -940,6 +965,7 @@
         "name": "Lanzamiento de bomba",
         "description": "Lanza una bomba hacia la ubicación del objetivo más lejano, provocando una explosión que inflige daño equivalente al 190% del ataque."
       }
-    ]
+    ],
+    "iconUrl": "/portraits/PortraitBust_PIERS_L01.webp"
   }
 ]

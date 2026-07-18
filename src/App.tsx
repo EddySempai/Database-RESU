@@ -8,6 +8,7 @@ import Calculadoras from './pages/Calculadoras';
 import Operativos from './pages/Operativos';
 import OperativoDetalle from './pages/OperativoDetalle';
 import ComingSoon from './pages/ComingSoon';
+import TierList from './pages/TierList';
 import PageTransition from './components/PageTransition';
 import Comparador from './pages/Comparador';
 import { useTranslation } from 'react-i18next';
@@ -25,6 +26,7 @@ const AnimatedRoutes = () => {
         <Route path="/comparador" element={<PageTransition><Comparador /></PageTransition>} />
         <Route path="/heroes" element={<PageTransition><Operativos /></PageTransition>} />
         <Route path="/heroes/:id" element={<PageTransition><OperativoDetalle /></PageTransition>} />
+        <Route path="/tier-list" element={<PageTransition><TierList /></PageTransition>} />
         {/* Backwards compatibility redirects */}
         <Route path="/operativos" element={<Navigate to="/heroes" replace />} />
         <Route path="*" element={<PageTransition><ComingSoon /></PageTransition>} />
