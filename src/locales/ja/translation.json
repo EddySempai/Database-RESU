@@ -194,6 +194,17 @@
     "blueprint": "ブループリント",
     "advance_polish": "アドバンスポリッシュ",
     "search_placeholder": "レベルを検索 (例: Mythic T2)",
-    "levels_gained": "上昇レベル:"
+    "levels_gained": "獲得したレベル:"
+  },
+  "jewels": {
+    "title": "宝石計算機",
+    "rough_jewel": "原石",
+    "jewel_tool": "宝石ツール",
+    "current_tier": "現在のTier",
+    "target_tier": "目標Tier",
+    "select_current": "現在のレベルを選択",
+    "select_target": "目標レベルを選択",
+    "total_resources": "合計リソース",
+    "search_placeholder": "検索レベル (例: Legend++)"
   }
 }

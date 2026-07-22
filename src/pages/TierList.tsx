@@ -14,8 +14,8 @@ const TIER_COLORS = {
   C: 'bg-gray-900 border-gray-500 text-gray-200'
 };
 
-const MODES = ['PvP Arena', 'Exploración', 'Jefes (PvE)'];
-const PHASES = ['Early Game', 'Mid Game', 'Late Game'];
+const MODES = ['PvP Arena'];
+const PHASES = ['Mid Game'];
 const TABS = ['Clasificación', 'Equipos Meta 5vs5'];
 
 const isDefender = (type: string) => type?.toLowerCase().includes('defen') || type?.includes('ディフェンダー');

@@ -195,5 +195,16 @@
     "advance_polish": "ADVANCE POLISH",
     "search_placeholder": "Search level (Ex: Mythic T2)",
     "levels_gained": "LEVELS GAINED:"
+  },
+  "jewels": {
+    "title": "JEWELS CALCULATOR",
+    "rough_jewel": "Rough Jewel",
+    "jewel_tool": "Jewel Tool",
+    "current_tier": "CURRENT T.",
+    "target_tier": "TARGET T.",
+    "select_current": "SELECT CURRENT LEVEL",
+    "select_target": "SELECT TARGET LEVEL",
+    "total_resources": "TOTAL RESOURCES",
+    "search_placeholder": "Search level (e.g. Legend++)"
   }
 }

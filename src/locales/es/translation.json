@@ -195,5 +195,16 @@
     "advance_polish": "ADVANCE POLISH",
     "search_placeholder": "Buscar nivel (Ej: Mythic T2)",
     "levels_gained": "NIVELES SUBIDOS:"
+  },
+  "jewels": {
+    "title": "CALCULADORA DE GEMAS",
+    "rough_jewel": "Joya en bruto",
+    "jewel_tool": "Herramienta de tallado de joyas",
+    "current_tier": "T. ACTUAL",
+    "target_tier": "T. OBJETIVO",
+    "select_current": "SELECCIONAR NIVEL ACTUAL",
+    "select_target": "SELECCIONAR NIVEL OBJETIVO",
+    "total_resources": "TOTAL DE RECURSOS",
+    "search_placeholder": "Buscar nivel (Ej: Legend++)"
   }
 }

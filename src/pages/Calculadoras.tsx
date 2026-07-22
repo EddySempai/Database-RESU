@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import TrainingCalculator from '../components/TrainingCalculator';
 import Treasures from '../components/Treasures';
+import Jewels from '../components/Jewels';
 import RedQueenAI from '../components/RedQueenAI';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -52,6 +53,7 @@ const Calculadoras = () => {
             exit={{ opacity: 0, y: -20 }}
           >
             <Treasures />
+            <Jewels />
           </motion.div>
         )}
       </AnimatePresence>
