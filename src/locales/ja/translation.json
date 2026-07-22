@@ -192,6 +192,8 @@
     "gold_frag": "ゴールドフラグ",
     "polish": "ポリッシュ",
     "blueprint": "ブループリント",
-    "advance_polish": "アドバンスポリッシュ"
+    "advance_polish": "アドバンスポリッシュ",
+    "search_placeholder": "レベルを検索 (例: Mythic T2)",
+    "levels_gained": "上昇レベル:"
   }
 }

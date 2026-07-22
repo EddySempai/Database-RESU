@@ -4,6 +4,7 @@ import { Trophy, Swords, Star, Filter, Shield, Crosshair } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useOperativos } from '../hooks/useOperativos';
 import { Link } from 'react-router-dom';
+import { PvP_MidGame_TierList } from '../data/tierlistData';
 
 const TIER_COLORS = {
   SS: 'bg-red-900 border-red-500 text-red-200',
@@ -46,8 +47,16 @@ export default function TierList() {
     window.scrollTo(0, 0);
   }, []);
 
-  // Función temporal para asignar un tier aleatorio basado en el ID para demostración visual
-  const getMockTier = (id: string) => {
+  // Función para obtener el tier real basado en el modo y fase
+  const getOperativeTier = (id: string, mode: string, phase: string) => {
+    if (mode === 'PvP Arena' && phase === 'Mid Game') {
+      for (const [tier, ids] of Object.entries(PvP_MidGame_TierList)) {
+        if (ids.includes(id)) return tier;
+      }
+      return 'C'; // Fallback for any unmapped characters
+    }
+    
+    // Fallback aleatorio para otras categorías no implementadas aún
     const hash = id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
     const tiers = ['SS', 'S', 'A', 'B', 'C'];
     return tiers[hash % tiers.length];
@@ -57,7 +66,7 @@ export default function TierList() {
     return (
       <div className="flex flex-col gap-4">
         {Object.entries(TIER_COLORS).map(([tier, colorClass]) => {
-          const opsInTier = operativosData.filter(op => getMockTier(op.id) === tier);
+          const opsInTier = operativosData.filter(op => getOperativeTier(op.id, activeMode, activePhase) === tier);
           
           return (
             <motion.div 

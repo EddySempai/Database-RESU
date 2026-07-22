@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Database, ArrowDown, X } from 'lucide-react';
+import { Database, ArrowDown, X, Search } from 'lucide-react';
 import { TREASURE_TIERS, getCostBetweenTiers, getRarityStyle } from '../data/treasures';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -10,14 +10,19 @@ export default function Treasures() {
     Array(6).fill({ current: 0, target: 0 })
   );
   const [activeSelect, setActiveSelect] = useState<{slot: number, type: 'current' | 'target'} | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Totals Calculation
   let totalGoldFrag = 0;
   let totalPolish = 0;
   let totalBluePrint = 0;
   let totalAdvancePolish = 0;
+  let totalLevelsGained = 0;
 
   slots.forEach(slot => {
+    if (slot.target > slot.current) {
+      totalLevelsGained += (slot.target - slot.current);
+    }
     const cost = getCostBetweenTiers(slot.current, slot.target);
     totalGoldFrag += cost.goldFrag;
     totalPolish += cost.polish;
@@ -128,7 +133,15 @@ export default function Treasures() {
         {/* Results Panel */}
         <div className="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl border border-red-900/30 text-center relative overflow-hidden">
           <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent" />
-          <div className="flex flex-col items-center mb-10">
+          
+          <div className="flex flex-col items-center mb-8">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="px-4 py-1.5 bg-red-500/10 border border-red-500/30 rounded-full flex items-center gap-2 text-red-400">
+                <span className="font-mono text-xs font-bold tracking-wider">{t('treasures.levels_gained')}</span>
+                <span className="font-bebas text-xl">+{totalLevelsGained}</span>
+              </div>
+            </div>
+            
             <Database className="w-8 h-8 text-red-500 mb-2 drop-shadow-[0_0_15px_rgba(239,68,68,0.5)]" />
             <h2 className="text-2xl font-bebas tracking-widest text-white drop-shadow-md">{t('treasures.total_resources')}</h2>
           </div>
@@ -190,16 +203,36 @@ export default function Treasures() {
             >
               <div className="flex justify-between items-center p-4 border-b border-gray-800">
                 <h3 className="font-bebas text-xl text-white">{activeSelect.type === 'current' ? t('treasures.select_current') : t('treasures.select_target')}</h3>
-                <button onClick={() => setActiveSelect(null)} className="text-gray-400 hover:text-white"><X size={24} /></button>
+                <button onClick={() => { setActiveSelect(null); setSearchQuery(''); }} className="text-gray-400 hover:text-white"><X size={24} /></button>
               </div>
+              
+              <div className="p-4 border-b border-gray-800/50 bg-[#151515]">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
+                  <input
+                    type="text"
+                    placeholder={t('treasures.search_placeholder')}
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full bg-black/50 border border-gray-700 rounded-lg pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-red-500/50 transition-colors"
+                  />
+                </div>
+              </div>
+
               <div className="overflow-y-auto p-4 flex flex-col gap-3">
                 {TREASURE_TIERS.map((tier, idx) => {
                   const style = getRarityStyle(tier.rarity);
                   const isSelected = idx === slots[activeSelect.slot][activeSelect.type];
+                  
+                  // Aplicar filtro de búsqueda
+                  if (searchQuery && !tier.id.toLowerCase().includes(searchQuery.toLowerCase()) && !tier.rarity.toLowerCase().includes(searchQuery.toLowerCase())) {
+                    return null;
+                  }
+
                   return (
                     <button
                       key={idx}
-                      onClick={() => handleSelectTier(idx)}
+                      onClick={() => { handleSelectTier(idx); setSearchQuery(''); }}
                       className={`relative flex justify-between items-center px-4 py-3 rounded-lg border transition-all duration-300 overflow-visible group ${
                         isSelected 
                           ? `border-solid ${style.border} ${style.bg} ${style.shadow} scale-[1.02]` 

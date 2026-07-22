@@ -192,6 +192,8 @@
     "gold_frag": "GOLD FRAG",
     "polish": "POLISH",
     "blueprint": "BLUEPRINT",
-    "advance_polish": "ADVANCE POLISH"
+    "advance_polish": "ADVANCE POLISH",
+    "search_placeholder": "Buscar nivel (Ej: Mythic T2)",
+    "levels_gained": "NIVELES SUBIDOS:"
   }
 }

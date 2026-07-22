@@ -19,13 +19,13 @@ export const TREASURE_TIERS: TreasureTier[] = [
   // RARE
   { id: 'Rare T1', rarity: 'Rare', level: 1, index: 1, cost: { goldFrag: 0, polish: 0, bluePrint: 0, advancePolish: 0 } },
   { id: 'Rare T2', rarity: 'Rare', level: 2, index: 2, cost: { goldFrag: 9500, polish: 95, bluePrint: 0, advancePolish: 0 } },
-  { id: 'Rare T3', rarity: 'Rare', level: 3, index: 3, cost: { goldFrag: 0, polish: 0, bluePrint: 0, advancePolish: 0 } },
+  { id: 'Rare T3', rarity: 'Rare', level: 3, index: 3, cost: { goldFrag: 0, polish: 0, bluePrint: 45, advancePolish: 0 } },
   { id: 'Rare T4', rarity: 'Rare', level: 4, index: 4, cost: { goldFrag: 0, polish: 0, bluePrint: 50, advancePolish: 0 } },
   
   // EPIC
   { id: 'Epic T1', rarity: 'Epic', level: 1, index: 5, cost: { goldFrag: 0, polish: 0, bluePrint: 60, advancePolish: 0 } },
-  { id: 'Epic T2', rarity: 'Epic', level: 2, index: 6, cost: { goldFrag: 0, polish: 0, bluePrint: 0, advancePolish: 0 } },
-  { id: 'Epic T3', rarity: 'Epic', level: 3, index: 7, cost: { goldFrag: 0, polish: 0, bluePrint: 0, advancePolish: 0 } },
+  { id: 'Epic T2', rarity: 'Epic', level: 2, index: 6, cost: { goldFrag: 0, polish: 0, bluePrint: 70, advancePolish: 0 } },
+  { id: 'Epic T3', rarity: 'Epic', level: 3, index: 7, cost: { goldFrag: 0, polish: 0, bluePrint: 50, advancePolish: 0 } },
   { id: 'Epic T4', rarity: 'Epic', level: 4, index: 8, cost: { goldFrag: 8000, polish: 80, bluePrint: 55, advancePolish: 0 } },
   
   // EPIC+
