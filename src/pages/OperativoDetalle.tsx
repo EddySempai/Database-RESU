@@ -43,8 +43,14 @@ const OperativoDetalle = () => {
   const [targetStar, setTargetStar] = useState(6);
   const [targetNode, setTargetNode] = useState(0);
 
-  const [currentSkillLevel, setCurrentSkillLevel] = useState(1);
-  const [targetSkillLevel, setTargetSkillLevel] = useState(5);
+  const [skillsState, setSkillsState] = useState<Record<string, { current: number; target: number }>>({
+    c1: { current: 1, target: 5 },
+    c2: { current: 1, target: 5 },
+    c3: { current: 1, target: 5 },
+    e1: { current: 1, target: 5 },
+    e2: { current: 1, target: 5 },
+    e3: { current: 1, target: 5 }
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -64,6 +70,32 @@ const OperativoDetalle = () => {
   const maxSkills = getMaxSkillsByRarity(rarity);
 
   const localImage = `/operativos/${op.imageUrl.split('/').pop()}`;
+
+  // 6 Skills Breakdown for Books Calculator
+  const fieldSkills = (op?.skills || []).filter((s: any) => s.type === 'Campo');
+  const exploreSkills = (op?.skills || []).filter((s: any) => s.type === 'Exploración');
+
+  const all6Skills = [
+    { id: 'c1', type: 'Campo' as const, code: 'C1', name: fieldSkills[0]?.name || 'Habilidad de Campo 1', description: fieldSkills[0]?.description },
+    { id: 'c2', type: 'Campo' as const, code: 'C2', name: fieldSkills[1]?.name || 'Habilidad de Campo 2', description: fieldSkills[1]?.description },
+    { id: 'c3', type: 'Campo' as const, code: 'C3', name: fieldSkills[2]?.name || 'Habilidad de Campo 3', description: fieldSkills[2]?.description },
+    { id: 'e1', type: 'Exploración' as const, code: 'E1', name: exploreSkills[0]?.name || 'Habilidad de Exploración 1', description: exploreSkills[0]?.description },
+    { id: 'e2', type: 'Exploración' as const, code: 'E2', name: exploreSkills[1]?.name || 'Habilidad de Exploración 2', description: exploreSkills[1]?.description },
+    { id: 'e3', type: 'Exploración' as const, code: 'E3', name: exploreSkills[2]?.name || 'Habilidad de Exploración 3', description: exploreSkills[2]?.description }
+  ];
+
+  const campoSkillsList = all6Skills.filter(s => s.type === 'Campo');
+  const exploreSkillsList = all6Skills.filter(s => s.type === 'Exploración');
+
+  const totalCampoBooks = campoSkillsList.reduce((sum, skill) => {
+    const st = skillsState[skill.id] || { current: 1, target: 5 };
+    return sum + calculateSkillBooks(st.current, st.target);
+  }, 0);
+
+  const totalExploreBooks = exploreSkillsList.reduce((sum, skill) => {
+    const st = skillsState[skill.id] || { current: 1, target: 5 };
+    return sum + calculateSkillBooks(st.current, st.target);
+  }, 0);
 
   return (
     <div className={`pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col ${activeTab === 'equipment' ? '' : 'md:flex-row'} gap-8`}>
@@ -296,6 +328,7 @@ const OperativoDetalle = () => {
           {activeTab === 'stars' && (
             <div>
               <h2 className="font-bebas text-3xl tracking-widest text-white mb-2 flex items-center gap-3">
+                <img src="/recursos/contract.webp" alt="Contrato" className="w-8 h-8 object-contain" />
                 {t('op_detail.ascension_calc')}
               </h2>
               <p className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-8">{t('op_detail.req_contracts')}</p>
@@ -307,29 +340,36 @@ const OperativoDetalle = () => {
                   <h3 className="font-mono text-neon-red text-sm tracking-widest uppercase mb-2">{t('op_detail.curr_state')}</h3>
                   
                   {/* Visual Stars */}
-                  <div className="flex gap-1 cursor-pointer">
+                  <div className="flex gap-1.5 cursor-pointer items-center">
                     {[0, 1, 2, 3, 4, 5].map(i => {
-                      let fillPercent = 0;
-                      if (currentStar > i) fillPercent = 100;
-                      else if (currentStar === i) fillPercent = (currentNode / 5) * 100;
-                      
-                      const starColor = currentStar === 6 ? 'text-fuchsia-500 fill-fuchsia-500' : 'text-yellow-500 fill-yellow-500';
+                      const isFilled = currentStar > i;
+                      const isPurple = currentStar === 6;
+                      const starImage = isPurple 
+                        ? '/stars/Hero_Star_6_00.webp' 
+                        : '/stars/Hero_Star_00.webp';
                       
                       return (
-                        <div key={i} onClick={() => { setCurrentStar(i + 1); setCurrentNode(0); }} className="relative w-8 h-8 md:w-10 md:h-10 transition-transform hover:scale-110">
-                          {/* Empty Star */}
-                          <Star className="absolute inset-0 text-gray-800 w-full h-full" strokeWidth={1.5} />
-                          {/* Filled Star */}
-                          <div className="absolute inset-0 overflow-hidden transition-all duration-300" style={{ width: `${fillPercent}%` }}>
-                            <Star className={`w-8 h-8 md:w-10 md:h-10 transition-colors duration-500 ${starColor}`} strokeWidth={1} />
-                          </div>
+                        <div 
+                          key={i} 
+                          onClick={() => { setCurrentStar(i + 1); setCurrentNode(0); }} 
+                          className="relative w-8 h-8 md:w-10 md:h-10 transition-transform hover:scale-115 flex items-center justify-center"
+                        >
+                          <img 
+                            src={isFilled ? starImage : '/stars/Hero_Star_Back_01.webp'} 
+                            alt={`Star ${i + 1}`} 
+                            className={`w-full h-full object-contain filter drop-shadow-md transition-all duration-300 ${isFilled ? 'brightness-110 drop-shadow-[0_0_8px_rgba(234,179,8,0.5)]' : 'opacity-40 grayscale'}`} 
+                            onError={(e) => {
+                              // Fallback if image not found
+                              e.currentTarget.src = isFilled ? '/stars/Hero_Star_00.webp' : '/stars/Hero_Star_Back_01.webp';
+                            }}
+                          />
                         </div>
                       );
                     })}
                   </div>
 
                   {/* Node (Astas) Controls */}
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3">
                     <button 
                       onClick={() => {
                         let ns = currentStar, nn = currentNode - 1;
@@ -337,17 +377,31 @@ const OperativoDetalle = () => {
                         setCurrentStar(ns); setCurrentNode(nn);
                       }} 
                       disabled={currentStar === 0 && currentNode === 0}
-                      className="w-8 h-8 flex items-center justify-center bg-gray-900 border border-gray-700 text-white hover:bg-gray-800 hover:border-neon-red transition-colors disabled:opacity-50 disabled:hover:border-gray-700"
+                      className="w-8 h-8 flex items-center justify-center bg-gray-900 border border-gray-700 text-white hover:bg-gray-800 hover:border-neon-red transition-colors disabled:opacity-30 disabled:hover:border-gray-700 rounded-sm font-mono font-bold"
                     >-</button>
                     
-                    <div className="flex gap-2">
+                    <div className="flex gap-1.5 items-center">
                        {[1, 2, 3, 4, 5].map(n => {
-                          const nodeColor = currentStar === 6 
-                            ? 'bg-fuchsia-500 shadow-[0_0_5px_rgba(217,70,239,0.8)]' 
-                            : 'bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.8)]';
                           const isActive = currentStar === 6 || n <= currentNode;
+                          const isPurple = currentStar === 6;
+                          const nodeImage = isPurple 
+                            ? `/stars/Hero_Star_6_P_0${n}.webp` 
+                            : `/stars/Hero_Star_P_0${n}.webp`;
+
                           return (
-                            <div key={n} className={`w-3 h-3 rotate-45 transition-colors duration-300 ${isActive ? nodeColor : 'bg-gray-900 border border-gray-700'}`} />
+                            <img 
+                              key={n} 
+                              src={nodeImage}
+                              alt={`Node ${n}`}
+                              className={`w-6 h-6 object-contain transition-all duration-300 ${
+                                isActive 
+                                  ? 'brightness-125 drop-shadow-[0_0_6px_rgba(234,179,8,0.6)] scale-105' 
+                                  : 'opacity-25 grayscale'
+                              }`}
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                              }}
+                            />
                           );
                        })}
                     </div>
@@ -360,7 +414,7 @@ const OperativoDetalle = () => {
                         setCurrentStar(ns); setCurrentNode(nn);
                       }} 
                       disabled={currentStar === 6}
-                      className="w-8 h-8 flex items-center justify-center bg-gray-900 border border-gray-700 text-white hover:bg-gray-800 hover:border-neon-red transition-colors disabled:opacity-50 disabled:hover:border-gray-700"
+                      className="w-8 h-8 flex items-center justify-center bg-gray-900 border border-gray-700 text-white hover:bg-gray-800 hover:border-neon-red transition-colors disabled:opacity-30 disabled:hover:border-gray-700 rounded-sm font-mono font-bold"
                     >+</button>
                   </div>
                   
@@ -374,29 +428,35 @@ const OperativoDetalle = () => {
                   <h3 className="font-mono text-yellow-500 text-sm tracking-widest uppercase mb-2">{t('op_detail.target')}</h3>
                   
                   {/* Visual Stars */}
-                  <div className="flex gap-1 cursor-pointer">
+                  <div className="flex gap-1.5 cursor-pointer items-center">
                     {[0, 1, 2, 3, 4, 5].map(i => {
-                      let fillPercent = 0;
-                      if (targetStar > i) fillPercent = 100;
-                      else if (targetStar === i) fillPercent = (targetNode / 5) * 100;
-                      
-                      const starColor = targetStar === 6 ? 'text-fuchsia-500 fill-fuchsia-500' : 'text-yellow-500 fill-yellow-500';
+                      const isFilled = targetStar > i;
+                      const isPurple = targetStar === 6;
+                      const starImage = isPurple 
+                        ? '/stars/Hero_Star_6_00.webp' 
+                        : '/stars/Hero_Star_00.webp';
                       
                       return (
-                        <div key={i} onClick={() => { setTargetStar(i + 1); setTargetNode(0); }} className="relative w-8 h-8 md:w-10 md:h-10 transition-transform hover:scale-110">
-                          {/* Empty Star */}
-                          <Star className="absolute inset-0 text-gray-800 w-full h-full" strokeWidth={1.5} />
-                          {/* Filled Star */}
-                          <div className="absolute inset-0 overflow-hidden transition-all duration-300" style={{ width: `${fillPercent}%` }}>
-                            <Star className={`w-8 h-8 md:w-10 md:h-10 transition-colors duration-500 ${starColor}`} strokeWidth={1} />
-                          </div>
+                        <div 
+                          key={i} 
+                          onClick={() => { setTargetStar(i + 1); setTargetNode(0); }} 
+                          className="relative w-8 h-8 md:w-10 md:h-10 transition-transform hover:scale-115 flex items-center justify-center"
+                        >
+                          <img 
+                            src={isFilled ? starImage : '/stars/Hero_Star_Back_01.webp'} 
+                            alt={`Target Star ${i + 1}`} 
+                            className={`w-full h-full object-contain filter drop-shadow-md transition-all duration-300 ${isFilled ? 'brightness-110 drop-shadow-[0_0_8px_rgba(234,179,8,0.5)]' : 'opacity-40 grayscale'}`} 
+                            onError={(e) => {
+                              e.currentTarget.src = isFilled ? '/stars/Hero_Star_00.webp' : '/stars/Hero_Star_Back_01.webp';
+                            }}
+                          />
                         </div>
                       );
                     })}
                   </div>
 
                   {/* Node (Astas) Controls */}
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3">
                     <button 
                       onClick={() => {
                         let ns = targetStar, nn = targetNode - 1;
@@ -404,17 +464,31 @@ const OperativoDetalle = () => {
                         setTargetStar(ns); setTargetNode(nn);
                       }} 
                       disabled={targetStar === 0 && targetNode === 0}
-                      className="w-8 h-8 flex items-center justify-center bg-gray-900 border border-gray-700 text-white hover:bg-gray-800 hover:border-yellow-500 transition-colors disabled:opacity-50 disabled:hover:border-gray-700"
+                      className="w-8 h-8 flex items-center justify-center bg-gray-900 border border-gray-700 text-white hover:bg-gray-800 hover:border-yellow-500 transition-colors disabled:opacity-30 disabled:hover:border-gray-700 rounded-sm font-mono font-bold"
                     >-</button>
                     
-                    <div className="flex gap-2">
+                    <div className="flex gap-1.5 items-center">
                        {[1, 2, 3, 4, 5].map(n => {
-                          const nodeColor = targetStar === 6 
-                            ? 'bg-fuchsia-500 shadow-[0_0_5px_rgba(217,70,239,0.8)]' 
-                            : 'bg-yellow-500 shadow-[0_0_5px_rgba(234,179,8,0.8)]';
                           const isActive = targetStar === 6 || n <= targetNode;
+                          const isPurple = targetStar === 6;
+                          const nodeImage = isPurple 
+                            ? `/stars/Hero_Star_6_P_0${n}.webp` 
+                            : `/stars/Hero_Star_P_0${n}.webp`;
+
                           return (
-                            <div key={n} className={`w-3 h-3 rotate-45 transition-colors duration-300 ${isActive ? nodeColor : 'bg-gray-900 border border-gray-700'}`} />
+                            <img 
+                              key={n} 
+                              src={nodeImage}
+                              alt={`Target Node ${n}`}
+                              className={`w-6 h-6 object-contain transition-all duration-300 ${
+                                isActive 
+                                  ? 'brightness-125 drop-shadow-[0_0_6px_rgba(234,179,8,0.6)] scale-105' 
+                                  : 'opacity-25 grayscale'
+                              }`}
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                              }}
+                            />
                           );
                        })}
                     </div>
@@ -427,7 +501,7 @@ const OperativoDetalle = () => {
                         setTargetStar(ns); setTargetNode(nn);
                       }} 
                       disabled={targetStar === 6}
-                      className="w-8 h-8 flex items-center justify-center bg-gray-900 border border-gray-700 text-white hover:bg-gray-800 hover:border-yellow-500 transition-colors disabled:opacity-50 disabled:hover:border-gray-700"
+                      className="w-8 h-8 flex items-center justify-center bg-gray-900 border border-gray-700 text-white hover:bg-gray-800 hover:border-yellow-500 transition-colors disabled:opacity-30 disabled:hover:border-gray-700 rounded-sm font-mono font-bold"
                     >+</button>
                   </div>
                   
@@ -437,10 +511,16 @@ const OperativoDetalle = () => {
                 </div>
               </div>
 
-              <div className="bg-yellow-900/10 border border-yellow-500/30 p-6 text-center">
-                <p className="font-mono text-gray-400 text-sm uppercase mb-2">{t('op_detail.total_contracts_req')}</p>
-                <div className="font-bebas text-5xl md:text-6xl text-yellow-400 tracking-widest drop-shadow-[0_0_10px_rgba(234,179,8,0.5)]">
-                  {calculateRequiredContracts(currentStar, currentNode, targetStar, targetNode).toLocaleString()}
+              <div className="bg-yellow-900/10 border border-yellow-500/30 p-6 text-center flex flex-col items-center justify-center relative overflow-hidden group">
+                <p className="font-mono text-gray-400 text-sm uppercase mb-2 flex items-center justify-center gap-2 tracking-wider">
+                  <img src="/recursos/contract.webp" alt="Contrato" className="w-5 h-5 object-contain" />
+                  {t('op_detail.total_contracts_req')}
+                </p>
+                <div className="flex items-center justify-center gap-3 my-1">
+                  <img src="/recursos/contract.webp" alt="Icono Contrato" className="w-12 h-12 md:w-16 md:h-16 object-contain drop-shadow-[0_0_12px_rgba(234,179,8,0.5)] transition-transform duration-300 group-hover:scale-110" />
+                  <span className="font-bebas text-5xl md:text-6xl text-yellow-400 tracking-widest drop-shadow-[0_0_10px_rgba(234,179,8,0.5)]">
+                    {calculateRequiredContracts(currentStar, currentNode, targetStar, targetNode).toLocaleString()}
+                  </span>
                 </div>
                 <p className="text-xs text-gray-500 mt-2 font-inter">{t('op_detail.contracts_note')}</p>
               </div>
@@ -450,57 +530,239 @@ const OperativoDetalle = () => {
           {/* TAB: Calc Libros */}
           {activeTab === 'books' && (
             <div>
-              <h2 className="font-bebas text-3xl tracking-widest text-white mb-2 flex items-center gap-3">
-                <BookOpen className="text-neon-red" /> {t('op_detail.books_calc')}
-              </h2>
-              <p className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-8">{t('op_detail.upgrade_skill')}</p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                <div>
-                  <label className="block text-gray-400 font-mono text-xs uppercase mb-2">{t('op_detail.curr_skill_level')}</label>
-                  <input 
-                    placeholder='0'
-                    type="number" min="1" max="5" 
-                    value={currentSkillLevel} 
-                    onChange={e => {
-                      let val = Number(e.target.value);
-                      if (val > 5) val = 5;
-                      if (val < 1 && e.target.value !== '') val = 1;
-                      setCurrentSkillLevel(val);
-                    }}
-                    className="w-full bg-black border border-gray-700 text-white p-3 font-mono outline-none focus:border-neon-red"
-                  />
+              {/* Header con botón de reset */}
+              <div className="flex items-center justify-between gap-4 mb-6 border-b border-gray-800 pb-3">
+                <div className="flex items-center gap-3">
+                  <BookOpen className="text-neon-red" size={22} />
+                  <h2 className="font-bebas text-2xl tracking-widest text-white uppercase">
+                    {t('op_detail.books_calc')}
+                  </h2>
                 </div>
-                <div>
-                  <label className="block text-gray-400 font-mono text-xs uppercase mb-2">{t('op_detail.target_skill_level')}</label>
-                  <input 
-                    placeholder='0'
-                    type="number" min="1" max="5" 
-                    value={targetSkillLevel} 
-                    onChange={e => {
-                      let val = Number(e.target.value);
-                      if (val > 5) val = 5;
-                      if (val < 1 && e.target.value !== '') val = 1;
-                      setTargetSkillLevel(val);
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => {
+                      setSkillsState(prev => {
+                        const next = { ...prev };
+                        Object.keys(next).forEach(k => { next[k] = { ...next[k], target: 5 }; });
+                        return next;
+                      });
                     }}
-                    className="w-full bg-black border border-gray-700 text-white p-3 font-mono outline-none focus:border-neon-red"
-                  />
+                    className="px-3 py-1 bg-gray-900 border border-gray-700 text-gray-300 font-mono text-xs uppercase hover:text-yellow-400 hover:border-yellow-500/50 transition-colors rounded-sm"
+                  >
+                    Todas a Nv. 5
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSkillsState({
+                        c1: { current: 1, target: 1 },
+                        c2: { current: 1, target: 1 },
+                        c3: { current: 1, target: 1 },
+                        e1: { current: 1, target: 1 },
+                        e2: { current: 1, target: 1 },
+                        e3: { current: 1, target: 1 }
+                      });
+                    }}
+                    className="px-3 py-1 bg-gray-900 border border-gray-700 text-gray-400 font-mono text-xs uppercase hover:text-white transition-colors rounded-sm"
+                  >
+                    Reiniciar
+                  </button>
                 </div>
               </div>
 
-              <div className="bg-yellow-900/10 border border-yellow-500/30 p-6 text-center">
-                <p className="font-mono text-gray-400 text-sm uppercase mb-2">{t('op_detail.req_books')}</p>
-                <div className="font-bebas text-5xl md:text-6xl text-yellow-500 tracking-widest drop-shadow-[0_0_10px_rgba(234,179,8,0.5)]">
-                  {calculateSkillBooks(currentSkillLevel, targetSkillLevel).toLocaleString()}
+              {/* LISTA LIMPIA DE HABILIDADES DE CAMPO */}
+              <div className="mb-6">
+                <h3 className="font-mono text-xs text-red-400/80 uppercase tracking-widest mb-3 flex items-center gap-2">
+                  <img src="/recursos/book_field.webp" alt="Campo" className="w-4 h-4 object-contain opacity-80" />
+                  Habilidades de Campo
+                </h3>
+                <div className="space-y-2">
+                  {campoSkillsList.map(skill => {
+                    const st = skillsState[skill.id] || { current: 1, target: 5 };
+                    const cost = calculateSkillBooks(st.current, st.target);
+
+                    return (
+                      <div
+                        key={skill.id}
+                        className="bg-[#070707] hover:bg-gradient-to-r hover:from-blood-red/15 hover:via-[#070707] hover:to-transparent border border-gray-800/80 hover:border-blood-red/40 p-3 rounded-sm flex items-center justify-between gap-4 transition-all duration-300"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className="w-7 h-7 bg-red-950/30 border border-red-800/40 text-red-400 font-bebas text-sm flex items-center justify-center rounded-sm shrink-0">
+                            {skill.code}
+                          </div>
+                          <h4 className="text-white font-bebas tracking-wider text-base truncate">
+                            {skill.name}
+                          </h4>
+                        </div>
+
+                        <div className="flex items-center gap-3 shrink-0">
+                          <div className="flex items-center gap-1.5 font-mono text-xs text-gray-400 bg-black/60 px-2 py-1 border border-gray-800 rounded-sm">
+                            <span>Nv.</span>
+                            <select
+                              value={st.current}
+                              onChange={(e) => {
+                                const val = Number(e.target.value);
+                                setSkillsState(prev => ({
+                                  ...prev,
+                                  [skill.id]: {
+                                    ...(prev[skill.id] || { current: 1, target: 5 }),
+                                    current: val,
+                                    target: Math.max(val, (prev[skill.id]?.target || 5))
+                                  }
+                                }));
+                              }}
+                              className="bg-gray-900 border border-gray-700 text-white font-mono text-xs px-1.5 py-0.5 rounded-sm outline-none cursor-pointer hover:border-gray-500"
+                            >
+                              {[1, 2, 3, 4, 5].map(lvl => (
+                                <option key={lvl} value={lvl}>{lvl}</option>
+                              ))}
+                            </select>
+                            <span className="text-gray-600">➔</span>
+                            <select
+                              value={st.target}
+                              onChange={(e) => {
+                                const val = Number(e.target.value);
+                                setSkillsState(prev => ({
+                                  ...prev,
+                                  [skill.id]: {
+                                    ...(prev[skill.id] || { current: 1, target: 5 }),
+                                    target: val
+                                  }
+                                }));
+                              }}
+                              className="bg-gray-900 border border-gray-700 text-yellow-400 font-bold font-mono text-xs px-1.5 py-0.5 rounded-sm outline-none cursor-pointer hover:border-gray-500"
+                            >
+                              {[1, 2, 3, 4, 5].filter(lvl => lvl >= st.current).map(lvl => (
+                                <option key={lvl} value={lvl}>{lvl}</option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <div className="flex items-center gap-1.5 min-w-[60px] justify-end">
+                            <img src="/recursos/book_field.webp" alt="Libro" className="w-4 h-4 object-contain opacity-70" />
+                            <span className="font-bebas text-xl text-yellow-400 tracking-wider">{cost}</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-                <div className="mt-4 border-t border-gray-800 pt-4 text-xs font-mono text-gray-500 flex flex-col md:flex-row justify-center gap-6">
-                  <span>{t('op_detail.max_cost_1')} 165</span>
-                  <span>{t('op_detail.max_cost_total')}{rarity}{t('op_detail.max_cost_total_2')} {165 * maxSkills}</span>
+              </div>
+
+              {/* LISTA LIMPIA DE HABILIDADES DE EXPLORACIÓN */}
+              <div className="mb-6">
+                <h3 className="font-mono text-xs text-blue-400/80 uppercase tracking-widest mb-3 flex items-center gap-2">
+                  <img src="/recursos/book_explore.webp" alt="Exploración" className="w-4 h-4 object-contain opacity-80" />
+                  Habilidades de Exploración
+                </h3>
+                <div className="space-y-2">
+                  {exploreSkillsList.map(skill => {
+                    const st = skillsState[skill.id] || { current: 1, target: 5 };
+                    const cost = calculateSkillBooks(st.current, st.target);
+
+                    return (
+                      <div
+                        key={skill.id}
+                        className="bg-[#070707] hover:bg-gradient-to-r hover:from-blue-950/20 hover:via-[#070707] hover:to-transparent border border-gray-800/80 hover:border-blue-500/40 p-3 rounded-sm flex items-center justify-between gap-4 transition-all duration-300"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className="w-7 h-7 bg-blue-950/30 border border-blue-800/40 text-blue-400 font-bebas text-sm flex items-center justify-center rounded-sm shrink-0">
+                            {skill.code}
+                          </div>
+                          <h4 className="text-white font-bebas tracking-wider text-base truncate">
+                            {skill.name}
+                          </h4>
+                        </div>
+
+                        <div className="flex items-center gap-3 shrink-0">
+                          <div className="flex items-center gap-1.5 font-mono text-xs text-gray-400 bg-black/60 px-2 py-1 border border-gray-800 rounded-sm">
+                            <span>Nv.</span>
+                            <select
+                              value={st.current}
+                              onChange={(e) => {
+                                const val = Number(e.target.value);
+                                setSkillsState(prev => ({
+                                  ...prev,
+                                  [skill.id]: {
+                                    ...(prev[skill.id] || { current: 1, target: 5 }),
+                                    current: val,
+                                    target: Math.max(val, (prev[skill.id]?.target || 5))
+                                  }
+                                }));
+                              }}
+                              className="bg-gray-900 border border-gray-700 text-white font-mono text-xs px-1.5 py-0.5 rounded-sm outline-none cursor-pointer hover:border-gray-500"
+                            >
+                              {[1, 2, 3, 4, 5].map(lvl => (
+                                <option key={lvl} value={lvl}>{lvl}</option>
+                              ))}
+                            </select>
+                            <span className="text-gray-600">➔</span>
+                            <select
+                              value={st.target}
+                              onChange={(e) => {
+                                const val = Number(e.target.value);
+                                setSkillsState(prev => ({
+                                  ...prev,
+                                  [skill.id]: {
+                                    ...(prev[skill.id] || { current: 1, target: 5 }),
+                                    target: val
+                                  }
+                                }));
+                              }}
+                              className="bg-gray-900 border border-gray-700 text-yellow-400 font-bold font-mono text-xs px-1.5 py-0.5 rounded-sm outline-none cursor-pointer hover:border-gray-500"
+                            >
+                              {[1, 2, 3, 4, 5].filter(lvl => lvl >= st.current).map(lvl => (
+                                <option key={lvl} value={lvl}>{lvl}</option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <div className="flex items-center gap-1.5 min-w-[60px] justify-end">
+                            <img src="/recursos/book_explore.webp" alt="Libro" className="w-4 h-4 object-contain opacity-70" />
+                            <span className="font-bebas text-xl text-yellow-400 tracking-wider">{cost}</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-                
-                {/* Costos por Nivel */}
-                <div className="mt-6 flex justify-center">
-                  <div className="flex flex-wrap gap-4 text-xs font-mono text-gray-400 border border-gray-800 bg-black/50 px-4 py-2">
+              </div>
+
+              {/* CUADRO DE TOTALES ESTILO ANTIGUO (DORADO) */}
+              <div className="bg-yellow-900/10 border border-yellow-500/30 p-6 text-center rounded-sm">
+                <p className="font-mono text-gray-400 text-sm uppercase mb-3 tracking-widest">
+                  {t('op_detail.req_books')}
+                </p>
+
+                <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 my-3">
+                  {/* Total Campo */}
+                  <div className="flex items-center gap-3">
+                    <img src="/recursos/book_field.webp" alt="Campo" className="w-9 h-9 object-contain drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+                    <div className="text-left">
+                      <div className="text-[10px] font-mono text-red-400 uppercase tracking-widest">Total Campo</div>
+                      <div className="font-bebas text-4xl md:text-5xl text-red-400 tracking-widest drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]">
+                        {totalCampoBooks.toLocaleString()}
+                      </div>
+                    </div>
+                  </div>
+
+                  <span className="text-gray-700 text-3xl font-light hidden md:inline">|</span>
+
+                  {/* Total Exploración */}
+                  <div className="flex items-center gap-3">
+                    <img src="/recursos/book_explore.webp" alt="Exploración" className="w-9 h-9 object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+                    <div className="text-left">
+                      <div className="text-[10px] font-mono text-blue-400 uppercase tracking-widest">Total Exploración</div>
+                      <div className="font-bebas text-4xl md:text-5xl text-blue-400 tracking-widest drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
+                        {totalExploreBooks.toLocaleString()}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Costos por Nivel (Estilo Antiguo) */}
+                <div className="mt-5 flex justify-center">
+                  <div className="flex flex-wrap gap-4 text-xs font-mono text-gray-400 border border-gray-800 bg-black/50 px-4 py-2 rounded-sm">
                     <span><strong className="text-white">Nv. 1 ➔ 2 :</strong> 10</span>
                     <span className="text-gray-600">|</span>
                     <span><strong className="text-white">Nv. 2 ➔ 3 :</strong> 30</span>

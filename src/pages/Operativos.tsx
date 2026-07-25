@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Target, Search, Filter, Shield, Sword, Crosshair } from 'lucide-react';
+import { Target, Search, Filter, Shield, Crosshair } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useOperativos } from '../hooks/useOperativos';
@@ -11,18 +11,18 @@ const isRanger = (type: string) => type?.toLowerCase().includes('rang') || type?
 const isLegendary = (rarity: string) => rarity?.toLowerCase().includes('legen') || rarity?.includes('レジェン');
 const isCommon = (rarity: string) => rarity?.toLowerCase().includes('com') || rarity?.includes('コモン');
 
-const getUnitIcon = (type: string) => {
-  if (isDefender(type)) return <Shield size={14} />;
-  if (isAttacker(type)) return <Sword size={14} />;
-  if (isRanger(type)) return <Crosshair size={14} />;
-  return null;
-};
+// Icono oficial de Balas para Atacante (Estilo Tier List)
+const BulletsIcon = ({ size = 13, className = "text-white" }: { size?: number; className?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={`shrink-0 block ${className}`} xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 5h16a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3zm0 5.5h16a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3zm0 5.5h16a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3z" />
+  </svg>
+);
 
-const getUnitColor = (type: string) => {
-  if (isDefender(type)) return 'text-blue-400 bg-blue-900/40 border-blue-500/50';
-  if (isAttacker(type)) return 'text-blood-red bg-blood-red/20 border-blood-red/50';
-  if (isRanger(type)) return 'text-green-400 bg-green-900/40 border-green-500/50';
-  return 'text-gray-400 bg-gray-800 border-gray-600';
+const getUnitIcon = (type: string) => {
+  if (isDefender(type)) return <Shield size={13} className="text-white shrink-0" />;
+  if (isAttacker(type)) return <BulletsIcon size={13} className="text-white shrink-0" />;
+  if (isRanger(type)) return <Crosshair size={13} className="text-white shrink-0" />;
+  return null;
 };
 
 const Heroes = () => {
@@ -51,6 +51,7 @@ const Heroes = () => {
   return (
     <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10">
       
+      {/* Header Bar */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
         <div className="flex items-center gap-3 relative">
           <div className="absolute -left-6 top-1/2 -translate-y-1/2 w-2 h-12 bg-blood-red" />
@@ -82,6 +83,7 @@ const Heroes = () => {
         </div>
       </div>
 
+      {/* Filter Section */}
       <AnimatePresence>
         {showFilters && (
           <motion.div 
@@ -125,6 +127,7 @@ const Heroes = () => {
         )}
       </AnimatePresence>
 
+      {/* Tarjetas Originales de Héroes con Icono Circular de la Tier List en la Esquina */}
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -146,9 +149,18 @@ const Heroes = () => {
                 className={`flex flex-col h-full bg-gradient-to-t ${isLegendary(op.rarity) ? 'from-[#1a1400] to-[#111]' : (isCommon(op.rarity) ? 'from-[#000a1a] to-[#111]' : 'from-[#1a001a] to-[#111]')} relative overflow-hidden`}
               >
                 
+                {/* Icono Circular de Clase con Expansión de Nombre al hacer Hover */}
                 {op.unitType && op.unitType !== 'Desconocido' && (
-                  <div className={`absolute top-2 right-2 z-20 flex items-center gap-1 px-2 py-1 border text-[10px] font-mono uppercase tracking-widest ${getUnitColor(op.unitType)} backdrop-blur-sm`}>
-                    {getUnitIcon(op.unitType)} {op.unitType}
+                  <div 
+                    className="absolute top-2.5 right-2.5 z-30 group/badge bg-black/85 hover:bg-black text-white rounded-full h-7 min-w-[28px] px-1.5 border border-gray-600/60 shadow-md flex items-center justify-center gap-1.5 backdrop-blur-sm transition-all duration-300 cursor-pointer"
+                    title={op.unitType}
+                  >
+                    <div className="w-4 h-4 flex items-center justify-center shrink-0">
+                      {getUnitIcon(op.unitType)}
+                    </div>
+                    <span className="max-w-0 opacity-0 group-hover/badge:max-w-[100px] group-hover/badge:opacity-100 overflow-hidden whitespace-nowrap transition-all duration-300 font-mono text-[10px] uppercase text-white font-bold tracking-wider">
+                      {op.unitType}
+                    </span>
                   </div>
                 )}
                 

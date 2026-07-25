@@ -144,3 +144,12 @@ export const convertWeaponExpToMaterials = (totalExp: number) => {
     armasMoradas: Math.ceil(totalExp / weaponExpMaterials.armaMorada),
   };
 };
+
+export const calculateUniqueWeaponFrags = (currentLevel: number, targetLevel: number): number => {
+  if (currentLevel >= targetLevel || currentLevel < 0 || targetLevel > 10) return 0;
+  let total = 0;
+  for (let i = currentLevel; i < targetLevel; i++) {
+    total += (i + 1) * 5;
+  }
+  return total;
+};
