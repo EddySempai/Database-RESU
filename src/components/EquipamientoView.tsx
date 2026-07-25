@@ -2,7 +2,12 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Sword, Shield, ChevronRight, Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { calculateWeaponExp, calculateWeaponPlus, convertWeaponExpToMaterials, calculateUniqueWeaponFrags } from '../utils/weaponCalculators';
+import { 
+  calculateWeaponExp, 
+  calculateWeaponPlus, 
+  convertWeaponExpToMaterials,
+  calculateUniqueWeaponFrags
+} from '../utils/weaponCalculators';
 
 interface SlotState {
   id: string;
@@ -14,99 +19,75 @@ interface SlotState {
   targetPlus: number;
 }
 
-const isDefender = (type: string) => type?.toLowerCase().includes('defen') || type?.includes('ディフェン');
-const isAttacker = (type: string) => type?.toLowerCase().includes('atac') || type?.toLowerCase().includes('attack') || type?.includes('アタッカー');
+interface EquipamientoViewProps {
+  op: {
+    id: string;
+    name: string;
+    unitType: string;
+    rarity?: string;
+    imageUrl: string;
+  };
+}
 
-// Iconos de armas normales según tipo de unidad (Imagen 4)
-// Rojo = Atacantes, Azul = Defensores, Verde = Ranger
-const getNormalWeaponIcon = (unitType: string, slotId: string) => {
-  const isDef = isDefender(unitType);
-  const isAtk = isAttacker(unitType);
-
-  if (slotId === 'armaGrande') {
-    if (isAtk) return '/recursos/Item_Hero_Epuip_A_542.webp';
-    if (isDef) return '/recursos/Item_Hero_Epuip_A_541.webp';
-    return '/recursos/Item_Hero_Epuip_A_543.webp';
-  }
-  if (slotId === 'pistola') {
-    if (isAtk) return '/recursos/Item_Hero_Epuip_A_512.webp';
-    if (isDef) return '/recursos/Item_Hero_Epuip_A_511.webp';
-    return '/recursos/Item_Hero_Epuip_A_513.webp';
-  }
-  if (slotId === 'revolver') {
-    if (isAtk) return '/recursos/Item_Hero_Epuip_A_522.webp';
-    if (isDef) return '/recursos/Item_Hero_Epuip_A_521.webp';
-    return '/recursos/Item_Hero_Epuip_A_523.webp';
-  }
-  if (slotId === 'cuchillo') {
-    if (isAtk) return '/recursos/Item_Hero_Epuip_A_532.webp';
-    if (isDef) return '/recursos/Item_Hero_Epuip_A_531.webp';
-    return '/recursos/Item_Hero_Epuip_A_533.webp';
-  }
-  return '/recursos/Item_Hero_Epuip_A_511.webp';
-};
-
-// Mapeo oficial de Armas Exclusivas por Personaje (13000 -> 13015)
+// Mapeo de personajes legendarios a su ID de Pieza/Arma Exclusiva (13000 a 13015)
 const characterWeaponCodeMap: Record<string, string> = {
-  leon: '13000',
-  claire: '13001',
-  carlos: '13002',
-  ada: '13003',
-  jill: '13004',
-  chris: '13005',
-  chirs: '13005',
-  rebecca: '13006',
-  billy: '13007',
-  billie: '13007',
-  krauser: '13008',
-  luis: '13009',
-  ashley: '13010',
-  asheley: '13010',
-  jake: '13011',
-  sherry: '13012',
-  piers: '13013',
-  cazador: '13014',
-  cazadora: '13015',
+  '1': '13000', // Leon S. Kennedy
+  '2': '13001', // Claire Redfield
+  '3': '13002', // Carlos Oliveira
+  '4': '13003', // Ada Wong
+  '5': '13004', // Jill Valentine
+  '6': '13005', // Chris Redfield
+  '7': '13006', // Rebecca Chambers
+  '8': '13007', // Billy Coen
+  '9': '13008', // Jack Krauser
+  '10': '13009', // Luis Sera
+  '11': '13010', // Ashley Graham
+  '12': '13011', // Jake Muller
+  '13': '13012', // Sherry Birkin
+  '14': '13013', // Piers Nivans
+  '15': '13014', // Cazador (Hunter M)
+  '16': '13015', // Cazadora (Hunter F)
 };
 
-const getWeaponCodeByCharacter = (characterId: string): string => {
-  const id = characterId?.toLowerCase() || '';
-  for (const key of Object.keys(characterWeaponCodeMap)) {
-    if (id.includes(key)) {
-      return characterWeaponCodeMap[key];
-    }
-  }
-  return '13000';
+const getNormalWeaponIcon = (unitType: string, slotId: string) => {
+  const isDefender = unitType?.toLowerCase().includes('defen') || unitType?.includes('ディフェン');
+  const isRanger = unitType?.toLowerCase().includes('rang') || unitType?.includes('レンジャー');
+  const suffix = isDefender ? '541' : (isRanger ? '543' : '542');
+  
+  if (slotId === 'armaPrincipal') return `/recursos/Item_Hero_Epuip_A_${suffix}.webp`;
+  if (slotId === 'pistola') return `/recursos/Item_Hero_Epuip_A_${isDefender ? '511' : (isRanger ? '513' : '512')}.webp`;
+  if (slotId === 'revolver') return `/recursos/Item_Hero_Epuip_A_${isDefender ? '521' : (isRanger ? '523' : '522')}.webp`;
+  if (slotId === 'cuchillo') return `/recursos/Item_Hero_Epuip_A_${isDefender ? '531' : (isRanger ? '533' : '532')}.webp`;
+  
+  return `/recursos/Item_Hero_Epuip_A_512.webp`;
 };
 
-// Icono de Arma Única / Exclusiva para Personajes Legendarios
-const getUniqueWeaponIcon = (characterId: string) => {
-  const code = getWeaponCodeByCharacter(characterId);
+const getUniqueWeaponIcon = (opId: string) => {
+  const code = characterWeaponCodeMap[opId] || '13000';
   return `/recursos/Item_Hero_Epuip_A_${code}.webp`;
 };
 
-// Icono de Fragmento / Pieza de Arma Única para Personajes Legendarios
-const getUniqueWeaponPieceIcon = (characterId: string) => {
-  const code = getWeaponCodeByCharacter(characterId);
+const getUniqueWeaponPieceIcon = (opId: string) => {
+  const code = characterWeaponCodeMap[opId] || '13000';
   return `/recursos/Item_Hero_Epuip_Piece_A_${code}.webp`;
 };
 
-export default function EquipamientoView({ op }: { op: any }) {
+export default function EquipamientoView({ op }: EquipamientoViewProps) {
   const { t } = useTranslation();
-  const isLegendary = op?.rarity?.toLowerCase() === 'legendario' || op?.rarity?.toLowerCase() === 'legendary';
+  const isLegendary = op.rarity?.toLowerCase().includes('legen') || op.rarity?.includes('レジェン');
 
   const buildInitialSlots = (): SlotState[] => {
     const list: SlotState[] = [
-      { id: 'armaGrande', name: t('op_detail.big_gun'), type: 'Penetración', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 20 },
-      { id: 'pistola', name: t('op_detail.pistol'), type: 'Penetración', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 20 },
-      { id: 'revolver', name: t('op_detail.revolver'), type: 'Vida', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 20 },
-      { id: 'cuchillo', name: t('op_detail.knife'), type: 'Vida', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 20 }
+      { id: 'armaPrincipal', name: 'Arma Grande', type: 'Penetración', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 0 },
+      { id: 'pistola', name: 'Pistola', type: 'Penetración', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 0 },
+      { id: 'revolver', name: 'Revólver', type: 'Vida', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 0 },
+      { id: 'cuchillo', name: 'Cuchillo', type: 'Vida', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 0 },
     ];
 
     if (isLegendary) {
       list.push({
         id: 'armaUnica',
-        name: `Arma Exclusiva (${op?.name || 'Legendario'})`,
+        name: 'Arma Exclusiva',
         type: 'Exclusiva',
         currentLevel: 0,
         targetLevel: 10,
@@ -153,24 +134,40 @@ export default function EquipamientoView({ op }: { op: any }) {
   const materials = convertWeaponExpToMaterials(totalExp);
 
   return (
-    <div className="w-full relative flex flex-col items-center">
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.97 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.4 }}
+      className="w-full relative flex flex-col items-center"
+    >
       
       {/* Layout Visual del Operativo y sus Equipamientos */}
       <div className="w-full max-w-4xl relative h-[560px] flex items-center justify-center mb-8">
         
-        {/* Character Image */}
-        <div className="absolute inset-0 flex justify-center items-end opacity-90 pointer-events-none">
+        {/* Hero Character Image with smooth glow fade-in */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 0.9, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="absolute inset-0 flex justify-center items-end pointer-events-none"
+        >
           <img 
             src={localImage} 
             alt={op.name} 
-            className="h-[95%] md:h-full object-contain filter drop-shadow-[0_0_25px_rgba(255,0,0,0.15)]"
+            className="h-[95%] md:h-full object-contain filter drop-shadow-[0_0_35px_rgba(234,179,8,0.2)]"
           />
-        </div>
+        </motion.div>
 
         {/* 4 Normal Weapon Slots */}
         <div className="absolute inset-0 flex justify-between items-center px-4 md:px-12 pointer-events-none">
-          {/* Left Side (Penetración: Arma Grande y Pistola) */}
-          <div className="flex flex-col gap-20 pointer-events-auto">
+          
+          {/* Left Side Slots (Penetración) - Animated Flying in from Left */}
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.35, delay: 0.1 }}
+            className="flex flex-col gap-20 pointer-events-auto"
+          >
             {[slots[0], slots[1]].map(slot => slot && (
               <WeaponSlotNode 
                 key={slot.id} 
@@ -179,10 +176,15 @@ export default function EquipamientoView({ op }: { op: any }) {
                 onClick={() => setSelectedSlotId(slot.id)} 
               />
             ))}
-          </div>
+          </motion.div>
 
-          {/* Right Side (Vida: Revólver y Cuchillo) */}
-          <div className="flex flex-col gap-20 pointer-events-auto">
+          {/* Right Side Slots (Vida) - Animated Flying in from Right */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.35, delay: 0.1 }}
+            className="flex flex-col gap-20 pointer-events-auto"
+          >
             {[slots[2], slots[3]].map(slot => slot && (
               <WeaponSlotNode 
                 key={slot.id} 
@@ -192,144 +194,214 @@ export default function EquipamientoView({ op }: { op: any }) {
                 right 
               />
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* BOTTOM CENTER: ARMA ÚNICA / EXCLUSIVA PARA PERSONAJES LEGENDARIOS */}
         {isLegendary && slots.find(s => s.id === 'armaUnica') && (
-          <div className="absolute bottom-1 z-20 flex flex-col items-center pointer-events-auto">
-            <button
+          <motion.div 
+            initial={{ opacity: 0, y: 50, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ type: 'spring', damping: 18, stiffness: 250, delay: 0.35 }}
+            className="absolute bottom-1 z-20 flex flex-col items-center pointer-events-auto"
+          >
+            <motion.button
+              whileHover={{ scale: 1.1, y: -4 }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => setSelectedSlotId('armaUnica')}
-              className="group relative flex flex-col items-center transition-transform hover:scale-105"
+              className="group relative flex flex-col items-center cursor-pointer"
             >
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-[#3b2e0c] via-[#1a1405] to-[#0a0803] border-2 border-yellow-500 rounded-md flex flex-col items-center justify-center relative overflow-hidden shadow-[0_0_25px_rgba(234,179,8,0.5)] group-hover:shadow-[0_0_35px_rgba(234,179,8,0.8)] transition-all">
+              {/* Dynamic Golden Energy Pulsing Ring on Hover */}
+              <div className="absolute -inset-3 rounded-2xl bg-yellow-500/0 group-hover:bg-yellow-500/25 blur-lg transition-all duration-300 pointer-events-none" />
+              
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-[#3b2e0c] via-[#1a1405] to-[#0a0803] border-2 border-yellow-500 rounded-md flex flex-col items-center justify-center relative overflow-hidden shadow-[0_0_25px_rgba(234,179,8,0.5)] group-hover:shadow-[0_0_40px_rgba(234,179,8,0.9)] transition-all">
                 <img 
                   src={getUniqueWeaponIcon(op.id)} 
                   alt="Arma Exclusiva" 
-                  className="w-14 h-14 md:w-16 md:h-16 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]" 
+                  className="w-14 h-14 md:w-16 md:h-16 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] group-hover:scale-110 transition-transform duration-300" 
                 />
                 <div className="absolute bottom-0 w-full bg-black/90 font-mono text-[9px] text-yellow-400 font-bold text-center py-0.5 border-t border-yellow-500/50">
                   Nv.{slots.find(s => s.id === 'armaUnica')?.currentLevel || 0}
                 </div>
               </div>
-              <span className="font-bebas text-base md:text-lg text-yellow-400 tracking-widest mt-1 drop-shadow flex items-center gap-1">
-                <Star size={14} className="fill-yellow-400 text-yellow-400" /> Arma Exclusiva
+              <span className="font-bebas text-base md:text-lg text-yellow-400 tracking-widest mt-1 drop-shadow flex items-center gap-1 group-hover:text-yellow-300">
+                <Star size={14} className="fill-yellow-400 text-yellow-400 animate-spin-slow" /> Arma Exclusiva
               </span>
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         )}
       </div>
 
-      {/* Modal Editor de Nivel de Arma */}
+      {/* MODAL EDITOR CENTRADO IMPECABLEMENTE CON FLEXBOX */}
       <AnimatePresence>
         {selectedSlot && (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95, x: "-50%", y: "-50%" }}
-            animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
-            exit={{ opacity: 0, scale: 0.95, x: "-50%", y: "-50%" }}
-            className="fixed top-1/2 left-1/2 z-50 w-[95%] max-w-2xl bg-[#0a0a0a] border border-yellow-500/50 shadow-[0_0_50px_rgba(0,0,0,0.9)] p-6 backdrop-blur-md rounded-sm"
-          >
-            <button onClick={() => setSelectedSlotId(null)} className="absolute top-4 right-4 text-gray-500 hover:text-white">
-              <X size={20} />
-            </button>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Darkened Blur Backdrop Overlay */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setSelectedSlotId(null)}
+              className="fixed inset-0 bg-black/85 backdrop-blur-md"
+            />
 
-            <div className="flex items-center gap-3 mb-6 border-b border-gray-800 pb-4">
+            {/* Modal HUD Táctico Centrado en Pantalla */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 15 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 320 }}
+              className="relative z-10 w-full max-w-2xl bg-[#09090b] border-2 border-yellow-500/60 shadow-[0_0_60px_rgba(234,179,8,0.35)] p-6 md:p-8 backdrop-blur-xl rounded-lg overflow-hidden"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={() => setSelectedSlotId(null)} 
+                className="absolute top-4 right-4 z-30 text-gray-400 hover:text-white bg-black/60 hover:bg-yellow-500/20 border border-gray-800 hover:border-yellow-500/50 p-1.5 rounded-full transition-all duration-200"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Modal Header */}
+              <div className="flex items-center gap-3 mb-6 border-b border-yellow-500/20 pb-4 relative z-20">
+                {selectedSlot.type === 'Exclusiva' ? (
+                  <div className="p-2 bg-yellow-500/20 rounded-md border border-yellow-500/40">
+                    <Star className="text-yellow-400 fill-yellow-400 animate-pulse" size={24} />
+                  </div>
+                ) : selectedSlot.type === 'Penetración' ? (
+                  <div className="p-2 bg-red-950/30 rounded-md border border-red-800/40">
+                    <Sword className="text-neon-red" size={24} />
+                  </div>
+                ) : (
+                  <div className="p-2 bg-blue-950/30 rounded-md border border-blue-800/40">
+                    <Shield className="text-blue-500" size={24} />
+                  </div>
+                )}
+                <div>
+                  <h3 className="font-bebas text-3xl md:text-4xl text-white tracking-widest leading-none">
+                    {selectedSlot.name}
+                  </h3>
+                  <span className="font-mono text-[10px] uppercase text-yellow-400 tracking-wider">
+                    {selectedSlot.type === 'Exclusiva' ? 'Arma Exclusiva Legendaria' : `Slot de ${selectedSlot.type}`}
+                  </span>
+                </div>
+              </div>
+
+              {/* Vista Previa Flotante del Arma con Resplandor Dorado Elegante */}
+              <div className="flex justify-center mb-6 relative z-20">
+                <div className="relative flex items-center justify-center p-6 bg-gradient-to-b from-[#1a1405] via-[#0d0a03] to-[#050401] border-2 border-yellow-500/40 rounded-xl w-full max-w-sm overflow-hidden shadow-[0_0_30px_rgba(234,179,8,0.25)]">
+                  
+                  {/* Resplandor Suave de Luz Dorada */}
+                  <motion.div 
+                    animate={{ 
+                      opacity: [0.4, 0.7, 0.4],
+                      scale: [1, 1.08, 1]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                    className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-500/25 via-amber-600/10 to-transparent pointer-events-none"
+                  />
+
+                  {/* Resplandor de Fondo detrás del Arma */}
+                  <div className="absolute w-36 h-36 bg-yellow-500/20 rounded-full blur-2xl pointer-events-none" />
+
+                  {/* Imagen Flotante del Arma */}
+                  <motion.img 
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+                    src={selectedSlot.type === 'Exclusiva' ? getUniqueWeaponIcon(op.id) : getNormalWeaponIcon(op.unitType, selectedSlot.id)}
+                    alt={selectedSlot.name}
+                    className="h-28 md:h-32 object-contain filter drop-shadow-[0_4px_25px_rgba(234,179,8,0.5)] relative z-20"
+                  />
+
+                  {/* Borde Inferior Dorado Brillante */}
+                  <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent shadow-[0_0_10px_#facc15]" />
+                </div>
+              </div>
+
+              {/* CONTROLES DE NIVEL */}
               {selectedSlot.type === 'Exclusiva' ? (
-                <Star className="text-yellow-400 fill-yellow-400" />
-              ) : selectedSlot.type === 'Penetración' ? (
-                <Sword className="text-neon-red" />
-              ) : (
-                <Shield className="text-blue-500" />
-              )}
-              <h3 className="font-bebas text-3xl text-white tracking-widest">{selectedSlot.name}</h3>
-              <span className="font-mono text-xs uppercase text-yellow-400 bg-yellow-500/10 px-2 py-1 ml-auto mr-8 border border-yellow-500/30 rounded-sm">
-                {selectedSlot.type === 'Exclusiva' ? 'Arma Única' : selectedSlot.type}
-              </span>
-            </div>
-
-            {/* SI ES ARMA ÚNICA LEGENDARIA (NV 0 A 10) */}
-            {selectedSlot.type === 'Exclusiva' ? (
-              <div className="border border-yellow-500/30 p-6 bg-yellow-950/10 rounded-sm">
-                <h4 className="font-mono text-yellow-400 text-xs uppercase tracking-widest text-center mb-6">
-                  Nivel de Arma Exclusiva
-                </h4>
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex-1">
-                    <label className="block text-[10px] text-gray-400 font-mono uppercase mb-2">Nivel Actual</label>
-                    <input 
-                      type="number" min="0" max="10" 
-                      value={selectedSlot.currentLevel}
-                      onChange={e => updateSlot(selectedSlot.id, { currentLevel: Math.min(10, Math.max(0, parseInt(e.target.value) || 0)) })}
-                      className="w-full bg-transparent border-b-2 border-gray-700 text-white text-3xl font-bebas text-center focus:border-yellow-400 outline-none pb-1"
-                    />
-                  </div>
-                  <ChevronRight className="text-yellow-500" size={24} />
-                  <div className="flex-1">
-                    <label className="block text-[10px] text-gray-400 font-mono uppercase mb-2 text-right">Nivel Objetivo</label>
-                    <input 
-                      type="number" min="0" max="10" 
-                      value={selectedSlot.targetLevel}
-                      onChange={e => updateSlot(selectedSlot.id, { targetLevel: Math.min(10, Math.max(0, parseInt(e.target.value) || 0)) })}
-                      className="w-full bg-transparent border-b-2 border-yellow-400 text-yellow-400 text-3xl font-bebas text-center focus:border-white outline-none pb-1"
-                    />
-                  </div>
-                </div>
-              </div>
-            ) : (
-              /* ARMAS NORMALES (NV 1-100 & MEJORA +0-20) */
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
-                <div className="border border-gray-800 p-6 bg-black/50">
-                  <h4 className="font-mono text-gray-400 text-xs uppercase tracking-widest text-center mb-6">{t('op_detail.base_level')}</h4>
+                <div className="border border-yellow-500/30 p-6 bg-yellow-950/20 rounded-md relative z-20">
+                  <h4 className="font-mono text-yellow-400 text-xs uppercase tracking-widest text-center mb-6">
+                    Nivel de Arma Exclusiva (0 ➔ 10)
+                  </h4>
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex-1">
-                      <label className="block text-[10px] text-gray-600 font-mono uppercase mb-2">ACTUAL</label>
+                      <label className="block text-[10px] text-gray-400 font-mono uppercase mb-2 text-center">Nivel Actual</label>
                       <input 
-                        type="number" min="1" max="100" 
+                        type="number" min="0" max="10" 
                         value={selectedSlot.currentLevel}
-                        onChange={e => updateSlot(selectedSlot.id, { currentLevel: Math.min(100, Math.max(1, parseInt(e.target.value) || 1)) })}
-                        className="w-full bg-transparent border-b-2 border-gray-800 text-white text-3xl font-bebas text-center focus:border-neon-red outline-none pb-1"
+                        onChange={e => updateSlot(selectedSlot.id, { currentLevel: Math.min(10, Math.max(0, parseInt(e.target.value) || 0)) })}
+                        className="w-full bg-black/60 border-b-2 border-gray-700 text-white text-3xl font-bebas text-center focus:border-yellow-400 outline-none pb-1 rounded-t-sm"
                       />
                     </div>
-                    <ChevronRight className="text-gray-700" size={24} />
+                    <ChevronRight className="text-yellow-500 animate-pulse" size={28} />
                     <div className="flex-1">
-                      <label className="block text-[10px] text-gray-600 font-mono uppercase mb-2 text-right">OBJETIVO</label>
+                      <label className="block text-[10px] text-gray-400 font-mono uppercase mb-2 text-center">Nivel Objetivo</label>
                       <input 
-                        type="number" min="1" max="100" 
+                        type="number" min="0" max="10" 
                         value={selectedSlot.targetLevel}
-                        onChange={e => updateSlot(selectedSlot.id, { targetLevel: Math.min(100, Math.max(1, parseInt(e.target.value) || 1)) })}
-                        className="w-full bg-transparent border-b-2 border-blood-red text-neon-red text-3xl font-bebas text-center focus:border-white outline-none pb-1"
+                        onChange={e => updateSlot(selectedSlot.id, { targetLevel: Math.min(10, Math.max(0, parseInt(e.target.value) || 0)) })}
+                        className="w-full bg-black/60 border-b-2 border-yellow-400 text-yellow-400 text-3xl font-bebas text-center focus:border-white outline-none pb-1 rounded-t-sm"
                       />
                     </div>
                   </div>
                 </div>
+              ) : (
+                /* ARMAS NORMALES */
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4 relative z-20">
+                  <div className="border border-gray-800 p-5 bg-black/60 rounded-md">
+                    <h4 className="font-mono text-gray-400 text-xs uppercase tracking-widest text-center mb-4">{t('op_detail.base_level')}</h4>
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex-1">
+                        <label className="block text-[10px] text-gray-500 font-mono uppercase mb-1 text-center">ACTUAL</label>
+                        <input 
+                          type="number" min="1" max="100" 
+                          value={selectedSlot.currentLevel}
+                          onChange={e => updateSlot(selectedSlot.id, { currentLevel: Math.min(100, Math.max(1, parseInt(e.target.value) || 1)) })}
+                          className="w-full bg-black border-b-2 border-gray-800 text-white text-2xl font-bebas text-center focus:border-neon-red outline-none pb-1"
+                        />
+                      </div>
+                      <ChevronRight className="text-gray-600" size={20} />
+                      <div className="flex-1">
+                        <label className="block text-[10px] text-gray-500 font-mono uppercase mb-1 text-center">OBJETIVO</label>
+                        <input 
+                          type="number" min="1" max="100" 
+                          value={selectedSlot.targetLevel}
+                          onChange={e => updateSlot(selectedSlot.id, { targetLevel: Math.min(100, Math.max(1, parseInt(e.target.value) || 1)) })}
+                          className="w-full bg-black border-b-2 border-blood-red text-neon-red text-2xl font-bebas text-center focus:border-white outline-none pb-1"
+                        />
+                      </div>
+                    </div>
+                  </div>
 
-                <div className="border border-gray-800 p-6 bg-black/50">
-                  <h4 className="font-mono text-gray-400 text-xs uppercase tracking-widest text-center mb-6">{t('op_detail.plus_level')}</h4>
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="flex-1">
-                      <label className="text-[10px] font-mono text-gray-500 uppercase">Actual</label>
-                      <input 
-                        type="number" min="0" max="20" 
-                        value={selectedSlot.currentPlus}
-                        onChange={(e) => updateSlot(selectedSlot.id, { currentPlus: Math.min(20, Math.max(0, Number(e.target.value))) })}
-                        className="w-full bg-transparent border-b border-gray-700 text-white font-bebas text-2xl outline-none focus:border-yellow-500 text-center"
-                      />
-                    </div>
-                    <ChevronRight className="text-gray-600" />
-                    <div className="flex-1">
-                      <label className="text-[10px] font-mono text-gray-500 uppercase">Objetivo</label>
-                      <input 
-                        type="number" min="0" max="20" 
-                        value={selectedSlot.targetPlus}
-                        onChange={(e) => updateSlot(selectedSlot.id, { targetPlus: Math.min(20, Math.max(0, Number(e.target.value))) })}
-                        className="w-full bg-transparent border-b border-gray-700 text-yellow-500 font-bebas text-2xl outline-none focus:border-yellow-500 text-center"
-                      />
+                  <div className="border border-gray-800 p-5 bg-black/60 rounded-md">
+                    <h4 className="font-mono text-gray-400 text-xs uppercase tracking-widest text-center mb-4">{t('op_detail.plus_level')}</h4>
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex-1">
+                        <label className="block text-[10px] text-gray-500 font-mono uppercase mb-1 text-center">ACTUAL</label>
+                        <input 
+                          type="number" min="0" max="20" 
+                          value={selectedSlot.currentPlus}
+                          onChange={(e) => updateSlot(selectedSlot.id, { currentPlus: Math.min(20, Math.max(0, Number(e.target.value))) })}
+                          className="w-full bg-black border-b-2 border-gray-800 text-white text-2xl font-bebas text-center focus:border-yellow-500 outline-none pb-1"
+                        />
+                      </div>
+                      <ChevronRight className="text-gray-600" size={20} />
+                      <div className="flex-1">
+                        <label className="block text-[10px] text-gray-500 font-mono uppercase mb-1 text-center">OBJETIVO</label>
+                        <input 
+                          type="number" min="0" max="20" 
+                          value={selectedSlot.targetPlus}
+                          onChange={(e) => updateSlot(selectedSlot.id, { targetPlus: Math.min(20, Math.max(0, Number(e.target.value))) })}
+                          className="w-full bg-black border-b-2 border-yellow-500 text-yellow-500 text-2xl font-bebas text-center focus:border-white outline-none pb-1"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
-          </motion.div>
+              )}
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
 
@@ -352,26 +424,28 @@ export default function EquipamientoView({ op }: { op: any }) {
                   : getNormalWeaponIcon(op.unitType, s.id);
 
                 return (
-                  <div 
-                    key={i} 
-                    className="bg-gradient-to-r from-yellow-500/15 via-[#080808] to-transparent border border-yellow-500/30 p-3 rounded-sm flex justify-between items-center gap-4"
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <img 
-                        src={iconUrl} 
-                        alt={s.name} 
-                        className="w-10 h-10 md:w-12 md:h-12 object-contain shrink-0 filter drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]" 
-                      />
-                      <span className="font-mono text-sm text-gray-200 font-bold truncate">{s.name}</span>
+                  <div key={i} className="flex items-center justify-between p-2.5 bg-gradient-to-r from-yellow-500/15 via-[#080808] to-transparent border-l-2 border-yellow-500 rounded-r-md">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 flex items-center justify-center shrink-0">
+                        <img 
+                          src={iconUrl} 
+                          alt={s.name} 
+                          className="w-full h-full object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" 
+                        />
+                      </div>
+                      <span className="font-bebas text-lg text-white tracking-wider">{s.name}</span>
                     </div>
 
-                    <div className="text-right shrink-0">
+                    <div className="flex items-center gap-4 font-mono text-xs">
                       {s.isUnique ? (
-                        <div className="font-bebas text-xl text-yellow-400 tracking-widest">{s.frags.toLocaleString()} Fragmentos</div>
+                        <div className="flex items-center gap-1.5">
+                          <img src={getUniqueWeaponPieceIcon(op.id)} alt="Pieza" className="w-4 h-4 object-contain" />
+                          <span className="text-yellow-400 font-bold">{s.frags.toLocaleString()} frag</span>
+                        </div>
                       ) : (
                         <>
-                          <div className="font-bebas text-xl text-neon-red tracking-widest">{s.exp.toLocaleString()} EXP</div>
-                          <div className="font-mono text-xs text-yellow-500">{s.plus.toLocaleString()} Componentes</div>
+                          <span className="text-neon-red font-bold">{s.exp.toLocaleString()} EXP</span>
+                          <span className="text-yellow-500 font-bold">+{s.plus} comp</span>
                         </>
                       )}
                     </div>
@@ -421,28 +495,34 @@ export default function EquipamientoView({ op }: { op: any }) {
         </div>
       </div>
 
-    </div>
+    </motion.div>
   );
 }
 
 function WeaponSlotNode({ slot, iconUrl, onClick, right = false }: { slot: SlotState, iconUrl: string, onClick: () => void, right?: boolean }) {
   return (
-    <button 
+    <motion.button 
+      whileHover={{ scale: 1.08, y: -3 }}
+      whileTap={{ scale: 0.92 }}
       onClick={onClick}
-      className={`group relative flex items-center gap-4 transition-transform hover:scale-105 ${right ? 'flex-row-reverse' : 'flex-row'}`}
+      className={`group relative flex items-center gap-4 cursor-pointer select-none ${right ? 'flex-row-reverse' : 'flex-row'}`}
     >
-      <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-[#3b2e0c] via-[#1a1405] to-[#0a0803] border-2 border-yellow-500/80 group-hover:border-yellow-400 rounded-md flex items-center justify-center relative overflow-hidden shadow-[0_0_15px_rgba(234,179,8,0.3)] group-hover:shadow-[0_0_25px_rgba(234,179,8,0.6)] transition-all">
-        <img src={iconUrl} alt={slot.name} className="w-12 h-12 md:w-14 md:h-14 object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" />
+      <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-[#3b2e0c] via-[#1a1405] to-[#0a0803] border-2 border-yellow-500/80 group-hover:border-yellow-400 rounded-md flex items-center justify-center relative overflow-hidden shadow-[0_0_15px_rgba(234,179,8,0.35)] group-hover:shadow-[0_0_30px_rgba(234,179,8,0.85)] transition-shadow duration-300">
+        <img 
+          src={iconUrl} 
+          alt={slot.name} 
+          className="w-12 h-12 md:w-14 md:h-14 object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] group-hover:scale-110 transition-transform duration-300" 
+        />
         <div className="absolute bottom-0 w-full bg-black/90 font-mono text-[9px] text-yellow-400 font-bold text-center py-0.5 border-t border-yellow-500/40">
           Lv.{slot.currentLevel}
         </div>
       </div>
       <div className={`flex flex-col ${right ? 'items-end' : 'items-start'}`}>
-        <span className="font-bebas text-xl text-white tracking-widest drop-shadow-md">{slot.name}</span>
+        <span className="font-bebas text-xl text-white tracking-widest drop-shadow-md group-hover:text-yellow-400 transition-colors duration-200">{slot.name}</span>
         <span className="font-mono text-[10px] text-yellow-500 bg-yellow-500/10 px-1.5 py-0.5 border border-yellow-500/30 rounded-sm">
           +{slot.currentPlus}
         </span>
       </div>
-    </button>
+    </motion.button>
   );
 }

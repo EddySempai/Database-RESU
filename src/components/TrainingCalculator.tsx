@@ -57,14 +57,9 @@ const InventoryItem = ({ label, value, onChange, isTroop, rarity }: any) => {
 
 const TrainingCalculator = () => {
   const { t } = useTranslation();
-  const [mode, setMode] = useState<'direct' | 'advanced'>('direct');
   const [eventMode, setEventMode] = useState<'cumbres' | 'svs'>('cumbres');
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
-  // Direct Mode
-  const [level, setLevel] = useState<number>(11);
-  const [troops, setTroops] = useState<number>(1000);
   
   // Advanced Mode Queues
   const [queues, setQueues] = useState<QueueItem[]>([
@@ -135,10 +130,6 @@ const TrainingCalculator = () => {
   const activePoints = eventMode === 'cumbres' ? POINTS_PER_UNIT : SVS_POINTS_PER_UNIT;
 
   const results = useMemo(() => {
-    if (mode === 'direct') {
-      return { totalPoints: troops * (activePoints[level] || 0), totalTroops: troops, queueResults: [] };
-    } 
-    
     // Inventory total seconds
     const accelSecs = ((gen1m * 1) + (gen5m * 5) + (gen1h * 60) + (gen3h * 180) + (gen8h * 480) + (trp1m * 1) + (trp5m * 5) + (trp1h * 60)) * 60;
 
@@ -187,7 +178,7 @@ const TrainingCalculator = () => {
     const totalUsedDays = totalUsedSecs / 86400;
 
     return { totalPoints, totalTroops, accelSecs, totalUsedSecs, totalUsedDays, queueResults: finalQueues };
-  }, [mode, eventMode, level, troops, queues, gen1m, gen5m, gen1h, gen3h, gen8h, trp1m, trp5m, trp1h, activePoints]);
+  }, [eventMode, queues, gen1m, gen5m, gen1h, gen3h, gen8h, trp1m, trp5m, trp1h, activePoints]);
 
   return (
     <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative z-10 py-12 px-6 max-w-7xl mx-auto">
@@ -204,175 +195,145 @@ const TrainingCalculator = () => {
             <button onClick={() => setEventMode('svs')} className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors border-l border-gray-800 ${eventMode === 'svs' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>{t('calculator.svs')}</button>
           </div>
         </div>
-        
-        {/* Tabs */}
-        <div className="border-b border-gray-800 px-6 py-2 bg-[#020202] flex gap-2">
-           <button onClick={() => setMode('direct')} className={`px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all ${mode === 'direct' ? 'text-neon-red border-b-2 border-neon-red' : 'text-gray-600 hover:text-gray-400'}`}>{t('calculator.tab_direct')}</button>
-           <button onClick={() => setMode('advanced')} className={`px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all ${mode === 'advanced' ? 'text-neon-red border-b-2 border-neon-red' : 'text-gray-600 hover:text-gray-400'}`}>{t('calculator.tab_advanced')}</button>
-        </div>
 
         <div className="p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
           
-          {/* Panel Izquierdo: Entradas */}
+          {/* Panel Izquierdo: Entradas del Optimizador */}
           <div className="lg:col-span-3 space-y-6">
-            <AnimatePresence mode="wait">
+            
+            {/* Filas de Entrenamiento */}
+            <div className="space-y-4">
+              <div className="flex justify-between items-center border-b border-gray-800 pb-2">
+                <label className="font-mono text-neon-red text-xs uppercase tracking-widest">{t('calculator.queues')}</label>
+                <button onClick={addQueue} className="flex items-center gap-1 text-[10px] font-mono bg-blue-900/30 text-blue-400 border border-blue-900 px-2 py-1 hover:bg-blue-900/60 transition-colors cursor-pointer">
+                  <Plus size={12}/> {t('calculator.add_queue')}
+                </button>
+              </div>
               
-              {/* MODO DIRECTO */}
-              {mode === 'direct' && (
-                <motion.div key="direct" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-6">
-                  <div>
-                    <label className="block font-mono text-gray-400 text-xs uppercase tracking-widest mb-2">{t('calculator.troop_level')}</label>
-                    <select value={level} onChange={(e) => setLevel(Number(e.target.value))} className="w-full bg-black border border-gray-700 text-white font-bebas text-xl p-3 outline-none focus:border-blood-red cursor-pointer appearance-none">
-                      {[...Array(11)].map((_, i) => (<option key={i+1} value={i+1}>T{i+1} ({activePoints[i+1]} {t('calculator.pts_u')})</option>))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block font-mono text-gray-400 text-xs uppercase tracking-widest mb-2">{t('calculator.total_troops')}</label>
-                    <input type="number" min="0" value={troops || ''} onChange={(e) => setTroops(parseInt(e.target.value) || 0)} className="w-full bg-black border border-gray-700 text-neon-red font-mono text-2xl p-4 outline-none focus:border-blood-red transition-colors" />
-                  </div>
-                </motion.div>
-              )}
-
-              {/* MODO OPTIMIZADOR */}
-              {mode === 'advanced' && (
-                <motion.div key="advanced" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-6">
-                  
-                  {/* Filas de Entrenamiento */}
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center border-b border-gray-800 pb-2">
-                      <label className="font-mono text-neon-red text-xs uppercase tracking-widest">{t('calculator.queues')}</label>
-                      <button onClick={addQueue} className="flex items-center gap-1 text-[10px] font-mono bg-blue-900/30 text-blue-400 border border-blue-900 px-2 py-1 hover:bg-blue-900/60 transition-colors">
-                        <Plus size={12}/> {t('calculator.add_queue')}
-                      </button>
-                    </div>
-                    
-                    <AnimatePresence>
-                      {queues.map((q) => (
-                        <motion.div key={q.id} initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="bg-[#0a0a0a] border border-gray-800 p-4 relative">
-                          {queues.length > 1 && (
-                            <button onClick={() => removeQueue(q.id)} className="absolute top-2 right-2 text-gray-600 hover:text-red-500 transition-colors"><Trash2 size={16}/></button>
-                          )}
-                          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-                            
-                            {/* Selector de Tipo y Niveles */}
-                            <div className="md:col-span-4 space-y-3">
-                              <div className="flex bg-black border border-gray-700 p-1">
-                                <button onClick={() => updateQueue(q.id, 'type', 'train')} className={`flex-1 py-1 font-mono text-[9px] uppercase tracking-widest transition-colors ${q.type === 'train' ? 'bg-gray-800 text-white' : 'text-gray-500 hover:text-gray-400'}`}>{t('calculator.new')}</button>
-                                <button onClick={() => updateQueue(q.id, 'type', 'upgrade')} className={`flex-1 py-1 font-mono text-[9px] uppercase tracking-widest transition-colors ${q.type === 'upgrade' ? 'bg-blood-red/80 text-white' : 'text-gray-500 hover:text-gray-400'}`}>{t('calculator.upgrade')}</button>
-                              </div>
-                              <div className="flex items-center gap-2">
-                                {q.type === 'upgrade' && (
-                                  <>
-                                    <select value={q.fromLevel} onChange={(e) => updateQueue(q.id, 'fromLevel', Number(e.target.value))} className="flex-1 bg-black border border-gray-700 text-white font-bebas text-lg p-1 outline-none focus:border-blood-red appearance-none text-center">
-                                      {[...Array(11)].map((_, i) => (<option key={i+1} value={i+1}>T{i+1}</option>))}
-                                    </select>
-                                    <ArrowRight className="text-gray-500" size={16}/>
-                                  </>
-                                )}
-                                <select value={q.toLevel} onChange={(e) => updateQueue(q.id, 'toLevel', Number(e.target.value))} className="flex-1 bg-black border border-gray-700 text-white font-bebas text-lg p-1 outline-none focus:border-blood-red appearance-none text-center">
-                                  {[...Array(11)].map((_, i) => (<option key={i+1} value={i+1}>T{i+1}</option>))}
-                                </select>
-                              </div>
-                              <div className="text-[10px] font-mono text-gray-500 text-center">
-                                {q.type === 'upgrade' 
-                                  ? `${t('calculator.wins')} ${Math.max(0, activePoints[q.toLevel] - activePoints[q.fromLevel])} ${t('calculator.pts_u')}` 
-                                  : `${t('calculator.wins')} ${activePoints[q.toLevel]} ${t('calculator.pts_u')}`}
-                              </div>
-                            </div>
-                            
-                            {/* Cantidad y Límite */}
-                            <div className="md:col-span-3 space-y-3">
-                              <div>
-                                <label className="block font-mono text-gray-500 text-[9px] uppercase tracking-widest mb-1">{t('calculator.troops_per_queue')}</label>
-                                <input type="number" min="0" value={q.batchQty || ''} onChange={(e) => updateQueue(q.id, 'batchQty', parseInt(e.target.value) || 0)} className="w-full bg-black border border-gray-700 text-white font-mono p-1 outline-none focus:border-blood-red" />
-                              </div>
-                              {q.type === 'upgrade' && (
-                                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                                  <label className="block font-mono text-blue-400 text-[9px] uppercase tracking-widest mb-1">{t('calculator.available_limit')}</label>
-                                  <input type="number" min="0" value={q.limit || ''} onChange={(e) => updateQueue(q.id, 'limit', parseInt(e.target.value) || 0)} className="w-full bg-blue-950/30 border border-blue-900 text-blue-300 font-mono p-1 outline-none focus:border-blue-500" />
-                                </motion.div>
-                              )}
-                            </div>
-
-                            {/* Tiempo por Tanda */}
-                            <div className="md:col-span-5">
-                              <label className="block font-mono text-gray-500 text-[9px] uppercase tracking-widest mb-1">{t('calculator.time_per_queue')}</label>
-                              <div className="flex gap-1 h-[28px]">
-                                <div className="flex-1 flex items-center bg-black border border-gray-700 focus-within:border-blood-red">
-                                  <input type="number" min="0" value={q.batchTime.days || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, days: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">{t('calculator.days')}</span>
-                                </div>
-                                <div className="flex-1 flex items-center bg-black border border-gray-700 focus-within:border-blood-red">
-                                  <input type="number" min="0" max="23" value={q.batchTime.hours || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, hours: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">{t('calculator.hours')}</span>
-                                </div>
-                                <div className="flex-1 flex items-center bg-black border border-gray-700 focus-within:border-blood-red">
-                                  <input type="number" min="0" max="59" value={q.batchTime.minutes || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, minutes: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">{t('calculator.minutes')}</span>
-                                </div>
-                                <div className="flex-1 flex items-center bg-black border border-gray-700 focus-within:border-blood-red">
-                                  <input type="number" min="0" max="59" value={q.batchTime.seconds || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, seconds: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">{t('calculator.seconds')}</span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </AnimatePresence>
-                  </div>
-
-                  {/* Inventario */}
-                  <div className="bg-[#0a0a0a] border border-gray-800 p-4 relative">
-                    {isUploading && (
-                      <div className="absolute inset-0 bg-black/80 z-20 flex flex-col items-center justify-center border border-blood-red">
-                        <Loader2 className="text-neon-red animate-spin mb-2" size={32} />
-                        <span className="font-mono text-blood-red text-xs uppercase tracking-widest animate-pulse">Red Queen analizando imagen...</span>
-                      </div>
+              <AnimatePresence>
+                {queues.map((q) => (
+                  <motion.div key={q.id} initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="bg-[#0a0a0a] border border-gray-800 p-4 relative">
+                    {queues.length > 1 && (
+                      <button onClick={() => removeQueue(q.id)} className="absolute top-2 right-2 text-gray-600 hover:text-red-500 transition-colors cursor-pointer"><Trash2 size={16}/></button>
                     )}
-                    <div className="flex justify-between items-center mb-4">
-                      <label className="font-mono text-neon-red text-xs uppercase tracking-widest flex items-center gap-2">
-                        Inventario de Aceleradores
-                      </label>
-                      <div className="flex items-center gap-3">
-                        <input 
-                          type="file" 
-                          accept="image/*" 
-                          ref={fileInputRef} 
-                          onChange={handleScreenshotUpload} 
-                          className="hidden" 
-                        />
-                        <button 
-                          onClick={() => fileInputRef.current?.click()}
-                          className="flex items-center gap-1 font-mono text-[9px] uppercase tracking-widest bg-blood-red/10 text-neon-red border border-blood-red/30 px-2 py-1 hover:bg-blood-red hover:text-white transition-colors"
-                          title="Subir captura de pantalla para auto-rellenar"
-                        >
-                          <UploadCloud size={12} /> Auto-Llenado IA
-                        </button>
-                        <span className="font-mono text-[10px] text-gray-500 bg-black px-2 py-1 border border-gray-800">Total Disp: {((results as any).accelSecs / 3600 || 0).toFixed(1)}h</span>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-6">
-                      <div>
-                        <div className="text-[10px] text-gray-500 font-mono mb-2 border-b border-gray-800 pb-1">GENERALES</div>
-                        <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                          <InventoryItem label="1 m" rarity="gray" value={gen1m} onChange={setGen1m} />
-                          <InventoryItem label="5 m" rarity="green" value={gen5m} onChange={setGen5m} />
-                          <InventoryItem label="1 h" rarity="blue" value={gen1h} onChange={setGen1h} />
-                          <InventoryItem label="3 h" rarity="purple" value={gen3h} onChange={setGen3h} />
-                          <InventoryItem label="8 h" rarity="gold" value={gen8h} onChange={setGen8h} />
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+                      
+                      {/* Selector de Tipo y Niveles */}
+                      <div className="md:col-span-4 space-y-3">
+                        <div className="flex bg-black border border-gray-700 p-1">
+                          <button onClick={() => updateQueue(q.id, 'type', 'train')} className={`flex-1 py-1 font-mono text-[9px] uppercase tracking-widest transition-colors cursor-pointer ${q.type === 'train' ? 'bg-gray-800 text-white' : 'text-gray-500 hover:text-gray-400'}`}>{t('calculator.new')}</button>
+                          <button onClick={() => updateQueue(q.id, 'type', 'upgrade')} className={`flex-1 py-1 font-mono text-[9px] uppercase tracking-widest transition-colors cursor-pointer ${q.type === 'upgrade' ? 'bg-blood-red/80 text-white' : 'text-gray-500 hover:text-gray-400'}`}>{t('calculator.upgrade')}</button>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          {q.type === 'upgrade' && (
+                            <>
+                              <select value={q.fromLevel} onChange={(e) => updateQueue(q.id, 'fromLevel', Number(e.target.value))} className="flex-1 bg-black border border-gray-700 text-white font-bebas text-lg p-1 outline-none focus:border-blood-red appearance-none text-center cursor-pointer">
+                                {[...Array(11)].map((_, i) => (<option key={i+1} value={i+1}>T{i+1}</option>))}
+                              </select>
+                              <ArrowRight className="text-gray-500" size={16}/>
+                            </>
+                          )}
+                          <select value={q.toLevel} onChange={(e) => updateQueue(q.id, 'toLevel', Number(e.target.value))} className="flex-1 bg-black border border-gray-700 text-white font-bebas text-lg p-1 outline-none focus:border-blood-red appearance-none text-center cursor-pointer">
+                            {[...Array(11)].map((_, i) => (<option key={i+1} value={i+1}>T{i+1}</option>))}
+                          </select>
+                        </div>
+                        <div className="text-[10px] font-mono text-gray-500 text-center">
+                          {q.type === 'upgrade' 
+                            ? `${t('calculator.wins')} ${Math.max(0, activePoints[q.toLevel] - activePoints[q.fromLevel])} ${t('calculator.pts_u')}` 
+                            : `${t('calculator.wins')} ${activePoints[q.toLevel]} ${t('calculator.pts_u')}`}
                         </div>
                       </div>
-                      <div>
-                        <div className="text-[10px] text-gray-500 font-mono mb-2 border-b border-gray-800 pb-1">ENTRENAMIENTO (TROPAS)</div>
-                        <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-                          <InventoryItem label="1 m" rarity="gray" value={trp1m} onChange={setTrp1m} isTroop />
-                          <InventoryItem label="5 m" rarity="green" value={trp5m} onChange={setTrp5m} isTroop />
-                          <InventoryItem label="1 h" rarity="blue" value={trp1h} onChange={setTrp1h} isTroop />
+                      
+                      {/* Cantidad y Límite */}
+                      <div className="md:col-span-3 space-y-3">
+                        <div>
+                          <label className="block font-mono text-gray-500 text-[9px] uppercase tracking-widest mb-1">{t('calculator.troops_per_queue')}</label>
+                          <input type="number" min="0" value={q.batchQty || ''} onChange={(e) => updateQueue(q.id, 'batchQty', parseInt(e.target.value) || 0)} className="w-full bg-black border border-gray-700 text-white font-mono p-1 outline-none focus:border-blood-red" />
+                        </div>
+                        {q.type === 'upgrade' && (
+                          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                            <label className="block font-mono text-blue-400 text-[9px] uppercase tracking-widest mb-1">{t('calculator.available_limit')}</label>
+                            <input type="number" min="0" value={q.limit || ''} onChange={(e) => updateQueue(q.id, 'limit', parseInt(e.target.value) || 0)} className="w-full bg-blue-950/30 border border-blue-900 text-blue-300 font-mono p-1 outline-none focus:border-blue-500" />
+                          </motion.div>
+                        )}
+                      </div>
+
+                      {/* Tiempo por Tanda */}
+                      <div className="md:col-span-5">
+                        <label className="block font-mono text-gray-500 text-[9px] uppercase tracking-widest mb-1">{t('calculator.time_per_queue')}</label>
+                        <div className="flex gap-1 h-[28px]">
+                          <div className="flex-1 flex items-center bg-black border border-gray-700 focus-within:border-blood-red">
+                            <input type="number" min="0" value={q.batchTime.days || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, days: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">{t('calculator.days')}</span>
+                          </div>
+                          <div className="flex-1 flex items-center bg-black border border-gray-700 focus-within:border-blood-red">
+                            <input type="number" min="0" max="23" value={q.batchTime.hours || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, hours: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">{t('calculator.hours')}</span>
+                          </div>
+                          <div className="flex-1 flex items-center bg-black border border-gray-700 focus-within:border-blood-red">
+                            <input type="number" min="0" max="59" value={q.batchTime.minutes || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, minutes: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">{t('calculator.minutes')}</span>
+                          </div>
+                          <div className="flex-1 flex items-center bg-black border border-gray-700 focus-within:border-blood-red">
+                            <input type="number" min="0" max="59" value={q.batchTime.seconds || ''} onChange={(e) => updateQueueTime(q.id, { ...q.batchTime, seconds: parseInt(e.target.value) || 0 })} className="w-full bg-transparent text-white font-mono p-1 text-center outline-none text-xs" /><span className="text-gray-600 font-mono text-[9px] pr-1">{t('calculator.seconds')}</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+
+            {/* Inventario */}
+            <div className="bg-[#0a0a0a] border border-gray-800 p-4 relative">
+              {isUploading && (
+                <div className="absolute inset-0 bg-black/80 z-20 flex flex-col items-center justify-center border border-blood-red">
+                  <Loader2 className="text-neon-red animate-spin mb-2" size={32} />
+                  <span className="font-mono text-blood-red text-xs uppercase tracking-widest animate-pulse">Red Queen analizando imagen...</span>
+                </div>
               )}
-            </AnimatePresence>
+              <div className="flex justify-between items-center mb-4">
+                <label className="font-mono text-neon-red text-xs uppercase tracking-widest flex items-center gap-2">
+                  Inventario de Aceleradores
+                </label>
+                <div className="flex items-center gap-3">
+                  <input 
+                    type="file" 
+                    accept="image/*" 
+                    ref={fileInputRef} 
+                    onChange={handleScreenshotUpload} 
+                    className="hidden" 
+                  />
+                  <button 
+                    onClick={() => fileInputRef.current?.click()}
+                    className="flex items-center gap-1 font-mono text-[9px] uppercase tracking-widest bg-blood-red/10 text-neon-red border border-blood-red/30 px-2 py-1 hover:bg-blood-red hover:text-white transition-colors cursor-pointer"
+                    title="Subir captura de pantalla para auto-rellenar"
+                  >
+                    <UploadCloud size={12} /> Auto-Llenado IA
+                  </button>
+                  <span className="font-mono text-[10px] text-gray-500 bg-black px-2 py-1 border border-gray-800">Total Disp: {(results.accelSecs / 3600 || 0).toFixed(1)}h</span>
+                </div>
+              </div>
+              
+              <div className="space-y-6">
+                <div>
+                  <div className="text-[10px] text-gray-500 font-mono mb-2 border-b border-gray-800 pb-1">GENERALES</div>
+                  <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                    <InventoryItem label="1 m" rarity="gray" value={gen1m} onChange={setGen1m} />
+                    <InventoryItem label="5 m" rarity="green" value={gen5m} onChange={setGen5m} />
+                    <InventoryItem label="1 h" rarity="blue" value={gen1h} onChange={setGen1h} />
+                    <InventoryItem label="3 h" rarity="purple" value={gen3h} onChange={setGen3h} />
+                    <InventoryItem label="8 h" rarity="gold" value={gen8h} onChange={setGen8h} />
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[10px] text-gray-500 font-mono mb-2 border-b border-gray-800 pb-1">ENTRENAMIENTO (TROPAS)</div>
+                  <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                    <InventoryItem label="1 m" rarity="gray" value={trp1m} onChange={setTrp1m} isTroop />
+                    <InventoryItem label="5 m" rarity="green" value={trp5m} onChange={setTrp5m} isTroop />
+                    <InventoryItem label="1 h" rarity="blue" value={trp1h} onChange={setTrp1h} isTroop />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Panel Derecho: Resultados */}
@@ -394,39 +355,35 @@ const TrainingCalculator = () => {
                   <span>{t('calculator.troops_generated')}:</span><span className="text-white font-bold">{results.totalTroops.toLocaleString()}</span>
                 </div>
                 
-                {mode === 'advanced' && (
-                  <>
-                    <div className="flex justify-between items-center text-gray-400 mt-4 pt-2 border-t border-gray-800/50">
-                      <span className="flex items-center gap-1"><Clock size={12}/> T. Utilizado:</span>
-                      <span className="text-white">{(((results as any).totalUsedSecs || 0) / 60).toLocaleString(undefined, { maximumFractionDigits: 1 })} min</span>
-                    </div>
-                    <div className="flex justify-between items-center text-gray-400 text-[10px]">
-                      <span>(Equivalente):</span>
-                      <span className="text-gray-500">{((results as any).totalUsedDays || 0).toFixed(2)} días</span>
-                    </div>
+                <div className="flex justify-between items-center text-gray-400 mt-4 pt-2 border-t border-gray-800/50">
+                  <span className="flex items-center gap-1"><Clock size={12}/> T. Utilizado:</span>
+                  <span className="text-white">{(results.totalUsedSecs / 60).toLocaleString(undefined, { maximumFractionDigits: 1 })} min</span>
+                </div>
+                <div className="flex justify-between items-center text-gray-400 text-[10px]">
+                  <span>(Equivalente):</span>
+                  <span className="text-gray-500">{results.totalUsedDays.toFixed(2)} días</span>
+                </div>
 
-                    {/* Resumen del Algoritmo Avaro */}
-                    <div className="mt-6 pt-4 border-t border-gray-800">
-                      <h4 className="text-[10px] text-neon-red mb-3 uppercase tracking-widest">Resumen de Inversión</h4>
-                      <div className="space-y-3">
-                        {(results as any).queueResults?.map((qr: any, idx: number) => (
-                          <div key={idx} className="bg-black/50 border border-gray-800 p-2 rounded-sm relative">
-                            <div className="flex justify-between text-[9px] text-gray-400 mb-1">
-                              <span>Fila {idx + 1} ({qr.type === 'upgrade' ? `T${qr.fromLevel}»T${qr.toLevel}` : `Nuevo T${qr.toLevel}`})</span>
-                              <span className="text-yellow-500">+{qr.pointsEarned.toLocaleString()} pts</span>
-                            </div>
-                            <div className="flex justify-between text-[9px]">
-                              <span className="text-gray-500">{(qr.usedSecs / 3600).toFixed(1)}h invertidas</span>
-                              {qr.hitLimit && <span className="text-blue-400">Límite alcanzado</span>}
-                            </div>
-                            {/* Barra de progreso visual sutil basada en prioridad */}
-                            <div className="absolute bottom-0 left-0 h-[1px] bg-blood-red/50" style={{ width: qr.usedSecs > 0 ? '100%' : '0%' }} />
-                          </div>
-                        ))}
+                {/* Resumen del Algoritmo Avaro */}
+                <div className="mt-6 pt-4 border-t border-gray-800">
+                  <h4 className="text-[10px] text-neon-red mb-3 uppercase tracking-widest">Resumen de Inversión</h4>
+                  <div className="space-y-3">
+                    {results.queueResults?.map((qr: any, idx: number) => (
+                      <div key={idx} className="bg-black/50 border border-gray-800 p-2 rounded-sm relative">
+                        <div className="flex justify-between text-[9px] text-gray-400 mb-1">
+                          <span>Fila {idx + 1} ({qr.type === 'upgrade' ? `T${qr.fromLevel}»T${qr.toLevel}` : `Nuevo T${qr.toLevel}`})</span>
+                          <span className="text-yellow-500">+{qr.pointsEarned.toLocaleString()} pts</span>
+                        </div>
+                        <div className="flex justify-between text-[9px]">
+                          <span className="text-gray-500">{(qr.usedSecs / 3600).toFixed(1)}h invertidas</span>
+                          {qr.hitLimit && <span className="text-blue-400">Límite alcanzado</span>}
+                        </div>
+                        {/* Barra de progreso visual sutil basada en prioridad */}
+                        <div className="absolute bottom-0 left-0 h-[1px] bg-blood-red/50" style={{ width: qr.usedSecs > 0 ? '100%' : '0%' }} />
                       </div>
-                    </div>
-                  </>
-                )}
+                    ))}
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>

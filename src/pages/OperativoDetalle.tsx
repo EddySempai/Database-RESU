@@ -193,17 +193,21 @@ const OperativoDetalle = () => {
             { id: 'books', label: t('op_detail.tab_books') },
             { id: 'equipment', label: t('op_detail.tab_equipment') }
           ].map(tab => (
-            <button
+            <motion.button
               key={tab.id}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.94 }}
               onClick={() => setActiveTab(tab.id)}
-              className={`font-mono text-xs uppercase tracking-widest px-4 py-3 transition-colors ${
+              className={`font-mono text-xs uppercase tracking-widest px-4 py-3 transition-all cursor-pointer relative overflow-hidden rounded-t-sm ${
                 activeTab === tab.id 
-                ? 'bg-blood-red/20 text-white border-b-2 border-blood-red' 
+                ? (tab.id === 'equipment' 
+                    ? 'bg-yellow-500/20 text-yellow-400 border-b-2 border-yellow-500 shadow-[0_0_20px_rgba(234,179,8,0.4)] font-bold' 
+                    : 'bg-blood-red/20 text-white border-b-2 border-blood-red') 
                 : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'
               }`}
             >
               {tab.label}
-            </button>
+            </motion.button>
           ))}
         </div>
 
@@ -278,6 +282,7 @@ const OperativoDetalle = () => {
           {activeTab === 'exp' && (
             <div>
               <h2 className="font-bebas text-3xl tracking-widest text-white mb-2 flex items-center gap-3">
+                <img src="/recursos/book_exp.webp" alt="Libro EXP" className="w-8 h-8 object-contain" />
                 {t('op_detail.tab_exp')}
               </h2>
               <p className="text-gray-500 font-mono text-xs uppercase tracking-widest mb-8">{t('op_detail.exp_plan')}</p>
@@ -315,10 +320,16 @@ const OperativoDetalle = () => {
                 </div>
               </div>
 
-              <div className="bg-blood-red/10 border border-blood-red/30 p-6 text-center">
-                <p className="font-mono text-gray-400 text-sm uppercase mb-2">{t('op_detail.total_exp_req')}</p>
-                <div className="font-bebas text-5xl md:text-6xl text-neon-red tracking-widest">
-                  {calculateRequiredExp(currentLevel, targetLevel).toLocaleString()}
+              <div className="bg-blood-red/10 border border-blood-red/30 p-6 text-center flex flex-col items-center justify-center relative overflow-hidden group">
+                <p className="font-mono text-gray-400 text-sm uppercase mb-2 flex items-center justify-center gap-2 tracking-wider">
+                  <img src="/recursos/book_exp.webp" alt="Libro de Experiencia" className="w-5 h-5 object-contain opacity-80" />
+                  {t('op_detail.total_exp_req')}
+                </p>
+                <div className="flex items-center justify-center gap-3 my-1">
+                  <img src="/recursos/book_exp.webp" alt="Libro EXP" className="w-12 h-12 md:w-16 md:h-16 object-contain drop-shadow-[0_0_12px_rgba(220,38,38,0.5)] transition-transform duration-300 group-hover:scale-110" />
+                  <span className="font-bebas text-5xl md:text-6xl text-neon-red tracking-widest drop-shadow-[0_0_10px_rgba(220,38,38,0.5)]">
+                    {calculateRequiredExp(currentLevel, targetLevel).toLocaleString()}
+                  </span>
                 </div>
               </div>
             </div>
@@ -570,93 +581,14 @@ const OperativoDetalle = () => {
                 </div>
               </div>
 
-              {/* LISTA LIMPIA DE HABILIDADES DE CAMPO */}
+              {/* LISTA LIMPIA DE HABILIDADES DE CAMPO (LIBRO AZUL) */}
               <div className="mb-6">
-                <h3 className="font-mono text-xs text-red-400/80 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <h3 className="font-mono text-xs text-blue-400/80 uppercase tracking-widest mb-3 flex items-center gap-2">
                   <img src="/recursos/book_field.webp" alt="Campo" className="w-4 h-4 object-contain opacity-80" />
                   Habilidades de Campo
                 </h3>
                 <div className="space-y-2">
                   {campoSkillsList.map(skill => {
-                    const st = skillsState[skill.id] || { current: 1, target: 5 };
-                    const cost = calculateSkillBooks(st.current, st.target);
-
-                    return (
-                      <div
-                        key={skill.id}
-                        className="bg-[#070707] hover:bg-gradient-to-r hover:from-blood-red/15 hover:via-[#070707] hover:to-transparent border border-gray-800/80 hover:border-blood-red/40 p-3 rounded-sm flex items-center justify-between gap-4 transition-all duration-300"
-                      >
-                        <div className="flex items-center gap-3 min-w-0">
-                          <div className="w-7 h-7 bg-red-950/30 border border-red-800/40 text-red-400 font-bebas text-sm flex items-center justify-center rounded-sm shrink-0">
-                            {skill.code}
-                          </div>
-                          <h4 className="text-white font-bebas tracking-wider text-base truncate">
-                            {skill.name}
-                          </h4>
-                        </div>
-
-                        <div className="flex items-center gap-3 shrink-0">
-                          <div className="flex items-center gap-1.5 font-mono text-xs text-gray-400 bg-black/60 px-2 py-1 border border-gray-800 rounded-sm">
-                            <span>Nv.</span>
-                            <select
-                              value={st.current}
-                              onChange={(e) => {
-                                const val = Number(e.target.value);
-                                setSkillsState(prev => ({
-                                  ...prev,
-                                  [skill.id]: {
-                                    ...(prev[skill.id] || { current: 1, target: 5 }),
-                                    current: val,
-                                    target: Math.max(val, (prev[skill.id]?.target || 5))
-                                  }
-                                }));
-                              }}
-                              className="bg-gray-900 border border-gray-700 text-white font-mono text-xs px-1.5 py-0.5 rounded-sm outline-none cursor-pointer hover:border-gray-500"
-                            >
-                              {[1, 2, 3, 4, 5].map(lvl => (
-                                <option key={lvl} value={lvl}>{lvl}</option>
-                              ))}
-                            </select>
-                            <span className="text-gray-600">➔</span>
-                            <select
-                              value={st.target}
-                              onChange={(e) => {
-                                const val = Number(e.target.value);
-                                setSkillsState(prev => ({
-                                  ...prev,
-                                  [skill.id]: {
-                                    ...(prev[skill.id] || { current: 1, target: 5 }),
-                                    target: val
-                                  }
-                                }));
-                              }}
-                              className="bg-gray-900 border border-gray-700 text-yellow-400 font-bold font-mono text-xs px-1.5 py-0.5 rounded-sm outline-none cursor-pointer hover:border-gray-500"
-                            >
-                              {[1, 2, 3, 4, 5].filter(lvl => lvl >= st.current).map(lvl => (
-                                <option key={lvl} value={lvl}>{lvl}</option>
-                              ))}
-                            </select>
-                          </div>
-
-                          <div className="flex items-center gap-1.5 min-w-[60px] justify-end">
-                            <img src="/recursos/book_field.webp" alt="Libro" className="w-4 h-4 object-contain opacity-70" />
-                            <span className="font-bebas text-xl text-yellow-400 tracking-wider">{cost}</span>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* LISTA LIMPIA DE HABILIDADES DE EXPLORACIÓN */}
-              <div className="mb-6">
-                <h3 className="font-mono text-xs text-blue-400/80 uppercase tracking-widest mb-3 flex items-center gap-2">
-                  <img src="/recursos/book_explore.webp" alt="Exploración" className="w-4 h-4 object-contain opacity-80" />
-                  Habilidades de Exploración
-                </h3>
-                <div className="space-y-2">
-                  {exploreSkillsList.map(skill => {
                     const st = skillsState[skill.id] || { current: 1, target: 5 };
                     const cost = calculateSkillBooks(st.current, st.target);
 
@@ -718,7 +650,86 @@ const OperativoDetalle = () => {
                           </div>
 
                           <div className="flex items-center gap-1.5 min-w-[60px] justify-end">
-                            <img src="/recursos/book_explore.webp" alt="Libro" className="w-4 h-4 object-contain opacity-70" />
+                            <img src="/recursos/book_field.webp" alt="Libro Campo" className="w-4 h-4 object-contain opacity-70" />
+                            <span className="font-bebas text-xl text-yellow-400 tracking-wider">{cost}</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* LISTA LIMPIA DE HABILIDADES DE EXPLORACIÓN (LIBRO ROJO) */}
+              <div className="mb-6">
+                <h3 className="font-mono text-xs text-red-400/80 uppercase tracking-widest mb-3 flex items-center gap-2">
+                  <img src="/recursos/book_explore.webp" alt="Exploración" className="w-4 h-4 object-contain opacity-80" />
+                  Habilidades de Exploración
+                </h3>
+                <div className="space-y-2">
+                  {exploreSkillsList.map(skill => {
+                    const st = skillsState[skill.id] || { current: 1, target: 5 };
+                    const cost = calculateSkillBooks(st.current, st.target);
+
+                    return (
+                      <div
+                        key={skill.id}
+                        className="bg-[#070707] hover:bg-gradient-to-r hover:from-blood-red/15 hover:via-[#070707] hover:to-transparent border border-gray-800/80 hover:border-blood-red/40 p-3 rounded-sm flex items-center justify-between gap-4 transition-all duration-300"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className="w-7 h-7 bg-red-950/30 border border-red-800/40 text-red-400 font-bebas text-sm flex items-center justify-center rounded-sm shrink-0">
+                            {skill.code}
+                          </div>
+                          <h4 className="text-white font-bebas tracking-wider text-base truncate">
+                            {skill.name}
+                          </h4>
+                        </div>
+
+                        <div className="flex items-center gap-3 shrink-0">
+                          <div className="flex items-center gap-1.5 font-mono text-xs text-gray-400 bg-black/60 px-2 py-1 border border-gray-800 rounded-sm">
+                            <span>Nv.</span>
+                            <select
+                              value={st.current}
+                              onChange={(e) => {
+                                const val = Number(e.target.value);
+                                setSkillsState(prev => ({
+                                  ...prev,
+                                  [skill.id]: {
+                                    ...(prev[skill.id] || { current: 1, target: 5 }),
+                                    current: val,
+                                    target: Math.max(val, (prev[skill.id]?.target || 5))
+                                  }
+                                }));
+                              }}
+                              className="bg-gray-900 border border-gray-700 text-white font-mono text-xs px-1.5 py-0.5 rounded-sm outline-none cursor-pointer hover:border-gray-500"
+                            >
+                              {[1, 2, 3, 4, 5].map(lvl => (
+                                <option key={lvl} value={lvl}>{lvl}</option>
+                              ))}
+                            </select>
+                            <span className="text-gray-600">➔</span>
+                            <select
+                              value={st.target}
+                              onChange={(e) => {
+                                const val = Number(e.target.value);
+                                setSkillsState(prev => ({
+                                  ...prev,
+                                  [skill.id]: {
+                                    ...(prev[skill.id] || { current: 1, target: 5 }),
+                                    target: val
+                                  }
+                                }));
+                              }}
+                              className="bg-gray-900 border border-gray-700 text-yellow-400 font-bold font-mono text-xs px-1.5 py-0.5 rounded-sm outline-none cursor-pointer hover:border-gray-500"
+                            >
+                              {[1, 2, 3, 4, 5].filter(lvl => lvl >= st.current).map(lvl => (
+                                <option key={lvl} value={lvl}>{lvl}</option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <div className="flex items-center gap-1.5 min-w-[60px] justify-end">
+                            <img src="/recursos/book_explore.webp" alt="Libro Exploración" className="w-4 h-4 object-contain opacity-70" />
                             <span className="font-bebas text-xl text-yellow-400 tracking-wider">{cost}</span>
                           </div>
                         </div>
@@ -735,12 +746,12 @@ const OperativoDetalle = () => {
                 </p>
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 my-3">
-                  {/* Total Campo */}
+                  {/* Total Campo (Azul) */}
                   <div className="flex items-center gap-3">
-                    <img src="/recursos/book_field.webp" alt="Campo" className="w-9 h-9 object-contain drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+                    <img src="/recursos/book_field.webp" alt="Campo" className="w-9 h-9 object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
                     <div className="text-left">
-                      <div className="text-[10px] font-mono text-red-400 uppercase tracking-widest">Total Campo</div>
-                      <div className="font-bebas text-4xl md:text-5xl text-red-400 tracking-widest drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]">
+                      <div className="text-[10px] font-mono text-blue-400 uppercase tracking-widest">Total Campo</div>
+                      <div className="font-bebas text-4xl md:text-5xl text-blue-400 tracking-widest drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
                         {totalCampoBooks.toLocaleString()}
                       </div>
                     </div>
@@ -748,12 +759,12 @@ const OperativoDetalle = () => {
 
                   <span className="text-gray-700 text-3xl font-light hidden md:inline">|</span>
 
-                  {/* Total Exploración */}
+                  {/* Total Exploración (Rojo) */}
                   <div className="flex items-center gap-3">
-                    <img src="/recursos/book_explore.webp" alt="Exploración" className="w-9 h-9 object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+                    <img src="/recursos/book_explore.webp" alt="Exploración" className="w-9 h-9 object-contain drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
                     <div className="text-left">
-                      <div className="text-[10px] font-mono text-blue-400 uppercase tracking-widest">Total Exploración</div>
-                      <div className="font-bebas text-4xl md:text-5xl text-blue-400 tracking-widest drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
+                      <div className="text-[10px] font-mono text-red-400 uppercase tracking-widest">Total Exploración</div>
+                      <div className="font-bebas text-4xl md:text-5xl text-red-400 tracking-widest drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]">
                         {totalExploreBooks.toLocaleString()}
                       </div>
                     </div>
