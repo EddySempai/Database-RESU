@@ -31,22 +31,22 @@ interface EquipamientoViewProps {
 
 // Mapeo de personajes legendarios a su ID de Pieza/Arma Exclusiva (13000 a 13015)
 const characterWeaponCodeMap: Record<string, string> = {
-  '1': '13000', // Leon S. Kennedy
-  '2': '13001', // Claire Redfield
-  '3': '13002', // Carlos Oliveira
-  '4': '13003', // Ada Wong
-  '5': '13004', // Jill Valentine
-  '6': '13005', // Chris Redfield
-  '7': '13006', // Rebecca Chambers
-  '8': '13007', // Billy Coen
-  '9': '13008', // Jack Krauser
-  '10': '13009', // Luis Sera
-  '11': '13010', // Ashley Graham
-  '12': '13011', // Jake Muller
-  '13': '13012', // Sherry Birkin
-  '14': '13013', // Piers Nivans
-  '15': '13014', // Cazador (Hunter M)
-  '16': '13015', // Cazadora (Hunter F)
+  'leon': '13000', // Leon S. Kennedy
+  'claire': '13001', // Claire Redfield
+  'carlos': '13002', // Carlos Oliveira
+  'ada': '13003', // Ada Wong
+  'jill': '13004', // Jill Valentine
+  'chris': '13005', // Chris Redfield
+  'rebecca': '13006', // Rebecca Chambers
+  'billy': '13007', // Billy Coen
+  'jack': '13008', // Jack Krauser
+  'luis': '13009', // Luis Sera
+  'ashley': '13010', // Ashley Graham
+  'jake': '13011', // Jake Muller
+  'sherry': '13012', // Sherry Birkin
+  'piers': '13013', // Piers Nivans
+  'cazadora': '13014', // Cazadora (Hunter F)
+  'cazador': '13015', // Cazador (Hunter M)
 };
 
 const getNormalWeaponIcon = (unitType: string, slotId: string) => {
@@ -424,28 +424,31 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                   : getNormalWeaponIcon(op.unitType, s.id);
 
                 return (
-                  <div key={i} className="flex items-center justify-between p-2.5 bg-gradient-to-r from-yellow-500/15 via-[#080808] to-transparent border-l-2 border-yellow-500 rounded-r-md">
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 flex items-center justify-center shrink-0">
+                  <div key={i} className="flex items-center justify-between p-3 border border-yellow-500/30 bg-gradient-to-r from-yellow-500/10 via-[#080808]/50 to-transparent rounded-sm">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 flex items-center justify-center shrink-0">
                         <img 
                           src={iconUrl} 
                           alt={s.name} 
                           className="w-full h-full object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" 
                         />
                       </div>
-                      <span className="font-bebas text-lg text-white tracking-wider">{s.name}</span>
+                      <span className="font-mono text-sm text-white capitalize">{s.name.toLowerCase()}</span>
                     </div>
 
-                    <div className="flex items-center gap-4 font-mono text-xs">
+                    <div className="text-right flex flex-col items-end gap-1.5">
                       {s.isUnique ? (
-                        <div className="flex items-center gap-1.5">
-                          <img src={getUniqueWeaponPieceIcon(op.id)} alt="Pieza" className="w-4 h-4 object-contain" />
-                          <span className="text-yellow-400 font-bold">{s.frags.toLocaleString()} frag</span>
+                        <div className="flex items-end gap-2">
+                          <span className="text-yellow-500 font-bebas text-3xl tracking-widest leading-none">{s.frags.toLocaleString()}</span>
+                          <span className="text-yellow-500 font-mono text-[10px] uppercase tracking-widest mb-0.5">FRAGMENTOS</span>
                         </div>
                       ) : (
                         <>
-                          <span className="text-neon-red font-bold">{s.exp.toLocaleString()} EXP</span>
-                          <span className="text-yellow-500 font-bold">+{s.plus} comp</span>
+                          <div className="flex items-end gap-2">
+                            <span className="text-neon-red font-bebas text-3xl tracking-widest leading-none">{s.exp.toLocaleString()}</span>
+                            <span className="text-neon-red font-mono text-xs tracking-widest mb-0.5">EXP</span>
+                          </div>
+                          <span className="text-yellow-500 font-mono text-[10px] uppercase tracking-widest">{s.plus} COMPONENTES</span>
                         </>
                       )}
                     </div>

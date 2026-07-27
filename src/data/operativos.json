@@ -6,7 +6,8 @@
     "stats": {
       "health": 176000,
       "attack": 4590,
-      "defense": 1980
+      "defense": 1980,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -20,7 +21,72 @@
     ],
     "unitType": "Defensor",
     "rarity": "Legendario",
-    "skills": [],
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Lanzacohetes",
+        "description": "Dispara un lanzacohetes que inflige daño equivalente al {0} del poder de ataque al objetivo impactado y lo aturde durante 2 segundos. Además, causa {1} de daño explosivo a los enemigos cercanos.",
+        "iconUrl": "/icons/skill/Icon_Skill_113000.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Disparo al punto débil",
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Patada giratoria",
+        "description": "Cada 10 segundos, da una patada a un enemigo cercano, lo empuja e inflige {0} de daño de ataque. Los objetivos golpeados por la patada giratoria quedan aturdidos durante 2 segundos.",
+        "iconUrl": "/icons/skill/Icon_Skill_123011.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Mente tranquila",
+        "description": "kEl ataque de las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_223000.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Disparo penetrante",
+        "description": "Cada 20 segundos, saca el Lightning Hawk y dispara en línea recta, infligiendo daño equivalente al {0} del poder de ataque y aturdiendo a los enemigos durante 2 segundos.",
+        "iconUrl": "/icons/skill/Icon_Skill_133000.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Experto en artes marciales",
+        "description": "Cada 2 turnos, los defensores aliados de la unidad con este héroe tienen {0} de probabilidad de aturdir al tipo de tropa objetivo durante 1 turno. (Máx. 3 intentos de aturdimiento por objetivo cada turno).",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_233000.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Traje de combate mejorado",
+        "description": "MReduce el daño que Leon recibe de los enemigos en {0}",
+        "iconUrl": "/icons/skill/Icon_Skill_143000.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Máximo poder",
+        "description": "Cuando este héroe es líder de concentración, el ataque de las unidades aliadas aumenta {0} en combates de concentración.",
+        "iconUrl": "/icons/skill/Icon_Skill_243000.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Experto en combate",
+        "description": "Independientemente de si Leon S. Kennedy se despliega o no, la penetración y la salud de las unidades aliadas aumentan {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_02.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": true
+      }
+    ],
     "iconUrl": "/portraits/PortraitBust_LEON_L01.webp"
   },
   {
@@ -30,7 +96,8 @@
     "stats": {
       "health": 88000,
       "attack": 9265,
-      "defense": 605
+      "defense": 605,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -46,14 +113,67 @@
     "rarity": "Legendario",
     "skills": [
       {
+        "type": "Exploración",
+        "name": "Ráfaga de minigun",
+        "description": "Dispara 60 balas de minigun en línea recta. Cada bala que impacta inflige daño equivalente al {0} del poder de ataque.",
+        "iconUrl": "/icons/skill/Icon_Skill_113001.webp",
+        "isArmaEspecial": false
+      },
+      {
         "type": "Campo",
         "name": "Fuego de supresión",
-        "description": "...(Máx. 3 intentos de aturdimiento por objetivo cada..."
+        "description": "Cada 2 turnos, los atacantes aliados de la unidad con este héroe tienen {0} de probabilidad de aturdir al tipo de tropa objetivo durante 1 turno. (Máx. 3 intentos de aturdimiento por objetivo cada turno).",
+        "iconUrl": "",
+        "isArmaEspecial": false
       },
       {
         "type": "Exploración",
         "name": "Disparo eléctrico",
-        "description": "...ataque a 1 enemigo y lo aturde durante 3 segundos. Tras 3 segundos, el objetivo aturdido..."
+        "description": "Cada 20 segundos, utiliza el lanzadescargas para infligir daño equivalente al {0} del poder de ataque a 1 enemigo y lo aturde durante 3 segundos. Tras 3 segundos, el objetivo aturdido explota, infligiendo {1} de daño en el área cercana.",
+        "iconUrl": "/icons/skill/Icon_Skill_123001.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad 223001٣",
+        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen un 50% de probabilidad de aumentar {0} el daño infligido a los enemigos.",
+        "iconUrl": "",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad 133001١",
+        "description": "Cuando Claire realiza un ataque común, su poder de ataque aumenta en {0} durante 3 segundos. Este efecto puede acumularse hasta 12 veces.",
+        "iconUrl": "",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Linaje Redfield",
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_233001.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Modificación de potencia",
+        "description": "qLos héroes aliados que combaten junto a Claire infligen {0} más de daño a los enemigos.",
+        "iconUrl": "/icons/skill/Icon_Skill_143001.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Valentía",
+        "description": "Cuando este héroe es líder de concentración, la defensa de las unidades aliadas aumenta {0} en combates de concentración.",
+        "iconUrl": "/icons/skill/Icon_Skill_243001.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad 253001٧",
+        "description": "Cuando recibes recompensas de un objetivo de caza de Monster Hunter, tienes una probabilidad de {0} de obtener materiales avanzados adicionales.",
+        "iconUrl": "",
+        "isArmaEspecial": true
       }
     ],
     "iconUrl": "/portraits/PortraitBust_CLAIRE_L01.webp"
@@ -65,7 +185,8 @@
     "stats": {
       "health": 88000,
       "attack": 10710,
-      "defense": 770
+      "defense": 770,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -81,24 +202,68 @@
     "rarity": "Legendario",
     "skills": [
       {
+        "type": "Exploración",
+        "name": "Cañón de riel",
+        "description": "Dispara un cañón de riel que inflige daño equivalente al {0} del poder de ataque a los enemigos en una línea recta.",
+        "iconUrl": "/icons/skill/Icon_Skill_113004.webp",
+        "isArmaEspecial": false
+      },
+      {
         "type": "Campo",
         "name": "Tiro técnico",
-        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta 5% en combate."
+        "description": "Cada 2 turnos, los rangers aliados de la unidad con este héroe tienen {0} de probabilidad de aturdir al tipo de tropa objetivo durante 1 turno. (Máx. 3 intentos de aturdimiento por objetivo cada turno).",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_213004.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Exploración",
-        "name": "Cañón de riel",
-        "description": "Dispara un cañón de riel que inflige daño equivalente al 1250% del poder de ataque a los enemigos en una línea recta."
+        "name": "Lanzagranadas",
+        "description": "RCada 12 segundos dispara un lanzagranadas que inflige daño equivalente al {0} del poder de ataque a enemigos dentro de un área circular. Los enemigos alcanzados quedan quemados, recibiendo daño continuo por quemadura equivalente al {1} del poder de ataque por segundo. (Durante 5 segundos)",
+        "iconUrl": "/icons/skill/Icon_Skill_123004.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Experto en explosivos",
+        "description": "kEl ataque de las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_223004.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Delta Force",
+        "description": "uCada 10 segundos, aumenta el poder de ataque de todos los aliados en {0}. (Durante 8 segundos)",
+        "iconUrl": "/icons/skill/Icon_Skill_133004.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Campo",
         "name": "Disparo de granada",
-        "description": "Cada 2 turnos, los rangers aliados de la unidad con este héroe tienen 4% de probabilidad de aturdir al tipo de tropa objetivo durante 1 turno. (Máx. 3 intentos de aturdimiento por objetivo cada..."
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_233004.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Cilindro modificado",
+        "description": "OAumenta el daño que Jill inflige a los enemigos en {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_143004.webp",
+        "isArmaEspecial": true
       },
       {
         "type": "Campo",
-        "name": "Delta Force",
-        "description": "Cada 10 segundos, aumenta el poder de ataque de todos los aliados en 5,5%. (Durante 8 segundos)"
+        "name": "Fuego concentrado",
+        "description": "Cuando este héroe es líder de concentración, la penetración de las unidades aliadas aumenta {0} en combates de concentración.",
+        "iconUrl": "/icons/skill/Icon_Skill_243014.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Súper policía",
+        "description": "Independientemente de si Jill es desplegada o no, el ataque y la defensa de las unidades aliadas aumentan {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_01.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": true
       }
     ],
     "iconUrl": "/portraits/PortraitBust_JILL_L01.webp"
@@ -110,7 +275,8 @@
     "stats": {
       "health": 136400,
       "attack": 3400,
-      "defense": 1980
+      "defense": 1980,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -124,7 +290,72 @@
     ],
     "unitType": "Defensor",
     "rarity": "Legendario",
-    "skills": [],
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Granada de mano mejorada",
+        "description": "Lanza una granada de mano mejorada que inflige daño equivalente al {0} del poder de ataque a los enemigos dentro de un radio circular.",
+        "iconUrl": "/icons/skill/Icon_Skill_113002.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Granada cegadora",
+        "description": "Cada 2 turnos, los defensores aliados de la unidad con este héroe tienen {0} de probabilidad de aturdir al tipo de tropa objetivo durante 1 turno. (Máx. 3 intentos de aturdimiento por objetivo cada turno).",
+        "iconUrl": "/icons/skill/Granada cegadora (carlos).webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Chaleco antibalas",
+        "description": "Si Carlos no recibe daño durante 3 segundos, obtiene un escudo que absorbe daño equivalente al {0} de su salud máxima.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222006.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Comando estratégico",
+        "description": "lLa defensa de las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_223002.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Municiones reforzadas",
+        "description": "Cada 5 ataques normales, el daño del ataque normal contra 1 enemigo aumenta en {0} e ignora su defensa.",
+        "iconUrl": "/icons/skill/Icon_Skill_133002.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Mercenario veterano",
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_233002.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Blindaje mejorado",
+        "description": "DAumenta el poder de defensa de Carlos en {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_143002.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Combatiente experimentado",
+        "description": "Cuando este héroe es líder de guarnición, el ataque de las unidades aliadas aumenta {0} en combates defensivos.",
+        "iconUrl": "/icons/skill/Icon_Skill_243002.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad 253002٧",
+        "description": "Cuando recibes recompensas de un objetivo de caza de Monster Hunter, tienes una probabilidad de {0} de obtener materiales avanzados adicionales.",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_03.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": true
+      }
+    ],
     "iconUrl": "/portraits/PortraitBust_CARLOS_L01.webp"
   },
   {
@@ -134,7 +365,8 @@
     "stats": {
       "health": 121000,
       "attack": 6460,
-      "defense": 770
+      "defense": 770,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -148,7 +380,64 @@
     ],
     "unitType": "Atacante",
     "rarity": "Legendario",
-    "skills": [],
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Dispositivo de señuelo",
+        "description": "Ada lanza un señuelo que atrae a los infectados dentro de un área circular durante 3 segundos, para luego detonar causando daño equivalente al {0} del poder de ataque.",
+        "iconUrl": "/icons/skill/Icon_Skill_113003.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Terreno favorable",
+        "description": "En combate, la defensa de las unidades aliadas que incluyen a este héroe aumenta {0} y su salud aumenta {1}.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_213003.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Escaneo EMF",
+        "description": "Recoge Información cada 1 segundo. Por cada 1 Información recogida, su poder de ataque aumenta en{0}. (Máximo 20 veces)",
+        "iconUrl": "/icons/skill/Icon_Skill_123003.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Uso de la información",
+        "description": "Los recursos consumidos en construcción se reducen en {0} y la velocidad de mejoras de edificios aumenta en {1}.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_223003.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Visualizador EMF",
+        "description": "uAl inicio del combate, analiza el entorno y aumenta el efecto de los objetos colocados en {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_133003.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Mente Maestra",
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_233003.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Objeto raro y preciado",
+        "description": "Aumenta el poder de ataque de todos los aliados en {0}, y el poder de defensa en {1}.",
+        "iconUrl": "/icons/skill/Icon_Skill_143003.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Información confidencial",
+        "description": "Cuando este héroe es el líder de guarnición, la penetración de las unidades aliadas aumenta {0} en combates defensivos.",
+        "iconUrl": "/icons/skill/Icon_Skill_243003.webp",
+        "isArmaEspecial": true
+      }
+    ],
     "iconUrl": "/portraits/PortraitBust_ADA_L01.webp"
   },
   {
@@ -158,7 +447,8 @@
     "stats": {
       "health": 74800,
       "attack": 5755,
-      "defense": 880
+      "defense": 880,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -182,7 +472,8 @@
     "stats": {
       "health": 88000,
       "attack": 4335,
-      "defense": 935
+      "defense": 935,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -196,13 +487,7 @@
     ],
     "unitType": "Defensor",
     "rarity": "Épico",
-    "skills": [
-      {
-        "type": "Exploración",
-        "name": "Disparo a la pierna",
-        "description": "...causando daño equivalente al 342% del poder de ataque y reduciendo su velocidad de..."
-      }
-    ],
+    "skills": [],
     "iconUrl": "/portraits/PortraitBust_MARVIN_E01.webp"
   },
   {
@@ -212,7 +497,8 @@
     "stats": {
       "health": 74800,
       "attack": 6205,
-      "defense": 385
+      "defense": 385,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -236,7 +522,8 @@
     "stats": {
       "health": 101200,
       "attack": 1700,
-      "defense": 1980
+      "defense": 1980,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -253,18 +540,38 @@
     "skills": [
       {
         "type": "Exploración",
-        "name": "Tacleo de hombro",
-        "description": "Las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de aumentar 20% el daño infligido a los enemigos durante 3 turnos en combate."
-      },
-      {
-        "type": "Rally",
-        "name": "1",
-        "description": "Completo"
+        "name": "Patada a la pierna",
+        "description": "Lanza una patada que ataca a los enemigos en una línea frontal, causando daño equivalente al {0} del poder de ataque y aturdiéndolos durante 3.5 segundos.",
+        "iconUrl": "/icons/skill/Icon_Skill_112000.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Campo",
-        "name": "Conocimientos de primeros auxilios",
-        "description": "Aumenta la velocidad de tratamiento en el hospital en 50%."
+        "name": "Tacleo de hombro",
+        "description": "Las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de aumentar {0} el daño infligido a los enemigos durante 3 turnos en combate.",
+        "iconUrl": "",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Golpe giratorio",
+        "description": "Cada 3 ataques normales, realiza un gran golpe con el hacha que inflige {0} más de daño de ataque normal a los enemigos en un área circular y los empuja.",
+        "iconUrl": "/icons/skill/Icon_Skill_122000.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "\"Conocimientos de primeros auxilios",
+        "description": "QAumenta la velocidad de tratamiento en el hospital en {0}.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222000.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Rally",
+        "description": "Cada 12 segundos, eleva la moral del equipo y aumenta el poder de defensa de todos los aliados en {0}. (Durante 8 segundos)",
+        "iconUrl": "/icons/skill/Icon_Skill_132000.webp",
+        "isArmaEspecial": false
       }
     ],
     "iconUrl": "/portraits/PortraitBust_TYRONE_E01.webp"
@@ -276,7 +583,8 @@
     "stats": {
       "health": 61600,
       "attack": 4811,
-      "defense": 242
+      "defense": 242,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -294,12 +602,37 @@
       {
         "type": "Exploración",
         "name": "Dios de la puntería",
-        "description": "Apunta a las piernas de todos los enemigos dentro de un área en forma de abanico, infligiendo daño equivalente al 476% del poder de ataque y reduciendo su velocidad de movimiento en un 30%...."
+        "description": "Apunta a las piernas de todos los enemigos dentro de un área en forma de abanico, infligiendo daño equivalente al {0} del poder de ataque y reduciendo su velocidad de movimiento en un 30%. (Durante 5 segundos)",
+        "iconUrl": "/icons/skill/Icon_Skill_111000.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Campo",
         "name": "Disparo decisivo",
-        "description": "durante 1 turno. (Máx. 3 intentos de aturdimiento por objetivo cada..."
+        "description": "Cada 4 turnos, los atacantes aliados de la unidad con este héroe tienen {0} de probabilidad de aturdir al tipo de tropa objetivo durante 1 turno. (Máx. 3 intentos de aturdimiento por objetivo cada turno).",
+        "iconUrl": "",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Disparo a la cabeza",
+        "description": "Cada 24 segundos, inflige daño equivalente al {0} del poder de ataque y aturde a los enemigos durante 2 segundos.",
+        "iconUrl": "/icons/skill/Icon_Skill_121000.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad de recolección",
+        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de alimentos aumenta {0}.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_221000.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad 131000٣",
+        "description": "Al realizar un ataque normal, hay un 25% de probabilidad de que el daño del ataque normal contra 1 enemigo aumente {0} e ignore su defensa.",
+        "iconUrl": "",
+        "isArmaEspecial": false
       }
     ],
     "iconUrl": "/portraits/PortraitBust_MURPHY_R01.webp"
@@ -311,7 +644,8 @@
     "stats": {
       "health": 70400,
       "attack": 5780,
-      "defense": 880
+      "defense": 880,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -327,19 +661,39 @@
     "rarity": "Épico",
     "skills": [
       {
-        "type": "Campo",
-        "name": "Instinto de reportero",
-        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de despliegue contra infectados y mutantes aumenta 100%."
+        "type": "Exploración",
+        "name": "Ametralladora automática",
+        "description": "(Instala una ametralladora automática que ataca de forma autónoma a los enemigos en el área. La ametralladora tiene un poder de ataque equivalente al {0} según el poder de ataque de Tyrell Patrick y una durabilidad igual a {1} de su salud máxima.",
+        "iconUrl": "/icons/skill/Icon_Skill_112008.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Campo",
-        "name": "Detección de crisis",
-        "description": "Las unidades aliadas que incluyen a este héroe reducen 20% el daño infligido por los enemigos en combate."
+        "name": "Análisis de puntos débiles",
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "",
+        "isArmaEspecial": false
       },
       {
         "type": "Exploración",
-        "name": "Lanzamiento de V-JOLT",
-        "description": "Lanza un frasco de solución especial que inflige 260% de daño de ataque a los objetivos en un área circular."
+        "name": "Configuración de base",
+        "description": "Aumenta el poder de ataque de los aliados cercanos a la ametralladora automática en {0}. Este efecto no se acumula.",
+        "iconUrl": "/icons/skill/Icon_Skill_122008.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Inteligencia del hacker",
+        "description": "UAumenta la velocidad de investigación del laboratorio en {0}.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222008.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Campo electromagnético",
+        "description": "La ametralladora automática emite un pulso eléctrico hacia un enemigo cercano, inflige {0} de daño de ataque a los enemigos en un área circular alrededor de ella y los aturde durante 2.5 segundos.",
+        "iconUrl": "/icons/skill/Icon_Skill_132008.webp",
+        "isArmaEspecial": false
       }
     ],
     "iconUrl": "/portraits/PortraitBust_ALYSSA_E01.webp"
@@ -351,7 +705,8 @@
     "stats": {
       "health": 41800,
       "attack": 8840,
-      "defense": 330
+      "defense": 330,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -367,29 +722,39 @@
     "rarity": "Épico",
     "skills": [
       {
+        "type": "Exploración",
+        "name": "Municiones de tormenta",
+        "description": "Dispara ráfagas de balas en un área en forma de abanico al frente. Los enemigos dentro del área reciben daño equivalente al {0} del poder de ataque.",
+        "iconUrl": "/icons/skill/Icon_Skill_112006.webp",
+        "isArmaEspecial": false
+      },
+      {
         "type": "Campo",
-        "name": "Recolectar madera",
-        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de madera aumenta 25%."
+        "name": "Trance total",
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "/icons/skill/trance total (becca).webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Postura de disparo",
+        "description": "rCada 10 segundos, la velocidad de ataque de Becca aumenta en un {0}. (Durante 7.5 segundos)",
+        "iconUrl": "/icons/skill/Icon_Skill_122006.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Campo",
-        "name": "Instinto del superviviente",
-        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce 20% en combate."
+        "name": "Chaleco antibalas",
+        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222006.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Exploración",
-        "name": "Apoyo",
-        "description": "Aumenta el poder de defensa de todos los aliados en 35%."
-      },
-      {
-        "type": "Exploración",
-        "name": "Lanzallamas",
-        "description": "Saca el lanzallamas, causando daño equivalente al 65,5% del poder de ataque a los enemigos dentro de un área en forma de abanico. Los enemigos alcanzados sufren..."
-      },
-      {
-        "type": "Exploración",
-        "name": "Municiones de alto rendimiento",
-        "description": "Aumenta el daño infligido de los ataques comunes en 41%."
+        "name": "Tiro al blanco",
+        "description": "~Al realizar un ataque normal, hay un 30% de probabilidad de que el daño del ataque normal aumente {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_132006.webp",
+        "isArmaEspecial": false
       }
     ],
     "iconUrl": "/portraits/PortraitBust_KATHERINE_E01.webp"
@@ -401,7 +766,8 @@
     "stats": {
       "health": 118800,
       "attack": 1700,
-      "defense": 1100
+      "defense": 1100,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -415,7 +781,43 @@
     ],
     "unitType": "Defensor",
     "rarity": "Épico",
-    "skills": [],
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Disparo en abanico",
+        "description": "Dispara 6 balas rápidamente, infligiendo daño equivalente al {0} del poder de ataque por cada impacto a los enemigos alcanzados.",
+        "iconUrl": "/icons/skill/Icon_Skill_112007.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Entrenamiento físico",
+        "description": "rAl desplegar una unidad que incluya a este héroe, el consumo de energía se reduce en {0}.",
+        "iconUrl": "",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad 122007٤",
+        "description": "Cuando Barry Burton realiza un ataque normal, su velocidad de ataque aumenta en {0} durante 5 segundos. Este efecto se acumula hasta 3 veces.",
+        "iconUrl": "",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Liderazgo",
+        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de despliegue contra infectados y mutantes aumenta {0}.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222007.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Veterano de combate",
+        "description": "PAumenta el daño infligido de los ataques comunes en {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_132007.webp",
+        "isArmaEspecial": false
+      }
+    ],
     "iconUrl": "/portraits/PortraitBust_MARK_E01.webp"
   },
   {
@@ -425,7 +827,8 @@
     "stats": {
       "health": 66000,
       "attack": 6800,
-      "defense": 440
+      "defense": 440,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -442,8 +845,38 @@
     "skills": [
       {
         "type": "Exploración",
-        "name": "Entrenamiento físico",
-        "description": "...Reducción del consumo de..."
+        "name": "Municiones de detención",
+        "description": "FDispara en ráfagas balas de alto poder de contención, empujando a los enemigos dentro de un área en forma de abanico y causando daño equivalente al {0} del poder de ataque. Los enemigos impactados quedan aturdidos por 0.5 segundos y reducen su velocidad de movimiento en un 20%. (Durante 5 segundos)",
+        "iconUrl": "/icons/skill/Icon_Skill_112004.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Experto en modificación",
+        "description": "kEl ataque de las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "¡Toma esto!",
+        "description": "Cada 20 segundos, coloca una bomba a 1 enemigo cercano y lo empuja hacia atrás. El enemigo repelido queda aturdido por 2 segundos y luego explota, causando daño equivalente al {0} del poder de ataque dentro de un área circular.",
+        "iconUrl": "/icons/skill/Icon_Skill_122004.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Conocimiento de forja",
+        "description": "}Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de hierro aumenta {0}.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222004.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Apoyo de fuego",
+        "description": "NAumenta el poder de ataque de todos los aliados en {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_132004.webp",
+        "isArmaEspecial": false
       }
     ],
     "iconUrl": "/portraits/PortraitBust_BARRY_E01.webp"
@@ -455,7 +888,8 @@
     "stats": {
       "health": 70400,
       "attack": 6120,
-      "defense": 660
+      "defense": 660,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -469,18 +903,7 @@
     ],
     "unitType": "Ranger",
     "rarity": "Épico",
-    "skills": [
-      {
-        "type": "Campo",
-        "name": "Inteligencia del hacker",
-        "description": "...Aumento de velocidad de..."
-      },
-      {
-        "type": "Exploración",
-        "name": "Ametralladora automática",
-        "description": "...La ametralladora tiene un poder de ataque equivalente al 22,8% según el poder de ataque de..."
-      }
-    ],
+    "skills": [],
     "iconUrl": "/portraits/PortraitBust_TYRELL_E01.webp"
   },
   {
@@ -490,7 +913,8 @@
     "stats": {
       "health": 92400,
       "attack": 3400,
-      "defense": 1320
+      "defense": 1320,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -507,8 +931,38 @@
     "skills": [
       {
         "type": "Exploración",
-        "name": "¡Toma esto!",
-        "description": "...El enemigo repelido queda aturdido por 2 segundos y luego explota, causando daño equivalente al..."
+        "name": "Barricada",
+        "description": "Instala una barricada en la zona designada. Su durabilidad equivale al {0} de la salud máxima y el poder de defensa de Marvin.",
+        "iconUrl": "/icons/skill/Icon_Skill_112002.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Instinto policial",
+        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "iconUrl": "/icons/skill/Instinto Policial (Marvin).webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Disparo a la pierna",
+        "description": "Al realizar un ataque común, hay un 50% de probabilidad de apuntar a las piernas del enemigo, causando daño equivalente al {0} del poder de ataque y reduciendo su velocidad de movimiento en un 20%. (Tiempo de recarga: 3 segundos)",
+        "iconUrl": "/icons/skill/Icon_Skill_122002.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Desarme",
+        "description": "xLas unidades aliadas que incluyen a este héroe reducen {0} el ataque de los enemigos en combate.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222002.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Empujón",
+        "description": "Cada {0}, inflige {1} de daño de ataque a un enemigo cercano, lo empuja y lo aturde durante 1 segundo.",
+        "iconUrl": "/icons/skill/Icon_Skill_132002.webp",
+        "isArmaEspecial": false
       }
     ],
     "iconUrl": "/portraits/PortraitBust_ROBERT_R01.webp"
@@ -520,7 +974,8 @@
     "stats": {
       "health": 52799,
       "attack": 5508,
-      "defense": 237
+      "defense": 237,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -538,22 +993,37 @@
       {
         "type": "Exploración",
         "name": "Último recurso",
-        "description": "Lanza un letrero que empuja a los enemigos dentro de un área circular, inflige daño equivalente al 327% del poder de ataque y lo aturde durante 0,2 segundos. Los enemigos alcanzados por el letrero..."
+        "description": "Lanza un letrero que empuja a los enemigos dentro de un área circular, inflige daño equivalente al {0} del poder de ataque y lo aturde durante 0.2 segundos. Los enemigos alcanzados por el letrero reducen su velocidad de movimiento en un 30%. (Durante 5 segundos)",
+        "iconUrl": "/icons/skill/Icon_Skill_111001.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Campo",
-        "name": "Gestión de combustible",
-        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de petróleo aumenta 25%."
+        "name": "Contraataque inesperado",
+        "description": "Cada 4 turnos, los rangers aliados de la unidad con este héroe tienen {0} de probabilidad de aturdir al tipo de tropa objetivo durante 1 turno. (Máx. 3 intentos de aturdimiento por objetivo cada turno).",
+        "iconUrl": "",
+        "isArmaEspecial": false
       },
       {
         "type": "Exploración",
         "name": "Instinto del cobarde",
-        "description": "Cada 15 segundos, aumenta el poder de defensa de todos los aliados en 70%. (Durante 8 segundos)"
+        "description": "vCada 15 segundos, aumenta el poder de defensa de todos los aliados en {0}. (Durante 8 segundos)",
+        "iconUrl": "/icons/skill/Icon_Skill_121001.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Gestión de combustible",
+        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de petróleo aumenta {0}.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_221001.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Exploración",
         "name": "Confianza",
-        "description": "El daño del ataque normal contra enemigos con velocidad de movimiento reducida aumenta 38%."
+        "description": "sEl daño del ataque normal contra enemigos con velocidad de movimiento reducida aumenta {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_131001.webp",
+        "isArmaEspecial": false
       }
     ],
     "iconUrl": "/portraits/PortraitBust_BRAD_R01.webp"
@@ -565,7 +1035,8 @@
     "stats": {
       "health": 154500,
       "attack": 5040,
-      "defense": 1680
+      "defense": 1680,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -579,13 +1050,7 @@
     ],
     "unitType": "Defensor",
     "rarity": "Legendario",
-    "skills": [
-      {
-        "type": "Campo",
-        "name": "Mira de Punto Rojo",
-        "description": "Aumento de Poder de..."
-      }
-    ],
+    "skills": [],
     "iconUrl": "/portraits/PortraitBust_CHRIS_L01.webp"
   },
   {
@@ -595,7 +1060,8 @@
     "stats": {
       "health": 84600,
       "attack": 11690,
-      "defense": 855
+      "defense": 855,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -609,23 +1075,7 @@
     ],
     "unitType": "Atacante",
     "rarity": "Legendario",
-    "skills": [
-      {
-        "type": "Campo",
-        "name": "Conocimientos de Medicina Militar",
-        "description": "En combate, el ataque de las unidades aliadas que incluyen a este héroe aumenta 6% y su defensa aumenta 4%."
-      },
-      {
-        "type": "Exploración",
-        "name": "Activador",
-        "description": "En combate, al atacar, las unidades aliadas que incluyen a este héroe tienen un 25% de probabilidad de aumentar 140% el daño infligido al enemigo."
-      },
-      {
-        "type": "Exploración",
-        "name": "Sedante",
-        "description": "Las unidades aliadas que incluyen a este héroe tienen un 40% de probabilidad de reducir 10% el daño recibido de los enemigos en combate."
-      }
-    ],
+    "skills": [],
     "iconUrl": "/portraits/PortraitBust_REBECCA_L01.webp"
   },
   {
@@ -635,7 +1085,8 @@
     "stats": {
       "health": 93000,
       "attack": 11530,
-      "defense": 570
+      "defense": 570,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -649,13 +1100,7 @@
     ],
     "unitType": "Ranger",
     "rarity": "Legendario",
-    "skills": [
-      {
-        "type": "Exploración",
-        "name": "Pistolero",
-        "description": "y, tras 1 segundo, reciben daño equivalente al 543% del..."
-      }
-    ],
+    "skills": [],
     "iconUrl": "/portraits/PortraitBust_BILLY_L01.webp"
   },
   {
@@ -665,7 +1110,8 @@
     "stats": {
       "health": 92329,
       "attack": 11261,
-      "defense": 2028
+      "defense": 2028,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -681,34 +1127,53 @@
     "rarity": "Legendario",
     "skills": [
       {
-        "type": "Campo",
-        "name": "Armadura de Ashley",
-        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de reducir 10% el daño infligido por los enemigos durante 2 turnos."
-      },
-      {
-        "type": "Exploración",
-        "name": "Iluminación de farol",
-        "description": "Identifica al enemigo con la luz del farol y expone su punto débil. La defensa del objetivo se reduce en 26,5% durante 2 segundo(s)."
-      },
-      {
         "type": "Exploración",
         "name": "Farol encendido",
-        "description": "Ashley no ataca directamente, pero brinda apoyo a sus aliados con un farol. Su intensa luz aturde a los enemigos dentro del alcance durante 2 segundo(s) y reduce su velocidad de movimiento en 30%,"
+        "description": "Ashley no ataca directamente, pero brinda apoyo a sus aliados con un farol. Su intensa luz aturde a los enemigos dentro del alcance durante {0} y reduce su velocidad de movimiento en {1}, dejándolos prácticamente inmovilizados.",
+        "iconUrl": "/icons/skill/Icon_Skill_113010.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad 123010٨",
+        "description": "Identifica al enemigo con la luz del farol y expone su punto débil. La defensa del objetivo se reduce en {1} durante {0}.",
+        "iconUrl": "",
+        "isArmaEspecial": false
       },
       {
         "type": "Campo",
-        "name": "Valentía renacida",
-        "description": "Las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de aumentar 8% el daño infligido a los enemigos durante 3 turnos en combate."
+        "name": "Armadura de Ashley",
+        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de reducir {0} el daño infligido por los enemigos durante 2 turnos.",
+        "iconUrl": "/icons/skill/Icon_Skill_223010.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Exploración",
-        "name": "Nombramiento de Escolta Exclusivo",
-        "description": "Ashley, en proporción a su propio ataque, aumenta en 75% el ataque del aliado más fuerte y le otorga un escudo de 43,7%."
+        "name": "Habilidad 133010٦",
+        "description": "Ashley, en proporción a su propio ataque, aumenta en {0} el ataque del aliado más fuerte y le otorga un escudo de {1}.",
+        "iconUrl": "",
+        "isArmaEspecial": false
       },
       {
-        "type": "Exploración",
+        "type": "Campo",
         "name": "Lazo de Compasión",
-        "description": "La salud de las unidades aliadas que incluyen a este héroe aumenta 5% en combate."
+        "description": "jLa salud de las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Skill_233010.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Luz del Farol Azul",
+        "description": "ELa defensa de la unidad aliada aumenta en {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_143010.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Voluntad de Supervivencia",
+        "description": "Cuando este héroe es líder de concentración, la salud de las unidades aliadas aumenta {0} en combates de concentración.",
+        "iconUrl": "/icons/skill/Icon_Skill_243010.webp",
+        "isArmaEspecial": true
       }
     ],
     "iconUrl": "/portraits/PortraitBust_ASHLEY_L01.webp"
@@ -720,7 +1185,8 @@
     "stats": {
       "health": 101335,
       "attack": 10134,
-      "defense": 2253
+      "defense": 2253,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -734,28 +1200,7 @@
     ],
     "unitType": "Atacante",
     "rarity": "Legendario",
-    "skills": [
-      {
-        "type": "Exploración",
-        "name": "Salud / Poder de ataque",
-        "description": "Salud: 80,548 >> 101,335 | Poder de ataque: 8,056 >> 10,134 | Defensa: 1,791 >> 2,253"
-      },
-      {
-        "type": "Campo",
-        "name": "¡Sígueme, Sancho Panza!",
-        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen un 50% de probabilidad de aumentar 50% el daño que reciben los enemigos."
-      },
-      {
-        "type": "Exploración",
-        "name": "Colocación de Dinamita",
-        "description": "Lanza dinamita a la ubicación designada e inflige a los enemigos cercanos daño equivalente al 1710% del ataque."
-      },
-      {
-        "type": "Exploración",
-        "name": "Munición Experimental",
-        "description": "Las unidades aliadas que incluyen a este héroe tienen un 50% de probabilidad de aumentar 50% el daño infligido a los enemigos en combate."
-      }
-    ],
+    "skills": [],
     "iconUrl": "/portraits/PortraitBust_LUIS_L01.webp"
   },
   {
@@ -765,7 +1210,8 @@
     "stats": {
       "health": 112593,
       "attack": 6757,
-      "defense": 4505
+      "defense": 4505,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -782,33 +1228,59 @@
     "skills": [
       {
         "type": "Exploración",
-        "name": "Técnica con Daga",
-        "description": "Cuando un enemigo se acerca, blande un cuchillo e inflige 2 veces 250% de daño de ataque a los enemigos cercanos."
-      },
-      {
-        "type": "Campo",
-        "name": "Carisma",
-        "description": "La salud de las unidades aliadas que incluyen a este héroe aumenta 5% en combate."
-      },
-      {
-        "type": "Campo",
-        "name": "Instructor",
-        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce 4% en combate."
-      },
-      {
-        "type": "Exploración",
-        "name": "Flecha Explosiva",
-        "description": "Al impactar, la flecha explosiva inflige 300% de daño de ataque a los enemigos cercanos y 688% de daño adicional en el área."
+        "name": "Liberación Mutante",
+        "description": "Desata el poder de Las Plagas y muta su brazo para causar 3 golpes con daño equivalente al {0} del ataque al enemigo. Además, recupera HP equivalente al {1} del daño causado.",
+        "iconUrl": "/icons/skill/Icon_Skill_113008.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Campo",
         "name": "Tajo Ascendente",
-        "description": "Las unidades aliadas que incluyen a este héroe reducen 4% el ataque de los enemigos en combate."
+        "description": "xLas unidades aliadas que incluyen a este héroe reducen {0} el ataque de los enemigos en combate.",
+        "iconUrl": "/icons/skill/Icon_Skill_213008.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Exploración",
-        "name": "Liberación Mutante",
-        "description": "Desata el poder de Las Plagas y muta su brazo para causar 3 golpes con daño equivalente al 45% del ataque al enemigo. Además, recupera HP equivalente al 15% del daño causado."
+        "name": "Flecha Explosiva",
+        "description": "Al impactar, la flecha explosiva inflige {0} de daño de ataque a los enemigos cercanos y {1} de daño adicional en el área.",
+        "iconUrl": "/icons/skill/Icon_Skill_123008.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Instructor",
+        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Skill_223008.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Técnica con Daga",
+        "description": "Cuando un enemigo se acerca, blande un cuchillo e inflige 2 veces {0} de daño de ataque a los enemigos cercanos.",
+        "iconUrl": "/icons/skill/Icon_Skill_133008.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Carisma",
+        "description": "jLa salud de las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Skill_233008.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Adrenalina",
+        "description": "NPor cada 1% de salud perdida, el ataque aumenta en {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_143008.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Cohesión de Unidades",
+        "description": "Cuando este héroe es líder de guarnición, la defensa de las unidades aliadas aumenta {0} en combates defensivos.",
+        "iconUrl": "/icons/skill/Icon_Skill_243008.webp",
+        "isArmaEspecial": true
       }
     ],
     "iconUrl": "/portraits/PortraitBust_JACK_L01.webp"
@@ -820,7 +1292,8 @@
     "stats": {
       "health": 150796,
       "attack": 9606,
-      "defense": 3101
+      "defense": 3101,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -836,29 +1309,60 @@
     "rarity": "Legendario",
     "skills": [
       {
-        "type": "Campo",
-        "name": "Esto tiene un costo adicional.",
-        "description": "Los defensores aliados de la unidad que incluye a este héroe tienen un 10% de probabilidad de infligir daño adicional al enemigo y aumentar en 3% el daño que recibe en combate."
-      },
-      {
-        "type": "Campo",
-        "name": "No hago descuentos.",
-        "description": "Cuando Jake Muller recibe daño, obtiene inmunidad a estados alterados durante 5 s y reduce el daño recibido en 37%."
-      },
-      {
-        "type": "Campo",
-        "name": "Postura defensiva de combate cuerpo a cuerpo",
-        "description": "Durante el combate, cada vez que los defensores aliados de la unidad que incluye a este héroe atacan 4 veces, renuncian a atacar en el siguiente turno. A cambio, el daño que reciben los defensores de los..."
-      },
-      {
-        "type": "Campo",
+        "type": "Exploración",
         "name": "Ataque cargado",
-        "description": "Jake Muller toma impulso y lanza un golpe con la mano, infligiendo daño equivalente al 408% del ataque a los enemigos en un área rectangular frontal."
+        "description": "Jake Muller toma impulso y lanza un golpe con la mano, infligiendo daño equivalente al {0} del ataque a los enemigos en un área rectangular frontal.",
+        "iconUrl": "/icons/skill/Icon_Skill_113011.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": ",Postura defensiva de combate cuerpo a cuerpo",
+        "description": "bDurante el combate, cada vez que los defensores aliados de la unidad que incluye a este héroe atacan 4 veces, renuncian a atacar en el siguiente turno. A cambio, el daño que reciben los defensores de los enemigos se reduce {0} durante 2 turnos, y el daño que reciben los atacantes y rangers se reduce {1}.",
+        "iconUrl": "/icons/skill/Icon_Skill_213011.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Patada giratoria",
+        "description": "Jake Muller salta y patea, infligiendo {0} de daño de ataque a todos los objetivos en un área cónica cercana. Luego los empuja y los aturde durante 2 s.",
+        "iconUrl": "/icons/skill/Icon_Skill_123011.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Campo",
         "name": "Arma humana",
-        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta 4% en combate."
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Skill_223011.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "No hago descuentos.",
+        "description": "Cuando Jake Muller recibe daño, obtiene inmunidad a estados alterados durante 5 s y reduce el daño recibido en {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_133011.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Esto tiene un costo adicional.",
+        "description": "Los defensores aliados de la unidad que incluye a este héroe tienen un {0} de probabilidad de infligir daño adicional al enemigo y aumentar en {1} el daño que recibe en combate.",
+        "iconUrl": "/icons/skill/Icon_Skill_233011.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Gen de anticuerpos",
+        "description": "jAumenta el ataque de Jake Muller en {0} y su defensa en {1}.",
+        "iconUrl": "/icons/skill/Icon_Skill_143011.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Espíritu de resistencia",
+        "description": "Cuando este héroe es líder de guarnición, la salud de las unidades aliadas aumenta {0} en combates defensivos.",
+        "iconUrl": "/icons/skill/Icon_Skill_243011.webp",
+        "isArmaEspecial": true
       }
     ],
     "iconUrl": "/portraits/PortraitBust_JAKE_L01.webp"
@@ -870,7 +1374,8 @@
     "stats": {
       "health": 114312,
       "attack": 12160,
-      "defense": 3039
+      "defense": 3039,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -887,33 +1392,59 @@
     "skills": [
       {
         "type": "Exploración",
-        "name": "Modo ráfaga",
-        "description": "Los atacantes aliados de la unidad que incluye a este héroe tienen un 20% de probabilidad de atacar una vez más al enemigo e infligir daño en combate."
+        "name": "Habilidad 113012٦",
+        "description": "Saca el rifle de asalto BC y dispara 30 balas en línea recta. Cada enemigo alcanzado por las balas recibe daño equivalente al {0} del ataque.",
+        "iconUrl": "",
+        "isArmaEspecial": false
       },
       {
         "type": "Campo",
         "name": "Fuego de apoyo",
-        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta 6% en combate."
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Skill_213012.webp",
+        "isArmaEspecial": false
       },
       {
-        "type": "Campo",
+        "type": "Exploración",
         "name": "Granada cegadora",
-        "description": "Lanza una granada cegadora y aturde a los objetivos dentro de un área circular durante 1 segundo(s)."
+        "description": "sLanza una granada cegadora y aturde a los objetivos dentro de un área circular durante {0}.",
+        "iconUrl": "/icons/skill/Granada cegadora (carlos).webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Campo",
         "name": "Voluntad de sobrevivir",
-        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen 4% de probabilidad de evadir los ataques enemigos."
+        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen {0} de probabilidad de evadir los ataques enemigos.",
+        "iconUrl": "/icons/skill/Icon_Skill_223012.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Exploración",
         "name": "Superchica",
-        "description": "Sherry Birkin recupera salud equivalente al 21,4% de su salud máxima cada 15 s."
+        "description": "eSherry Birkin recupera salud equivalente al {0} de su salud máxima cada 15 s.",
+        "iconUrl": "/icons/skill/Icon_Skill_133012.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Modo ráfaga",
+        "description": "Los atacantes aliados de la unidad que incluye a este héroe tienen un {0} de probabilidad de atacar una vez más al enemigo e infligir daño en combate.",
+        "iconUrl": "/icons/skill/Icon_Skill_233012.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Exploración",
-        "name": "Comandante Bear",
-        "description": "Saca el rifle de asalto BC y dispara 30 balas en línea recta. Cada enemigo alcanzado por las balas recibe daño equivalente al 20% del ataque."
+        "name": "Disparo rápido",
+        "description": "Al realizar un ataque normal, hay un 25% de probabilidad de que el daño del ataque normal aumente en {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_143012.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Bala decisiva",
+        "description": "Cuando este héroe es líder de concentración, la penetración de las unidades aliadas aumenta {0} en combates de concentración.",
+        "iconUrl": "/icons/skill/Icon_Skill_243012.webp",
+        "isArmaEspecial": true
       }
     ],
     "iconUrl": "/portraits/PortraitBust_SHERRY_L01.webp"
@@ -925,7 +1456,8 @@
     "stats": {
       "health": 99719,
       "attack": 14714,
-      "defense": 2979
+      "defense": 2979,
+      "troops": 13470
     },
     "fieldStats": [
       {
@@ -939,33 +1471,173 @@
     ],
     "unitType": "Ranger",
     "rarity": "Legendario",
+    "skills": [],
+    "iconUrl": "/portraits/PortraitBust_PIERS_L01.webp"
+  },
+  {
+    "id": "cazador",
+    "name": "Cazador (Rathalos)",
+    "imageUrl": "/recursos/MH_Rathalos.webp",
+    "stats": {
+      "health": 165000,
+      "attack": 8900,
+      "defense": 2400,
+      "troops": 13470
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Defensor",
+        "value": "250.00%"
+      },
+      {
+        "label": "Poder de defensa de Defensor",
+        "value": "250.00%"
+      }
+    ],
+    "unitType": "Defensor",
+    "rarity": "Legendario",
     "skills": [
       {
         "type": "Exploración",
-        "name": "Rifle antimaterial",
-        "description": "Nivans saca un rifle antimaterial y dispara. El proyectil atraviesa a todos los objetivos en una línea estrecha, inflige daño equivalente al 555% del ataque y los aturde durante 2 s."
+        "name": "Fuego de wyvern",
+        "description": "Tras cargar energía con el arma de cuadriga, genera una explosión que causa daño equivalente al {0} del ATQ a los enemigos en un área en abanico y los aturde durante 2 s.",
+        "iconUrl": "/icons/skill/Icon_Skill_113014.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Campo",
-        "name": "Tiro a larga distancia",
-        "description": "Las unidades aliadas que incluyen a este héroe reducen 12% el daño infligido por los enemigos en combate."
+        "name": "Impacto detonante",
+        "description": "zDurante el combate, los Defensores aliados de la tropa de este héroe tienen una probabilidad de {0} cada 2 turnos de aturdir al tipo de tropa objetivo durante 1 turno. Si el objetivo es un objetivo de caza de Monster Hunter, se añade una probabilidad de {1}. (Máximo 3 intentos de aturdimiento por turno contra un mismo objetivo)",
+        "iconUrl": "/icons/skill/Icon_Skill_213014.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Exploración",
-        "name": "Concentración innata",
-        "description": "Al realizar un ataque normal, el ataque aumenta en 2.4% durante 3 s. Este efecto se acumula hasta 15 veces."
+        "name": "Fuego ráfaga",
+        "description": "&Descarga un poderoso golpe con un arma de cuadriga sobre los enemigos en un área en abanico e inflige daño equivalente al {0} del ATQ. Después, genera una explosión que causa daño equivalente al {1} del ATQ a los enemigos en un área circular.",
+        "iconUrl": "/icons/skill/Icon_Skill_123014.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Campo",
-        "name": "Ajuste a cero",
-        "description": "Cada vez que una unidad aliada que incluya a este héroe ataque 3 veces, el ataque de los rangers aumenta en 6% en el siguiente turno. Este efecto se acumula y dura hasta el final del combate."
+        "name": "Guardia acorazada",
+        "description": "Cuando este héroe forma parte de una tropa aliada, el daño recibido del enemigo disminuye en {0} durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, disminuye en {1} adicionales.",
+        "iconUrl": "/icons/skill/Icon_Skill_223014.webp",
+        "isArmaEspecial": false
       },
       {
         "type": "Exploración",
-        "name": "Lanzamiento de bomba",
-        "description": "Lanza una bomba hacia la ubicación del objetivo más lejano, provocando una explosión que inflige daño equivalente al 190% del ataque."
+        "name": "Nitro de sierpe",
+        "description": "Ataca al objetivo frontal con 2 estocadas poderosas, inflige daño equivalente al {0} del ATQ e instala un nitro de sierpe. Cuando el cazador golpea a un objetivo con el nitro de sierpe, este recibe daño adicional equivalente al {1} del ATQ.",
+        "iconUrl": "/icons/skill/Icon_Skill_133014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Bombardeo de grieta",
+        "description": "Cuando este héroe forma parte de una tropa aliada, hay un 50% de probabilidad de aumentar en {0} el daño recibido por el enemigo durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en {1} adicionales.",
+        "iconUrl": "/icons/skill/Icon_Skill_233014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Mejora de artillería",
+        "description": "DAumenta en {0} el daño infligido al enemigo.",
+        "iconUrl": "/icons/skill/Icon_Skill_143014.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Fuego concentrado",
+        "description": "Cuando este héroe lidera la guarnición, la penetración de las tropas aliadas aumenta en {0} en combates defensivos. Además, al recibir recompensas de un objetivo de caza de Monster Hunter, obtienes {1} adicionales.",
+        "iconUrl": "/icons/skill/Icon_Skill_243014.webp",
+        "isArmaEspecial": true
       }
     ],
-    "iconUrl": "/portraits/PortraitBust_PIERS_L01.webp"
+    "iconUrl": "/portraits/PortraitBust_HUNTER_M01.webp",
+    "image": "/recursos/MH_Rathalos.webp"
+  },
+  {
+    "id": "cazadora",
+    "name": "Cazadora (Rathalos)",
+    "imageUrl": "/recursos/MH_SilverSol.webp",
+    "stats": {
+      "health": 145000,
+      "attack": 10500,
+      "defense": 1950,
+      "troops": 13470
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Ranger",
+        "value": "260.00%"
+      },
+      {
+        "label": "Poder de defensa de Ranger",
+        "value": "260.00%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "D explosivo",
+        "description": "1Dispara un explosivo perforante a un objetivo dentro del alcance para infligir daño equivalente al {0} del ATQ. Después de 2 s, provoca una explosión que inflige daño equivalente al {1} del ATQ a los enemigos en un área circular y los aturde durante 2 s.",
+        "iconUrl": "/icons/skill/Icon_Skill_113015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Inicio de fuego rápido",
+        "description": "Cuando este héroe forma parte de una tropa aliada, hay una probabilidad de {0} de realizar un ataque adicional contra el enemigo e infligir daño. Si el objetivo es un objetivo de caza de Monster Hunter, se añade una probabilidad de {1}.",
+        "iconUrl": "/icons/skill/Icon_Skill_213015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad 123015٢",
+        "description": "Dispara un perforante hacia el frente que atraviesa a todos los enemigos en una línea estrecha e inflige daño equivalente al {0} del ATQ.",
+        "iconUrl": "",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Mejora de munición perforante",
+        "description": "Cuando este héroe forma parte de una tropa aliada, su penetración aumenta en {0} durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en {1} adicionales.",
+        "iconUrl": "/icons/skill/Icon_Skill_223015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Lacerante",
+        "description": "Dispara un lacerante a un objetivo dentro del alcance para infligir daño equivalente al {0} del ATQ. Después de 2 s, explota e inflige daño cortante equivalente al {1} del ATQ 5 veces seguidas.",
+        "iconUrl": "/icons/skill/Icon_Skill_133015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Vitalidad de combate",
+        "description": "Cuando este héroe forma parte de una tropa aliada, su salud aumenta en {0} durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en {1} adicionales.",
+        "iconUrl": "/icons/skill/Icon_Skill_233015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Ataque a punto débil",
+        "description": "DAumenta en {0} el daño infligido al enemigo.",
+        "iconUrl": "/icons/skill/Icon_Skill_143015.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Mejora de balística",
+        "description": "Cuando este héroe lidera la concentración, la penetración de las tropas aliadas aumenta en {0} en combates de concentración. Además, al recibir recompensas de un objetivo de caza de Monster Hunter, obtienes {1} adicionales.",
+        "iconUrl": "/icons/skill/Icon_Skill_243015.webp",
+        "isArmaEspecial": true
+      }
+    ],
+    "iconUrl": "/portraits/PortraitBust_HUNTER_F01.webp",
+    "image": "/recursos/MH_SilverSol.webp"
   }
 ]

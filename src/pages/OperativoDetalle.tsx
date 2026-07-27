@@ -175,6 +175,36 @@ const OperativoDetalle = () => {
               </div>
             </div>
           )}
+          {/* Habilidades VIP (ej. Experto en combate) */}
+          {((op as any).skills || []).filter((s: any) => s.isVipSkill).length > 0 && (
+            <div className="mt-6 relative z-10 space-y-4">
+              {((op as any).skills || []).filter((s: any) => s.isVipSkill).map((skill: any, idx: number) => (
+                <div key={idx} className="bg-[#050505] rounded-xl border border-purple-500/20 p-4 shadow-[0_0_15px_rgba(168,85,247,0.05)]">
+                  <div className="group flex gap-4 items-start">
+                    <div className="relative flex-shrink-0 flex items-center justify-center">
+                      {skill.iconUrl ? (
+                        <img 
+                          src={skill.iconUrl} 
+                          alt={skill.name} 
+                          className="w-14 h-14 object-contain rounded-full shadow-[0_0_15px_rgba(168,85,247,0.15)] group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] group-hover:scale-110 transition-all duration-300" 
+                        />
+                      ) : (
+                        <div className="w-14 h-14 bg-gray-900 border border-gray-700 flex items-center justify-center font-bebas text-purple-500 rounded-full shadow-inner group-hover:scale-110 transition-all duration-300">
+                          V{idx + 1}
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-1 mt-0.5">
+                      <h4 className="text-gray-100 font-bebas tracking-widest text-lg group-hover:text-white transition-colors">{skill.name}</h4>
+                      <p className="text-sm text-gray-400 font-inter mt-1.5 leading-relaxed group-hover:text-gray-300 transition-colors">{skill.description}</p>
+                      <p className="text-[10px] text-purple-400 font-mono mt-4 uppercase tracking-widest">Se desbloquea con Arma Especial</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
         </div>
       </motion.div>
       )}
@@ -241,40 +271,138 @@ const OperativoDetalle = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                <div className="border border-gray-800 p-4 bg-black/50">
-                  <h3 className="font-mono text-blood-red uppercase tracking-widest border-b border-gray-800 pb-2 mb-4">{t('op_detail.field_skills')}</h3>
-                  <div className="space-y-4">
-                    {((op as any).skills || []).filter((s: any) => s.type === 'Campo').map((skill: any, idx: number) => (
-                      <div key={idx} className="flex gap-4 items-start">
-                        <div className="w-10 h-10 bg-gray-900 border border-gray-700 flex-shrink-0 flex items-center justify-center font-bebas text-gray-500">
-                          C{idx + 1}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+                {/* Exploración Skills */}
+                <div className="rounded-xl border border-gray-800/80 bg-gradient-to-b from-black/80 to-black/40 p-5 backdrop-blur-sm shadow-xl">
+                  <div className="border-b border-emerald-500/20 pb-3 mb-5">
+                    <h3 className="font-mono text-emerald-500 uppercase tracking-widest flex items-center gap-3">
+                      <span className="w-2 h-2 bg-emerald-500 rounded-full shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span>
+                      {t('op_detail.explore_skills')}
+                    </h3>
+                  </div>
+                  <div className="space-y-5">
+                    {((op as any).skills || []).filter((s: any) => s.type === 'Exploración' && !s.isArmaEspecial && !s.isVipSkill).map((skill: any, idx: number) => (
+                      <div key={idx} className="group flex gap-5 items-start p-3 rounded-lg hover:bg-white/[0.03] border border-transparent hover:border-white/10 transition-all duration-300">
+                        <div className="relative flex-shrink-0 flex items-center justify-center">
+                          {skill.iconUrl ? (
+                            <img 
+                              src={skill.iconUrl} 
+                              alt={skill.name} 
+                              className="w-14 h-14 object-contain rounded-full shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] group-hover:scale-110 transition-all duration-300" 
+                            />
+                          ) : (
+                            <div className="w-14 h-14 bg-gray-900 border border-gray-700 flex items-center justify-center font-bebas text-emerald-500 rounded-full shadow-inner group-hover:scale-110 transition-all duration-300">
+                              E{idx + 1}
+                            </div>
+                          )}
                         </div>
-                        <div>
-                          <h4 className="text-white font-bebas tracking-widest">{skill.name}</h4>
-                          <p className="text-xs text-gray-500 font-inter mt-1">{skill.description}</p>
+                        <div className="flex-1 mt-0.5">
+                          <h4 className="text-gray-100 font-bebas tracking-widest text-lg group-hover:text-white transition-colors">{skill.name}</h4>
+                          <p className="text-sm text-gray-400 font-inter mt-1.5 leading-relaxed group-hover:text-gray-300 transition-colors">{skill.description}</p>
                         </div>
                       </div>
                     ))}
+                    
+                    {/* Habilidad Especial de Exploración */}
+                    {((op as any).skills || []).filter((s: any) => s.type === 'Exploración' && s.isArmaEspecial).length > 0 && (
+                      <div className="pt-4 mt-2 border-t border-purple-500/20">
+                        <h4 className="font-mono text-purple-500 text-[10px] uppercase tracking-widest mb-4 flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-purple-500 rounded-full shadow-[0_0_6px_rgba(168,85,247,0.8)]"></span>
+                          Habilidad de Arma Especial
+                        </h4>
+                        {((op as any).skills || []).filter((s: any) => s.type === 'Exploración' && s.isArmaEspecial).map((skill: any, idx: number) => (
+                          <div key={idx} className="group flex gap-5 items-start p-3 rounded-lg hover:bg-white/[0.03] border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 bg-purple-900/5">
+                            <div className="relative flex-shrink-0 flex items-center justify-center">
+                              {skill.iconUrl ? (
+                                <img 
+                                  src={skill.iconUrl} 
+                                  alt={skill.name} 
+                                  className="w-14 h-14 object-contain rounded-full shadow-[0_0_15px_rgba(168,85,247,0.25)] group-hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] group-hover:scale-110 transition-all duration-300" 
+                                />
+                              ) : (
+                                <div className="w-14 h-14 bg-gray-900 border border-gray-700 flex items-center justify-center font-bebas text-purple-500 rounded-full shadow-inner group-hover:scale-110 transition-all duration-300">
+                                  A{idx + 1}
+                                </div>
+                              )}
+                            </div>
+                            <div className="flex-1 mt-0.5">
+                              <h4 className="text-gray-100 font-bebas tracking-widest text-lg group-hover:text-white transition-colors">{skill.name}</h4>
+                              <p className="text-sm text-gray-400 font-inter mt-1.5 leading-relaxed group-hover:text-gray-300 transition-colors">{skill.description}</p>
+                              <p className="text-[10px] text-purple-400 font-mono mt-3 uppercase tracking-widest">Se desbloquea con Arma Especial</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
-                <div className="border border-gray-800 p-4 bg-black/50">
-                  <h3 className="font-mono text-blue-500 uppercase tracking-widest border-b border-gray-800 pb-2 mb-4">{t('op_detail.explore_skills')}</h3>
-                  <div className="space-y-4">
-                    {((op as any).skills || []).filter((s: any) => s.type === 'Exploración').map((skill: any, idx: number) => (
-                      <div key={idx} className="flex gap-4 items-start">
-                        <div className="w-10 h-10 bg-gray-900 border border-gray-700 flex-shrink-0 flex items-center justify-center font-bebas text-gray-500">
-                          E{idx + 1}
+
+                {/* Campo Skills */}
+                <div className="rounded-xl border border-gray-800/80 bg-gradient-to-b from-black/80 to-black/40 p-5 backdrop-blur-sm shadow-xl">
+                  <div className="border-b border-blood-red/20 pb-3 mb-5">
+                    <h3 className="font-mono text-blood-red uppercase tracking-widest flex items-center gap-3">
+                      <span className="w-2 h-2 bg-blood-red rounded-full shadow-[0_0_8px_#ff0000]"></span>
+                      {t('op_detail.field_skills')}
+                    </h3>
+                  </div>
+                  <div className="space-y-5">
+                    {((op as any).skills || []).filter((s: any) => s.type === 'Campo' && !s.isArmaEspecial && !s.isVipSkill).map((skill: any, idx: number) => (
+                      <div key={idx} className="group flex gap-5 items-start p-3 rounded-lg hover:bg-white/[0.03] border border-transparent hover:border-white/10 transition-all duration-300">
+                        <div className="relative flex-shrink-0 flex items-center justify-center">
+                          {skill.iconUrl ? (
+                            <img 
+                              src={skill.iconUrl} 
+                              alt={skill.name} 
+                              className="w-14 h-14 object-contain rounded-full shadow-[0_0_15px_rgba(220,38,38,0.15)] group-hover:shadow-[0_0_20px_rgba(220,38,38,0.4)] group-hover:scale-110 transition-all duration-300" 
+                            />
+                          ) : (
+                            <div className="w-14 h-14 bg-gray-900 border border-gray-700 flex items-center justify-center font-bebas text-blood-red rounded-full shadow-inner group-hover:scale-110 transition-all duration-300">
+                              C{idx + 1}
+                            </div>
+                          )}
                         </div>
-                        <div>
-                          <h4 className="text-white font-bebas tracking-widest">{skill.name}</h4>
-                          <p className="text-xs text-gray-500 font-inter mt-1">{skill.description}</p>
+                        <div className="flex-1 mt-0.5">
+                          <h4 className="text-gray-100 font-bebas tracking-widest text-lg group-hover:text-white transition-colors">{skill.name}</h4>
+                          <p className="text-sm text-gray-400 font-inter mt-1.5 leading-relaxed group-hover:text-gray-300 transition-colors">{skill.description}</p>
                         </div>
                       </div>
                     ))}
+                    
+                    {/* Habilidad Especial de Campo */}
+                    {((op as any).skills || []).filter((s: any) => s.type === 'Campo' && s.isArmaEspecial).length > 0 && (
+                      <div className="pt-4 mt-2 border-t border-purple-500/20">
+                        <h4 className="font-mono text-purple-500 text-[10px] uppercase tracking-widest mb-4 flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 bg-purple-500 rounded-full shadow-[0_0_6px_rgba(168,85,247,0.8)]"></span>
+                          Habilidad de Arma Especial
+                        </h4>
+                        {((op as any).skills || []).filter((s: any) => s.type === 'Campo' && s.isArmaEspecial).map((skill: any, idx: number) => (
+                          <div key={idx} className="group flex gap-5 items-start p-3 rounded-lg hover:bg-white/[0.03] border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 bg-purple-900/5">
+                            <div className="relative flex-shrink-0 flex items-center justify-center">
+                              {skill.iconUrl ? (
+                                <img 
+                                  src={skill.iconUrl} 
+                                  alt={skill.name} 
+                                  className="w-14 h-14 object-contain rounded-full shadow-[0_0_15px_rgba(168,85,247,0.25)] group-hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] group-hover:scale-110 transition-all duration-300" 
+                                />
+                              ) : (
+                                <div className="w-14 h-14 bg-gray-900 border border-gray-700 flex items-center justify-center font-bebas text-purple-500 rounded-full shadow-inner group-hover:scale-110 transition-all duration-300">
+                                  A{idx + 1}
+                                </div>
+                              )}
+                            </div>
+                            <div className="flex-1 mt-0.5">
+                              <h4 className="text-gray-100 font-bebas tracking-widest text-lg group-hover:text-white transition-colors">{skill.name}</h4>
+                              <p className="text-sm text-gray-400 font-inter mt-1.5 leading-relaxed group-hover:text-gray-300 transition-colors">{skill.description}</p>
+                              <p className="text-[10px] text-purple-400 font-mono mt-3 uppercase tracking-widest">Se desbloquea con Arma Especial</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
-              </div>
+
+                              </div>
             </div>
           )}
 
@@ -581,88 +709,9 @@ const OperativoDetalle = () => {
                 </div>
               </div>
 
-              {/* LISTA LIMPIA DE HABILIDADES DE CAMPO (LIBRO AZUL) */}
+              {/* LISTA LIMPIA DE HABILIDADES DE EXPLORACIÓN (LIBRO VERDE) */}
               <div className="mb-6">
-                <h3 className="font-mono text-xs text-blue-400/80 uppercase tracking-widest mb-3 flex items-center gap-2">
-                  <img src="/recursos/book_field.webp" alt="Campo" className="w-4 h-4 object-contain opacity-80" />
-                  Habilidades de Campo
-                </h3>
-                <div className="space-y-2">
-                  {campoSkillsList.map(skill => {
-                    const st = skillsState[skill.id] || { current: 1, target: 5 };
-                    const cost = calculateSkillBooks(st.current, st.target);
-
-                    return (
-                      <div
-                        key={skill.id}
-                        className="bg-[#070707] hover:bg-gradient-to-r hover:from-blue-950/20 hover:via-[#070707] hover:to-transparent border border-gray-800/80 hover:border-blue-500/40 p-3 rounded-sm flex items-center justify-between gap-4 transition-all duration-300"
-                      >
-                        <div className="flex items-center gap-3 min-w-0">
-                          <div className="w-7 h-7 bg-blue-950/30 border border-blue-800/40 text-blue-400 font-bebas text-sm flex items-center justify-center rounded-sm shrink-0">
-                            {skill.code}
-                          </div>
-                          <h4 className="text-white font-bebas tracking-wider text-base truncate">
-                            {skill.name}
-                          </h4>
-                        </div>
-
-                        <div className="flex items-center gap-3 shrink-0">
-                          <div className="flex items-center gap-1.5 font-mono text-xs text-gray-400 bg-black/60 px-2 py-1 border border-gray-800 rounded-sm">
-                            <span>Nv.</span>
-                            <select
-                              value={st.current}
-                              onChange={(e) => {
-                                const val = Number(e.target.value);
-                                setSkillsState(prev => ({
-                                  ...prev,
-                                  [skill.id]: {
-                                    ...(prev[skill.id] || { current: 1, target: 5 }),
-                                    current: val,
-                                    target: Math.max(val, (prev[skill.id]?.target || 5))
-                                  }
-                                }));
-                              }}
-                              className="bg-gray-900 border border-gray-700 text-white font-mono text-xs px-1.5 py-0.5 rounded-sm outline-none cursor-pointer hover:border-gray-500"
-                            >
-                              {[1, 2, 3, 4, 5].map(lvl => (
-                                <option key={lvl} value={lvl}>{lvl}</option>
-                              ))}
-                            </select>
-                            <span className="text-gray-600">➔</span>
-                            <select
-                              value={st.target}
-                              onChange={(e) => {
-                                const val = Number(e.target.value);
-                                setSkillsState(prev => ({
-                                  ...prev,
-                                  [skill.id]: {
-                                    ...(prev[skill.id] || { current: 1, target: 5 }),
-                                    target: val
-                                  }
-                                }));
-                              }}
-                              className="bg-gray-900 border border-gray-700 text-yellow-400 font-bold font-mono text-xs px-1.5 py-0.5 rounded-sm outline-none cursor-pointer hover:border-gray-500"
-                            >
-                              {[1, 2, 3, 4, 5].filter(lvl => lvl >= st.current).map(lvl => (
-                                <option key={lvl} value={lvl}>{lvl}</option>
-                              ))}
-                            </select>
-                          </div>
-
-                          <div className="flex items-center gap-1.5 min-w-[60px] justify-end">
-                            <img src="/recursos/book_field.webp" alt="Libro Campo" className="w-4 h-4 object-contain opacity-70" />
-                            <span className="font-bebas text-xl text-yellow-400 tracking-wider">{cost}</span>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* LISTA LIMPIA DE HABILIDADES DE EXPLORACIÓN (LIBRO ROJO) */}
-              <div className="mb-6">
-                <h3 className="font-mono text-xs text-red-400/80 uppercase tracking-widest mb-3 flex items-center gap-2">
+                <h3 className="font-mono text-xs text-emerald-500 uppercase tracking-widest mb-3 flex items-center gap-2">
                   <img src="/recursos/book_explore.webp" alt="Exploración" className="w-4 h-4 object-contain opacity-80" />
                   Habilidades de Exploración
                 </h3>
@@ -674,10 +723,10 @@ const OperativoDetalle = () => {
                     return (
                       <div
                         key={skill.id}
-                        className="bg-[#070707] hover:bg-gradient-to-r hover:from-blood-red/15 hover:via-[#070707] hover:to-transparent border border-gray-800/80 hover:border-blood-red/40 p-3 rounded-sm flex items-center justify-between gap-4 transition-all duration-300"
+                        className="bg-[#070707] hover:bg-gradient-to-r hover:from-emerald-900/20 hover:via-[#070707] hover:to-transparent border border-gray-800/80 hover:border-emerald-500/40 p-3 rounded-sm flex items-center justify-between gap-4 transition-all duration-300"
                       >
                         <div className="flex items-center gap-3 min-w-0">
-                          <div className="w-7 h-7 bg-red-950/30 border border-red-800/40 text-red-400 font-bebas text-sm flex items-center justify-center rounded-sm shrink-0">
+                          <div className="w-7 h-7 bg-emerald-950/30 border border-emerald-800/40 text-emerald-500 font-bebas text-sm flex items-center justify-center rounded-sm shrink-0">
                             {skill.code}
                           </div>
                           <h4 className="text-white font-bebas tracking-wider text-base truncate">
@@ -739,39 +788,118 @@ const OperativoDetalle = () => {
                 </div>
               </div>
 
-              {/* CUADRO DE TOTALES ESTILO ANTIGUO (DORADO) */}
+              {/* LISTA LIMPIA DE HABILIDADES DE CAMPO (LIBRO ROJO) */}
+              <div className="mb-6">
+                <h3 className="font-mono text-xs text-blood-red uppercase tracking-widest mb-3 flex items-center gap-2">
+                  <img src="/recursos/book_field.webp" alt="Campo" className="w-4 h-4 object-contain opacity-80" />
+                  Habilidades de Campo
+                </h3>
+                <div className="space-y-2">
+                  {campoSkillsList.map(skill => {
+                    const st = skillsState[skill.id] || { current: 1, target: 5 };
+                    const cost = calculateSkillBooks(st.current, st.target);
+
+                    return (
+                      <div
+                        key={skill.id}
+                        className="bg-[#070707] hover:bg-gradient-to-r hover:from-blood-red/15 hover:via-[#070707] hover:to-transparent border border-gray-800/80 hover:border-blood-red/40 p-3 rounded-sm flex items-center justify-between gap-4 transition-all duration-300"
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className="w-7 h-7 bg-red-950/30 border border-red-800/40 text-blood-red font-bebas text-sm flex items-center justify-center rounded-sm shrink-0">
+                            {skill.code}
+                          </div>
+                          <h4 className="text-white font-bebas tracking-wider text-base truncate">
+                            {skill.name}
+                          </h4>
+                        </div>
+
+                        <div className="flex items-center gap-3 shrink-0">
+                          <div className="flex items-center gap-1.5 font-mono text-xs text-gray-400 bg-black/60 px-2 py-1 border border-gray-800 rounded-sm">
+                            <span>Nv.</span>
+                            <select
+                              value={st.current}
+                              onChange={(e) => {
+                                const val = Number(e.target.value);
+                                setSkillsState(prev => ({
+                                  ...prev,
+                                  [skill.id]: {
+                                    ...(prev[skill.id] || { current: 1, target: 5 }),
+                                    current: val,
+                                    target: Math.max(val, (prev[skill.id]?.target || 5))
+                                  }
+                                }));
+                              }}
+                              className="bg-gray-900 border border-gray-700 text-white font-mono text-xs px-1.5 py-0.5 rounded-sm outline-none cursor-pointer hover:border-gray-500"
+                            >
+                              {[1, 2, 3, 4, 5].map(lvl => (
+                                <option key={lvl} value={lvl}>{lvl}</option>
+                              ))}
+                            </select>
+                            <span className="text-gray-600">➔</span>
+                            <select
+                              value={st.target}
+                              onChange={(e) => {
+                                const val = Number(e.target.value);
+                                setSkillsState(prev => ({
+                                  ...prev,
+                                  [skill.id]: {
+                                    ...(prev[skill.id] || { current: 1, target: 5 }),
+                                    target: val
+                                  }
+                                }));
+                              }}
+                              className="bg-gray-900 border border-gray-700 text-yellow-400 font-bold font-mono text-xs px-1.5 py-0.5 rounded-sm outline-none cursor-pointer hover:border-gray-500"
+                            >
+                              {[1, 2, 3, 4, 5].filter(lvl => lvl >= st.current).map(lvl => (
+                                <option key={lvl} value={lvl}>{lvl}</option>
+                              ))}
+                            </select>
+                          </div>
+
+                          <div className="flex items-center gap-1.5 min-w-[60px] justify-end">
+                            <img src="/recursos/book_field.webp" alt="Libro Campo" className="w-4 h-4 object-contain opacity-70" />
+                            <span className="font-bebas text-xl text-yellow-400 tracking-wider">{cost}</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+                            {/* CUADRO DE TOTALES ESTILO ANTIGUO (DORADO) */}
               <div className="bg-yellow-900/10 border border-yellow-500/30 p-6 text-center rounded-sm">
                 <p className="font-mono text-gray-400 text-sm uppercase mb-3 tracking-widest">
                   {t('op_detail.req_books')}
                 </p>
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 my-3">
-                  {/* Total Campo (Azul) */}
+                  {/* Total Exploración (Verde) */}
                   <div className="flex items-center gap-3">
-                    <img src="/recursos/book_field.webp" alt="Campo" className="w-9 h-9 object-contain drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+                    <img src="/recursos/book_explore.webp" alt="Exploración" className="w-9 h-9 object-contain drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
                     <div className="text-left">
-                      <div className="text-[10px] font-mono text-blue-400 uppercase tracking-widest">Total Campo</div>
-                      <div className="font-bebas text-4xl md:text-5xl text-blue-400 tracking-widest drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">
-                        {totalCampoBooks.toLocaleString()}
+                      <div className="text-[10px] font-mono text-emerald-500 uppercase tracking-widest">Total Exploración</div>
+                      <div className="font-bebas text-4xl md:text-5xl text-emerald-500 tracking-widest drop-shadow-[0_0_10px_rgba(16,185,129,0.5)]">
+                        {totalExploreBooks.toLocaleString()}
                       </div>
                     </div>
                   </div>
 
                   <span className="text-gray-700 text-3xl font-light hidden md:inline">|</span>
 
-                  {/* Total Exploración (Rojo) */}
+                  {/* Total Campo (Rojo) */}
                   <div className="flex items-center gap-3">
-                    <img src="/recursos/book_explore.webp" alt="Exploración" className="w-9 h-9 object-contain drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
+                    <img src="/recursos/book_field.webp" alt="Campo" className="w-9 h-9 object-contain drop-shadow-[0_0_8px_rgba(220,38,38,0.5)]" />
                     <div className="text-left">
-                      <div className="text-[10px] font-mono text-red-400 uppercase tracking-widest">Total Exploración</div>
-                      <div className="font-bebas text-4xl md:text-5xl text-red-400 tracking-widest drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]">
-                        {totalExploreBooks.toLocaleString()}
+                      <div className="text-[10px] font-mono text-blood-red uppercase tracking-widest">Total Campo</div>
+                      <div className="font-bebas text-4xl md:text-5xl text-blood-red tracking-widest drop-shadow-[0_0_10px_rgba(220,38,38,0.5)]">
+                        {totalCampoBooks.toLocaleString()}
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Costos por Nivel (Estilo Antiguo) */}
+{/* Costos por Nivel (Estilo Antiguo) */}
                 <div className="mt-5 flex justify-center">
                   <div className="flex flex-wrap gap-4 text-xs font-mono text-gray-400 border border-gray-800 bg-black/50 px-4 py-2 rounded-sm">
                     <span><strong className="text-white">Nv. 1 ➔ 2 :</strong> 10</span>
