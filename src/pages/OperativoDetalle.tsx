@@ -26,6 +26,20 @@ const getUnitColor = (type: string) => {
   return 'text-gray-400 bg-gray-800 border-gray-600';
 };
 
+const getCleanIconUrl = (url: string) => {
+  if (!url) return '';
+  let cleanUrl = url.trim();
+  if (cleanUrl.startsWith('/public')) {
+    cleanUrl = cleanUrl.replace('/public', '');
+  } else if (cleanUrl.startsWith('public/')) {
+    cleanUrl = cleanUrl.replace('public/', '/');
+  }
+  if (!cleanUrl.startsWith('/') && !cleanUrl.startsWith('http')) {
+    cleanUrl = '/' + cleanUrl;
+  }
+  return cleanUrl;
+};
+
 const OperativoDetalle = () => {
   const { t } = useTranslation();
   const operativosData = useOperativos();
@@ -286,7 +300,7 @@ const OperativoDetalle = () => {
                         <div className="relative flex-shrink-0 flex items-center justify-center">
                           {skill.iconUrl ? (
                             <img 
-                              src={skill.iconUrl} 
+                              src={getCleanIconUrl(skill.iconUrl)} 
                               alt={skill.name} 
                               className="w-14 h-14 object-contain rounded-full shadow-[0_0_15px_rgba(16,185,129,0.15)] group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] group-hover:scale-110 transition-all duration-300" 
                             />
@@ -315,7 +329,7 @@ const OperativoDetalle = () => {
                             <div className="relative flex-shrink-0 flex items-center justify-center">
                               {skill.iconUrl ? (
                                 <img 
-                                  src={skill.iconUrl} 
+                                  src={getCleanIconUrl(skill.iconUrl)} 
                                   alt={skill.name} 
                                   className="w-14 h-14 object-contain rounded-full shadow-[0_0_15px_rgba(168,85,247,0.25)] group-hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] group-hover:scale-110 transition-all duration-300" 
                                 />
@@ -351,7 +365,7 @@ const OperativoDetalle = () => {
                         <div className="relative flex-shrink-0 flex items-center justify-center">
                           {skill.iconUrl ? (
                             <img 
-                              src={skill.iconUrl} 
+                              src={getCleanIconUrl(skill.iconUrl)} 
                               alt={skill.name} 
                               className="w-14 h-14 object-contain rounded-full shadow-[0_0_15px_rgba(220,38,38,0.15)] group-hover:shadow-[0_0_20px_rgba(220,38,38,0.4)] group-hover:scale-110 transition-all duration-300" 
                             />
@@ -380,7 +394,7 @@ const OperativoDetalle = () => {
                             <div className="relative flex-shrink-0 flex items-center justify-center">
                               {skill.iconUrl ? (
                                 <img 
-                                  src={skill.iconUrl} 
+                                  src={getCleanIconUrl(skill.iconUrl)} 
                                   alt={skill.name} 
                                   className="w-14 h-14 object-contain rounded-full shadow-[0_0_15px_rgba(168,85,247,0.25)] group-hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] group-hover:scale-110 transition-all duration-300" 
                                 />
