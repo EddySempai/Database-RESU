@@ -40,6 +40,38 @@ const getCleanIconUrl = (url: string) => {
   return cleanUrl;
 };
 
+const CHARACTER_BG_MAP: Record<string, string> = {
+  barry: '/operativos/bg/Character_bg_01.webp',
+  brad: '/operativos/bg/Character_bg_01.webp',
+  mark: '/operativos/bg/Character_bg_02.webp',
+  robert: '/operativos/bg/Character_bg_02.webp',
+  becca: '/operativos/bg/Character_bg_02.webp',
+  katherine: '/operativos/bg/Character_bg_02.webp',
+  alyssa: '/operativos/bg/Character_bg_02.webp',
+  tyrone: '/operativos/bg/Character_bg_02.webp',
+  ada: '/operativos/bg/Character_bg_02.webp',
+  carlos: '/operativos/bg/Character_bg_03.webp',
+  mikhail: '/operativos/bg/Character_bg_03.webp',
+  tyrell: '/operativos/bg/Character_bg_03.webp',
+  murphy: '/operativos/bg/Character_bg_03.webp',
+  jill: '/operativos/bg/Character_bg_03.webp',
+  claire: '/operativos/bg/Character_bg_04.webp',
+  marvin: '/operativos/bg/Character_bg_04.webp',
+  leon: '/operativos/bg/Character_bg_04.webp',
+  billy: '/operativos/bg/Character_bg_05.webp',
+  rebecca: '/operativos/bg/Character_bg_05.webp',
+  chris: '/operativos/bg/Character_bg_06.webp',
+  ashley: '/operativos/bg/Character_bg_07.webp',
+  luis: '/operativos/bg/Character_bg_08.webp',
+  jack: '/operativos/bg/Character_bg_08.webp',
+  krauser: '/operativos/bg/Character_bg_08.webp',
+  piers: '/operativos/bg/Character_bg_09.webp',
+  jake: '/operativos/bg/Character_bg_10.webp',
+  sherry: '/operativos/bg/Character_bg_10.webp',
+  cazadora: '/operativos/bg/Character_bg_11.webp',
+  cazador: '/operativos/bg/Character_bg_11.webp'
+};
+
 const OperativoDetalle = () => {
   const { t } = useTranslation();
   const operativosData = useOperativos();
@@ -135,7 +167,18 @@ const OperativoDetalle = () => {
         </Link>
         
         <div className="bg-[#050505] border border-gray-800 p-6 relative overflow-hidden group rounded-sm flex-1">
-          <div className="absolute inset-0 bg-blood-red/5" />
+          {/* Fondo Temático Original a Color (Solo Sección Superior) */}
+          {CHARACTER_BG_MAP[op.id] && (
+            <div 
+              className="absolute inset-x-0 top-0 h-[500px] bg-cover bg-center pointer-events-none opacity-80 rounded-t-sm transition-opacity duration-300"
+              style={{ 
+                backgroundImage: `url(${CHARACTER_BG_MAP[op.id]})`,
+                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, transparent 100%)'
+              }}
+            />
+          )}
+          <div className="absolute inset-0 bg-blood-red/5 pointer-events-none" />
           <h1 className="font-bebas text-4xl text-white tracking-widest relative z-10 drop-shadow-[0_0_10px_rgba(255,42,42,0.5)]">
             {op.name}
           </h1>
