@@ -122,12 +122,12 @@ const OperativoDetalle = () => {
   const exploreSkills = (op?.skills || []).filter((s: any) => s.type === 'Exploración');
 
   const all6Skills = [
-    { id: 'c1', type: 'Campo' as const, code: 'C1', name: fieldSkills[0]?.name || 'Habilidad de Campo 1', description: fieldSkills[0]?.description },
-    { id: 'c2', type: 'Campo' as const, code: 'C2', name: fieldSkills[1]?.name || 'Habilidad de Campo 2', description: fieldSkills[1]?.description },
-    { id: 'c3', type: 'Campo' as const, code: 'C3', name: fieldSkills[2]?.name || 'Habilidad de Campo 3', description: fieldSkills[2]?.description },
-    { id: 'e1', type: 'Exploración' as const, code: 'E1', name: exploreSkills[0]?.name || 'Habilidad de Exploración 1', description: exploreSkills[0]?.description },
-    { id: 'e2', type: 'Exploración' as const, code: 'E2', name: exploreSkills[1]?.name || 'Habilidad de Exploración 2', description: exploreSkills[1]?.description },
-    { id: 'e3', type: 'Exploración' as const, code: 'E3', name: exploreSkills[2]?.name || 'Habilidad de Exploración 3', description: exploreSkills[2]?.description }
+    { id: 'c1', type: 'Campo' as const, code: 'C1', name: (fieldSkills[0] as any)?.name || 'Habilidad de Campo 1', description: (fieldSkills[0] as any)?.description, iconUrl: (fieldSkills[0] as any)?.iconUrl },
+    { id: 'c2', type: 'Campo' as const, code: 'C2', name: (fieldSkills[1] as any)?.name || 'Habilidad de Campo 2', description: (fieldSkills[1] as any)?.description, iconUrl: (fieldSkills[1] as any)?.iconUrl },
+    { id: 'c3', type: 'Campo' as const, code: 'C3', name: (fieldSkills[2] as any)?.name || 'Habilidad de Campo 3', description: (fieldSkills[2] as any)?.description, iconUrl: (fieldSkills[2] as any)?.iconUrl },
+    { id: 'e1', type: 'Exploración' as const, code: 'E1', name: (exploreSkills[0] as any)?.name || 'Habilidad de Exploración 1', description: (exploreSkills[0] as any)?.description, iconUrl: (exploreSkills[0] as any)?.iconUrl },
+    { id: 'e2', type: 'Exploración' as const, code: 'E2', name: (exploreSkills[1] as any)?.name || 'Habilidad de Exploración 2', description: (exploreSkills[1] as any)?.description, iconUrl: (exploreSkills[1] as any)?.iconUrl },
+    { id: 'e3', type: 'Exploración' as const, code: 'E3', name: (exploreSkills[2] as any)?.name || 'Habilidad de Exploración 3', description: (exploreSkills[2] as any)?.description, iconUrl: (exploreSkills[2] as any)?.iconUrl }
   ];
 
   const campoSkillsList = all6Skills.filter(s => s.type === 'Campo');
@@ -783,9 +783,17 @@ const OperativoDetalle = () => {
                         className="bg-[#070707] hover:bg-gradient-to-r hover:from-emerald-900/20 hover:via-[#070707] hover:to-transparent border border-gray-800/80 hover:border-emerald-500/40 p-3 rounded-sm flex items-center justify-between gap-4 transition-all duration-300"
                       >
                         <div className="flex items-center gap-3 min-w-0">
-                          <div className="w-7 h-7 bg-emerald-950/30 border border-emerald-800/40 text-emerald-500 font-bebas text-sm flex items-center justify-center rounded-sm shrink-0">
-                            {skill.code}
-                          </div>
+                          {skill.iconUrl ? (
+                            <img 
+                              src={getCleanIconUrl(skill.iconUrl)} 
+                              alt={skill.name} 
+                              className="w-9 h-9 object-contain rounded-full border border-emerald-500/40 shadow-[0_0_8px_rgba(16,185,129,0.3)] shrink-0" 
+                            />
+                          ) : (
+                            <div className="w-7 h-7 bg-emerald-950/30 border border-emerald-800/40 text-emerald-500 font-bebas text-sm flex items-center justify-center rounded-sm shrink-0">
+                              {skill.code}
+                            </div>
+                          )}
                           <h4 className="text-white font-bebas tracking-wider text-base truncate">
                             {skill.name}
                           </h4>
@@ -862,9 +870,17 @@ const OperativoDetalle = () => {
                         className="bg-[#070707] hover:bg-gradient-to-r hover:from-blood-red/15 hover:via-[#070707] hover:to-transparent border border-gray-800/80 hover:border-blood-red/40 p-3 rounded-sm flex items-center justify-between gap-4 transition-all duration-300"
                       >
                         <div className="flex items-center gap-3 min-w-0">
-                          <div className="w-7 h-7 bg-red-950/30 border border-red-800/40 text-blood-red font-bebas text-sm flex items-center justify-center rounded-sm shrink-0">
-                            {skill.code}
-                          </div>
+                          {skill.iconUrl ? (
+                            <img 
+                              src={getCleanIconUrl(skill.iconUrl)} 
+                              alt={skill.name} 
+                              className="w-9 h-9 object-contain rounded-full border border-blood-red/40 shadow-[0_0_8px_rgba(220,38,38,0.3)] shrink-0" 
+                            />
+                          ) : (
+                            <div className="w-7 h-7 bg-red-950/30 border border-red-800/40 text-blood-red font-bebas text-sm flex items-center justify-center rounded-sm shrink-0">
+                              {skill.code}
+                            </div>
+                          )}
                           <h4 className="text-white font-bebas tracking-wider text-base truncate">
                             {skill.name}
                           </h4>
