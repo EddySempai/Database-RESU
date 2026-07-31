@@ -25,5 +25,3 @@ dist-ssr
 .env
 .env.local
 .env.*.local
-# Ignorar iconos de habilidades extraidos
-public/icons/skill/*
