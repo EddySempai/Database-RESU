@@ -1,6 +1,6 @@
 import { useState, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calculator, Zap, FastForward, Clock, Plus, Trash2, ArrowRight, UploadCloud, Loader2 } from 'lucide-react';
+import { Calculator, Zap, Clock, Plus, Trash2, ArrowRight, UploadCloud, Loader2 } from 'lucide-react';
 import { v4 as uuidv4 } from 'uuid';
 import { analyzeScreenshot } from '../services/geminiService';
 import { useTranslation } from 'react-i18next';
@@ -35,6 +35,7 @@ const InventoryItem = ({ label, value, onChange, isTroop, rarity }: any) => {
     gold: "from-yellow-900 to-black"
   };
   const bgClass = bgGradients[rarity] || bgGradients.gray;
+  const iconSrc = isTroop ? '/recursos/Item_USB_02.webp' : '/recursos/Item_USB_06.webp';
 
   return (
     <motion.label 
@@ -43,12 +44,15 @@ const InventoryItem = ({ label, value, onChange, isTroop, rarity }: any) => {
       whileHover={{ scale: 1.05 }}
       className={`relative group bg-gradient-to-br ${bgClass} border border-gray-700 p-2 rounded-sm flex flex-col items-center justify-center h-[90px] overflow-hidden cursor-text`}
     >
-      <div className="absolute top-1 left-1 text-[9px] font-mono text-white bg-black/60 px-1 rounded-sm pointer-events-none">{label}</div>
-      <FastForward className="text-yellow-500 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] fill-yellow-600 mt-2 pointer-events-none" size={28} />
-      {isTroop && <span className="absolute bottom-1 left-1 text-[12px] opacity-80 pointer-events-none" title="Para Tropas">🔫</span>}
+      <div className="absolute top-1 left-1 text-[9px] font-mono text-white bg-black/60 px-1 rounded-sm pointer-events-none z-10">{label}</div>
+      <img 
+        src={iconSrc} 
+        alt={isTroop ? 'Acelerador de Tropa' : 'Acelerador General'} 
+        className="w-11 h-11 object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] my-auto pointer-events-none" 
+      />
       <input 
         type="number" min="0" value={value || ''} onChange={(e) => onChange(parseInt(e.target.value) || 0)}
-        className="absolute bottom-0 right-0 w-12 bg-black/80 border-t border-l border-gray-700 text-white font-mono text-[10px] p-1 text-right outline-none focus:bg-blood-red/20 focus:border-blood-red transition-colors rounded-tl-sm cursor-text"
+        className="absolute bottom-0 right-0 w-12 bg-black/80 border-t border-l border-gray-700 text-white font-mono text-[10px] p-1 text-right outline-none focus:bg-blood-red/20 focus:border-blood-red transition-colors rounded-tl-sm cursor-text z-10"
         placeholder="0"
       />
     </motion.label>
@@ -83,7 +87,28 @@ const TrainingCalculator = () => {
     setQueues(q => q.map(item => item.id === id ? { ...item, batchTime: timeObj } : item));
   };
   const addQueue = () => {
-    setQueues([...queues, { id: uuidv4(), type: 'train', fromLevel: 8, toLevel: 11, batchQty: 1000, batchTime: { days: 0, hours: 2, minutes: 30, seconds: 0 }, limit: 50000 }]);
+    const lastQueue = queues[queues.length - 1];
+    const newQueue: QueueItem = lastQueue 
+      ? {
+          id: uuidv4(),
+          type: lastQueue.type,
+          fromLevel: lastQueue.fromLevel,
+          toLevel: lastQueue.toLevel,
+          batchQty: lastQueue.batchQty,
+          batchTime: { ...lastQueue.batchTime },
+          limit: lastQueue.limit
+        }
+      : { 
+          id: uuidv4(), 
+          type: 'train', 
+          fromLevel: 8, 
+          toLevel: 11, 
+          batchQty: 1000, 
+          batchTime: { days: 0, hours: 2, minutes: 30, seconds: 0 }, 
+          limit: 50000 
+        };
+
+    setQueues(q => [...q, newQueue]);
   };
   const removeQueue = (id: string) => {
     if (queues.length > 1) setQueues(q => q.filter(item => item.id !== id));

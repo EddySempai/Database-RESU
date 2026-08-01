@@ -157,7 +157,7 @@
       {
         "type": "Exploración",
         "name": "Modificación de potencia",
-        "description": "qLos héroes aliados que combaten junto a Claire infligen {0} más de daño a los enemigos.",
+        "description": "Los héroes aliados que combaten junto a Claire infligen {0} más de daño a los enemigos.",
         "iconUrl": "/icons/skill/Icon_Skill_143001.webp",
         "isArmaEspecial": true
       },
@@ -166,13 +166,6 @@
         "name": "Valentía",
         "description": "Cuando este héroe es líder de concentración, la defensa de las unidades aliadas aumenta {0} en combates de concentración.",
         "iconUrl": "/icons/skill/Icon_Skill_243001.webp",
-        "isArmaEspecial": true
-      },
-      {
-        "type": "Campo",
-        "name": "Habilidad 253001٧",
-        "description": "Cuando recibes recompensas de un objetivo de caza de Monster Hunter, tienes una probabilidad de {0} de obtener materiales avanzados adicionales.",
-        "iconUrl": "",
         "isArmaEspecial": true
       }
     ],
@@ -346,14 +339,6 @@
         "description": "Cuando este héroe es líder de guarnición, el ataque de las unidades aliadas aumenta {0} en combates defensivos.",
         "iconUrl": "/icons/skill/Icon_Skill_243002.webp",
         "isArmaEspecial": true
-      },
-      {
-        "type": "Campo",
-        "name": "Habilidad 253002٧",
-        "description": "Cuando recibes recompensas de un objetivo de caza de Monster Hunter, tienes una probabilidad de {0} de obtener materiales avanzados adicionales.",
-        "iconUrl": "/icons/skill/Icon_Vip_Skill_03.webp",
-        "isArmaEspecial": false,
-        "isVipSkill": true
       }
     ],
     "iconUrl": "/portraits/PortraitBust_CARLOS_L01.webp"
@@ -1552,6 +1537,14 @@
         "description": "Cuando este héroe lidera la guarnición, la penetración de las tropas aliadas aumenta en {0} en combates defensivos. Además, al recibir recompensas de un objetivo de caza de Monster Hunter, obtienes {1} adicionales.",
         "iconUrl": "/icons/skill/Icon_Skill_243014.webp",
         "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Recompensa de Monster Hunter",
+        "description": "Cuando recibes recompensas de un objetivo de caza de Monster Hunter, tienes una probabilidad de {0} de obtener materiales avanzados adicionales.",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_03.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": true
       }
     ],
     "iconUrl": "/portraits/PortraitBust_HUNTER_M01.webp",
@@ -1635,6 +1628,14 @@
         "description": "Cuando este héroe lidera la concentración, la penetración de las tropas aliadas aumenta en {0} en combates de concentración. Además, al recibir recompensas de un objetivo de caza de Monster Hunter, obtienes {1} adicionales.",
         "iconUrl": "/icons/skill/Icon_Skill_243015.webp",
         "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Recompensa de Monster Hunter",
+        "description": "Cuando recibes recompensas de un objetivo de caza de Monster Hunter, tienes una probabilidad de {0} de obtener materiales avanzados adicionales.",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_03.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": true
       }
     ],
     "iconUrl": "/portraits/PortraitBust_HUNTER_F01.webp",

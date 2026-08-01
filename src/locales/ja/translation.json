@@ -155,7 +155,22 @@
     "tab_stars": "昇進計算 (契約書)",
     "tab_books": "スキルブック計算",
     "tab_equipment": "装備",
-    "rarity_info": "このオペレーターのレアリティは<span className=\"text-white font-mono\">{{rarity}}</span>です。合計<span className=\"text-neon-red font-bold font-mono\">{{maxSkills}}</span>のパッシブスキルおよびアクティブスキルを持っています。（詳細は後日追加予定）。"
+    "rarity_info": "このオペレーターのレアリティは<span className=\"text-white font-mono\">{{rarity}}</span>です。合計<span className=\"text-neon-red font-bold font-mono\">{{maxSkills}}</span>のパッシブスキルおよびアクティブスキルを持っています。（詳細は後日追加予定）。",
+    "special_weapon_skill": "専用武器スキル",
+    "unlocked_with_special_weapon": "専用武器で解放",
+    "weapon_big_gun": "大型銃",
+    "weapon_pistol": "ハンドガン",
+    "weapon_revolver": "リボルバー",
+    "weapon_knife": "ナイフ",
+    "weapon_exclusive": "専用武器",
+    "fragments": "欠片",
+    "components_caps": "コンポーネント",
+    "total_exclusive_fragments": "専用武器欠片合計",
+    "actual_caps": "現在",
+    "objective_caps": "目標",
+    "exclusive_weapon_level": "専用武器レベル (0 ➔ 10)",
+    "exclusive_legendary_weapon": "伝説の専用武器",
+    "slot_of": "{{type}} スロット"
   },
   "footer": {
     "disclaimer": "このサイトは、教育およびガイドを目的としたファン作成の情報ウェブサイトです。Resident Evil: Survival Unitは、Aniplex、JOYCITY、およびカプコンが共同開発したゲームです。"

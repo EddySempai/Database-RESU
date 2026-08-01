@@ -12,18 +12,22 @@ const isDefender = (type: string) => type?.toLowerCase().includes('defen') || ty
 const isAttacker = (type: string) => type?.toLowerCase().includes('atac') || type?.toLowerCase().includes('attack') || type?.includes('アタッカー');
 const isRanger = (type: string) => type?.toLowerCase().includes('rang') || type?.includes('レンジャー');
 
+// Icono oficial de Balas para Atacante (Estilo Tier List & Heroes)
+const BulletsIcon = ({ size = 13, className = "text-white" }: { size?: number; className?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={`shrink-0 block ${className}`} xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 5h16a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3zm0 5.5h16a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3zm0 5.5h16a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3z" />
+  </svg>
+);
+
 const getUnitIcon = (type: string) => {
-  if (isDefender(type)) return <Shield size={14} />;
-  if (isAttacker(type)) return <Sword size={14} />;
-  if (isRanger(type)) return <Crosshair size={14} />;
+  if (isDefender(type)) return <Shield size={13} className="text-white shrink-0" />;
+  if (isAttacker(type)) return <BulletsIcon size={13} className="text-white shrink-0" />;
+  if (isRanger(type)) return <Crosshair size={13} className="text-white shrink-0" />;
   return null;
 };
 
-const getUnitColor = (type: string) => {
-  if (isDefender(type)) return 'text-blue-400 bg-blue-900/40 border-blue-500/50';
-  if (isAttacker(type)) return 'text-blood-red bg-blood-red/20 border-blood-red/50';
-  if (isRanger(type)) return 'text-green-400 bg-green-900/40 border-green-500/50';
-  return 'text-gray-400 bg-gray-800 border-gray-600';
+const getUnitColor = (_type?: string) => {
+  return 'text-white bg-black/85 border border-white/30 shadow-[0_0_10px_rgba(0,0,0,0.8)] backdrop-blur-md';
 };
 
 const getCleanIconUrl = (url: string) => {
@@ -144,7 +148,7 @@ const OperativoDetalle = () => {
   }, 0);
 
   return (
-    <div className={`pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col ${activeTab === 'equipment' ? '' : 'md:flex-row'} gap-8`}>
+    <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col">
       <Helmet>
         <title>{op.name} | RE: Survival Unit Hub</title>
         <meta name="description" content={`${op.name} - Operativo de rareza ${rarity}. Revisa sus habilidades, estadísticas máximas y equipo recomendado.`} />
@@ -154,19 +158,22 @@ const OperativoDetalle = () => {
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
-      
-      {/* Left Column: Visual & Stats */}
-      {activeTab !== 'equipment' && (
-      <motion.div 
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        className="w-full md:w-1/3 flex flex-col"
-      >
-        <Link to="/operativos" className="flex items-center gap-2 text-gray-500 hover:text-white font-mono text-xs uppercase tracking-widest mb-6 transition-colors">
+      {/* Botón Permanente de Volver Atrás */}
+      <div className="mb-4">
+        <Link to="/operativos" className="inline-flex items-center gap-2 text-gray-400 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors bg-black/60 border border-gray-800 hover:border-gray-600 px-3 py-2 rounded-sm shadow-md">
           <ChevronLeft size={16} /> {t('op_detail.back_to_db')}
         </Link>
-        
-        <div className="bg-[#050505] border border-gray-800 p-6 relative overflow-hidden group rounded-sm flex-1">
+      </div>
+
+      <div className={`w-full flex flex-col ${activeTab === 'equipment' ? '' : 'md:flex-row'} gap-8`}>
+        {/* Left Column: Visual & Stats */}
+        {activeTab !== 'equipment' && (
+        <motion.div 
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="w-full md:w-1/3 flex flex-col"
+        >
+          <div className="bg-[#050505] border border-gray-800 p-6 relative overflow-hidden group rounded-sm flex-1">
           {/* Fondo Temático Original a Color (Solo Sección Superior) */}
           {CHARACTER_BG_MAP[op.id] && (
             <div 
@@ -183,7 +190,7 @@ const OperativoDetalle = () => {
             {op.name}
           </h1>
           <div className="flex items-center gap-3 mb-6 relative z-10">
-            <p className="font-mono text-gray-500 text-xs uppercase tracking-widest">{t('op_detail.tactical_dossier')}</p>
+            <p className="font-mono text-gray-200 font-bold text-xs uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">{t('op_detail.tactical_dossier')}</p>
             {op.unitType && op.unitType !== 'Desconocido' && (
               <div className={`flex items-center gap-1 px-2 py-1 border text-[10px] font-mono uppercase tracking-widest ${getUnitColor(op.unitType)}`}>
                 {getUnitIcon(op.unitType)} {op.unitType}
@@ -272,7 +279,7 @@ const OperativoDetalle = () => {
         animate={{ opacity: 1, x: 0 }}
         className={`w-full flex flex-col ${activeTab === 'equipment' ? '' : 'md:w-2/3'}`}
       >
-        <div className="flex flex-wrap gap-2 mb-6 border-b border-gray-800 pb-2">
+        <div className="flex overflow-x-auto max-w-full gap-2 mb-6 border-b border-gray-800 pb-2 scroll-smooth">
           {[
             { id: 'skills', label: t('op_detail.tab_skills') },
             { id: 'exp', label: t('op_detail.tab_exp') },
@@ -285,7 +292,7 @@ const OperativoDetalle = () => {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.94 }}
               onClick={() => setActiveTab(tab.id)}
-              className={`font-mono text-xs uppercase tracking-widest px-4 py-3 transition-all cursor-pointer relative overflow-hidden rounded-t-sm ${
+              className={`shrink-0 whitespace-nowrap font-mono text-xs uppercase tracking-widest px-4 py-3 transition-all cursor-pointer relative overflow-hidden rounded-t-sm ${
                 activeTab === tab.id 
                 ? (tab.id === 'equipment' 
                     ? 'bg-yellow-500/20 text-yellow-400 border-b-2 border-yellow-500 shadow-[0_0_20px_rgba(234,179,8,0.4)] font-bold' 
@@ -365,7 +372,7 @@ const OperativoDetalle = () => {
                       <div className="pt-4 mt-2 border-t border-purple-500/20">
                         <h4 className="font-mono text-purple-500 text-[10px] uppercase tracking-widest mb-4 flex items-center gap-2">
                           <span className="w-1.5 h-1.5 bg-purple-500 rounded-full shadow-[0_0_6px_rgba(168,85,247,0.8)]"></span>
-                          Habilidad de Arma Especial
+                          {t('op_detail.special_weapon_skill')}
                         </h4>
                         {((op as any).skills || []).filter((s: any) => s.type === 'Exploración' && s.isArmaEspecial).map((skill: any, idx: number) => (
                           <div key={idx} className="group flex gap-5 items-start p-3 rounded-lg hover:bg-white/[0.03] border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 bg-purple-900/5">
@@ -385,7 +392,7 @@ const OperativoDetalle = () => {
                             <div className="flex-1 mt-0.5">
                               <h4 className="text-gray-100 font-bebas tracking-widest text-lg group-hover:text-white transition-colors">{skill.name}</h4>
                               <p className="text-sm text-gray-400 font-inter mt-1.5 leading-relaxed group-hover:text-gray-300 transition-colors">{skill.description}</p>
-                              <p className="text-[10px] text-purple-400 font-mono mt-3 uppercase tracking-widest">Se desbloquea con Arma Especial</p>
+                              <p className="text-[10px] text-purple-400 font-mono mt-3 uppercase tracking-widest">{t('op_detail.unlocked_with_special_weapon')}</p>
                             </div>
                           </div>
                         ))}
@@ -430,7 +437,7 @@ const OperativoDetalle = () => {
                       <div className="pt-4 mt-2 border-t border-purple-500/20">
                         <h4 className="font-mono text-purple-500 text-[10px] uppercase tracking-widest mb-4 flex items-center gap-2">
                           <span className="w-1.5 h-1.5 bg-purple-500 rounded-full shadow-[0_0_6px_rgba(168,85,247,0.8)]"></span>
-                          Habilidad de Arma Especial
+                          {t('op_detail.special_weapon_skill')}
                         </h4>
                         {((op as any).skills || []).filter((s: any) => s.type === 'Campo' && s.isArmaEspecial).map((skill: any, idx: number) => (
                           <div key={idx} className="group flex gap-5 items-start p-3 rounded-lg hover:bg-white/[0.03] border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 bg-purple-900/5">
@@ -450,7 +457,7 @@ const OperativoDetalle = () => {
                             <div className="flex-1 mt-0.5">
                               <h4 className="text-gray-100 font-bebas tracking-widest text-lg group-hover:text-white transition-colors">{skill.name}</h4>
                               <p className="text-sm text-gray-400 font-inter mt-1.5 leading-relaxed group-hover:text-gray-300 transition-colors">{skill.description}</p>
-                              <p className="text-[10px] text-purple-400 font-mono mt-3 uppercase tracking-widest">Se desbloquea con Arma Especial</p>
+                              <p className="text-[10px] text-purple-400 font-mono mt-3 uppercase tracking-widest">{t('op_detail.unlocked_with_special_weapon')}</p>
                             </div>
                           </div>
                         ))}
@@ -992,6 +999,7 @@ const OperativoDetalle = () => {
         </div>
         )}
       </motion.div>
+    </div>
     </div>
   );
 };

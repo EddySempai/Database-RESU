@@ -78,16 +78,16 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
 
   const buildInitialSlots = (): SlotState[] => {
     const list: SlotState[] = [
-      { id: 'armaPrincipal', name: 'Arma Grande', type: 'Penetración', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 0 },
-      { id: 'pistola', name: 'Pistola', type: 'Penetración', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 0 },
-      { id: 'revolver', name: 'Revólver', type: 'Vida', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 0 },
-      { id: 'cuchillo', name: 'Cuchillo', type: 'Vida', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 0 },
+      { id: 'armaPrincipal', name: t('op_detail.weapon_big_gun'), type: 'Penetración', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 0 },
+      { id: 'pistola', name: t('op_detail.weapon_pistol'), type: 'Penetración', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 0 },
+      { id: 'revolver', name: t('op_detail.weapon_revolver'), type: 'Vida', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 0 },
+      { id: 'cuchillo', name: t('op_detail.weapon_knife'), type: 'Vida', currentLevel: 1, targetLevel: 100, currentPlus: 0, targetPlus: 0 },
     ];
 
     if (isLegendary) {
       list.push({
         id: 'armaUnica',
-        name: 'Arma Exclusiva',
+        name: t('op_detail.weapon_exclusive'),
         type: 'Exclusiva',
         currentLevel: 0,
         targetLevel: 10,
@@ -282,7 +282,7 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                     {selectedSlot.name}
                   </h3>
                   <span className="font-mono text-[10px] uppercase text-yellow-400 tracking-wider">
-                    {selectedSlot.type === 'Exclusiva' ? 'Arma Exclusiva Legendaria' : `Slot de ${selectedSlot.type}`}
+                    {selectedSlot.type === 'Exclusiva' ? t('op_detail.exclusive_legendary_weapon') : t('op_detail.slot_of', { type: selectedSlot.type })}
                   </span>
                 </div>
               </div>
@@ -322,11 +322,11 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
               {selectedSlot.type === 'Exclusiva' ? (
                 <div className="border border-yellow-500/30 p-6 bg-yellow-950/20 rounded-md relative z-20">
                   <h4 className="font-mono text-yellow-400 text-xs uppercase tracking-widest text-center mb-6">
-                    Nivel de Arma Exclusiva (0 ➔ 10)
+                    {t('op_detail.exclusive_weapon_level')}
                   </h4>
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex-1">
-                      <label className="block text-[10px] text-gray-400 font-mono uppercase mb-2 text-center">Nivel Actual</label>
+                      <label className="block text-[10px] text-gray-400 font-mono uppercase mb-2 text-center">{t('op_detail.actual_caps')}</label>
                       <input 
                         type="number" min="0" max="10" 
                         value={selectedSlot.currentLevel}
@@ -336,7 +336,7 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                     </div>
                     <ChevronRight className="text-yellow-500 animate-pulse" size={28} />
                     <div className="flex-1">
-                      <label className="block text-[10px] text-gray-400 font-mono uppercase mb-2 text-center">Nivel Objetivo</label>
+                      <label className="block text-[10px] text-gray-400 font-mono uppercase mb-2 text-center">{t('op_detail.objective_caps')}</label>
                       <input 
                         type="number" min="0" max="10" 
                         value={selectedSlot.targetLevel}
@@ -353,7 +353,7 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                     <h4 className="font-mono text-gray-400 text-xs uppercase tracking-widest text-center mb-4">{t('op_detail.base_level')}</h4>
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex-1">
-                        <label className="block text-[10px] text-gray-500 font-mono uppercase mb-1 text-center">ACTUAL</label>
+                        <label className="block text-[10px] text-gray-500 font-mono uppercase mb-1 text-center">{t('op_detail.actual_caps')}</label>
                         <input 
                           type="number" min="1" max="100" 
                           value={selectedSlot.currentLevel}
@@ -363,7 +363,7 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                       </div>
                       <ChevronRight className="text-gray-600" size={20} />
                       <div className="flex-1">
-                        <label className="block text-[10px] text-gray-500 font-mono uppercase mb-1 text-center">OBJETIVO</label>
+                        <label className="block text-[10px] text-gray-500 font-mono uppercase mb-1 text-center">{t('op_detail.objective_caps')}</label>
                         <input 
                           type="number" min="1" max="100" 
                           value={selectedSlot.targetLevel}
@@ -378,7 +378,7 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                     <h4 className="font-mono text-gray-400 text-xs uppercase tracking-widest text-center mb-4">{t('op_detail.plus_level')}</h4>
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex-1">
-                        <label className="block text-[10px] text-gray-500 font-mono uppercase mb-1 text-center">ACTUAL</label>
+                        <label className="block text-[10px] text-gray-500 font-mono uppercase mb-1 text-center">{t('op_detail.actual_caps')}</label>
                         <input 
                           type="number" min="0" max="20" 
                           value={selectedSlot.currentPlus}
@@ -388,7 +388,7 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                       </div>
                       <ChevronRight className="text-gray-600" size={20} />
                       <div className="flex-1">
-                        <label className="block text-[10px] text-gray-500 font-mono uppercase mb-1 text-center">OBJETIVO</label>
+                        <label className="block text-[10px] text-gray-500 font-mono uppercase mb-1 text-center">{t('op_detail.objective_caps')}</label>
                         <input 
                           type="number" min="0" max="20" 
                           value={selectedSlot.targetPlus}
@@ -440,7 +440,7 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                       {s.isUnique ? (
                         <div className="flex items-end gap-2">
                           <span className="text-yellow-500 font-bebas text-3xl tracking-widest leading-none">{s.frags.toLocaleString()}</span>
-                          <span className="text-yellow-500 font-mono text-[10px] uppercase tracking-widest mb-0.5">FRAGMENTOS</span>
+                          <span className="text-yellow-500 font-mono text-[10px] uppercase tracking-widest mb-0.5">{t('op_detail.fragments')}</span>
                         </div>
                       ) : (
                         <>
@@ -448,7 +448,7 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                             <span className="text-neon-red font-bebas text-3xl tracking-widest leading-none">{s.exp.toLocaleString()}</span>
                             <span className="text-neon-red font-mono text-xs tracking-widest mb-0.5">EXP</span>
                           </div>
-                          <span className="text-yellow-500 font-mono text-[10px] uppercase tracking-widest">{s.plus} COMPONENTES</span>
+                          <span className="text-yellow-500 font-mono text-[10px] uppercase tracking-widest">{s.plus} {t('op_detail.components_caps')}</span>
                         </>
                       )}
                     </div>
@@ -489,7 +489,7 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
               <div className="bg-yellow-950/20 border border-yellow-500/40 p-4 rounded-sm flex items-center justify-between px-6">
                 <div className="flex items-center gap-3">
                   <img src={getUniqueWeaponPieceIcon(op.id)} alt="Pieza de Arma Exclusiva" className="w-10 h-10 object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" />
-                  <span className="font-mono text-xs text-yellow-400 uppercase tracking-wider text-left">Total Fragmentos Arma Exclusiva</span>
+                  <span className="font-mono text-xs text-yellow-400 uppercase tracking-wider text-left">{t('op_detail.total_exclusive_fragments')}</span>
                 </div>
                 <span className="font-bebas text-4xl text-yellow-400">{uniqueFrags.toLocaleString()}</span>
               </div>

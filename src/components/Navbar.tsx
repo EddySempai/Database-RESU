@@ -84,13 +84,24 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button 
-            className="md:hidden text-gray-300 hover:text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
+          {/* Mobile Right Controls */}
+          <div className="flex items-center gap-2 md:hidden">
+            <button 
+              onClick={() => changeLanguage(i18n.language === 'es' ? 'en' : i18n.language === 'en' ? 'ja' : 'es')}
+              className="flex items-center gap-1.5 bg-black/80 border border-blood-red/40 text-white font-mono text-xs px-2.5 py-1 rounded-sm uppercase shadow-sm"
+              title="Cambiar idioma / Change language"
+            >
+              <Globe size={14} className="text-neon-red" />
+              <span>{i18n.language.toUpperCase()}</span>
+            </button>
+            <button 
+              className="text-gray-300 hover:text-white p-1"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Abrir menú"
+            >
+              {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -101,14 +112,14 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-[#050505] pt-24 px-6"
+            className="fixed inset-0 z-40 bg-[#050505] pt-24 px-6 overflow-y-auto flex flex-col justify-between pb-12"
           >
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-5">
               {navLinks.map((link, idx) => (
                 <Link 
                   key={idx} 
                   to={link.href}
-                  className="flex items-center gap-4 border-b border-gray-800 pb-4 text-gray-300 hover:text-neon-red transition-colors"
+                  className="flex items-center gap-4 border-b border-gray-800/80 pb-3 text-gray-300 hover:text-neon-red transition-colors"
                   onClick={() => {
                     setMobileMenuOpen(false);
                     if (window.location.pathname === link.href) {
@@ -120,6 +131,40 @@ const Navbar = () => {
                   <span className="font-bebas text-2xl tracking-widest">{link.name}</span>
                 </Link>
               ))}
+            </div>
+
+            {/* Selector de Idioma en Menú Móvil */}
+            <div className="border-t border-gray-800/80 pt-6 mt-6 flex flex-col gap-3">
+              <div className="flex items-center gap-2 font-mono text-xs text-gray-400 uppercase tracking-widest">
+                <Globe size={14} className="text-neon-red" />
+                <span>SELECCIONAR IDIOMA / LANGUAGE</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                <button 
+                  onClick={() => { changeLanguage('es'); setMobileMenuOpen(false); }} 
+                  className={`py-2.5 px-2 font-mono text-xs rounded-sm border uppercase transition-colors text-center ${
+                    i18n.language === 'es' ? 'bg-blood-red text-white border-blood-red font-bold shadow-[0_0_10px_rgba(220,38,38,0.5)]' : 'bg-black/60 text-gray-400 border-gray-800 hover:border-gray-600'
+                  }`}
+                >
+                  ES Español
+                </button>
+                <button 
+                  onClick={() => { changeLanguage('en'); setMobileMenuOpen(false); }} 
+                  className={`py-2.5 px-2 font-mono text-xs rounded-sm border uppercase transition-colors text-center ${
+                    i18n.language === 'en' ? 'bg-blood-red text-white border-blood-red font-bold shadow-[0_0_10px_rgba(220,38,38,0.5)]' : 'bg-black/60 text-gray-400 border-gray-800 hover:border-gray-600'
+                  }`}
+                >
+                  EN English
+                </button>
+                <button 
+                  onClick={() => { changeLanguage('ja'); setMobileMenuOpen(false); }} 
+                  className={`py-2.5 px-2 font-mono text-xs rounded-sm border uppercase transition-colors text-center ${
+                    i18n.language === 'ja' ? 'bg-blood-red text-white border-blood-red font-bold shadow-[0_0_10px_rgba(220,38,38,0.5)]' : 'bg-black/60 text-gray-400 border-gray-800 hover:border-gray-600'
+                  }`}
+                >
+                  JA 日本語
+                </button>
+              </div>
             </div>
           </motion.div>
         )}

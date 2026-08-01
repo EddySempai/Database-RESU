@@ -967,5 +967,187 @@
       }
     ],
     "iconUrl": "/portraits/PortraitBust_PIERS_L01.webp"
+  },
+  {
+    "id": "cazador",
+    "name": "Hunter Male (Rathalos)",
+    "imageUrl": "/recursos/MH_Rathalos.webp",
+    "stats": {
+      "health": 145000,
+      "attack": 10500,
+      "defense": 1950,
+      "troops": 13470
+    },
+    "fieldStats": [
+      {
+        "label": "Defender Attack Power",
+        "value": "260.00%"
+      },
+      {
+        "label": "Defender Defense Power",
+        "value": "260.00%"
+      }
+    ],
+    "unitType": "Defender",
+    "rarity": "Legendary",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Wyvern Fire",
+        "description": "After charging energy with the gunlance, unleashes an explosion dealing damage equal to {0} of ATK to enemies in a fan-shaped area and stuns them for 2s.",
+        "iconUrl": "/icons/skill/Icon_Skill_113014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Detonating Impact",
+        "description": "In combat, allied Defenders in this hero's troop have a {0} chance every 2 turns to stun the target troop type for 1 turn. If target is a Monster Hunter target, adds {1} chance.",
+        "iconUrl": "/icons/skill/Icon_Skill_213014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Burst Fire",
+        "description": "Unleashes a powerful strike with a gunlance dealing damage equal to {0} of ATK. Then creates an explosion dealing damage equal to {1} of ATK.",
+        "iconUrl": "/icons/skill/Icon_Skill_123014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Armored Guard",
+        "description": "When part of an allied troop, damage received from enemy decreases by {0} during combat. If target is a Monster Hunter target, decreases by additional {1}.",
+        "iconUrl": "/icons/skill/Icon_Skill_223014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Wyrmstake Cannon",
+        "description": "Attacks front target with 2 powerful thrusts, dealing damage equal to {0} of ATK and installing a wyrmstake.",
+        "iconUrl": "/icons/skill/Icon_Skill_133014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Fissure Bombardment",
+        "description": "When part of an allied troop, 50% chance to increase damage received by enemy by {0}. If target is a Monster Hunter target, increases by additional {1}.",
+        "iconUrl": "/icons/skill/Icon_Skill_233014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Artillery Upgrade",
+        "description": "Increases damage dealt to enemy by {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_143014.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Focused Fire",
+        "description": "When leading garrison, troop penetration increases by {0} in defensive battles. Also gains additional {1} upon receiving Monster Hunter hunt rewards.",
+        "iconUrl": "/icons/skill/Icon_Skill_243014.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Monster Hunter Rewards",
+        "description": "When receiving rewards from a Monster Hunter target, has a {0} chance to obtain additional advanced materials.",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_03.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": true
+      }
+    ],
+    "iconUrl": "/portraits/PortraitBust_HUNTER_M01.webp",
+    "image": "/recursos/MH_Rathalos.webp"
+  },
+  {
+    "id": "cazadora",
+    "name": "Hunter Female (Rathalos)",
+    "imageUrl": "/recursos/MH_SilverSol.webp",
+    "stats": {
+      "health": 145000,
+      "attack": 10500,
+      "defense": 1950,
+      "troops": 13470
+    },
+    "fieldStats": [
+      {
+        "label": "Ranger Attack Power",
+        "value": "260.00%"
+      },
+      {
+        "label": "Ranger Defense Power",
+        "value": "260.00%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Legendary",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Explosive Shot",
+        "description": "Fires a piercing explosive at a target to deal damage equal to {0} of ATK.",
+        "iconUrl": "/icons/skill/Icon_Skill_113015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Rapid Fire Start",
+        "description": "When part of an allied troop, chance to deal an additional attack. If Monster Hunter target, adds {1} chance.",
+        "iconUrl": "/icons/skill/Icon_Skill_213015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Piercing Ammo",
+        "description": "Fires a piercing round forward hitting all enemies in a narrow line dealing damage equal to {0} of ATK.",
+        "iconUrl": "",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Piercing Ammo Upgrade",
+        "description": "When part of an allied troop, penetration increases by {0}. If Monster Hunter target, increases by additional {1}.",
+        "iconUrl": "/icons/skill/Icon_Skill_223015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Slicing Ammo",
+        "description": "Fires slicing ammo dealing damage equal to {0} of ATK.",
+        "iconUrl": "/icons/skill/Icon_Skill_133015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "Combat Vitality",
+        "description": "When part of an allied troop, health increases by {0}. If Monster Hunter target, increases by additional {1}.",
+        "iconUrl": "/icons/skill/Icon_Skill_233015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Weakness Attack",
+        "description": "Increases damage dealt to enemy by {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_143015.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Ballistics Upgrade",
+        "description": "When leading rally, troop penetration increases by {0}. Also gains additional {1} upon receiving Monster Hunter hunt rewards.",
+        "iconUrl": "/icons/skill/Icon_Skill_243015.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "Monster Hunter Rewards",
+        "description": "When receiving rewards from a Monster Hunter target, has a {0} chance to obtain additional advanced materials.",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_03.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": true
+      }
+    ],
+    "iconUrl": "/portraits/PortraitBust_HUNTER_F01.webp",
+    "image": "/recursos/MH_SilverSol.webp"
   }
 ]

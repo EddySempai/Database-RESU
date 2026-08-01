@@ -155,7 +155,22 @@
     "tab_stars": "Ascension Calc. (Contracts)",
     "tab_books": "Skill Books Calc.",
     "tab_equipment": "Equipment",
-    "rarity_info": "This operative is of <span className=\"text-white font-mono\">{{rarity}}</span> rarity, therefore they have <span className=\"text-neon-red font-bold font-mono\">{{maxSkills}}</span> active and passive skills in total. (Specific skill data will be added soon)."
+    "rarity_info": "This operative is of <span className=\"text-white font-mono\">{{rarity}}</span> rarity, therefore they have <span className=\"text-neon-red font-bold font-mono\">{{maxSkills}}</span> active and passive skills in total. (Specific skill data will be added soon).",
+    "special_weapon_skill": "Special Weapon Skill",
+    "unlocked_with_special_weapon": "Unlocked with Special Weapon",
+    "weapon_big_gun": "Big Gun",
+    "weapon_pistol": "Pistol",
+    "weapon_revolver": "Revolver",
+    "weapon_knife": "Knife",
+    "weapon_exclusive": "Exclusive Weapon",
+    "fragments": "FRAGMENTS",
+    "components_caps": "COMPONENTS",
+    "total_exclusive_fragments": "Total Exclusive Weapon Fragments",
+    "actual_caps": "CURRENT",
+    "objective_caps": "TARGET",
+    "exclusive_weapon_level": "Exclusive Weapon Level (0 ➔ 10)",
+    "exclusive_legendary_weapon": "Legendary Exclusive Weapon",
+    "slot_of": "{{type}} Slot"
   },
   "footer": {
     "disclaimer": "This is an informative fan-made website for educational and guide purposes. Resident Evil: Survival Unit is a game co-developed by Aniplex, JOYCITY, and Capcom."

@@ -155,7 +155,22 @@
     "tab_stars": "Calc. Ascenso (Contratos)",
     "tab_books": "Calc. Libros Habilidad",
     "tab_equipment": "Equipamiento",
-    "rarity_info": "Este operativo es de rareza <span className=\"text-white font-mono\">{{rarity}}</span>, por lo que dispone de <span className=\"text-neon-red font-bold font-mono\">{{maxSkills}}</span> habilidades activas y pasivas en total. (Datos específicos de habilidad se añadirán pronto)."
+    "rarity_info": "Este operativo es de rareza <span className=\"text-white font-mono\">{{rarity}}</span>, por lo que dispone de <span className=\"text-neon-red font-bold font-mono\">{{maxSkills}}</span> habilidades activas y pasivas en total. (Datos específicos de habilidad se añadirán pronto).",
+    "special_weapon_skill": "Habilidad de Arma Especial",
+    "unlocked_with_special_weapon": "Se desbloquea con Arma Especial",
+    "weapon_big_gun": "Arma Grande",
+    "weapon_pistol": "Pistola",
+    "weapon_revolver": "Revólver",
+    "weapon_knife": "Cuchillo",
+    "weapon_exclusive": "Arma Exclusiva",
+    "fragments": "FRAGMENTOS",
+    "components_caps": "COMPONENTES",
+    "total_exclusive_fragments": "Total Fragmentos Arma Exclusiva",
+    "actual_caps": "ACTUAL",
+    "objective_caps": "OBJETIVO",
+    "exclusive_weapon_level": "Nivel de Arma Exclusiva (0 ➔ 10)",
+    "exclusive_legendary_weapon": "Arma Exclusiva Legendaria",
+    "slot_of": "Slot de {{type}}"
   },
   "footer": {
     "disclaimer": "Este es un sitio web informativo creado por fans para fines educativos y de guía. Resident Evil: Survival Unit es un juego co-desarrollado por Aniplex, JOYCITY y Capcom."

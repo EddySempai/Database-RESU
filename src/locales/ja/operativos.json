@@ -966,6 +966,188 @@
         "description": "最も遠いターゲットの位置に向かって爆弾を投げ、攻撃力の190%に相当するダメージを与える爆発を引き起こす。"
       }
     ],
-    "iconUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-PiersNivans-visual.png"
+    "iconUrl": "/portraits/PortraitBust_PIERS_L01.webp"
+  },
+  {
+    "id": "cazador",
+    "name": "ハンター男 (リオレウス)",
+    "imageUrl": "/recursos/MH_Rathalos.webp",
+    "stats": {
+      "health": 145000,
+      "attack": 10500,
+      "defense": 1950,
+      "troops": 13470
+    },
+    "fieldStats": [
+      {
+        "label": "ディフェンダー攻撃力",
+        "value": "260.00%"
+      },
+      {
+        "label": "ディフェンダー防御力",
+        "value": "260.00%"
+      }
+    ],
+    "unitType": "ディフェンダー",
+    "rarity": "レジェンダリー",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "竜撃砲",
+        "description": "ガンランスでエネルギーを充填後、扇状範囲の敵にATKの{0}のダメージを与える爆発を起こし、2秒間スタンさせる。",
+        "iconUrl": "/icons/skill/Icon_Skill_113014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "起爆衝撃",
+        "description": "戦闘中、味方ディフェンダーは2ターンごとに{0}の確率で対象部隊を1ターンスタンさせる。モンスターハンター対象の場合{1}の確率追加。",
+        "iconUrl": "/icons/skill/Icon_Skill_213014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "フルバースト",
+        "description": "ガンランスの強力な一撃でATKの{0}のダメージを与え、さらにATKの{1}の爆発ダメージを発生させる。",
+        "iconUrl": "/icons/skill/Icon_Skill_123014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "鉄壁のガード",
+        "description": "味方部隊編成時、受けるダメージが{0}減少。モンスターハンター対象の場合さらに{1}減少。",
+        "iconUrl": "/icons/skill/Icon_Skill_223014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "竜杭砲",
+        "description": "正面の敵に強力な2連突きを行いATKの{0}のダメージを与え、竜杭砲を装填する。",
+        "iconUrl": "/icons/skill/Icon_Skill_133014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "亀裂砲撃",
+        "description": "味方部隊編成時、50%の確率で敵の被ダメージを{0}増加。モンスターハンター対象の場合さらに{1}増加。",
+        "iconUrl": "/icons/skill/Icon_Skill_233014.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "砲撃強化",
+        "description": "敵への与ダメージが{0}増加。",
+        "iconUrl": "/icons/skill/Icon_Skill_143014.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "集中砲火",
+        "description": "防衛時、味方部隊の貫通力が{0}増加。モンスターハンター狩猟報酬獲得時に追加で{1}獲得。",
+        "iconUrl": "/icons/skill/Icon_Skill_243014.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "モンスターハンター報酬",
+        "description": "モンスターハンター対象から報酬を受け取る際、{0}の確率で追加の高級素材を獲得する。",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_03.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": true
+      }
+    ],
+    "iconUrl": "/portraits/PortraitBust_HUNTER_M01.webp",
+    "image": "/recursos/MH_Rathalos.webp"
+  },
+  {
+    "id": "cazadora",
+    "name": "ハンター女 (シルバーソル)",
+    "imageUrl": "/recursos/MH_SilverSol.webp",
+    "stats": {
+      "health": 145000,
+      "attack": 10500,
+      "defense": 1950,
+      "troops": 13470
+    },
+    "fieldStats": [
+      {
+        "label": "レンジャー攻撃力",
+        "value": "260.00%"
+      },
+      {
+        "label": "レンジャー防御力",
+        "value": "260.00%"
+      }
+    ],
+    "unitType": "レンジャー",
+    "rarity": "レジェンダリー",
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "徹甲榴弾",
+        "description": "ターゲットに貫通榴弾を発射しATKの{0}のダメージを与える。",
+        "iconUrl": "/icons/skill/Icon_Skill_113015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "速射開始",
+        "description": "味方部隊編成時、確率で追加攻撃を行う。モンスターハンター対象の場合{1}の確率追加。",
+        "iconUrl": "/icons/skill/Icon_Skill_213015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "貫通弾",
+        "description": "直線上のすべての敵を貫通する弾丸を発射しATKの{0}のダメージを与える。",
+        "iconUrl": "",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "貫通弾強化",
+        "description": "味方部隊編成時、貫通力が{0}増加。モンスターハンター対象の場合さらに{1}増加。",
+        "iconUrl": "/icons/skill/Icon_Skill_223015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "斬裂弾",
+        "description": "斬裂弾を発射しATKの{0}のダメージを与える。",
+        "iconUrl": "/icons/skill/Icon_Skill_133015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Campo",
+        "name": "戦闘活力",
+        "description": "味方部隊編成時、HPが{0}増加。モンスターハンター対象の場合さらに{1}増加。",
+        "iconUrl": "/icons/skill/Icon_Skill_233015.webp",
+        "isArmaEspecial": false
+      },
+      {
+        "type": "Exploración",
+        "name": "弱点特効",
+        "description": "敵への与ダメージが{0}増加。",
+        "iconUrl": "/icons/skill/Icon_Skill_143015.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "弾道学強化",
+        "description": "集結時、貫通力が{0}増加。モンスターハンター狩猟報酬獲得時に追加で{1}獲得。",
+        "iconUrl": "/icons/skill/Icon_Skill_243015.webp",
+        "isArmaEspecial": true
+      },
+      {
+        "type": "Campo",
+        "name": "モンスターハンター報酬",
+        "description": "モンスターハンター対象から報酬を受け取る際、{0}の確率で追加の高級素材を獲得する。",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_03.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": true
+      }
+    ],
+    "iconUrl": "/portraits/PortraitBust_HUNTER_F01.webp",
+    "image": "/recursos/MH_SilverSol.webp"
   }
 ]
