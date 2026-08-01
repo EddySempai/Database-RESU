@@ -114,7 +114,7 @@ const Comparador = () => {
             <Search className="mb-4 w-12 h-12 group-hover:scale-110 transition-transform" />
             <span className="font-bebas text-2xl tracking-widest">{t('comparador.select_op')}</span>
             {((slot === 2 && slot1) || (slot === 1 && slot2)) && (
-              <span className="font-mono text-xs text-blood-red mt-2 uppercase">Debe ser {slot1 ? slot1.unitType : slot2?.unitType}</span>
+              <span className="font-mono text-xs text-blood-red mt-2 uppercase">{t('comparador.must_be_class', { unitType: slot1 ? slot1.unitType : slot2?.unitType })}</span>
             )}
           </button>
         )}
@@ -126,10 +126,10 @@ const Comparador = () => {
     <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col">
       <div className="text-center mb-12">
         <h1 className="font-bebas text-5xl md:text-7xl tracking-widest text-white uppercase drop-shadow-lg mb-2">
-          Análisis <span className="text-blood-red">Comparativo</span>
+          {t('comparador.title_main', 'Análisis Comparativo')}
         </h1>
         <p className="font-mono text-gray-400 text-sm max-w-2xl mx-auto uppercase tracking-widest">
-          Simulación de combate directo. Solo operativos de la misma clase táctica son elegibles para comparación.
+          {t('comparador.subtitle_main', 'Simulación de combate directo. Solo operativos de la misma clase táctica son elegibles para comparación.')}
         </p>
       </div>
 
@@ -155,7 +155,7 @@ const Comparador = () => {
           animate={{ opacity: 1, y: 0 }}
           className="bg-[#050505] border border-gray-800 p-6 md:p-12 mb-12"
         >
-          <h3 className="font-bebas text-3xl tracking-widest text-center mb-8 border-b border-gray-800 pb-4">Desempeño Base (Nivel 1)</h3>
+          <h3 className="font-bebas text-3xl tracking-widest text-center mb-8 border-b border-gray-800 pb-4">{t('comparador.base_performance', 'Desempeño Base (Nivel 1)')}</h3>
           
           <div className="space-y-6">
             {/* Health */}
@@ -165,7 +165,7 @@ const Comparador = () => {
               </div>
               <div className="flex flex-col items-center justify-center text-gray-500">
                 <Heart size={20} className="mb-1" />
-                <span className="text-[10px] uppercase tracking-widest">Salud</span>
+                <span className="text-[10px] uppercase tracking-widest">{t('heroes.health')}</span>
               </div>
               <div className={`font-mono text-lg md:text-xl ${compareStats(slot1.stats.health, slot2.stats.health, false)}`}>
                 {slot2.stats.health.toLocaleString()}
@@ -179,7 +179,7 @@ const Comparador = () => {
               </div>
               <div className="flex flex-col items-center justify-center text-gray-500">
                 <Crosshair size={20} className="mb-1" />
-                <span className="text-[10px] uppercase tracking-widest">Ataque</span>
+                <span className="text-[10px] uppercase tracking-widest">{t('heroes.attack')}</span>
               </div>
               <div className={`font-mono text-lg md:text-xl ${compareStats(slot1.stats.attack, slot2.stats.attack, false)}`}>
                 {slot2.stats.attack.toLocaleString()}
@@ -193,7 +193,7 @@ const Comparador = () => {
               </div>
               <div className="flex flex-col items-center justify-center text-gray-500">
                 <Shield size={20} className="mb-1" />
-                <span className="text-[10px] uppercase tracking-widest">Defensa</span>
+                <span className="text-[10px] uppercase tracking-widest">{t('heroes.defense')}</span>
               </div>
               <div className={`font-mono text-lg md:text-xl ${compareStats(slot1.stats.defense, slot2.stats.defense, false)}`}>
                 {slot2.stats.defense.toLocaleString()}
@@ -204,7 +204,7 @@ const Comparador = () => {
 
           {/* Field Stats */}
           <div className="mt-8 border-t border-gray-800 pt-8">
-            <h4 className="font-bebas text-xl text-blood-red tracking-widest text-center mb-6">Porcentajes de Campo (Habilidades)</h4>
+            <h4 className="font-bebas text-xl text-blood-red tracking-widest text-center mb-6">{t('comparador.field_percentages', 'Porcentajes de Campo (Habilidades)')}</h4>
             <div className="grid grid-cols-2 gap-8">
               {/* Slot 1 Field Stats */}
               <div className="space-y-3">
@@ -306,7 +306,7 @@ const Comparador = () => {
                 <div className="relative z-10 text-left">
                   <div className="flex items-center gap-3 mb-4 border-b border-blood-red/30 pb-3">
                     <span className="w-2 h-2 rounded-full bg-blood-red animate-pulse"></span>
-                    <h4 className="font-bebas text-2xl tracking-widest text-blood-red m-0">Resolución Táctica</h4>
+                    <h4 className="font-bebas text-2xl tracking-widest text-blood-red m-0">{t('comparador.tactical_resolution', 'Resolución Táctica')}</h4>
                   </div>
                   <div className="font-mono text-sm text-gray-300 leading-relaxed max-w-none">
                     <ReactMarkdown 
@@ -331,7 +331,7 @@ const Comparador = () => {
                     </ReactMarkdown>
                   </div>
                   <div className="mt-6 text-center">
-                     <button onClick={() => setAiAnalysis(null)} className="text-[10px] font-mono text-gray-500 hover:text-white uppercase underline">Cerrar Evaluación</button>
+                     <button onClick={() => setAiAnalysis(null)} className="text-[10px] font-mono text-gray-500 hover:text-white uppercase underline">{t('comparador.close_eval', 'Cerrar Evaluación')}</button>
                   </div>
                 </div>
               )}

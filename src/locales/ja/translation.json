@@ -170,7 +170,17 @@
     "objective_caps": "目標",
     "exclusive_weapon_level": "専用武器レベル (0 ➔ 10)",
     "exclusive_legendary_weapon": "伝説の専用武器",
-    "slot_of": "{{type}} スロット"
+    "slot_of": "{{type}} スロット",
+    "all_to_lvl5": "すべてLv.5",
+    "reset": "リセット",
+    "total_explore": "探索合計",
+    "total_field": "フィールド合計",
+    "lvl_prefix": "Lv.",
+    "touch_to_upgrade": "武器をタップしてレベルを編集",
+    "penetration": "貫通",
+    "health_stat": "HP",
+    "edit": "編集",
+    "close_modal": "閉じる"
   },
   "footer": {
     "disclaimer": "このサイトは、教育およびガイドを目的としたファン作成の情報ウェブサイトです。Resident Evil: Survival Unitは、Aniplex、JOYCITY、およびカプコンが共同開発したゲームです。"
@@ -207,19 +217,47 @@
     "gold_frag": "ゴールドフラグ",
     "polish": "ポリッシュ",
     "blueprint": "ブループリント",
-    "advance_polish": "アドバンスポリッシュ",
+    "advance_polish": "高級研磨剤",
     "search_placeholder": "レベルを検索 (例: Mythic T2)",
-    "levels_gained": "獲得したレベル:"
+    "levels_gained": "上昇レベル数:"
   },
   "jewels": {
     "title": "宝石計算機",
     "rough_jewel": "原石",
-    "jewel_tool": "宝石ツール",
-    "current_tier": "現在のTier",
-    "target_tier": "目標Tier",
+    "jewel_tool": "宝石加工ツール",
+    "current_tier": "現在 Tier",
+    "target_tier": "目標 Tier",
     "select_current": "現在のレベルを選択",
     "select_target": "目標レベルを選択",
-    "total_resources": "合計リソース",
-    "search_placeholder": "検索レベル (例: Legend++)"
+    "total_resources": "必要リソース合計",
+    "search_placeholder": "レベルを検索 (例: Legend++)"
+  },
+  "tierlist": {
+    "tab_ranking": "ランキング",
+    "tab_meta_teams": "5v5 メタチーム",
+    "filters_env": "環境フィルター",
+    "abs_competition": "絶対競技",
+    "vanguard": "前衛",
+    "rearguard": "後衛",
+    "information": "情報",
+    "team_synergy": "チームシナジー",
+    "synergy_desc": "この陣形は高速のバーストダメージに特化しています。前衛が初期ダメージを吸収し、後衛のアタッカーが必殺技をチャージします。戦闘の最初の15秒間で防御チームを撃破するのに最適です。",
+    "extreme": "極高",
+    "moderate": "中等",
+    "high": "高",
+    "support": "サポート:",
+    "tanks": "タンク:"
+  },
+  "guides": {
+    "title": "ガイド＆戦略",
+    "intel_files": "インテリジェンスファイル",
+    "g1_title": "初心者ガイド",
+    "g1_desc": "シェルターでの最初の7日間に必要なすべて。リソース最適化と避けるべき一般的なミス。",
+    "g2_title": "アーティファクト Tier List",
+    "g2_desc": "各役割に最適なアクセサリの数学的分析。",
+    "g3_title": "PvP メタ編成",
+    "g3_desc": "タクティカルアリーナで防御を突破するための前衛と後衛の配置方法。",
+    "g4_title": "スタミナ周回",
+    "g4_desc": "最適なルートと毎日のチャージスケジュール。"
   }
 }

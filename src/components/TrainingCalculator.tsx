@@ -312,12 +312,12 @@ const TrainingCalculator = () => {
               {isUploading && (
                 <div className="absolute inset-0 bg-black/80 z-20 flex flex-col items-center justify-center border border-blood-red">
                   <Loader2 className="text-neon-red animate-spin mb-2" size={32} />
-                  <span className="font-mono text-blood-red text-xs uppercase tracking-widest animate-pulse">Red Queen analizando imagen...</span>
+                  <span className="font-mono text-blood-red text-xs uppercase tracking-widest animate-pulse">{t('calculator.ai_analyzing_img', 'Red Queen analizando imagen...')}</span>
                 </div>
               )}
               <div className="flex justify-between items-center mb-4">
                 <label className="font-mono text-neon-red text-xs uppercase tracking-widest flex items-center gap-2">
-                  Inventario de Aceleradores
+                  {t('calculator.speedup_inventory', 'Inventario de Aceleradores')}
                 </label>
                 <div className="flex items-center gap-3">
                   <input 
@@ -332,15 +332,15 @@ const TrainingCalculator = () => {
                     className="flex items-center gap-1 font-mono text-[9px] uppercase tracking-widest bg-blood-red/10 text-neon-red border border-blood-red/30 px-2 py-1 hover:bg-blood-red hover:text-white transition-colors cursor-pointer"
                     title="Subir captura de pantalla para auto-rellenar"
                   >
-                    <UploadCloud size={12} /> Auto-Llenado IA
+                    <UploadCloud size={12} /> {t('calculator.ai_autofill', 'Auto-Llenado IA')}
                   </button>
-                  <span className="font-mono text-[10px] text-gray-500 bg-black px-2 py-1 border border-gray-800">Total Disp: {(results.accelSecs / 3600 || 0).toFixed(1)}h</span>
+                  <span className="font-mono text-[10px] text-gray-500 bg-black px-2 py-1 border border-gray-800">{t('calculator.total_disp', 'Total Disp:')} {(results.accelSecs / 3600 || 0).toFixed(1)}h</span>
                 </div>
               </div>
               
               <div className="space-y-6">
                 <div>
-                  <div className="text-[10px] text-gray-500 font-mono mb-2 border-b border-gray-800 pb-1">GENERALES</div>
+                  <div className="text-[10px] text-gray-500 font-mono mb-2 border-b border-gray-800 pb-1">{t('calculator.generals_caps', 'GENERALES')}</div>
                   <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
                     <InventoryItem label="1 m" rarity="gray" value={gen1m} onChange={setGen1m} />
                     <InventoryItem label="5 m" rarity="green" value={gen5m} onChange={setGen5m} />
@@ -350,7 +350,7 @@ const TrainingCalculator = () => {
                   </div>
                 </div>
                 <div>
-                  <div className="text-[10px] text-gray-500 font-mono mb-2 border-b border-gray-800 pb-1">ENTRENAMIENTO (TROPAS)</div>
+                  <div className="text-[10px] text-gray-500 font-mono mb-2 border-b border-gray-800 pb-1">{t('calculator.training_troops_caps', 'ENTRENAMIENTO (TROPAS)')}</div>
                   <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
                     <InventoryItem label="1 m" rarity="gray" value={trp1m} onChange={setTrp1m} isTroop />
                     <InventoryItem label="5 m" rarity="green" value={trp5m} onChange={setTrp5m} isTroop />
@@ -381,27 +381,27 @@ const TrainingCalculator = () => {
                 </div>
                 
                 <div className="flex justify-between items-center text-gray-400 mt-4 pt-2 border-t border-gray-800/50">
-                  <span className="flex items-center gap-1"><Clock size={12}/> T. Utilizado:</span>
+                  <span className="flex items-center gap-1"><Clock size={12}/> {t('calculator.time_used', 'T. Utilizado:')}</span>
                   <span className="text-white">{(results.totalUsedSecs / 60).toLocaleString(undefined, { maximumFractionDigits: 1 })} min</span>
                 </div>
                 <div className="flex justify-between items-center text-gray-400 text-[10px]">
-                  <span>(Equivalente):</span>
-                  <span className="text-gray-500">{results.totalUsedDays.toFixed(2)} días</span>
+                  <span>{t('calculator.equivalent', '(Equivalente):')}</span>
+                  <span className="text-gray-500">{results.totalUsedDays.toFixed(2)} {t('calculator.days', 'días')}</span>
                 </div>
 
                 {/* Resumen del Algoritmo Avaro */}
                 <div className="mt-6 pt-4 border-t border-gray-800">
-                  <h4 className="text-[10px] text-neon-red mb-3 uppercase tracking-widest">Resumen de Inversión</h4>
+                  <h4 className="text-[10px] text-neon-red mb-3 uppercase tracking-widest">{t('calculator.investment_summary', 'Resumen de Inversión')}</h4>
                   <div className="space-y-3">
                     {results.queueResults?.map((qr: any, idx: number) => (
                       <div key={idx} className="bg-black/50 border border-gray-800 p-2 rounded-sm relative">
                         <div className="flex justify-between text-[9px] text-gray-400 mb-1">
-                          <span>Fila {idx + 1} ({qr.type === 'upgrade' ? `T${qr.fromLevel}»T${qr.toLevel}` : `Nuevo T${qr.toLevel}`})</span>
+                          <span>{t('calculator.row', 'Fila')} {idx + 1} ({qr.type === 'upgrade' ? `T${qr.fromLevel}»T${qr.toLevel}` : `${t('calculator.new_type', 'Nuevo')} T${qr.toLevel}`})</span>
                           <span className="text-yellow-500">+{qr.pointsEarned.toLocaleString()} pts</span>
                         </div>
                         <div className="flex justify-between text-[9px]">
-                          <span className="text-gray-500">{(qr.usedSecs / 3600).toFixed(1)}h invertidas</span>
-                          {qr.hitLimit && <span className="text-blue-400">Límite alcanzado</span>}
+                          <span className="text-gray-500">{(qr.usedSecs / 3600).toFixed(1)}h {t('calculator.invested', 'invertidas')}</span>
+                          {qr.hitLimit && <span className="text-blue-400">{t('calculator.limit_reached', 'Límite alcanzado')}</span>}
                         </div>
                         {/* Barra de progreso visual sutil basada en prioridad */}
                         <div className="absolute bottom-0 left-0 h-[1px] bg-blood-red/50" style={{ width: qr.usedSecs > 0 ? '100%' : '0%' }} />

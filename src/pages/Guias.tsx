@@ -1,47 +1,50 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Shield, Cpu, Target } from 'lucide-react';
-
-const GUIDES = [
-  {
-    id: 1,
-    title: "Guía de Principiantes",
-    description: "Todo lo que necesitas saber para tus primeros 7 días en el refugio. Optimización de recursos y errores comunes que debes evitar a toda costa.",
-    icon: <BookOpen className="text-white" size={24} />,
-    image: "/guias/beginner.jpg",
-    color: "from-blue-900/80 to-black",
-    span: "md:col-span-2 md:row-span-2"
-  },
-  {
-    id: 2,
-    title: "Tier List de Artefactos",
-    description: "Análisis matemático de los mejores accesorios para cada rol.",
-    icon: <Target className="text-white" size={24} />,
-    image: "/guias/artifacts.jpg",
-    color: "from-purple-900/80 to-black",
-    span: "md:col-span-1 md:row-span-1"
-  },
-  {
-    id: 3,
-    title: "Formaciones Meta PvP",
-    description: "Cómo posicionar tu Vanguardia y Retaguardia para romper defensas en la Arena Táctica.",
-    icon: <Shield className="text-white" size={24} />,
-    image: "/guias/pvp.jpg",
-    color: "from-red-900/80 to-black",
-    span: "md:col-span-1 md:row-span-2"
-  },
-  {
-    id: 4,
-    title: "Farmeo de Estamina",
-    description: "Rutas óptimas y horarios de recarga diaria.",
-    icon: <Cpu className="text-white" size={24} />,
-    image: "/guias/farm.jpg",
-    color: "from-green-900/80 to-black",
-    span: "md:col-span-2 md:row-span-1"
-  }
-];
+import { useTranslation } from 'react-i18next';
 
 export default function Guias() {
+  const { t } = useTranslation();
+
+  const GUIDES = [
+    {
+      id: 1,
+      title: t('guides.g1_title'),
+      description: t('guides.g1_desc'),
+      icon: <BookOpen className="text-white" size={24} />,
+      image: "/guias/beginner.jpg",
+      color: "from-blue-900/80 to-black",
+      span: "md:col-span-2 md:row-span-2"
+    },
+    {
+      id: 2,
+      title: t('guides.g2_title'),
+      description: t('guides.g2_desc'),
+      icon: <Target className="text-white" size={24} />,
+      image: "/guias/artifacts.jpg",
+      color: "from-purple-900/80 to-black",
+      span: "md:col-span-1 md:row-span-1"
+    },
+    {
+      id: 3,
+      title: t('guides.g3_title'),
+      description: t('guides.g3_desc'),
+      icon: <Shield className="text-white" size={24} />,
+      image: "/guias/pvp.jpg",
+      color: "from-red-900/80 to-black",
+      span: "md:col-span-1 md:row-span-2"
+    },
+    {
+      id: 4,
+      title: t('guides.g4_title'),
+      description: t('guides.g4_desc'),
+      icon: <Cpu className="text-white" size={24} />,
+      image: "/guias/farm.jpg",
+      color: "from-green-900/80 to-black",
+      span: "md:col-span-2 md:row-span-1"
+    }
+  ];
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -57,14 +60,14 @@ export default function Guias() {
           className="flex items-center gap-3 mb-4"
         >
           <BookOpen className="text-neon-red" size={32} />
-          <span className="font-mono text-neon-red text-sm md:text-base tracking-[0.3em] uppercase">Intelligence Files</span>
+          <span className="font-mono text-neon-red text-sm md:text-base tracking-[0.3em] uppercase">{t('guides.intel_files')}</span>
         </motion.div>
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="font-bebas text-5xl md:text-7xl text-white tracking-widest drop-shadow-md"
         >
-          GUÍAS Y <span className="text-blood-red">ESTRATEGIAS</span>
+          {t('guides.title')}
         </motion.h1>
       </div>
 

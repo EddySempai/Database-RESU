@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Swords, Star, Filter, Shield, Crosshair } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { useOperativos } from '../hooks/useOperativos';
 import { Link } from 'react-router-dom';
 import { PvP_MidGame_TierList } from '../data/tierlistData';
@@ -16,30 +17,30 @@ const TIER_COLORS = {
 
 const MODES = ['PvP Arena'];
 const PHASES = ['Mid Game'];
-const TABS = ['Clasificación', 'Equipos Meta 5vs5'];
 
-const isDefender = (type: string) => type?.toLowerCase().includes('defen') || type?.includes('ディフェンダー');
-const isAttacker = (type: string) => type?.toLowerCase().includes('ata') || type?.toLowerCase().includes('att') || type?.includes('アタッカー');
+const isDefender = (type: string) => type?.toLowerCase().includes('defen') || type?.includes('ディフェン');
+const isAttacker = (type: string) => type?.toLowerCase().includes('atac') || type?.toLowerCase().includes('attack') || type?.includes('アタッカー');
 const isRanger = (type: string) => type?.toLowerCase().includes('rang') || type?.includes('レンジャー');
 
 // Custom icon mimicking the game's RifleMan bullets
-const BulletsIcon = ({ size = 12 }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4 4h12a2 2 0 0 1 2 2 2 2 0 0 1-2 2H4V4zm0 7h12a2 2 0 0 1 2 2 2 2 0 0 1-2 2H4v-4zm0 7h12a2 2 0 0 1 2 2 2 2 0 0 1-2 2H4v-4z" />
+const BulletsIcon = ({ size = 12, className = "text-white" }: { size?: number; className?: string }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={`shrink-0 block ${className}`} xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 5h16a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3zm0 5.5h16a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3zm0 5.5h16a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3z" />
   </svg>
 );
 
 const getUnitIcon = (type: string) => {
-  if (isDefender(type)) return <Shield size={12} />;
-  if (isAttacker(type)) return <BulletsIcon size={12} />;
-  if (isRanger(type)) return <Crosshair size={12} />;
+  if (isDefender(type)) return <Shield size={12} className="text-white shrink-0" />;
+  if (isAttacker(type)) return <BulletsIcon size={12} className="text-white shrink-0" />;
+  if (isRanger(type)) return <Crosshair size={12} className="text-white shrink-0" />;
   return null;
 };
 
 export default function TierList() {
+  const { t } = useTranslation();
   const operativosData = useOperativos();
   
-  const [activeTab, setActiveTab] = useState(TABS[0]);
+  const [activeTab, setActiveTab] = useState('ranking');
   const [activeMode, setActiveMode] = useState(MODES[0]);
   const [activePhase, setActivePhase] = useState(PHASES[1]); // Default to Mid Game
 
@@ -130,7 +131,7 @@ export default function TierList() {
             <div>
               <h3 className="font-bebas text-3xl text-white tracking-wider flex items-center gap-2">
                 <Trophy className="text-yellow-500" size={24} /> 
-                Competición Absoluta
+                {t('tierlist.abs_competition')}
               </h3>
               <p className="font-mono text-gray-400 text-xs mt-2 uppercase tracking-widest">Team Rating: <span className="text-neon-red">98.5/100</span></p>
             </div>
@@ -155,7 +156,7 @@ export default function TierList() {
                         </div>
                         <img src={localImage} alt={op.name} className="w-full h-auto block scale-110 origin-bottom" />
                         <div className="absolute bottom-0 w-full bg-blue-900/90 text-center py-0.5 border-t border-blue-500/50">
-                          <span className="font-mono text-[9px] text-white uppercase tracking-wider">Vanguardia</span>
+                          <span className="font-mono text-[9px] text-white uppercase tracking-wider">{t('tierlist.vanguard')}</span>
                         </div>
                       </motion.div>
                       <span className="text-white font-inter text-xs text-center line-clamp-1">{op.name}</span>
@@ -179,7 +180,7 @@ export default function TierList() {
                         </div>
                         <img src={localImage} alt={op.name} className="w-full h-auto block scale-110 origin-bottom" />
                         <div className="absolute bottom-0 w-full bg-red-900/90 text-center py-0.5 border-t border-red-500/50">
-                          <span className="font-mono text-[9px] text-white uppercase tracking-wider">Retaguardia</span>
+                          <span className="font-mono text-[9px] text-white uppercase tracking-wider">{t('tierlist.rearguard')}</span>
                         </div>
                       </motion.div>
                       <span className="text-white font-inter text-xs text-center line-clamp-1">{op.name}</span>
@@ -193,27 +194,27 @@ export default function TierList() {
             <div className="w-full lg:w-1/3 bg-black/40 rounded-lg p-6 flex flex-col border border-gray-800/50">
               <div className="mb-6">
                 <h4 className="font-bebas text-2xl text-white tracking-widest mb-4 flex items-center gap-2 border-b border-gray-800 pb-2">
-                  INFORMACIÓN
+                  {t('tierlist.information')}
                 </h4>
                 <div className="space-y-3 font-mono text-xs uppercase tracking-wider text-gray-400">
                   <div className="flex justify-between border-b border-gray-800/50 pb-1">
-                    <span>DPS:</span> <span className="text-neon-red font-bold">Extremo</span>
+                    <span>DPS:</span> <span className="text-neon-red font-bold">{t('tierlist.extreme')}</span>
                   </div>
                   <div className="flex justify-between border-b border-gray-800/50 pb-1">
-                    <span>Apoyo:</span> <span className="text-blue-400 font-bold">Moderado</span>
+                    <span>{t('tierlist.support')}</span> <span className="text-blue-400 font-bold">{t('tierlist.moderate')}</span>
                   </div>
                   <div className="flex justify-between border-b border-gray-800/50 pb-1">
-                    <span>Tanques:</span> <span className="text-yellow-500 font-bold">Alto</span>
+                    <span>{t('tierlist.tanks')}</span> <span className="text-yellow-500 font-bold">{t('tierlist.high')}</span>
                   </div>
                 </div>
               </div>
               
               <div className="mt-auto">
                 <h4 className="font-mono text-white text-xs uppercase tracking-widest mb-2 flex items-center gap-2">
-                  <Star size={12} className="text-yellow-500" /> Sinergia del Equipo
+                  <Star size={12} className="text-yellow-500" /> {t('tierlist.team_synergy')}
                 </h4>
                 <p className="text-sm text-gray-400 font-inter leading-relaxed">
-                  Esta formación se especializa en daño explosivo rápido. Los vanguardias absorben el daño inicial mientras los atacantes en retaguardia cargan sus habilidades definitivas. Excelente para limpiar equipos defensivos en los primeros 15 segundos del combate.
+                  {t('tierlist.synergy_desc')}
                 </p>
               </div>
             </div>
@@ -255,14 +256,17 @@ export default function TierList() {
 
         {/* Desktop Tabs */}
         <div className="hidden md:flex gap-4">
-          {TABS.map(tab => (
+          {[
+            { id: 'ranking', label: t('tierlist.tab_ranking') },
+            { id: 'meta_teams', label: t('tierlist.tab_meta_teams') }
+          ].map(tabObj => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`font-bebas text-xl px-6 py-2 transition-all tracking-widest relative ${activeTab === tab ? 'text-white' : 'text-gray-500 hover:text-gray-300'}`}
+              key={tabObj.id}
+              onClick={() => setActiveTab(tabObj.id)}
+              className={`font-bebas text-xl px-6 py-2 transition-all tracking-widest relative ${activeTab === tabObj.id ? 'text-white' : 'text-gray-500 hover:text-gray-300'}`}
             >
-              {tab}
-              {activeTab === tab && (
+              {tabObj.label}
+              {activeTab === tabObj.id && (
                 <motion.div layoutId="tier-tab" className="absolute bottom-0 left-0 w-full h-0.5 bg-neon-red" />
               )}
             </button>
@@ -272,13 +276,16 @@ export default function TierList() {
 
       {/* Mobile Tabs */}
       <div className="flex md:hidden gap-2 mb-8 overflow-x-auto pb-2">
-        {TABS.map(tab => (
+        {[
+          { id: 'ranking', label: t('tierlist.tab_ranking') },
+          { id: 'meta_teams', label: t('tierlist.tab_meta_teams') }
+        ].map(tabObj => (
           <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`font-bebas text-lg px-4 py-2 border transition-all whitespace-nowrap ${activeTab === tab ? 'border-neon-red bg-blood-red/10 text-white' : 'border-gray-800 text-gray-500 bg-[#050505]'}`}
+            key={tabObj.id}
+            onClick={() => setActiveTab(tabObj.id)}
+            className={`font-bebas text-lg px-4 py-2 border transition-all whitespace-nowrap ${activeTab === tabObj.id ? 'border-neon-red bg-blood-red/10 text-white' : 'border-gray-800 text-gray-500 bg-[#050505]'}`}
           >
-            {tab}
+            {tabObj.label}
           </button>
         ))}
       </div>
@@ -286,7 +293,7 @@ export default function TierList() {
       {/* Filters Bar */}
       <div className="bg-[#050505] border border-gray-800 p-4 mb-8 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         <div className="flex items-center gap-2 text-gray-400 font-mono text-xs uppercase tracking-widest">
-          <Filter size={16} /> Filtros de Entorno
+          <Filter size={16} /> {t('tierlist.filters_env')}
         </div>
         
         <div className="flex flex-wrap gap-4 w-full lg:w-auto">
@@ -327,7 +334,7 @@ export default function TierList() {
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
         >
-          {activeTab === TABS[0] ? renderGeneralTierList() : renderMetaTeams()}
+          {activeTab === 'ranking' ? renderGeneralTierList() : renderMetaTeams()}
         </motion.div>
       </AnimatePresence>
 

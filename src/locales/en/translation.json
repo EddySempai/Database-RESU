@@ -170,7 +170,17 @@
     "objective_caps": "TARGET",
     "exclusive_weapon_level": "Exclusive Weapon Level (0 ➔ 10)",
     "exclusive_legendary_weapon": "Legendary Exclusive Weapon",
-    "slot_of": "{{type}} Slot"
+    "slot_of": "{{type}} Slot",
+    "all_to_lvl5": "All to Lv. 5",
+    "reset": "Reset",
+    "total_explore": "Total Exploration",
+    "total_field": "Total Field",
+    "lvl_prefix": "Lv.",
+    "touch_to_upgrade": "Tap a weapon to edit its levels",
+    "penetration": "Penetration",
+    "health_stat": "Health",
+    "edit": "Edit",
+    "close_modal": "Close"
   },
   "footer": {
     "disclaimer": "This is an informative fan-made website for educational and guide purposes. Resident Evil: Survival Unit is a game co-developed by Aniplex, JOYCITY, and Capcom."
@@ -212,14 +222,42 @@
     "levels_gained": "LEVELS GAINED:"
   },
   "jewels": {
-    "title": "JEWELS CALCULATOR",
+    "title": "GEM CALCULATOR",
     "rough_jewel": "Rough Jewel",
-    "jewel_tool": "Jewel Tool",
-    "current_tier": "CURRENT T.",
-    "target_tier": "TARGET T.",
-    "select_current": "SELECT CURRENT LEVEL",
-    "select_target": "SELECT TARGET LEVEL",
+    "jewel_tool": "Jewel Crafting Tool",
+    "current_tier": "CURRENT TIER",
+    "target_tier": "TARGET TIER",
+    "select_current": "SELECT CURRENT TIER",
+    "select_target": "SELECT TARGET TIER",
     "total_resources": "TOTAL RESOURCES",
     "search_placeholder": "Search level (e.g. Legend++)"
+  },
+  "tierlist": {
+    "tab_ranking": "Ranking",
+    "tab_meta_teams": "5v5 Meta Teams",
+    "filters_env": "Environment Filters",
+    "abs_competition": "Absolute Competition",
+    "vanguard": "Vanguard",
+    "rearguard": "Rearguard",
+    "information": "INFORMATION",
+    "team_synergy": "Team Synergy",
+    "synergy_desc": "This formation specializes in fast burst damage. Vanguards absorb initial damage while rearguard attackers charge their ultimate skills. Excellent for clearing defensive teams in the first 15 seconds of combat.",
+    "extreme": "Extreme",
+    "moderate": "Moderate",
+    "high": "High",
+    "support": "Support:",
+    "tanks": "Tanks:"
+  },
+  "guides": {
+    "title": "GUIDES & STRATEGIES",
+    "intel_files": "Intelligence Files",
+    "g1_title": "Beginner Guide",
+    "g1_desc": "Everything you need to know for your first 7 days in the shelter. Resource optimization and common mistakes to avoid at all costs.",
+    "g2_title": "Artifact Tier List",
+    "g2_desc": "Mathematical analysis of the best accessories for each role.",
+    "g3_title": "PvP Meta Formations",
+    "g3_desc": "How to position your Vanguard and Rearguard to break defenses in Tactical Arena.",
+    "g4_title": "Stamina Farming",
+    "g4_desc": "Optimal routes and daily recharge schedules."
   }
 }

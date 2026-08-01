@@ -23,13 +23,13 @@ const Calculadoras = () => {
           onClick={() => setActiveTab('training')}
           className={`px-6 py-2 font-mono text-sm uppercase tracking-widest rounded-full transition-all duration-300 ${activeTab === 'training' ? 'bg-blood-red text-white shadow-[0_0_15px_rgba(255,0,0,0.5)]' : 'bg-transparent text-gray-500 border border-gray-800 hover:text-white hover:border-gray-500'}`}
         >
-          Exp / Fragmentos
+          {t('tools_page.tab_training', 'Exp / Fragmentos')}
         </button>
         <button 
           onClick={() => setActiveTab('treasures')}
           className={`px-6 py-2 font-mono text-sm uppercase tracking-widest rounded-full transition-all duration-300 ${activeTab === 'treasures' ? 'bg-purple-700 text-white shadow-[0_0_15px_rgba(128,0,128,0.5)]' : 'bg-transparent text-gray-500 border border-gray-800 hover:text-white hover:border-gray-500'}`}
         >
-          Tesoros / Joyas
+          {t('tools_page.tab_treasures', 'Tesoros / Joyas')}
         </button>
       </div>
 

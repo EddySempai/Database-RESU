@@ -170,7 +170,17 @@
     "objective_caps": "OBJETIVO",
     "exclusive_weapon_level": "Nivel de Arma Exclusiva (0 ➔ 10)",
     "exclusive_legendary_weapon": "Arma Exclusiva Legendaria",
-    "slot_of": "Slot de {{type}}"
+    "slot_of": "Slot de {{type}}",
+    "all_to_lvl5": "Todas a Nv. 5",
+    "reset": "Reiniciar",
+    "total_explore": "Total Exploración",
+    "total_field": "Total Campo",
+    "lvl_prefix": "Nv.",
+    "touch_to_upgrade": "Toca un arma para editar sus niveles",
+    "penetration": "Penetración",
+    "health_stat": "Vida",
+    "edit": "Editar",
+    "close_modal": "Cerrar"
   },
   "footer": {
     "disclaimer": "Este es un sitio web informativo creado por fans para fines educativos y de guía. Resident Evil: Survival Unit es un juego co-desarrollado por Aniplex, JOYCITY y Capcom."
@@ -221,5 +231,33 @@
     "select_target": "SELECCIONAR NIVEL OBJETIVO",
     "total_resources": "TOTAL DE RECURSOS",
     "search_placeholder": "Buscar nivel (Ej: Legend++)"
+  },
+  "tierlist": {
+    "tab_ranking": "Clasificación",
+    "tab_meta_teams": "Equipos Meta 5vs5",
+    "filters_env": "Filtros de Entorno",
+    "abs_competition": "Competición Absoluta",
+    "vanguard": "Vanguardia",
+    "rearguard": "Retaguardia",
+    "information": "INFORMACIÓN",
+    "team_synergy": "Sinergia del Equipo",
+    "synergy_desc": "Esta formación se especializa en daño explosivo rápido. Los vanguardias absorben el daño inicial mientras los atacantes en retaguardia cargan sus habilidades definitivas. Excelente para limpiar equipos defensivos en los primeros 15 segundos del combate.",
+    "extreme": "Extremo",
+    "moderate": "Moderado",
+    "high": "Alto",
+    "support": "Apoyo:",
+    "tanks": "Tanques:"
+  },
+  "guides": {
+    "title": "GUÍAS Y ESTRATEGIAS",
+    "intel_files": "Archivos de Inteligencia",
+    "g1_title": "Guía de Principiantes",
+    "g1_desc": "Todo lo que necesitas saber para tus primeros 7 días en el refugio. Optimización de recursos y errores comunes que debes evitar a toda costa.",
+    "g2_title": "Tier List de Artefactos",
+    "g2_desc": "Análisis matemático de los mejores accesorios para cada rol.",
+    "g3_title": "Formaciones Meta PvP",
+    "g3_desc": "Cómo posicionar tu Vanguardia y Retaguardia para romper defensas en la Arena Táctica.",
+    "g4_title": "Farmeo de Estamina",
+    "g4_desc": "Rutas óptimas y horarios de recarga diaria."
   }
 }
