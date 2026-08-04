@@ -1484,38 +1484,38 @@
         "type": "Exploración",
         "name": "Luz del Farol",
         "description": "Identifica al enemigo con la luz del farol y expone su punto débil. La defensa del objetivo se reduce en {1} durante {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_123010.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Valentia renacida",
+        "description": "las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de aumentar {0} el daño infligido a los enemigos durante 3 turnos en combate.",
         "iconUrl": "/icons/skill/Icon_Skill_213010.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Nombramiento de Escolta Exclusivo",
+        "description": "Ashley, en proporción a su propio ataque, aumenta en {0} el ataque del aliado más fuerte y le otorga un escudo de {1}.",
+        "iconUrl": "/icons/skill/Icon_Skill_133010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
         "name": "Armadura de Ashley",
-        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de reducir {0} el daño infligido por los enemigos durante 2 turnos.",
-        "iconUrl": "/icons/skill/Icon_Skill_123010.webp",
-        "isArmaEspecial": false,
-        "isVipSkill": false
-      },
-      {
-        "type": "Exploración",
-        "name": "Apoyo Moral",
-        "description": "Ashley, en proporción a su propio ataque, aumenta en {0} el ataque del aliado más fuerte y le otorga un escudo de {1}.",
+        "description": " las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de reducir {0} el daño infligido por los enemigos durante 2 turnos",
         "iconUrl": "/icons/skill/Icon_Skill_223010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Lazo de Compasión",
+        "name": "Lazo de compasión",
         "description": "La salud de las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
-        "iconUrl": "/icons/skill/Icon_Skill_133010.webp",
-        "isArmaEspecial": false,
-        "isVipSkill": false
-      },
-      {
-        "type": "Exploración",
-        "name": "Luz del Farol Azul",
-        "description": "La defensa de la unidad aliada aumenta en {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_233010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1524,15 +1524,15 @@
         "type": "Campo",
         "name": "Voluntad de Supervivencia",
         "description": "Cuando este héroe es líder de concentración, la salud de las unidades aliadas aumenta {0} en combates de concentración.",
-        "iconUrl": "/icons/skill/Icon_Skill_143010.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_243010.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       },
       {
-        "type": "Campo",
+        "type": "Exploración",
         "name": "Arma Especial (Pasiva)",
-        "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_243010.webp",
+        "description": "Incrementa la defensa de las unidades aliadas en un {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_143010.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       }
