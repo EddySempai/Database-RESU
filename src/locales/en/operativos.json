@@ -4,7 +4,7 @@
     "name": "Leon S. Kennedy",
     "rarity": "Legendary",
     "unitType": "Defender",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-LeonSKennedy-visual.png",
+    "imageUrl": "/operativos/character-LeonSKennedy-visual.webp",
     "iconUrl": "/portraits/PortraitBust_LEON_L01.webp",
     "stats": {
       "health": 176000,
@@ -102,7 +102,7 @@
     "name": "Claire Redfield",
     "rarity": "Legendary",
     "unitType": "Attacker",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-ClaireRedfield-visual.png",
+    "imageUrl": "/operativos/character-ClaireRedfield-visual.webp",
     "iconUrl": "/portraits/PortraitBust_CLAIRE_L01.webp",
     "stats": {
       "health": 88000,
@@ -192,7 +192,7 @@
     "name": "Jill Valentine",
     "rarity": "Legendary",
     "unitType": "Ranger",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JillValentine-visual.png",
+    "imageUrl": "/operativos/character-JillValentine-visual.webp",
     "iconUrl": "/portraits/PortraitBust_JILL_L01.webp",
     "stats": {
       "health": 88000,
@@ -290,7 +290,7 @@
     "name": "Carlos Oliveira",
     "rarity": "Legendary",
     "unitType": "Defender",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-CarlosOliveira-visual.png",
+    "imageUrl": "/operativos/character-CarlosOliveira-visual.webp",
     "iconUrl": "/portraits/PortraitBust_CARLOS_L01.webp",
     "stats": {
       "health": 136400,
@@ -380,7 +380,7 @@
     "name": "Ada Wong",
     "rarity": "Legendary",
     "unitType": "Attacker",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AdaWong-visual.png",
+    "imageUrl": "/operativos/character-AdaWong-visual.webp",
     "iconUrl": "/portraits/PortraitBust_ADA_L01.webp",
     "stats": {
       "health": 121000,
@@ -470,7 +470,7 @@
     "name": "Mikhail Victor",
     "rarity": "Epic",
     "unitType": "Ranger",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MikhailVictor-visual.png",
+    "imageUrl": "/operativos/character-MikhailVictor-visual.webp",
     "iconUrl": "/portraits/PortraitBust_MIKHAIL_E01.webp",
     "stats": {
       "health": 74800,
@@ -536,7 +536,7 @@
     "name": "Marvin Branagh",
     "rarity": "Epic",
     "unitType": "Defender",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MarvinBranagh-visual.png",
+    "imageUrl": "/operativos/character-MarvinBranagh-visual.webp",
     "iconUrl": "/portraits/PortraitBust_MARVIN_E01.webp",
     "stats": {
       "health": 88000,
@@ -602,7 +602,7 @@
     "name": "Becca Woolett",
     "rarity": "Epic",
     "unitType": "Attacker",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BeccaWoolett-visual.png",
+    "imageUrl": "/operativos/character-BeccaWoolett-visual.webp",
     "iconUrl": "/portraits/PortraitBust_BECCA_E01.webp",
     "stats": {
       "health": 74800,
@@ -668,7 +668,7 @@
     "name": "Tyrone Henry",
     "rarity": "Epic",
     "unitType": "Defender",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-TyroneHenry-visual.png",
+    "imageUrl": "/operativos/character-TyroneHenry-visual.webp",
     "iconUrl": "/portraits/PortraitBust_TYRONE_E01.webp",
     "stats": {
       "health": 101200,
@@ -734,7 +734,7 @@
     "name": "Murphy Seeker",
     "rarity": "Común",
     "unitType": "Attacker",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MurphySeeker-visual.png",
+    "imageUrl": "/operativos/character-MurphySeeker-visual.webp",
     "iconUrl": "/portraits/PortraitBust_MURPHY_R01.webp",
     "stats": {
       "health": 61600,
@@ -800,7 +800,7 @@
     "name": "Alyssa Ashcroft",
     "rarity": "Epic",
     "unitType": "Attacker",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AlyssaAshcroft-visual.png",
+    "imageUrl": "/operativos/character-AlyssaAshcroft-visual.webp",
     "iconUrl": "/portraits/PortraitBust_ALYSSA_E01.webp",
     "stats": {
       "health": 70400,
@@ -866,7 +866,7 @@
     "name": "Katherine Warren",
     "rarity": "Epic",
     "unitType": "Attacker",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-KatherineWarren-visual.png",
+    "imageUrl": "/operativos/character-KatherineWarren-visual.webp",
     "iconUrl": "/portraits/PortraitBust_KATHERINE_E01.webp",
     "stats": {
       "health": 41800,
@@ -932,7 +932,7 @@
     "name": "Mark Wilkins",
     "rarity": "Epic",
     "unitType": "Defender",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MarkWilkins-visual.png",
+    "imageUrl": "/operativos/character-MarkWilkins-visual.webp",
     "iconUrl": "/portraits/PortraitBust_MARK_E01.webp",
     "stats": {
       "health": 118800,
@@ -998,7 +998,7 @@
     "name": "Barry Burton",
     "rarity": "Epic",
     "unitType": "Ranger",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BarryBurton-visual.png",
+    "imageUrl": "/operativos/character-BarryBurton-visual.webp",
     "iconUrl": "/portraits/PortraitBust_BARRY_E01.webp",
     "stats": {
       "health": 66000,
@@ -1064,7 +1064,7 @@
     "name": "Tyrell Patrick",
     "rarity": "Epic",
     "unitType": "Ranger",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-TyrellPatrick-visual.png",
+    "imageUrl": "/operativos/character-TyrellPatrick-visual.webp",
     "iconUrl": "/portraits/PortraitBust_TYRELL_E01.webp",
     "stats": {
       "health": 70400,
@@ -1130,7 +1130,7 @@
     "name": "Robert Kendo",
     "rarity": "Epic",
     "unitType": "Defender",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-RobertKendo-visual.png",
+    "imageUrl": "/operativos/character-RobertKendo-visual.webp",
     "iconUrl": "/portraits/PortraitBust_ROBERT_R01.webp",
     "stats": {
       "health": 92400,
@@ -1196,7 +1196,7 @@
     "name": "Brad Vickers",
     "rarity": "Común",
     "unitType": "Ranger",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BradVickers-visual.png",
+    "imageUrl": "/operativos/character-BradVickers-visual.webp",
     "iconUrl": "/portraits/PortraitBust_BRAD_R01.webp",
     "stats": {
       "health": 52799,
@@ -1262,7 +1262,7 @@
     "name": "Chris Redfield",
     "rarity": "Legendary",
     "unitType": "Defender",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-ChrisRedfield-visual.png",
+    "imageUrl": "/operativos/character-ChrisRedfield-visual.webp",
     "iconUrl": "/portraits/PortraitBust_CHRIS_L01.webp",
     "stats": {
       "health": 154500,
@@ -1352,7 +1352,7 @@
     "name": "Rebecca Chambers",
     "rarity": "Legendary",
     "unitType": "Attacker",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-RebeccaChambers-visual.png",
+    "imageUrl": "/operativos/character-RebeccaChambers-visual.webp",
     "iconUrl": "/portraits/PortraitBust_REBECCA_L01.webp",
     "stats": {
       "health": 84600,
@@ -1442,7 +1442,7 @@
     "name": "Billy Coen",
     "rarity": "Legendary",
     "unitType": "Ranger",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BillyCoen-visual.png",
+    "imageUrl": "/operativos/character-BillyCoen-visual.webp",
     "iconUrl": "/portraits/PortraitBust_BILLY_L01.webp",
     "stats": {
       "health": 93000,
@@ -1532,7 +1532,7 @@
     "name": "Ashley Graham",
     "rarity": "Legendary",
     "unitType": "Ranger",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AshleyGraham-visual.png",
+    "imageUrl": "/operativos/character-AshleyGraham-visual.webp",
     "iconUrl": "/portraits/PortraitBust_ASHLEY_L01.webp",
     "stats": {
       "health": 92329,
@@ -1622,7 +1622,7 @@
     "name": "Luis Serra Navarro",
     "rarity": "Legendary",
     "unitType": "Attacker",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-LuisSerraNavarro-visual.png",
+    "imageUrl": "/operativos/character-LuisSerraNavarro-visual.webp",
     "iconUrl": "/portraits/PortraitBust_LUIS_L01.webp",
     "stats": {
       "health": 101335,
@@ -1712,7 +1712,7 @@
     "name": "Jack Krauser",
     "rarity": "Legendary",
     "unitType": "Defender",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JackKrauser-visual.png",
+    "imageUrl": "/operativos/character-JackKrauser-visual.webp",
     "iconUrl": "/portraits/PortraitBust_JACK_L01.webp",
     "stats": {
       "health": 112593,
@@ -1802,7 +1802,7 @@
     "name": "Jake Muller",
     "rarity": "Legendary",
     "unitType": "Defender",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JakeMuller-visual.png",
+    "imageUrl": "/operativos/character-JakeMuller-visual.webp",
     "iconUrl": "/portraits/PortraitBust_JAKE_L01.webp",
     "stats": {
       "health": 150796,
@@ -1892,7 +1892,7 @@
     "name": "Sherry Birkin",
     "rarity": "Legendary",
     "unitType": "Attacker",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-SherryBirkin-visual.png",
+    "imageUrl": "/operativos/character-SherryBirkin-visual.webp",
     "iconUrl": "/portraits/PortraitBust_SHERRY_L01.webp",
     "stats": {
       "health": 114312,
@@ -1982,7 +1982,7 @@
     "name": "Piers Nivans",
     "rarity": "Legendary",
     "unitType": "Ranger",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-PiersNivans-visual.png",
+    "imageUrl": "/operativos/character-PiersNivans-visual.webp",
     "iconUrl": "/portraits/PortraitBust_PIERS_L01.webp",
     "stats": {
       "health": 99719,

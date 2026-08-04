@@ -7,6 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies and Build
 node_modules
 dist
 dist-ssr
@@ -22,15 +23,17 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment Variables & Secrets
 .env
 .env.local
 .env.*.local
 
-# Work spreadsheets & private data files
+# Work spreadsheets, dumps & raw assets
+resources/
 *.xlsx
 *.xls
 *.csv
-Habilidades_Operativos.*
-generate_excel.js
-generate_master_mapping.js
-scratch_*.js
+
+# Scratch and temporary testing scripts
+scripts/scratch/

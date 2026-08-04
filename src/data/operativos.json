@@ -2,7 +2,7 @@
   {
     "id": "leon",
     "name": "Leon S. Kennedy",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-LeonSKennedy-visual.png",
+    "imageUrl": "/operativos/character-LeonSKennedy-visual.webp",
     "stats": {
       "health": 176000,
       "attack": 4590,
@@ -100,7 +100,7 @@
   {
     "id": "claire",
     "name": "Claire Redfield",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-ClaireRedfield-visual.png",
+    "imageUrl": "/operativos/character-ClaireRedfield-visual.webp",
     "stats": {
       "health": 88000,
       "attack": 9265,
@@ -190,7 +190,7 @@
   {
     "id": "jill",
     "name": "Jill Valentine",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JillValentine-visual.png",
+    "imageUrl": "/operativos/character-JillValentine-visual.webp",
     "stats": {
       "health": 88000,
       "attack": 10710,
@@ -288,7 +288,7 @@
   {
     "id": "carlos",
     "name": "Carlos Oliveira",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-CarlosOliveira-visual.png",
+    "imageUrl": "/operativos/character-CarlosOliveira-visual.webp",
     "stats": {
       "health": 136400,
       "attack": 3400,
@@ -378,7 +378,7 @@
   {
     "id": "ada",
     "name": "Ada Wong",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AdaWong-visual.png",
+    "imageUrl": "/operativos/character-AdaWong-visual.webp",
     "stats": {
       "health": 121000,
       "attack": 6460,
@@ -468,7 +468,7 @@
   {
     "id": "mikhail",
     "name": "Mikhail Victor",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MikhailVictor-visual.png",
+    "imageUrl": "/operativos/character-MikhailVictor-visual.webp",
     "stats": {
       "health": 74800,
       "attack": 5755,
@@ -529,7 +529,7 @@
   {
     "id": "marvin",
     "name": "Marvin Branagh",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MarvinBranagh-visual.png",
+    "imageUrl": "/operativos/character-MarvinBranagh-visual.webp",
     "stats": {
       "health": 88000,
       "attack": 4335,
@@ -590,7 +590,7 @@
   {
     "id": "becca",
     "name": "Becca Woolett",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BeccaWoolett-visual.png",
+    "imageUrl": "/operativos/character-BeccaWoolett-visual.webp",
     "stats": {
       "health": 74800,
       "attack": 6205,
@@ -651,7 +651,7 @@
   {
     "id": "tyrone",
     "name": "Tyrone Henry",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-TyroneHenry-visual.png",
+    "imageUrl": "/operativos/character-TyroneHenry-visual.webp",
     "stats": {
       "health": 101200,
       "attack": 1700,
@@ -712,7 +712,7 @@
   {
     "id": "murphy",
     "name": "Murphy Seeker",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MurphySeeker-visual.png",
+    "imageUrl": "/operativos/character-MurphySeeker-visual.webp",
     "stats": {
       "health": 61600,
       "attack": 4811,
@@ -773,7 +773,7 @@
   {
     "id": "alyssa",
     "name": "Alyssa Ashcroft",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AlyssaAshcroft-visual.png",
+    "imageUrl": "/operativos/character-AlyssaAshcroft-visual.webp",
     "stats": {
       "health": 70400,
       "attack": 5780,
@@ -834,7 +834,7 @@
   {
     "id": "katherine",
     "name": "Katherine Warren",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-KatherineWarren-visual.png",
+    "imageUrl": "/operativos/character-KatherineWarren-visual.webp",
     "stats": {
       "health": 41800,
       "attack": 8840,
@@ -895,7 +895,7 @@
   {
     "id": "mark",
     "name": "Mark Wilkins",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MarkWilkins-visual.png",
+    "imageUrl": "/operativos/character-MarkWilkins-visual.webp",
     "stats": {
       "health": 118800,
       "attack": 1700,
@@ -956,7 +956,7 @@
   {
     "id": "barry",
     "name": "Barry Burton",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BarryBurton-visual.png",
+    "imageUrl": "/operativos/character-BarryBurton-visual.webp",
     "stats": {
       "health": 66000,
       "attack": 6800,
@@ -1017,7 +1017,7 @@
   {
     "id": "tyrell",
     "name": "Tyrell Patrick",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-TyrellPatrick-visual.png",
+    "imageUrl": "/operativos/character-TyrellPatrick-visual.webp",
     "stats": {
       "health": 70400,
       "attack": 6120,
@@ -1078,7 +1078,7 @@
   {
     "id": "robert",
     "name": "Robert Kendo",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-RobertKendo-visual.png",
+    "imageUrl": "/operativos/character-RobertKendo-visual.webp",
     "stats": {
       "health": 92400,
       "attack": 3400,
@@ -1139,7 +1139,7 @@
   {
     "id": "brad",
     "name": "Brad Vickers",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BradVickers-visual.png",
+    "imageUrl": "/operativos/character-BradVickers-visual.webp",
     "stats": {
       "health": 52799,
       "attack": 5508,
@@ -1200,7 +1200,7 @@
   {
     "id": "chris",
     "name": "Chris Redfield",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-ChrisRedfield-visual.png",
+    "imageUrl": "/operativos/character-ChrisRedfield-visual.webp",
     "stats": {
       "health": 154500,
       "attack": 5040,
@@ -1284,7 +1284,7 @@
   {
     "id": "rebecca",
     "name": "Rebecca Chambers",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-RebeccaChambers-visual.png",
+    "imageUrl": "/operativos/character-RebeccaChambers-visual.webp",
     "stats": {
       "health": 84600,
       "attack": 11690,
@@ -1368,7 +1368,7 @@
   {
     "id": "billy",
     "name": "Billy Coen",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BillyCoen-visual.png",
+    "imageUrl": "/operativos/character-BillyCoen-visual.webp",
     "stats": {
       "health": 93000,
       "attack": 11530,
@@ -1452,7 +1452,7 @@
   {
     "id": "ashley",
     "name": "Ashley Graham",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AshleyGraham-visual.png",
+    "imageUrl": "/operativos/character-AshleyGraham-visual.webp",
     "stats": {
       "health": 92329,
       "attack": 11261,
@@ -1542,7 +1542,7 @@
   {
     "id": "luis",
     "name": "Luis Serra Navarro",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-LuisSerraNavarro-visual.png",
+    "imageUrl": "/operativos/character-LuisSerraNavarro-visual.webp",
     "stats": {
       "health": 101335,
       "attack": 10134,
@@ -1626,7 +1626,7 @@
   {
     "id": "jack",
     "name": "Jack Krauser",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JackKrauser-visual.png",
+    "imageUrl": "/operativos/character-JackKrauser-visual.webp",
     "stats": {
       "health": 112593,
       "attack": 6757,
@@ -1716,7 +1716,7 @@
   {
     "id": "jake",
     "name": "Jake Muller",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JakeMuller-visual.png",
+    "imageUrl": "/operativos/character-JakeMuller-visual.webp",
     "stats": {
       "health": 150796,
       "attack": 9606,
@@ -1806,7 +1806,7 @@
   {
     "id": "sherry",
     "name": "Sherry Birkin",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-SherryBirkin-visual.png",
+    "imageUrl": "/operativos/character-SherryBirkin-visual.webp",
     "stats": {
       "health": 114312,
       "attack": 12160,
@@ -1896,7 +1896,7 @@
   {
     "id": "piers",
     "name": "Piers Nivans",
-    "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-PiersNivans-visual.png",
+    "imageUrl": "/operativos/character-PiersNivans-visual.webp",
     "stats": {
       "health": 99719,
       "attack": 14714,
