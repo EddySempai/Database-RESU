@@ -15,7 +15,7 @@ const OperativoDetalle = React.lazy(() => import('./pages/OperativoDetalle'));
 const ComingSoon = React.lazy(() => import('./pages/ComingSoon'));
 const TierList = React.lazy(() => import('./pages/TierList'));
 const Comparador = React.lazy(() => import('./pages/Comparador'));
-const Guias = React.lazy(() => import('./pages/Guias'));
+// const Guias = React.lazy(() => import('./pages/Guias'));
 
 const AnimatedRoutes = () => {
   const location = useLocation();
