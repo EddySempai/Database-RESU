@@ -2,7 +2,10 @@
   {
     "id": "leon",
     "name": "Leon S. Kennedy",
+    "rarity": "Legendary",
+    "unitType": "Defender",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-LeonSKennedy-visual.png",
+    "iconUrl": "/portraits/PortraitBust_LEON_L01.webp",
     "stats": {
       "health": 176000,
       "attack": 4590,
@@ -11,19 +14,17 @@
     },
     "fieldStats": [
       {
-        "label": "Defender Attack Power",
+        "label": "Poder de ataque de Defensor",
         "value": "260.23%"
       },
       {
-        "label": "Defender Defense Power",
+        "label": "Poder de defensa de Defensor",
         "value": "260.23%"
       }
     ],
-    "unitType": "Defender",
-    "rarity": "Legendary",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Rocket Launcher",
         "description": "Fires a rocket launcher that deals damage equal to {0} of ATK to the target and stuns it for 2s. Also deals {1} explosive damage to nearby enemies.",
         "iconUrl": "/icons/skill/Icon_Skill_113000.webp",
@@ -31,23 +32,23 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Weak Point Shot",
         "description": "Increases damage dealt to enemies by allied units including this hero by {0} in combat.",
-        "iconUrl": "",
+        "iconUrl": "/icons/skill/Disparo al punto debil (leon).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Spin Kick",
         "description": "Every 10s, kicks a nearby enemy, knocking them back and dealing {0} ATK damage. Targets hit are stunned for 2s.",
-        "iconUrl": "/icons/skill/Icon_Skill_123011.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_123000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Calm Mind",
         "description": "Increases ATK of allied units including this hero by {0} in combat.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_223000.webp",
@@ -55,7 +56,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Piercing Shot",
         "description": "Cada 20 segundos, saca el Lightning Hawk y dispara en línea recta, infligiendo daño equivalente al {0} del poder de ataque y aturdiendo a los enemigos durante 2 segundos.",
         "iconUrl": "/icons/skill/Icon_Skill_133000.webp",
@@ -63,7 +64,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Martial Arts Expert",
         "description": "Every 2 turns, allied defensores in this hero's squad have a {0} chance to stun the target troop type for 1 turn(s). (Max 3 stun attempts per target each turn).",
         "iconUrl": "/icons/skill/Icon_Field_Skill_233000.webp",
@@ -71,7 +72,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Upgraded Combat Suit",
         "description": "Reduces damage received by Leon from enemies by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_143000.webp",
@@ -79,7 +80,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Maximum Power",
         "description": "When this hero is Rally Leader, increases allied units' ATK by {0} in Rally battles.",
         "iconUrl": "/icons/skill/Icon_Skill_243000.webp",
@@ -87,20 +88,22 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Combat Expert",
         "description": "Regardless of whether Leon S. Kennedy is deployed, increases allied units' Penetration and HP by {0} in combat.",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_02.webp",
         "isArmaEspecial": false,
         "isVipSkill": true
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_LEON_L01.webp"
+    ]
   },
   {
     "id": "claire",
     "name": "Claire Redfield",
+    "rarity": "Legendary",
+    "unitType": "Attacker",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-ClaireRedfield-visual.png",
+    "iconUrl": "/portraits/PortraitBust_CLAIRE_L01.webp",
     "stats": {
       "health": 88000,
       "attack": 9265,
@@ -109,19 +112,17 @@
     },
     "fieldStats": [
       {
-        "label": "Attacker Attack Power",
+        "label": "Poder de ataque de Atacante",
         "value": "200.18%"
       },
       {
-        "label": "Attacker Defense Power",
+        "label": "Poder de defensa de Atacante",
         "value": "200.18%"
       }
     ],
-    "unitType": "Attacker",
-    "rarity": "Legendary",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Minigun Burst",
         "description": "Dispara 60 balas de minigun en línea recta. Cada bala que impacta inflige daño equivalente al {0} del poder de ataque.",
         "iconUrl": "/icons/skill/Icon_Skill_113001.webp",
@@ -129,15 +130,15 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Suppressing Fire",
         "description": "Every 2 turns, allied atacantes in this hero's squad have a {0} chance to stun the target troop type for 1 turn(s). (Max 3 stun attempts per target each turn).",
-        "iconUrl": "",
+        "iconUrl": "/icons/skill/Fuego de supresion (claire).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Electric Shot",
         "description": "Cada 20 segundos, utiliza el lanzadescargas para infligir daño equivalente al {0} del poder de ataque a 1 enemigo y lo aturde durante 3 segundos. Tras 3 segundos, el objetivo aturdido explota, infligiendo {1} de daño en el área cercana.",
         "iconUrl": "/icons/skill/Icon_Skill_123001.webp",
@@ -145,23 +146,23 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Impacto Crítico",
         "description": "En combate, las unidades aliadas que incluyen a este héroe tienen un 50% de probabilidad de aumentar {0} el daño infligido a los enemigos.",
-        "iconUrl": "",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_223001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Determinación Férrea",
         "description": "Cuando Claire realiza un ataque común, su poder de ataque aumenta en {0} durante 3 segundos. Este efecto puede acumularse hasta 12 veces.",
-        "iconUrl": "",
+        "iconUrl": "/icons/skill/Icon_Skill_133001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Redfield Bloodline",
         "description": "Increases damage dealt to enemies by allied units including this hero by {0} in combat.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_233001.webp",
@@ -169,7 +170,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Power Modification",
         "description": "Los héroes aliados que combaten junto a Claire infligen {0} más de daño a los enemigos.",
         "iconUrl": "/icons/skill/Icon_Skill_143001.webp",
@@ -177,20 +178,22 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Bravery",
         "description": "When this hero is Rally Leader, increases allied units' DEF by {0} in Rally battles.",
         "iconUrl": "/icons/skill/Icon_Skill_243001.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_CLAIRE_L01.webp"
+    ]
   },
   {
     "id": "jill",
     "name": "Jill Valentine",
+    "rarity": "Legendary",
+    "unitType": "Ranger",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JillValentine-visual.png",
+    "iconUrl": "/portraits/PortraitBust_JILL_L01.webp",
     "stats": {
       "health": 88000,
       "attack": 10710,
@@ -199,19 +202,17 @@
     },
     "fieldStats": [
       {
-        "label": "Ranger Attack Power",
+        "label": "Poder de ataque de Ranger",
         "value": "200.18%"
       },
       {
-        "label": "Ranger Defense Power",
+        "label": "Poder de defensa de Ranger",
         "value": "200.18%"
       }
     ],
-    "unitType": "Ranger",
-    "rarity": "Legendary",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Railgun",
         "description": "Fires a railgun dealing damage equal to {0} of ATK to enemies in a straight line.",
         "iconUrl": "/icons/skill/Icon_Skill_113004.webp",
@@ -219,7 +220,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Technical Shot",
         "description": "Every 2 turns, allied rangers in this hero's squad have a {0} chance to stun the target troop type for 1 turn(s). (Max 3 stun attempts per target each turn).",
         "iconUrl": "/icons/skill/Icon_Field_Skill_213004.webp",
@@ -227,7 +228,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Grenade Launcher",
         "description": "Every 12s fires a grenade launcher dealing {0} ATK damage to enemies in a circular area. Enemies hit are burned, taking continuous burn damage equal to {1} ATK per second for 5s.",
         "iconUrl": "/icons/skill/Icon_Skill_123004.webp",
@@ -235,7 +236,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Explosives Expert",
         "description": "Increases ATK of allied units including this hero by {0} in combat.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_223004.webp",
@@ -243,7 +244,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Delta Force",
         "description": "Every 10s, increases ATK of all allies by {0} for 8s.",
         "iconUrl": "/icons/skill/Icon_Skill_133004.webp",
@@ -251,7 +252,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Grenade Shot",
         "description": "Increases damage dealt to enemies by allied units including this hero by {0} in combat.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_233004.webp",
@@ -259,7 +260,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Modified Cylinder",
         "description": "Increases damage dealt to enemies by Jill by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_143004.webp",
@@ -267,28 +268,30 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Concentrated Fire",
         "description": "When this hero is Rally Leader, increases allied units' Penetration by {0} in Rally battles.",
-        "iconUrl": "/icons/skill/Icon_Skill_243014.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_243004.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Super Cop",
         "description": "Regardless of whether Jill is deployed, increases allied units' ATK and DEF by {0} in combat.",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_01.webp",
         "isArmaEspecial": false,
         "isVipSkill": true
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_JILL_L01.webp"
+    ]
   },
   {
     "id": "carlos",
     "name": "Carlos Oliveira",
+    "rarity": "Legendary",
+    "unitType": "Defender",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-CarlosOliveira-visual.png",
+    "iconUrl": "/portraits/PortraitBust_CARLOS_L01.webp",
     "stats": {
       "health": 136400,
       "attack": 3400,
@@ -297,19 +300,17 @@
     },
     "fieldStats": [
       {
-        "label": "Defender Attack Power",
+        "label": "Poder de ataque de Defensor",
         "value": "200.18%"
       },
       {
-        "label": "Defender Defense Power",
+        "label": "Poder de defensa de Defensor",
         "value": "200.18%"
       }
     ],
-    "unitType": "Defender",
-    "rarity": "Legendary",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Enhanced Hand Grenade",
         "description": "Lanza una granada de mano mejorada que inflige daño equivalente al {0} del poder de ataque a los enemigos dentro de un radio circular.",
         "iconUrl": "/icons/skill/Icon_Skill_113002.webp",
@@ -317,7 +318,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Flashbang",
         "description": "Every 2 turns, allied defensores in this hero's squad have a {0} chance to stun the target troop type for 1 turn(s). (Max 3 stun attempts per target each turn).",
         "iconUrl": "/icons/skill/Granada cegadora (carlos).webp",
@@ -325,15 +326,15 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Bulletproof Vest",
         "description": "Si Carlos no recibe daño durante 3 segundos, obtiene un escudo que absorbe daño equivalente al {0} de su salud máxima.",
-        "iconUrl": "/icons/skill/Icon_Field_Skill_222006.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_123002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Strategic Command",
         "description": "Increases DEF of allied units including this hero by {0} in combat.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_223002.webp",
@@ -341,7 +342,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Reinforced Ammo",
         "description": "Cada 5 ataques normales, el daño del ataque normal contra 1 enemigo aumenta en {0} e ignora su defensa.",
         "iconUrl": "/icons/skill/Icon_Skill_133002.webp",
@@ -349,7 +350,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Veteran Mercenary",
         "description": "Increases damage dealt to enemies by allied units including this hero by {0} in combat.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_233002.webp",
@@ -357,7 +358,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Reinforced Armor",
         "description": "Increases DEF of Carlos by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_143002.webp",
@@ -365,20 +366,22 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Experienced Fighter",
         "description": "When this hero is Garrison Leader, increases allied units' ATK by {0} in defensive battles.",
         "iconUrl": "/icons/skill/Icon_Skill_243002.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_CARLOS_L01.webp"
+    ]
   },
   {
     "id": "ada",
     "name": "Ada Wong",
+    "rarity": "Legendary",
+    "unitType": "Attacker",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AdaWong-visual.png",
+    "iconUrl": "/portraits/PortraitBust_ADA_L01.webp",
     "stats": {
       "health": 121000,
       "attack": 6460,
@@ -387,19 +390,17 @@
     },
     "fieldStats": [
       {
-        "label": "Attacker Attack Power",
+        "label": "Poder de ataque de Atacante",
         "value": "200.18%"
       },
       {
-        "label": "Attacker Defense Power",
+        "label": "Poder de defensa de Atacante",
         "value": "200.18%"
       }
     ],
-    "unitType": "Attacker",
-    "rarity": "Legendary",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Dispositivo de señuelo",
         "description": "Ada lanza un señuelo que atrae a los infectados dentro de un área circular durante 3 segundos, para luego detonar causando daño equivalente al {0} del poder de ataque.",
         "iconUrl": "/icons/skill/Icon_Skill_113003.webp",
@@ -407,7 +408,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Terreno favorable",
         "description": "En combate, la defensa de las unidades aliadas que incluyen a este héroe aumenta {0} y su salud aumenta {1}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_213003.webp",
@@ -415,7 +416,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Escaneo EMF",
         "description": "Recoge Información cada 1 segundo. Por cada 1 Información recogida, su poder de ataque aumenta en{0}. (Máximo 20 veces)",
         "iconUrl": "/icons/skill/Icon_Skill_123003.webp",
@@ -423,7 +424,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Uso de la información",
         "description": "Los recursos consumidos en construcción se reducen en {0} y la velocidad de mejoras de edificios aumenta en {1}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_223003.webp",
@@ -431,7 +432,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Visualizador EMF",
         "description": "Al inicio del combate, analiza el entorno y aumenta el efecto de los objetos colocados en {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_133003.webp",
@@ -439,7 +440,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Mente Maestra",
         "description": "Increases damage dealt to enemies by allied units including this hero by {0} in combat.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_233003.webp",
@@ -447,7 +448,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Objeto raro y preciado",
         "description": "Aumenta el poder de ataque de todos los aliados en {0}, y el poder de defensa en {1}.",
         "iconUrl": "/icons/skill/Icon_Skill_143003.webp",
@@ -455,20 +456,22 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Información confidencial",
         "description": "Cuando este héroe es el líder de guarnición, la penetración de las unidades aliadas aumenta {0} en combates defensivos.",
         "iconUrl": "/icons/skill/Icon_Skill_243003.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_ADA_L01.webp"
+    ]
   },
   {
     "id": "mikhail",
     "name": "Mikhail Victor",
+    "rarity": "Epic",
+    "unitType": "Ranger",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MikhailVictor-visual.png",
+    "iconUrl": "/portraits/PortraitBust_MIKHAIL_E01.webp",
     "stats": {
       "health": 74800,
       "attack": 5755,
@@ -477,23 +480,64 @@
     },
     "fieldStats": [
       {
-        "label": "Ranger Attack Power",
+        "label": "Poder de ataque de Ranger",
         "value": "140.12%"
       },
       {
-        "label": "Ranger Defense Power",
+        "label": "Poder de defensa de Ranger",
         "value": "140.12%"
       }
     ],
-    "unitType": "Ranger",
-    "rarity": "Epic",
-    "skills": [],
-    "iconUrl": "/portraits/PortraitBust_MIKHAIL_E01.webp"
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 1",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_112009.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Experiencia del veterano",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Experiencia del veterano (mikhail).webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 2",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_122009.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 2",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222009.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 3",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_132009.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      }
+    ]
   },
   {
     "id": "marvin",
     "name": "Marvin Branagh",
+    "rarity": "Epic",
+    "unitType": "Defender",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MarvinBranagh-visual.png",
+    "iconUrl": "/portraits/PortraitBust_MARVIN_E01.webp",
     "stats": {
       "health": 88000,
       "attack": 4335,
@@ -502,23 +546,64 @@
     },
     "fieldStats": [
       {
-        "label": "Defender Attack Power",
+        "label": "Poder de ataque de Defensor",
         "value": "140.12%"
       },
       {
-        "label": "Defender Defense Power",
+        "label": "Poder de defensa de Defensor",
         "value": "140.12%"
       }
     ],
-    "unitType": "Defender",
-    "rarity": "Epic",
-    "skills": [],
-    "iconUrl": "/portraits/PortraitBust_MARVIN_E01.webp"
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Barricada",
+        "description": "Instala una barricada en la zona designada. Su durabilidad equivale al {0} de la salud máxima y el poder de defensa de Marvin.",
+        "iconUrl": "/icons/skill/Icon_Skill_112002.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Instinto policial",
+        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "iconUrl": "/icons/skill/Instinto Policial (Marvin).webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Disparo a la pierna",
+        "description": "Al realizar un ataque común, hay un 50% de probabilidad de apuntar a las piernas del enemigo, causando daño equivalente al {0} del poder de ataque y reduciendo su velocidad de movimiento en un 20%. (Tiempo de recarga: 3 segundos)",
+        "iconUrl": "/icons/skill/Icon_Skill_122002.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Desarme",
+        "description": "Las unidades aliadas que incluyen a este héroe reducen {0} el ataque de los enemigos en combate.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222002.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Empujón",
+        "description": "Cada {0}, inflige {1} de daño de ataque a un enemigo cercano, lo empuja y lo aturde durante 1 segundo.",
+        "iconUrl": "/icons/skill/Icon_Skill_132002.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      }
+    ]
   },
   {
     "id": "becca",
     "name": "Becca Woolett",
+    "rarity": "Epic",
+    "unitType": "Attacker",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BeccaWoolett-visual.png",
+    "iconUrl": "/portraits/PortraitBust_BECCA_E01.webp",
     "stats": {
       "health": 74800,
       "attack": 6205,
@@ -527,23 +612,64 @@
     },
     "fieldStats": [
       {
-        "label": "Attacker Attack Power",
+        "label": "Poder de ataque de Atacante",
         "value": "140.12%"
       },
       {
-        "label": "Attacker Defense Power",
+        "label": "Poder de defensa de Atacante",
         "value": "140.12%"
       }
     ],
-    "unitType": "Attacker",
-    "rarity": "Epic",
-    "skills": [],
-    "iconUrl": "/portraits/PortraitBust_BECCA_E01.webp"
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Municiones de tormenta",
+        "description": "Dispara ráfagas de balas en un área en forma de abanico al frente. Los enemigos dentro del área reciben daño equivalente al {0} del poder de ataque.",
+        "iconUrl": "/icons/skill/Icon_Skill_112006.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Trance total",
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "iconUrl": "/icons/skill/trance total (becca).webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Postura de disparo",
+        "description": "Cada 10 segundos, la velocidad de ataque de Becca aumenta en un {0}. (Durante 7.5 segundos)",
+        "iconUrl": "/icons/skill/Icon_Skill_122006.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Chaleco antibalas",
+        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222006.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Tiro al blanco",
+        "description": "Al realizar un ataque normal, hay un 30% de probabilidad de que el daño del ataque normal aumente {0}.",
+        "iconUrl": "/icons/skill/Icon_Skill_132006.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      }
+    ]
   },
   {
     "id": "tyrone",
     "name": "Tyrone Henry",
+    "rarity": "Epic",
+    "unitType": "Defender",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-TyroneHenry-visual.png",
+    "iconUrl": "/portraits/PortraitBust_TYRONE_E01.webp",
     "stats": {
       "health": 101200,
       "attack": 1700,
@@ -552,19 +678,17 @@
     },
     "fieldStats": [
       {
-        "label": "Defender Attack Power",
+        "label": "Poder de ataque de Defensor",
         "value": "140.12%"
       },
       {
-        "label": "Defender Defense Power",
+        "label": "Poder de defensa de Defensor",
         "value": "140.12%"
       }
     ],
-    "unitType": "Defender",
-    "rarity": "Epic",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Patada a la pierna",
         "description": "Lanza una patada que ataca a los enemigos en una línea frontal, causando daño equivalente al {0} del poder de ataque y aturdiéndolos durante 3.5 segundos.",
         "iconUrl": "/icons/skill/Icon_Skill_112000.webp",
@@ -572,15 +696,15 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Tacleo de hombro",
         "description": "Las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de aumentar {0} el daño infligido a los enemigos durante 3 turnos en combate.",
-        "iconUrl": "",
+        "iconUrl": "/icons/skill/tecleo de hombro (tyrone).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Golpe giratorio",
         "description": "Cada 3 ataques normales, realiza un gran golpe con el hacha que inflige {0} más de daño de ataque normal a los enemigos en un área circular y los empuja.",
         "iconUrl": "/icons/skill/Icon_Skill_122000.webp",
@@ -588,7 +712,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "\"Conocimientos de primeros auxilios",
         "description": "Aumenta la velocidad de tratamiento en el hospital en {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222000.webp",
@@ -596,20 +720,22 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Rally",
         "description": "Cada 12 segundos, eleva la moral del equipo y aumenta el poder de defensa de todos los aliados en {0}. (Durante 8 segundos)",
         "iconUrl": "/icons/skill/Icon_Skill_132000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_TYRONE_E01.webp"
+    ]
   },
   {
     "id": "murphy",
     "name": "Murphy Seeker",
+    "rarity": "Común",
+    "unitType": "Attacker",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MurphySeeker-visual.png",
+    "iconUrl": "/portraits/PortraitBust_MURPHY_R01.webp",
     "stats": {
       "health": 61600,
       "attack": 4811,
@@ -618,35 +744,33 @@
     },
     "fieldStats": [
       {
-        "label": "Attacker Attack Power",
+        "label": "Poder de ataque de Atacante",
         "value": "90.09%"
       },
       {
-        "label": "Attacker Defense Power",
+        "label": "Poder de defensa de Atacante",
         "value": "90.09%"
       }
     ],
-    "unitType": "Attacker",
-    "rarity": "Común",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Dios de la puntería",
         "description": "Apunta a las piernas de todos los enemigos dentro de un área en forma de abanico, infligiendo daño equivalente al {0} del poder de ataque y reduciendo su velocidad de movimiento en un 30%. (Durante 5 segundos)",
+        "iconUrl": "/icons/skill/Dios de la puntería (Murphy Seeker) .webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Disparo decisivo",
+        "description": "Every 4 turns, allied atacantes in this hero's squad have a {0} chance to stun the target troop type for 1 turn(s). (Max 3 stun attempts per target each turn).",
         "iconUrl": "/icons/skill/Icon_Skill_111000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
-        "name": "Disparo decisivo",
-        "description": "Every 4 turns, allied atacantes in this hero's squad have a {0} chance to stun the target troop type for 1 turn(s). (Max 3 stun attempts per target each turn).",
-        "iconUrl": "",
-        "isArmaEspecial": false,
-        "isVipSkill": false
-      },
-      {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Disparo a la cabeza",
         "description": "Cada 24 segundos, inflige daño equivalente al {0} del poder de ataque y aturde a los enemigos durante 2 segundos.",
         "iconUrl": "/icons/skill/Icon_Skill_121000.webp",
@@ -654,7 +778,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Habilidad de recolección",
         "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de alimentos aumenta {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_221000.webp",
@@ -662,20 +786,22 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Tiro Penetrante",
         "description": "Al realizar un ataque normal, hay un 25% de probabilidad de que el daño del ataque normal contra 1 enemigo aumente {0} e ignore su defensa.",
-        "iconUrl": "",
+        "iconUrl": "/icons/skill/Icon_Skill_131000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_MURPHY_R01.webp"
+    ]
   },
   {
     "id": "alyssa",
     "name": "Alyssa Ashcroft",
+    "rarity": "Epic",
+    "unitType": "Attacker",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AlyssaAshcroft-visual.png",
+    "iconUrl": "/portraits/PortraitBust_ALYSSA_E01.webp",
     "stats": {
       "health": 70400,
       "attack": 5780,
@@ -684,64 +810,64 @@
     },
     "fieldStats": [
       {
-        "label": "Attacker Attack Power",
+        "label": "Poder de ataque de Atacante",
         "value": "140.12%"
       },
       {
-        "label": "Attacker Defense Power",
+        "label": "Poder de defensa de Atacante",
         "value": "140.12%"
       }
     ],
-    "unitType": "Attacker",
-    "rarity": "Epic",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Ametralladora automática",
         "description": "Instala una ametralladora automática que ataca de forma autónoma a los enemigos en el área. La ametralladora tiene un poder de ataque equivalente al {0} según el poder de ataque de Tyrell Patrick y una durabilidad igual a {1} de su salud máxima.",
-        "iconUrl": "/icons/skill/Icon_Skill_112008.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_112014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Análisis de puntos débiles",
         "description": "Increases damage dealt to enemies by allied units including this hero by {0} in combat.",
-        "iconUrl": "",
+        "iconUrl": "/icons/skill/deteccion de crisis (alyssa).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Configuración de base",
         "description": "Aumenta el poder de ataque de los aliados cercanos a la ametralladora automática en {0}. Este efecto no se acumula.",
-        "iconUrl": "/icons/skill/Icon_Skill_122008.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_122014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Inteligencia del hacker",
         "description": "Aumenta la velocidad de investigación del laboratorio en {0}.",
-        "iconUrl": "/icons/skill/Icon_Field_Skill_222008.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Campo electromagnético",
         "description": "La ametralladora automática emite un pulso eléctrico hacia un enemigo cercano, inflige {0} de daño de ataque a los enemigos en un área circular alrededor de ella y los aturde durante 2.5 segundos.",
-        "iconUrl": "/icons/skill/Icon_Skill_132008.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_132014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_ALYSSA_E01.webp"
+    ]
   },
   {
     "id": "katherine",
     "name": "Katherine Warren",
+    "rarity": "Epic",
+    "unitType": "Attacker",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-KatherineWarren-visual.png",
+    "iconUrl": "/portraits/PortraitBust_KATHERINE_E01.webp",
     "stats": {
       "health": 41800,
       "attack": 8840,
@@ -750,64 +876,64 @@
     },
     "fieldStats": [
       {
-        "label": "Attacker Attack Power",
+        "label": "Poder de ataque de Atacante",
         "value": "140.12%"
       },
       {
-        "label": "Attacker Defense Power",
+        "label": "Poder de defensa de Atacante",
         "value": "140.12%"
       }
     ],
-    "unitType": "Attacker",
-    "rarity": "Epic",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Municiones de tormenta",
         "description": "Dispara ráfagas de balas en un área en forma de abanico al frente. Los enemigos dentro del área reciben daño equivalente al {0} del poder de ataque.",
-        "iconUrl": "/icons/skill/Icon_Skill_112006.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_112010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Trance total",
         "description": "Increases damage dealt to enemies by allied units including this hero by {0} in combat.",
-        "iconUrl": "/icons/skill/trance total (becca).webp",
+        "iconUrl": "/icons/skill/Instinto de supervivencia (katherine).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Postura de disparo",
         "description": "Cada 10 segundos, la velocidad de ataque de Becca aumenta en un {0}. (Durante 7.5 segundos)",
-        "iconUrl": "/icons/skill/Icon_Skill_122006.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_122010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Bulletproof Vest",
         "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
-        "iconUrl": "/icons/skill/Icon_Field_Skill_222006.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Tiro al blanco",
         "description": "Al realizar un ataque normal, hay un 30% de probabilidad de que el daño del ataque normal aumente {0}.",
-        "iconUrl": "/icons/skill/Icon_Skill_132006.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_132010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_KATHERINE_E01.webp"
+    ]
   },
   {
     "id": "mark",
     "name": "Mark Wilkins",
+    "rarity": "Epic",
+    "unitType": "Defender",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-MarkWilkins-visual.png",
+    "iconUrl": "/portraits/PortraitBust_MARK_E01.webp",
     "stats": {
       "health": 118800,
       "attack": 1700,
@@ -816,64 +942,64 @@
     },
     "fieldStats": [
       {
-        "label": "Defender Attack Power",
+        "label": "Poder de ataque de Defensor",
         "value": "140.12%"
       },
       {
-        "label": "Defender Defense Power",
+        "label": "Poder de defensa de Defensor",
         "value": "140.12%"
       }
     ],
-    "unitType": "Defender",
-    "rarity": "Epic",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Disparo en abanico",
         "description": "Dispara 6 balas rápidamente, infligiendo daño equivalente al {0} del poder de ataque por cada impacto a los enemigos alcanzados.",
-        "iconUrl": "/icons/skill/Icon_Skill_112007.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_112012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Entrenamiento físico",
         "description": "Al desplegar una unidad que incluya a este héroe, el consumo de energía se reduce en {0}.",
-        "iconUrl": "",
+        "iconUrl": "/icons/skill/Desarrollo muscular (bulk up) - (mark).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Disparo Frenético",
         "description": "Cuando realiza un ataque normal, su velocidad de ataque aumenta en {0} durante 5 segundos. Este efecto se acumula hasta 3 veces.",
-        "iconUrl": "",
+        "iconUrl": "/icons/skill/Icon_Skill_122012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Liderazgo",
         "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de despliegue contra infectados y mutantes aumenta {0}.",
-        "iconUrl": "/icons/skill/Icon_Field_Skill_222007.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Veterano de combate",
         "description": "Aumenta el daño infligido de los ataques comunes en {0}.",
-        "iconUrl": "/icons/skill/Icon_Skill_132007.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_132012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_MARK_E01.webp"
+    ]
   },
   {
     "id": "barry",
     "name": "Barry Burton",
+    "rarity": "Epic",
+    "unitType": "Ranger",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BarryBurton-visual.png",
+    "iconUrl": "/portraits/PortraitBust_BARRY_E01.webp",
     "stats": {
       "health": 66000,
       "attack": 6800,
@@ -882,64 +1008,64 @@
     },
     "fieldStats": [
       {
-        "label": "Ranger Attack Power",
+        "label": "Poder de ataque de Ranger",
         "value": "140.12%"
       },
       {
-        "label": "Ranger Defense Power",
+        "label": "Poder de defensa de Ranger",
         "value": "140.12%"
       }
     ],
-    "unitType": "Ranger",
-    "rarity": "Epic",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Municiones de detención",
         "description": "Dispara en ráfagas balas de alto poder de contención, empujando a los enemigos dentro de un área en forma de abanico y causando daño equivalente al {0} del poder de ataque. Los enemigos impactados quedan aturdidos por 0.5 segundos y reducen su velocidad de movimiento en un 20%. (Durante 5 segundos)",
-        "iconUrl": "/icons/skill/Icon_Skill_112004.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_112007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Experto en modificación",
         "description": "Increases ATK of allied units including this hero by {0} in combat.",
-        "iconUrl": "",
+        "iconUrl": "/icons/skill/Entrenamiento Fisico (barry).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "¡Toma esto!",
         "description": "Cada 20 segundos, coloca una bomba a 1 enemigo cercano y lo empuja hacia atrás. El enemigo repelido queda aturdido por 2 segundos y luego explota, causando daño equivalente al {0} del poder de ataque dentro de un área circular.",
-        "iconUrl": "/icons/skill/Icon_Skill_122004.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_122007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Conocimiento de forja",
         "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de hierro aumenta {0}.",
-        "iconUrl": "/icons/skill/Icon_Field_Skill_222004.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Apoyo de fuego",
         "description": "Aumenta el poder de ataque de todos los aliados en {0}.",
-        "iconUrl": "/icons/skill/Icon_Skill_132004.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_132007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_BARRY_E01.webp"
+    ]
   },
   {
     "id": "tyrell",
     "name": "Tyrell Patrick",
+    "rarity": "Epic",
+    "unitType": "Ranger",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-TyrellPatrick-visual.png",
+    "iconUrl": "/portraits/PortraitBust_TYRELL_E01.webp",
     "stats": {
       "health": 70400,
       "attack": 6120,
@@ -948,23 +1074,64 @@
     },
     "fieldStats": [
       {
-        "label": "Ranger Attack Power",
+        "label": "Poder de ataque de Ranger",
         "value": "140.12%"
       },
       {
-        "label": "Ranger Defense Power",
+        "label": "Poder de defensa de Ranger",
         "value": "140.12%"
       }
     ],
-    "unitType": "Ranger",
-    "rarity": "Epic",
-    "skills": [],
-    "iconUrl": "/portraits/PortraitBust_TYRELL_E01.webp"
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Ametralladora automática",
+        "description": "Instala una ametralladora automática que ataca de forma autónoma a los enemigos en el área. La ametralladora tiene un poder de ataque equivalente al según el poder de ataque de Tyrell Patrick y una durabilidad igual a de su salud máxima.",
+        "iconUrl": "/icons/skill/Icon_Skill_112008.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Análisis de puntos débiles",
+        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta en combate.",
+        "iconUrl": "/icons/skill/Analisi de puntos debiles (tyrell).webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Configuración de base",
+        "description": "Aumenta el poder de ataque de los aliados cercanos a la ametralladora automática en . Este efecto no se acumula.",
+        "iconUrl": "/icons/skill/Icon_Skill_122008.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Inteligencia del hacker",
+        "description": "Aumenta la velocidad de investigación del laboratorio en .",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222008.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Campo electromagnético",
+        "description": "La ametralladora automática emite un pulso eléctrico hacia un enemigo cercano, inflige de daño de ataque a los enemigos alcanzados y los aturde durante segundos.",
+        "iconUrl": "/icons/skill/Icon_Skill_132008.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      }
+    ]
   },
   {
     "id": "robert",
     "name": "Robert Kendo",
+    "rarity": "Epic",
+    "unitType": "Defender",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-RobertKendo-visual.png",
+    "iconUrl": "/portraits/PortraitBust_ROBERT_R01.webp",
     "stats": {
       "health": 92400,
       "attack": 3400,
@@ -973,64 +1140,64 @@
     },
     "fieldStats": [
       {
-        "label": "Defender Attack Power",
+        "label": "Poder de ataque de Defensor",
         "value": "140.12%"
       },
       {
-        "label": "Defender Defense Power",
+        "label": "Poder de defensa de Defensor",
         "value": "140.12%"
       }
     ],
-    "unitType": "Defender",
-    "rarity": "Epic",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Barricada",
         "description": "Instala una barricada en la zona designada. Su durabilidad equivale al {0} de la salud máxima y el poder de defensa de Marvin.",
-        "iconUrl": "/icons/skill/Icon_Skill_112002.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_112004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Instinto policial",
         "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
-        "iconUrl": "/icons/skill/Instinto Policial (Marvin).webp",
+        "iconUrl": "/icons/skill/Experto en modificacion (robert).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Disparo a la pierna",
         "description": "Al realizar un ataque común, hay un 50% de probabilidad de apuntar a las piernas del enemigo, causando daño equivalente al {0} del poder de ataque y reduciendo su velocidad de movimiento en un 20%. (Tiempo de recarga: 3 segundos)",
-        "iconUrl": "/icons/skill/Icon_Skill_122002.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_122004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Desarme",
         "description": "Las unidades aliadas que incluyen a este héroe reducen {0} el ataque de los enemigos en combate.",
-        "iconUrl": "/icons/skill/Icon_Field_Skill_222002.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_222004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Empujón",
         "description": "Cada {0}, inflige {1} de daño de ataque a un enemigo cercano, lo empuja y lo aturde durante 1 segundo.",
-        "iconUrl": "/icons/skill/Icon_Skill_132002.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_132004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_ROBERT_R01.webp"
+    ]
   },
   {
     "id": "brad",
     "name": "Brad Vickers",
+    "rarity": "Común",
+    "unitType": "Ranger",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BradVickers-visual.png",
+    "iconUrl": "/portraits/PortraitBust_BRAD_R01.webp",
     "stats": {
       "health": 52799,
       "attack": 5508,
@@ -1039,19 +1206,17 @@
     },
     "fieldStats": [
       {
-        "label": "Ranger Attack Power",
+        "label": "Poder de ataque de Ranger",
         "value": "90.09%"
       },
       {
-        "label": "Ranger Defense Power",
+        "label": "Poder de defensa de Ranger",
         "value": "90.09%"
       }
     ],
-    "unitType": "Ranger",
-    "rarity": "Común",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Último recurso",
         "description": "Lanza un letrero que empuja a los enemigos dentro de un área circular, inflige daño equivalente al {0} del poder de ataque y lo aturde durante 0.2 segundos. Los enemigos alcanzados por el letrero reducen su velocidad de movimiento en un 30%. (Durante 5 segundos)",
         "iconUrl": "/icons/skill/Icon_Skill_111001.webp",
@@ -1059,15 +1224,15 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Unexpected Counter",
         "description": "Every 4 turns, allied rangers in this hero's squad have a {0} chance to stun the target troop type for 1 turn(s). (Max 3 stun attempts per target each turn).",
-        "iconUrl": "",
+        "iconUrl": "/icons/skill/Contrataque inesperado (Brad) .webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Survivor Instinct",
         "description": "Cada 15 segundos, aumenta el poder de defensa de todos los aliados en {0}. (Durante 8 segundos)",
         "iconUrl": "/icons/skill/Icon_Skill_121001.webp",
@@ -1075,7 +1240,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Fuel Management",
         "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de petróleo aumenta {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_221001.webp",
@@ -1083,20 +1248,22 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Confidence",
         "description": "El daño del ataque normal contra enemigos con velocidad de movimiento reducida aumenta {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_131001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_BRAD_R01.webp"
+    ]
   },
   {
     "id": "chris",
     "name": "Chris Redfield",
+    "rarity": "Legendary",
+    "unitType": "Defender",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-ChrisRedfield-visual.png",
+    "iconUrl": "/portraits/PortraitBust_CHRIS_L01.webp",
     "stats": {
       "health": 154500,
       "attack": 5040,
@@ -1105,23 +1272,88 @@
     },
     "fieldStats": [
       {
-        "label": "Defender Attack Power",
+        "label": "Poder de ataque de Defensor",
         "value": "240.21%"
       },
       {
-        "label": "Defender Defense Power",
+        "label": "Poder de defensa de Defensor",
         "value": "240.21%"
       }
     ],
-    "unitType": "Defender",
-    "rarity": "Legendary",
-    "skills": [],
-    "iconUrl": "/portraits/PortraitBust_CHRIS_L01.webp"
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 1",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_113005.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 1",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_213005.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 2",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_123005.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 2",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_223005.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 3",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_133005.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 3",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_233005.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Arma Especial (Activa)",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_143005.webp",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Arma Especial (Pasiva)",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_243005.webp",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      }
+    ]
   },
   {
     "id": "rebecca",
     "name": "Rebecca Chambers",
+    "rarity": "Legendary",
+    "unitType": "Attacker",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-RebeccaChambers-visual.png",
+    "iconUrl": "/portraits/PortraitBust_REBECCA_L01.webp",
     "stats": {
       "health": 84600,
       "attack": 11690,
@@ -1130,23 +1362,88 @@
     },
     "fieldStats": [
       {
-        "label": "Attacker Attack Power",
+        "label": "Poder de ataque de Atacante",
         "value": "240.21%"
       },
       {
-        "label": "Attacker Defense Power",
+        "label": "Poder de defensa de Atacante",
         "value": "240.21%"
       }
     ],
-    "unitType": "Attacker",
-    "rarity": "Legendary",
-    "skills": [],
-    "iconUrl": "/portraits/PortraitBust_REBECCA_L01.webp"
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 1",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_113006.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 1",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_213006.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 2",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_123006.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 2",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_223006.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 3",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_133006.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 3",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_233006.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Arma Especial (Activa)",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_143006.webp",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Arma Especial (Pasiva)",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_243006.webp",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      }
+    ]
   },
   {
     "id": "billy",
     "name": "Billy Coen",
+    "rarity": "Legendary",
+    "unitType": "Ranger",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-BillyCoen-visual.png",
+    "iconUrl": "/portraits/PortraitBust_BILLY_L01.webp",
     "stats": {
       "health": 93000,
       "attack": 11530,
@@ -1155,23 +1452,88 @@
     },
     "fieldStats": [
       {
-        "label": "Ranger Attack Power",
+        "label": "Poder de ataque de Ranger",
         "value": "240.21%"
       },
       {
-        "label": "Ranger Defense Power",
+        "label": "Poder de defensa de Ranger",
         "value": "240.21%"
       }
     ],
-    "unitType": "Ranger",
-    "rarity": "Legendary",
-    "skills": [],
-    "iconUrl": "/portraits/PortraitBust_BILLY_L01.webp"
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 1",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_113007.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 1",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_213007.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 2",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_123007.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 2",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_223007.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 3",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_133007.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 3",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_233007.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Arma Especial (Activa)",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_143007.webp",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Arma Especial (Pasiva)",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_243007.webp",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      }
+    ]
   },
   {
     "id": "ashley",
     "name": "Ashley Graham",
+    "rarity": "Legendary",
+    "unitType": "Ranger",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-AshleyGraham-visual.png",
+    "iconUrl": "/portraits/PortraitBust_ASHLEY_L01.webp",
     "stats": {
       "health": 92329,
       "attack": 11261,
@@ -1180,19 +1542,17 @@
     },
     "fieldStats": [
       {
-        "label": "Ranger Attack Power",
+        "label": "Poder de ataque de Ranger",
         "value": "290.26%"
       },
       {
-        "label": "Ranger Defense Power",
+        "label": "Poder de defensa de Ranger",
         "value": "290.26%"
       }
     ],
-    "unitType": "Ranger",
-    "rarity": "Legendary",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Lit Lantern",
         "description": "Ashley no ataca directamente, pero brinda apoyo a sus aliados con un farol. Su intensa luz aturde a los enemigos dentro del alcance durante {0} y reduce su velocidad de movimiento en {1}, dejándolos prácticamente inmovilizados.",
         "iconUrl": "/icons/skill/Icon_Skill_113010.webp",
@@ -1200,60 +1560,70 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Luz del Farol",
         "description": "Identifica al enemigo con la luz del farol y expone su punto débil. La defensa del objetivo se reduce en {1} durante {0}.",
-        "iconUrl": "",
+        "iconUrl": "/icons/skill/Icon_Skill_213010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Ashley's Armor",
         "description": "En combate, las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de reducir {0} el daño infligido por los enemigos durante 2 turnos.",
+        "iconUrl": "/icons/skill/Icon_Skill_123010.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Apoyo Moral",
+        "description": "Ashley, en proporción a su propio ataque, aumenta en {0} el ataque del aliado más fuerte y le otorga un escudo de {1}.",
         "iconUrl": "/icons/skill/Icon_Skill_223010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
-        "name": "Apoyo Moral",
-        "description": "Ashley, en proporción a su propio ataque, aumenta en {0} el ataque del aliado más fuerte y le otorga un escudo de {1}.",
-        "iconUrl": "",
+        "type": "Campo",
+        "name": "Bond of Compassion",
+        "description": "Increases HP of allied units including this hero by {0} in combat.",
+        "iconUrl": "/icons/skill/Icon_Skill_133010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
-        "name": "Bond of Compassion",
-        "description": "Increases HP of allied units including this hero by {0} in combat.",
+        "type": "Exploración",
+        "name": "Blue Lantern Light",
+        "description": "La defensa de la unidad aliada aumenta en {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_233010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
-        "name": "Blue Lantern Light",
-        "description": "La defensa de la unidad aliada aumenta en {0}.",
+        "type": "Campo",
+        "name": "Will to Survive",
+        "description": "Cuando este héroe es líder de concentración, la salud de las unidades aliadas aumenta {0} en combates de concentración.",
         "iconUrl": "/icons/skill/Icon_Skill_143010.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       },
       {
-        "type": "Field",
-        "name": "Will to Survive",
-        "description": "Cuando este héroe es líder de concentración, la salud de las unidades aliadas aumenta {0} en combates de concentración.",
+        "type": "Campo",
+        "name": "Arma Especial (Pasiva)",
+        "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_243010.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_ASHLEY_L01.webp"
+    ]
   },
   {
     "id": "luis",
     "name": "Luis Serra Navarro",
+    "rarity": "Legendary",
+    "unitType": "Attacker",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-LuisSerraNavarro-visual.png",
+    "iconUrl": "/portraits/PortraitBust_LUIS_L01.webp",
     "stats": {
       "health": 101335,
       "attack": 10134,
@@ -1262,23 +1632,88 @@
     },
     "fieldStats": [
       {
-        "label": "Attacker Attack Power",
+        "label": "Poder de ataque de Atacante",
         "value": "290.26%"
       },
       {
-        "label": "Attacker Defense Power",
+        "label": "Poder de defensa de Atacante",
         "value": "290.26%"
       }
     ],
-    "unitType": "Attacker",
-    "rarity": "Legendary",
-    "skills": [],
-    "iconUrl": "/portraits/PortraitBust_LUIS_L01.webp"
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 1",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_113009.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 1",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_213009.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 2",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_123009.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 2",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_223009.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 3",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_133009.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 3",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_233009.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Arma Especial (Activa)",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_143009.webp",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Arma Especial (Pasiva)",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_243009.webp",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      }
+    ]
   },
   {
     "id": "jack",
     "name": "Jack Krauser",
+    "rarity": "Legendary",
+    "unitType": "Defender",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JackKrauser-visual.png",
+    "iconUrl": "/portraits/PortraitBust_JACK_L01.webp",
     "stats": {
       "health": 112593,
       "attack": 6757,
@@ -1287,19 +1722,17 @@
     },
     "fieldStats": [
       {
-        "label": "Defender Attack Power",
+        "label": "Poder de ataque de Defensor",
         "value": "290.26%"
       },
       {
-        "label": "Defender Defense Power",
+        "label": "Poder de defensa de Defensor",
         "value": "290.26%"
       }
     ],
-    "unitType": "Defender",
-    "rarity": "Legendary",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Mutant Release",
         "description": "Desata el poder de Las Plagas y muta su brazo para causar 3 golpes con daño equivalente al {0} del ataque al enemigo. Además, recupera HP equivalente al {1} del daño causado.",
         "iconUrl": "/icons/skill/Icon_Skill_113008.webp",
@@ -1307,7 +1740,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Rising Slash",
         "description": "Las unidades aliadas que incluyen a este héroe reducen {0} el ataque de los enemigos en combate.",
         "iconUrl": "/icons/skill/Icon_Skill_213008.webp",
@@ -1315,7 +1748,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Explosive Bow",
         "description": "Al impactar, la flecha explosiva inflige {0} de daño de ataque a los enemigos cercanos y {1} de daño adicional en el área.",
         "iconUrl": "/icons/skill/Icon_Skill_123008.webp",
@@ -1323,7 +1756,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Instructor",
         "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
         "iconUrl": "/icons/skill/Icon_Skill_223008.webp",
@@ -1331,7 +1764,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Dagger Technique",
         "description": "Cuando un enemigo se acerca, blande un cuchillo e inflige 2 veces {0} de daño de ataque a los enemigos cercanos.",
         "iconUrl": "/icons/skill/Icon_Skill_133008.webp",
@@ -1339,7 +1772,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Charisma",
         "description": "Increases HP of allied units including this hero by {0} in combat.",
         "iconUrl": "/icons/skill/Icon_Skill_233008.webp",
@@ -1347,7 +1780,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Adrenaline",
         "description": "Por cada 1% de salud perdida, el ataque aumenta en {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_143008.webp",
@@ -1355,20 +1788,22 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Unit Cohesion",
         "description": "When this hero is Garrison Leader, increases allied units' DEF by {0} in defensive battles.",
         "iconUrl": "/icons/skill/Icon_Skill_243008.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_JACK_L01.webp"
+    ]
   },
   {
     "id": "jake",
     "name": "Jake Muller",
+    "rarity": "Legendary",
+    "unitType": "Defender",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-JakeMuller-visual.png",
+    "iconUrl": "/portraits/PortraitBust_JAKE_L01.webp",
     "stats": {
       "health": 150796,
       "attack": 9606,
@@ -1377,19 +1812,17 @@
     },
     "fieldStats": [
       {
-        "label": "Defender Attack Power",
+        "label": "Poder de ataque de Defensor",
         "value": "370.33%"
       },
       {
-        "label": "Defender Defense Power",
+        "label": "Poder de defensa de Defensor",
         "value": "370.33%"
       }
     ],
-    "unitType": "Defender",
-    "rarity": "Legendary",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Charged Attack",
         "description": "Jake Muller toma impulso y lanza un golpe con la mano, infligiendo daño equivalente al {0} del ataque a los enemigos en un área rectangular frontal.",
         "iconUrl": "/icons/skill/Icon_Skill_113011.webp",
@@ -1397,7 +1830,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Defensive Melee Stance",
         "description": "Durante el combate, cada vez que los defensores aliados de la unidad que incluye a este héroe atacan 4 veces, renuncian a atacar en el siguiente turno. A cambio, el daño que reciben los defensores de los enemigos se reduce {0} durante 2 turnos, y el daño que reciben los atacantes y rangers se reduce {1}.",
         "iconUrl": "/icons/skill/Icon_Skill_213011.webp",
@@ -1405,7 +1838,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Spin Kick",
         "description": "Jake Muller salta y patea, infligiendo {0} de daño de ataque a todos los objetivos en un área cónica cercana. Luego los empuja y los aturde durante 2 s.",
         "iconUrl": "/icons/skill/Icon_Skill_123011.webp",
@@ -1413,7 +1846,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Human Weapon",
         "description": "Increases damage dealt to enemies by allied units including this hero by {0} in combat.",
         "iconUrl": "/icons/skill/Icon_Skill_223011.webp",
@@ -1421,7 +1854,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "No Discounts",
         "description": "Cuando Jake Muller recibe daño, obtiene inmunidad a estados alterados durante 5 s y reduce el daño recibido en {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_133011.webp",
@@ -1429,7 +1862,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "That's Extra",
         "description": "Los defensores aliados de la unidad que incluye a este héroe tienen un {0} de probabilidad de infligir daño adicional al enemigo y aumentar en {1} el daño que recibe en combate.",
         "iconUrl": "/icons/skill/Icon_Skill_233011.webp",
@@ -1437,7 +1870,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Antibody Gene",
         "description": "Aumenta el ataque de Jake Muller en {0} y su defensa en {1}.",
         "iconUrl": "/icons/skill/Icon_Skill_143011.webp",
@@ -1445,20 +1878,22 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Resilient Spirit",
         "description": "Cuando este héroe es líder de guarnición, la salud de las unidades aliadas aumenta {0} en combates defensivos.",
         "iconUrl": "/icons/skill/Icon_Skill_243011.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_JAKE_L01.webp"
+    ]
   },
   {
     "id": "sherry",
     "name": "Sherry Birkin",
+    "rarity": "Legendary",
+    "unitType": "Attacker",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-SherryBirkin-visual.png",
+    "iconUrl": "/portraits/PortraitBust_SHERRY_L01.webp",
     "stats": {
       "health": 114312,
       "attack": 12160,
@@ -1467,27 +1902,25 @@
     },
     "fieldStats": [
       {
-        "label": "Attacker Attack Power",
+        "label": "Poder de ataque de Atacante",
         "value": "370.33%"
       },
       {
-        "label": "Attacker Defense Power",
+        "label": "Poder de defensa de Atacante",
         "value": "370.33%"
       }
     ],
-    "unitType": "Attacker",
-    "rarity": "Legendary",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Ráfaga de Rifle BC",
         "description": "Saca el rifle de asalto BC y dispara 30 balas en línea recta. Cada enemigo alcanzado por las balas recibe daño equivalente al {0} del ataque.",
-        "iconUrl": "",
+        "iconUrl": "/icons/skill/Icon_Skill_113012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Support Fire",
         "description": "Increases damage dealt to enemies by allied units including this hero by {0} in combat.",
         "iconUrl": "/icons/skill/Icon_Skill_213012.webp",
@@ -1495,15 +1928,15 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Flashbang",
         "description": "Lanza una granada cegadora y aturde a los objetivos dentro de un área circular durante {0}.",
-        "iconUrl": "/icons/skill/Granada cegadora (carlos).webp",
+        "iconUrl": "/icons/skill/Icon_Skill_123012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Will to Live",
         "description": "En combate, las unidades aliadas que incluyen a este héroe tienen {0} de probabilidad de evadir los ataques enemigos.",
         "iconUrl": "/icons/skill/Icon_Skill_223012.webp",
@@ -1511,7 +1944,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Super Girl",
         "description": "Sherry Birkin recupera salud equivalente al {0} de su salud máxima cada 15 s.",
         "iconUrl": "/icons/skill/Icon_Skill_133012.webp",
@@ -1519,7 +1952,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Burst Mode",
         "description": "Los atacantes aliados de la unidad que incluye a este héroe tienen un {0} de probabilidad de atacar una vez más al enemigo e infligir daño en combate.",
         "iconUrl": "/icons/skill/Icon_Skill_233012.webp",
@@ -1527,7 +1960,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Rapid Fire",
         "description": "Al realizar un ataque normal, hay un 25% de probabilidad de que el daño del ataque normal aumente en {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_143012.webp",
@@ -1535,20 +1968,22 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Decisive Bullet",
         "description": "When this hero is Rally Leader, increases allied units' Penetration by {0} in Rally battles.",
         "iconUrl": "/icons/skill/Icon_Skill_243012.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_SHERRY_L01.webp"
+    ]
   },
   {
     "id": "piers",
     "name": "Piers Nivans",
+    "rarity": "Legendary",
+    "unitType": "Ranger",
     "imageUrl": "https://www.residentevil-survivalunit.com/assets/images/common/character-PiersNivans-visual.png",
+    "iconUrl": "/portraits/PortraitBust_PIERS_L01.webp",
     "stats": {
       "health": 99719,
       "attack": 14714,
@@ -1557,23 +1992,88 @@
     },
     "fieldStats": [
       {
-        "label": "Ranger Attack Power",
+        "label": "Poder de ataque de Ranger",
         "value": "370.33%"
       },
       {
-        "label": "Ranger Defense Power",
+        "label": "Poder de defensa de Ranger",
         "value": "370.33%"
       }
     ],
-    "unitType": "Ranger",
-    "rarity": "Legendary",
-    "skills": [],
-    "iconUrl": "/portraits/PortraitBust_PIERS_L01.webp"
+    "skills": [
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 1",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_113013.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 1",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_213013.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 2",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_123013.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 2",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_223013.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Habilidad Activa 3",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_133013.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Habilidad Pasiva 3",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_233013.webp",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "type": "Exploración",
+        "name": "Arma Especial (Activa)",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_143013.webp",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      },
+      {
+        "type": "Campo",
+        "name": "Arma Especial (Pasiva)",
+        "description": "Descripción pendiente de ingresar...",
+        "iconUrl": "/icons/skill/Icon_Skill_243013.webp",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      }
+    ]
   },
   {
     "id": "cazador",
     "name": "Hunter Male (Rathalos)",
+    "rarity": "Legendary",
+    "unitType": "Defender",
     "imageUrl": "/recursos/MH_Rathalos.webp",
+    "iconUrl": "/portraits/PortraitBust_HUNTER_M01.webp",
     "stats": {
       "health": 165000,
       "attack": 8900,
@@ -1582,19 +2082,17 @@
     },
     "fieldStats": [
       {
-        "label": "Defender Attack Power",
+        "label": "Poder de ataque de Defensor",
         "value": "250.00%"
       },
       {
-        "label": "Defender Defense Power",
+        "label": "Poder de defensa de Defensor",
         "value": "250.00%"
       }
     ],
-    "unitType": "Defender",
-    "rarity": "Legendary",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Wyvern Fire",
         "description": "Tras cargar energía con el arma de cuadriga, genera una explosión que causa daño equivalente al {0} del ATQ a los enemigos en un área en abanico y los aturde durante 2 s.",
         "iconUrl": "/icons/skill/Icon_Skill_113014.webp",
@@ -1602,7 +2100,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Detonating Impact",
         "description": "Durante el combate, los Defensores aliados de la tropa de este héroe tienen una probabilidad de {0} cada 2 turnos de aturdir al tipo de tropa objetivo durante 1 turno. Si el objetivo es un objetivo de caza de Monster Hunter, se añade una probabilidad de {1}. (Máximo 3 intentos de aturdimiento por turno contra un mismo objetivo)",
         "iconUrl": "/icons/skill/Icon_Skill_213014.webp",
@@ -1610,7 +2108,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Burst Fire",
         "description": "Descarga un poderoso golpe con un arma de cuadriga sobre los enemigos en un área en abanico e inflige daño equivalente al {0} del ATQ. Después, genera una explosión que causa daño equivalente al {1} del ATQ a los enemigos en un área circular.",
         "iconUrl": "/icons/skill/Icon_Skill_123014.webp",
@@ -1618,7 +2116,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Armored Guard",
         "description": "Cuando este héroe forma parte de una tropa aliada, el daño recibido del enemigo disminuye en {0} durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, disminuye en {1} adicionales.",
         "iconUrl": "/icons/skill/Icon_Skill_223014.webp",
@@ -1626,7 +2124,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Wyrmstake Blast",
         "description": "Ataca al objetivo frontal con 2 estocadas poderosas, inflige daño equivalente al {0} del ATQ e instala un nitro de sierpe. Cuando el cazador golpea a un objetivo con el nitro de sierpe, este recibe daño adicional equivalente al {1} del ATQ.",
         "iconUrl": "/icons/skill/Icon_Skill_133014.webp",
@@ -1634,7 +2132,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Fissure Bombardment",
         "description": "Cuando este héroe forma parte de una tropa aliada, hay un 50% de probabilidad de aumentar en {0} el daño recibido por el enemigo durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en {1} adicionales.",
         "iconUrl": "/icons/skill/Icon_Skill_233014.webp",
@@ -1642,7 +2140,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Artillery Boost",
         "description": "Increases damage dealt to enemies by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_143014.webp",
@@ -1650,7 +2148,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Concentrated Fire",
         "description": "Cuando este héroe lidera la guarnición, la penetración de las tropas aliadas aumenta en {0} en combates defensivos. Además, al recibir recompensas de un objetivo de caza de Monster Hunter, obtienes {1} adicionales.",
         "iconUrl": "/icons/skill/Icon_Skill_243014.webp",
@@ -1658,21 +2156,22 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Monster Hunter Reward",
         "description": "When receiving rewards from Monster Hunter hunt targets, grants a {0} chance to receive extra advanced materials.",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_03.webp",
         "isArmaEspecial": false,
         "isVipSkill": true
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_HUNTER_M01.webp",
-    "image": "/recursos/MH_Rathalos.webp"
+    ]
   },
   {
     "id": "cazadora",
     "name": "Hunter Female (Rathalos)",
+    "rarity": "Legendary",
+    "unitType": "Ranger",
     "imageUrl": "/recursos/MH_SilverSol.webp",
+    "iconUrl": "/portraits/PortraitBust_HUNTER_F01.webp",
     "stats": {
       "health": 145000,
       "attack": 10500,
@@ -1681,19 +2180,17 @@
     },
     "fieldStats": [
       {
-        "label": "Ranger Attack Power",
+        "label": "Poder de ataque de Ranger",
         "value": "260.00%"
       },
       {
-        "label": "Ranger Defense Power",
+        "label": "Poder de defensa de Ranger",
         "value": "260.00%"
       }
     ],
-    "unitType": "Ranger",
-    "rarity": "Legendary",
     "skills": [
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Explosive Shot",
         "description": "Dispara un explosivo perforante a un objetivo dentro del alcance para infligir daño equivalente al {0} del ATQ. Después de 2 s, provoca una explosión que inflige daño equivalente al {1} del ATQ a los enemigos en un área circular y los aturde durante 2 s.",
         "iconUrl": "/icons/skill/Icon_Skill_113015.webp",
@@ -1701,7 +2198,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Rapid Fire Trigger",
         "description": "Cuando este héroe forma parte de una tropa aliada, hay una probabilidad de {0} de realizar un ataque adicional contra el enemigo e infligir daño. Si el objetivo es un objetivo de caza de Monster Hunter, se añade una probabilidad de {1}.",
         "iconUrl": "/icons/skill/Icon_Skill_213015.webp",
@@ -1709,7 +2206,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Disparo Perforante",
         "description": "Dispara un perforante hacia el frente que atraviesa a todos los enemigos en una línea estrecha e inflige daño equivalente al {0} del ATQ.",
         "iconUrl": "/icons/skill/Icon_Skill_123015.webp",
@@ -1717,7 +2214,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Piercing Ammo Boost",
         "description": "Cuando este héroe forma parte de una tropa aliada, su penetración aumenta en {0} durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en {1} adicionales.",
         "iconUrl": "/icons/skill/Icon_Skill_223015.webp",
@@ -1725,7 +2222,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Slicing Ammo",
         "description": "Dispara un lacerante a un objetivo dentro del alcance para infligir daño equivalente al {0} del ATQ. Después de 2 s, explota e inflige daño cortante equivalente al {1} del ATQ 5 veces seguidas.",
         "iconUrl": "/icons/skill/Icon_Skill_133015.webp",
@@ -1733,7 +2230,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Combat Vitality",
         "description": "Cuando este héroe forma parte de una tropa aliada, su salud aumenta en {0} durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en {1} adicionales.",
         "iconUrl": "/icons/skill/Icon_Skill_233015.webp",
@@ -1741,7 +2238,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Exploration",
+        "type": "Exploración",
         "name": "Weak Point Attack",
         "description": "Increases damage dealt to enemies by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_143015.webp",
@@ -1749,7 +2246,7 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Ballistics Upgrade",
         "description": "Cuando este héroe lidera la concentración, la penetración de las tropas aliadas aumenta en {0} en combates de concentración. Además, al recibir recompensas de un objetivo de caza de Monster Hunter, obtienes {1} adicionales.",
         "iconUrl": "/icons/skill/Icon_Skill_243015.webp",
@@ -1757,15 +2254,13 @@
         "isVipSkill": false
       },
       {
-        "type": "Field",
+        "type": "Campo",
         "name": "Monster Hunter Reward",
         "description": "When receiving rewards from Monster Hunter hunt targets, grants a {0} chance to receive extra advanced materials.",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_03.webp",
         "isArmaEspecial": false,
         "isVipSkill": true
       }
-    ],
-    "iconUrl": "/portraits/PortraitBust_HUNTER_F01.webp",
-    "image": "/recursos/MH_SilverSol.webp"
+    ]
   }
 ]

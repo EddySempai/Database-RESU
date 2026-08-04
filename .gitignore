@@ -25,3 +25,12 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+# Work spreadsheets & private data files
+*.xlsx
+*.xls
+*.csv
+Habilidades_Operativos.*
+generate_excel.js
+generate_master_mapping.js
+scratch_*.js
