@@ -291,7 +291,7 @@ const OperativoDetalle = () => {
                 <div className="mt-4 sm:mt-6 border-t border-purple-500/30 pt-4 sm:pt-6 relative z-10">
                   <h3 className="font-mono text-purple-400 uppercase tracking-widest text-xs flex items-center gap-2 mb-3 sm:mb-4">
                     <span className="w-2 h-2 bg-purple-500 rounded-full shadow-[0_0_8px_rgba(168,85,247,0.8)] shrink-0"></span>
-                    {t('op_detail.special_weapon_skill', 'Habilidad de Arma Especial')}
+                    {t('op_detail.vip_skill', 'Habilidad VIP')}
                   </h3>
                   <div className="space-y-3">
                     {((op as any).skills || []).filter((s: any) => s.isVipSkill).map((skill: any, idx: number) => (
@@ -313,7 +313,7 @@ const OperativoDetalle = () => {
                           <div className="flex-1 mt-0.5 min-w-0">
                             <h4 className="text-gray-100 font-bebas tracking-widest text-base sm:text-lg group-hover:text-white transition-colors">{skill.name}</h4>
                             <p className="text-xs sm:text-sm text-gray-400 font-inter mt-1 leading-relaxed group-hover:text-gray-300 transition-colors break-words overflow-hidden">{formatSkillDesc(skill.description)}</p>
-                            <p className="text-[9px] sm:text-[10px] text-purple-400 font-mono mt-2 sm:mt-3 uppercase tracking-widest">{t('op_detail.unlocked_with_special_weapon', 'Se desbloquea con Arma Especial')}</p>
+                            <p className="text-[9px] sm:text-[10px] text-purple-400 font-mono mt-2 sm:mt-3 uppercase tracking-widest">{t('op_detail.unlocked_with_vip_stars', 'Se desbloquea con subir de nivel las estrellas del Operativo')}</p>
                           </div>
                         </div>
                       </div>

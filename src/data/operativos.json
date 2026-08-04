@@ -1980,7 +1980,7 @@
   {
     "id": "cazador",
     "name": "Cazador (Rathalos)",
-    "imageUrl": "/recursos/MH_Rathalos.webp",
+    "imageUrl": "/recursos/MH_SilverSol.webp",
     "stats": {
       "health": 165000,
       "attack": 8900,
@@ -2079,7 +2079,7 @@
   {
     "id": "cazadora",
     "name": "Cazadora (Rathalos)",
-    "imageUrl": "/recursos/MH_SilverSol.webp",
+    "imageUrl": "/recursos/MH_Rathalos.webp",
     "stats": {
       "health": 145000,
       "attack": 10500,
