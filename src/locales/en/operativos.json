@@ -757,7 +757,7 @@
         "type": "Exploración",
         "name": "Dios de la puntería",
         "description": "Apunta a las piernas de todos los enemigos dentro de un área en forma de abanico, infligiendo daño equivalente al {0} del poder de ataque y reduciendo su velocidad de movimiento en un 30%. (Durante 5 segundos)",
-        "iconUrl": "/icons/skill/Dios de la puntería (Murphy Seeker) .webp",
+        "iconUrl": "/icons/skill/Icon_Skill_111000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -765,7 +765,7 @@
         "type": "Campo",
         "name": "Disparo decisivo",
         "description": "Every 4 turns, allied atacantes in this hero's squad have a {0} chance to stun the target troop type for 1 turn(s). (Max 3 stun attempts per target each turn).",
-        "iconUrl": "/icons/skill/Icon_Skill_111000.webp",
+        "iconUrl": "/icons/skill/Dios de la puntería (Murphy Seeker) .webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1285,7 +1285,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 1",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_113005.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_110001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1293,7 +1293,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 1",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_213005.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_210001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1301,7 +1301,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 2",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_123005.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_120001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1309,7 +1309,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 2",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_223005.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_220001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1317,7 +1317,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 3",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_133005.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_130001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1325,7 +1325,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 3",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_233005.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_230001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1333,17 +1333,17 @@
         "type": "Exploración",
         "name": "Arma Especial (Activa)",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_143005.webp",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_01.webp",
         "isArmaEspecial": true,
-        "isVipSkill": false
+        "isVipSkill": true
       },
       {
         "type": "Campo",
         "name": "Arma Especial (Pasiva)",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_243005.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_210001.webp",
         "isArmaEspecial": true,
-        "isVipSkill": false
+        "isVipSkill": true
       }
     ]
   },
@@ -1375,7 +1375,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 1",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_113006.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_110004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1383,7 +1383,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 1",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_213006.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_210004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1391,7 +1391,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 2",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_123006.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_120004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1399,7 +1399,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 2",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_223006.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_220004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1407,7 +1407,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 3",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_133006.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_130004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1415,7 +1415,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 3",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_233006.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_230004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1423,17 +1423,17 @@
         "type": "Exploración",
         "name": "Arma Especial (Activa)",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_143006.webp",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_04.webp",
         "isArmaEspecial": true,
-        "isVipSkill": false
+        "isVipSkill": true
       },
       {
         "type": "Campo",
         "name": "Arma Especial (Pasiva)",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_243006.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_210004.webp",
         "isArmaEspecial": true,
-        "isVipSkill": false
+        "isVipSkill": true
       }
     ]
   },
@@ -1465,7 +1465,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 1",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_113007.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_110005.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1473,7 +1473,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 1",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_213007.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_210005.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1481,7 +1481,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 2",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_123007.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_120005.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1489,7 +1489,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 2",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_223007.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_220005.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1497,7 +1497,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 3",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_133007.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_130005.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1505,7 +1505,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 3",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_233007.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_230005.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1513,17 +1513,17 @@
         "type": "Exploración",
         "name": "Arma Especial (Activa)",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_143007.webp",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_05.webp",
         "isArmaEspecial": true,
-        "isVipSkill": false
+        "isVipSkill": true
       },
       {
         "type": "Campo",
         "name": "Arma Especial (Pasiva)",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_243007.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_210005.webp",
         "isArmaEspecial": true,
-        "isVipSkill": false
+        "isVipSkill": true
       }
     ]
   },
@@ -1645,7 +1645,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 1",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_113009.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_110007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1653,7 +1653,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 1",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_213009.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_210007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1661,7 +1661,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 2",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_123009.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_120007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1669,7 +1669,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 2",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_223009.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_220007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1677,7 +1677,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 3",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_133009.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_130007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1685,7 +1685,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 3",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_233009.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_230007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -1693,17 +1693,17 @@
         "type": "Exploración",
         "name": "Arma Especial (Activa)",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_143009.webp",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_07.webp",
         "isArmaEspecial": true,
-        "isVipSkill": false
+        "isVipSkill": true
       },
       {
         "type": "Campo",
         "name": "Arma Especial (Pasiva)",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_243009.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_210007.webp",
         "isArmaEspecial": true,
-        "isVipSkill": false
+        "isVipSkill": true
       }
     ]
   },
@@ -2005,7 +2005,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 1",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_113013.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_110011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -2013,7 +2013,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 1",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_213013.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_210011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -2021,7 +2021,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 2",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_123013.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_120011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -2029,7 +2029,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 2",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_223013.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_220011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -2037,7 +2037,7 @@
         "type": "Exploración",
         "name": "Habilidad Activa 3",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_133013.webp",
+        "iconUrl": "/icons/skill/Icon_Skill_130011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -2045,7 +2045,7 @@
         "type": "Campo",
         "name": "Habilidad Pasiva 3",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_233013.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_230011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
@@ -2053,17 +2053,17 @@
         "type": "Exploración",
         "name": "Arma Especial (Activa)",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_143013.webp",
+        "iconUrl": "/icons/skill/Icon_Vip_Skill_11.webp",
         "isArmaEspecial": true,
-        "isVipSkill": false
+        "isVipSkill": true
       },
       {
         "type": "Campo",
         "name": "Arma Especial (Pasiva)",
         "description": "Descripción pendiente de ingresar...",
-        "iconUrl": "/icons/skill/Icon_Skill_243013.webp",
+        "iconUrl": "/icons/skill/Icon_Field_Skill_210011.webp",
         "isArmaEspecial": true,
-        "isVipSkill": false
+        "isVipSkill": true
       }
     ]
   },
