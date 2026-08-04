@@ -10,6 +10,7 @@
   "hero": {
     "tag": "Archivo Táctico Global",
     "desc": "Bienvenido al hub definitivo de guías, estrategias y noticias. Domina la gestión de tu refugio, maximiza el poder de tus operativos y sobrevive al asedio biológico.",
+    "btn_heroes": "Explorar Operativos",
     "btn_guides": "Guía para Principiantes",
     "btn_tierlist": "Ver Tier List",
     "btn_donate": "Apoyar Proyecto (Donar)"
@@ -251,6 +252,10 @@
   "guides": {
     "title": "GUÍAS Y ESTRATEGIAS",
     "intel_files": "Archivos de Inteligencia",
+    "coming_soon_badge": "PRÓXIMAMENTE",
+    "coming_soon_banner_title": "ARCHIVOS EN FASE DE REDACCIÓN TÁCTICA",
+    "coming_soon_banner_desc": "La sección de manuales tácticos y guías estratégicas se encuentra actualmente en desarrollo y pruebas de combate. La estructura y los expedientes interactivos mostrados a continuación son una vista previa del diseño final.",
+    "draft_badge": "EN DESARROLLO",
     "category_all": "Todos",
     "category_beginner": "Principiantes",
     "category_combat": "Combate / PvP",

@@ -295,19 +295,24 @@ export default function Guias() {
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3"
             >
-              <div className="w-2 h-2 bg-neon-red rounded-full animate-ping" />
-              <span className="font-mono text-neon-red text-xs sm:text-sm tracking-[0.25em] uppercase font-bold">
-                UMBRELLA DATABASE // {t('guides.intel_files')}
+              <div className="w-2 h-2 bg-yellow-500 rounded-full animate-ping" />
+              <span className="font-mono text-yellow-400 text-xs sm:text-sm tracking-[0.25em] uppercase font-bold">
+                UMBRELLA DATABASE // {t('guides.intel_files')} [{t('guides.coming_soon_badge')}]
               </span>
             </motion.div>
             
-            <motion.h1 
+            <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              className="font-bebas text-4xl sm:text-6xl lg:text-7xl text-white tracking-widest drop-shadow-[0_0_15px_rgba(255,42,42,0.3)]"
+              className="flex flex-wrap items-center gap-3 sm:gap-4"
             >
-              {t('guides.title')}
-            </motion.h1>
+              <h1 className="font-bebas text-4xl sm:text-6xl lg:text-7xl text-white tracking-widest drop-shadow-[0_0_15px_rgba(255,42,42,0.3)] m-0">
+                {t('guides.title')}
+              </h1>
+              <span className="font-mono text-xs uppercase tracking-widest px-3 py-1 bg-yellow-500/10 text-yellow-400 border border-yellow-500/30 rounded-full">
+                {t('guides.coming_soon_badge')}
+              </span>
+            </motion.div>
           </div>
 
           {/* Quick Search */}
@@ -330,6 +335,26 @@ export default function Guias() {
             )}
           </div>
         </div>
+
+        {/* Coming Soon / Roadmap Notice Banner */}
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="mt-6 bg-yellow-950/20 border border-yellow-500/30 rounded-lg p-4 flex items-start sm:items-center gap-3.5"
+        >
+          <div className="p-2 rounded-md bg-yellow-500/10 border border-yellow-500/30 shrink-0 text-yellow-400">
+            <AlertTriangle size={20} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h4 className="font-mono text-xs font-bold uppercase tracking-wider text-yellow-400 mb-0.5">
+              {t('guides.coming_soon_banner_title')}
+            </h4>
+            <p className="font-inter text-xs text-yellow-200/80 leading-relaxed m-0">
+              {t('guides.coming_soon_banner_desc')}
+            </p>
+          </div>
+        </motion.div>
 
         {/* Category Pills */}
         <div className="flex items-center gap-2 overflow-x-auto scrollbar-none mt-6 pt-2 pb-1 touch-pan-x">

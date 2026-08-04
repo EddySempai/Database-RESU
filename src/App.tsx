@@ -30,7 +30,7 @@ const AnimatedRoutes = () => {
           <Route path="/heroes" element={<PageTransition><Operativos /></PageTransition>} />
           <Route path="/heroes/:id" element={<PageTransition><OperativoDetalle /></PageTransition>} />
           <Route path="/tier-list" element={<PageTransition><TierList /></PageTransition>} />
-          <Route path="/guias" element={<PageTransition><Guias /></PageTransition>} />
+          <Route path="/guias" element={<PageTransition><ComingSoon /></PageTransition>} />
           {/* Backwards compatibility redirects */}
           <Route path="/operativos" element={<Navigate to="/heroes" replace />} />
           <Route path="*" element={<PageTransition><ComingSoon /></PageTransition>} />

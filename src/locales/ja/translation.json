@@ -10,6 +10,7 @@
   "hero": {
     "tag": "グローバル戦術アーカイブ",
     "desc": "ガイド、戦略、ニュースの究極のハブへようこそ。シェルターの管理をマスターし、工作員の能力を最大限に引き出し、生物学的な包囲から生き残りましょう。",
+    "btn_heroes": "工作員を探索",
     "btn_guides": "初心者ガイド",
     "btn_tierlist": "ティアリストを見る",
     "btn_donate": "プロジェクトを支援（寄付）"
@@ -251,6 +252,10 @@
   "guides": {
     "title": "ガイド＆戦略",
     "intel_files": "インテリジェンスファイル",
+    "coming_soon_badge": "近日公開",
+    "coming_soon_banner_title": "戦術データ開発中",
+    "coming_soon_banner_desc": "戦術マニュアルと戦略ガイドセクションは現在作成・テスト中です。以下に表示されている構造とインタラクティブな書類は最終リリースのプレビューです。",
+    "draft_badge": "開発中",
     "category_all": "すべて",
     "category_beginner": "初心者",
     "category_combat": "戦闘 / PvP",

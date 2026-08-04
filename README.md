@@ -54,10 +54,13 @@ Esta plataforma fue desarrollada como una solución integral para los jugadores:
 ### 💎 6. Calculadoras de Tesoros y Joyas
 * Planificación de costes de mejora, fragmentos necesarios y estadísticas acumuladas para la optimización de equipamiento.
 
-### 🌐 7. Internacionalización Completa (i18n)
+### 📜 7. Centro de Guías y Manuales de Supervivencia *(Próximamente / Roadmap)*
+* Arquitectura preparada para expedientes estratégicos interactivos, protocolos de inicio de 7 días, optimización de estamina y formaciones meta.
+
+### 🌐 8. Internacionalización Completa (i18n)
 * Soporte nativo para 3 idiomas con cambio en caliente: **Español (ES)**, **Inglés (EN)** y **Japonés (JA)**.
 
-### ⚡ 8. Rendimiento y Optimización WebP
+### ⚡ 9. Rendimiento y Optimización WebP
 * Todas las imágenes de personajes e iconos fueron convertidas localmente a **WebP**, reduciendo el peso de los assets en más de un **80%** para garantizar tiempos de carga ultrarrápidos.
 
 ---

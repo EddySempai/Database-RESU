@@ -10,6 +10,7 @@
   "hero": {
     "tag": "Global Tactical Archive",
     "desc": "Welcome to the ultimate hub for guides, strategies, and news. Master your shelter management, maximize your operatives' power, and survive the biological siege.",
+    "btn_heroes": "Explore Operatives",
     "btn_guides": "Beginner's Guide",
     "btn_tierlist": "View Tier List",
     "btn_donate": "Support Project (Donate)"
@@ -251,6 +252,10 @@
   "guides": {
     "title": "GUIDES & STRATEGIES",
     "intel_files": "Intelligence Files",
+    "coming_soon_badge": "COMING SOON",
+    "coming_soon_banner_title": "TACTICAL INTEL UNDER ACTIVE DEVELOPMENT",
+    "coming_soon_banner_desc": "The tactical guides and strategy manuals section is currently under development and field testing. The layout and interactive dossiers shown below represent the blueprint of the final release.",
+    "draft_badge": "IN DEVELOPMENT",
     "category_all": "All",
     "category_beginner": "Beginners",
     "category_combat": "Combat / PvP",
