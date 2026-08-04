@@ -4,12 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const topCharacters = [
-  { id: 'leon', name: 'Leon S. Kennedy', img: 'character-LeonSKennedy-visual.png', role: 'Asalto / Liderazgo' },
-  { id: 'claire', name: 'Claire Redfield', img: 'character-ClaireRedfield-visual.png', role: 'Soporte Táctico' },
-  { id: 'jill', name: 'Jill Valentine', img: 'character-JillValentine-visual.png', role: 'Especialista Táctica' },
-  { id: 'chris', name: 'Chris Redfield', img: 'character-ChrisRedfield-visual.png', role: 'Comandante BSAA' },
-  { id: 'ada', name: 'Ada Wong', img: 'character-AdaWong-visual.png', role: 'Espía / Infiltración' },
-  { id: 'carlos', name: 'Carlos Oliveira', img: 'character-CarlosOliveira-visual.png', role: 'Combate Pesado' },
+  { id: 'leon', name: 'Leon S. Kennedy', img: 'character-LeonSKennedy-visual.webp', role: 'Asalto / Liderazgo' },
+  { id: 'claire', name: 'Claire Redfield', img: 'character-ClaireRedfield-visual.webp', role: 'Soporte Táctico' },
+  { id: 'jill', name: 'Jill Valentine', img: 'character-JillValentine-visual.webp', role: 'Especialista Táctica' },
+  { id: 'chris', name: 'Chris Redfield', img: 'character-ChrisRedfield-visual.webp', role: 'Comandante BSAA' },
+  { id: 'ada', name: 'Ada Wong', img: 'character-AdaWong-visual.webp', role: 'Espía / Infiltración' },
+  { id: 'carlos', name: 'Carlos Oliveira', img: 'character-CarlosOliveira-visual.webp', role: 'Combate Pesado' },
 ];
 
 const OperativesShowcase = () => {
