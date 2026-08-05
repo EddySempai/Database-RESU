@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import PageTransition from './components/PageTransition';
 import LoadingScreen from './components/LoadingScreen';
 import { useTranslation } from 'react-i18next';
+import { Analytics } from '@vercel/analytics/react';
 
 // Code Splitting for performance optimization
 const Home = React.lazy(() => import('./pages/Home'));
@@ -46,6 +47,7 @@ function App() {
     <Router>
       <div className="min-h-screen bg-umbrella-black text-white font-inter relative overflow-hidden flex flex-col">
         <Particles />
+        <Analytics />
         <Navbar />
         
         <main className="flex-1">
