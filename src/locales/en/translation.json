@@ -227,13 +227,14 @@
   "jewels": {
     "title": "GEM CALCULATOR",
     "rough_jewel": "Rough Jewel",
-    "jewel_tool": "Jewel Crafting Tool",
+    "jewel_tool": "Jewel Tool",
+    "advance_tool": "Advance Tool",
     "current_tier": "CURRENT TIER",
     "target_tier": "TARGET TIER",
     "select_current": "SELECT CURRENT TIER",
     "select_target": "SELECT TARGET TIER",
     "total_resources": "TOTAL RESOURCES",
-    "search_placeholder": "Search level (e.g. Legend++)"
+    "search_placeholder": "Search level (e.g. Mythic++++)"
   },
   "tierlist": {
     "tab_ranking": "Ranking",

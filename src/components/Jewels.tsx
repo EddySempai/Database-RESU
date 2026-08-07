@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Database, ArrowDown, X, Search } from 'lucide-react';
+import { Database, ArrowDown, X, Search, RotateCcw } from 'lucide-react';
 import { JEWEL_TIERS, getJewelCostBetweenTiers, getJewelImageUrl, getJewelRarityStyle, TREASURE_GEM_COLORS } from '../data/jewels';
 import type { JewelTier } from '../data/jewels';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 export default function Jewels() {
   const { t } = useTranslation();
   
-  // 18 gems in total
+  // 18 gems in total (6 treasures x 3 sockets)
   const [gems, setGems] = useState<{current: JewelTier, target: JewelTier}[]>(
     Array(18).fill({ current: 'None', target: 'None' })
   );
@@ -19,11 +19,13 @@ export default function Jewels() {
   // Totals Calculation
   let totalRoughJewel = 0;
   let totalJewelTool = 0;
+  let totalAdvanceTool = 0;
 
   gems.forEach(gem => {
     const cost = getJewelCostBetweenTiers(gem.current, gem.target);
     totalRoughJewel += cost.roughJewel;
     totalJewelTool += cost.jewelTool;
+    totalAdvanceTool += cost.advanceTool;
   });
 
   const handleSelectTier = (tier: JewelTier) => {
@@ -47,6 +49,10 @@ export default function Jewels() {
     setActiveSelect(null);
   };
 
+  const resetAll = () => {
+    setGems(Array(18).fill({ current: 'None', target: 'None' }));
+  };
+
   const filteredTiers = JEWEL_TIERS.filter(tier => 
     tier.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -57,25 +63,41 @@ export default function Jewels() {
         
         <div className="absolute -top-32 -right-32 w-64 h-64 bg-red-900/20 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="mb-8 border-b border-gray-800 pb-4 text-center">
-          <h2 className="font-bebas text-4xl md:text-5xl text-white tracking-widest uppercase">
-            {t('jewels.title', 'CALCULADORA DE GEMAS')}
-          </h2>
+        <div className="mb-8 border-b border-gray-800 pb-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-center sm:text-left">
+            <h2 className="font-bebas text-4xl md:text-5xl text-white tracking-widest uppercase">
+              {t('jewels.title', 'CALCULADORA DE GEMAS')}
+            </h2>
+          </div>
+          <button
+            onClick={resetAll}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900/80 hover:bg-red-950/40 text-gray-400 hover:text-red-400 border border-gray-800 hover:border-red-800/60 font-mono text-xs transition-all duration-200"
+          >
+            <RotateCcw size={14} />
+            <span>{t('tools_page.reset_all', 'REINICIAR TODO')}</span>
+          </button>
         </div>
 
         {/* The 6 Treasures Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {Array.from({ length: 6 }).map((_, treasureIndex) => (
-            <div key={treasureIndex} className="bg-black/40 p-4 rounded-xl border border-gray-800">
-              <h3 className="text-gray-500 font-mono text-xs text-center border-b border-gray-800 pb-2 mb-4 uppercase">TREASURE {treasureIndex + 1}</h3>
+            <div key={treasureIndex} className="bg-black/40 p-4 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors">
+              <h3 className="text-gray-500 font-mono text-xs text-center border-b border-gray-800 pb-2 mb-4 uppercase tracking-wider">
+                TREASURE {treasureIndex + 1}
+              </h3>
               
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                 
                 {/* Current State Box */}
-                <div className="flex-1 flex flex-col items-center p-3 rounded-xl border border-gray-800 bg-[#0d0d0d] relative overflow-hidden">
+                <div className="flex-1 flex flex-col items-center p-3 rounded-xl border border-gray-800 bg-[#0d0d0d] relative overflow-hidden w-full">
                   <span className="absolute top-2 left-2 font-mono text-[9px] text-gray-500 uppercase">{t('jewels.current_tier', 'ACTUAL')}</span>
                   <div className="w-16 h-16 mb-4 mt-2">
-                    <img src={`/tesoros/Treasure_${treasureIndex+1}.webp`} alt={`Treasure ${treasureIndex+1}`} className="w-full h-full object-contain filter drop-shadow-md" onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/64/222222/FFFFFF?text=T' + (treasureIndex+1))} />
+                    <img 
+                      src={`/tesoros/Treasure_${treasureIndex+1}.webp`} 
+                      alt={`Treasure ${treasureIndex+1}`} 
+                      className="w-full h-full object-contain filter drop-shadow-md" 
+                      onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/64/222222/FFFFFF?text=T' + (treasureIndex+1))} 
+                    />
                   </div>
                   <div className="flex gap-2 justify-center w-full">
                     {Array.from({ length: 3 }).map((_, colIndex) => {
@@ -92,6 +114,7 @@ export default function Jewels() {
                               ? 'bg-[#181818] border-gray-700 hover:border-gray-500 hover:bg-[#222]' 
                               : 'bg-black/40 border-dashed border-gray-800 hover:border-gray-600'
                           }`}
+                          title={`Socket ${colIndex + 1}: ${gem.current}`}
                         >
                           {isSet ? (
                             <img src={getJewelImageUrl(gem.current, colorIndex)} alt="Gem" className="w-8 h-8 object-contain filter drop-shadow-md" />
@@ -109,10 +132,15 @@ export default function Jewels() {
                 </div>
 
                 {/* Target State Box */}
-                <div className="flex-1 flex flex-col items-center p-3 rounded-xl border border-red-950/60 bg-[#120a0a] relative overflow-hidden">
+                <div className="flex-1 flex flex-col items-center p-3 rounded-xl border border-red-950/60 bg-[#120a0a] relative overflow-hidden w-full">
                   <span className="absolute top-2 left-2 font-mono text-[9px] text-red-800 uppercase">{t('jewels.target_tier', 'MEJORA')}</span>
                   <div className="w-16 h-16 mb-4 mt-2">
-                    <img src={`/tesoros/Treasure_${treasureIndex+1}.webp`} alt={`Treasure ${treasureIndex+1}`} className="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(239,68,68,0.25)]" onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/64/222222/FFFFFF?text=T' + (treasureIndex+1))} />
+                    <img 
+                      src={`/tesoros/Treasure_${treasureIndex+1}.webp`} 
+                      alt={`Treasure ${treasureIndex+1}`} 
+                      className="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(239,68,68,0.25)]" 
+                      onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/64/222222/FFFFFF?text=T' + (treasureIndex+1))} 
+                    />
                   </div>
                   <div className="flex gap-2 justify-center w-full">
                     {Array.from({ length: 3 }).map((_, colIndex) => {
@@ -129,6 +157,7 @@ export default function Jewels() {
                               ? 'bg-[#221010] border-red-900/60 hover:border-red-500 hover:bg-[#2e1515] shadow-[0_0_10px_rgba(239,68,68,0.15)]' 
                               : 'bg-black/40 border-dashed border-red-950/40 hover:border-red-900/60'
                           }`}
+                          title={`Socket ${colIndex + 1}: ${gem.target}`}
                         >
                           {isSet ? (
                             <img src={getJewelImageUrl(gem.target, colorIndex)} alt="Gem" className="w-8 h-8 object-contain filter drop-shadow-md" />
@@ -153,19 +182,26 @@ export default function Jewels() {
             {t('jewels.total_resources', 'TOTAL DE RECURSOS')}
           </h3>
           
-          <div className="grid grid-cols-2 gap-4 md:gap-8">
-            <div className="bg-[#111] border border-gray-800 rounded-lg p-4 flex flex-col items-center justify-center relative overflow-hidden group">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+            <div className="bg-[#111] border border-gray-800 rounded-lg p-5 flex flex-col items-center justify-center relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent" />
-              <img src="/jewels/Item_Jewel_material_02.webp" alt="Rough Jewel" className="w-10 h-10 mb-2 z-10 drop-shadow-md" />
-              <span className="text-gray-400 font-mono text-xs mb-1 z-10 uppercase">{t('jewels.rough_jewel', 'Joya en bruto')}</span>
+              <img src="/jewels/Item_Jewel_material_02.webp" alt="Rough Jewel" className="w-12 h-12 mb-2 z-10 drop-shadow-md group-hover:scale-110 transition-transform" />
+              <span className="text-gray-400 font-mono text-xs mb-1 z-10 uppercase text-center">{t('jewels.rough_jewel', 'Joya en bruto')}</span>
               <span className="text-2xl md:text-4xl font-bebas text-purple-300 z-10">{totalRoughJewel.toLocaleString()}</span>
             </div>
 
-            <div className="bg-[#111] border border-gray-800 rounded-lg p-4 flex flex-col items-center justify-center relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-t from-red-900/20 to-transparent" />
-              <img src="/jewels/Item_Jewel_material_01.webp" alt="Jewel Tool" className="w-10 h-10 mb-2 z-10 drop-shadow-md" />
-              <span className="text-gray-400 font-mono text-xs mb-1 z-10 uppercase">{t('jewels.jewel_tool', 'Herramienta de tallado')}</span>
-              <span className="text-2xl md:text-4xl font-bebas text-neon-red z-10">{totalJewelTool.toLocaleString()}</span>
+            <div className="bg-[#111] border border-gray-800 rounded-lg p-5 flex flex-col items-center justify-center relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-700/20 to-transparent" />
+              <img src="/jewels/Item_Jewel_material_01.webp" alt="Jewel Tool" className="w-12 h-12 mb-2 z-10 drop-shadow-md group-hover:scale-110 transition-transform" />
+              <span className="text-gray-400 font-mono text-xs mb-1 z-10 uppercase text-center">{t('jewels.jewel_tool', 'Herramienta de tallado')}</span>
+              <span className="text-2xl md:text-4xl font-bebas text-gray-200 z-10">{totalJewelTool.toLocaleString()}</span>
+            </div>
+
+            <div className="bg-[#111] border border-gray-800 rounded-lg p-5 flex flex-col items-center justify-center relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 to-transparent" />
+              <img src="/jewels/Item_Jewel_material_03.webp" alt="Advance Tool" className="w-12 h-12 mb-2 z-10 drop-shadow-md group-hover:scale-110 transition-transform" />
+              <span className="text-gray-400 font-mono text-xs mb-1 z-10 uppercase text-center">{t('jewels.advance_tool', 'Herramienta avanzada')}</span>
+              <span className="text-2xl md:text-4xl font-bebas text-amber-400 z-10">{totalAdvanceTool.toLocaleString()}</span>
             </div>
           </div>
         </div>
@@ -188,7 +224,7 @@ export default function Jewels() {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="bg-[#0f0f0f] border border-gray-800 rounded-xl shadow-2xl w-full max-w-lg relative z-10 max-h-[90vh] flex flex-col"
+              className="bg-[#0f0f0f] border border-gray-800 rounded-xl shadow-2xl w-full max-w-2xl relative z-10 max-h-[90vh] flex flex-col"
             >
               <div className="p-4 border-b border-gray-800 flex justify-between items-center bg-[#151515] rounded-t-xl">
                 <h3 className="font-bebas text-2xl text-white tracking-widest uppercase">
@@ -216,7 +252,7 @@ export default function Jewels() {
               </div>
 
               <div className="p-4 overflow-y-auto flex-1 custom-scrollbar">
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
                   {filteredTiers.map((tier) => {
                     const isSelected = activeSelect.type === 'current' 
                       ? gems[activeSelect.index].current === tier
@@ -231,18 +267,18 @@ export default function Jewels() {
                       <button
                         key={tier}
                         onClick={() => handleSelectTier(tier)}
-                        className={`py-3 px-2 rounded-lg border font-bebas text-sm flex flex-col items-center justify-center gap-1 transition-all duration-300 ${
+                        className={`py-3 px-2 rounded-lg border font-bebas text-sm flex flex-col items-center justify-center gap-1.5 transition-all duration-300 ${
                           isSelected 
-                            ? `${style.bg} border-white ${style.text} ${style.shadow} scale-105 brightness-125`
-                            : `${style.bg} ${style.border} ${style.text} opacity-80 ${style.hover}`
+                            ? `${style.bg} border-white ${style.text} ${style.shadow} scale-105 brightness-125 ring-1 ring-white/50`
+                            : `${style.bg} ${style.border} ${style.text} opacity-85 ${style.hover}`
                         }`}
                       >
                         {tier !== 'None' ? (
-                          <img src={getJewelImageUrl(tier, colorIndex)} alt={tier} className="w-8 h-8 object-contain filter drop-shadow-md" />
+                          <img src={getJewelImageUrl(tier, colorIndex)} alt={tier} className="w-9 h-9 object-contain filter drop-shadow-md" />
                         ) : (
-                          <span className="text-gray-500 font-mono text-xs py-1">NINGUNO</span>
+                          <span className="text-gray-500 font-mono text-xs py-2">NINGUNO</span>
                         )}
-                        <span>{tier}</span>
+                        <span className="tracking-wide text-xs md:text-sm">{tier}</span>
                       </button>
                     );
                   })}
