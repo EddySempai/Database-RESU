@@ -1,10 +1,10 @@
-export type TreasureRarity = 'None' | 'Rare' | 'Epic' | 'Epic+' | 'Legend' | 'Legend+' | 'Legend++' | 'Mythic' | 'Mythic+' | 'Mythic++' | 'Mythic+++' | 'Mythic++++';
+export type TreasureRarity = 'None' | 'Advanced' | 'Rare' | 'Epic' | 'Epic+' | 'Legend' | 'Legend+' | 'Legend++' | 'Mythic' | 'Mythic+' | 'Mythic++' | 'Mythic+++' | 'Mythic++++';
 
 export interface TreasureTier {
   id: string;
   rarity: TreasureRarity;
   level: number;
-  index: number; // 0 = None, 1 = Rare T1, etc.
+  index: number; // 0 = None, 1 = Advanced T1, etc.
   cost: {
     goldFrag: number;
     polish: number;
@@ -16,75 +16,79 @@ export interface TreasureTier {
 export const TREASURE_TIERS: TreasureTier[] = [
   { id: 'None', rarity: 'None', level: 0, index: 0, cost: { goldFrag: 0, polish: 0, bluePrint: 0, advancePolish: 0 } },
   
+  // ADVANCED
+  { id: 'Advanced T1', rarity: 'Advanced', level: 1, index: 1, cost: { goldFrag: 1500, polish: 15, bluePrint: 0, advancePolish: 0 } },
+  { id: 'Advanced T2', rarity: 'Advanced', level: 2, index: 2, cost: { goldFrag: 4000, polish: 40, bluePrint: 0, advancePolish: 0 } },
+
   // RARE
-  { id: 'Rare T1', rarity: 'Rare', level: 1, index: 1, cost: { goldFrag: 0, polish: 0, bluePrint: 0, advancePolish: 0 } },
-  { id: 'Rare T2', rarity: 'Rare', level: 2, index: 2, cost: { goldFrag: 9500, polish: 95, bluePrint: 0, advancePolish: 0 } },
-  { id: 'Rare T3', rarity: 'Rare', level: 3, index: 3, cost: { goldFrag: 0, polish: 0, bluePrint: 45, advancePolish: 0 } },
-  { id: 'Rare T4', rarity: 'Rare', level: 4, index: 4, cost: { goldFrag: 0, polish: 0, bluePrint: 50, advancePolish: 0 } },
+  { id: 'Rare T1', rarity: 'Rare', level: 1, index: 3, cost: { goldFrag: 7000, polish: 70, bluePrint: 0, advancePolish: 0 } },
+  { id: 'Rare T2', rarity: 'Rare', level: 2, index: 4, cost: { goldFrag: 9500, polish: 95, bluePrint: 0, advancePolish: 0 } },
+  { id: 'Rare T3', rarity: 'Rare', level: 3, index: 5, cost: { goldFrag: 0, polish: 0, bluePrint: 45, advancePolish: 0 } },
+  { id: 'Rare T4', rarity: 'Rare', level: 4, index: 6, cost: { goldFrag: 0, polish: 0, bluePrint: 50, advancePolish: 0 } },
   
   // EPIC
-  { id: 'Epic T1', rarity: 'Epic', level: 1, index: 5, cost: { goldFrag: 0, polish: 0, bluePrint: 60, advancePolish: 0 } },
-  { id: 'Epic T2', rarity: 'Epic', level: 2, index: 6, cost: { goldFrag: 0, polish: 0, bluePrint: 70, advancePolish: 0 } },
-  { id: 'Epic T3', rarity: 'Epic', level: 3, index: 7, cost: { goldFrag: 0, polish: 0, bluePrint: 50, advancePolish: 0 } },
-  { id: 'Epic T4', rarity: 'Epic', level: 4, index: 8, cost: { goldFrag: 8000, polish: 80, bluePrint: 55, advancePolish: 0 } },
+  { id: 'Epic T1', rarity: 'Epic', level: 1, index: 7, cost: { goldFrag: 0, polish: 0, bluePrint: 60, advancePolish: 0 } },
+  { id: 'Epic T2', rarity: 'Epic', level: 2, index: 8, cost: { goldFrag: 0, polish: 0, bluePrint: 70, advancePolish: 0 } },
+  { id: 'Epic T3', rarity: 'Epic', level: 3, index: 9, cost: { goldFrag: 6500, polish: 65, bluePrint: 50, advancePolish: 0 } },
+  { id: 'Epic T4', rarity: 'Epic', level: 4, index: 10, cost: { goldFrag: 8000, polish: 80, bluePrint: 55, advancePolish: 0 } },
   
   // EPIC+
-  { id: 'Epic+ T1', rarity: 'Epic+', level: 1, index: 9, cost: { goldFrag: 9500, polish: 95, bluePrint: 60, advancePolish: 0 } },
-  { id: 'Epic+ T2', rarity: 'Epic+', level: 2, index: 10, cost: { goldFrag: 11000, polish: 110, bluePrint: 65, advancePolish: 0 } },
-  { id: 'Epic+ T3', rarity: 'Epic+', level: 3, index: 11, cost: { goldFrag: 12500, polish: 125, bluePrint: 70, advancePolish: 0 } },
-  { id: 'Epic+ T4', rarity: 'Epic+', level: 4, index: 12, cost: { goldFrag: 16000, polish: 160, bluePrint: 100, advancePolish: 0 } },
+  { id: 'Epic+ T1', rarity: 'Epic+', level: 1, index: 11, cost: { goldFrag: 9500, polish: 95, bluePrint: 60, advancePolish: 0 } },
+  { id: 'Epic+ T2', rarity: 'Epic+', level: 2, index: 12, cost: { goldFrag: 11000, polish: 110, bluePrint: 65, advancePolish: 0 } },
+  { id: 'Epic+ T3', rarity: 'Epic+', level: 3, index: 13, cost: { goldFrag: 13000, polish: 130, bluePrint: 70, advancePolish: 0 } },
+  { id: 'Epic+ T4', rarity: 'Epic+', level: 4, index: 14, cost: { goldFrag: 16000, polish: 160, bluePrint: 100, advancePolish: 0 } },
   
   // LEGEND
-  { id: 'Legend T1', rarity: 'Legend', level: 1, index: 13, cost: { goldFrag: 20000, polish: 200, bluePrint: 45, advancePolish: 0 } },
-  { id: 'Legend T2', rarity: 'Legend', level: 2, index: 14, cost: { goldFrag: 22000, polish: 220, bluePrint: 50, advancePolish: 0 } },
-  { id: 'Legend T3', rarity: 'Legend', level: 3, index: 15, cost: { goldFrag: 24000, polish: 240, bluePrint: 55, advancePolish: 0 } },
-  { id: 'Legend T4', rarity: 'Legend', level: 4, index: 16, cost: { goldFrag: 26000, polish: 260, bluePrint: 60, advancePolish: 0 } },
+  { id: 'Legend T1', rarity: 'Legend', level: 1, index: 15, cost: { goldFrag: 21000, polish: 210, bluePrint: 50, advancePolish: 0 } },
+  { id: 'Legend T2', rarity: 'Legend', level: 2, index: 16, cost: { goldFrag: 22000, polish: 220, bluePrint: 50, advancePolish: 0 } },
+  { id: 'Legend T3', rarity: 'Legend', level: 3, index: 17, cost: { goldFrag: 24000, polish: 240, bluePrint: 55, advancePolish: 0 } },
+  { id: 'Legend T4', rarity: 'Legend', level: 4, index: 18, cost: { goldFrag: 26000, polish: 260, bluePrint: 60, advancePolish: 0 } },
 
   // LEGEND+
-  { id: 'Legend+ T1', rarity: 'Legend+', level: 1, index: 17, cost: { goldFrag: 28000, polish: 280, bluePrint: 55, advancePolish: 0 } },
-  { id: 'Legend+ T2', rarity: 'Legend+', level: 2, index: 18, cost: { goldFrag: 30000, polish: 300, bluePrint: 55, advancePolish: 0 } },
-  { id: 'Legend+ T3', rarity: 'Legend+', level: 3, index: 19, cost: { goldFrag: 32000, polish: 320, bluePrint: 60, advancePolish: 0 } },
-  { id: 'Legend+ T4', rarity: 'Legend+', level: 4, index: 20, cost: { goldFrag: 35000, polish: 350, bluePrint: 70, advancePolish: 0 } },
+  { id: 'Legend+ T1', rarity: 'Legend+', level: 1, index: 19, cost: { goldFrag: 28000, polish: 280, bluePrint: 55, advancePolish: 0 } },
+  { id: 'Legend+ T2', rarity: 'Legend+', level: 2, index: 20, cost: { goldFrag: 30000, polish: 300, bluePrint: 55, advancePolish: 0 } },
+  { id: 'Legend+ T3', rarity: 'Legend+', level: 3, index: 21, cost: { goldFrag: 32000, polish: 320, bluePrint: 60, advancePolish: 0 } },
+  { id: 'Legend+ T4', rarity: 'Legend+', level: 4, index: 22, cost: { goldFrag: 35000, polish: 350, bluePrint: 70, advancePolish: 0 } },
 
   // LEGEND++
-  { id: 'Legend++ T1', rarity: 'Legend++', level: 1, index: 21, cost: { goldFrag: 38000, polish: 380, bluePrint: 80, advancePolish: 0 } },
-  { id: 'Legend++ T2', rarity: 'Legend++', level: 2, index: 22, cost: { goldFrag: 42000, polish: 420, bluePrint: 85, advancePolish: 0 } },
-  { id: 'Legend++ T3', rarity: 'Legend++', level: 3, index: 23, cost: { goldFrag: 46000, polish: 460, bluePrint: 90, advancePolish: 0 } },
-  { id: 'Legend++ T4', rarity: 'Legend++', level: 4, index: 24, cost: { goldFrag: 50000, polish: 500, bluePrint: 100, advancePolish: 0 } },
+  { id: 'Legend++ T1', rarity: 'Legend++', level: 1, index: 23, cost: { goldFrag: 38000, polish: 380, bluePrint: 80, advancePolish: 0 } },
+  { id: 'Legend++ T2', rarity: 'Legend++', level: 2, index: 24, cost: { goldFrag: 42000, polish: 420, bluePrint: 85, advancePolish: 0 } },
+  { id: 'Legend++ T3', rarity: 'Legend++', level: 3, index: 25, cost: { goldFrag: 46000, polish: 460, bluePrint: 90, advancePolish: 0 } },
+  { id: 'Legend++ T4', rarity: 'Legend++', level: 4, index: 26, cost: { goldFrag: 50000, polish: 500, bluePrint: 100, advancePolish: 0 } },
 
   // MYTHIC
-  { id: 'Mythic T1', rarity: 'Mythic', level: 1, index: 25, cost: { goldFrag: 50000, polish: 528, bluePrint: 84, advancePolish: 8 } },
-  { id: 'Mythic T2', rarity: 'Mythic', level: 2, index: 26, cost: { goldFrag: 52000, polish: 560, bluePrint: 88, advancePolish: 8 } },
-  { id: 'Mythic T3', rarity: 'Mythic', level: 3, index: 27, cost: { goldFrag: 54000, polish: 588, bluePrint: 92, advancePolish: 8 } },
-  { id: 'Mythic T4', rarity: 'Mythic', level: 4, index: 28, cost: { goldFrag: 56000, polish: 620, bluePrint: 100, advancePolish: 8 } },
+  { id: 'Mythic T1', rarity: 'Mythic', level: 1, index: 27, cost: { goldFrag: 50000, polish: 528, bluePrint: 84, advancePolish: 8 } },
+  { id: 'Mythic T2', rarity: 'Mythic', level: 2, index: 28, cost: { goldFrag: 52000, polish: 560, bluePrint: 88, advancePolish: 8 } },
+  { id: 'Mythic T3', rarity: 'Mythic', level: 3, index: 29, cost: { goldFrag: 54000, polish: 588, bluePrint: 92, advancePolish: 8 } },
+  { id: 'Mythic T4', rarity: 'Mythic', level: 4, index: 30, cost: { goldFrag: 56000, polish: 620, bluePrint: 100, advancePolish: 8 } },
 
   // MYTHIC+
-  { id: 'Mythic+ T1', rarity: 'Mythic+', level: 1, index: 29, cost: { goldFrag: 59000, polish: 668, bluePrint: 108, advancePolish: 12 } },
-  { id: 'Mythic+ T2', rarity: 'Mythic+', level: 2, index: 30, cost: { goldFrag: 61000, polish: 700, bluePrint: 112, advancePolish: 12 } },
-  { id: 'Mythic+ T3', rarity: 'Mythic+', level: 3, index: 31, cost: { goldFrag: 63000, polish: 728, bluePrint: 116, advancePolish: 12 } },
-  { id: 'Mythic+ T4', rarity: 'Mythic+', level: 4, index: 32, cost: { goldFrag: 65000, polish: 760, bluePrint: 124, advancePolish: 12 } },
+  { id: 'Mythic+ T1', rarity: 'Mythic+', level: 1, index: 31, cost: { goldFrag: 59000, polish: 668, bluePrint: 108, advancePolish: 12 } },
+  { id: 'Mythic+ T2', rarity: 'Mythic+', level: 2, index: 32, cost: { goldFrag: 61000, polish: 700, bluePrint: 112, advancePolish: 12 } },
+  { id: 'Mythic+ T3', rarity: 'Mythic+', level: 3, index: 33, cost: { goldFrag: 63000, polish: 728, bluePrint: 116, advancePolish: 12 } },
+  { id: 'Mythic+ T4', rarity: 'Mythic+', level: 4, index: 34, cost: { goldFrag: 65000, polish: 760, bluePrint: 124, advancePolish: 12 } },
 
   // MYTHIC++
-  { id: 'Mythic++ T1', rarity: 'Mythic++', level: 1, index: 33, cost: { goldFrag: 68000, polish: 808, bluePrint: 132, advancePolish: 20 } },
-  { id: 'Mythic++ T2', rarity: 'Mythic++', level: 2, index: 34, cost: { goldFrag: 70000, polish: 840, bluePrint: 136, advancePolish: 20 } },
-  { id: 'Mythic++ T3', rarity: 'Mythic++', level: 3, index: 35, cost: { goldFrag: 72000, polish: 868, bluePrint: 140, advancePolish: 20 } },
-  { id: 'Mythic++ T4', rarity: 'Mythic++', level: 4, index: 36, cost: { goldFrag: 74000, polish: 900, bluePrint: 148, advancePolish: 20 } },
+  { id: 'Mythic++ T1', rarity: 'Mythic++', level: 1, index: 35, cost: { goldFrag: 68000, polish: 808, bluePrint: 132, advancePolish: 20 } },
+  { id: 'Mythic++ T2', rarity: 'Mythic++', level: 2, index: 36, cost: { goldFrag: 70000, polish: 840, bluePrint: 136, advancePolish: 20 } },
+  { id: 'Mythic++ T3', rarity: 'Mythic++', level: 3, index: 37, cost: { goldFrag: 72000, polish: 868, bluePrint: 140, advancePolish: 20 } },
+  { id: 'Mythic++ T4', rarity: 'Mythic++', level: 4, index: 38, cost: { goldFrag: 74000, polish: 900, bluePrint: 148, advancePolish: 20 } },
 
   // MYTHIC+++
-  { id: 'Mythic+++ T1', rarity: 'Mythic+++', level: 1, index: 37, cost: { goldFrag: 78000, polish: 956, bluePrint: 156, advancePolish: 24 } },
-  { id: 'Mythic+++ T2', rarity: 'Mythic+++', level: 2, index: 38, cost: { goldFrag: 80000, polish: 988, bluePrint: 164, advancePolish: 24 } },
-  { id: 'Mythic+++ T3', rarity: 'Mythic+++', level: 3, index: 39, cost: { goldFrag: 82000, polish: 1016, bluePrint: 168, advancePolish: 24 } },
-  { id: 'Mythic+++ T4', rarity: 'Mythic+++', level: 4, index: 40, cost: { goldFrag: 84000, polish: 1048, bluePrint: 172, advancePolish: 24 } },
+  { id: 'Mythic+++ T1', rarity: 'Mythic+++', level: 1, index: 39, cost: { goldFrag: 78000, polish: 956, bluePrint: 156, advancePolish: 24 } },
+  { id: 'Mythic+++ T2', rarity: 'Mythic+++', level: 2, index: 40, cost: { goldFrag: 80000, polish: 988, bluePrint: 164, advancePolish: 24 } },
+  { id: 'Mythic+++ T3', rarity: 'Mythic+++', level: 3, index: 41, cost: { goldFrag: 82000, polish: 1016, bluePrint: 168, advancePolish: 24 } },
+  { id: 'Mythic+++ T4', rarity: 'Mythic+++', level: 4, index: 42, cost: { goldFrag: 84000, polish: 1048, bluePrint: 172, advancePolish: 24 } },
 
   // MYTHIC++++
-  { id: 'Mythic++++ T1', rarity: 'Mythic++++', level: 1, index: 41, cost: { goldFrag: 88000, polish: 1100, bluePrint: 180, advancePolish: 28 } },
-  { id: 'Mythic++++ T2', rarity: 'Mythic++++', level: 2, index: 42, cost: { goldFrag: 92000, polish: 1150, bluePrint: 190, advancePolish: 28 } },
-  { id: 'Mythic++++ T3', rarity: 'Mythic++++', level: 3, index: 43, cost: { goldFrag: 96000, polish: 1200, bluePrint: 200, advancePolish: 28 } },
-  { id: 'Mythic++++ T4', rarity: 'Mythic++++', level: 4, index: 44, cost: { goldFrag: 100000, polish: 1250, bluePrint: 210, advancePolish: 28 } }
+  { id: 'Mythic++++ T1', rarity: 'Mythic++++', level: 1, index: 43, cost: { goldFrag: 88000, polish: 1100, bluePrint: 180, advancePolish: 28 } },
+  { id: 'Mythic++++ T2', rarity: 'Mythic++++', level: 2, index: 44, cost: { goldFrag: 92000, polish: 1150, bluePrint: 190, advancePolish: 28 } },
+  { id: 'Mythic++++ T3', rarity: 'Mythic++++', level: 3, index: 45, cost: { goldFrag: 96000, polish: 1200, bluePrint: 200, advancePolish: 28 } },
+  { id: 'Mythic++++ T4', rarity: 'Mythic++++', level: 4, index: 46, cost: { goldFrag: 100000, polish: 1250, bluePrint: 210, advancePolish: 28 } }
 ];
 
 export const getCostBetweenTiers = (startIdx: number, endIdx: number) => {
-  let totals = { goldFrag: 0, polish: 0, bluePrint: 0, advancePolish: 0 };
+  const totals = { goldFrag: 0, polish: 0, bluePrint: 0, advancePolish: 0 };
   if (startIdx >= endIdx) return totals;
 
   // The cost at index 'i' represents the cost to upgrade TO index 'i' FROM 'i-1'.
@@ -102,6 +106,7 @@ export const getCostBetweenTiers = (startIdx: number, endIdx: number) => {
 
 export const getRarityStyle = (rarity: TreasureRarity) => {
   switch(rarity) {
+    case 'Advanced': return { border: 'border-green-500/50', text: 'text-green-400', bg: 'bg-green-900/10', shadow: 'shadow-[0_0_20px_rgba(34,197,94,0.3)]', gradient: 'from-green-500/0 via-green-500 to-green-500/0', hover: 'hover:border-green-500/50 hover:bg-green-900/20', from: 'from-green-900/30', to: 'to-green-900/30', glow: 'bg-green-500' };
     case 'Rare': return { border: 'border-blue-500/50', text: 'text-blue-400', bg: 'bg-blue-900/10', shadow: 'shadow-[0_0_20px_rgba(59,130,246,0.3)]', gradient: 'from-blue-500/0 via-blue-500 to-blue-500/0', hover: 'hover:border-blue-500/50 hover:bg-blue-900/20', from: 'from-blue-900/30', to: 'to-blue-900/30', glow: 'bg-blue-500' };
     case 'Epic': return { border: 'border-purple-500/50', text: 'text-purple-400', bg: 'bg-purple-900/10', shadow: 'shadow-[0_0_20px_rgba(168,85,247,0.3)]', gradient: 'from-purple-500/0 via-purple-500 to-purple-500/0', hover: 'hover:border-purple-500/50 hover:bg-purple-900/20', from: 'from-purple-900/30', to: 'to-purple-900/30', glow: 'bg-purple-500' };
     case 'Epic+': return { border: 'border-fuchsia-500/50', text: 'text-fuchsia-400', bg: 'bg-fuchsia-900/10', shadow: 'shadow-[0_0_20px_rgba(217,70,239,0.3)]', gradient: 'from-fuchsia-500/0 via-fuchsia-500 to-fuchsia-500/0', hover: 'hover:border-fuchsia-500/50 hover:bg-fuchsia-900/20', from: 'from-fuchsia-900/30', to: 'to-fuchsia-900/30', glow: 'bg-fuchsia-500' };
