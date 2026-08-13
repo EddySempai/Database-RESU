@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import type { LuminioNodeConfig } from '../data/luminio';
 import * as LucideIcons from 'lucide-react';
 
@@ -10,6 +11,7 @@ interface LuminioNodeProps {
 }
 
 const LuminioNode: React.FC<LuminioNodeProps> = ({ node, baseLevel, targetLevel, onClick }) => {
+  const { t } = useTranslation();
   const IconComponent = (LucideIcons as any)[node.icon] || LucideIcons.Circle;
   const isMax = targetLevel === node.maxLevel;
   const isActive = targetLevel > 0;
@@ -57,9 +59,11 @@ const LuminioNode: React.FC<LuminioNodeProps> = ({ node, baseLevel, targetLevel,
         </div>
       </div>
       
-      {/* Tooltip on hover */}
-      <div className="absolute top-full mt-4 bg-black/95 border border-gray-700 px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50 pointer-events-none shadow-xl">
-        <p className="text-sm font-medium text-white">{node.defaultName}</p>
+      {/* Persistent Wrapping Label */}
+      <div className="absolute top-full mt-3 w-20 md:w-24 flex flex-col items-center pointer-events-none">
+        <p className="text-[9px] md:text-[10px] leading-tight text-center text-gray-400 font-medium font-sans drop-shadow-md">
+          {t(node.nameKey, node.defaultName)}
+        </p>
       </div>
     </div>
   );

@@ -117,8 +117,8 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
     <div className="w-full max-w-6xl mx-auto my-8 bg-black/40 border border-gray-800 rounded-3xl overflow-hidden backdrop-blur-sm shadow-2xl">
       <div className="relative p-6 md:p-8 border-b border-yellow-500/30 bg-gradient-to-r from-yellow-500/20 via-black/40 to-transparent overflow-hidden">
         <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-yellow-500/10 to-transparent blur-xl pointer-events-none" />
-        <h2 className="relative z-10 text-3xl md:text-5xl font-bebas tracking-widest text-white drop-shadow-md text-center">
-          SIMULADOR DE INVESTIGACION DE <span className="text-yellow-500">LUMINIO</span>
+        <h2 className="relative z-10 text-3xl md:text-5xl font-bebas tracking-widest text-white drop-shadow-md text-center uppercase">
+          {t('luminio.title_prefix')} <span className="text-yellow-500">{t('luminio.title_highlight')}</span>
         </h2>
       </div>
 
