@@ -4,14 +4,15 @@ import * as LucideIcons from 'lucide-react';
 
 interface LuminioNodeProps {
   node: LuminioNodeConfig;
-  level: number;
+  baseLevel: number;
+  targetLevel: number;
   onClick: () => void;
 }
 
-const LuminioNode: React.FC<LuminioNodeProps> = ({ node, level, onClick }) => {
+const LuminioNode: React.FC<LuminioNodeProps> = ({ node, baseLevel, targetLevel, onClick }) => {
   const IconComponent = (LucideIcons as any)[node.icon] || LucideIcons.Circle;
-  const isMax = level === node.maxLevel;
-  const isActive = level > 0;
+  const isMax = targetLevel === node.maxLevel;
+  const isActive = targetLevel > 0;
   
   let glowColor = '';
   let bgColor = 'bg-gray-900';
@@ -52,7 +53,7 @@ const LuminioNode: React.FC<LuminioNodeProps> = ({ node, level, onClick }) => {
           ${isActive ? 'bg-black border-gray-600 text-white' : 'bg-gray-900 border-gray-800 text-gray-500'}
           ${isMax ? 'text-yellow-400 border-yellow-600/50 shadow-[0_0_5px_rgba(234,179,8,0.3)]' : ''}
         `}>
-          {level}/{node.maxLevel}
+          {baseLevel === targetLevel ? `${targetLevel}/${node.maxLevel}` : `${baseLevel} ➔ ${targetLevel}/${node.maxLevel}`}
         </div>
       </div>
       

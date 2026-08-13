@@ -3,6 +3,7 @@ import TrainingCalculator from '../components/TrainingCalculator';
 import Treasures from '../components/Treasures';
 import Jewels from '../components/Jewels';
 import LuminioTree from '../components/LuminioTree';
+import { LUMINIO_NODES } from '../data/luminio';
 import RedQueenAI from '../components/RedQueenAI';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,10 +11,99 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Calculadoras = () => {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('training');
-  const [luminioLevels, setLuminioLevels] = useState<Record<string, number>>({});
+  const [luminioBase, setLuminioBase] = useState<Record<string, number>>({});
+  const [luminioTarget, setLuminioTarget] = useState<Record<string, number>>({});
 
-  const handleLuminioLevelChange = (id: string, newLevel: number) => {
-    setLuminioLevels(prev => ({ ...prev, [id]: newLevel }));
+  const handleLuminioBaseChange = (id: string, newLevel: number) => {
+    setLuminioBase(prevBase => {
+      const updatedBase = { ...prevBase, [id]: newLevel };
+      
+      if (newLevel > 0) {
+        const autoActivate = (nodeId: string) => {
+          const node = LUMINIO_NODES.find(n => n.id === nodeId);
+          if (!node) return;
+          node.dependencies.forEach(depId => {
+            const depNode = LUMINIO_NODES.find(n => n.id === depId);
+            if (depNode) {
+              if (!updatedBase[depId] || updatedBase[depId] < depNode.maxLevel) {
+                updatedBase[depId] = depNode.maxLevel;
+              }
+              autoActivate(depId);
+            }
+          });
+        };
+        autoActivate(id);
+      }
+      
+      if (newLevel === 0) {
+        const autoDeactivate = (nodeId: string) => {
+           const dependents = LUMINIO_NODES.filter(n => n.dependencies.includes(nodeId));
+           dependents.forEach(dep => {
+             if (updatedBase[dep.id] > 0) {
+               updatedBase[dep.id] = 0;
+               autoDeactivate(dep.id);
+             }
+           });
+        };
+        autoDeactivate(id);
+      }
+      
+      // Also ensure target is at least base
+      setLuminioTarget(prevTarget => {
+        const newTarget = { ...prevTarget };
+        let targetChanged = false;
+        
+        // Ensure all bases are reflected in targets
+        Object.entries(updatedBase).forEach(([bId, bLevel]) => {
+           if ((newTarget[bId] || 0) < bLevel) {
+             newTarget[bId] = bLevel;
+             targetChanged = true;
+           }
+        });
+        
+        return targetChanged ? newTarget : prevTarget;
+      });
+
+      return updatedBase;
+    });
+  };
+
+  const handleLuminioTargetChange = (id: string, newLevel: number) => {
+    setLuminioTarget(prevTarget => {
+      const updatedTarget = { ...prevTarget, [id]: newLevel };
+      
+      if (newLevel > 0) {
+        const autoActivate = (nodeId: string) => {
+          const node = LUMINIO_NODES.find(n => n.id === nodeId);
+          if (!node) return;
+          node.dependencies.forEach(depId => {
+            const depNode = LUMINIO_NODES.find(n => n.id === depId);
+            if (depNode) {
+              if (!updatedTarget[depId] || updatedTarget[depId] < depNode.maxLevel) {
+                updatedTarget[depId] = depNode.maxLevel;
+              }
+              autoActivate(depId);
+            }
+          });
+        };
+        autoActivate(id);
+      }
+      
+      if (newLevel === 0) {
+        const autoDeactivate = (nodeId: string) => {
+           const dependents = LUMINIO_NODES.filter(n => n.dependencies.includes(nodeId));
+           dependents.forEach(dep => {
+             if (updatedTarget[dep.id] > 0) {
+               updatedTarget[dep.id] = 0;
+               autoDeactivate(dep.id);
+             }
+           });
+        };
+        autoDeactivate(id);
+      }
+
+      return updatedTarget;
+    });
   };
 
   return (
@@ -76,7 +166,12 @@ const Calculadoras = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
           >
-            <LuminioTree levels={luminioLevels} onLevelChange={handleLuminioLevelChange} />
+            <LuminioTree 
+              baseLevels={luminioBase} 
+              targetLevels={luminioTarget} 
+              onBaseChange={handleLuminioBaseChange} 
+              onTargetChange={handleLuminioTargetChange} 
+            />
           </motion.div>
         )}
       </AnimatePresence>

@@ -5,14 +5,14 @@ const NewsSection = () => {
   const { t } = useTranslation();
   const news = [
     {
-      date: "15 NOV 2025",
-      tag: t('home.update'),
+      date: "12 AGO 2026",
+      tag: t('home.new_tool'),
       title: t('home.news_1_title'),
       excerpt: t('home.news_1_desc')
     },
     {
-      date: "02 NOV 2025",
-      tag: t('home.new_op'),
+      date: "12 AGO 2026",
+      tag: t('home.new_tool'),
       title: t('home.news_2_title'),
       excerpt: t('home.news_2_desc')
     },
