@@ -1,20 +1,31 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useSound } from '../contexts/SoundContext';
 
 const Hero = () => {
   const { t } = useTranslation();
+  const { soundEnabled } = useSound();
   return (
     <section className="relative h-[80vh] min-h-[600px] flex flex-col items-center justify-center overflow-hidden z-10 pt-20">
-      {/* Background Image & Vignette */}
+      {/* Background Video & Vignette */}
       <div 
-        className="absolute inset-0 z-0 opacity-50 bg-cover bg-top bg-no-repeat"
+        className="absolute inset-0 z-0 opacity-50"
         style={{ 
-          backgroundImage: 'url(/hero_bg.webp)',
           maskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)',
           WebkitMaskImage: 'linear-gradient(to bottom, black 50%, transparent 100%)'
         }}
-      />
+      >
+        <video 
+          autoPlay 
+          loop 
+          muted={!soundEnabled}
+          playsInline 
+          className="w-full h-full object-cover object-center"
+        >
+          <source src="/hero_bg.mp4" type="video/mp4" />
+        </video>
+      </div>
       <div className="absolute inset-0 z-0 bg-radial-vignette opacity-80" />
       
       {/* Fade out to the page background color */}

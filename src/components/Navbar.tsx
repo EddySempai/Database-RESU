@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Shield, BookOpen, Calculator, Trophy, Users, BarChart2, Globe } from 'lucide-react';
+import { Menu, X, Shield, BookOpen, Calculator, Trophy, Users, BarChart2, Globe, Volume2, VolumeX } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useSound } from '../contexts/SoundContext';
 
 const Navbar = () => {
   const { t, i18n } = useTranslation();
+  const { soundEnabled, toggleSound, playHover, playClick } = useSound();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -40,7 +42,7 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 cursor-pointer">
+          <Link to="/" className="flex items-center gap-3 cursor-pointer" onMouseEnter={playHover} onClick={playClick}>
             <div className="w-8 h-8 bg-blood-red rounded-sm flex items-center justify-center transform rotate-45">
               <div className="w-6 h-6 border border-black transform -rotate-45 flex items-center justify-center">
                 <span className="font-bebas text-black text-xl leading-none pt-1">RE</span>
@@ -58,7 +60,9 @@ const Navbar = () => {
               <Link 
                 key={idx} 
                 to={link.href}
+                onMouseEnter={playHover}
                 onClick={() => {
+                  playClick();
                   if (window.location.pathname === link.href) {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }
@@ -72,16 +76,25 @@ const Navbar = () => {
 
             {/* Language Switcher */}
             <div className="relative group ml-4">
-              <button className="flex items-center gap-2 text-gray-300 hover:text-white font-mono text-xs uppercase transition-colors">
+              <button onMouseEnter={playHover} className="flex items-center gap-2 text-gray-300 hover:text-white font-mono text-xs uppercase transition-colors">
                 <Globe size={16} className="text-neon-red" />
                 {i18n.language.toUpperCase()}
               </button>
               <div className="absolute right-0 top-full mt-2 w-32 bg-black border border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col">
-                <button onClick={() => changeLanguage('es')} className={`px-4 py-3 text-left font-mono text-xs uppercase hover:bg-blood-red/20 hover:text-white transition-colors ${i18n.language === 'es' ? 'text-white border-l-2 border-blood-red' : 'text-gray-400'}`}>ES Español</button>
-                <button onClick={() => changeLanguage('en')} className={`px-4 py-3 text-left font-mono text-xs uppercase hover:bg-blood-red/20 hover:text-white transition-colors ${i18n.language === 'en' ? 'text-white border-l-2 border-blood-red' : 'text-gray-400'}`}>EN English</button>
-                <button onClick={() => changeLanguage('ja')} className={`px-4 py-3 text-left font-mono text-xs uppercase hover:bg-blood-red/20 hover:text-white transition-colors ${i18n.language === 'ja' ? 'text-white border-l-2 border-blood-red' : 'text-gray-400'}`}>JA 日本語</button>
+                <button onMouseEnter={playHover} onClick={() => { playClick(); changeLanguage('es'); }} className={`px-4 py-3 text-left font-mono text-xs uppercase hover:bg-blood-red/20 hover:text-white transition-colors ${i18n.language === 'es' ? 'text-white border-l-2 border-blood-red' : 'text-gray-400'}`}>ES Español</button>
+                <button onMouseEnter={playHover} onClick={() => { playClick(); changeLanguage('en'); }} className={`px-4 py-3 text-left font-mono text-xs uppercase hover:bg-blood-red/20 hover:text-white transition-colors ${i18n.language === 'en' ? 'text-white border-l-2 border-blood-red' : 'text-gray-400'}`}>EN English</button>
+                <button onMouseEnter={playHover} onClick={() => { playClick(); changeLanguage('ja'); }} className={`px-4 py-3 text-left font-mono text-xs uppercase hover:bg-blood-red/20 hover:text-white transition-colors ${i18n.language === 'ja' ? 'text-white border-l-2 border-blood-red' : 'text-gray-400'}`}>JA 日本語</button>
               </div>
             </div>
+            
+            {/* Sound Toggle */}
+            <button 
+              onClick={toggleSound}
+              className="text-gray-400 hover:text-white transition-colors p-2"
+              title={soundEnabled ? "Mute sound" : "Enable sound"}
+            >
+              {soundEnabled ? <Volume2 size={18} className="text-neon-red" /> : <VolumeX size={18} />}
+            </button>
           </div>
 
           {/* Mobile Right Controls */}
@@ -93,6 +106,13 @@ const Navbar = () => {
             >
               <Globe size={14} className="text-neon-red" />
               <span>{i18n.language.toUpperCase()}</span>
+            </button>
+            <button 
+              onClick={toggleSound}
+              className="text-gray-300 hover:text-white p-1"
+              title={soundEnabled ? "Mute sound" : "Enable sound"}
+            >
+              {soundEnabled ? <Volume2 size={16} className="text-neon-red" /> : <VolumeX size={16} />}
             </button>
             <button 
               className="text-gray-300 hover:text-white p-1"

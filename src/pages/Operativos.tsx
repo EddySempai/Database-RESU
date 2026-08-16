@@ -4,6 +4,7 @@ import { Target, Search, Filter, Shield, Crosshair } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useOperativos } from '../hooks/useOperativos';
+import { useSound } from '../contexts/SoundContext';
 
 const isDefender = (type: string) => type?.toLowerCase().includes('defen') || type?.includes('ディフェン');
 const isAttacker = (type: string) => type?.toLowerCase().includes('atac') || type?.toLowerCase().includes('attack') || type?.includes('アタッカー');
@@ -27,6 +28,7 @@ const getUnitIcon = (type: string) => {
 
 const Heroes = () => {
   const { t } = useTranslation();
+  const { playHover, playClick } = useSound();
   const operativosData = useOperativos();
   const [searchTerm, setSearchTerm] = useState('');
   const [showFilters, setShowFilters] = useState(false);
@@ -74,7 +76,8 @@ const Heroes = () => {
             />
           </div>
           <button 
-            onClick={() => setShowFilters(!showFilters)}
+            onMouseEnter={playHover}
+            onClick={() => { playClick(); setShowFilters(!showFilters); }}
             className={`border px-4 py-2 transition-colors flex items-center gap-2 ${showFilters ? 'bg-blood-red text-white border-blood-red' : 'bg-blood-red/20 border-blood-red/50 text-neon-red hover:bg-blood-red hover:text-white'}`}
           >
             <Filter size={18} />
@@ -99,7 +102,8 @@ const Heroes = () => {
                   {['Todos', ...Array.from(new Set(operativosData.map((o:any) => o.unitType).filter(t => t && !t.includes('Desconocido') && !t.includes('Unknown') && !t.includes('不明'))))].map(type => (
                     <button
                       key={type}
-                      onClick={() => setFilterType(type)}
+                      onMouseEnter={playHover}
+                      onClick={() => { playClick(); setFilterType(type); }}
                       className={`text-xs font-mono px-2 py-1 border transition-colors ${filterType === type ? 'bg-white/10 border-white text-white' : 'bg-black border-gray-800 text-gray-400 hover:border-gray-500'}`}
                     >
                       {type}
@@ -114,7 +118,8 @@ const Heroes = () => {
                   {['Todos', ...Array.from(new Set(operativosData.map((o:any) => getRarity(o))))].map(rarity => (
                     <button
                       key={rarity}
-                      onClick={() => setFilterRarity(rarity)}
+                      onMouseEnter={playHover}
+                      onClick={() => { playClick(); setFilterRarity(rarity); }}
                       className={`text-xs font-mono px-2 py-1 border transition-colors ${filterRarity === rarity ? 'bg-white/10 border-white text-white' : 'bg-black border-gray-800 text-gray-400 hover:border-gray-500'}`}
                     >
                       {rarity}
@@ -140,6 +145,8 @@ const Heroes = () => {
             <Link 
               to={`/heroes/${op.id}`}
               key={idx} 
+              onMouseEnter={playHover}
+              onClick={playClick}
               className={`group relative bg-[#050505] border ${isLegendary(op.rarity) ? 'border-yellow-600/30 hover:border-yellow-500/80 shadow-[0_0_10px_rgba(202,138,4,0.05)] hover:shadow-[0_0_15px_rgba(202,138,4,0.2)] card-shine' : (isCommon(op.rarity) ? 'border-blue-900/50 hover:border-blue-500/80' : 'border-purple-900/50 hover:border-purple-500/80')} overflow-hidden cursor-pointer transition-all duration-300 flex flex-col h-[280px]`}
             >
               <motion.div 

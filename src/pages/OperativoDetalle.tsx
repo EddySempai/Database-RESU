@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { BookOpen, Star, Sword, Shield, Heart, ChevronLeft, Crosshair, Users } from 'lucide-react';
+import { BookOpen, Star, Sword, Shield, Heart, ChevronLeft, Crosshair, Users, Volume2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useOperativos } from '../hooks/useOperativos';
+import { useSound } from '../contexts/SoundContext';
 import { calculateRequiredExp, calculateRequiredContracts, calculateSkillBooks, getMaxSkillsByRarity } from '../utils/calculators';
 import EquipamientoView from '../components/EquipamientoView';
 
@@ -84,7 +85,8 @@ const CHARACTER_BG_MAP: Record<string, string> = {
 };
 
 const OperativoDetalle = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { playVoice, playHover, playClick } = useSound();
   const operativosData = useOperativos();
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState('skills');
@@ -109,7 +111,12 @@ const OperativoDetalle = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    if (op) {
+      setTimeout(() => {
+        playVoice(op.id, i18n.language);
+      }, 500);
+    }
+  }, [op?.id, i18n.language]);
 
   if (!op) {
     return (
@@ -173,7 +180,12 @@ const OperativoDetalle = () => {
 
       {/* Top Back Link */}
       <div className="mb-6 flex items-center justify-between">
-        <Link to="/operativos" className="inline-flex items-center gap-2 text-gray-400 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors bg-black/60 border border-gray-800 hover:border-gray-600 px-3.5 py-2 rounded-sm shadow-md">
+        <Link 
+          to="/operativos" 
+          onMouseEnter={playHover}
+          onClick={playClick}
+          className="inline-flex items-center gap-2 text-gray-400 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors bg-black/60 border border-gray-800 hover:border-gray-600 px-3.5 py-2 rounded-sm shadow-md"
+        >
           <ChevronLeft size={16} /> {t('op_detail.back_to_db')}
         </Link>
       </div>
@@ -193,7 +205,8 @@ const OperativoDetalle = () => {
               {tabs.map(tab => (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onMouseEnter={playHover}
+                  onClick={() => { playClick(); setActiveTab(tab.id); }}
                   className={`shrink-0 whitespace-nowrap font-mono text-[11px] sm:text-xs uppercase tracking-wider px-3.5 py-2 sm:px-5 sm:py-2.5 transition-all cursor-pointer rounded-t-sm ${
                     activeTab === tab.id 
                     ? (tab.id === 'equipment' 
@@ -231,8 +244,16 @@ const OperativoDetalle = () => {
                 />
               )}
               <div className="absolute inset-0 bg-blood-red/5 pointer-events-none" />
-              <h1 className="font-bebas text-3xl sm:text-4xl text-white tracking-widest relative z-10 drop-shadow-[0_0_10px_rgba(255,42,42,0.5)]">
+              <h1 className="font-bebas text-3xl sm:text-4xl text-white tracking-widest relative z-10 drop-shadow-[0_0_10px_rgba(255,42,42,0.5)] flex items-center gap-3">
                 {op.name}
+                <button 
+                  onClick={() => { playClick(); playVoice(op.id, i18n.language); }}
+                  onMouseEnter={playHover}
+                  className="text-gray-400 hover:text-white transition-colors"
+                  title={t('nav.home') /* Using this for now, though it should be localized 'Play Voice' */}
+                >
+                  <Volume2 size={24} />
+                </button>
               </h1>
               <div className="flex items-center gap-3 mb-4 sm:mb-6 relative z-10 flex-wrap">
                 <p className="font-mono text-gray-200 font-bold text-xs uppercase tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">{t('op_detail.tactical_dossier')}</p>
