@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Shield, BookOpen, Calculator, Trophy, Users, BarChart2, Globe, Volume2, VolumeX } from 'lucide-react';
+import { Menu, X, Shield, BookOpen, Calculator, Trophy, Users, BarChart2, Globe, Volume2, VolumeX, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSound } from '../contexts/SoundContext';
@@ -86,7 +86,17 @@ const Navbar = () => {
                 <button onMouseEnter={playHover} onClick={() => { playClick(); changeLanguage('ja'); }} className={`px-4 py-3 text-left font-mono text-xs uppercase hover:bg-blood-red/20 hover:text-white transition-colors ${i18n.language === 'ja' ? 'text-white border-l-2 border-blood-red' : 'text-gray-400'}`}>JA 日本語</button>
               </div>
             </div>
-            
+            {/* Admin Access */}
+            <Link 
+              to="/admin"
+              onMouseEnter={playHover}
+              onClick={playClick}
+              className="text-gray-400 hover:text-white transition-colors p-2 ml-2"
+              title="Admin Dashboard"
+            >
+              <Settings size={18} className="hover:text-neon-red transition-colors" />
+            </Link>
+
             {/* Sound Toggle */}
             <button 
               onClick={toggleSound}
@@ -107,6 +117,13 @@ const Navbar = () => {
               <Globe size={14} className="text-neon-red" />
               <span>{i18n.language.toUpperCase()}</span>
             </button>
+            <Link 
+              to="/admin"
+              className="text-gray-300 hover:text-white p-1 ml-1"
+              title="Admin Dashboard"
+            >
+              <Settings size={16} className="hover:text-neon-red transition-colors" />
+            </Link>
             <button 
               onClick={toggleSound}
               className="text-gray-300 hover:text-white p-1"
