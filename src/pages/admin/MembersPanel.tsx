@@ -25,6 +25,8 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   const [newNickname, setNewNickname] = useState('');
   const [newRank, setNewRank] = useState('R1');
   const [newType, setNewType] = useState<'main' | 'alt'>('main');
+  const [newPower, setNewPower] = useState(0);
+  const [newMansionLevel, setNewMansionLevel] = useState(1);
 
   useEffect(() => {
     fetchMembers();
@@ -60,6 +62,8 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           nickname: newNickname.trim(),
           rank: newRank,
           account_type: newType,
+          power: newPower,
+          mansion_level: newMansionLevel,
           alliance_name: activeAlliance
         }])
         .select();
@@ -70,6 +74,8 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         setNewNickname('');
         setNewRank('R1');
         setNewType('main');
+        setNewPower(0);
+        setNewMansionLevel(1);
       }
     } catch (err) {
       console.error('Error adding member:', err);
@@ -109,7 +115,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
       {/* Add Form */}
       <form onSubmit={handleAddMember} className="bg-[#0a0a0a] border border-gray-800 p-6">
-        <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="flex-1 grid grid-cols-2 lg:grid-cols-6 gap-6">
           <div>
             <label className="block font-mono text-xs text-gray-500 mb-2">Nombre</label>
             <input 
@@ -125,6 +131,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             <RankSelect 
               value={newRank}
               onChange={(val) => setNewRank(val)}
+              className="w-full bg-[#111] border border-gray-700 hover:border-gray-500 focus:border-neon-red text-gray-300 font-mono text-sm text-left px-3 py-2 flex justify-between items-center transition-colors"
             />
           </div>
           <div>
@@ -132,6 +139,23 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             <AccountTypeSelect 
               value={newType}
               onChange={(val) => setNewType(val as 'main'|'alt')}
+              className="w-full bg-[#111] border border-gray-700 hover:border-gray-500 focus:border-neon-red text-gray-300 font-mono text-sm text-left px-3 py-2 flex justify-between items-center transition-colors"
+            />
+          </div>
+          <div>
+            <label className="block font-mono text-xs text-gray-500 mb-2">Poder</label>
+            <PowerInput 
+              value={newPower}
+              onChange={setNewPower}
+              className="w-full bg-[#111] border border-gray-700 hover:border-gray-500 focus:border-neon-red text-white font-mono text-sm focus:outline-none transition-colors px-3 py-2"
+            />
+          </div>
+          <div>
+            <label className="block font-mono text-xs text-gray-500 mb-2">Mansión</label>
+            <MansionSelect 
+              value={newMansionLevel}
+              onChange={setNewMansionLevel}
+              className="w-full bg-[#111] border border-gray-700 hover:border-gray-500 focus:border-neon-red text-gray-300 font-mono text-sm text-left px-3 py-2 flex justify-between items-center transition-colors"
             />
           </div>
           <div className="flex items-end">
