@@ -64,7 +64,7 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-[#050505] text-white flex flex-col md:flex-row relative z-10">
       {/* Sidebar */}
-      <div className="w-full md:w-64 bg-black/90 border-r border-gray-800 flex flex-col h-auto md:h-screen sticky top-0">
+      <div className="w-full md:w-64 bg-black/90 border-r border-gray-800 flex flex-col h-auto md:h-screen sticky top-0 shrink-0 self-start">
         <div className="p-6 border-b border-gray-800 relative">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-blood-red/20 border border-blood-red/50 flex items-center justify-center rounded-sm">
@@ -150,15 +150,15 @@ const AdminDashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col h-screen overflow-hidden">
+      <div className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <div className="p-6 border-b border-gray-800 flex justify-between items-center bg-black/50">
+        <div className="p-6 border-b border-gray-800 flex justify-between items-center bg-black/50 sticky top-0 z-20 backdrop-blur-md">
           <h1 className="font-bebas text-2xl tracking-widest text-white">
             {activeTab === 'activity' ? 'Auditoría Semanal' : activeTab === 'analytics' ? 'Análisis de Crecimiento' : 'Registro de Operativos'}
           </h1>
         </div>
 
-        <div className="flex-1 p-6 overflow-hidden">
+        <div className="flex-1 p-6">
           {activeTab === 'activity' && <ActivityPanel activeAlliance={activeAlliance} />}
           {activeTab === 'members' && <MembersPanel activeAlliance={activeAlliance} />}
           {activeTab === 'analytics' && <AnalyticsPanel activeAlliance={activeAlliance} />}
