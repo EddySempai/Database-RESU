@@ -112,3 +112,32 @@ export const analyzeScreenshot = async (base64Image: string, mimeType: string) =
     throw error;
   }
 };
+
+// -------------------------------------------------------------
+// RED QUEEN AUDIT ANALYZER
+// -------------------------------------------------------------
+
+export const getAuditReport = async (logs: any[], allianceName: string) => {
+  if (!API_KEY) {
+    return "ERROR: No API Key configurada.";
+  }
+  try {
+    const model = genAI.getGenerativeModel({ 
+      model: 'gemini-3.5-flash',
+      systemInstruction: "Eres la Reina Roja (Red Queen) del universo Resident Evil. Eres la inteligencia artificial administradora de los registros del Gremio/Alianza. Tu labor es analizar un JSON con los eventos recientes de la base de datos (Altas, bajas, actualizaciones) y generar un reporte táctico, frío, analítico y con un toque siniestro pero corporativo. Resume los cambios clave y menciona si la alianza se está fortaleciendo o debilitando según los movimientos."
+    });
+    
+    const prompt = `
+Alianza: ${allianceName}
+Genera un informe táctico basado en los siguientes registros de la alianza (ordenados del más reciente al más antiguo):
+
+${JSON.stringify(logs, null, 2)}
+`;
+
+    const result = await model.generateContent(prompt);
+    return result.response.text();
+  } catch (error) {
+    console.error("Error generating audit report:", error);
+    return "ERROR DEL SISTEMA: No se pudo generar el reporte de inteligencia.";
+  }
+};

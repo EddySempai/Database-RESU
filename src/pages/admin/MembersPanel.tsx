@@ -12,6 +12,7 @@ interface Member {
   power: number;
   mansion_level: number;
   is_active: boolean;
+  status: 'active' | 'inactive' | 'kicked';
   alliance_name: string;
 }
 
@@ -20,6 +21,21 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive' | 'kicked'>('active');
+
+  const logAudit = async (action_type: string, target_name: string, details?: string) => {
+    try {
+      await supabase.from('audit_logs').insert([{
+        alliance_name: activeAlliance,
+        admin_name: 'Admin',
+        action_type,
+        target_name,
+        details
+      }]);
+    } catch (err) {
+      console.error('Audit log failed', err);
+    }
+  };
 
   // Form state
   const [newNickname, setNewNickname] = useState('');
@@ -64,6 +80,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           account_type: newType,
           power: newPower,
           mansion_level: newMansionLevel,
+          status: 'active',
           alliance_name: activeAlliance
         }])
         .select();
@@ -76,6 +93,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         setNewType('main');
         setNewPower(0);
         setNewMansionLevel(1);
+        await logAudit('ADD_MEMBER', data[0].nickname, `Rango: ${newRank}, Poder: ${newPower}`);
       }
     } catch (err) {
       console.error('Error adding member:', err);
@@ -85,6 +103,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
   const updateMember = async (id: string, field: string, value: any) => {
     try {
+      const member = members.find(m => m.id === id);
       // Optimistic update
       setMembers(members.map(m => m.id === id ? { ...m, [field]: value } : m));
       
@@ -94,6 +113,16 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         .eq('id', id);
 
       if (error) throw error;
+      
+      if (member) {
+        if (field === 'status' && value === 'kicked') {
+          await logAudit('KICK_MEMBER', member.nickname, 'Expulsado de la alianza');
+        } else if (field === 'status' && value === 'active') {
+          await logAudit('RESTORE_MEMBER', member.nickname, 'Restaurado a la alianza');
+        } else if (field === 'status' && value === 'inactive') {
+          await logAudit('INACTIVE_MEMBER', member.nickname, 'Marcado como inactivo');
+        }
+      }
     } catch (err) {
       console.error('Error updating member:', err);
       fetchMembers(); // Revert on error
@@ -101,7 +130,8 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   };
 
   const filteredMembers = members.filter(m => 
-    m.nickname.toLowerCase().includes(searchTerm.toLowerCase())
+    m.nickname.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (filterStatus === 'all' || (m.status || (m.is_active ? 'active' : 'inactive')) === filterStatus)
   );
 
   return (
@@ -183,6 +213,16 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
               className="w-full bg-black border border-gray-700 text-white pl-9 pr-3 py-1.5 font-mono text-xs focus:outline-none focus:border-neon-red"
             />
           </div>
+          <select
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value as any)}
+            className="bg-black border border-gray-700 text-gray-300 font-mono text-xs focus:outline-none focus:border-neon-red py-1.5 px-3"
+          >
+            <option value="active">Activos</option>
+            <option value="inactive">Inactivos</option>
+            <option value="kicked">Ex-Miembros</option>
+            <option value="all">Todos</option>
+          </select>
         </div>
 
         <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
@@ -232,12 +272,30 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                     />
                   </td>
                   <td className="py-4 px-4 flex flex-col gap-2 items-center">
-                    <button 
-                      onClick={() => updateMember(member.id, 'is_active', !member.is_active)}
-                      className={`font-mono text-xs px-3 py-1 rounded-sm border transition-colors ${member.is_active ? 'border-green-500/50 text-green-400 bg-green-500/10' : 'border-gray-700 text-gray-500 bg-gray-800'}`}
-                    >
-                      {member.is_active ? 'Activo' : 'Inactivo'}
-                    </button>
+                    <div className="flex gap-2 w-full justify-center">
+                      <button 
+                        onClick={() => {
+                          const currentStatus = member.status || (member.is_active ? 'active' : 'inactive');
+                          updateMember(member.id, 'status', currentStatus === 'active' ? 'inactive' : 'active');
+                        }}
+                        className={`font-mono text-[10px] uppercase px-2 py-1 rounded-sm border transition-colors flex-1 ${(!member.status && member.is_active) || member.status === 'active' ? 'border-green-500/50 text-green-400 bg-green-500/10 hover:bg-green-500/20' : 'border-gray-700 text-gray-500 bg-gray-800 hover:bg-gray-700'}`}
+                      >
+                        {(!member.status && member.is_active) || member.status === 'active' ? 'Activo' : 'Inactivo'}
+                      </button>
+                      {member.status !== 'kicked' && (
+                        <button
+                          onClick={() => {
+                            if (confirm(`¿Estás seguro de que quieres expulsar a ${member.nickname}? Pasará a Ex-Miembro.`)) {
+                              updateMember(member.id, 'status', 'kicked');
+                            }
+                          }}
+                          className="font-mono text-[10px] uppercase px-2 py-1 rounded-sm border border-red-900 text-red-500 bg-red-950 hover:bg-red-900 transition-colors"
+                          title="Expulsar"
+                        >
+                          X
+                        </button>
+                      )}
+                    </div>
                     <MansionSelect 
                       value={member.mansion_level}
                       onChange={(val) => updateMember(member.id, 'mansion_level', val)}

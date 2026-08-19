@@ -2,17 +2,18 @@ import { useState, useEffect } from 'react';
 import { useAdminAuth } from '../../contexts/AdminAuthContext';
 import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Users, Activity, Shield, LineChart, ChevronDown, Plus } from 'lucide-react';
+import { LogOut, Users, Activity, Shield, LineChart, ChevronDown, Plus, ShieldAlert } from 'lucide-react';
 import { useSound } from '../../contexts/SoundContext';
 import MembersPanel from './MembersPanel';
 import ActivityPanel from './ActivityPanel';
 import AnalyticsPanel from './AnalyticsPanel';
+import AuditPanel from './AuditPanel';
 
 const AdminDashboard = () => {
   const { logout } = useAdminAuth();
   const { playHover, playClick } = useSound();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'members' | 'activity' | 'analytics'>('activity');
+  const [activeTab, setActiveTab] = useState<'members' | 'activity' | 'analytics' | 'audit'>('activity');
   const [activeAlliance, setActiveAlliance] = useState('Umbrella Network');
   const [alliances, setAlliances] = useState<string[]>(['Umbrella Network']);
   const [showAllianceMenu, setShowAllianceMenu] = useState(false);
@@ -136,6 +137,14 @@ const AdminDashboard = () => {
           >
             <Users size={16} /> Gestión Miembros
           </button>
+
+          <button
+            onMouseEnter={playHover}
+            onClick={() => { playClick(); setActiveTab('audit'); }}
+            className={`flex items-center gap-3 px-4 py-3 font-mono text-xs uppercase tracking-widest transition-colors ${activeTab === 'audit' ? 'bg-blood-red/20 text-white border-l-2 border-blood-red' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+          >
+            <ShieldAlert size={16} /> Registro Sistema
+          </button>
         </div>
 
         <div className="p-4 border-t border-gray-800">
@@ -154,7 +163,7 @@ const AdminDashboard = () => {
         {/* Header */}
         <div className="p-6 border-b border-gray-800 flex justify-between items-center bg-black/50 sticky top-0 z-20 backdrop-blur-md">
           <h1 className="font-bebas text-2xl tracking-widest text-white">
-            {activeTab === 'activity' ? 'Auditoría Semanal' : activeTab === 'analytics' ? 'Análisis de Crecimiento' : 'Registro de Operativos'}
+            {activeTab === 'activity' ? 'Auditoría Semanal' : activeTab === 'analytics' ? 'Análisis de Crecimiento' : activeTab === 'audit' ? 'Registro del Sistema' : 'Registro de Operativos'}
           </h1>
         </div>
 
@@ -162,6 +171,7 @@ const AdminDashboard = () => {
           {activeTab === 'activity' && <ActivityPanel activeAlliance={activeAlliance} />}
           {activeTab === 'members' && <MembersPanel activeAlliance={activeAlliance} />}
           {activeTab === 'analytics' && <AnalyticsPanel activeAlliance={activeAlliance} />}
+          {activeTab === 'audit' && <AuditPanel activeAlliance={activeAlliance} />}
         </div>
       </div>
     </div>
