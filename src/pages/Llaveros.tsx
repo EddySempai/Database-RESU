@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Shield, Key } from 'lucide-react';
+import llaverosData from '../data/llaveros.json';
 
 interface Keyring {
   id: string;
@@ -11,16 +12,9 @@ interface Keyring {
 }
 
 const Llaveros = () => {
-  const [llaveros, setLlaveros] = useState<Keyring[]>([]);
+  const [llaveros] = useState<Keyring[]>(llaverosData);
   const [search, setSearch] = useState('');
   const [filterType, setFilterType] = useState('Todos');
-
-  useEffect(() => {
-    fetch('/src/data/llaveros.json')
-      .then(res => res.json())
-      .then(data => setLlaveros(data))
-      .catch(err => console.error("Error loading llaveros:", err));
-  }, []);
 
   const types = ['Todos', ...Array.from(new Set(llaveros.map(l => l.type)))];
 

@@ -16,10 +16,10 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
   const { t } = useTranslation();
   const [selectedNode, setSelectedNode] = useState<LuminioNodeConfig | null>(null);
 
-  const branches: { id: LuminioBranch, title: string, color: string, icon: any }[] = [
-    { id: 'blue', title: 'ATACANTE', color: 'blue', icon: Droplet },
-    { id: 'green', title: 'DEFENSOR', color: 'green', icon: Shield },
-    { id: 'red', title: 'RANGER', color: 'red', icon: Crosshair },
+  const branches: { id: LuminioBranch, title: string, color: string, icon: any, imageIcon?: string }[] = [
+    { id: 'blue', title: 'ATACANTE', color: 'blue', icon: Droplet, imageIcon: 'Icon_Hero_Skill_Attack.webp' },
+    { id: 'green', title: 'DEFENSOR', color: 'green', icon: Shield, imageIcon: 'Icon_Hero_Skill_Shield.webp' },
+    { id: 'red', title: 'RANGER', color: 'red', icon: Crosshair, imageIcon: 'Icon_Hero_Skill_AccuracyRate.webp' },
   ];
 
   const calculateTotalPowder = () => {
@@ -134,12 +134,16 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
             />
 
             {/* Branch Header Node (Aesthetic) */}
-            <div className={`w-20 h-20 rounded-full border-2 mb-6 flex items-center justify-center relative z-20 transition-transform duration-500 group-hover:scale-110
+            <div className={`w-20 h-20 rounded-full border-2 mb-6 flex items-center justify-center relative z-20 transition-transform duration-500 group-hover:scale-110 overflow-hidden
               ${branch.color === 'blue' ? 'border-blue-500 bg-blue-900/20 text-blue-400 shadow-[0_0_25px_rgba(59,130,246,0.4)]' : ''}
               ${branch.color === 'red' ? 'border-red-500 bg-red-900/20 text-red-400 shadow-[0_0_25px_rgba(239,68,68,0.4)]' : ''}
               ${branch.color === 'green' ? 'border-green-500 bg-green-900/20 text-green-400 shadow-[0_0_25px_rgba(34,197,94,0.4)]' : ''}
             `}>
-              <branch.icon size={36} strokeWidth={1.5} />
+              {branch.imageIcon ? (
+                <img src={`/icons/skill/${branch.imageIcon}`} alt={branch.title} className="w-full h-full object-cover scale-[1.35]" />
+              ) : (
+                <branch.icon size={36} strokeWidth={1.5} />
+              )}
             </div>
             
             {renderBranch(branch.id)}
