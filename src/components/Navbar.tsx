@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Shield, BookOpen, Calculator, Trophy, Users, BarChart2, Globe, Volume2, VolumeX, Settings } from 'lucide-react';
+import { Menu, X, BookOpen, Calculator, Trophy, Users, BarChart2, Globe, Volume2, VolumeX, Settings, Key } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSound } from '../contexts/SoundContext';
@@ -20,12 +20,12 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: t('nav.home'), icon: <Shield size={16} />, href: '/' },
-    { name: t('nav.heroes'), icon: <Users size={16} />, href: '/heroes' },
-    { name: t('nav.compare'), icon: <BarChart2 size={16} />, href: '/comparador' },
-    { name: t('nav.tools'), icon: <Calculator size={16} />, href: '/herramientas' },
-    { name: t('nav.guides'), icon: <BookOpen size={16} />, href: '/guias' },
-    { name: t('nav.tierlist'), icon: <Trophy size={16} />, href: '/tier-list' },
+    { name: t('nav.heroes'), icon: <Users size={20} />, href: '/heroes' },
+    { name: 'LLAVEROS', icon: <Key size={20} />, href: '/llaveros' },
+    { name: t('nav.compare'), icon: <BarChart2 size={20} />, href: '/comparador' },
+    { name: t('nav.tools'), icon: <Calculator size={20} />, href: '/herramientas' },
+    { name: t('nav.guides'), icon: <BookOpen size={20} />, href: '/guias' },
+    { name: t('nav.tierlist'), icon: <Trophy size={20} />, href: '/tier-list' },
   ];
 
   const changeLanguage = (lng: string) => {
@@ -55,7 +55,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link, idx) => (
               <Link 
                 key={idx} 
@@ -67,14 +67,17 @@ const Navbar = () => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }
                 }}
-                className="group flex items-center gap-2 font-mono text-sm text-gray-300 hover:text-white transition-colors"
+                className="group relative flex items-center justify-center p-2 text-gray-400 hover:text-white transition-colors"
               >
-                <span className="text-gray-600 group-hover:text-neon-red transition-colors">{link.icon}</span>
-                <span className="uppercase tracking-wider">{link.name}</span>
+                <span className="group-hover:text-neon-red transition-colors group-hover:scale-110 transform duration-200">{link.icon}</span>
+                <span className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-black border border-blood-red/50 text-[10px] text-gray-300 px-2.5 py-1 rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap uppercase tracking-widest font-mono pointer-events-none shadow-[0_0_10px_rgba(220,38,38,0.2)]">
+                  {link.name}
+                </span>
               </Link>
             ))}
 
-            {/* Language Switcher */}
+            {/* Separator */}
+            <div className="w-px h-6 bg-gray-800 mx-2"></div>
             <div className="relative group ml-4">
               <button onMouseEnter={playHover} className="flex items-center gap-2 text-gray-300 hover:text-white font-mono text-xs uppercase transition-colors">
                 <Globe size={16} className="text-neon-red" />

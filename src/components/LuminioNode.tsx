@@ -48,8 +48,17 @@ const LuminioNode: React.FC<LuminioNodeProps> = ({ node, baseLevel, targetLevel,
       <div className={`relative flex items-center justify-center w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full border-2 transition-all duration-300
         ${bgColor} ${borderColor} ${glowColor} group-hover:scale-110`}
       >
-        <IconComponent size={24} className={iconColor} strokeWidth={isActive ? 2.5 : 1.5} />
-        
+        {node.icon.endsWith('.webp') || node.icon.endsWith('.png') ? (
+          <div className="absolute inset-0 rounded-full overflow-hidden">
+            <img 
+              src={`/icons/skill/${node.icon}`} 
+              alt={node.defaultName} 
+              className={`w-full h-full object-cover scale-[1.35] transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-40 grayscale'} ${iconColor}`} 
+            />
+          </div>
+        ) : (
+          <IconComponent size={24} className={iconColor} strokeWidth={isActive ? 2.5 : 1.5} />
+        )}
         {/* Level Badge */}
         <div className={`absolute -bottom-2 px-2 py-0.5 rounded-full border text-[10px] md:text-xs font-mono font-bold whitespace-nowrap
           ${isActive ? 'bg-black border-gray-600 text-white' : 'bg-gray-900 border-gray-800 text-gray-500'}

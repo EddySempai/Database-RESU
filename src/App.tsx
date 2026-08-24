@@ -19,6 +19,7 @@ const OperativoDetalle = React.lazy(() => import('./pages/OperativoDetalle'));
 const ComingSoon = React.lazy(() => import('./pages/ComingSoon'));
 const TierList = React.lazy(() => import('./pages/TierList'));
 const Comparador = React.lazy(() => import('./pages/Comparador'));
+const Llaveros = React.lazy(() => import('./pages/Llaveros'));
 // const Guias = React.lazy(() => import('./pages/Guias'));
 const AdminLogin = React.lazy(() => import('./pages/admin/AdminLogin'));
 const AdminDashboard = React.lazy(() => import('./pages/admin/AdminDashboard'));
@@ -43,6 +44,7 @@ const AppContent = () => {
           <Route path="/comparador" element={<PageTransition><Comparador /></PageTransition>} />
           <Route path="/heroes" element={<PageTransition><Operativos /></PageTransition>} />
           <Route path="/heroes/:id" element={<PageTransition><OperativoDetalle /></PageTransition>} />
+          <Route path="/llaveros" element={<PageTransition><Llaveros /></PageTransition>} />
           <Route path="/tier-list" element={<PageTransition><TierList /></PageTransition>} />
           <Route path="/guias" element={<PageTransition><ComingSoon /></PageTransition>} />
           

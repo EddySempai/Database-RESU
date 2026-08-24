@@ -1,0 +1,177 @@
+[
+  {
+    "id": "keyring_01",
+    "name": "Llavero de Botiquín",
+    "icon": "/llaveros/Item_KeyRing_01.webp",
+    "mainStat": "Salud de Tropa",
+    "type": "Defensa"
+  },
+  {
+    "id": "keyring_02",
+    "name": "Llavero de Cuatro Garras",
+    "icon": "/llaveros/Item_KeyRing_02.webp",
+    "mainStat": "Ataque de Tropa",
+    "type": "Combate"
+  },
+  {
+    "id": "keyring_03",
+    "name": "Llavero de Bengala",
+    "icon": "/llaveros/Item_KeyRing_03.webp",
+    "mainStat": "Defensa de Tropa",
+    "type": "Defensa"
+  },
+  {
+    "id": "keyring_04",
+    "name": "Llavero con Emblema de Rider",
+    "icon": "/llaveros/Item_KeyRing_04.webp",
+    "mainStat": "Ataque de Tirador",
+    "type": "Combate"
+  },
+  {
+    "id": "keyring_05",
+    "name": "Llavero con Emblema de Raccoon",
+    "icon": "/llaveros/Item_KeyRing_05.webp",
+    "mainStat": "Salud de Tirador",
+    "type": "Defensa"
+  },
+  {
+    "id": "keyring_07",
+    "name": "Llavero con Emblema del R.P.D.",
+    "icon": "/llaveros/Item_KeyRing_07.webp",
+    "mainStat": "Defensa de Infantería",
+    "type": "Defensa"
+  },
+  {
+    "id": "keyring_08",
+    "name": "Llavero de Municiones de Subfusil",
+    "icon": "/llaveros/Item_KeyRing_08.webp",
+    "mainStat": "Daño de Tirador",
+    "type": "Combate"
+  },
+  {
+    "id": "keyring_09",
+    "name": "Llavero de Municiones de Pistola",
+    "icon": "/llaveros/Item_KeyRing_09.webp",
+    "mainStat": "Daño de Cazador",
+    "type": "Combate"
+  },
+  {
+    "id": "keyring_10",
+    "name": "Llavero de Municiones de Escopeta",
+    "icon": "/llaveros/Item_KeyRing_10.webp",
+    "mainStat": "Daño de Infantería",
+    "type": "Combate"
+  },
+  {
+    "id": "keyring_11",
+    "name": "Llavero con Estuche de Umbrella",
+    "icon": "/llaveros/Item_KeyRing_11.webp",
+    "mainStat": "Salud de Héroe",
+    "type": "Defensa"
+  },
+  {
+    "id": "keyring_12",
+    "name": "Llavero de Mansión",
+    "icon": "/llaveros/Item_KeyRing_12.webp",
+    "mainStat": "Capacidad de Marcha",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_13",
+    "name": "Llavero de Tienda de Juguetes",
+    "icon": "/llaveros/Item_KeyRing_13.webp",
+    "mainStat": "Ataque de Tropa",
+    "type": "Combate"
+  },
+  {
+    "id": "keyring_14",
+    "name": "Llavero de Tierra Rara",
+    "icon": "/llaveros/Item_KeyRing_14.webp",
+    "mainStat": "Velocidad de Recolección",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_15",
+    "name": "Llavero de Luminio",
+    "icon": "/llaveros/Item_KeyRing_15.webp",
+    "mainStat": "Producción de Recursos",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_17",
+    "name": "Llavero de Leon",
+    "icon": "/llaveros/Item_KeyRing_17.webp",
+    "mainStat": "Ataque de Tropa (Leon)",
+    "type": "Combate"
+  },
+  {
+    "id": "keyring_18",
+    "name": "Llavero de Claire",
+    "icon": "/llaveros/Item_KeyRing_18.webp",
+    "mainStat": "Salud de Tropa (Claire)",
+    "type": "Defensa"
+  },
+  {
+    "id": "keyring_19",
+    "name": "Llavero de Linterna",
+    "icon": "/llaveros/Item_KeyRing_19.webp",
+    "mainStat": "Velocidad de Marcha",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_20",
+    "name": "Llavero de Medallón",
+    "icon": "/llaveros/Item_KeyRing_20.webp",
+    "mainStat": "Defensa de Héroe",
+    "type": "Defensa"
+  },
+  {
+    "id": "keyring_21",
+    "name": "Llavero con Emblema de D.S.O.",
+    "icon": "/llaveros/Item_KeyRing_21.webp",
+    "mainStat": "Daño de Habilidad",
+    "type": "Combate"
+  },
+  {
+    "id": "keyring_22",
+    "name": "Llavero de Ajedrez",
+    "icon": "/llaveros/Item_KeyRing_22.webp",
+    "mainStat": "Letalidad",
+    "type": "Combate"
+  },
+  {
+    "id": "keyring_23",
+    "name": "Llavero de Energía",
+    "icon": "/llaveros/Item_KeyRing_23.webp",
+    "mainStat": "Regeneración de Estamina",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_24",
+    "name": "Llavero con Emblema de Pingüino",
+    "icon": "/llaveros/Item_KeyRing_24.webp",
+    "mainStat": "Velocidad de Entrenamiento",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_25",
+    "name": "Llavero de Lámpara de Pie",
+    "icon": "/llaveros/Item_KeyRing_25.webp",
+    "mainStat": "Velocidad de Construcción",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_26",
+    "name": "Llavero con Emblema de Umbrella",
+    "icon": "/llaveros/Item_KeyRing_26.webp",
+    "mainStat": "Velocidad de Investigación",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_27",
+    "name": "Llavero de Saco de Recursos",
+    "icon": "/llaveros/Item_KeyRing_27.webp",
+    "mainStat": "Capacidad de Carga",
+    "type": "Economía"
+  }
+]
