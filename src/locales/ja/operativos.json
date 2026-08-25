@@ -2262,5 +2262,266 @@
         "isVipSkill": true
       }
     ]
+  },
+  {
+    "id": "bsaa-chris",
+    "name": "BSAA Chris Redfield",
+    "imageUrl": "/operativos/character-BsaaChrisRedfield-visual.webp",
+    "iconUrl": "/portraits/PortraitBust_CHRIS_L02.webp",
+    "stats": {
+      "health": 176000,
+      "attack": 4590,
+      "defense": 1980,
+      "troops": 13470
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Atacante",
+        "value": "260.23%"
+      },
+      {
+        "label": "Poder de defensa de Atacante",
+        "value": "260.23%"
+      }
+    ],
+    "unitType": "アタッカー",
+    "rarity": "レジェンダリー",
+    "skills": [
+      {
+        "name": "強烈な一撃",
+        "description": "状況が困難になると、BSAAクリス・レッドフィールドは全力で岩を殴ります。岩は前方に転がり、範囲内の敵に攻撃力のx%に相当するダメージを与え、2秒間気絶させます。ダメージを受けた敵の防御力は10秒間y%減少します。",
+        "iconUrl": "/icons/skill/Icon_Skill_113017.webp",
+        "type": "Exploración",
+        "category": "active"
+      },
+      {
+        "name": "マズルコントロール",
+        "description": "通常攻撃を7回行うごとに、単体の敵に対してx%増加した通常攻撃ダメージを与え、防御を無視します。",
+        "iconUrl": "/icons/skill/Icon_Skill_123017.webp",
+        "type": "Exploración",
+        "category": "passive"
+      },
+      {
+        "name": "ライトパートナー",
+        "description": "10秒間攻撃力をx%増加させます。シェバ・アロマーと一緒に配置された場合、シェバ・アロマーの攻撃力も同じ割合で増加します。",
+        "iconUrl": "/icons/skill/Icon_Skill_133017.webp",
+        "type": "Exploración",
+        "category": "passive"
+      },
+      {
+        "name": "タクティカルシフト",
+        "description": "BSAAクリス・レッドフィールドの攻撃速度をx%増加させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_143017.webp",
+        "type": "Exploración",
+        "category": "passive"
+      },
+      {
+        "name": "集中火力",
+        "description": "このヒーローを含む味方分隊が戦闘中の場合、分隊の貫通力をx%増加させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_213017.webp",
+        "type": "Campo",
+        "category": "passive"
+      },
+      {
+        "name": "圧倒的制圧",
+        "description": "このヒーローを含む味方分隊が戦闘中の場合、3回攻撃した後、味方のアタッカーは2ターンの間、敵から受けるダメージをx%減少させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_223017.webp",
+        "type": "Campo",
+        "category": "passive"
+      },
+      {
+        "name": "集中ストライク",
+        "description": "このヒーローを含む味方分隊が戦闘中の場合、味方アタッカーが敵に与えるダメージをx%増加させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_233017.webp",
+        "type": "Campo",
+        "category": "passive"
+      },
+      {
+        "name": "BSAA防衛戦術",
+        "description": "このヒーローが駐屯地のリーダーである場合、駐屯地戦で味方分隊の防御力をx%増加させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_243017.webp",
+        "type": "Campo",
+        "category": "passive"
+      }
+    ],
+    "backgroundUrl": "/operativos/bg/Character_bg_13.webp",
+    "specialWeapon": {
+      "name": "Tactical Pistol",
+      "imageUrl": "/recursos/Item_Hero_Epuip_A_13017.webp"
+    }
+  },
+  {
+    "id": "sheva",
+    "name": "Sheva Alomar",
+    "imageUrl": "/operativos/character-ShevaAlomar-visual.webp",
+    "iconUrl": "/portraits/PortraitBust_SHEVA_L01.webp",
+    "stats": {
+      "health": 176000,
+      "attack": 4590,
+      "defense": 1980,
+      "troops": 13470
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Ranger",
+        "value": "260.23%"
+      },
+      {
+        "label": "Poder de defensa de Ranger",
+        "value": "260.23%"
+      }
+    ],
+    "unitType": "レンジャー",
+    "rarity": "レジェンダリー",
+    "skills": [
+      {
+        "name": "ロングボウ",
+        "description": "ロングボウを使って範囲内の敵を射撃し、攻撃力のx%に相当するダメージを与え、3秒間気絶させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_113016.webp",
+        "type": "Exploración",
+        "category": "active"
+      },
+      {
+        "name": "スタンロッド",
+        "description": "スタンロッドを振り回し、範囲内のすべての敵に攻撃力のx%に相当するダメージを与え、2秒間気絶させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_123016.webp",
+        "type": "Exploración",
+        "category": "passive"
+      },
+      {
+        "name": "レフトパートナー",
+        "description": "HPが50%未満の場合、18秒ごとに攻撃力のx%に相当するHPを回復します。BSAAクリス・レッドフィールドと一緒に配置された場合、クリスも同じ量のHPを回復します。",
+        "iconUrl": "/icons/skill/Icon_Skill_133016.webp",
+        "type": "Exploración",
+        "category": "passive"
+      },
+      {
+        "name": "シュジャの援護射撃",
+        "description": "攻撃を受けた際、シェバ・アロマーは最大HPのx%に相当するダメージを防ぐシールドを獲得します。",
+        "iconUrl": "/icons/skill/Icon_Skill_143016.webp",
+        "type": "Exploración",
+        "category": "passive"
+      },
+      {
+        "name": "戦場の直感",
+        "description": "このヒーローを含む味方分隊が戦闘中の場合、25%の確率で敵から分隊へのダメージをx%減少させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_213016.webp",
+        "type": "Campo",
+        "category": "passive"
+      },
+      {
+        "name": "援護射撃",
+        "description": "このヒーローを含む味方分隊が戦闘中の場合、分隊が敵に与えるダメージをx%増加させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_223016.webp",
+        "type": "Campo",
+        "category": "passive"
+      },
+      {
+        "name": "カモフラージュ",
+        "description": "このヒーローを含む味方分隊が戦闘中の場合、味方のディフェンダーはx%の確率で敵の攻撃を回避します。",
+        "iconUrl": "/icons/skill/Icon_Skill_233016.webp",
+        "type": "Campo",
+        "category": "passive"
+      },
+      {
+        "name": "シュジャの誇り",
+        "description": "このヒーローがラリーリーダーである場合、ラリー戦で味方分隊のHPをx%増加させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_243016.webp",
+        "type": "Campo",
+        "category": "passive"
+      }
+    ],
+    "backgroundUrl": "/operativos/bg/Character_bg_13.webp",
+    "specialWeapon": {
+      "name": "Longbow",
+      "imageUrl": "/recursos/Item_Hero_Epuip_A_13016.webp"
+    }
+  },
+  {
+    "id": "excella",
+    "name": "Excella Gionne",
+    "imageUrl": "/operativos/character-ExcellaGionne-visual.webp",
+    "iconUrl": "/portraits/PortraitBust_EXCELLA_L01.webp",
+    "stats": {
+      "health": 176000,
+      "attack": 4590,
+      "defense": 1980,
+      "troops": 13470
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Defensor",
+        "value": "260.23%"
+      },
+      {
+        "label": "Poder de defensa de Defensor",
+        "value": "260.23%"
+      }
+    ],
+    "unitType": "ディフェンダー",
+    "rarity": "レジェンダリー",
+    "skills": [
+      {
+        "name": "毒性テスト",
+        "description": "範囲内の敵に毒弾を発射し、敵の最大HPのx%に相当するダメージを与え、10秒間毒状態にします。毒状態のユニットは毎秒攻撃力のy%に相当するダメージを受けます。",
+        "iconUrl": "/icons/skill/Icon_Skill_113018.webp",
+        "type": "Exploración",
+        "category": "active"
+      },
+      {
+        "name": "毒性増強",
+        "description": "毒状態の敵の攻撃力をx%、防御力をy%減少させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_123018.webp",
+        "type": "Exploración",
+        "category": "passive"
+      },
+      {
+        "name": "進化研究",
+        "description": "10秒間、味方が与えるダメージをx%増加させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_133018.webp",
+        "type": "Exploración",
+        "category": "passive"
+      },
+      {
+        "name": "悪性拡散",
+        "description": "「毒性テスト」を使用すると、毒が広がり、さらにx%の敵を毒状態にします。Lv.5では、追加で毒状態のターゲットを1秒間気絶させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_143018.webp",
+        "type": "Exploración",
+        "category": "passive"
+      },
+      {
+        "name": "身の程を知れ",
+        "description": "このヒーローを含む味方分隊が戦闘中の場合、敵の防御力をx%減少させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_213018.webp",
+        "type": "Campo",
+        "category": "passive"
+      },
+      {
+        "name": "シナプス切断",
+        "description": "このヒーローを含む味方分隊が戦闘中の場合、2ターンごとに味方レンジャーはx%の確率でターゲットとなる敵タイプを1ターン気絶させます。（1ターンに最大3回まで気絶を試みることができます）",
+        "iconUrl": "/icons/skill/Icon_Skill_223018.webp",
+        "type": "Campo",
+        "category": "passive"
+      },
+      {
+        "name": "標本マーキング",
+        "description": "このヒーローを含む味方分隊が戦闘中の場合、敵が受けるダメージをx%増加させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_233018.webp",
+        "type": "Campo",
+        "category": "passive"
+      },
+      {
+        "name": "トップダウン指令",
+        "description": "このヒーローがラリーリーダーである場合、ラリー戦で味方分隊の攻撃力をx%増加させます。",
+        "iconUrl": "/icons/skill/Icon_Skill_243018.webp",
+        "type": "Campo",
+        "category": "passive"
+      }
+    ],
+    "backgroundUrl": "/operativos/bg/Character_bg_12.webp",
+    "specialWeapon": {
+      "name": "Toxicity Syringe",
+      "imageUrl": "/recursos/Item_Hero_Epuip_A_13018.webp"
+    }
   }
 ]

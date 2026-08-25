@@ -47,6 +47,9 @@ const characterWeaponCodeMap: Record<string, string> = {
   'piers': '13013', // Piers Nivans
   'cazadora': '13014', // Cazadora (Hunter F)
   'cazador': '13015', // Cazador (Hunter M)
+  'sheva': '13016', // Sheva Alomar
+  'bsaa-chris': '13017', // BSAA Chris
+  'excella': '13018' // Excella Gionne
 };
 
 const getNormalWeaponIcon = (unitType: string, slotId: string) => {

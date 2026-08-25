@@ -2174,5 +2174,314 @@
     ],
     "iconUrl": "/portraits/PortraitBust_HUNTER_F01.webp",
     "image": "/recursos/MH_SilverSol.webp"
+  },
+  {
+    "id": "bsaa-chris",
+    "name": "BSAA Chris Redfield",
+    "imageUrl": "/operativos/character-BsaaChrisRedfield-visual.webp",
+    "iconUrl": "/portraits/PortraitBust_CHRIS_L02.webp",
+    "stats": {
+      "health": 176000,
+      "attack": 4590,
+      "defense": 1980,
+      "troops": 13470
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Atacante",
+        "value": "444.35%"
+      },
+      {
+        "label": "Poder de defensa de Atacante",
+        "value": "444.35%"
+      }
+    ],
+    "unitType": "Atacante",
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "name": "Golpe Fuerte",
+        "description": "Cuando las cosas se ponen difíciles, BSAA Chris Redfield golpea una roca con todas sus fuerzas. La roca sale rodando hacia adelante, infligiendo un daño igual al x% del Ataque a los enemigos dentro del alcance y aturdiéndolos durante 2 segundos. Los enemigos dañados ven reducida su Defensa en un y% durante 10 segundos.",
+        "iconUrl": "/icons/skill/Icon_Skill_113017.webp",
+        "type": "Exploración",
+        "category": "active",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Control de Boca",
+        "description": "Después de cada 7 ataques normales, inflige x% más de daño de ataque normal e ignora la defensa contra un solo enemigo.",
+        "iconUrl": "/icons/skill/Icon_Skill_123017.webp",
+        "type": "Exploración",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Compañero Correcto",
+        "description": "Aumenta el Ataque en x% durante 10 segundos. Si se despliega junto a Sheva Alomar, el Ataque de Sheva Alomar aumentará en el mismo porcentaje.",
+        "iconUrl": "/icons/skill/Icon_Skill_133017.webp",
+        "type": "Exploración",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Cambio Táctico",
+        "description": "Aumenta la Velocidad de Ataque de BSAA Chris Redfield en x%.",
+        "iconUrl": "/icons/skill/Icon_Skill_143017.webp",
+        "type": "Exploración",
+        "category": "passive",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      },
+      {
+        "name": "Potencia de Fuego Concentrada",
+        "description": "Cuando un escuadrón aliado que contiene a este héroe está en combate, aumenta la Penetración del escuadrón en x%.",
+        "iconUrl": "/icons/skill/Icon_Skill_213017.webp",
+        "type": "Campo",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Supresión Abrumadora",
+        "description": "Cuando un escuadrón aliado que contiene a este héroe está en combate, después de atacar 3 veces, los Atacantes aliados reducen el daño recibido de los enemigos en x% durante 2 turnos.",
+        "iconUrl": "/icons/skill/Icon_Skill_223017.webp",
+        "type": "Campo",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Golpe Concentrado",
+        "description": "Cuando un escuadrón aliado que contiene a este héroe está en combate, aumenta el daño infligido por los Atacantes aliados al enemigo en x%.",
+        "iconUrl": "/icons/skill/Icon_Skill_233017.webp",
+        "type": "Campo",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Táctica Defensiva de la BSAA",
+        "description": "Si este héroe es el Líder de Guarnición, aumenta la Defensa del escuadrón aliado en x% en las Batallas de Guarnición.",
+        "iconUrl": "/icons/skill/Icon_Skill_243017.webp",
+        "type": "Campo",
+        "category": "passive",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      }
+    ],
+    "backgroundUrl": "/operativos/bg/Character_bg_13.webp",
+    "specialWeapon": {
+      "name": "Tactical Pistol",
+      "imageUrl": "/recursos/Item_Hero_Epuip_A_13017.webp"
+    }
+  },
+  {
+    "id": "sheva",
+    "name": "Sheva Alomar",
+    "imageUrl": "/operativos/character-ShevaAlomar-visual.webp",
+    "iconUrl": "/portraits/PortraitBust_SHEVA_L01.webp",
+    "stats": {
+      "health": 176000,
+      "attack": 4590,
+      "defense": 1980,
+      "troops": 13470
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Ranger",
+        "value": "444.35%"
+      },
+      {
+        "label": "Poder de defensa de Ranger",
+        "value": "444.35%"
+      }
+    ],
+    "unitType": "Ranger",
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "name": "Arco Largo",
+        "description": "Usa su arco largo para disparar a un enemigo dentro del alcance, infligiendo daño igual al x% del Ataque y aturdiéndolo durante 3 segundos.",
+        "iconUrl": "/icons/skill/Icon_Skill_113016.webp",
+        "type": "Exploración",
+        "category": "active",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Porra Eléctrica",
+        "description": "Empuña una Porra Eléctrica, infligiendo daño igual al x% del Ataque a todos los enemigos dentro del alcance y aturdiéndolos durante 2 segundos.",
+        "iconUrl": "/icons/skill/Icon_Skill_123016.webp",
+        "type": "Exploración",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Compañera Izquierda",
+        "description": "Cada 18 segundos, recupera PV igual al x% del Ataque si los PV están por debajo del 50%. Si se despliega junto a BSAA Chris Redfield, BSAA Chris Redfield se curará por la misma cantidad de PV.",
+        "iconUrl": "/icons/skill/Icon_Skill_133016.webp",
+        "type": "Exploración",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Fuego de Cobertura de Shujaa",
+        "description": "Al ser golpeada por un ataque, Sheva Alomar obtiene un escudo que bloquea daño igual al x% de sus PV Máximos.",
+        "iconUrl": "/icons/skill/Icon_Skill_143016.webp",
+        "type": "Exploración",
+        "category": "passive",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      },
+      {
+        "name": "Instintos de Batalla",
+        "description": "Cuando un escuadrón aliado que contiene a este héroe está en combate, tiene un 25% de probabilidad de reducir el daño infligido por el enemigo al escuadrón en x%.",
+        "iconUrl": "/icons/skill/Icon_Skill_213016.webp",
+        "type": "Campo",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Fuego de Cobertura",
+        "description": "Cuando un escuadrón aliado que contiene a este héroe está en combate, aumenta el daño infligido por el escuadrón al enemigo en x%.",
+        "iconUrl": "/icons/skill/Icon_Skill_223016.webp",
+        "type": "Campo",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Camuflaje",
+        "description": "Cuando un escuadrón aliado que contiene a este héroe está en combate, los Defensores aliados tienen un x% de probabilidad de esquivar el ataque del enemigo.",
+        "iconUrl": "/icons/skill/Icon_Skill_233016.webp",
+        "type": "Campo",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Honor de Shujaa",
+        "description": "Si este héroe es el Líder de Concentración, aumenta los PV del escuadrón aliado en x% en las Batallas de Concentración.",
+        "iconUrl": "/icons/skill/Icon_Skill_243016.webp",
+        "type": "Campo",
+        "category": "passive",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      }
+    ],
+    "backgroundUrl": "/operativos/bg/Character_bg_13.webp",
+    "specialWeapon": {
+      "name": "Longbow",
+      "imageUrl": "/recursos/Item_Hero_Epuip_A_13016.webp"
+    }
+  },
+  {
+    "id": "excella",
+    "name": "Excella Gionne",
+    "imageUrl": "/operativos/character-ExcellaGionne-visual.webp",
+    "iconUrl": "/portraits/PortraitBust_EXCELLA_L01.webp",
+    "stats": {
+      "health": 176000,
+      "attack": 4590,
+      "defense": 1980,
+      "troops": 13470
+    },
+    "fieldStats": [
+      {
+        "label": "Poder de ataque de Defensor",
+        "value": "444.35%"
+      },
+      {
+        "label": "Poder de defensa de Defensor",
+        "value": "444.35%"
+      }
+    ],
+    "unitType": "Defensor",
+    "rarity": "Legendario",
+    "skills": [
+      {
+        "name": "Prueba de Toxicidad",
+        "description": "Dispara a un enemigo dentro del alcance con una bala tóxica, infligiendo daño igual al x% de los PV Máximos del enemigo y envenenándolo durante 10 segundos. Las unidades envenenadas reciben daño igual al y% del Ataque cada segundo.",
+        "iconUrl": "/icons/skill/Icon_Skill_113018.webp",
+        "type": "Exploración",
+        "category": "active",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Aumentar Toxicidad",
+        "description": "Reduce el Ataque de los enemigos envenenados en x% y su Defensa en y%.",
+        "iconUrl": "/icons/skill/Icon_Skill_123018.webp",
+        "type": "Exploración",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Investigación de Evolución",
+        "description": "Aumenta el daño infligido por los aliados en x% durante 10 segundos.",
+        "iconUrl": "/icons/skill/Icon_Skill_133018.webp",
+        "type": "Exploración",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Prueba de Toxicidad",
+        "description": "Cuando se usa 'Prueba de Toxicidad', la toxina se propaga, envenenando a un x% adicional de enemigos. En el nivel 5, la habilidad además aturde a los objetivos envenenados durante 1 segundo.",
+        "iconUrl": "/icons/skill/Icon_Skill_143018.webp",
+        "type": "Exploración",
+        "category": "passive",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      },
+      {
+        "name": "Conoce tu Lugar",
+        "description": "Cuando un escuadrón aliado que contiene a este héroe está en combate, reduce la Defensa del enemigo en x%.",
+        "iconUrl": "/icons/skill/Icon_Skill_213018.webp",
+        "type": "Campo",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Corte de Sinapsis",
+        "description": "Cuando un escuadrón aliado que contiene a este héroe está en combate, cada 2 turnos, los Rangers aliados tienen un x% de probabilidad de aturdir a su tipo de enemigo objetivo durante 1 turno. (Se pueden hacer intentos de aturdimiento en un objetivo hasta 3 veces por turno).",
+        "iconUrl": "/icons/skill/Icon_Skill_223018.webp",
+        "type": "Campo",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Marcar Espécimen",
+        "description": "Cuando un escuadrón aliado que contiene a este héroe está en combate, aumenta el daño recibido por el enemigo en x%.",
+        "iconUrl": "/icons/skill/Icon_Skill_233018.webp",
+        "type": "Campo",
+        "category": "passive",
+        "isArmaEspecial": false,
+        "isVipSkill": false
+      },
+      {
+        "name": "Directiva Descendente",
+        "description": "Si este héroe es el Líder de Concentración, aumenta el Ataque del escuadrón aliado en x% en las Batallas de Concentración.",
+        "iconUrl": "/icons/skill/Icon_Skill_243018.webp",
+        "type": "Campo",
+        "category": "passive",
+        "isArmaEspecial": true,
+        "isVipSkill": false
+      }
+    ],
+    "backgroundUrl": "/operativos/bg/Character_bg_12.webp",
+    "specialWeapon": {
+      "name": "Toxicity Syringe",
+      "imageUrl": "/recursos/Item_Hero_Epuip_A_13018.webp"
+    }
   }
 ]

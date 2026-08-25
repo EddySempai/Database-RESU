@@ -81,7 +81,10 @@ const CHARACTER_BG_MAP: Record<string, string> = {
   jake: '/operativos/bg/Character_bg_10.webp',
   sherry: '/operativos/bg/Character_bg_10.webp',
   cazadora: '/operativos/bg/Character_bg_11.webp',
-  cazador: '/operativos/bg/Character_bg_11.webp'
+  cazador: '/operativos/bg/Character_bg_11.webp',
+  excella: '/operativos/bg/Character_bg_12.webp',
+  'bsaa-chris': '/operativos/bg/Character_bg_13.webp',
+  sheva: '/operativos/bg/Character_bg_13.webp'
 };
 
 const OperativoDetalle = () => {

@@ -3,5 +3,5 @@ export const PvP_MidGame_TierList: Record<string, string[]> = {
   S: ['jack', 'chris', 'ashley', 'sherry', 'jill', 'mark'],
   A: ['luis', 'claire', 'barry', 'carlos', 'rebecca', 'marvin'],
   B: ['ada', 'becca', 'mikhail', 'tyrell'],
-  C: ['robert', 'tyrone', 'murphy', 'brad', 'katherine', 'alyssa']
+  C: ['robert', 'tyrone', 'murphy', 'brad', 'katherine', 'alyssa', 'bsaa-chris', 'sheva', 'excella']
 };
