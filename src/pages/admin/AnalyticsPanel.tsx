@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Trophy, TrendingUp, Loader2, Activity } from 'lucide-react';
+import { Trophy, TrendingUp, TrendingDown, Loader2, Activity } from 'lucide-react';
 
 interface Member {
   id: string;
@@ -79,7 +79,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
       const growth = newVal - oldVal;
 
-      if (growth > 0) {
+      if (growth !== 0) {
         analysisMap.set(m.id, {
           member: m,
           growth,
@@ -153,10 +153,16 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             <span className="font-mono text-xs bg-white/10 text-gray-300 px-2 py-0.5 rounded-sm">{item.member.rank}</span>
             
             <div className="mt-6 flex items-end gap-3">
-              <TrendingUp className="text-neon-red mb-1" size={24} />
+              {item.growth > 0 ? (
+                <TrendingUp className="text-emerald-500 mb-1" size={24} />
+              ) : (
+                <TrendingDown className="text-red-500 mb-1" size={24} />
+              )}
               <div>
-                <p className="font-mono text-xs text-gray-500 uppercase tracking-widest">Subida</p>
-                <p className="font-mono text-3xl text-neon-red">+{meta.format(item.growth)}</p>
+                <p className="font-mono text-xs text-gray-500 uppercase tracking-widest">{item.growth > 0 ? 'Subida' : 'Bajada'}</p>
+                <p className={`font-mono text-3xl ${item.growth > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                  {item.growth > 0 ? '+' : ''}{meta.format(item.growth)}
+                </p>
               </div>
             </div>
             
@@ -205,7 +211,9 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                   </td>
                   <td className="py-4 px-4 font-mono text-sm text-gray-400">{meta.format(item.oldVal)}</td>
                   <td className="py-4 px-4 font-mono text-sm text-white">{meta.format(item.newVal)}</td>
-                  <td className="py-4 px-4 font-mono text-sm text-neon-red text-right">+{meta.format(item.growth)}</td>
+                  <td className={`py-4 px-4 font-mono text-sm text-right ${item.growth > 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                    {item.growth > 0 ? '+' : ''}{meta.format(item.growth)}
+                  </td>
                 </tr>
               ))}
               {data.length === 0 && (
