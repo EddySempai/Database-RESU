@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { useSound } from '../../contexts/SoundContext';
+import { AdminModal, type AdminModalType } from '../../components/admin/AdminModal';
 import { Plus, Search, Loader2 } from 'lucide-react';
 import { MansionSelect, PowerInput, RankSelect, AccountTypeSelect } from '../../components/admin/AdminInputs';
 
@@ -21,6 +22,8 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [modal, setModal] = useState<{isOpen: boolean, type: AdminModalType, title: string, message: string, onConfirm?: () => void}>({isOpen: false, type: 'alert', title: '', message: ''});
+  const closeModal = () => setModal(prev => ({...prev, isOpen: false}));
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive' | 'kicked'>('active');
 
   const logAudit = async (action_type: string, target_name: string, details?: string) => {
@@ -97,7 +100,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       }
     } catch (err) {
       console.error('Error adding member:', err);
-      alert('Error adding member. Check console.');
+      setModal({isOpen: true, type: 'error', title: 'Error', message: 'Error adding member. Check console.'});
     }
   };
 
@@ -285,9 +288,13 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                       {member.status !== 'kicked' && (
                         <button
                           onClick={() => {
-                            if (confirm(`¿Estás seguro de que quieres expulsar a ${member.nickname}? Pasará a Ex-Miembro.`)) {
-                              updateMember(member.id, 'status', 'kicked');
-                            }
+                            setModal({
+                              isOpen: true,
+                              type: 'confirm',
+                              title: 'Expulsar Miembro',
+                              message: `¿Estás seguro de que quieres expulsar a ${member.nickname}? Pasará a Ex-Miembro.`,
+                              onConfirm: () => updateMember(member.id, 'status', 'kicked')
+                            });
                           }}
                           className="font-mono text-[10px] uppercase px-2 py-1 rounded-sm border border-red-900 text-red-500 bg-red-950 hover:bg-red-900 transition-colors"
                           title="Expulsar"
@@ -308,6 +315,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           )}
         </div>
       </div>
+      <AdminModal isOpen={modal.isOpen} type={modal.type} title={modal.title} message={modal.message} onConfirm={modal.onConfirm || closeModal} onClose={closeModal} />
     </div>
   );
 };

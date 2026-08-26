@@ -94,6 +94,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
   const data = getAnalysis();
   const meta = METRIC_LABELS[metric];
+  const totalGrowth = data.reduce((acc, curr) => acc + curr.growth, 0);
 
   if (loading) {
     return (
@@ -106,12 +107,24 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   return (
     <div className="h-full flex flex-col gap-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-        <div>
-          <h2 className="font-bebas text-3xl tracking-widest text-white flex items-center gap-2">
-            <Trophy className="text-neon-red" size={28} />
-            Análisis Semanal
-          </h2>
-          <p className="font-mono text-gray-400 text-xs mt-1">Comparativa de rendimiento</p>
+        <div className="flex gap-8 items-center">
+          <div>
+            <h2 className="font-bebas text-3xl tracking-widest text-white flex items-center gap-2">
+              <Trophy className="text-neon-red" size={28} />
+              Análisis Semanal
+            </h2>
+            <p className="font-mono text-gray-400 text-xs mt-1">Comparativa de rendimiento</p>
+          </div>
+          
+          <div className="border-l border-gray-800 pl-8 hidden md:block">
+            <p className="font-mono text-xs text-gray-500 uppercase tracking-widest mb-1">Crecimiento Global de Alianza</p>
+            <div className="flex items-center gap-2">
+              <Activity className={totalGrowth >= 0 ? "text-emerald-500" : "text-red-500"} size={20} />
+              <span className={`font-mono text-xl ${totalGrowth >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                {totalGrowth > 0 ? '+' : ''}{meta.format(totalGrowth)}
+              </span>
+            </div>
+          </div>
         </div>
 
         <div className="flex gap-2 bg-[#0a0a0a] border border-gray-800 p-1 flex-wrap justify-end">

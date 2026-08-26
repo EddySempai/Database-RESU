@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { useSound } from '../../contexts/SoundContext';
+import { AdminModal, type AdminModalType } from '../../components/admin/AdminModal';
 import { Search, Loader2, Save, Calendar, Settings, Plus, X } from 'lucide-react';
 import { MansionSelect, PowerInput, NemesisSelect, PhaseSelect } from '../../components/admin/AdminInputs';
 
@@ -43,6 +44,8 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [modal, setModal] = useState<{isOpen: boolean, type: AdminModalType, title: string, message: string, onConfirm?: () => void}>({isOpen: false, type: 'alert', title: '', message: ''});
+  const closeModal = () => setModal(prev => ({...prev, isOpen: false}));
   const [activeEventTab, setActiveEventTab] = useState('general');
   const [activeCenters, setActiveCenters] = useState<string[]>(['Centro 1', 'Centro 2']);
   const [showCenterSettings, setShowCenterSettings] = useState(false);
@@ -141,11 +144,12 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   const handleCellChange = (memberId: string, field: keyof ActivityRecord, value: any) => {
     setHasChanges(true);
     setActivities(prev => {
+      const member = members.find(m => m.id === memberId);
       const current = prev[memberId] || {
         member_id: memberId,
         cycle_date: selectedDate,
-        power: 0,
-        mansion_level: 1,
+        power: member?.power || 0,
+        mansion_level: member?.mansion_level || 1,
         alliance_points: 0,
         tac_joined: false,
         tac_power: 0,
@@ -191,10 +195,10 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       if (error) throw error;
       
       setHasChanges(false);
-      alert('Cambios guardados exitosamente');
+      setModal({isOpen: true, type: 'success', title: 'Éxito', message: 'Cambios guardados exitosamente'});
     } catch (err) {
       console.error('Error saving:', err);
-      alert('Error guardando cambios');
+      setModal({isOpen: true, type: 'error', title: 'Error', message: 'Error guardando cambios'});
     } finally {
       setSaving(false);
     }
@@ -683,6 +687,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           )}
         </div>
       </div>
+      <AdminModal isOpen={modal.isOpen} type={modal.type} title={modal.title} message={modal.message} onConfirm={modal.onConfirm || closeModal} onClose={closeModal} />
     </div>
   );
 };

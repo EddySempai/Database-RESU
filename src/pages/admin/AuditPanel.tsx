@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { useSound } from '../../contexts/SoundContext';
+import { AdminModal, type AdminModalType } from '../../components/admin/AdminModal';
 import { Search, Loader2, Cpu, ShieldAlert, FileText, Bot } from 'lucide-react';
 import { getAuditReport } from '../../services/geminiService';
 
@@ -19,6 +20,8 @@ const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   const [logs, setLogs] = useState<AuditLog[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [modal, setModal] = useState<{isOpen: boolean, type: AdminModalType, title: string, message: string, onConfirm?: () => void}>({isOpen: false, type: 'alert', title: '', message: ''});
+  const closeModal = () => setModal(prev => ({...prev, isOpen: false}));
   const [filterAction, setFilterAction] = useState('all');
   
   const [aiReport, setAiReport] = useState<string | null>(null);
@@ -49,7 +52,7 @@ const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
   const handleGenerateReport = async () => {
     if (logs.length === 0) {
-      alert("No hay suficientes registros para analizar.");
+      setModal({isOpen: true, type: 'alert', title: 'Aviso', message: 'No hay suficientes registros para analizar.'});
       return;
     }
     playClick();
@@ -60,7 +63,7 @@ const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       setAiReport(report);
     } catch (err) {
       console.error(err);
-      alert("Error generando reporte. Revisa la consola o tu clave de API.");
+      setModal({isOpen: true, type: 'error', title: 'Error', message: 'Error generando reporte. Revisa la consola o tu clave de API.'});
     } finally {
       setGenerating(false);
     }
@@ -199,6 +202,7 @@ const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           )}
         </div>
       </div>
+      <AdminModal isOpen={modal.isOpen} type={modal.type} title={modal.title} message={modal.message} onConfirm={modal.onConfirm || closeModal} onClose={closeModal} />
     </div>
   );
 };
