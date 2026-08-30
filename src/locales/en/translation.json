@@ -332,5 +332,23 @@
       "r_tratamiento": "Ranger Treatment",
       "r_entrenamiento": "Ranger Training"
     }
+  },
+  "tour": {
+    "button": "Tutorial",
+    "back": "Back",
+    "close": "Close",
+    "last": "Finish",
+    "next": "Next",
+    "skip": "Skip",
+    "training_step1": "Choose the event mode: Summits (normal points) or SvS (reduced points). Try clicking it now!",
+    "training_step2": "Enter the amount of troops you will train or promote for each level.",
+    "training_step3": "Here you will see the summary of points, generated troops, and used speed-ups. Optimize your times!",
+    "treasures_step1": "Select the current tier and the target tier for each treasure slot.",
+    "treasures_step2": "This will show the total materials (Fragments, Polishes, Blueprints) required for all slots.",
+    "luminio_step1": "Click any node to configure its current level and target level. You can follow the three branches: Attacker, Defender, and Ranger.",
+    "luminio_step2": "Here you will see the total calculated cost automatically.",
+    "comparador_step1": "Select the two operatives you want to compare. They must be of the same tactical class.",
+    "comparador_step2": "Compare their base stats and combat scaling side by side.",
+    "comparador_step3": "Read the generated tactical report to understand the pros and cons of each operative."
   }
 }

@@ -6,6 +6,8 @@ import remarkGfm from 'remark-gfm';
 import { useTranslation } from 'react-i18next';
 import { useOperativos } from '../hooks/useOperativos';
 import { getRedQueenResponse } from '../services/geminiService';
+import { useOnboarding, OnboardingTour, TutorialButton } from '../components/OnboardingTour';
+import type { Step } from 'react-joyride';
 
 interface Operativo {
   id: string;
@@ -24,6 +26,7 @@ interface Operativo {
 
 const Comparador = () => {
   const { t } = useTranslation();
+  const { run, startTour, handleJoyrideCallback, stepIndex, advanceTour } = useOnboarding('comparador_calc');
   const operativosData = useOperativos();
   const [slot1, setSlot1] = useState<Operativo | null>(null);
   const [slot2, setSlot2] = useState<Operativo | null>(null);
@@ -39,9 +42,9 @@ const Comparador = () => {
     
     // Si estamos seleccionando el Slot 2 y el Slot 1 tiene un personaje, filtramos por clase
     if (selectingSlot === 2 && slot1) {
-      filtered = filtered.filter(op => op.unitType === slot1.unitType);
+      filtered = filtered.filter(op => op.unitType === slot1?.unitType);
     } else if (selectingSlot === 1 && slot2) {
-      filtered = filtered.filter(op => op.unitType === slot2.unitType);
+      filtered = filtered.filter(op => op.unitType === slot2?.unitType);
     }
 
     if (searchTerm) {
@@ -52,8 +55,8 @@ const Comparador = () => {
   };
 
   const handleSelect = (op: Operativo) => {
-    if (selectingSlot === 1) setSlot1(op);
-    if (selectingSlot === 2) setSlot2(op);
+    if (selectingSlot === 1) { setSlot1(op); if (run && stepIndex === 1) advanceTour(); }
+    if (selectingSlot === 2) { setSlot2(op); if (run && stepIndex === 3) advanceTour(); }
     setSelectingSlot(null);
     setSearchTerm('');
     setAiAnalysis(null); // Reset analysis on change
@@ -63,7 +66,7 @@ const Comparador = () => {
     if (!slot1 || !slot2) return;
     setIsAnalyzing(true);
     try {
-      const prompt = `Analiza la comparación táctica entre estos dos operativos de la clase ${slot1.unitType}: ${slot1.name} y ${slot2.name}. 
+      const prompt = `Analiza la comparación táctica entre estos dos operativos de la clase ${slot1?.unitType}: ${slot1?.name} y ${slot2?.name}. 
       Compara brevemente sus estadísticas de Salud, Ataque y Defensa. Luego dime cuál tiene mejores habilidades para el campo de batalla o para economía/exploración.
       Mantén tu personalidad de Red Queen. Sé concluyente y recomienda cuál llevar al combate directo.`;
       
@@ -88,7 +91,7 @@ const Comparador = () => {
 
   const renderSlot = (slot: 1 | 2, op: Operativo | null) => {
     return (
-      <div className="flex-1 bg-[#050505] border border-gray-800 p-6 flex flex-col relative min-h-[400px]">
+      <div className={`flex-1 bg-[#050505] border border-gray-800 p-6 flex flex-col relative min-h-[400px] tour-comparador-slot-${slot}`}>
         {op ? (
           <div className="flex flex-col h-full">
             <button 
@@ -97,7 +100,7 @@ const Comparador = () => {
             >
               <X size={20} />
             </button>
-            <div className="h-64 overflow-hidden relative border-b border-gray-800 mb-6 cursor-pointer group" onClick={() => setSelectingSlot(slot)}>
+            <div className="h-64 overflow-hidden relative border-b border-gray-800 mb-6 cursor-pointer group" onClick={() => { setSelectingSlot(slot); if (run && (stepIndex === 0 || stepIndex === 2)) advanceTour(); }}>
               <div className="absolute inset-0 bg-blood-red/0 group-hover:bg-blood-red/10 transition-colors z-10" />
               <img src={`/operativos/${op.imageUrl.split('/').pop()}`} alt={op.name} className="w-full h-full object-contain object-bottom group-hover:scale-105 transition-transform duration-500" />
             </div>
@@ -108,13 +111,13 @@ const Comparador = () => {
           </div>
         ) : (
           <button 
-            onClick={() => setSelectingSlot(slot)}
+            onClick={() => { setSelectingSlot(slot); if (run && (stepIndex === 0 || stepIndex === 2)) advanceTour(); }}
             className="flex-1 border-2 border-dashed border-gray-700 hover:border-blood-red hover:bg-blood-red/5 flex flex-col items-center justify-center text-gray-500 hover:text-white transition-all group"
           >
             <Search className="mb-4 w-12 h-12 group-hover:scale-110 transition-transform" />
             <span className="font-bebas text-2xl tracking-widest">{t('comparador.select_op')}</span>
             {((slot === 2 && slot1) || (slot === 1 && slot2)) && (
-              <span className="font-mono text-xs text-blood-red mt-2 uppercase">{t('comparador.must_be_class', { unitType: slot1 ? slot1.unitType : slot2?.unitType })}</span>
+              <span className="font-mono text-xs text-blood-red mt-2 uppercase">{t('comparador.must_be_class', { unitType: slot1 ? slot1?.unitType : slot2?.unitType })}</span>
             )}
           </button>
         )}
@@ -122,9 +125,44 @@ const Comparador = () => {
     );
   };
 
+  const steps: Step[] = [
+    {
+      target: '.tour-comparador-slot-1',
+      content: t('tour.comparador_step1', 'Elige tu primer operativo haciendo clic en esta ranura vacía.'),
+      buttons: ['close', 'skip'],
+    },
+    {
+      target: '.tour-comparador-modal-content',
+      content: t('tour.comparador_step1_modal', 'Selecciona a cualquier operativo de la lista para comenzar.'),
+      placement: 'right',
+      buttons: ['close', 'skip'],
+    },
+    {
+      target: '.tour-comparador-slot-2',
+      content: t('tour.comparador_step2', 'Ahora haz clic en la segunda ranura. ¡Nota importante: solo podrás compararlo con operativos de su MISMA CLASE táctica!'),
+      buttons: ['close', 'skip'],
+    },
+    {
+      target: '.tour-comparador-modal-content',
+      content: t('tour.comparador_step2_modal', 'Elige al segundo operativo para completar la pareja y ver los resultados.'),
+      placement: 'right',
+      buttons: ['close', 'skip'],
+    },
+    {
+      target: '.tour-comparador-stats',
+      content: t('tour.comparador_step3', 'Aquí verás quién gana en estadísticas base de vida, ataque y defensa.'),
+    },
+    {
+      target: '.tour-comparador-ai',
+      content: t('tour.comparador_step4', 'Si quieres un análisis más profundo, nuestra IA (Red Queen) puede generar un reporte táctico de cómo interactúan las habilidades de ambos héroes.'),
+    }
+  ];
+
   return (
     <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col">
-      <div className="text-center mb-12">
+      <OnboardingTour run={run} steps={steps} stepIndex={stepIndex} handleJoyrideCallback={handleJoyrideCallback} />
+      <div className="text-center mb-12 relative">
+        <TutorialButton onClick={startTour} className="absolute top-0 right-0 md:-top-4 md:right-0 z-20 flex items-center gap-2 bg-black/60 hover:bg-blood-red/20 border border-gray-700 hover:border-blood-red text-gray-400 hover:text-white px-3 py-1.5 rounded-full transition-colors cursor-pointer group" />
         <h1 className="font-bebas text-5xl md:text-7xl tracking-widest text-white uppercase drop-shadow-lg mb-2">
           {t('comparador.title_main', 'Análisis Comparativo')}
         </h1>
@@ -149,54 +187,54 @@ const Comparador = () => {
       </div>
 
       {/* STATS COMPARISON SECTION */}
-      {slot1 && slot2 && (
+      {(slot1 && slot2 || (run && stepIndex >= 4)) && (
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-[#050505] border border-gray-800 p-6 md:p-12 mb-12"
+          className={`bg-[#050505] border border-gray-800 p-6 md:p-12 mb-12 tour-comparador-stats ${(!slot1 || !slot2) ? "opacity-0 pointer-events-none" : ""}`}
         >
           <h3 className="font-bebas text-3xl tracking-widest text-center mb-8 border-b border-gray-800 pb-4">{t('comparador.base_performance', 'Desempeño Base (Nivel 1)')}</h3>
           
           <div className="space-y-6">
             {/* Health */}
             <div className="grid grid-cols-3 items-center gap-4 border-b border-gray-800/50 pb-4">
-              <div className={`text-right font-mono text-lg md:text-xl ${compareStats(slot1.stats.health, slot2.stats.health, true)}`}>
-                {slot1.stats.health.toLocaleString()}
+              <div className={`text-right font-mono text-lg md:text-xl ${compareStats(slot1?.stats.health ?? 0, slot2?.stats.health ?? 0, true)}`}>
+                {slot1?.stats.health.toLocaleString()}
               </div>
               <div className="flex flex-col items-center justify-center text-gray-500">
                 <Heart size={20} className="mb-1" />
                 <span className="text-[10px] uppercase tracking-widest">{t('heroes.health')}</span>
               </div>
-              <div className={`font-mono text-lg md:text-xl ${compareStats(slot1.stats.health, slot2.stats.health, false)}`}>
-                {slot2.stats.health.toLocaleString()}
+              <div className={`font-mono text-lg md:text-xl ${compareStats(slot1?.stats.health ?? 0, slot2?.stats.health ?? 0, false)}`}>
+                {slot2?.stats.health.toLocaleString()}
               </div>
             </div>
 
             {/* Attack */}
             <div className="grid grid-cols-3 items-center gap-4 border-b border-gray-800/50 pb-4">
-              <div className={`text-right font-mono text-lg md:text-xl ${compareStats(slot1.stats.attack, slot2.stats.attack, true)}`}>
-                {slot1.stats.attack.toLocaleString()}
+              <div className={`text-right font-mono text-lg md:text-xl ${compareStats(slot1?.stats.attack ?? 0, slot2?.stats.attack ?? 0, true)}`}>
+                {slot1?.stats.attack.toLocaleString()}
               </div>
               <div className="flex flex-col items-center justify-center text-gray-500">
                 <Crosshair size={20} className="mb-1" />
                 <span className="text-[10px] uppercase tracking-widest">{t('heroes.attack')}</span>
               </div>
-              <div className={`font-mono text-lg md:text-xl ${compareStats(slot1.stats.attack, slot2.stats.attack, false)}`}>
-                {slot2.stats.attack.toLocaleString()}
+              <div className={`font-mono text-lg md:text-xl ${compareStats(slot1?.stats.attack ?? 0, slot2?.stats.attack ?? 0, false)}`}>
+                {slot2?.stats.attack.toLocaleString()}
               </div>
             </div>
 
             {/* Defense */}
             <div className="grid grid-cols-3 items-center gap-4 border-b border-gray-800/50 pb-4">
-              <div className={`text-right font-mono text-lg md:text-xl ${compareStats(slot1.stats.defense, slot2.stats.defense, true)}`}>
-                {slot1.stats.defense.toLocaleString()}
+              <div className={`text-right font-mono text-lg md:text-xl ${compareStats(slot1?.stats.defense ?? 0, slot2?.stats.defense ?? 0, true)}`}>
+                {slot1?.stats.defense.toLocaleString()}
               </div>
               <div className="flex flex-col items-center justify-center text-gray-500">
                 <Shield size={20} className="mb-1" />
                 <span className="text-[10px] uppercase tracking-widest">{t('heroes.defense')}</span>
               </div>
-              <div className={`font-mono text-lg md:text-xl ${compareStats(slot1.stats.defense, slot2.stats.defense, false)}`}>
-                {slot2.stats.defense.toLocaleString()}
+              <div className={`font-mono text-lg md:text-xl ${compareStats(slot1?.stats.defense ?? 0, slot2?.stats.defense ?? 0, false)}`}>
+                {slot2?.stats.defense.toLocaleString()}
               </div>
             </div>
 
@@ -208,7 +246,7 @@ const Comparador = () => {
             <div className="grid grid-cols-2 gap-8">
               {/* Slot 1 Field Stats */}
               <div className="space-y-3">
-                {slot1.fieldStats?.map((stat, i) => (
+                {slot1?.fieldStats?.map((stat, i) => (
                   <div key={i} className="flex flex-col bg-gray-900/30 p-3 border border-gray-800/50">
                     <span className="text-[10px] text-gray-500 uppercase tracking-widest">{stat.label}</span>
                     <span className="font-mono text-white text-sm">{stat.value}</span>
@@ -217,7 +255,7 @@ const Comparador = () => {
               </div>
               {/* Slot 2 Field Stats */}
               <div className="space-y-3">
-                {slot2.fieldStats?.map((stat, i) => (
+                {slot2?.fieldStats?.map((stat, i) => (
                   <div key={i} className="flex flex-col bg-gray-900/30 p-3 border border-gray-800/50">
                     <span className="text-[10px] text-gray-500 uppercase tracking-widest">{stat.label}</span>
                     <span className="font-mono text-white text-sm">{stat.value}</span>
@@ -236,9 +274,9 @@ const Comparador = () => {
               {/* Slot 1 Skills */}
               <div className="bg-[#080808] border border-gray-800 p-6 min-h-[200px] flex flex-col relative group">
                 <div className="absolute inset-0 bg-blood-red/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                {slot1.skills && slot1.skills.length > 0 ? (
+                {slot1?.skills && slot1?.skills.length > 0 ? (
                   <div className="space-y-4 text-left relative z-10">
-                    {slot1.skills.map((skill, i) => (
+                    {slot1?.skills.map((skill, i) => (
                       <div key={i} className="border-l-2 border-gray-700 pl-3">
                         <span className="font-mono text-neon-red text-[9px] uppercase tracking-widest mb-1 block">{skill.type}</span>
                         <h4 className="font-bebas text-lg text-white tracking-wider mb-1">{skill.name}</h4>
@@ -255,9 +293,9 @@ const Comparador = () => {
               {/* Slot 2 Skills */}
               <div className="bg-[#080808] border border-gray-800 p-6 min-h-[200px] flex flex-col relative group">
                 <div className="absolute inset-0 bg-blood-red/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                {slot2.skills && slot2.skills.length > 0 ? (
+                {slot2?.skills && slot2?.skills.length > 0 ? (
                   <div className="space-y-4 text-left relative z-10">
-                    {slot2.skills.map((skill, i) => (
+                    {slot2?.skills.map((skill, i) => (
                       <div key={i} className="border-l-2 border-gray-700 pl-3">
                         <span className="font-mono text-neon-red text-[9px] uppercase tracking-widest mb-1 block">{skill.type}</span>
                         <h4 className="font-bebas text-lg text-white tracking-wider mb-1">{skill.name}</h4>
@@ -353,7 +391,7 @@ const Comparador = () => {
               initial={{ scale: 0.95, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 20 }}
-              className="bg-[#050505] border border-gray-800 w-full max-w-4xl max-h-[80vh] flex flex-col shadow-2xl"
+              className="bg-[#050505] border border-gray-800 w-full max-w-4xl max-h-[80vh] flex flex-col shadow-2xl tour-comparador-modal-content"
             >
               <div className="p-6 border-b border-gray-800 flex justify-between items-center bg-gray-900/50">
                 <h2 className="font-bebas text-3xl tracking-widest text-white">Seleccionar Operativo</h2>

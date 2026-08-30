@@ -3,7 +3,9 @@ import { LUMINIO_NODES } from '../data/luminio';
 import type { LuminioNodeConfig, LuminioBranch } from '../data/luminio';
 import LuminioNode from './LuminioNode';
 import { useTranslation } from 'react-i18next';
+import type { Step } from 'react-joyride';
 import { X, Shield, Crosshair, Droplet, Check } from 'lucide-react';
+import { useOnboarding, OnboardingTour, TutorialButton } from './OnboardingTour';
 
 interface LuminioTreeProps {
   baseLevels: Record<string, number>;
@@ -14,6 +16,7 @@ interface LuminioTreeProps {
 
 const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onBaseChange, onTargetChange }) => {
   const { t } = useTranslation();
+  const { run, startTour, handleJoyrideCallback, stepIndex, advanceTour } = useOnboarding('luminio_calc');
   const [selectedNode, setSelectedNode] = useState<LuminioNodeConfig | null>(null);
 
   const branches: { id: LuminioBranch, title: string, color: string, icon: any, imageIcon?: string }[] = [
@@ -105,7 +108,7 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
               node={node} 
               baseLevel={baseLevels[node.id] || 0} 
               targetLevel={targetLevels[node.id] || 0}
-              onClick={() => setSelectedNode(node)} 
+              onClick={() => { setSelectedNode(node); if (run && stepIndex === 0) advanceTour(); }} 
             />
           </div>
         ))}
@@ -113,16 +116,34 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
     );
   };
 
+  const steps: Step[] = [
+    {
+      target: '.tour-luminio-tree',
+      content: t('tour.luminio_step1'),
+      
+      buttons: ['close', 'skip'],
+    },
+    {
+      target: '.tour-luminio-results',
+      content: t('tour.luminio_step2'),
+    }
+  ];
+
   return (
-    <div className="w-full max-w-6xl mx-auto my-8 bg-black/40 border border-gray-800 rounded-3xl overflow-hidden backdrop-blur-sm shadow-2xl">
+    <div className="w-full max-w-6xl mx-auto my-8 relative">
+      <OnboardingTour run={run} steps={steps} stepIndex={stepIndex} handleJoyrideCallback={handleJoyrideCallback} />
+      <div className="bg-black/40 border border-gray-800 rounded-3xl overflow-hidden backdrop-blur-sm shadow-2xl">
       <div className="relative p-6 md:p-8 border-b border-yellow-500/30 bg-gradient-to-r from-yellow-500/20 via-black/40 to-transparent overflow-hidden">
         <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-yellow-500/10 to-transparent blur-xl pointer-events-none" />
-        <h2 className="relative z-10 text-3xl md:text-5xl font-bebas tracking-widest text-white drop-shadow-md text-center uppercase">
-          {t('luminio.title_prefix')} <span className="text-yellow-500">{t('luminio.title_highlight')}</span>
-        </h2>
+        <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <h2 className="text-3xl md:text-5xl font-bebas tracking-widest text-white drop-shadow-md text-center uppercase flex-1">
+            {t('luminio.title_prefix')} <span className="text-yellow-500">{t('luminio.title_highlight')}</span>
+          </h2>
+          <TutorialButton onClick={startTour} className="relative z-20 flex items-center gap-2 bg-black/60 hover:bg-yellow-500/20 border border-gray-700 hover:border-yellow-500 text-gray-400 hover:text-white px-3 py-1.5 rounded-full transition-colors cursor-pointer group" />
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-gray-800">
+      <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-gray-800 tour-luminio-tree">
         {branches.map(branch => (
           <div key={branch.id} className="relative p-6 md:p-8 flex flex-col items-center group">
             {/* Background Glow */}
@@ -267,7 +288,7 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
       )}
 
       {/* Summary Module */}
-      <div className="bg-gradient-to-t from-black/95 via-yellow-900/10 to-black/60 border-t border-yellow-900/30 p-6 md:p-8 flex flex-col items-center">
+      <div className="bg-gradient-to-t from-black/95 via-yellow-900/10 to-black/60 border-t border-yellow-900/30 p-6 md:p-8 flex flex-col items-center tour-luminio-results">
         <h3 className="text-xl font-mono text-yellow-500/70 mb-4 tracking-widest uppercase">{t('luminio.total_resources', 'Recursos Totales Requeridos')}</h3>
         <div className="flex flex-wrap justify-center gap-6 md:gap-12 w-full max-w-4xl">
           
@@ -296,6 +317,7 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
 
         </div>
       </div>
+    </div>
     </div>
   );
 };

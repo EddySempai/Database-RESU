@@ -332,5 +332,23 @@
       "r_tratamiento": "Tratamiento de Ranger",
       "r_entrenamiento": "Entrenamiento de Ranger"
     }
+  },
+  "tour": {
+    "button": "Tutorial",
+    "back": "Atrás",
+    "close": "Cerrar",
+    "last": "Finalizar",
+    "next": "Siguiente",
+    "skip": "Omitir",
+    "training_step1": "Elige el modo de evento: Cumbres (puntos normales) o SvS (puntos reducidos). ¡Pruébalo ahora haciendo clic!",
+    "training_step2": "Ingresa la cantidad de tropas que vas a entrenar o promover en cada nivel.",
+    "training_step3": "Aquí verás el resumen de puntos, tropas generadas y aceleradores usados. ¡Optimiza tus tiempos!",
+    "treasures_step1": "Selecciona el nivel actual y el nivel al que quieres llegar para cada ranura de tesoro.",
+    "treasures_step2": "Aquí se mostrará el total de materiales (Fragmentos, Pulidores, Planos) necesarios para todas las ranuras.",
+    "luminio_step1": "Haz clic en cualquier nodo para configurar su nivel actual y el nivel meta. Puedes seguir las tres ramas: Atacante, Defensor y Ranger.",
+    "luminio_step2": "Aquí verás el costo total calculado automáticamente.",
+    "comparador_step1": "Selecciona a los dos operativos que deseas comparar. Tienen que ser de la misma clase táctica.",
+    "comparador_step2": "Compara sus estadísticas base y escalado de combate lado a lado.",
+    "comparador_step3": "Lee el reporte táctico generado para entender los pros y contras de cada operativo."
   }
 }

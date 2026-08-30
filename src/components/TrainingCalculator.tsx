@@ -4,6 +4,8 @@ import { Calculator, Zap, Clock, Plus, Trash2, ArrowRight, UploadCloud, Loader2 
 import { v4 as uuidv4 } from 'uuid';
 import { analyzeScreenshot } from '../services/geminiService';
 import { useTranslation } from 'react-i18next';
+import type { Step } from 'react-joyride';
+import { useOnboarding, OnboardingTour, TutorialButton } from './OnboardingTour';
 
 const POINTS_PER_UNIT: Record<number, number> = {
   1: 90, 2: 120, 3: 180, 4: 265, 5: 385, 6: 595,
@@ -61,6 +63,7 @@ const InventoryItem = ({ label, value, onChange, isTroop, rarity }: any) => {
 
 const TrainingCalculator = () => {
   const { t } = useTranslation();
+  const { run, startTour, handleJoyrideCallback, stepIndex, advanceTour } = useOnboarding('training_calc');
   const [eventMode, setEventMode] = useState<'cumbres' | 'svs'>('cumbres');
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -205,9 +208,31 @@ const TrainingCalculator = () => {
     return { totalPoints, totalTroops, accelSecs, totalUsedSecs, totalUsedDays, queueResults: finalQueues };
   }, [eventMode, queues, gen1m, gen5m, gen1h, gen3h, gen8h, trp1m, trp5m, trp1h, activePoints]);
 
+  const steps: Step[] = [
+    {
+      target: '.tour-training-mode',
+      content: t('tour.training_step1'),
+      
+      buttons: ['close', 'skip'],
+    },
+    {
+      target: '.tour-training-queues',
+      content: 'Configura tus filas de entrenamiento. Puedes agregar múltiples filas y establecer límites (por ejemplo, entrenar hasta N tropas).',
+    },
+    {
+      target: '.tour-training-inventory',
+      content: 'Ingresa la cantidad de aceleradores que tienes. Puedes subir una captura de pantalla y usar la IA para llenarlos automáticamente.',
+    },
+    {
+      target: '.tour-training-results',
+      content: t('tour.training_step3'),
+    }
+  ];
+
   return (
     <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative z-10 py-12 px-6 max-w-7xl mx-auto">
-      <div className="bg-[#050505] border border-gray-800 shadow-[0_0_30px_rgba(0,0,0,0.8)] overflow-hidden">
+      <OnboardingTour run={run} steps={steps} stepIndex={stepIndex} handleJoyrideCallback={handleJoyrideCallback} />
+      <div className="bg-[#050505] border border-gray-800 shadow-[0_0_30px_rgba(0,0,0,0.8)] overflow-hidden mt-8 relative">
         
         {/* Header */}
         <div className="bg-gradient-to-r from-blood-red/20 to-transparent border-b border-gray-800 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -215,9 +240,12 @@ const TrainingCalculator = () => {
             <Calculator className="text-neon-red" size={28} />
             <h2 className="font-bebas text-3xl tracking-widest text-white m-0">{t('calculator.title')}</h2>
           </div>
-          <div className="flex bg-black border border-gray-800 p-1 rounded-sm">
-            <button onClick={() => setEventMode('cumbres')} className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors ${eventMode === 'cumbres' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>{t('calculator.cumbres')}</button>
-            <button onClick={() => setEventMode('svs')} className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors border-l border-gray-800 ${eventMode === 'svs' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>{t('calculator.svs')}</button>
+          <div className="flex items-center gap-4">
+            <TutorialButton onClick={startTour} className="relative z-20 flex items-center gap-2 bg-black/60 hover:bg-blood-red/20 border border-gray-700 hover:border-blood-red text-gray-400 hover:text-white px-3 py-1.5 rounded-full transition-colors cursor-pointer group" />
+            <div className="flex bg-black border border-gray-800 p-1 rounded-sm tour-training-mode">
+              <button onClick={() => { setEventMode('cumbres'); if (run && stepIndex === 0) advanceTour(); }} className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors ${eventMode === 'cumbres' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>{t('calculator.cumbres')}</button>
+              <button onClick={() => { setEventMode('svs'); if (run && stepIndex === 0) advanceTour(); }} className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors border-l border-gray-800 ${eventMode === 'svs' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>{t('calculator.svs')}</button>
+            </div>
           </div>
         </div>
 
@@ -227,7 +255,7 @@ const TrainingCalculator = () => {
           <div className="lg:col-span-3 space-y-6">
             
             {/* Filas de Entrenamiento */}
-            <div className="space-y-4">
+            <div className="space-y-4 tour-training-queues">
               <div className="flex justify-between items-center border-b border-gray-800 pb-2">
                 <label className="font-mono text-neon-red text-xs uppercase tracking-widest">{t('calculator.queues')}</label>
                 <button onClick={addQueue} className="flex items-center gap-1 text-[10px] font-mono bg-blue-900/30 text-blue-400 border border-blue-900 px-2 py-1 hover:bg-blue-900/60 transition-colors cursor-pointer">
@@ -307,8 +335,8 @@ const TrainingCalculator = () => {
               </AnimatePresence>
             </div>
 
-            {/* Inventario */}
-            <div className="bg-[#0a0a0a] border border-gray-800 p-4 relative">
+            {/* Inventario de Aceleradores y Auto-Llenado */}
+            <div className="relative border-t border-gray-800 pt-6 mt-6 tour-training-inventory">
               {isUploading && (
                 <div className="absolute inset-0 bg-black/80 z-20 flex flex-col items-center justify-center border border-blood-red">
                   <Loader2 className="text-neon-red animate-spin mb-2" size={32} />
@@ -362,7 +390,7 @@ const TrainingCalculator = () => {
           </div>
 
           {/* Panel Derecho: Resultados */}
-          <div className="bg-gradient-to-b from-[#0a0a0a] to-[#050505] border border-gray-800 p-6 flex flex-col relative overflow-hidden group">
+          <div className="bg-gradient-to-b from-[#0a0a0a] to-[#050505] border border-gray-800 p-6 flex flex-col relative overflow-hidden group tour-training-results">
             <div className="absolute inset-0 bg-blood-red/5 group-hover:bg-blood-red/10 transition-colors" />
             
             <motion.div key={results.totalPoints} initial={{ scale: 0.9, opacity: 0.5 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 200, damping: 15 }} className="relative z-10 flex flex-col h-full">

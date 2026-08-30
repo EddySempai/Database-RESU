@@ -2181,9 +2181,9 @@
     "imageUrl": "/operativos/character-BsaaChrisRedfield-visual.webp",
     "iconUrl": "/portraits/PortraitBust_CHRIS_L02.webp",
     "stats": {
-      "health": 176000,
-      "attack": 4590,
-      "defense": 1980,
+      "health": 137176,
+      "attack": 14593,
+      "defense": 3648,
       "troops": 13470
     },
     "fieldStats": [
@@ -2284,9 +2284,9 @@
     "imageUrl": "/operativos/character-ShevaAlomar-visual.webp",
     "iconUrl": "/portraits/PortraitBust_SHEVA_L01.webp",
     "stats": {
-      "health": 176000,
-      "attack": 4590,
-      "defense": 1980,
+      "health": 180955,
+      "attack": 11528,
+      "defense": 3781,
       "troops": 13470
     },
     "fieldStats": [
@@ -2299,7 +2299,7 @@
         "value": "444.35%"
       }
     ],
-    "unitType": "Ranger",
+    "unitType": "Defensor",
     "rarity": "Legendario",
     "skills": [
       {
@@ -2387,9 +2387,9 @@
     "imageUrl": "/operativos/character-ExcellaGionne-visual.webp",
     "iconUrl": "/portraits/PortraitBust_EXCELLA_L01.webp",
     "stats": {
-      "health": 176000,
-      "attack": 4590,
-      "defense": 1980,
+      "health": 119664,
+      "attack": 17657,
+      "defense": 3575,
       "troops": 13470
     },
     "fieldStats": [
@@ -2402,7 +2402,7 @@
         "value": "444.35%"
       }
     ],
-    "unitType": "Defensor",
+    "unitType": "Ranger",
     "rarity": "Legendario",
     "skills": [
       {

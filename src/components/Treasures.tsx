@@ -3,9 +3,12 @@ import { Database, ArrowDown, X, Search } from 'lucide-react';
 import { TREASURE_TIERS, getCostBetweenTiers, getRarityStyle } from '../data/treasures';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import type { Step } from 'react-joyride';
+import { useOnboarding, OnboardingTour, TutorialButton } from './OnboardingTour';
 
 export default function Treasures() {
   const { t } = useTranslation();
+  const { run, startTour, handleJoyrideCallback, stepIndex, advanceTour } = useOnboarding('treasures_calc');
   const [slots, setSlots] = useState<{current: number, target: number}[]>(
     Array(6).fill({ current: 0, target: 0 })
   );
@@ -47,6 +50,7 @@ export default function Treasures() {
     }
     setSlots(newSlots);
     setActiveSelect(null);
+    if (run && stepIndex === 1) advanceTour();
   };
 
   const renderSquare = (tierIdx: number, slotIdx: number, type: 'current'|'target') => {
@@ -56,7 +60,7 @@ export default function Treasures() {
 
     return (
       <div 
-        onClick={() => setActiveSelect({slot: slotIdx, type})}
+        onClick={() => { setActiveSelect({slot: slotIdx, type}); if (run && stepIndex === 0) advanceTour(); }}
         className={`w-full aspect-square md:aspect-auto md:h-24 rounded-xl flex flex-col items-center justify-center cursor-pointer transition-all duration-300 backdrop-blur-sm ${
           isEmpty 
             ? 'border border-dashed border-gray-700 hover:border-gray-500 bg-black/40 shadow-none' 
@@ -77,20 +81,40 @@ export default function Treasures() {
     );
   };
 
+  const steps: Step[] = [
+    {
+      target: '.tour-treasures-slots',
+      content: t('tour.treasures_step1', 'Configura el nivel actual y el nivel meta (al que quieres llegar) de cada uno de tus 6 tesoros. Haz clic en un recuadro para empezar.'),
+      buttons: ['close', 'skip'],
+    },
+    {
+      target: '.tour-treasures-modal-content',
+      content: t('tour.treasures_step2', 'Selecciona el nivel deseado de la lista para este tesoro.'),
+      placement: 'right',
+      buttons: ['close', 'skip'],
+    },
+    {
+      target: '.tour-treasures-results',
+      content: t('tour.treasures_step3', 'Al seleccionar los niveles, verás automáticamente la cantidad exacta de fragmentos, planos y esmaltes necesarios para las mejoras.'),
+    }
+  ];
+
   return (
     <div className="max-w-6xl mx-auto px-4 md:px-0 mt-8 mb-16 relative z-10">
+      <OnboardingTour run={run} steps={steps} stepIndex={stepIndex} handleJoyrideCallback={handleJoyrideCallback} />
       <div className="bg-[#0a0a0a]/90 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-gray-800 shadow-2xl relative overflow-hidden">
         
         <div className="absolute -top-32 -right-32 w-64 h-64 bg-red-900/20 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="mb-8 border-b border-gray-800 pb-4 text-center">
-          <h2 className="font-bebas text-4xl md:text-5xl text-white tracking-widest">
+        <div className="mb-8 border-b border-gray-800 pb-4 flex flex-col md:flex-row justify-between items-center gap-4">
+          <h2 className="font-bebas text-4xl md:text-5xl text-white tracking-widest text-center flex-1">
             SIMULADOR DE <span className="text-neon-red">TESOROS</span>
           </h2>
+          <TutorialButton onClick={startTour} className="relative z-20 flex items-center gap-2 bg-black/60 hover:bg-blood-red/20 border border-gray-700 hover:border-blood-red text-gray-400 hover:text-white px-3 py-1.5 rounded-full transition-colors cursor-pointer group" />
         </div>
 
         {/* The 6 Slots Grid */}
-        <div className="flex flex-col md:flex-row gap-6 mb-12">
+        <div className="flex flex-col md:flex-row gap-6 mb-12 tour-treasures-slots">
           {slots.map((slot, idx) => {
             const currentTier = TREASURE_TIERS[slot.current];
             const targetTier = TREASURE_TIERS[slot.target];
@@ -131,7 +155,7 @@ export default function Treasures() {
         </div>
 
         {/* Results Panel */}
-        <div className="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl border border-red-900/30 text-center relative overflow-hidden">
+        <div className="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl border border-red-900/30 text-center relative overflow-hidden tour-treasures-results">
           <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent" />
           
           <div className="flex flex-col items-center mb-8">
@@ -193,17 +217,18 @@ export default function Treasures() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm tour-treasures-modal-overlay"
           >
             <motion.div
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.95 }}
-              className="bg-[#0f0f0f] border border-gray-700 rounded-xl w-full max-w-md max-h-[80vh] overflow-hidden flex flex-col"
+              className="bg-[#0f0f0f] border border-gray-700 rounded-xl w-full max-w-md max-h-[80vh] overflow-hidden flex flex-col tour-treasures-modal-content"
             >
               <div className="flex justify-between items-center p-4 border-b border-gray-800">
                 <h3 className="font-bebas text-xl text-white">{activeSelect.type === 'current' ? t('treasures.select_current') : t('treasures.select_target')}</h3>
-                <button onClick={() => { setActiveSelect(null); setSearchQuery(''); }} className="text-gray-400 hover:text-white"><X size={24} /></button>
+                <button onClick={() => { setActiveSelect(null);
+    if (run && stepIndex === 1) advanceTour(); setSearchQuery(''); }} className="text-gray-400 hover:text-white"><X size={24} /></button>
               </div>
               
               <div className="p-4 border-b border-gray-800/50 bg-[#151515]">
