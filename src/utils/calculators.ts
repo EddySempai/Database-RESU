@@ -33,7 +33,7 @@ const starCosts = [
   // 2 estrellas -> 3 estrellas (65 total)
   [5, 15, 15, 15, 15], 
   // 3 estrellas -> 4 estrellas (175 total)
-  [15, 40, 40, 40, 40], 
+  [15, 15, 40, 40, 40], 
   // 4 estrellas -> 5 estrellas (320 total)
   [40, 40, 40, 100, 100], 
   // 5 estrellas -> 6 estrellas (500 total)
