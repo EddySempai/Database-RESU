@@ -34,6 +34,7 @@ resources/
 *.xlsx
 *.xls
 *.csv
+*.py
 
 # Scratch and temporary testing scripts
 scripts/scratch/
