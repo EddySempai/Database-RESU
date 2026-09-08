@@ -50,7 +50,7 @@ export default function Treasures() {
     }
     setSlots(newSlots);
     setActiveSelect(null);
-    if (run && stepIndex === 1) advanceTour();
+    if (run && (stepIndex === 1 || stepIndex === 3)) advanceTour();
   };
 
   const renderSquare = (tierIdx: number, slotIdx: number, type: 'current'|'target') => {
@@ -60,8 +60,16 @@ export default function Treasures() {
 
     return (
       <div 
-        onClick={() => { setActiveSelect({slot: slotIdx, type}); if (run && stepIndex === 0) advanceTour(); }}
+        onClick={() => { 
+          setActiveSelect({slot: slotIdx, type}); 
+          if (run && stepIndex === 0 && slotIdx === 0 && type === 'current') advanceTour();
+          if (run && stepIndex === 2 && slotIdx === 0 && type === 'target') advanceTour();
+        }}
         className={`w-full aspect-square md:aspect-auto md:h-24 rounded-xl flex flex-col items-center justify-center cursor-pointer transition-all duration-300 backdrop-blur-sm ${
+          slotIdx === 0 && type === 'current' ? 'tour-treasures-slot-current' : ''
+        } ${
+          slotIdx === 0 && type === 'target' ? 'tour-treasures-slot-target' : ''
+        } ${
           isEmpty 
             ? 'border border-dashed border-gray-700 hover:border-gray-500 bg-black/40 shadow-none' 
             : `border border-solid ${style.border} ${style.bg} ${style.text} ${style.shadow} hover:brightness-125 hover:scale-105`
@@ -83,19 +91,34 @@ export default function Treasures() {
 
   const steps: Step[] = [
     {
-      target: '.tour-treasures-slots',
-      content: t('tour.treasures_step1', 'Configura el nivel actual y el nivel meta (al que quieres llegar) de cada uno de tus 6 tesoros. Haz clic en un recuadro para empezar.'),
+      target: '.tour-treasures-slot-current',
+      content: t('tour.treasures_step1', 'Configura el nivel ACTUAL de tu tesoro haciendo clic en esta casilla.'),
       buttons: ['close', 'skip'],
     },
     {
       target: '.tour-treasures-modal-content',
-      content: t('tour.treasures_step2', 'Selecciona el nivel deseado de la lista para este tesoro.'),
+      content: t('tour.treasures_step2', 'aqui puedes ver la lista completa de niveles que hay, Elige Uno!. Eligee tu estado actual'),
       placement: 'right',
+      hideOverlay: true,
+      disableFocusTrap: true,
+      buttons: ['close', 'skip'],
+    },
+    {
+      target: '.tour-treasures-slot-target',
+      content: t('tour.treasures_step3_target', 'Ahora haz clic en la casilla META para indicar a qué nivel deseas llegar.'),
+      buttons: ['close', 'skip'],
+    },
+    {
+      target: '.tour-treasures-modal-content',
+      content: t('tour.treasures_step4_target_modal', 'Ahora elige tu meta. Pon esa meta Alta'),
+      placement: 'right',
+      hideOverlay: true,
+      disableFocusTrap: true,
       buttons: ['close', 'skip'],
     },
     {
       target: '.tour-treasures-results',
-      content: t('tour.treasures_step3', 'Al seleccionar los niveles, verás automáticamente la cantidad exacta de fragmentos, planos y esmaltes necesarios para las mejoras.'),
+      content: t('tour.treasures_step5_results', '¡Aquí abajo se reflejará el total exacto de fragmentos, pulidores y planos necesarios para alcanzar tu objetivo!'),
     }
   ];
 
@@ -225,7 +248,7 @@ export default function Treasures() {
               exit={{ scale: 0.95 }}
               className="bg-[#0f0f0f] border border-gray-700 rounded-xl w-full max-w-md max-h-[80vh] overflow-hidden flex flex-col tour-treasures-modal-content"
             >
-              <div className="flex justify-between items-center p-4 border-b border-gray-800">
+              <div className="flex justify-between items-center p-4 border-b border-gray-800 tour-treasures-modal-header">
                 <h3 className="font-bebas text-xl text-white">{activeSelect.type === 'current' ? t('treasures.select_current') : t('treasures.select_target')}</h3>
                 <button onClick={() => { setActiveSelect(null);
     if (run && stepIndex === 1) advanceTour(); setSearchQuery(''); }} className="text-gray-400 hover:text-white"><X size={24} /></button>

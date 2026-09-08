@@ -12,7 +12,7 @@ interface Keyring {
 }
 
 const Llaveros = () => {
-  const [llaveros] = useState<Keyring[]>(llaverosData);
+  const llaveros: Keyring[] = llaverosData;
   const [search, setSearch] = useState('');
   const [filterType, setFilterType] = useState('Todos');
 
@@ -35,9 +35,14 @@ const Llaveros = () => {
           <Key className="text-neon-red" size={32} />
         </div>
         <h1 className="text-4xl md:text-6xl font-bebas tracking-widest text-white mb-4">BASE DE DATOS: LLAVEROS</h1>
-        <p className="text-gray-400 max-w-2xl mx-auto font-mono text-sm">
-          Catálogo del equipo "KeyRing" (V1.9.1). Descubre las estadísticas principales fijas de cada llavero.
+        <p className="text-gray-400 max-w-3xl mx-auto font-mono text-sm mb-6 leading-relaxed">
+          Catálogo del equipo "KeyRing". Solo puedes equipar un máximo de 3 llaveros a la vez. El primero se desbloquea al superar el Nivel 1 del modo oleadas (5v5), el segundo al superar el Nivel 200, y el tercero se adquiere mediante un paquete especial de la tienda.
+          <br /><br />
+          <strong className="text-blood-red">Importante:</strong> Los efectos principales de los llaveros aplican automáticamente sin necesidad de equiparlos, pero no se acumulan si tienes llaveros duplicados del mismo tipo exacto. Las sub-estadísticas sí requieren que el llavero esté equipado para activarse y varían según su nivel.
         </p>
+        <a href="#/guias/guia-maestra-llaveros" className="inline-flex items-center gap-2 px-6 py-2 bg-blood-red/20 text-red-400 border border-blood-red/50 hover:bg-blood-red hover:text-white rounded-full transition-all font-bebas tracking-widest">
+          LEER GUÍA COMPLETA SOBRE LLAVEROS
+        </a>
       </motion.div>
 
       {/* Filtros */}

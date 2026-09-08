@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, Swords, Star, Filter, Shield, Crosshair } from 'lucide-react';
+import { Trophy, Swords, Star, Filter } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useOperativos } from '../hooks/useOperativos';
@@ -22,17 +22,10 @@ const isDefender = (type: string) => type?.toLowerCase().includes('defen') || ty
 const isAttacker = (type: string) => type?.toLowerCase().includes('atac') || type?.toLowerCase().includes('attack') || type?.includes('アタッカー');
 const isRanger = (type: string) => type?.toLowerCase().includes('rang') || type?.includes('レンジャー');
 
-// Custom icon mimicking the game's RifleMan bullets
-const BulletsIcon = ({ size = 12, className = "text-white" }: { size?: number; className?: string }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" className={`shrink-0 block ${className}`} xmlns="http://www.w3.org/2000/svg">
-    <path d="M4 5h16a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3zm0 5.5h16a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3zm0 5.5h16a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3z" />
-  </svg>
-);
-
 const getUnitIcon = (type: string) => {
-  if (isDefender(type)) return <Shield size={12} className="text-white shrink-0" />;
-  if (isAttacker(type)) return <BulletsIcon size={12} className="text-white shrink-0" />;
-  if (isRanger(type)) return <Crosshair size={12} className="text-white shrink-0" />;
+  if (isDefender(type)) return <img src="/icons/units/UI_Hero_Infantry.webp" alt="Defensor" className="w-3.5 h-3.5 object-contain inline-block shrink-0" />;
+  if (isAttacker(type)) return <img src="/icons/units/UI_Hero_Heavy.webp" alt="Atacante" className="w-3.5 h-3.5 object-contain inline-block shrink-0" />;
+  if (isRanger(type)) return <img src="/icons/units/UI_Hero_Rifle.webp" alt="Ranger" className="w-3.5 h-3.5 object-contain inline-block shrink-0" />;
   return null;
 };
 

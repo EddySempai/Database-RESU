@@ -3,175 +3,294 @@
     "id": "keyring_01",
     "name": "Llavero de Botiquín",
     "icon": "/llaveros/Item_KeyRing_01.webp",
-    "mainStat": "Salud de Tropa",
-    "type": "Defensa"
+    "mainStat": "Aumento de la velocidad de tratamiento en el hospital",
+    "type": "Economía"
   },
   {
     "id": "keyring_02",
     "name": "Llavero de Cuatro Garras",
     "icon": "/llaveros/Item_KeyRing_02.webp",
-    "mainStat": "Ataque de Tropa",
+    "mainStat": "Poder de penetración de todas las tropas al concentrar",
     "type": "Combate"
   },
   {
     "id": "keyring_03",
     "name": "Llavero de Bengala",
     "icon": "/llaveros/Item_KeyRing_03.webp",
-    "mainStat": "Defensa de Tropa",
-    "type": "Defensa"
+    "mainStat": "Aumento de velocidad de entrenamiento de todas las tropas",
+    "type": "Economía"
   },
   {
     "id": "keyring_04",
-    "name": "Llavero con Emblema de Rider",
+    "name": "Llavero de Emblema de Rider",
     "icon": "/llaveros/Item_KeyRing_04.webp",
-    "mainStat": "Ataque de Tirador",
-    "type": "Combate"
+    "mainStat": "Aumento de velocidad de despliegue",
+    "type": "Economía"
   },
   {
     "id": "keyring_05",
-    "name": "Llavero con Emblema de Raccoon",
+    "name": "Llavero de Emblema Raccoon",
     "icon": "/llaveros/Item_KeyRing_05.webp",
-    "mainStat": "Salud de Tirador",
-    "type": "Defensa"
+    "mainStat": "Aumento de velocidad de despliegue en combates contra creaturas",
+    "type": "Combate"
+  },
+  {
+    "id": "keyring_06",
+    "name": "Llavero de Llave con Forma de luna",
+    "icon": "/llaveros/Item_KeyRing_06.webp",
+    "mainStat": "Aumento en el numero de tropas entrenadas por sesion",
+    "type": "Economía"
   },
   {
     "id": "keyring_07",
-    "name": "Llavero con Emblema del R.P.D.",
+    "name": "Llavero de Emblema Del R.P.D.",
     "icon": "/llaveros/Item_KeyRing_07.webp",
-    "mainStat": "Defensa de Infantería",
-    "type": "Defensa"
+    "mainStat": "Aun sin agregar al juego",
+    "type": "Desconocido"
   },
   {
     "id": "keyring_08",
-    "name": "Llavero de Municiones de Subfusil",
+    "name": "Llavero de Municiones de Pistola",
     "icon": "/llaveros/Item_KeyRing_08.webp",
-    "mainStat": "Daño de Tirador",
+    "mainStat": "Ataque de Ranger",
     "type": "Combate"
   },
   {
     "id": "keyring_09",
-    "name": "Llavero de Municiones de Pistola",
+    "name": "Llavero de Municiones de Subfusil",
     "icon": "/llaveros/Item_KeyRing_09.webp",
-    "mainStat": "Daño de Cazador",
-    "type": "Combate"
+    "mainStat": "Aun sin agregar al juego",
+    "type": "Desconocido"
   },
   {
     "id": "keyring_10",
     "name": "Llavero de Municiones de Escopeta",
     "icon": "/llaveros/Item_KeyRing_10.webp",
-    "mainStat": "Daño de Infantería",
-    "type": "Combate"
+    "mainStat": "Aun sin agregar al juego",
+    "type": "Desconocido"
   },
   {
     "id": "keyring_11",
-    "name": "Llavero con Estuche de Umbrella",
+    "name": "Llavero de Estuche de Umbrella",
     "icon": "/llaveros/Item_KeyRing_11.webp",
-    "mainStat": "Salud de Héroe",
-    "type": "Defensa"
+    "mainStat": "Aun sin agregar al juego",
+    "type": "Desconocido"
   },
   {
     "id": "keyring_12",
     "name": "Llavero de Mansión",
     "icon": "/llaveros/Item_KeyRing_12.webp",
-    "mainStat": "Capacidad de Marcha",
+    "mainStat": "Aumento de Velocidad de construcción",
     "type": "Economía"
   },
   {
     "id": "keyring_13",
     "name": "Llavero de Tienda de Juguetes",
     "icon": "/llaveros/Item_KeyRing_13.webp",
-    "mainStat": "Ataque de Tropa",
-    "type": "Combate"
-  },
-  {
-    "id": "keyring_14",
-    "name": "Llavero de Tierra Rara",
-    "icon": "/llaveros/Item_KeyRing_14.webp",
-    "mainStat": "Velocidad de Recolección",
+    "mainStat": "Aumento de la velocidad de tratamiento en el hospital",
     "type": "Economía"
   },
   {
-    "id": "keyring_15",
+    "id": "keyring_14",
     "name": "Llavero de Luminio",
+    "icon": "/llaveros/Item_KeyRing_14.webp",
+    "mainStat": "Aun sin agregar al juego",
+    "type": "Desconocido"
+  },
+  {
+    "id": "keyring_15",
+    "name": "Llavero de Gemas",
     "icon": "/llaveros/Item_KeyRing_15.webp",
-    "mainStat": "Producción de Recursos",
+    "mainStat": "Aumento de la velocidad de investigacion en el laboratorio",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_16",
+    "name": "Llavero de Tierra Rara",
+    "icon": "/llaveros/Item_KeyRing_16.webp",
+    "mainStat": "Velocidad de recolección de todos los recursos",
     "type": "Economía"
   },
   {
     "id": "keyring_17",
     "name": "Llavero de Leon",
     "icon": "/llaveros/Item_KeyRing_17.webp",
-    "mainStat": "Ataque de Tropa (Leon)",
+    "mainStat": "Ataque de Defensor",
     "type": "Combate"
   },
   {
     "id": "keyring_18",
     "name": "Llavero de Claire",
     "icon": "/llaveros/Item_KeyRing_18.webp",
-    "mainStat": "Salud de Tropa (Claire)",
-    "type": "Defensa"
+    "mainStat": "Defensa de Atacante",
+    "type": "Combate"
   },
   {
     "id": "keyring_19",
     "name": "Llavero de Linterna",
     "icon": "/llaveros/Item_KeyRing_19.webp",
-    "mainStat": "Velocidad de Marcha",
-    "type": "Economía"
+    "mainStat": "Aun sin agregar al juego",
+    "type": "Desconocido"
   },
   {
     "id": "keyring_20",
     "name": "Llavero de Medallón",
     "icon": "/llaveros/Item_KeyRing_20.webp",
-    "mainStat": "Defensa de Héroe",
-    "type": "Defensa"
+    "mainStat": "Defensa de Ranger",
+    "type": "Combate"
   },
   {
     "id": "keyring_21",
-    "name": "Llavero con Emblema de D.S.O.",
+    "name": "Llavero de Emblema de D.S.O",
     "icon": "/llaveros/Item_KeyRing_21.webp",
-    "mainStat": "Daño de Habilidad",
-    "type": "Combate"
+    "mainStat": "Aun sin agregar al juego",
+    "type": "Desconocido"
   },
   {
     "id": "keyring_22",
     "name": "Llavero de Ajedrez",
     "icon": "/llaveros/Item_KeyRing_22.webp",
-    "mainStat": "Letalidad",
-    "type": "Combate"
+    "mainStat": "Aun sin agregar al juego",
+    "type": "Desconocido"
   },
   {
     "id": "keyring_23",
     "name": "Llavero de Energía",
     "icon": "/llaveros/Item_KeyRing_23.webp",
-    "mainStat": "Regeneración de Estamina",
-    "type": "Economía"
+    "mainStat": "Aun sin agregar al juego",
+    "type": "Desconocido"
   },
   {
     "id": "keyring_24",
-    "name": "Llavero con Emblema de Pingüino",
+    "name": "Llavero de Emblema de Pingüino",
     "icon": "/llaveros/Item_KeyRing_24.webp",
-    "mainStat": "Velocidad de Entrenamiento",
-    "type": "Economía"
+    "mainStat": "Penetración de Defensor",
+    "type": "Combate"
   },
   {
     "id": "keyring_25",
-    "name": "Llavero de Lámpara de Pie",
+    "name": "Llavero de Lámpara de pie",
     "icon": "/llaveros/Item_KeyRing_25.webp",
-    "mainStat": "Velocidad de Construcción",
-    "type": "Economía"
+    "mainStat": "No da ningun efecto principal",
+    "type": "Desconocido"
   },
   {
     "id": "keyring_26",
-    "name": "Llavero con Emblema de Umbrella",
+    "name": "Llavero de Emblema de U.B.C.S",
     "icon": "/llaveros/Item_KeyRing_26.webp",
-    "mainStat": "Velocidad de Investigación",
-    "type": "Economía"
+    "mainStat": "Poder de penetración de Atacante",
+    "type": "Combate"
   },
   {
     "id": "keyring_27",
-    "name": "Llavero de Saco de Recursos",
+    "name": "Llavero de Saco de Recursos de Alimentos",
     "icon": "/llaveros/Item_KeyRing_27.webp",
-    "mainStat": "Capacidad de Carga",
+    "mainStat": "Velocidad de recolección de alimentos",
     "type": "Economía"
+  },
+  {
+    "id": "keyring_28",
+    "name": "Llavero de recursos de madera",
+    "icon": "/llaveros/Item_KeyRing_28.webp",
+    "mainStat": "Velocidad de recoleccion de madera",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_29",
+    "name": "Llavero de recursos de hierro",
+    "icon": "/llaveros/Item_KeyRing_29.webp",
+    "mainStat": "Velocidad de recolección de hierro",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_30",
+    "name": "Llavero de recurso de petroleo",
+    "icon": "/llaveros/Item_KeyRing_30.webp",
+    "mainStat": "Velocidad de recoleccion de petroleo",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_31",
+    "name": "Llavero de Notas de estrategia de supervivencia",
+    "icon": "/llaveros/Item_KeyRing_31.webp",
+    "mainStat": "Aumenta la velocidad de investigación en el laboratorio",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_32",
+    "name": "Llavero Desconocido 1",
+    "icon": "/llaveros/Item_KeyRing_32.webp",
+    "mainStat": "Aun sin agregar al juego",
+    "type": "Desconocido"
+  },
+  {
+    "id": "keyring_33",
+    "name": "Llavero Desconocido 2",
+    "icon": "/llaveros/Item_KeyRing_33.webp",
+    "mainStat": "Aun sin agregar al juego",
+    "type": "Desconocido"
+  },
+  {
+    "id": "keyring_34",
+    "name": "Llavero Desconocido 3",
+    "icon": "/llaveros/Item_KeyRing_34.webp",
+    "mainStat": "Aun sin agregar al juego",
+    "type": "Desconocido"
+  },
+  {
+    "id": "keyring_35",
+    "name": "Llavero Desconocido 4",
+    "icon": "/llaveros/Item_KeyRing_35.webp",
+    "mainStat": "Aun sin agregar al juego",
+    "type": "Desconocido"
+  },
+  {
+    "id": "keyring_36",
+    "name": "Llavero de Componente electrico",
+    "icon": "/llaveros/Item_KeyRing_36.webp",
+    "mainStat": "Velocidad de construccion",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_37",
+    "name": "Llavero de brujula",
+    "icon": "/llaveros/Item_KeyRing_37.webp",
+    "mainStat": "Salud de Ranger",
+    "type": "Combate"
+  },
+  {
+    "id": "keyring_38",
+    "name": "Llavero de Moneda de Asalto",
+    "icon": "/llaveros/Item_KeyRing_38.webp",
+    "mainStat": "No da ningun efecto principal",
+    "type": "Desconocido"
+  },
+  {
+    "id": "keyring_39",
+    "name": "Llavero de moneda de trebol",
+    "icon": "/llaveros/Item_KeyRing_39.webp",
+    "mainStat": "Poder de defensa de Defensor",
+    "type": "Combate"
+  },
+  {
+    "id": "keyring_40",
+    "name": "Llavero de Estuche de oro",
+    "icon": "/llaveros/Item_KeyRing_40.webp",
+    "mainStat": "Velocidad de recolección de todos los recursos",
+    "type": "Economía"
+  },
+  {
+    "id": "keyring_41",
+    "name": "Llavero de Emblema de S.T.A.R.S",
+    "icon": "/llaveros/Item_KeyRing_41.webp",
+    "mainStat": "Poder de penetración de Ranger",
+    "type": "Combate"
+  },
+  {
+    "id": "keyring_42",
+    "name": "Llavero de radio",
+    "icon": "/llaveros/Item_KeyRing_42.webp",
+    "mainStat": "No da ningun efecto principal",
+    "type": "Desconocido"
   }
 ]

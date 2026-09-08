@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { LUMINIO_NODES } from '../data/luminio';
 import type { LuminioNodeConfig, LuminioBranch } from '../data/luminio';
 import LuminioNode from './LuminioNode';
@@ -6,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import type { Step } from 'react-joyride';
 import { X, Shield, Crosshair, Droplet, Check } from 'lucide-react';
 import { useOnboarding, OnboardingTour, TutorialButton } from './OnboardingTour';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface LuminioTreeProps {
   baseLevels: Record<string, number>;
@@ -19,10 +21,10 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
   const { run, startTour, handleJoyrideCallback, stepIndex, advanceTour } = useOnboarding('luminio_calc');
   const [selectedNode, setSelectedNode] = useState<LuminioNodeConfig | null>(null);
 
-  const branches: { id: LuminioBranch, title: string, color: string, icon: any, imageIcon?: string }[] = [
-    { id: 'blue', title: 'ATACANTE', color: 'blue', icon: Droplet, imageIcon: 'Icon_Hero_Skill_Attack.webp' },
-    { id: 'green', title: 'DEFENSOR', color: 'green', icon: Shield, imageIcon: 'Icon_Hero_Skill_Shield.webp' },
-    { id: 'red', title: 'RANGER', color: 'red', icon: Crosshair, imageIcon: 'Icon_Hero_Skill_AccuracyRate.webp' },
+  const branches: { id: LuminioBranch, title: string, color: string, icon: any, imageIcon: string }[] = [
+    { id: 'blue', title: 'ATACANTE', color: 'blue', icon: Droplet, imageIcon: 'UI_Hero_Heavy.webp' },
+    { id: 'green', title: 'DEFENSOR', color: 'green', icon: Shield, imageIcon: 'UI_Hero_Infantry.webp' },
+    { id: 'red', title: 'RANGER', color: 'red', icon: Crosshair, imageIcon: 'UI_Hero_Rifle.webp' },
   ];
 
   const calculateTotalPowder = () => {
@@ -155,16 +157,26 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
             />
 
             {/* Branch Header Node (Aesthetic) */}
-            <div className={`w-20 h-20 rounded-full border-2 mb-6 flex items-center justify-center relative z-20 transition-transform duration-500 group-hover:scale-110 overflow-hidden
-              ${branch.color === 'blue' ? 'border-blue-500 bg-blue-900/20 text-blue-400 shadow-[0_0_25px_rgba(59,130,246,0.4)]' : ''}
-              ${branch.color === 'red' ? 'border-red-500 bg-red-900/20 text-red-400 shadow-[0_0_25px_rgba(239,68,68,0.4)]' : ''}
-              ${branch.color === 'green' ? 'border-green-500 bg-green-900/20 text-green-400 shadow-[0_0_25px_rgba(34,197,94,0.4)]' : ''}
+            <div className={`w-20 h-20 rounded-full border-2 mb-3 flex items-center justify-center relative z-20 transition-transform duration-500 group-hover:scale-110 overflow-hidden
+              ${branch.color === 'blue' ? 'border-blue-500 bg-blue-900/30 text-blue-400 shadow-[0_0_25px_rgba(59,130,246,0.4)]' : ''}
+              ${branch.color === 'red' ? 'border-red-500 bg-red-900/30 text-red-400 shadow-[0_0_25px_rgba(239,68,68,0.4)]' : ''}
+              ${branch.color === 'green' ? 'border-green-500 bg-green-900/30 text-green-400 shadow-[0_0_25px_rgba(34,197,94,0.4)]' : ''}
             `}>
               {branch.imageIcon ? (
-                <img src={`/icons/skill/${branch.imageIcon}`} alt={branch.title} className="w-full h-full object-cover scale-[1.35]" />
+                <img src={`/icons/units/${branch.imageIcon}`} alt={branch.title} className="w-12 h-12 object-contain drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
               ) : (
                 <branch.icon size={36} strokeWidth={1.5} />
               )}
+            </div>
+
+            {/* Branch Badge */}
+            <div className={`mb-6 px-4 py-1 rounded-full border text-xs font-mono font-bold tracking-widest uppercase flex items-center gap-2
+              ${branch.color === 'blue' ? 'border-blue-500/40 bg-blue-950/60 text-blue-300 shadow-[0_0_15px_rgba(59,130,246,0.2)]' : ''}
+              ${branch.color === 'red' ? 'border-red-500/40 bg-red-950/60 text-red-300 shadow-[0_0_15px_rgba(239,68,68,0.2)]' : ''}
+              ${branch.color === 'green' ? 'border-green-500/40 bg-green-950/60 text-green-300 shadow-[0_0_15px_rgba(34,197,94,0.2)]' : ''}
+            `}>
+              <img src={`/icons/units/${branch.imageIcon}`} alt="" className="w-3.5 h-3.5 object-contain" />
+              <span>{branch.title}</span>
             </div>
             
             {renderBranch(branch.id)}
@@ -172,121 +184,6 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
         ))}
       </div>
       
-      {/* Popover / Modal for upgrading a node */}
-      {selectedNode && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setSelectedNode(null)}>
-          <div className="w-full max-w-sm bg-slate-950/95 border border-slate-800 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.8)] p-6 backdrop-blur-xl animate-in fade-in zoom-in-95" onClick={e => e.stopPropagation()}>
-            <button onClick={() => setSelectedNode(null)} className="absolute top-4 right-4 text-slate-600 hover:text-white transition-colors">
-              <X size={18} />
-            </button>
-            
-            <div className="flex items-start gap-4 mb-6">
-              <div className={`p-4 rounded-xl border flex items-center justify-center
-                ${selectedNode.branch === 'blue' ? 'bg-blue-900/20 border-blue-500/30 text-blue-400' : ''}
-                ${selectedNode.branch === 'red' ? 'bg-red-900/20 border-red-500/30 text-red-400' : ''}
-                ${selectedNode.branch === 'green' ? 'bg-green-900/20 border-green-500/30 text-green-400' : ''}
-              `}>
-                 <span className="font-bebas text-2xl">I</span>
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white pr-6">{t(selectedNode.nameKey, selectedNode.defaultName)}</h3>
-                <p className="text-sm text-gray-400 mt-1 font-mono">Max: <span className="text-white font-bold">{selectedNode.maxLevel}</span></p>
-              </div>
-            </div>
-
-            {/* Base Level Controls */}
-            <div className="mb-4">
-              <label className="text-sm font-mono text-gray-400 mb-2 block">{t('luminio.current_level', 'Nivel Actual')}</label>
-              <div className="flex justify-between items-center bg-black/40 rounded-xl p-2 border border-gray-800">
-                <button 
-                  onClick={() => onBaseChange(selectedNode.id, Math.max(0, (baseLevels[selectedNode.id] || 0) - 1))}
-                  disabled={(baseLevels[selectedNode.id] || 0) === 0}
-                  className="w-12 h-12 flex items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-700 text-white disabled:opacity-50 transition-colors"
-                >
-                  -
-                </button>
-                <input 
-                  type="range" 
-                  min="0" 
-                  max={selectedNode.maxLevel} 
-                  value={baseLevels[selectedNode.id] || 0}
-                  onChange={(e) => onBaseChange(selectedNode.id, parseInt(e.target.value))}
-                  className="flex-1 mx-4 accent-gray-500"
-                />
-                <button 
-                  onClick={() => onBaseChange(selectedNode.id, Math.min(selectedNode.maxLevel, (baseLevels[selectedNode.id] || 0) + 1))}
-                  disabled={(baseLevels[selectedNode.id] || 0) === selectedNode.maxLevel}
-                  className="w-12 h-12 flex items-center justify-center rounded-lg bg-gray-600 hover:bg-gray-500 text-white disabled:opacity-50 transition-colors"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-
-            {/* Target Level Controls */}
-            <div className="mb-4">
-              <label className="text-sm font-mono text-gray-400 mb-2 block">{t('luminio.target_level', 'Nivel Objetivo (Meta)')}</label>
-              <div className="flex justify-between items-center bg-black/40 rounded-xl p-2 border border-gray-800">
-                <button 
-                  onClick={() => onTargetChange(selectedNode.id, Math.max(baseLevels[selectedNode.id] || 0, (targetLevels[selectedNode.id] || 0) - 1))}
-                  disabled={(targetLevels[selectedNode.id] || 0) <= (baseLevels[selectedNode.id] || 0)}
-                  className="w-12 h-12 flex items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-700 text-white disabled:opacity-50 transition-colors"
-                >
-                  -
-                </button>
-                <input 
-                  type="range" 
-                  min={baseLevels[selectedNode.id] || 0} 
-                  max={selectedNode.maxLevel} 
-                  value={targetLevels[selectedNode.id] || 0}
-                  onChange={(e) => onTargetChange(selectedNode.id, parseInt(e.target.value))}
-                  className="flex-1 mx-4 accent-yellow-500"
-                />
-                <button 
-                  onClick={() => onTargetChange(selectedNode.id, Math.min(selectedNode.maxLevel, (targetLevels[selectedNode.id] || 0) + 1))}
-                  disabled={(targetLevels[selectedNode.id] || 0) === selectedNode.maxLevel}
-                  className={`w-12 h-12 flex items-center justify-center rounded-lg text-white disabled:opacity-50 transition-colors
-                    ${selectedNode.branch === 'blue' ? 'bg-blue-600 hover:bg-blue-500' : ''}
-                    ${selectedNode.branch === 'red' ? 'bg-red-600 hover:bg-red-500' : ''}
-                    ${selectedNode.branch === 'green' ? 'bg-green-600 hover:bg-green-500' : ''}
-                  `}
-                >
-                  +
-                </button>
-              </div>
-            </div>
-            
-            <div className="mt-6 flex items-center justify-between pt-4 border-t border-yellow-900/30">
-              <button 
-                onClick={() => onTargetChange(selectedNode.id, selectedNode.maxLevel)}
-                className="text-xs text-yellow-500 hover:text-yellow-400 uppercase font-mono tracking-wider transition-colors drop-shadow-[0_0_8px_rgba(234,179,8,0.5)]"
-              >
-                {t('luminio.max_out', 'MAX AL Nivel')} {selectedNode.maxLevel}
-              </button>
-              
-              <div className="flex gap-4">
-                <button 
-                  onClick={() => {
-                    onBaseChange(selectedNode.id, 0);
-                    onTargetChange(selectedNode.id, 0);
-                  }}
-                  className="text-xs text-gray-500 hover:text-gray-300 uppercase font-mono tracking-wider transition-colors"
-                >
-                  {t('luminio.reset_node', 'Resetear')}
-                </button>
-                <button 
-                  onClick={() => setSelectedNode(null)}
-                  className="w-6 h-6 flex items-center justify-center rounded bg-green-600 hover:bg-green-500 text-white transition-colors"
-                  title="Aceptar"
-                >
-                  <Check size={14} strokeWidth={3} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Summary Module */}
       <div className="bg-gradient-to-t from-black/95 via-yellow-900/10 to-black/60 border-t border-yellow-900/30 p-6 md:p-8 flex flex-col items-center tour-luminio-results">
         <h3 className="text-xl font-mono text-yellow-500/70 mb-4 tracking-widest uppercase">{t('luminio.total_resources', 'Recursos Totales Requeridos')}</h3>
@@ -317,6 +214,166 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
 
         </div>
       </div>
+      {/* Node Upgrade Modal Portal (renders in document.body to follow viewport exactly) */}
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {selectedNode && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" 
+              onClick={() => setSelectedNode(null)}
+            >
+              <motion.div 
+                initial={{ scale: 0.95, y: 10 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.95, y: 10 }}
+                className="bg-[#0f0f0f] border border-gray-700 rounded-xl w-full max-w-md overflow-hidden flex flex-col shadow-2xl" 
+                onClick={e => e.stopPropagation()}
+              >
+                {/* Header Bar */}
+                <div className="flex justify-between items-center p-4 border-b border-gray-800 bg-[#151515]">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center border p-1.5 ${
+                      selectedNode.branch === 'blue' ? 'bg-blue-900/20 border-blue-500/40 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.2)]' :
+                      selectedNode.branch === 'red' ? 'bg-red-900/20 border-red-500/40 text-red-400 shadow-[0_0_10px_rgba(239,68,68,0.2)]' :
+                      'bg-green-900/20 border-green-500/40 text-green-400 shadow-[0_0_10px_rgba(34,197,94,0.2)]'
+                    }`}>
+                      <img 
+                        src={`/icons/units/${branches.find(b => b.id === selectedNode.branch)?.imageIcon || 'UI_Hero_Heavy.webp'}`} 
+                        alt={selectedNode.branch} 
+                        className="w-full h-full object-contain" 
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-bebas text-2xl text-white tracking-widest leading-none">
+                        {t(selectedNode.nameKey, selectedNode.defaultName)}
+                      </h3>
+                      <div className="flex items-center gap-2 mt-1">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-gray-400">
+                          {branches.find(b => b.id === selectedNode.branch)?.title || selectedNode.branch}
+                        </span>
+                        <span className="text-gray-600">•</span>
+                        <span className="text-[10px] font-mono text-gray-400 tracking-wider">
+                          MAX: <strong className="text-white">{selectedNode.maxLevel}</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={() => setSelectedNode(null)} 
+                    className="text-gray-400 hover:text-white p-1 transition-colors"
+                  >
+                    <X size={22} />
+                  </button>
+                </div>
+
+                {/* Controls Body */}
+                <div className="p-5 flex flex-col gap-4 bg-[#0f0f0f]">
+                  {/* Base Level Controls */}
+                  <div>
+                    <div className="flex justify-between items-center mb-2 font-mono text-xs">
+                      <span className="text-gray-400 uppercase tracking-widest">{t('luminio.current_level', 'Nivel Actual')}</span>
+                      <span className="text-white font-bold bg-black/60 px-2 py-0.5 rounded border border-gray-800">
+                        Nv. {baseLevels[selectedNode.id] || 0}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center bg-black/50 rounded-lg p-2 border border-gray-800">
+                      <button 
+                        onClick={() => onBaseChange(selectedNode.id, Math.max(0, (baseLevels[selectedNode.id] || 0) - 1))}
+                        disabled={(baseLevels[selectedNode.id] || 0) === 0}
+                        className="w-10 h-10 flex items-center justify-center rounded bg-[#181818] border border-gray-700 hover:border-gray-500 text-white font-mono text-lg font-bold disabled:opacity-30 disabled:pointer-events-none transition-all"
+                      >
+                        -
+                      </button>
+                      <input 
+                        type="range" 
+                        min="0" 
+                        max={selectedNode.maxLevel} 
+                        value={baseLevels[selectedNode.id] || 0}
+                        onChange={(e) => onBaseChange(selectedNode.id, parseInt(e.target.value))}
+                        className="flex-1 mx-3 accent-yellow-500 cursor-pointer"
+                      />
+                      <button 
+                        onClick={() => onBaseChange(selectedNode.id, Math.min(selectedNode.maxLevel, (baseLevels[selectedNode.id] || 0) + 1))}
+                        disabled={(baseLevels[selectedNode.id] || 0) === selectedNode.maxLevel}
+                        className="w-10 h-10 flex items-center justify-center rounded bg-[#181818] border border-gray-700 hover:border-gray-500 text-white font-mono text-lg font-bold disabled:opacity-30 disabled:pointer-events-none transition-all"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Target Level Controls */}
+                  <div>
+                    <div className="flex justify-between items-center mb-2 font-mono text-xs">
+                      <span className="text-yellow-500 font-bold uppercase tracking-widest">{t('luminio.target_level', 'Nivel Objetivo (Meta)')}</span>
+                      <span className="text-yellow-400 font-bold bg-yellow-500/10 px-2 py-0.5 rounded border border-yellow-500/30">
+                        Nv. {targetLevels[selectedNode.id] || 0}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center bg-black/50 rounded-lg p-2 border border-gray-800">
+                      <button 
+                        onClick={() => onTargetChange(selectedNode.id, Math.max(baseLevels[selectedNode.id] || 0, (targetLevels[selectedNode.id] || 0) - 1))}
+                        disabled={(targetLevels[selectedNode.id] || 0) <= (baseLevels[selectedNode.id] || 0)}
+                        className="w-10 h-10 flex items-center justify-center rounded bg-[#181818] border border-gray-700 hover:border-gray-500 text-white font-mono text-lg font-bold disabled:opacity-30 disabled:pointer-events-none transition-all"
+                      >
+                        -
+                      </button>
+                      <input 
+                        type="range" 
+                        min={baseLevels[selectedNode.id] || 0} 
+                        max={selectedNode.maxLevel} 
+                        value={targetLevels[selectedNode.id] || 0}
+                        onChange={(e) => onTargetChange(selectedNode.id, parseInt(e.target.value))}
+                        className="flex-1 mx-3 accent-yellow-500 cursor-pointer"
+                      />
+                      <button 
+                        onClick={() => onTargetChange(selectedNode.id, Math.min(selectedNode.maxLevel, (targetLevels[selectedNode.id] || 0) + 1))}
+                        disabled={(targetLevels[selectedNode.id] || 0) === selectedNode.maxLevel}
+                        className="w-10 h-10 flex items-center justify-center rounded bg-yellow-500/20 border border-yellow-500/50 hover:bg-yellow-500/30 text-yellow-400 font-mono text-lg font-bold disabled:opacity-30 disabled:pointer-events-none transition-all"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer Bar */}
+                <div className="p-4 border-t border-gray-800 bg-[#121212] flex items-center justify-between">
+                  <button 
+                    onClick={() => onTargetChange(selectedNode.id, selectedNode.maxLevel)}
+                    className="px-3 py-1.5 rounded border border-yellow-500/30 bg-yellow-500/10 text-yellow-400 uppercase font-mono text-xs font-bold tracking-wider hover:bg-yellow-500/20 transition-all"
+                  >
+                    {t('luminio.max_out', 'MAX AL NIVEL')} {selectedNode.maxLevel}
+                  </button>
+                  
+                  <div className="flex items-center gap-3">
+                    <button 
+                      onClick={() => {
+                        onBaseChange(selectedNode.id, 0);
+                        onTargetChange(selectedNode.id, 0);
+                      }}
+                      className="px-2 py-1 text-xs text-gray-500 hover:text-red-400 uppercase font-mono tracking-wider transition-colors"
+                    >
+                      {t('luminio.reset_node', 'Resetear')}
+                    </button>
+                    <button 
+                      onClick={() => setSelectedNode(null)}
+                      className="px-4 py-1.5 flex items-center gap-1.5 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-lg"
+                    >
+                      <Check size={16} strokeWidth={2.5} />
+                      <span>Listo</span>
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
     </div>
   );

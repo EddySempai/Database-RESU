@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { useSound } from '../../contexts/SoundContext';
 import { AdminModal, type AdminModalType } from '../../components/admin/AdminModal';
-import { Plus, Search, Loader2 } from 'lucide-react';
+import { Plus, Search, Loader2, Tag, X } from 'lucide-react';
 import { MansionSelect, PowerInput, RankSelect, AccountTypeSelect } from '../../components/admin/AdminInputs';
 
 interface Member {
@@ -20,11 +20,67 @@ interface Member {
 const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   const { playHover, playClick } = useSound();
   const [members, setMembers] = useState<Member[]>([]);
+  const [aliases, setAliases] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [modal, setModal] = useState<{isOpen: boolean, type: AdminModalType, title: string, message: string, onConfirm?: () => void}>({isOpen: false, type: 'alert', title: '', message: ''});
-  const closeModal = () => setModal(prev => ({...prev, isOpen: false}));
+  const [filterRank, setFilterRank] = useState<string>('ALL');
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive' | 'kicked'>('active');
+  const [editingAliasMemberId, setEditingAliasMemberId] = useState<string | null>(null);
+  const [newAliasText, setNewAliasText] = useState('');
+
+  const [modal, setModal] = useState<{
+    isOpen: boolean;
+    type: AdminModalType;
+    title: string;
+    message: string;
+    onConfirm?: () => void;
+  }>({ isOpen: false, type: 'alert', title: '', message: '' });
+  
+  const closeModal = () => setModal(prev => ({ ...prev, isOpen: false }));
+
+  // Form state for adding new member
+  const [newNickname, setNewNickname] = useState('');
+  const [newRank, setNewRank] = useState('R1');
+  const [newType, setNewType] = useState<'main' | 'alt'>('main');
+  const [newPower, setNewPower] = useState(0);
+  const [newMansionLevel, setNewMansionLevel] = useState(1);
+
+  useEffect(() => {
+    fetchData();
+  }, [activeAlliance]);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      // 1. Fetch members
+      const { data: memData, error: memErr } = await supabase
+        .from('members')
+        .select('*')
+        .eq('alliance_name', activeAlliance)
+        .order('rank', { ascending: false })
+        .order('nickname', { ascending: true });
+        
+      if (memErr) throw memErr;
+      setMembers(memData || []);
+
+      // 2. Fetch alias mappings from guild_settings
+      const { data: aliasData } = await supabase
+        .from('guild_settings')
+        .select('*')
+        .eq('key', 'member_aliases')
+        .maybeSingle();
+
+      if (aliasData && aliasData.value && typeof aliasData.value === 'object') {
+        setAliases(aliasData.value);
+      } else {
+        setAliases({});
+      }
+    } catch (err) {
+      console.error('Error fetching members data:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const logAudit = async (action_type: string, target_name: string, details?: string) => {
     try {
@@ -40,33 +96,42 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     }
   };
 
-  // Form state
-  const [newNickname, setNewNickname] = useState('');
-  const [newRank, setNewRank] = useState('R1');
-  const [newType, setNewType] = useState<'main' | 'alt'>('main');
-  const [newPower, setNewPower] = useState(0);
-  const [newMansionLevel, setNewMansionLevel] = useState(1);
-
-  useEffect(() => {
-    fetchMembers();
-  }, [activeAlliance]);
-
-  const fetchMembers = async () => {
+  const saveAliasMap = async (updated: Record<string, string[]>) => {
+    setAliases(updated);
     try {
-      const { data, error } = await supabase
-        .from('members')
-        .select('*')
-        .eq('alliance_name', activeAlliance)
-        .order('rank', { ascending: false })
-        .order('nickname', { ascending: true });
-        
-      if (error) throw error;
-      setMembers(data || []);
+      await supabase
+        .from('guild_settings')
+        .upsert({ key: 'member_aliases', value: updated });
     } catch (err) {
-      console.error('Error fetching members:', err);
-    } finally {
-      setLoading(false);
+      console.error('Error saving alias map:', err);
     }
+  };
+
+  const handleAddAlias = (memberId: string) => {
+    const trimmed = newAliasText.trim();
+    if (!trimmed) return;
+    
+    playClick();
+    const existing = aliases[memberId] || [];
+    if (!existing.includes(trimmed)) {
+      const updated = {
+        ...aliases,
+        [memberId]: [...existing, trimmed]
+      };
+      saveAliasMap(updated);
+    }
+    setNewAliasText('');
+    setEditingAliasMemberId(null);
+  };
+
+  const handleRemoveAlias = (memberId: string, aliasToRemove: string) => {
+    playClick();
+    const existing = aliases[memberId] || [];
+    const updated = {
+      ...aliases,
+      [memberId]: existing.filter(a => a !== aliasToRemove)
+    };
+    saveAliasMap(updated);
   };
 
   const handleAddMember = async (e: React.FormEvent) => {
@@ -100,14 +165,13 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       }
     } catch (err) {
       console.error('Error adding member:', err);
-      setModal({isOpen: true, type: 'error', title: 'Error', message: 'Error adding member. Check console.'});
+      setModal({ isOpen: true, type: 'error', title: 'Error', message: 'Error adding member. Check console.' });
     }
   };
 
   const updateMember = async (id: string, field: string, value: any) => {
     try {
       const member = members.find(m => m.id === id);
-      // Optimistic update
       setMembers(members.map(m => m.id === id ? { ...m, [field]: value } : m));
       
       const { error } = await supabase
@@ -128,194 +192,350 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       }
     } catch (err) {
       console.error('Error updating member:', err);
-      fetchMembers(); // Revert on error
+      fetchData();
     }
   };
 
-  const filteredMembers = members.filter(m => 
-    m.nickname.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (filterStatus === 'all' || (m.status || (m.is_active ? 'active' : 'inactive')) === filterStatus)
-  );
+  const ranks = ['R5', 'R4', 'R3', 'R2', 'R1'];
+
+  const filteredMembers = members.filter(m => {
+    const matchesSearch = 
+      m.nickname.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (aliases[m.id] && aliases[m.id].some(a => a.toLowerCase().includes(searchTerm.toLowerCase())));
+
+    const matchesStatus = 
+      filterStatus === 'all' || (m.status || (m.is_active ? 'active' : 'inactive')) === filterStatus;
+
+    const matchesRank = 
+      filterRank === 'ALL' || m.rank === filterRank;
+
+    return matchesSearch && matchesStatus && matchesRank;
+  });
+
+  const countByRank = ranks.reduce((acc, r) => {
+    acc[r] = members.filter(m => m.rank === r && (filterStatus === 'all' || (m.status || (m.is_active ? 'active' : 'inactive')) === filterStatus)).length;
+    return acc;
+  }, {} as Record<string, number>);
 
   return (
     <div className="h-full flex flex-col gap-6">
-      <div className="flex justify-between items-end">
+      {/* Header & Stats */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
         <div>
-          <h2 className="font-bebas text-3xl tracking-widest text-white">Directorio del Gremio</h2>
-          <p className="font-mono text-gray-400 text-xs mt-1">Total: {members.length} Operativos</p>
+          <div className="flex items-center gap-3">
+            <h2 className="font-bebas text-3xl tracking-widest text-white">Directorio de Operativos</h2>
+            <span className="bg-blood-red/20 border border-blood-red/40 text-neon-red font-mono text-[10px] px-2 py-0.5 uppercase tracking-wider">
+              {activeAlliance}
+            </span>
+          </div>
+          <p className="font-mono text-gray-400 text-xs mt-1">
+            Total: <strong className="text-white">{members.length}</strong> Operativos | Conectados a Mapeo OCR
+          </p>
         </div>
       </div>
 
-      {/* Add Form */}
-      <form onSubmit={handleAddMember} className="bg-[#0a0a0a] border border-gray-800 p-6">
-        <div className="flex-1 grid grid-cols-2 lg:grid-cols-6 gap-6">
+      {/* Add Operative Quick Card */}
+      <form onSubmit={handleAddMember} className="bg-gradient-to-b from-[#111] to-[#0a0a0a] border border-gray-800/80 p-5 rounded-sm shadow-lg">
+        <div className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
+          <Plus size={14} className="text-neon-red" /> Nuevo Registro de Operativo
+        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
           <div>
-            <label className="block font-mono text-xs text-gray-500 mb-2">Nombre</label>
+            <label className="block font-mono text-[10px] uppercase tracking-wider text-gray-500 mb-1">Nombre</label>
             <input 
               type="text" 
               value={newNickname}
               onChange={(e) => setNewNickname(e.target.value)}
-              className="w-full bg-[#111] border border-gray-700 hover:border-gray-500 focus:border-neon-red text-white font-mono text-sm focus:outline-none transition-colors px-3 py-2"
+              className="w-full bg-black/80 border border-gray-700 hover:border-gray-500 focus:border-neon-red text-white font-mono text-xs focus:outline-none transition-colors px-3 py-2"
               placeholder="Ej: CondePatula"
             />
           </div>
           <div>
-            <label className="block font-mono text-xs text-gray-500 mb-2">Rango</label>
+            <label className="block font-mono text-[10px] uppercase tracking-wider text-gray-500 mb-1">Rango</label>
             <RankSelect 
               value={newRank}
               onChange={(val) => setNewRank(val)}
-              className="w-full bg-[#111] border border-gray-700 hover:border-gray-500 focus:border-neon-red text-gray-300 font-mono text-sm text-left px-3 py-2 flex justify-between items-center transition-colors"
+              className="w-full bg-black/80 border border-gray-700 hover:border-gray-500 focus:border-neon-red text-gray-300 font-mono text-xs text-left px-3 py-2 flex justify-between items-center transition-colors"
             />
           </div>
           <div>
-            <label className="block font-mono text-xs text-gray-500 mb-2">Tipo de Cuenta</label>
+            <label className="block font-mono text-[10px] uppercase tracking-wider text-gray-500 mb-1">Tipo Cuenta</label>
             <AccountTypeSelect 
               value={newType}
               onChange={(val) => setNewType(val as 'main'|'alt')}
-              className="w-full bg-[#111] border border-gray-700 hover:border-gray-500 focus:border-neon-red text-gray-300 font-mono text-sm text-left px-3 py-2 flex justify-between items-center transition-colors"
+              className="w-full bg-black/80 border border-gray-700 hover:border-gray-500 focus:border-neon-red text-gray-300 font-mono text-xs text-left px-3 py-2 flex justify-between items-center transition-colors"
             />
           </div>
           <div>
-            <label className="block font-mono text-xs text-gray-500 mb-2">Poder</label>
+            <label className="block font-mono text-[10px] uppercase tracking-wider text-gray-500 mb-1">Poder</label>
             <PowerInput 
               value={newPower}
               onChange={setNewPower}
-              className="w-full bg-[#111] border border-gray-700 hover:border-gray-500 focus:border-neon-red text-white font-mono text-sm focus:outline-none transition-colors px-3 py-2"
+              className="w-full bg-black/80 border border-gray-700 hover:border-gray-500 focus:border-neon-red text-white font-mono text-xs focus:outline-none transition-colors px-3 py-2"
             />
           </div>
           <div>
-            <label className="block font-mono text-xs text-gray-500 mb-2">Mansión</label>
+            <label className="block font-mono text-[10px] uppercase tracking-wider text-gray-500 mb-1">Mansión</label>
             <MansionSelect 
               value={newMansionLevel}
               onChange={setNewMansionLevel}
-              className="w-full bg-[#111] border border-gray-700 hover:border-gray-500 focus:border-neon-red text-gray-300 font-mono text-sm text-left px-3 py-2 flex justify-between items-center transition-colors"
+              className="w-full bg-black/80 border border-gray-700 hover:border-gray-500 focus:border-neon-red text-gray-300 font-mono text-xs text-left px-3 py-2 flex justify-between items-center transition-colors"
             />
           </div>
           <div className="flex items-end">
             <button 
               type="submit"
               onMouseEnter={playHover}
-              className="w-full bg-blood-red/20 border border-blood-red text-neon-red hover:bg-blood-red hover:text-white px-4 py-2 font-mono text-sm uppercase flex items-center justify-center gap-2 transition-colors"
+              className="w-full bg-blood-red/20 border border-blood-red text-neon-red hover:bg-blood-red hover:text-white px-4 py-2 font-mono text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all shadow-[0_0_10px_rgba(255,42,42,0.15)]"
             >
-              <Plus size={16} /> Añadir
+              <Plus size={14} /> Registrar
             </button>
           </div>
         </div>
       </form>
 
-      {/* List */}
-      <div className="bg-[#0a0a0a] border border-gray-800 flex-1 overflow-hidden flex flex-col">
-        <div className="p-4 border-b border-gray-800 flex gap-4 items-center">
-          <div className="relative flex-1 max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
-            <input 
-              type="text" 
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Buscar operativo..."
-              className="w-full bg-black border border-gray-700 text-white pl-9 pr-3 py-1.5 font-mono text-xs focus:outline-none focus:border-neon-red"
-            />
+      {/* Modern Filter Toolbar */}
+      <div className="bg-[#090909] border border-gray-800/80 rounded-sm flex-1 overflow-hidden flex flex-col">
+        <div className="p-4 border-b border-gray-800 flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center">
+          
+          {/* Search + Status */}
+          <div className="flex gap-3 items-center flex-1">
+            <div className="relative flex-1 max-w-xs">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={14} />
+              <input 
+                type="text" 
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Buscar por nombre o apodo..."
+                className="w-full bg-black border border-gray-700 text-white pl-9 pr-3 py-1.5 font-mono text-xs focus:outline-none focus:border-neon-red"
+              />
+            </div>
+            
+            <select
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value as any)}
+              className="bg-black border border-gray-700 text-gray-300 font-mono text-xs focus:outline-none focus:border-neon-red py-1.5 px-3"
+            >
+              <option value="active">Activos</option>
+              <option value="inactive">Inactivos</option>
+              <option value="kicked">Ex-Miembros</option>
+              <option value="all">Todos los Estados</option>
+            </select>
           </div>
-          <select
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value as any)}
-            className="bg-black border border-gray-700 text-gray-300 font-mono text-xs focus:outline-none focus:border-neon-red py-1.5 px-3"
-          >
-            <option value="active">Activos</option>
-            <option value="inactive">Inactivos</option>
-            <option value="kicked">Ex-Miembros</option>
-            <option value="all">Todos</option>
-          </select>
+
+          {/* Rank Pills */}
+          <div className="flex gap-1.5 overflow-x-auto scrollbar-none items-center">
+            <button
+              onClick={() => { playClick(); setFilterRank('ALL'); }}
+              className={`px-3 py-1 font-mono text-[11px] uppercase tracking-wider transition-colors border ${filterRank === 'ALL' ? 'bg-blood-red/20 border-neon-red text-white' : 'border-gray-800 text-gray-400 hover:border-gray-700'}`}
+            >
+              Todos ({members.length})
+            </button>
+            {ranks.map(r => (
+              <button
+                key={r}
+                onClick={() => { playClick(); setFilterRank(r); }}
+                className={`px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider transition-colors border ${filterRank === r ? 'bg-blood-red/20 border-neon-red text-white' : 'border-gray-800 text-gray-400 hover:border-gray-700'}`}
+              >
+                {r} <span className="text-gray-500 ml-0.5">({countByRank[r] || 0})</span>
+              </button>
+            ))}
+          </div>
         </div>
 
+        {/* Members Table */}
         <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
           {loading ? (
-            <div className="flex justify-center items-center h-32">
-              <Loader2 className="animate-spin text-neon-red" size={24} />
+            <div className="flex justify-center items-center h-48">
+              <Loader2 className="animate-spin text-neon-red" size={28} />
             </div>
           ) : (
             <table className="w-full text-left border-collapse">
-            <thead className="sticky top-0 bg-[#111] shadow-md z-10 border-b border-gray-700">
-              <tr>
-                <th className="font-mono text-xs text-gray-400 uppercase tracking-widest pb-4 pt-4 px-4">Operativo</th>
-                <th className="font-mono text-xs text-gray-400 uppercase tracking-widest pb-4 pt-4 px-4 w-32">Rango</th>
-                <th className="font-mono text-xs text-gray-400 uppercase tracking-widest pb-4 pt-4 px-4 w-32">Tipo</th>
-                <th className="font-mono text-xs text-gray-400 uppercase tracking-widest pb-4 pt-4 px-4 w-40 text-right">Poder</th>
-                <th className="font-mono text-xs text-gray-400 uppercase tracking-widest pb-4 pt-4 px-4 w-24 text-center">Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredMembers.map(member => (
-                <tr key={member.id} className="hover:bg-white/5 even:bg-white/[0.02] border-b border-gray-800/50 transition-colors">
-                  <td className="py-4 px-4 font-mono text-sm text-white">
-                    <input 
-                      type="text" 
-                      value={member.nickname}
-                      onChange={(e) => updateMember(member.id, 'nickname', e.target.value)}
-                      className="bg-transparent border-b border-transparent hover:border-gray-600 focus:border-neon-red focus:bg-black w-full text-white font-mono text-sm focus:outline-none transition-colors"
-                    />
-                  </td>
-                  <td className="py-4 px-4">
-                    <RankSelect 
-                      value={member.rank}
-                      onChange={(val) => updateMember(member.id, 'rank', val)}
-                    />
-                  </td>
-                  <td className="py-4 px-4">
-                    <AccountTypeSelect 
-                      value={member.account_type}
-                      onChange={(val) => updateMember(member.id, 'account_type', val)}
-                    />
-                  </td>
-                  <td className="py-4 px-4 text-right">
-                    <PowerInput 
-                      value={member.power}
-                      onChange={(val) => updateMember(member.id, 'power', val)}
-                      className="w-full bg-transparent border-b border-gray-800 hover:border-gray-500 focus:border-neon-red focus:bg-black/50 text-gray-300 font-mono text-sm text-right focus:outline-none transition-colors px-2 py-1"
-                    />
-                  </td>
-                  <td className="py-4 px-4 flex flex-col gap-2 items-center">
-                    <div className="flex gap-2 w-full justify-center">
-                      <button 
-                        onClick={() => {
-                          const currentStatus = member.status || (member.is_active ? 'active' : 'inactive');
-                          updateMember(member.id, 'status', currentStatus === 'active' ? 'inactive' : 'active');
-                        }}
-                        className={`font-mono text-[10px] uppercase px-2 py-1 rounded-sm border transition-colors flex-1 ${(!member.status && member.is_active) || member.status === 'active' ? 'border-green-500/50 text-green-400 bg-green-500/10 hover:bg-green-500/20' : 'border-gray-700 text-gray-500 bg-gray-800 hover:bg-gray-700'}`}
-                      >
-                        {(!member.status && member.is_active) || member.status === 'active' ? 'Activo' : 'Inactivo'}
-                      </button>
-                      {member.status !== 'kicked' && (
-                        <button
-                          onClick={() => {
-                            setModal({
-                              isOpen: true,
-                              type: 'confirm',
-                              title: 'Expulsar Miembro',
-                              message: `¿Estás seguro de que quieres expulsar a ${member.nickname}? Pasará a Ex-Miembro.`,
-                              onConfirm: () => updateMember(member.id, 'status', 'kicked')
-                            });
-                          }}
-                          className="font-mono text-[10px] uppercase px-2 py-1 rounded-sm border border-red-900 text-red-500 bg-red-950 hover:bg-red-900 transition-colors"
-                          title="Expulsar"
-                        >
-                          X
-                        </button>
-                      )}
-                    </div>
-                    <MansionSelect 
-                      value={member.mansion_level}
-                      onChange={(val) => updateMember(member.id, 'mansion_level', val)}
-                    />
-                  </td>
+              <thead className="sticky top-0 bg-[#121212] z-10 border-b border-gray-800">
+                <tr>
+                  <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4">Operativo & Apodos OCR</th>
+                  <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4 w-28 text-center">Rango</th>
+                  <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4 w-32 text-center">Tipo</th>
+                  <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4 w-40 text-right">Poder Base</th>
+                  <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4 w-36 text-center">Estado & Mansión</th>
                 </tr>
-                ))}
+              </thead>
+              <tbody className="divide-y divide-gray-800/40">
+                {filteredMembers.map(member => {
+                  const memberAliases = aliases[member.id] || [];
+                  const isEditingThisAlias = editingAliasMemberId === member.id;
+
+                  return (
+                    <tr key={member.id} className="hover:bg-white/[0.03] transition-colors group">
+                      
+                      {/* Nickname & Japanese/In-game Aliases */}
+                      <td className="py-3 px-4">
+                        <div className="flex flex-col gap-1.5">
+                          <input 
+                            type="text" 
+                            value={member.nickname}
+                            onChange={(e) => updateMember(member.id, 'nickname', e.target.value)}
+                            className="bg-transparent border-b border-transparent hover:border-gray-700 focus:border-neon-red focus:bg-black/80 w-full text-white font-mono text-sm font-medium focus:outline-none transition-colors py-0.5"
+                          />
+
+                          {/* Aliases Tag Cloud */}
+                          <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                            {memberAliases.map((al, idx) => (
+                              <span 
+                                key={idx} 
+                                className="inline-flex items-center gap-1 bg-[#151515] border border-gray-700 text-gray-300 font-mono text-[10px] px-2 py-0.5 rounded-sm"
+                                title="Apodo reconocido por el asistente OCR"
+                              >
+                                <span>{al}</span>
+                                <button
+                                  type="button"
+                                  onClick={() => handleRemoveAlias(member.id, al)}
+                                  className="text-gray-500 hover:text-red-400 transition-colors ml-0.5"
+                                  title="Eliminar apodo"
+                                >
+                                  <X size={10} />
+                                </button>
+                              </span>
+                            ))}
+
+                            {isEditingThisAlias ? (
+                              <div className="inline-flex items-center gap-1">
+                                <input
+                                  type="text"
+                                  autoFocus
+                                  placeholder="Ej: ヤスノリ..."
+                                  value={newAliasText}
+                                  onChange={(e) => setNewAliasText(e.target.value)}
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                      e.preventDefault();
+                                      handleAddAlias(member.id);
+                                    } else if (e.key === 'Escape') {
+                                      setEditingAliasMemberId(null);
+                                    }
+                                  }}
+                                  className="bg-black border border-neon-red text-white font-mono text-[10px] px-1.5 py-0.5 focus:outline-none w-28"
+                                />
+                                <button
+                                  type="button"
+                                  onClick={() => handleAddAlias(member.id)}
+                                  className="text-neon-red hover:text-white text-[10px] font-mono"
+                                >
+                                  Guardar
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => setEditingAliasMemberId(null)}
+                                  className="text-gray-500 hover:text-white text-[10px]"
+                                >
+                                  ✕
+                                </button>
+                              </div>
+                            ) : (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setEditingAliasMemberId(member.id);
+                                  setNewAliasText('');
+                                }}
+                                className="inline-flex items-center gap-1 text-[10px] font-mono text-gray-500 hover:text-neon-red transition-colors py-0.5"
+                                title="Asociar apodo o nombre japonés a este miembro"
+                              >
+                                <Tag size={10} />
+                                <span>+ Apodo OCR</span>
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </td>
+
+                      {/* Rank */}
+                      <td className="py-3 px-4 text-center">
+                        <RankSelect 
+                          value={member.rank}
+                          onChange={(val) => updateMember(member.id, 'rank', val)}
+                        />
+                      </td>
+
+                      {/* Account Type */}
+                      <td className="py-3 px-4 text-center">
+                        <AccountTypeSelect 
+                          value={member.account_type}
+                          onChange={(val) => updateMember(member.id, 'account_type', val)}
+                        />
+                      </td>
+
+                      {/* Power */}
+                      <td className="py-3 px-4 text-right">
+                        <PowerInput 
+                          value={member.power}
+                          onChange={(val) => updateMember(member.id, 'power', val)}
+                          className="w-full bg-transparent border-b border-transparent hover:border-gray-700 focus:border-neon-red focus:bg-black/50 text-gray-200 font-mono text-sm text-right focus:outline-none transition-colors px-2 py-1"
+                        />
+                      </td>
+
+                      {/* Status & Mansion */}
+                      <td className="py-3 px-4 flex flex-col gap-2 items-center">
+                        <div className="flex gap-2 w-full justify-center">
+                          <button 
+                            onClick={() => {
+                              const currentStatus = member.status || (member.is_active ? 'active' : 'inactive');
+                              updateMember(member.id, 'status', currentStatus === 'active' ? 'inactive' : 'active');
+                            }}
+                            className={`font-mono text-[10px] uppercase px-2 py-1 rounded-sm border transition-colors flex-1 ${(!member.status && member.is_active) || member.status === 'active' ? 'border-green-500/40 text-green-400 bg-green-500/10 hover:bg-green-500/20' : 'border-gray-700 text-gray-500 bg-gray-900 hover:bg-gray-800'}`}
+                          >
+                            {(!member.status && member.is_active) || member.status === 'active' ? 'Activo' : 'Inactivo'}
+                          </button>
+
+                          {member.status !== 'kicked' && (
+                            <button
+                              onClick={() => {
+                                setModal({
+                                  isOpen: true,
+                                  type: 'confirm',
+                                  title: 'Expulsar Miembro',
+                                  message: `¿Estás seguro de que quieres expulsar a ${member.nickname}? Pasará al registro de Ex-Miembros.`,
+                                  onConfirm: () => updateMember(member.id, 'status', 'kicked')
+                                });
+                              }}
+                              className="font-mono text-[10px] uppercase px-2 py-1 rounded-sm border border-red-900/60 text-red-500 bg-red-950/40 hover:bg-red-900/60 transition-colors"
+                              title="Expulsar de la alianza"
+                            >
+                              X
+                            </button>
+                          )}
+                        </div>
+
+                        <MansionSelect 
+                          value={member.mansion_level}
+                          onChange={(val) => updateMember(member.id, 'mansion_level', val)}
+                        />
+                      </td>
+                    </tr>
+                  );
+                })}
+
+                {filteredMembers.length === 0 && (
+                  <tr>
+                    <td colSpan={5} className="py-12 text-center text-gray-500 font-mono text-xs">
+                      No se encontraron operativos que coincidan con los filtros actuales.
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           )}
         </div>
       </div>
-      <AdminModal isOpen={modal.isOpen} type={modal.type} title={modal.title} message={modal.message} onConfirm={modal.onConfirm || closeModal} onClose={closeModal} />
+
+      <AdminModal 
+        isOpen={modal.isOpen} 
+        type={modal.type} 
+        title={modal.title} 
+        message={modal.message} 
+        onConfirm={modal.onConfirm || closeModal} 
+        onClose={closeModal} 
+      />
     </div>
   );
 };

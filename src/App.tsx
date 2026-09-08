@@ -20,7 +20,8 @@ const ComingSoon = React.lazy(() => import('./pages/ComingSoon'));
 const TierList = React.lazy(() => import('./pages/TierList'));
 const Comparador = React.lazy(() => import('./pages/Comparador'));
 const Llaveros = React.lazy(() => import('./pages/Llaveros'));
-// const Guias = React.lazy(() => import('./pages/Guias'));
+const Guias = React.lazy(() => import('./pages/Guias'));
+const GuiaDetalle = React.lazy(() => import('./pages/GuiaDetalle'));
 const AdminLogin = React.lazy(() => import('./pages/admin/AdminLogin'));
 const AdminDashboard = React.lazy(() => import('./pages/admin/AdminDashboard'));
 
@@ -30,12 +31,12 @@ const AppContent = () => {
   const { t } = useTranslation();
   
   return (
-    <div className="min-h-screen bg-umbrella-black text-white font-inter relative overflow-hidden flex flex-col">
+    <div className={`text-white font-inter relative overflow-hidden flex flex-col ${isAdmin ? 'h-screen w-screen bg-[#050505]' : 'min-h-screen bg-umbrella-black'}`}>
       {!isAdmin && <Particles />}
       <Analytics />
       {!isAdmin && <Navbar />}
       
-      <main className="flex-1">
+      <main className={`flex-1 ${isAdmin ? 'h-full overflow-hidden' : ''}`}>
         <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
           <Suspense fallback={<LoadingScreen />}>
             <Routes location={location} key={location.pathname}>
@@ -46,7 +47,8 @@ const AppContent = () => {
           <Route path="/heroes/:id" element={<PageTransition><OperativoDetalle /></PageTransition>} />
           <Route path="/llaveros" element={<PageTransition><Llaveros /></PageTransition>} />
           <Route path="/tier-list" element={<PageTransition><TierList /></PageTransition>} />
-          <Route path="/guias" element={<PageTransition><ComingSoon /></PageTransition>} />
+          <Route path="/guias" element={<PageTransition><Guias /></PageTransition>} />
+          <Route path="/guias/:slug" element={<PageTransition><GuiaDetalle /></PageTransition>} />
           
           {/* Admin Routes */}
           <Route path="/admin/login" element={<PageTransition><AdminLogin /></PageTransition>} />

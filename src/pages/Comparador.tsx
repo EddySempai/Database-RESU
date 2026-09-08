@@ -105,7 +105,20 @@ const Comparador = () => {
               <img src={`/operativos/${op.imageUrl.split('/').pop()}`} alt={op.name} className="w-full h-full object-contain object-bottom group-hover:scale-105 transition-transform duration-500" />
             </div>
             <div className="text-center mb-6">
-              <div className="text-xs font-mono text-blood-red tracking-widest uppercase mb-1">{op.unitType} / {op.rarity}</div>
+              <div className="flex items-center justify-center gap-1.5 text-xs font-mono text-blood-red tracking-widest uppercase mb-1">
+                {op.unitType && (
+                  <img 
+                    src={
+                      op.unitType.toLowerCase().includes('defen') ? '/icons/units/UI_Hero_Infantry.webp' :
+                      op.unitType.toLowerCase().includes('rang') ? '/icons/units/UI_Hero_Rifle.webp' :
+                      '/icons/units/UI_Hero_Heavy.webp'
+                    } 
+                    alt={op.unitType} 
+                    className="w-4 h-4 object-contain shrink-0 inline-block" 
+                  />
+                )}
+                <span>{op.unitType} / {op.rarity}</span>
+              </div>
               <h3 className="font-bebas text-3xl tracking-widest text-white">{op.name}</h3>
             </div>
           </div>
@@ -132,9 +145,11 @@ const Comparador = () => {
       buttons: ['close', 'skip'],
     },
     {
-      target: '.tour-comparador-modal-content',
+      target: '.tour-comparador-modal-header',
       content: t('tour.comparador_step1_modal', 'Selecciona a cualquier operativo de la lista para comenzar.'),
-      placement: 'right',
+      placement: 'bottom',
+      hideOverlay: true,
+      disableFocusTrap: true,
       buttons: ['close', 'skip'],
     },
     {
@@ -143,9 +158,11 @@ const Comparador = () => {
       buttons: ['close', 'skip'],
     },
     {
-      target: '.tour-comparador-modal-content',
+      target: '.tour-comparador-modal-header',
       content: t('tour.comparador_step2_modal', 'Elige al segundo operativo para completar la pareja y ver los resultados.'),
-      placement: 'right',
+      placement: 'bottom',
+      hideOverlay: true,
+      disableFocusTrap: true,
       buttons: ['close', 'skip'],
     },
     {
@@ -161,8 +178,15 @@ const Comparador = () => {
   return (
     <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col">
       <OnboardingTour run={run} steps={steps} stepIndex={stepIndex} handleJoyrideCallback={handleJoyrideCallback} />
-      <div className="text-center mb-12 relative">
-        <TutorialButton onClick={startTour} className="absolute top-0 right-0 md:-top-4 md:right-0 z-20 flex items-center gap-2 bg-black/60 hover:bg-blood-red/20 border border-gray-700 hover:border-blood-red text-gray-400 hover:text-white px-3 py-1.5 rounded-full transition-colors cursor-pointer group" />
+      {/* Top Action Bar */}
+      <div className="flex justify-center sm:justify-end mb-4">
+        <TutorialButton 
+          onClick={startTour} 
+          className="flex items-center gap-2 bg-black/80 hover:bg-blood-red/20 border border-gray-700 hover:border-blood-red text-gray-400 hover:text-white px-4 py-1.5 rounded-full transition-all cursor-pointer group shadow-lg text-xs font-mono" 
+        />
+      </div>
+
+      <div className="text-center mb-12">
         <h1 className="font-bebas text-5xl md:text-7xl tracking-widest text-white uppercase drop-shadow-lg mb-2">
           {t('comparador.title_main', 'Análisis Comparativo')}
         </h1>
@@ -393,7 +417,7 @@ const Comparador = () => {
               exit={{ scale: 0.95, y: 20 }}
               className="bg-[#050505] border border-gray-800 w-full max-w-4xl max-h-[80vh] flex flex-col shadow-2xl tour-comparador-modal-content"
             >
-              <div className="p-6 border-b border-gray-800 flex justify-between items-center bg-gray-900/50">
+              <div className="p-6 border-b border-gray-800 flex justify-between items-center bg-gray-900/50 tour-comparador-modal-header">
                 <h2 className="font-bebas text-3xl tracking-widest text-white">Seleccionar Operativo</h2>
                 <button onClick={() => setSelectingSlot(null)} className="text-gray-400 hover:text-white">
                   <X size={28} />
@@ -430,7 +454,20 @@ const Comparador = () => {
                           <img src={`/operativos/${op.imageUrl.split('/').pop()}`} alt={op.name} className="h-full object-contain object-bottom group-hover:scale-110 transition-transform" />
                         </div>
                         <div className="p-3">
-                          <div className="text-[9px] font-mono text-gray-500 uppercase tracking-widest truncate">{op.unitType}</div>
+                          <div className="flex items-center gap-1 text-[9px] font-mono text-gray-500 uppercase tracking-widest truncate">
+                            {op.unitType && (
+                              <img 
+                                src={
+                                  op.unitType.toLowerCase().includes('defen') ? '/icons/units/UI_Hero_Infantry.webp' :
+                                  op.unitType.toLowerCase().includes('rang') ? '/icons/units/UI_Hero_Rifle.webp' :
+                                  '/icons/units/UI_Hero_Heavy.webp'
+                                } 
+                                alt="" 
+                                className="w-2.5 h-2.5 object-contain shrink-0 inline-block" 
+                              />
+                            )}
+                            <span className="truncate">{op.unitType}</span>
+                          </div>
                           <div className="font-bebas text-lg tracking-wide text-white group-hover:text-blood-red transition-colors truncate">{op.name}</div>
                         </div>
                       </button>
