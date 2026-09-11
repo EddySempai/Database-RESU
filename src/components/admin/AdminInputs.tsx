@@ -89,7 +89,7 @@ export const PhaseSelect = ({ value, onChange, className, disabled }: { value: n
 
 export const RankSelect = ({ value, onChange, className, disabled }: { value: string, onChange: (val: string) => void, className?: string, disabled?: boolean }) => {
   const options = ['R1', 'R2', 'R3', 'R4', 'R5'].map(o => ({ val: o, label: o }));
-  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="80px" disabled={disabled} />;
+  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="80px" disabled={disabled} searchable={false} />;
 };
 
 export const AccountTypeSelect = ({ value, onChange, className, disabled }: { value: string, onChange: (val: string) => void, className?: string, disabled?: boolean }) => {
@@ -97,7 +97,7 @@ export const AccountTypeSelect = ({ value, onChange, className, disabled }: { va
     { val: 'main', label: 'Principal' },
     { val: 'alt', label: 'Secundaria' }
   ];
-  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="120px" alignRight disabled={disabled} />;
+  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="120px" alignRight disabled={disabled} searchable={false} />;
 };
 
 // Formats number with commas: 146433591 -> 146,433,591

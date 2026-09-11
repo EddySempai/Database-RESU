@@ -70,7 +70,7 @@ export default function TierList() {
               className="flex border border-gray-800 bg-[#050505] overflow-hidden rounded-sm"
             >
               {/* Etiqueta del Tier */}
-              <div className={`w-20 md:w-24 flex items-center justify-center font-bebas text-3xl md:text-5xl border-r ${colorClass}`}>
+              <div className={`w-14 sm:w-20 md:w-24 shrink-0 flex items-center justify-center font-bebas text-2xl sm:text-3xl md:text-5xl border-r ${colorClass}`}>
                 {tier}
               </div>
               
@@ -218,7 +218,7 @@ export default function TierList() {
   };
 
   return (
-    <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10">
+    <div className="pt-24 pb-12 px-4 sm:px-6 max-w-7xl mx-auto min-h-screen relative z-10 w-full overflow-x-hidden">
       <Helmet>
         <title>Tier List de Héroes | RE: Survival Unit Hub</title>
         <meta name="description" content="Descubre cuáles son los mejores operativos (SS, S, A, B) en el meta actual. Análisis táctico de vanguardia y retaguardia." />
@@ -228,7 +228,7 @@ export default function TierList() {
       </Helmet>
       
       {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12 border-b border-gray-800 pb-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8 sm:mb-12 border-b border-gray-800 pb-6">
         <div>
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -236,12 +236,12 @@ export default function TierList() {
             className="flex items-center gap-3 mb-2"
           >
             <Swords className="text-neon-red" size={28} />
-            <span className="font-mono text-neon-red text-sm tracking-[0.3em] uppercase">Tactical Database</span>
+            <span className="font-mono text-neon-red text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase">Tactical Database</span>
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-bebas text-5xl md:text-7xl text-white tracking-widest drop-shadow-md"
+            className="font-bebas text-4xl sm:text-5xl md:text-7xl text-white tracking-wider sm:tracking-widest drop-shadow-md break-words"
           >
             TIER LIST <span className="text-blood-red">& META</span>
           </motion.h1>

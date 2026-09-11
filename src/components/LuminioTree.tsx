@@ -132,22 +132,22 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
   ];
 
   return (
-    <div className="w-full max-w-6xl mx-auto my-8 relative">
+    <div className="w-full max-w-6xl mx-auto my-6 sm:my-8 relative px-2 sm:px-6">
       <OnboardingTour run={run} steps={steps} stepIndex={stepIndex} handleJoyrideCallback={handleJoyrideCallback} />
-      <div className="bg-black/40 border border-gray-800 rounded-3xl overflow-hidden backdrop-blur-sm shadow-2xl">
-      <div className="relative p-6 md:p-8 border-b border-yellow-500/30 bg-gradient-to-r from-yellow-500/20 via-black/40 to-transparent overflow-hidden">
+      <div className="bg-black/40 border border-gray-800 rounded-2xl sm:rounded-3xl overflow-hidden backdrop-blur-sm shadow-2xl">
+      <div className="relative p-4 sm:p-6 md:p-8 border-b border-yellow-500/30 bg-gradient-to-r from-yellow-500/20 via-black/40 to-transparent overflow-hidden">
         <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-yellow-500/10 to-transparent blur-xl pointer-events-none" />
         <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <h2 className="text-3xl md:text-5xl font-bebas tracking-widest text-white drop-shadow-md text-center uppercase flex-1">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-bebas tracking-wider sm:tracking-widest text-white drop-shadow-md text-center uppercase flex-1 break-words">
             {t('luminio.title_prefix')} <span className="text-yellow-500">{t('luminio.title_highlight')}</span>
           </h2>
-          <TutorialButton onClick={startTour} className="relative z-20 flex items-center gap-2 bg-black/60 hover:bg-yellow-500/20 border border-gray-700 hover:border-yellow-500 text-gray-400 hover:text-white px-3 py-1.5 rounded-full transition-colors cursor-pointer group" />
+          <TutorialButton onClick={startTour} className="relative z-20 flex items-center gap-2 bg-black/60 hover:bg-yellow-500/20 border border-gray-700 hover:border-yellow-500 text-gray-400 hover:text-white px-3 py-1.5 rounded-full transition-colors cursor-pointer group text-xs sm:text-sm" />
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-gray-800 tour-luminio-tree">
         {branches.map(branch => (
-          <div key={branch.id} className="relative p-6 md:p-8 flex flex-col items-center group">
+          <div key={branch.id} className="relative p-4 sm:p-6 md:p-8 flex flex-col items-center group">
             {/* Background Glow */}
             <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-1000 bg-gradient-to-b
               ${branch.color === 'blue' ? 'from-blue-500' : ''}
@@ -185,9 +185,9 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
       </div>
       
       {/* Summary Module */}
-      <div className="bg-gradient-to-t from-black/95 via-yellow-900/10 to-black/60 border-t border-yellow-900/30 p-6 md:p-8 flex flex-col items-center tour-luminio-results">
-        <h3 className="text-xl font-mono text-yellow-500/70 mb-4 tracking-widest uppercase">{t('luminio.total_resources', 'Recursos Totales Requeridos')}</h3>
-        <div className="flex flex-wrap justify-center gap-6 md:gap-12 w-full max-w-4xl">
+      <div className="bg-gradient-to-t from-black/95 via-yellow-900/10 to-black/60 border-t border-yellow-900/30 p-4 sm:p-6 md:p-8 flex flex-col items-center tour-luminio-results">
+        <h3 className="text-base sm:text-xl font-mono text-yellow-500/70 mb-4 tracking-wider sm:tracking-widest uppercase text-center">{t('luminio.total_resources', 'Recursos Totales Requeridos')}</h3>
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-12 w-full max-w-4xl">
           
           {/* Powder */}
           <div className="bg-gray-900/80 border border-yellow-500/40 rounded-2xl p-6 flex flex-col items-center flex-1 min-w-[200px] shadow-[0_0_30px_rgba(234,179,8,0.15)] relative overflow-hidden group hover:shadow-[0_0_40px_rgba(234,179,8,0.25)] transition-all">

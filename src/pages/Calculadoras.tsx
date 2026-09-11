@@ -107,29 +107,29 @@ const Calculadoras = () => {
   };
 
   return (
-    <div className="pt-24 min-h-screen relative z-10">
-      <div className="text-center px-6 mb-8">
-        <h1 className="font-bebas text-5xl md:text-7xl tracking-widest text-white uppercase mb-4">{t('tools_page.tactical_tools')}</h1>
-        <p className="font-inter text-gray-400 max-w-2xl mx-auto">{t('tools_page.tools_desc')}</p>
+    <div className="pt-24 min-h-screen relative z-10 w-full overflow-x-hidden">
+      <div className="text-center px-4 sm:px-6 mb-8">
+        <h1 className="font-bebas text-4xl sm:text-5xl md:text-7xl tracking-wider sm:tracking-widest text-white uppercase mb-4 break-words">{t('tools_page.tactical_tools')}</h1>
+        <p className="font-inter text-gray-400 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">{t('tools_page.tools_desc')}</p>
       </div>
 
       {/* TABS */}
-      <div className="flex justify-center gap-4 mb-8">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 px-4 max-w-full">
         <button 
           onClick={() => setActiveTab('training')}
-          className={`px-6 py-2 font-mono text-sm uppercase tracking-widest rounded-full transition-all duration-300 ${activeTab === 'training' ? 'bg-blood-red text-white shadow-[0_0_15px_rgba(255,0,0,0.5)]' : 'bg-transparent text-gray-500 border border-gray-800 hover:text-white hover:border-gray-500'}`}
+          className={`px-4 sm:px-6 py-2 font-mono text-xs sm:text-sm uppercase tracking-wider sm:tracking-widest rounded-full transition-all duration-300 cursor-pointer ${activeTab === 'training' ? 'bg-blood-red text-white shadow-[0_0_15px_rgba(255,0,0,0.5)]' : 'bg-transparent text-gray-500 border border-gray-800 hover:text-white hover:border-gray-500'}`}
         >
           {t('tools_page.tab_training', 'Exp / Fragmentos')}
         </button>
         <button 
           onClick={() => setActiveTab('treasures')}
-          className={`px-6 py-2 font-mono text-sm uppercase tracking-widest rounded-full transition-all duration-300 ${activeTab === 'treasures' ? 'bg-purple-700 text-white shadow-[0_0_15px_rgba(128,0,128,0.5)]' : 'bg-transparent text-gray-500 border border-gray-800 hover:text-white hover:border-gray-500'}`}
+          className={`px-4 sm:px-6 py-2 font-mono text-xs sm:text-sm uppercase tracking-wider sm:tracking-widest rounded-full transition-all duration-300 cursor-pointer ${activeTab === 'treasures' ? 'bg-purple-700 text-white shadow-[0_0_15px_rgba(128,0,128,0.5)]' : 'bg-transparent text-gray-500 border border-gray-800 hover:text-white hover:border-gray-500'}`}
         >
           {t('tools_page.tab_treasures', 'Tesoros / Joyas')}
         </button>
         <button 
           onClick={() => setActiveTab('luminio')}
-          className={`px-6 py-2 font-mono text-sm uppercase tracking-widest rounded-full transition-all duration-300 ${activeTab === 'luminio' ? 'bg-yellow-600 text-white shadow-[0_0_15px_rgba(202,138,4,0.5)]' : 'bg-transparent text-gray-500 border border-gray-800 hover:text-white hover:border-gray-500'}`}
+          className={`px-4 sm:px-6 py-2 font-mono text-xs sm:text-sm uppercase tracking-wider sm:tracking-widest rounded-full transition-all duration-300 cursor-pointer ${activeTab === 'luminio' ? 'bg-yellow-600 text-white shadow-[0_0_15px_rgba(202,138,4,0.5)]' : 'bg-transparent text-gray-500 border border-gray-800 hover:text-white hover:border-gray-500'}`}
         >
           {t('tools_page.tab_luminio', 'Luminio')}
         </button>

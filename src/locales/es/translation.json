@@ -417,7 +417,8 @@
       "title": "Alerta Táctica: Operativos en Riesgo de Expulsión (0 Pts)",
       "desc": "operativos sin actividad registrada en este ciclo.",
       "filter_only": "Solo en Riesgo",
-      "show_all": "Ver Todos los Operativos"
+      "show_all": "Ver Todos los Operativos",
+      "risk_badge": "RIESGO"
     },
     "buttons": {
       "excel_template": "Plantilla Excel",

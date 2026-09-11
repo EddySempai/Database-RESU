@@ -36,7 +36,7 @@ const AppContent = () => {
     <div className={`font-inter relative flex flex-col transition-colors duration-200 ${
       isAdmin 
         ? (isDark ? 'min-h-screen bg-[#0c0e14] text-slate-100' : 'min-h-screen bg-[#f8fafc] text-slate-800') 
-        : 'min-h-screen bg-umbrella-black text-white overflow-hidden'
+        : 'min-h-screen bg-umbrella-black text-white overflow-x-hidden'
     }`}>
       {!isAdmin && <Particles />}
       <Analytics />

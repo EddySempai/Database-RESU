@@ -123,17 +123,17 @@ export default function Treasures() {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 md:px-0 mt-8 mb-16 relative z-10">
+    <div className="max-w-6xl mx-auto px-2 sm:px-4 md:px-0 mt-6 sm:mt-8 mb-12 sm:mb-16 relative z-10 w-full overflow-x-hidden">
       <OnboardingTour run={run} steps={steps} stepIndex={stepIndex} handleJoyrideCallback={handleJoyrideCallback} />
-      <div className="bg-[#0a0a0a]/90 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-gray-800 shadow-2xl relative overflow-hidden">
+      <div className="bg-[#0a0a0a]/90 backdrop-blur-md rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-800 shadow-2xl relative overflow-hidden">
         
         <div className="absolute -top-32 -right-32 w-64 h-64 bg-red-900/20 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="mb-8 border-b border-gray-800 pb-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <h2 className="font-bebas text-4xl md:text-5xl text-white tracking-widest text-center flex-1">
+        <div className="mb-6 sm:mb-8 border-b border-gray-800 pb-4 flex flex-col md:flex-row justify-between items-center gap-4">
+          <h2 className="font-bebas text-3xl sm:text-4xl md:text-5xl text-white tracking-wider sm:tracking-widest text-center flex-1 break-words">
             SIMULADOR DE <span className="text-neon-red">TESOROS</span>
           </h2>
-          <TutorialButton onClick={startTour} className="relative z-20 flex items-center gap-2 bg-black/60 hover:bg-blood-red/20 border border-gray-700 hover:border-blood-red text-gray-400 hover:text-white px-3 py-1.5 rounded-full transition-colors cursor-pointer group" />
+          <TutorialButton onClick={startTour} className="relative z-20 flex items-center gap-2 bg-black/60 hover:bg-blood-red/20 border border-gray-700 hover:border-blood-red text-gray-400 hover:text-white px-3 py-1.5 rounded-full transition-colors cursor-pointer group text-xs sm:text-sm" />
         </div>
 
         {/* The 6 Slots Grid */}

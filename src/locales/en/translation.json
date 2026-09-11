@@ -417,7 +417,8 @@
       "title": "Tactical Alert: Operatives at Risk of Expulsion (0 Pts)",
       "desc": "operatives without registered activity in this cycle.",
       "filter_only": "At Risk Only",
-      "show_all": "Show All Operatives"
+      "show_all": "Show All Operatives",
+      "risk_badge": "RISK"
     },
     "buttons": {
       "excel_template": "Excel Template",

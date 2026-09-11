@@ -10,7 +10,8 @@ export const PortalDropdown = ({
   className,
   menuWidth,
   alignRight,
-  disabled
+  disabled,
+  searchable = true
 }: { 
   value: any, 
   options: {val: any, label: string}[], 
@@ -18,7 +19,8 @@ export const PortalDropdown = ({
   className?: string,
   menuWidth?: string,
   alignRight?: boolean,
-  disabled?: boolean
+  disabled?: boolean,
+  searchable?: boolean
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -94,14 +96,18 @@ export const PortalDropdown = ({
           ref={inputRef}
           type="text"
           disabled={disabled}
+          readOnly={!searchable}
           value={inputValue}
           onChange={(e) => {
-            if (disabled) return;
+            if (disabled || !searchable) return;
             setInputValue(e.target.value);
             if (!isOpen) setIsOpen(true);
           }}
           onFocus={() => {
-            if (!disabled) setIsOpen(true);
+            if (!disabled && searchable) setIsOpen(true);
+          }}
+          onClick={() => {
+            if (!disabled && !searchable) setIsOpen(!isOpen);
           }}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
@@ -110,7 +116,7 @@ export const PortalDropdown = ({
             }
           }}
           onBlur={handleBlurOrEnter}
-          className={`bg-transparent w-full outline-none px-2 pb-1 ${disabled ? 'cursor-not-allowed' : ''}`}
+          className={`bg-transparent w-full outline-none px-2 pb-1 ${disabled ? 'cursor-not-allowed' : ''} ${!searchable && !disabled ? 'cursor-pointer' : ''}`}
         />
         <button 
           type="button" 

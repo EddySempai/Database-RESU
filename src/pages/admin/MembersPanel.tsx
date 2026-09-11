@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { useSound } from '../../contexts/SoundContext';
 import { AdminModal, type AdminModalType } from '../../components/admin/AdminModal';
-import { Plus, Search, Loader2, Tag, X } from 'lucide-react';
+import { Plus, Search, Loader2, Tag, X, Users, Database } from 'lucide-react';
 import { MansionSelect, PowerInput, RankSelect, AccountTypeSelect } from '../../components/admin/AdminInputs';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface Member {
   id: string;
@@ -18,6 +19,7 @@ interface Member {
 }
 
 const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
+  const { isDark } = useTheme();
   const { playHover, playClick } = useSound();
   const [members, setMembers] = useState<Member[]>([]);
   const [aliases, setAliases] = useState<Record<string, string[]>>({});
@@ -222,71 +224,108 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       {/* Header & Stats */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
         <div>
-          <div className="flex items-center gap-3">
-            <h2 className="font-bebas text-3xl tracking-widest text-white">Directorio de Operativos</h2>
-            <span className="bg-blood-red/20 border border-blood-red/40 text-neon-red font-mono text-[10px] px-2 py-0.5 uppercase tracking-wider">
+          <div className="flex items-center gap-3 mb-1.5">
+            <h2 className={`font-bebas text-3xl tracking-widest ${isDark ? 'text-white' : 'text-slate-900'}`}>Directorio de Operativos</h2>
+            <span className={`font-mono text-[10px] px-2 py-0.5 uppercase tracking-wider font-bold rounded-md border ${
+              isDark ? 'bg-rose-500/20 border-rose-500/40 text-rose-400' : 'bg-rose-100 border-rose-300 text-rose-700'
+            }`}>
               {activeAlliance}
             </span>
           </div>
-          <p className="font-mono text-gray-400 text-xs mt-1">
-            Total: <strong className="text-white">{members.length}</strong> Operativos | Conectados a Mapeo OCR
-          </p>
+          <div 
+            className={`font-mono text-xs flex items-center gap-2 w-max px-3 py-1.5 rounded-xl border cursor-help ${
+              isDark ? 'bg-[#141824] border-slate-800 text-slate-400' : 'bg-slate-50 border-slate-200 text-slate-600'
+            }`}
+            title="Total de operativos en la base de datos sincronizados con el Mapeo OCR"
+          >
+            <Users size={14} className={isDark ? 'text-rose-400' : 'text-rose-600'} />
+            <span>Total: <strong className={isDark ? 'text-white' : 'text-slate-900'}>{members.length}</strong></span>
+            <Database size={12} className={`ml-2 ${isDark ? 'text-sky-400' : 'text-sky-600'}`} />
+          </div>
         </div>
       </div>
 
       {/* Add Operative Quick Card */}
-      <form onSubmit={handleAddMember} className="bg-gradient-to-b from-[#111] to-[#0a0a0a] border border-gray-800/80 p-5 rounded-sm shadow-lg">
-        <div className="text-xs font-mono uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-2">
-          <Plus size={14} className="text-neon-red" /> Nuevo Registro de Operativo
+      <form onSubmit={handleAddMember} className={`p-5 rounded-2xl border transition-colors shadow-sm ${
+        isDark ? 'bg-gradient-to-b from-[#141824] to-[#10131d] border-slate-800/80' : 'bg-gradient-to-b from-white to-slate-50 border-slate-200'
+      }`}>
+        <div className={`text-xs font-mono uppercase tracking-widest mb-4 flex items-center gap-2 font-bold ${
+          isDark ? 'text-slate-400' : 'text-slate-600'
+        }`}>
+          <Plus size={16} className={isDark ? 'text-rose-400' : 'text-rose-500'} /> Nuevo Registro de Operativo
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
           <div>
-            <label className="block font-mono text-[10px] uppercase tracking-wider text-gray-500 mb-1">Nombre</label>
+            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Nombre</label>
             <input 
               type="text" 
               value={newNickname}
               onChange={(e) => setNewNickname(e.target.value)}
-              className="w-full bg-black/80 border border-gray-700 hover:border-gray-500 focus:border-neon-red text-white font-mono text-xs focus:outline-none transition-colors px-3 py-2"
+              className={`w-full border font-mono text-xs focus:outline-none rounded-xl transition-all px-3 py-2 ${
+                isDark 
+                  ? 'bg-[#10131d] border-slate-800 hover:border-slate-700 focus:border-rose-500 text-white placeholder-slate-600' 
+                  : 'bg-white border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-900 placeholder-slate-400 shadow-sm'
+              }`}
               placeholder="Ej: CondePatula"
             />
           </div>
           <div>
-            <label className="block font-mono text-[10px] uppercase tracking-wider text-gray-500 mb-1">Rango</label>
+            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Rango</label>
             <RankSelect 
               value={newRank}
               onChange={(val) => setNewRank(val)}
-              className="w-full bg-black/80 border border-gray-700 hover:border-gray-500 focus:border-neon-red text-gray-300 font-mono text-xs text-left px-3 py-2 flex justify-between items-center transition-colors"
+              className={`w-full border font-mono text-xs text-left px-3 py-2 rounded-xl flex justify-between items-center transition-all ${
+                isDark 
+                  ? 'bg-[#10131d] border-slate-800 hover:border-slate-700 focus:border-rose-500 text-slate-200' 
+                  : 'bg-white border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-800 shadow-sm'
+              }`}
             />
           </div>
           <div>
-            <label className="block font-mono text-[10px] uppercase tracking-wider text-gray-500 mb-1">Tipo Cuenta</label>
+            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Tipo Cuenta</label>
             <AccountTypeSelect 
               value={newType}
               onChange={(val) => setNewType(val as 'main'|'alt')}
-              className="w-full bg-black/80 border border-gray-700 hover:border-gray-500 focus:border-neon-red text-gray-300 font-mono text-xs text-left px-3 py-2 flex justify-between items-center transition-colors"
+              className={`w-full border font-mono text-xs text-left px-3 py-2 rounded-xl flex justify-between items-center transition-all ${
+                isDark 
+                  ? 'bg-[#10131d] border-slate-800 hover:border-slate-700 focus:border-rose-500 text-slate-200' 
+                  : 'bg-white border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-800 shadow-sm'
+              }`}
             />
           </div>
           <div>
-            <label className="block font-mono text-[10px] uppercase tracking-wider text-gray-500 mb-1">Poder</label>
+            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Poder</label>
             <PowerInput 
               value={newPower}
               onChange={setNewPower}
-              className="w-full bg-black/80 border border-gray-700 hover:border-gray-500 focus:border-neon-red text-white font-mono text-xs focus:outline-none transition-colors px-3 py-2"
+              className={`w-full border font-mono text-xs focus:outline-none rounded-xl transition-all px-3 py-2 ${
+                isDark 
+                  ? 'bg-[#10131d] border-slate-800 hover:border-slate-700 focus:border-rose-500 text-white' 
+                  : 'bg-white border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-900 shadow-sm'
+              }`}
             />
           </div>
           <div>
-            <label className="block font-mono text-[10px] uppercase tracking-wider text-gray-500 mb-1">Mansión</label>
+            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Mansión</label>
             <MansionSelect 
               value={newMansionLevel}
               onChange={setNewMansionLevel}
-              className="w-full bg-black/80 border border-gray-700 hover:border-gray-500 focus:border-neon-red text-gray-300 font-mono text-xs text-left px-3 py-2 flex justify-between items-center transition-colors"
+              className={`w-full border font-mono text-xs text-left px-3 py-2 rounded-xl flex justify-between items-center transition-all ${
+                isDark 
+                  ? 'bg-[#10131d] border-slate-800 hover:border-slate-700 focus:border-rose-500 text-slate-200' 
+                  : 'bg-white border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-800 shadow-sm'
+              }`}
             />
           </div>
           <div className="flex items-end">
             <button 
               type="submit"
               onMouseEnter={playHover}
-              className="w-full bg-blood-red/20 border border-blood-red text-neon-red hover:bg-blood-red hover:text-white px-4 py-2 font-mono text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all shadow-[0_0_10px_rgba(255,42,42,0.15)]"
+              className={`w-full px-4 py-2 font-mono text-xs uppercase tracking-widest flex items-center justify-center gap-2 rounded-xl transition-all shadow-sm font-bold border ${
+                isDark 
+                  ? 'bg-rose-600/20 border-rose-500/50 text-rose-400 hover:bg-rose-500 hover:text-white' 
+                  : 'bg-rose-50 border-rose-400 text-rose-700 hover:bg-rose-100'
+              }`}
             >
               <Plus size={14} /> Registrar
             </button>
@@ -295,26 +334,38 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       </form>
 
       {/* Modern Filter Toolbar */}
-      <div className="bg-[#090909] border border-gray-800/80 rounded-sm flex-1 overflow-hidden flex flex-col">
-        <div className="p-4 border-b border-gray-800 flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center">
+      <div className={`border rounded-2xl flex-1 overflow-hidden flex flex-col transition-colors shadow-sm ${
+        isDark ? 'bg-[#0d1017]/60 border-slate-800/80' : 'bg-slate-50/70 border-slate-200'
+      }`}>
+        <div className={`p-4 border-b flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center transition-colors ${
+          isDark ? 'border-slate-800/80' : 'border-slate-200'
+        }`}>
           
           {/* Search + Status */}
           <div className="flex gap-3 items-center flex-1">
             <div className="relative flex-1 max-w-xs">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={14} />
+              <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 ${isDark ? 'text-slate-500' : 'text-slate-400'}`} />
               <input 
                 type="text" 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Buscar por nombre o apodo..."
-                className="w-full bg-black border border-gray-700 text-white pl-9 pr-3 py-1.5 font-mono text-xs focus:outline-none focus:border-neon-red"
+                className={`w-full border pl-9 pr-3 py-1.5 font-mono text-xs focus:outline-none rounded-xl transition-all ${
+                  isDark 
+                    ? 'bg-[#141824] border-slate-800 text-white focus:border-rose-500 placeholder-slate-500' 
+                    : 'bg-white border-slate-300 text-slate-900 focus:border-rose-500 placeholder-slate-400 shadow-sm'
+                }`}
               />
             </div>
             
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value as any)}
-              className="bg-black border border-gray-700 text-gray-300 font-mono text-xs focus:outline-none focus:border-neon-red py-1.5 px-3"
+              className={`border font-mono text-xs focus:outline-none py-1.5 px-3 rounded-xl transition-all ${
+                isDark 
+                  ? 'bg-[#141824] border-slate-800 text-slate-300 focus:border-rose-500' 
+                  : 'bg-white border-slate-300 text-slate-700 focus:border-rose-500 shadow-sm'
+              }`}
             >
               <option value="active">Activos</option>
               <option value="inactive">Inactivos</option>
@@ -327,7 +378,11 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           <div className="flex gap-1.5 overflow-x-auto scrollbar-none items-center">
             <button
               onClick={() => { playClick(); setFilterRank('ALL'); }}
-              className={`px-3 py-1 font-mono text-[11px] uppercase tracking-wider transition-colors border ${filterRank === 'ALL' ? 'bg-blood-red/20 border-neon-red text-white' : 'border-gray-800 text-gray-400 hover:border-gray-700'}`}
+              className={`px-3 py-1 font-mono text-[11px] uppercase tracking-wider transition-all border rounded-xl ${
+                filterRank === 'ALL' 
+                  ? (isDark ? 'bg-rose-500/20 border-rose-500/50 text-rose-300 font-bold' : 'bg-rose-50 border-rose-400 text-rose-700 font-bold shadow-sm')
+                  : (isDark ? 'border-slate-800 text-slate-400 hover:border-slate-700 bg-[#10131d]' : 'border-slate-200 text-slate-600 hover:border-slate-300 bg-white shadow-sm')
+              }`}
             >
               Todos ({members.length})
             </button>
@@ -335,38 +390,46 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
               <button
                 key={r}
                 onClick={() => { playClick(); setFilterRank(r); }}
-                className={`px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider transition-colors border ${filterRank === r ? 'bg-blood-red/20 border-neon-red text-white' : 'border-gray-800 text-gray-400 hover:border-gray-700'}`}
+                className={`px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider transition-all border rounded-xl flex items-center gap-1 ${
+                  filterRank === r 
+                    ? (isDark ? 'bg-rose-500/20 border-rose-500/50 text-rose-300 font-bold' : 'bg-rose-50 border-rose-400 text-rose-700 font-bold shadow-sm')
+                    : (isDark ? 'border-slate-800 text-slate-400 hover:border-slate-700 bg-[#10131d]' : 'border-slate-200 text-slate-600 hover:border-slate-300 bg-white shadow-sm')
+                }`}
               >
-                {r} <span className="text-gray-500 ml-0.5">({countByRank[r] || 0})</span>
+                {r} <span className={`text-[9px] px-1 py-0.5 rounded-md ${
+                  filterRank === r 
+                    ? (isDark ? 'bg-rose-950/50' : 'bg-rose-200/50') 
+                    : (isDark ? 'bg-white/5' : 'bg-slate-100')
+                }`}>({countByRank[r] || 0})</span>
               </button>
             ))}
           </div>
         </div>
 
         {/* Members Table */}
-        <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto p-0 custom-scrollbar">
           {loading ? (
             <div className="flex justify-center items-center h-48">
-              <Loader2 className="animate-spin text-neon-red" size={28} />
+              <Loader2 className={`animate-spin ${isDark ? 'text-rose-400' : 'text-rose-500'}`} size={28} />
             </div>
           ) : (
             <table className="w-full text-left border-collapse">
-              <thead className="sticky top-0 bg-[#121212] z-10 border-b border-gray-800">
+              <thead className={`sticky top-0 z-10 border-b backdrop-blur-md ${isDark ? 'bg-[#10131d]/95 border-slate-800' : 'bg-slate-50/95 border-slate-200'}`}>
                 <tr>
-                  <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4">Operativo & Apodos OCR</th>
-                  <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4 w-28 text-center">Rango</th>
-                  <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4 w-32 text-center">Tipo</th>
-                  <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4 w-40 text-right">Poder Base</th>
-                  <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4 w-36 text-center">Estado & Mansión</th>
+                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Operativo & Apodos OCR</th>
+                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-28 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Rango</th>
+                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-32 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Tipo</th>
+                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-40 text-right ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Poder Base</th>
+                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-36 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Estado & Mansión</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-800/40">
+              <tbody className={`divide-y ${isDark ? 'divide-slate-800/40' : 'divide-slate-200'}`}>
                 {filteredMembers.map(member => {
                   const memberAliases = aliases[member.id] || [];
                   const isEditingThisAlias = editingAliasMemberId === member.id;
 
                   return (
-                    <tr key={member.id} className="hover:bg-white/[0.03] transition-colors group">
+                    <tr key={member.id} className={`transition-colors group ${isDark ? 'hover:bg-white/[0.03]' : 'hover:bg-slate-100/50'}`}>
                       
                       {/* Nickname & Japanese/In-game Aliases */}
                       <td className="py-3 px-4">
@@ -375,7 +438,11 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                             type="text" 
                             value={member.nickname}
                             onChange={(e) => updateMember(member.id, 'nickname', e.target.value)}
-                            className="bg-transparent border-b border-transparent hover:border-gray-700 focus:border-neon-red focus:bg-black/80 w-full text-white font-mono text-sm font-medium focus:outline-none transition-colors py-0.5"
+                            className={`bg-transparent border-b border-transparent w-full font-mono text-sm font-medium focus:outline-none transition-colors py-0.5 px-1 rounded-sm ${
+                              isDark 
+                                ? 'text-white hover:border-slate-700 focus:border-rose-500 focus:bg-[#141824]' 
+                                : 'text-slate-900 hover:border-slate-300 focus:border-rose-500 focus:bg-white'
+                            }`}
                           />
 
                           {/* Aliases Tag Cloud */}
@@ -383,14 +450,16 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                             {memberAliases.map((al, idx) => (
                               <span 
                                 key={idx} 
-                                className="inline-flex items-center gap-1 bg-[#151515] border border-gray-700 text-gray-300 font-mono text-[10px] px-2 py-0.5 rounded-sm"
+                                className={`inline-flex items-center gap-1 font-mono text-[10px] px-2 py-0.5 rounded-md border ${
+                                  isDark ? 'bg-[#141824] border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-600 shadow-sm'
+                                }`}
                                 title="Apodo reconocido por el asistente OCR"
                               >
                                 <span>{al}</span>
                                 <button
                                   type="button"
                                   onClick={() => handleRemoveAlias(member.id, al)}
-                                  className="text-gray-500 hover:text-red-400 transition-colors ml-0.5"
+                                  className="text-slate-400 hover:text-rose-500 transition-colors ml-0.5"
                                   title="Eliminar apodo"
                                 >
                                   <X size={10} />
@@ -414,19 +483,21 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                                       setEditingAliasMemberId(null);
                                     }
                                   }}
-                                  className="bg-black border border-neon-red text-white font-mono text-[10px] px-1.5 py-0.5 focus:outline-none w-28"
+                                  className={`border font-mono text-[10px] px-1.5 py-0.5 focus:outline-none w-28 rounded-md ${
+                                    isDark ? 'bg-[#141824] border-rose-500 text-white' : 'bg-white border-rose-400 text-slate-900 shadow-sm'
+                                  }`}
                                 />
                                 <button
                                   type="button"
                                   onClick={() => handleAddAlias(member.id)}
-                                  className="text-neon-red hover:text-white text-[10px] font-mono"
+                                  className={`text-[10px] font-mono ${isDark ? 'text-rose-400 hover:text-white' : 'text-rose-600 hover:text-rose-800'}`}
                                 >
                                   Guardar
                                 </button>
                                 <button
                                   type="button"
                                   onClick={() => setEditingAliasMemberId(null)}
-                                  className="text-gray-500 hover:text-white text-[10px]"
+                                  className="text-slate-400 hover:text-rose-500 text-[10px]"
                                 >
                                   ✕
                                 </button>
@@ -438,7 +509,9 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                                   setEditingAliasMemberId(member.id);
                                   setNewAliasText('');
                                 }}
-                                className="inline-flex items-center gap-1 text-[10px] font-mono text-gray-500 hover:text-neon-red transition-colors py-0.5"
+                                className={`inline-flex items-center gap-1 text-[10px] font-mono transition-colors py-0.5 ${
+                                  isDark ? 'text-slate-500 hover:text-rose-400' : 'text-slate-500 hover:text-rose-600'
+                                }`}
                                 title="Asociar apodo o nombre japonés a este miembro"
                               >
                                 <Tag size={10} />
@@ -470,7 +543,11 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                         <PowerInput 
                           value={member.power}
                           onChange={(val) => updateMember(member.id, 'power', val)}
-                          className="w-full bg-transparent border-b border-transparent hover:border-gray-700 focus:border-neon-red focus:bg-black/50 text-gray-200 font-mono text-sm text-right focus:outline-none transition-colors px-2 py-1"
+                          className={`w-full bg-transparent border-b border-transparent font-mono text-sm text-right focus:outline-none transition-colors px-2 py-1 rounded-sm ${
+                            isDark 
+                              ? 'text-slate-200 hover:border-slate-700 focus:border-rose-500 focus:bg-[#141824]' 
+                              : 'text-slate-800 hover:border-slate-300 focus:border-rose-500 focus:bg-white'
+                          }`}
                         />
                       </td>
 
@@ -482,7 +559,11 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                               const currentStatus = member.status || (member.is_active ? 'active' : 'inactive');
                               updateMember(member.id, 'status', currentStatus === 'active' ? 'inactive' : 'active');
                             }}
-                            className={`font-mono text-[10px] uppercase px-2 py-1 rounded-sm border transition-colors flex-1 ${(!member.status && member.is_active) || member.status === 'active' ? 'border-green-500/40 text-green-400 bg-green-500/10 hover:bg-green-500/20' : 'border-gray-700 text-gray-500 bg-gray-900 hover:bg-gray-800'}`}
+                            className={`font-mono text-[10px] uppercase px-2 py-1 rounded-md border transition-colors flex-1 ${
+                              (!member.status && member.is_active) || member.status === 'active' 
+                                ? (isDark ? 'border-emerald-500/40 text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20' : 'border-emerald-300 text-emerald-700 bg-emerald-50 hover:bg-emerald-100 shadow-sm')
+                                : (isDark ? 'border-slate-700 text-slate-500 bg-slate-900 hover:bg-slate-800' : 'border-slate-200 text-slate-500 bg-slate-100 hover:bg-slate-200 shadow-sm')
+                            }`}
                           >
                             {(!member.status && member.is_active) || member.status === 'active' ? 'Activo' : 'Inactivo'}
                           </button>
@@ -498,7 +579,11 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                                   onConfirm: () => updateMember(member.id, 'status', 'kicked')
                                 });
                               }}
-                              className="font-mono text-[10px] uppercase px-2 py-1 rounded-sm border border-red-900/60 text-red-500 bg-red-950/40 hover:bg-red-900/60 transition-colors"
+                              className={`font-mono text-[10px] uppercase px-2 py-1 rounded-md border transition-colors ${
+                                isDark 
+                                  ? 'border-red-900/60 text-red-500 bg-red-950/40 hover:bg-red-900/60' 
+                                  : 'border-red-300 text-red-600 bg-red-50 hover:bg-red-100 shadow-sm'
+                              }`}
                               title="Expulsar de la alianza"
                             >
                               X

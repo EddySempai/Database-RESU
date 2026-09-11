@@ -187,7 +187,7 @@ export default function GuiaDetalle() {
   const relatedGuides = GUIAS_DATA.filter(g => g.id !== guide.id).slice(0, 3);
 
   return (
-    <div className="pt-28 sm:pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto min-h-screen relative z-10">
+    <div className="pt-28 sm:pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto min-h-screen relative z-10 w-full overflow-x-hidden min-w-0 flex flex-col">
       
       {/* Top Reading Progress Bar */}
       <motion.div
@@ -196,21 +196,21 @@ export default function GuiaDetalle() {
       />
 
       {/* Top Breadcrumb & Actions Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/[0.08]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-6 pb-4 border-b border-white/[0.08] min-w-0">
         
         {/* Breadcrumb trail */}
-        <div className="flex items-center gap-2 font-mono text-xs text-gray-500 flex-wrap">
+        <div className="flex items-center gap-1.5 sm:gap-2 font-mono text-xs text-gray-500 flex-wrap min-w-0">
           <Link to="/" onClick={playClick} className="hover:text-white transition-colors">INICIO</Link>
-          <ChevronRight size={12} className="text-gray-700" />
+          <ChevronRight size={12} className="text-gray-700 shrink-0" />
           <Link to="/guias" onClick={playClick} className="hover:text-white transition-colors">GUÍAS</Link>
-          <ChevronRight size={12} className="text-gray-700" />
-          <span className="text-neon-red uppercase font-bold truncate max-w-[220px] sm:max-w-none">
+          <ChevronRight size={12} className="text-gray-700 shrink-0" />
+          <span className="text-neon-red uppercase font-bold truncate max-w-[180px] sm:max-w-none">
             {guide.title.split(':')[0]}
           </span>
         </div>
 
         {/* Quick Actions Header */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
           {/* Bookmark Button */}
           <button
             onClick={toggleBookmark}
@@ -264,7 +264,7 @@ export default function GuiaDetalle() {
       <motion.div 
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        className="relative rounded-2xl overflow-hidden bg-[#070709] border border-white/[0.08] p-6 sm:p-8 lg:p-10 mb-8 shadow-2xl"
+        className="relative rounded-2xl overflow-hidden bg-[#070709] border border-white/[0.08] p-4 sm:p-8 lg:p-10 mb-8 shadow-2xl"
       >
         {/* Top Specular Destello de Luz */}
         <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-red-500/40 to-transparent" />
@@ -306,7 +306,7 @@ export default function GuiaDetalle() {
             </span>
           </div>
 
-          <h1 className="font-bebas text-4xl sm:text-6xl text-white tracking-wide mb-3 leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+          <h1 className="font-bebas text-3xl sm:text-5xl lg:text-6xl text-white tracking-wide mb-3 leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] break-words">
             {guide.title}
           </h1>
 
@@ -381,7 +381,7 @@ export default function GuiaDetalle() {
           </div>
 
           {/* Day Pills */}
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 mb-5">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5 sm:gap-2 mb-5">
             {aceDays.map((item, idx) => (
               <button
                 key={item.day}
@@ -389,14 +389,14 @@ export default function GuiaDetalle() {
                   playClick();
                   setActiveAceDay(idx);
                 }}
-                className={`p-2.5 rounded-xl font-mono text-xs uppercase text-center transition-all cursor-pointer ${
+                className={`p-1.5 sm:p-2.5 rounded-xl font-mono text-xs uppercase text-center transition-all cursor-pointer ${
                   activeAceDay === idx
                     ? 'bg-yellow-500 text-black font-bold shadow-[0_0_15px_rgba(234,179,8,0.4)] scale-105'
                     : 'bg-white/[0.04] text-gray-400 hover:text-white hover:bg-white/[0.08]'
                 }`}
               >
-                <span className="block font-bold text-sm">{item.day}</span>
-                <span className="block text-[9px] opacity-75">Fase {idx + 1}</span>
+                <span className="block font-bold text-xs sm:text-sm truncate">{item.day}</span>
+                <span className="block text-[8px] sm:text-[9px] opacity-75">Fase {idx + 1}</span>
               </button>
             ))}
           </div>
@@ -444,13 +444,13 @@ export default function GuiaDetalle() {
           </div>
 
           {/* Mode Switcher */}
-          <div className="grid grid-cols-2 gap-3 mb-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-5">
             <button
               onClick={() => {
                 playClick();
                 setActiveBossMode('shield');
               }}
-              className={`p-3 rounded-xl font-mono text-xs uppercase flex items-center justify-center gap-2 transition-all cursor-pointer ${
+              className={`p-2.5 sm:p-3 rounded-xl font-mono text-xs uppercase flex items-center justify-center gap-2 transition-all cursor-pointer ${
                 activeBossMode === 'shield'
                   ? 'bg-blue-600 text-white font-bold shadow-[0_0_15px_rgba(37,99,235,0.5)]'
                   : 'bg-white/[0.04] text-gray-400 hover:text-white'
@@ -465,7 +465,7 @@ export default function GuiaDetalle() {
                 playClick();
                 setActiveBossMode('stun');
               }}
-              className={`p-3 rounded-xl font-mono text-xs uppercase flex items-center justify-center gap-2 transition-all cursor-pointer ${
+              className={`p-2.5 sm:p-3 rounded-xl font-mono text-xs uppercase flex items-center justify-center gap-2 transition-all cursor-pointer ${
                 activeBossMode === 'stun'
                   ? 'bg-red-600 text-white font-bold shadow-[0_0_15px_rgba(239,68,68,0.5)]'
                   : 'bg-white/[0.04] text-gray-400 hover:text-white'
@@ -524,13 +524,13 @@ export default function GuiaDetalle() {
           </div>
 
           {/* Toggle */}
-          <div className="grid grid-cols-2 gap-3 mb-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-5">
             <button
               onClick={() => {
                 playClick();
                 setActiveKeyringTab('passive');
               }}
-              className={`p-3 rounded-xl font-mono text-xs uppercase flex items-center justify-center gap-2 transition-all cursor-pointer ${
+              className={`p-2.5 sm:p-3 rounded-xl font-mono text-xs uppercase flex items-center justify-center gap-2 transition-all cursor-pointer ${
                 activeKeyringTab === 'passive'
                   ? 'bg-amber-500 text-black font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]'
                   : 'bg-white/[0.04] text-gray-400 hover:text-white'
@@ -545,7 +545,7 @@ export default function GuiaDetalle() {
                 playClick();
                 setActiveKeyringTab('active');
               }}
-              className={`p-3 rounded-xl font-mono text-xs uppercase flex items-center justify-center gap-2 transition-all cursor-pointer ${
+              className={`p-2.5 sm:p-3 rounded-xl font-mono text-xs uppercase flex items-center justify-center gap-2 transition-all cursor-pointer ${
                 activeKeyringTab === 'active'
                   ? 'bg-yellow-500 text-black font-bold shadow-[0_0_15px_rgba(234,179,8,0.4)]'
                   : 'bg-white/[0.04] text-gray-400 hover:text-white'
@@ -747,7 +747,7 @@ export default function GuiaDetalle() {
                 <span className="font-mono text-[10px] text-gray-500 uppercase">1-CLIC COPY</span>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-black/60 font-mono text-xs text-gray-300 whitespace-pre-line border border-white/[0.04] leading-relaxed">
+              <div className="p-3.5 rounded-xl bg-black/60 font-mono text-xs text-gray-300 whitespace-pre-line border border-white/[0.04] leading-relaxed break-words">
                 {getAllianceOrderMessage()}
               </div>
 

@@ -1175,10 +1175,12 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             {/* 4 Tier Summary Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {/* TIER 1: TOP 1-10 */}
-              <div className={`border p-3.5 rounded-2xl relative overflow-hidden flex flex-col justify-between transition-all ${
+              <div 
+                title={t('admin.tiers.elite_desc')}
+                className={`border p-3.5 rounded-2xl relative overflow-hidden flex flex-col justify-between transition-all cursor-help ${
                 isDark 
-                  ? 'bg-gradient-to-b from-amber-500/10 via-[#141824] to-[#10131d] border-amber-500/30 shadow-sm' 
-                  : 'bg-gradient-to-b from-amber-50/80 to-white border-amber-200 shadow-sm'
+                  ? 'bg-gradient-to-b from-amber-500/10 via-[#141824] to-[#10131d] border-amber-500/30 shadow-sm hover:border-amber-500/50' 
+                  : 'bg-gradient-to-b from-amber-50/80 to-white border-amber-200 shadow-sm hover:border-amber-300'
               }`}>
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-1.5">
@@ -1198,7 +1200,6 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                     <h4 className={`font-bebas text-lg tracking-wider ${isDark ? 'text-white' : 'text-slate-900'}`}>
                       {t('admin.tiers.elite')}
                     </h4>
-                    <p className="font-mono text-[10px] text-slate-400">{t('admin.tiers.elite_desc')}</p>
                   </div>
                   <span className="font-bebas text-3xl text-amber-400 font-bold">
                     {tierCounts.elite}<span className="text-sm font-mono text-slate-400">/10</span>
@@ -1207,10 +1208,12 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
               </div>
 
               {/* TIER 2: TOP 11-30 */}
-              <div className={`border p-3.5 rounded-2xl relative overflow-hidden flex flex-col justify-between transition-all ${
+              <div 
+                title={t('admin.tiers.reduced_desc')}
+                className={`border p-3.5 rounded-2xl relative overflow-hidden flex flex-col justify-between transition-all cursor-help ${
                 isDark 
-                  ? 'bg-gradient-to-b from-emerald-500/10 via-[#141824] to-[#10131d] border-emerald-500/30 shadow-sm' 
-                  : 'bg-gradient-to-b from-emerald-50/80 to-white border-emerald-200 shadow-sm'
+                  ? 'bg-gradient-to-b from-emerald-500/10 via-[#141824] to-[#10131d] border-emerald-500/30 shadow-sm hover:border-emerald-500/50' 
+                  : 'bg-gradient-to-b from-emerald-50/80 to-white border-emerald-200 shadow-sm hover:border-emerald-300'
               }`}>
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-1.5">
@@ -1230,7 +1233,6 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                     <h4 className={`font-bebas text-lg tracking-wider ${isDark ? 'text-white' : 'text-slate-900'}`}>
                       {t('admin.tiers.reduced')}
                     </h4>
-                    <p className="font-mono text-[10px] text-slate-400">{t('admin.tiers.reduced_desc')}</p>
                   </div>
                   <span className="font-bebas text-3xl text-emerald-400 font-bold">
                     {tierCounts.reduced}<span className="text-sm font-mono text-slate-400">/20</span>
@@ -1239,10 +1241,12 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
               </div>
 
               {/* TIER 3: TOP 31-50 */}
-              <div className={`border p-3.5 rounded-2xl relative overflow-hidden flex flex-col justify-between transition-all ${
+              <div 
+                title={t('admin.tiers.basic_desc')}
+                className={`border p-3.5 rounded-2xl relative overflow-hidden flex flex-col justify-between transition-all cursor-help ${
                 isDark 
-                  ? 'bg-gradient-to-b from-blue-500/10 via-[#141824] to-[#10131d] border-blue-500/30 shadow-sm' 
-                  : 'bg-gradient-to-b from-blue-50/80 to-white border-blue-200 shadow-sm'
+                  ? 'bg-gradient-to-b from-blue-500/10 via-[#141824] to-[#10131d] border-blue-500/30 shadow-sm hover:border-blue-500/50' 
+                  : 'bg-gradient-to-b from-blue-50/80 to-white border-blue-200 shadow-sm hover:border-blue-300'
               }`}>
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-1.5">
@@ -1262,7 +1266,6 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                     <h4 className={`font-bebas text-lg tracking-wider ${isDark ? 'text-white' : 'text-slate-900'}`}>
                       {t('admin.tiers.basic')}
                     </h4>
-                    <p className="font-mono text-[10px] text-slate-400">{t('admin.tiers.basic_desc')}</p>
                   </div>
                   <span className="font-bebas text-3xl text-blue-400 font-bold">
                     {tierCounts.basic}<span className="text-sm font-mono text-slate-400">/20</span>
@@ -1271,10 +1274,12 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
               </div>
 
               {/* TIER 4: TOP 51+ / 0 PTS */}
-              <div className={`border p-3.5 rounded-2xl relative overflow-hidden flex flex-col justify-between transition-all ${
+              <div 
+                title={t('admin.tiers.none_desc')}
+                className={`border p-3.5 rounded-2xl relative overflow-hidden flex flex-col justify-between transition-all cursor-help ${
                 isDark 
-                  ? 'bg-[#141824] border-slate-800/80 shadow-sm' 
-                  : 'bg-slate-50 border-slate-200 shadow-sm'
+                  ? 'bg-[#141824] border-slate-800/80 shadow-sm hover:border-slate-700' 
+                  : 'bg-slate-50 border-slate-200 shadow-sm hover:border-slate-300'
               }`}>
                 <div className="flex items-center justify-between mb-1.5">
                   <div className="flex items-center gap-1.5">
@@ -1294,7 +1299,6 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                     <h4 className="font-bebas text-lg tracking-wider text-slate-400">
                       {t('admin.tiers.none')}
                     </h4>
-                    <p className="font-mono text-[10px] text-slate-400">{t('admin.tiers.none_desc')}</p>
                   </div>
                   <span className="font-bebas text-3xl text-slate-400 font-bold">
                     {tierCounts.none}
@@ -1305,7 +1309,9 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
             {/* High-visibility Inactivity Alert Banner with Border Radius & Soft Colors */}
             {growthMetrics.inactiveCount > 0 && (
-              <div className={`border p-3.5 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm transition-colors ${
+              <div 
+                title={`${growthMetrics.inactiveCount} ${t('admin.risk_alert.desc')}`}
+                className={`border p-3.5 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm transition-colors cursor-help ${
                 isDark 
                   ? 'bg-rose-950/20 border-rose-500/30 text-rose-200' 
                   : 'bg-rose-50 border-rose-200 text-rose-900'
@@ -1319,9 +1325,6 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                       <span>{t('admin.risk_alert.title')}:</span>
                       <span className="text-rose-500 font-bold">{growthMetrics.inactiveCount} Ops</span>
                     </h4>
-                    <p className="font-mono text-xs text-slate-400">
-                      {growthMetrics.inactiveCount} {t('admin.risk_alert.desc')}
-                    </p>
                   </div>
                 </div>
 
@@ -1774,8 +1777,10 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             {/* Proposal 4: 4 Growth KPI Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {/* KPI 1: Total Power */}
-              <div className={`p-4 rounded-2xl border transition-all relative overflow-hidden shadow-sm ${
-                isDark ? 'bg-gradient-to-b from-[#161a26] to-[#10131d] border-slate-800/80' : 'bg-gradient-to-b from-white to-slate-50 border-slate-200'
+              <div 
+                title={t('admin.growth_kpis.total_power_desc')}
+                className={`p-4 rounded-2xl border transition-all relative overflow-hidden shadow-sm cursor-help ${
+                isDark ? 'bg-gradient-to-b from-[#161a26] to-[#10131d] border-slate-800/80 hover:border-slate-700' : 'bg-gradient-to-b from-white to-slate-50 border-slate-200 hover:border-slate-300'
               }`}>
                 <div className={`flex items-center justify-between mb-1.5 font-mono text-[11px] uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                   <span>{t('admin.growth_kpis.total_power')}</span>
@@ -1784,12 +1789,13 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                 <div className={`font-bebas text-3xl font-bold tracking-wide ${isDark ? 'text-white' : 'text-slate-900'}`}>
                   {formatPower(growthMetrics.totalCurrent)}
                 </div>
-                <p className={`font-mono text-[10px] mt-0.5 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>{t('admin.growth_kpis.total_power_desc')}</p>
               </div>
 
               {/* KPI 2: Net Growth */}
-              <div className={`p-4 rounded-2xl border transition-all relative overflow-hidden shadow-sm ${
-                isDark ? 'bg-gradient-to-b from-[#161a26] to-[#10131d] border-slate-800/80' : 'bg-gradient-to-b from-white to-slate-50 border-slate-200'
+              <div 
+                title={t('admin.growth_kpis.net_growth_desc')}
+                className={`p-4 rounded-2xl border transition-all relative overflow-hidden shadow-sm cursor-help ${
+                isDark ? 'bg-gradient-to-b from-[#161a26] to-[#10131d] border-slate-800/80 hover:border-slate-700' : 'bg-gradient-to-b from-white to-slate-50 border-slate-200 hover:border-slate-300'
               }`}>
                 <div className={`flex items-center justify-between mb-1.5 font-mono text-[11px] uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                   <span>{t('admin.growth_kpis.net_growth')}</span>
@@ -1798,30 +1804,33 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                 <div className={`font-bebas text-3xl font-bold tracking-wide ${growthMetrics.netGrowth >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
                   {growthMetrics.netGrowth >= 0 ? `+${formatPower(growthMetrics.netGrowth)}` : `-${formatPower(Math.abs(growthMetrics.netGrowth))}`}
                 </div>
-                <p className={`font-mono text-[10px] mt-0.5 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>{t('admin.growth_kpis.net_growth_desc')}</p>
               </div>
 
               {/* KPI 3: Top Weekly Grower */}
-              <div className={`p-4 rounded-2xl border transition-all relative overflow-hidden shadow-sm ${
-                isDark ? 'bg-gradient-to-b from-[#161a26] to-[#10131d] border-slate-800/80' : 'bg-gradient-to-b from-white to-slate-50 border-slate-200'
+              <div 
+                title={t('admin.growth_kpis.top_grower')}
+                className={`p-4 rounded-2xl border transition-all relative overflow-hidden shadow-sm cursor-help ${
+                isDark ? 'bg-gradient-to-b from-[#161a26] to-[#10131d] border-slate-800/80 hover:border-slate-700' : 'bg-gradient-to-b from-white to-slate-50 border-slate-200 hover:border-slate-300'
               }`}>
                 <div className={`flex items-center justify-between mb-1.5 font-mono text-[11px] uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                   <span>{t('admin.growth_kpis.top_grower')}</span>
                   <ArrowUpRight size={14} className="text-emerald-400" />
                 </div>
-                <div className={`font-bebas text-2xl truncate font-bold ${isDark ? 'text-white' : 'text-slate-900'}`} title={growthMetrics.topGrower?.name || 'N/A'}>
+                <div className={`font-bebas text-2xl truncate font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
                   {growthMetrics.topGrower ? growthMetrics.topGrower.name : t('admin.growth_kpis.top_grower_empty')}
                 </div>
-                <p className="font-mono text-[10px] text-emerald-400 font-bold mt-0.5">
-                  {growthMetrics.topGrower 
-                    ? t('admin.growth_kpis.top_grower_diff', { diff: formatPower(growthMetrics.topGrower.diff) }) 
-                    : t('admin.growth_kpis.top_grower_no_data')}
-                </p>
+                {growthMetrics.topGrower && (
+                  <div className="font-mono text-xs text-emerald-400 font-bold mt-1">
+                    {t('admin.growth_kpis.top_grower_diff', { diff: formatPower(growthMetrics.topGrower.diff) })}
+                  </div>
+                )}
               </div>
 
               {/* KPI 4: Recorded coverage */}
-              <div className={`p-4 rounded-2xl border transition-all relative overflow-hidden shadow-sm ${
-                isDark ? 'bg-gradient-to-b from-[#161a26] to-[#10131d] border-slate-800/80' : 'bg-gradient-to-b from-white to-slate-50 border-slate-200'
+              <div 
+                title={t('admin.growth_kpis.coverage_desc')}
+                className={`p-4 rounded-2xl border transition-all relative overflow-hidden shadow-sm cursor-help ${
+                isDark ? 'bg-gradient-to-b from-[#161a26] to-[#10131d] border-slate-800/80 hover:border-slate-700' : 'bg-gradient-to-b from-white to-slate-50 border-slate-200 hover:border-slate-300'
               }`}>
                 <div className={`flex items-center justify-between mb-1.5 font-mono text-[11px] uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                   <span>{t('admin.growth_kpis.coverage')}</span>
@@ -1830,7 +1839,6 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                 <div className="font-bebas text-3xl text-sky-400 font-bold tracking-wide">
                   {recordedCount}<span className={`text-sm font-mono ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>/{members.length}</span>
                 </div>
-                <p className={`font-mono text-[10px] mt-0.5 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>{t('admin.growth_kpis.coverage_desc')}</p>
               </div>
             </div>
 
@@ -1903,7 +1911,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                   title="Importar poder base del ciclo anterior"
                 >
                   <Copy size={13} />
-                  <span>{t('admin.growth_kpis.clone_btn')}</span>
+                  <span>{t('admin.buttons.clone_prev')}</span>
                 </button>
               )}
             </div>
@@ -2119,7 +2127,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                           </div>
                           {masterView === 'rewards' && partScore.total === 0 && (
                             <span className="bg-rose-500/20 border border-rose-500/40 text-rose-400 text-[9px] font-mono px-2 py-0.5 rounded-full tracking-wider shrink-0 animate-pulse font-bold" title="0 puntos en este ciclo: En riesgo de expulsión">
-                              {t('admin.risk_banner.risk_badge')}
+                              {t('admin.risk_alert.risk_badge')}
                             </span>
                           )}
                         </div>

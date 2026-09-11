@@ -6,6 +6,7 @@ import {
   Search, ChevronLeft, ChevronRight, BarChart3, Users
 } from 'lucide-react';
 import { useSound } from '../../contexts/SoundContext';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface Member {
   id: string;
@@ -135,6 +136,7 @@ const METRIC_CONFIG: Record<MetricType, {
 };
 
 const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
+  const { isDark } = useTheme();
   const { playClick, playHover } = useSound();
   const [loading, setLoading] = useState(true);
   const [members, setMembers] = useState<Member[]>([]);
@@ -357,28 +359,40 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       {/* ------------------------------------------------------------- */}
       {/* TOP COMMAND HUD BANNER (REMODELED) */}
       {/* ------------------------------------------------------------- */}
-      <div className="bg-[#090909] border border-gray-800/90 rounded-sm p-4 sm:p-5 flex flex-col gap-4 relative overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+      <div className={`p-4 sm:p-5 flex flex-col gap-4 relative overflow-hidden transition-colors border rounded-2xl ${
+        isDark ? 'bg-[#090909] border-slate-800/90 shadow-sm' : 'bg-white border-slate-300 shadow-md'
+      }`}>
         
         {/* Ambient Top Glow Line */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-neon-red/60 to-transparent" />
+        {isDark && (
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-rose-500/50 to-transparent" />
+        )}
 
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
           
           {/* Title & Division Protocol */}
           <div className="flex items-center gap-3.5">
-            <div className="w-10 h-10 bg-blood-red/20 border border-blood-red/60 flex items-center justify-center rounded-sm shadow-[0_0_15px_rgba(255,42,42,0.25)] text-neon-red shrink-0">
+            <div className={`w-10 h-10 flex items-center justify-center rounded-xl shrink-0 border ${
+              isDark ? 'bg-rose-500/20 border-rose-500/40 text-rose-400' : 'bg-rose-100 border-rose-300 text-rose-600'
+            }`}>
               <BarChart3 size={22} />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-neon-red bg-blood-red/15 px-2 py-0.5 rounded-sm border border-blood-red/30">
+                <span className={`font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-md border font-bold ${
+                  isDark ? 'text-rose-400 bg-rose-500/15 border-rose-500/30' : 'text-rose-700 bg-rose-100 border-rose-300'
+                }`}>
                   Umbrella Intelligence Division
                 </span>
-                <span className="font-mono text-[10px] text-gray-500 uppercase tracking-wider hidden sm:inline">
+                <span className={`font-mono text-[10px] uppercase tracking-wider hidden sm:inline ${
+                  isDark ? 'text-slate-500' : 'text-slate-500'
+                }`}>
                   // {activeAlliance}
                 </span>
               </div>
-              <h2 className="font-bebas text-2xl sm:text-3xl tracking-widest text-white mt-0.5">
+              <h2 className={`font-bebas text-2xl sm:text-3xl tracking-widest mt-0.5 ${
+                isDark ? 'text-white' : 'text-slate-900'
+              }`}>
                 CENTRO DE RENDIMIENTO & CRECIMIENTO
               </h2>
             </div>
@@ -389,42 +403,58 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             
             {/* Cycle Comparison Selectors */}
             {availableDates.length > 1 && (
-              <div className="flex items-center gap-1.5 bg-black border border-gray-800 px-2.5 py-1.5 rounded-sm text-xs font-mono">
-                <span className="text-gray-500 text-[10px] uppercase">Comparar:</span>
+              <div className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-mono border ${
+                isDark ? 'bg-[#141824] border-slate-800' : 'bg-white border-slate-300 shadow-sm'
+              }`}>
+                <span className={`text-[10px] uppercase ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Comparar:</span>
                 <select
                   value={selectedRecentDate}
                   onChange={(e) => setSelectedRecentDate(e.target.value)}
-                  className="bg-transparent text-white font-mono text-xs focus:outline-none cursor-pointer"
+                  className={`bg-transparent font-mono text-xs focus:outline-none cursor-pointer ${
+                    isDark ? 'text-white' : 'text-slate-900'
+                  }`}
                 >
                   {availableDates.map(d => (
-                    <option key={d} value={d} className="bg-[#121212] text-white">{d}</option>
+                    <option key={d} value={d} className={isDark ? 'bg-[#141824] text-white' : 'bg-white text-slate-900'}>{d}</option>
                   ))}
                 </select>
-                <span className="text-gray-600">vs</span>
+                <span className={isDark ? 'text-slate-600' : 'text-slate-400'}>vs</span>
                 <select
                   value={selectedPriorDate}
                   onChange={(e) => setSelectedPriorDate(e.target.value)}
-                  className="bg-transparent text-gray-400 font-mono text-xs focus:outline-none cursor-pointer"
+                  className={`bg-transparent font-mono text-xs focus:outline-none cursor-pointer ${
+                    isDark ? 'text-slate-400' : 'text-slate-600'
+                  }`}
                 >
                   {availableDates.map(d => (
-                    <option key={d} value={d} className="bg-[#121212] text-gray-300">{d}</option>
+                    <option key={d} value={d} className={isDark ? 'bg-[#141824] text-slate-300' : 'bg-white text-slate-700'}>{d}</option>
                   ))}
                 </select>
               </div>
             )}
 
             {/* Sort Toggle: Growth vs Absolute Total */}
-            <div className="flex bg-black border border-gray-800 rounded-sm p-0.5 text-[11px] font-mono">
+            <div className={`flex rounded-xl p-0.5 text-[11px] font-mono border ${
+              isDark ? 'bg-[#141824] border-slate-800' : 'bg-white border-slate-300 shadow-sm'
+            }`}>
               <button
                 onClick={() => { playClick(); setSortMode('growth'); }}
-                className={`px-3 py-1 uppercase tracking-wider transition-colors rounded-sm ${sortMode === 'growth' ? 'bg-blood-red/30 text-neon-red font-bold' : 'text-gray-400 hover:text-white'}`}
+                className={`px-3 py-1 uppercase tracking-wider transition-all rounded-[10px] ${
+                  sortMode === 'growth' 
+                    ? (isDark ? 'bg-rose-500/20 text-rose-400 font-bold' : 'bg-rose-50 text-rose-700 font-bold') 
+                    : (isDark ? 'text-slate-400 hover:text-white hover:bg-white/5' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100')
+                }`}
                 title="Ordenar por mayor subida de puntos o poder"
               >
                 Mayor Subida
               </button>
               <button
                 onClick={() => { playClick(); setSortMode('value'); }}
-                className={`px-3 py-1 uppercase tracking-wider transition-colors rounded-sm ${sortMode === 'value' ? 'bg-blood-red/30 text-neon-red font-bold' : 'text-gray-400 hover:text-white'}`}
+                className={`px-3 py-1 uppercase tracking-wider transition-all rounded-[10px] ${
+                  sortMode === 'value' 
+                    ? (isDark ? 'bg-rose-500/20 text-rose-400 font-bold' : 'bg-rose-50 text-rose-700 font-bold') 
+                    : (isDark ? 'text-slate-400 hover:text-white hover:bg-white/5' : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100')
+                }`}
                 title="Ordenar por mayor puntaje absoluto en el ciclo"
               >
                 Puntaje Total
@@ -434,87 +464,99 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         </div>
 
         {/* Global Key Impact Metrics Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-3 border-t border-gray-800/80">
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-3 pt-3 border-t ${
+          isDark ? 'border-slate-800/80' : 'border-slate-200'
+        }`}>
           
           {/* Card 1: Delta Global */}
-          <div className="bg-black/50 border border-gray-800/80 p-3 rounded-sm">
-            <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest block mb-1">
+          <div 
+            className={`p-3 rounded-2xl border transition-all cursor-help flex flex-col justify-center ${
+              isDark ? 'bg-[#10131d]/60 border-slate-800/80 hover:bg-[#141824]' : 'bg-white border-slate-300 shadow-sm hover:border-slate-400 hover:shadow-md'
+            }`}
+            title="Suma de variaciones del clan"
+          >
+            <span className={`font-mono text-[10px] uppercase tracking-widest block mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
               Delta Global Alianza
             </span>
             <div className="flex items-center gap-2">
-              <Activity className={totalGrowth >= 0 ? "text-emerald-400" : "text-red-400"} size={18} />
-              <span className={`font-mono text-xl sm:text-2xl font-bold tracking-tight ${totalGrowth >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+              <Activity className={totalGrowth >= 0 ? "text-emerald-500" : "text-rose-500"} size={18} />
+              <span className={`font-mono text-xl sm:text-2xl font-bold tracking-tight ${totalGrowth >= 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
                 {totalGrowth > 0 ? '+' : ''}{config.format(totalGrowth)}
               </span>
             </div>
-            <span className="font-mono text-[10px] text-gray-500 mt-0.5 block">
-              Suma de variaciones del clan
-            </span>
           </div>
 
           {/* Card 2: Total Ciclo Actual */}
-          <div className="bg-black/50 border border-gray-800/80 p-3 rounded-sm">
-            <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest block mb-1">
+          <div 
+            className={`p-3 rounded-2xl border transition-all cursor-help flex flex-col justify-center ${
+              isDark ? 'bg-[#10131d]/60 border-slate-800/80 hover:bg-[#141824]' : 'bg-white border-slate-300 shadow-sm hover:border-slate-400 hover:shadow-md'
+            }`}
+            title="Puntaje acumulado activo"
+          >
+            <span className={`font-mono text-[10px] uppercase tracking-widest block mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
               Puntuación Total Ciclo
             </span>
             <div className="flex items-center gap-2">
-              <IconComponent className="text-neon-red" size={18} />
-              <span className="font-mono text-xl sm:text-2xl font-bold text-white tracking-tight">
+              <IconComponent className={isDark ? "text-rose-400" : "text-rose-500"} size={18} />
+              <span className={`font-mono text-xl sm:text-2xl font-bold tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}>
                 {config.format(totalNewVal)}
               </span>
             </div>
-            <span className="font-mono text-[10px] text-gray-500 mt-0.5 block">
-              Puntaje acumulado activo
-            </span>
           </div>
 
           {/* Card 3: Balance de Operativos */}
-          <div className="bg-black/50 border border-gray-800/80 p-3 rounded-sm">
-            <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest block mb-1">
-              Dinámica de Crecimiento
+          <div 
+            className={`p-3 rounded-2xl border transition-all cursor-help flex flex-col justify-center ${
+              isDark ? 'bg-[#10131d]/60 border-slate-800/80 hover:bg-[#141824]' : 'bg-white border-slate-300 shadow-sm hover:border-slate-400 hover:shadow-md'
+            }`}
+            title={`${data.length} de ${members.length} operativos activos`}
+          >
+            <span className={`font-mono text-[10px] uppercase tracking-widest block mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
+              Dinámica Crecimiento
             </span>
             <div className="flex items-center gap-3 mt-1">
-              <div className="flex items-center gap-1 text-emerald-400 font-mono text-sm font-bold">
+              <div className="flex items-center gap-1 text-emerald-500 font-mono text-sm font-bold">
                 <TrendingUp size={15} />
                 <span>{positiveOperatives}</span>
-                <span className="text-[10px] text-gray-500 font-normal">subieron</span>
               </div>
-              <div className="flex items-center gap-1 text-red-400 font-mono text-sm font-bold">
+              <div className="flex items-center gap-1 text-rose-500 font-mono text-sm font-bold">
                 <TrendingDown size={15} />
                 <span>{negativeOperatives}</span>
-                <span className="text-[10px] text-gray-500 font-normal">bajaron</span>
               </div>
             </div>
-            <span className="font-mono text-[10px] text-gray-500 mt-1 block">
-              {data.length} de {members.length} operativos activos
-            </span>
           </div>
 
           {/* Card 4: Promedio por Miembro */}
-          <div className="bg-black/50 border border-gray-800/80 p-3 rounded-sm">
-            <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest block mb-1">
-              Promedio por Operativo
+          <div 
+            className={`p-3 rounded-2xl border transition-all cursor-help flex flex-col justify-center ${
+              isDark ? 'bg-[#10131d]/60 border-slate-800/80 hover:bg-[#141824]' : 'bg-white border-slate-300 shadow-sm hover:border-slate-400 hover:shadow-md'
+            }`}
+            title="Media de variación por miembro"
+          >
+            <span className={`font-mono text-[10px] uppercase tracking-widest block mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
+              Promedio Operativo
             </span>
             <div className="flex items-center gap-2">
-              <Users className="text-cyan-400" size={18} />
-              <span className={`font-mono text-lg sm:text-xl font-bold ${avgGrowth >= 0 ? 'text-cyan-300' : 'text-red-400'}`}>
+              <Users className={isDark ? "text-sky-400" : "text-sky-600"} size={18} />
+              <span className={`font-mono text-lg sm:text-xl font-bold ${avgGrowth >= 0 ? (isDark ? 'text-sky-400' : 'text-sky-600') : 'text-rose-500'}`}>
                 {avgGrowth > 0 ? '+' : ''}{config.format(avgGrowth)}
               </span>
             </div>
-            <span className="font-mono text-[10px] text-gray-500 mt-0.5 block">
-              Media de variación por miembro
-            </span>
           </div>
         </div>
 
         {/* ------------------------------------------------------------- */}
         {/* EVENT SELECTOR (ALL 10 EVENTS, ZERO EMOJIS, DRAG-TO-SCROLL) */}
         {/* ------------------------------------------------------------- */}
-        <div className="relative flex items-center bg-black/60 border border-gray-800/80 rounded-sm mt-1">
+        <div className={`relative flex items-center border rounded-xl mt-1 shadow-sm ${
+          isDark ? 'bg-[#10131d]/60 border-slate-800' : 'bg-white border-slate-300 shadow-md'
+        }`}>
           {/* Left arrow */}
           <button
             onClick={() => scrollMetrics(-200)}
-            className="p-2 bg-black hover:bg-[#151515] text-gray-400 hover:text-neon-red border-r border-gray-800 flex items-center justify-center shrink-0 z-10 transition-colors"
+            className={`p-2 flex items-center justify-center shrink-0 z-10 transition-colors border-r ${
+              isDark ? 'hover:bg-[#141824] text-slate-400 hover:text-rose-500 border-slate-800' : 'hover:bg-slate-50 text-slate-500 hover:text-rose-600 border-slate-300'
+            }`}
             title="Desplazar eventos a la izquierda"
           >
             <ChevronLeft size={16} />
@@ -545,13 +587,13 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                     }
                   }}
                   onMouseEnter={playHover}
-                  className={`flex items-center gap-2 px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider whitespace-nowrap transition-all rounded-sm border shrink-0 ${
+                  className={`flex items-center gap-2 px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider whitespace-nowrap transition-all rounded-[10px] border shrink-0 ${
                     isActive 
-                      ? 'bg-blood-red/25 border-neon-red text-white shadow-[0_0_12px_rgba(255,42,42,0.3)] font-bold' 
-                      : 'border-gray-800/80 bg-black/40 text-gray-400 hover:text-white hover:border-gray-700'
+                      ? (isDark ? 'bg-rose-500/20 border-rose-500/50 text-white font-bold' : 'bg-rose-50 border-rose-400 text-rose-700 font-bold shadow-sm')
+                      : (isDark ? 'border-slate-800/80 bg-[#141824]/50 text-slate-400 hover:text-white hover:border-slate-700' : 'border-slate-200 bg-white text-slate-600 hover:text-slate-900 hover:border-slate-300 shadow-sm')
                   }`}
                 >
-                  <TabIcon size={14} className={isActive ? 'text-neon-red' : 'text-gray-500'} />
+                  <TabIcon size={14} className={isActive ? (isDark ? 'text-rose-400' : 'text-rose-600') : (isDark ? 'text-slate-500' : 'text-slate-400')} />
                   <span>{item.shortTitle}</span>
                 </button>
               );
@@ -561,7 +603,9 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           {/* Right arrow */}
           <button
             onClick={() => scrollMetrics(200)}
-            className="p-2 bg-black hover:bg-[#151515] text-gray-400 hover:text-neon-red border-l border-gray-800 flex items-center justify-center shrink-0 z-10 transition-colors"
+            className={`p-2 flex items-center justify-center shrink-0 z-10 transition-colors border-l ${
+              isDark ? 'hover:bg-[#141824] text-slate-400 hover:text-rose-500 border-slate-800' : 'hover:bg-slate-50 text-slate-500 hover:text-rose-600 border-slate-300'
+            }`}
             title="Desplazar eventos a la derecha"
           >
             <ChevronRight size={16} />
@@ -576,31 +620,37 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         
         {/* PODIUM #1 - CHAMPION CARD */}
         {data[0] ? (
-          <div className="bg-gradient-to-b from-amber-500/15 via-[#0b0b0b] to-[#060606] border border-amber-500/50 shadow-[0_0_30px_rgba(245,158,11,0.12)] p-5 relative overflow-hidden rounded-sm group hover:border-amber-400 transition-all">
+          <div className={`p-5 relative overflow-hidden rounded-2xl group transition-all border ${
+            isDark 
+              ? 'bg-gradient-to-b from-amber-500/15 via-[#10131d] to-[#0d1017] border-amber-500/50 hover:border-amber-400 shadow-sm' 
+              : 'bg-gradient-to-b from-amber-50 to-white border-amber-300 shadow-md hover:shadow-lg hover:border-amber-400'
+          }`}>
             {/* Watermark */}
             <div className="absolute top-1 right-3 select-none pointer-events-none">
-              <span className="font-bebas text-7xl text-amber-500/15 group-hover:text-amber-500/25 transition-colors">
+              <span className={`font-bebas text-7xl transition-colors ${isDark ? 'text-amber-500/15 group-hover:text-amber-500/25' : 'text-amber-500/10 group-hover:text-amber-500/20'}`}>
                 #1
               </span>
             </div>
 
             {/* Badge */}
             <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-1.5 px-2.5 py-0.5 bg-amber-500/20 border border-amber-500/40 text-amber-300 font-mono text-[10px] uppercase tracking-wider rounded-sm">
-                <Crown size={12} className="text-amber-400" />
-                <span>Campeón Semanal</span>
+              <div className={`flex items-center gap-1.5 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider rounded-md border ${
+                isDark ? 'bg-amber-500/20 border-amber-500/40 text-amber-300' : 'bg-amber-200/50 border-amber-300 text-amber-700'
+              }`}>
+                <Crown size={12} className={isDark ? "text-amber-400" : "text-amber-600"} />
+                <span className="font-bold">Campeón Semanal</span>
               </div>
-              <span className="font-mono text-xs text-amber-400 font-bold">
+              <span className={`font-mono text-xs font-bold ${isDark ? 'text-amber-400' : 'text-amber-600'}`}>
                 {data[0].member.rank}
               </span>
             </div>
 
             {/* Operative Name */}
-            <h3 className="font-bebas text-2xl sm:text-3xl text-white tracking-wider truncate mb-0.5">
+            <h3 className={`font-bebas text-2xl sm:text-3xl tracking-wider truncate mb-0.5 ${isDark ? 'text-white' : 'text-slate-900'}`}>
               {data[0].member.nickname}
             </h3>
             {aliases[data[0].member.id]?.[0] && (
-              <p className="font-mono text-[10px] text-gray-500 truncate mb-4">
+              <p className={`font-mono text-[10px] truncate mb-4 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
                 aka: {aliases[data[0].member.id][0]}
               </p>
             )}
@@ -608,67 +658,75 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             {/* Delta Readout */}
             <div className="flex items-end gap-3 mt-4 mb-4">
               {data[0].growth >= 0 ? (
-                <TrendingUp className="text-emerald-400 mb-1" size={26} />
+                <TrendingUp className="text-emerald-500 mb-1" size={26} />
               ) : (
-                <TrendingDown className="text-red-400 mb-1" size={26} />
+                <TrendingDown className="text-rose-500 mb-1" size={26} />
               )}
               <div>
-                <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest block">
+                <span className={`font-mono text-[10px] uppercase tracking-widest block ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
                   {data[0].growth >= 0 ? 'Subida Neta' : 'Descenso'}
                 </span>
-                <span className={`font-mono text-3xl sm:text-4xl font-bold tracking-tight ${data[0].growth >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                <span className={`font-mono text-3xl sm:text-4xl font-bold tracking-tight ${data[0].growth >= 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
                   {data[0].growth > 0 ? '+' : ''}{config.format(data[0].growth)}
                 </span>
               </div>
             </div>
 
             {/* Progress / Jump Comparison Footer */}
-            <div className="pt-3 border-t border-amber-500/20 flex justify-between items-center text-xs font-mono">
+            <div className={`pt-3 border-t flex justify-between items-center text-xs font-mono ${isDark ? 'border-amber-500/20' : 'border-amber-200'}`}>
               <div>
-                <span className="text-gray-500 text-[10px] block">{config.oldLabel}</span>
-                <span className="text-gray-400">{config.format(data[0].oldVal)}</span>
+                <span className={`text-[10px] block ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>{config.oldLabel}</span>
+                <span className={isDark ? 'text-slate-400' : 'text-slate-600'}>{config.format(data[0].oldVal)}</span>
               </div>
-              <div className="text-amber-400/50">➔</div>
+              <div className={isDark ? 'text-amber-400/50' : 'text-amber-400/80'}>➔</div>
               <div className="text-right">
-                <span className="text-gray-500 text-[10px] block">{config.newLabel}</span>
-                <span className="text-white font-bold">{config.format(data[0].newVal)}</span>
+                <span className={`text-[10px] block ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>{config.newLabel}</span>
+                <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{config.format(data[0].newVal)}</span>
               </div>
             </div>
           </div>
         ) : (
-          <div className="bg-[#090909] border border-gray-800/80 p-6 text-center text-gray-500 font-mono text-xs rounded-sm flex flex-col items-center justify-center">
-            <Activity className="mb-2 text-gray-600" size={24} />
+          <div className={`p-6 text-center font-mono text-xs flex flex-col items-center justify-center rounded-2xl border ${
+            isDark ? 'bg-[#10131d]/50 border-slate-800 text-slate-500' : 'bg-white border-slate-300 shadow-sm text-slate-500'
+          }`}>
+            <Activity className="mb-2 opacity-50" size={24} />
             <span>Sin datos para el puesto #1</span>
           </div>
         )}
 
         {/* PODIUM #2 - SUBCOMMANDER CARD */}
         {data[1] ? (
-          <div className="bg-gradient-to-b from-slate-400/15 via-[#0b0b0b] to-[#060606] border border-slate-500/40 shadow-[0_0_25px_rgba(148,163,184,0.08)] p-5 relative overflow-hidden rounded-sm group hover:border-slate-300 transition-all">
+          <div className={`p-5 relative overflow-hidden rounded-2xl group transition-all border ${
+            isDark 
+              ? 'bg-gradient-to-b from-slate-400/15 via-[#10131d] to-[#0d1017] border-slate-500/40 hover:border-slate-300 shadow-sm' 
+              : 'bg-gradient-to-b from-slate-50 to-white border-slate-300 shadow-md hover:shadow-lg hover:border-slate-400'
+          }`}>
             {/* Watermark */}
             <div className="absolute top-1 right-3 select-none pointer-events-none">
-              <span className="font-bebas text-7xl text-slate-400/15 group-hover:text-slate-400/25 transition-colors">
+              <span className={`font-bebas text-7xl transition-colors ${isDark ? 'text-slate-400/15 group-hover:text-slate-400/25' : 'text-slate-400/10 group-hover:text-slate-400/20'}`}>
                 #2
               </span>
             </div>
 
             {/* Badge */}
             <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-1.5 px-2.5 py-0.5 bg-slate-500/20 border border-slate-500/40 text-slate-300 font-mono text-[10px] uppercase tracking-wider rounded-sm">
-                <Medal size={12} className="text-slate-300" />
-                <span>Subcomandante</span>
+              <div className={`flex items-center gap-1.5 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider rounded-md border ${
+                isDark ? 'bg-slate-500/20 border-slate-500/40 text-slate-300' : 'bg-slate-200/50 border-slate-300 text-slate-700'
+              }`}>
+                <Medal size={12} className={isDark ? "text-slate-300" : "text-slate-500"} />
+                <span className="font-bold">Subcomandante</span>
               </div>
-              <span className="font-mono text-xs text-slate-300 font-bold">
+              <span className={`font-mono text-xs font-bold ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
                 {data[1].member.rank}
               </span>
             </div>
 
             {/* Operative Name */}
-            <h3 className="font-bebas text-2xl sm:text-3xl text-white tracking-wider truncate mb-0.5">
+            <h3 className={`font-bebas text-2xl sm:text-3xl tracking-wider truncate mb-0.5 ${isDark ? 'text-white' : 'text-slate-900'}`}>
               {data[1].member.nickname}
             </h3>
             {aliases[data[1].member.id]?.[0] && (
-              <p className="font-mono text-[10px] text-gray-500 truncate mb-4">
+              <p className={`font-mono text-[10px] truncate mb-4 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
                 aka: {aliases[data[1].member.id][0]}
               </p>
             )}
@@ -676,67 +734,75 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             {/* Delta Readout */}
             <div className="flex items-end gap-3 mt-4 mb-4">
               {data[1].growth >= 0 ? (
-                <TrendingUp className="text-emerald-400 mb-1" size={24} />
+                <TrendingUp className="text-emerald-500 mb-1" size={24} />
               ) : (
-                <TrendingDown className="text-red-400 mb-1" size={24} />
+                <TrendingDown className="text-rose-500 mb-1" size={24} />
               )}
               <div>
-                <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest block">
+                <span className={`font-mono text-[10px] uppercase tracking-widest block ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
                   {data[1].growth >= 0 ? 'Subida Neta' : 'Descenso'}
                 </span>
-                <span className={`font-mono text-2xl sm:text-3xl font-bold tracking-tight ${data[1].growth >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                <span className={`font-mono text-2xl sm:text-3xl font-bold tracking-tight ${data[1].growth >= 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
                   {data[1].growth > 0 ? '+' : ''}{config.format(data[1].growth)}
                 </span>
               </div>
             </div>
 
             {/* Progress / Jump Comparison Footer */}
-            <div className="pt-3 border-t border-slate-500/20 flex justify-between items-center text-xs font-mono">
+            <div className={`pt-3 border-t flex justify-between items-center text-xs font-mono ${isDark ? 'border-slate-500/20' : 'border-slate-200'}`}>
               <div>
-                <span className="text-gray-500 text-[10px] block">{config.oldLabel}</span>
-                <span className="text-gray-400">{config.format(data[1].oldVal)}</span>
+                <span className={`text-[10px] block ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>{config.oldLabel}</span>
+                <span className={isDark ? 'text-slate-400' : 'text-slate-600'}>{config.format(data[1].oldVal)}</span>
               </div>
-              <div className="text-slate-400/50">➔</div>
+              <div className={isDark ? 'text-slate-400/50' : 'text-slate-400/80'}>➔</div>
               <div className="text-right">
-                <span className="text-gray-500 text-[10px] block">{config.newLabel}</span>
-                <span className="text-white font-bold">{config.format(data[1].newVal)}</span>
+                <span className={`text-[10px] block ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>{config.newLabel}</span>
+                <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{config.format(data[1].newVal)}</span>
               </div>
             </div>
           </div>
         ) : (
-          <div className="bg-[#090909] border border-gray-800/80 p-6 text-center text-gray-500 font-mono text-xs rounded-sm flex flex-col items-center justify-center">
-            <Activity className="mb-2 text-gray-600" size={24} />
+          <div className={`p-6 text-center font-mono text-xs flex flex-col items-center justify-center rounded-2xl border ${
+            isDark ? 'bg-[#10131d]/50 border-slate-800 text-slate-500' : 'bg-white border-slate-300 shadow-sm text-slate-500'
+          }`}>
+            <Activity className="mb-2 opacity-50" size={24} />
             <span>Sin datos para el puesto #2</span>
           </div>
         )}
 
         {/* PODIUM #3 - VANGUARD CARD */}
         {data[2] ? (
-          <div className="bg-gradient-to-b from-amber-700/15 via-[#0b0b0b] to-[#060606] border border-amber-700/40 shadow-[0_0_25px_rgba(180,83,9,0.08)] p-5 relative overflow-hidden rounded-sm group hover:border-amber-600 transition-all">
+          <div className={`p-5 relative overflow-hidden rounded-2xl group transition-all border ${
+            isDark 
+              ? 'bg-gradient-to-b from-orange-700/15 via-[#10131d] to-[#0d1017] border-orange-700/40 hover:border-orange-600 shadow-sm' 
+              : 'bg-gradient-to-b from-orange-50 to-white border-orange-300 shadow-md hover:shadow-lg hover:border-orange-400'
+          }`}>
             {/* Watermark */}
             <div className="absolute top-1 right-3 select-none pointer-events-none">
-              <span className="font-bebas text-7xl text-amber-700/15 group-hover:text-amber-700/25 transition-colors">
+              <span className={`font-bebas text-7xl transition-colors ${isDark ? 'text-orange-700/15 group-hover:text-orange-700/25' : 'text-orange-500/10 group-hover:text-orange-500/20'}`}>
                 #3
               </span>
             </div>
 
             {/* Badge */}
             <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-1.5 px-2.5 py-0.5 bg-amber-700/20 border border-amber-700/40 text-amber-500 font-mono text-[10px] uppercase tracking-wider rounded-sm">
-                <Medal size={12} className="text-amber-600" />
-                <span>Vanguardia</span>
+              <div className={`flex items-center gap-1.5 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider rounded-md border ${
+                isDark ? 'bg-orange-700/20 border-orange-700/40 text-orange-500' : 'bg-orange-200/50 border-orange-300 text-orange-700'
+              }`}>
+                <Medal size={12} className={isDark ? "text-orange-600" : "text-orange-500"} />
+                <span className="font-bold">Vanguardia</span>
               </div>
-              <span className="font-mono text-xs text-amber-500 font-bold">
+              <span className={`font-mono text-xs font-bold ${isDark ? 'text-orange-500' : 'text-orange-600'}`}>
                 {data[2].member.rank}
               </span>
             </div>
 
             {/* Operative Name */}
-            <h3 className="font-bebas text-2xl sm:text-3xl text-white tracking-wider truncate mb-0.5">
+            <h3 className={`font-bebas text-2xl sm:text-3xl tracking-wider truncate mb-0.5 ${isDark ? 'text-white' : 'text-slate-900'}`}>
               {data[2].member.nickname}
             </h3>
             {aliases[data[2].member.id]?.[0] && (
-              <p className="font-mono text-[10px] text-gray-500 truncate mb-4">
+              <p className={`font-mono text-[10px] truncate mb-4 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
                 aka: {aliases[data[2].member.id][0]}
               </p>
             )}
@@ -744,36 +810,38 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             {/* Delta Readout */}
             <div className="flex items-end gap-3 mt-4 mb-4">
               {data[2].growth >= 0 ? (
-                <TrendingUp className="text-emerald-400 mb-1" size={24} />
+                <TrendingUp className="text-emerald-500 mb-1" size={24} />
               ) : (
-                <TrendingDown className="text-red-400 mb-1" size={24} />
+                <TrendingDown className="text-rose-500 mb-1" size={24} />
               )}
               <div>
-                <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest block">
+                <span className={`font-mono text-[10px] uppercase tracking-widest block ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
                   {data[2].growth >= 0 ? 'Subida Neta' : 'Descenso'}
                 </span>
-                <span className={`font-mono text-2xl sm:text-3xl font-bold tracking-tight ${data[2].growth >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                <span className={`font-mono text-2xl sm:text-3xl font-bold tracking-tight ${data[2].growth >= 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
                   {data[2].growth > 0 ? '+' : ''}{config.format(data[2].growth)}
                 </span>
               </div>
             </div>
 
             {/* Progress / Jump Comparison Footer */}
-            <div className="pt-3 border-t border-amber-700/20 flex justify-between items-center text-xs font-mono">
+            <div className={`pt-3 border-t flex justify-between items-center text-xs font-mono ${isDark ? 'border-orange-700/20' : 'border-orange-200'}`}>
               <div>
-                <span className="text-gray-500 text-[10px] block">{config.oldLabel}</span>
-                <span className="text-gray-400">{config.format(data[2].oldVal)}</span>
+                <span className={`text-[10px] block ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>{config.oldLabel}</span>
+                <span className={isDark ? 'text-slate-400' : 'text-slate-600'}>{config.format(data[2].oldVal)}</span>
               </div>
-              <div className="text-amber-700/50">➔</div>
+              <div className={isDark ? 'text-orange-700/50' : 'text-orange-400/80'}>➔</div>
               <div className="text-right">
-                <span className="text-gray-500 text-[10px] block">{config.newLabel}</span>
-                <span className="text-white font-bold">{config.format(data[2].newVal)}</span>
+                <span className={`text-[10px] block ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>{config.newLabel}</span>
+                <span className={`font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>{config.format(data[2].newVal)}</span>
               </div>
             </div>
           </div>
         ) : (
-          <div className="bg-[#090909] border border-gray-800/80 p-6 text-center text-gray-500 font-mono text-xs rounded-sm flex flex-col items-center justify-center">
-            <Activity className="mb-2 text-gray-600" size={24} />
+          <div className={`p-6 text-center font-mono text-xs flex flex-col items-center justify-center rounded-2xl border ${
+            isDark ? 'bg-[#10131d]/50 border-slate-800 text-slate-500' : 'bg-white border-slate-300 shadow-sm text-slate-500'
+          }`}>
+            <Activity className="mb-2 opacity-50" size={24} />
             <span>Sin datos para el puesto #3</span>
           </div>
         )}
@@ -782,16 +850,22 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       {/* ------------------------------------------------------------- */}
       {/* RANKING TABLE WITH TACTICAL FILTERS */}
       {/* ------------------------------------------------------------- */}
-      <div className="bg-[#090909] border border-gray-800/80 rounded-sm flex flex-col shadow-lg">
+      <div className={`border rounded-2xl flex flex-col overflow-hidden ${
+        isDark ? 'bg-[#090909] border-slate-800 shadow-sm' : 'bg-white border-slate-300 shadow-md'
+      }`}>
         
         {/* Table Toolbar: Search + Rank Pills */}
-        <div className="p-3 sm:p-4 border-b border-gray-800 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 bg-black/40">
+        <div className={`p-3 sm:p-4 border-b flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 ${
+          isDark ? 'bg-[#141824]/50 border-slate-800' : 'bg-slate-50 border-slate-300'
+        }`}>
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-neon-red animate-pulse" />
-            <h3 className="font-bebas text-lg sm:text-xl tracking-widest text-white uppercase">
+            <div className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+            <h3 className={`font-bebas text-lg sm:text-xl tracking-widest uppercase ${isDark ? 'text-white' : 'text-slate-900'}`}>
               Ranking General: {config.title}
             </h3>
-            <span className="font-mono text-[10px] text-gray-500 bg-white/5 px-2 py-0.5 rounded-sm">
+            <span className={`font-mono text-[10px] px-2 py-0.5 rounded-md border ${
+              isDark ? 'text-slate-500 bg-[#10131d] border-slate-800' : 'text-slate-600 bg-white border-slate-300 shadow-sm'
+            }`}>
               {filteredData.length} operativos
             </span>
           </div>
@@ -799,13 +873,17 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           <div className="flex flex-wrap gap-2.5 items-center">
             {/* Search Input */}
             <div className="relative w-full sm:w-56">
-              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-500" size={13} />
+              <Search className={`absolute left-2.5 top-1/2 -translate-y-1/2 ${isDark ? 'text-slate-500' : 'text-slate-400'}`} size={13} />
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Buscar operativo o aka..."
-                className="w-full bg-black border border-gray-800 text-white pl-8 pr-3 py-1 font-mono text-xs focus:outline-none focus:border-neon-red rounded-sm"
+                className={`w-full pl-8 pr-3 py-1 font-mono text-xs focus:outline-none focus:ring-1 focus:ring-rose-500 rounded-xl transition-all border ${
+                  isDark 
+                    ? 'bg-[#10131d] border-slate-800 text-white placeholder-slate-600' 
+                    : 'bg-white border-slate-300 text-slate-900 placeholder-slate-400 shadow-sm'
+                }`}
               />
             </div>
 
@@ -813,7 +891,11 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             <div className="flex gap-1 items-center">
               <button
                 onClick={() => { playClick(); setRankFilter('ALL'); }}
-                className={`px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider transition-colors border rounded-sm ${rankFilter === 'ALL' ? 'bg-blood-red/20 border-neon-red text-white' : 'border-gray-800 text-gray-400 hover:border-gray-700'}`}
+                className={`px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider transition-all border rounded-[10px] ${
+                  rankFilter === 'ALL' 
+                    ? (isDark ? 'bg-rose-500/20 border-rose-500/50 text-white font-bold' : 'bg-rose-50 border-rose-300 text-rose-700 font-bold shadow-sm') 
+                    : (isDark ? 'border-slate-800 bg-[#141824] text-slate-400 hover:text-white hover:border-slate-700' : 'border-slate-200 bg-white text-slate-500 hover:text-slate-900 hover:border-slate-300 shadow-sm')
+                }`}
               >
                 Todos
               </button>
@@ -821,7 +903,11 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                 <button
                   key={r}
                   onClick={() => { playClick(); setRankFilter(r); }}
-                  className={`px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider transition-colors border rounded-sm ${rankFilter === r ? 'bg-blood-red/20 border-neon-red text-white' : 'border-gray-800 text-gray-400 hover:border-gray-700'}`}
+                  className={`px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider transition-all border rounded-[10px] ${
+                    rankFilter === r 
+                      ? (isDark ? 'bg-rose-500/20 border-rose-500/50 text-white font-bold' : 'bg-rose-50 border-rose-300 text-rose-700 font-bold shadow-sm') 
+                      : (isDark ? 'border-slate-800 bg-[#141824] text-slate-400 hover:text-white hover:border-slate-700' : 'border-slate-200 bg-white text-slate-500 hover:text-slate-900 hover:border-slate-300 shadow-sm')
+                  }`}
                 >
                   {r}
                 </button>
@@ -833,17 +919,17 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         {/* Scrollable Data Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse min-w-[700px]">
-            <thead className="bg-[#111] border-b border-gray-800 shadow-md">
+            <thead className={`border-b ${isDark ? 'bg-[#10131d] border-slate-800 shadow-sm' : 'bg-slate-50 border-slate-300'}`}>
               <tr>
-                <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-3 w-16 text-center">Pos</th>
-                <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4">Operativo</th>
-                <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-3 w-20 text-center">Rango</th>
-                <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4 w-36">{config.oldLabel}</th>
-                <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4 w-36">{config.newLabel}</th>
-                <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4 w-40 text-right">Subida Neta</th>
+                <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-3 w-16 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Pos</th>
+                <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Operativo</th>
+                <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-3 w-20 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Rango</th>
+                <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-36 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{config.oldLabel}</th>
+                <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-36 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{config.newLabel}</th>
+                <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-40 text-right ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Subida Neta</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-800/40">
+            <tbody className={`divide-y ${isDark ? 'divide-slate-800/80 bg-[#090909]' : 'divide-slate-200 bg-white'}`}>
               {filteredData.map((item, i) => {
                 const memberAlias = aliases[item.member.id]?.[0];
                 const isChampion = i === 0;
@@ -851,34 +937,36 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                 const isThird = i === 2;
 
                 return (
-                  <tr key={item.member.id} className="hover:bg-white/[0.03] transition-colors group">
+                  <tr key={item.member.id} className={`transition-colors group ${isDark ? 'hover:bg-white/[0.02]' : 'hover:bg-slate-50'}`}>
                     {/* Position */}
                     <td className="py-3 px-3 text-center font-mono text-xs">
                       {isChampion ? (
-                        <span className="text-amber-400 font-bold flex items-center justify-center gap-1">
+                        <span className="text-amber-500 font-bold flex items-center justify-center gap-1">
                           <Crown size={12} /> #1
                         </span>
                       ) : isSecond ? (
-                        <span className="text-slate-300 font-bold flex items-center justify-center gap-1">
+                        <span className="text-slate-400 font-bold flex items-center justify-center gap-1">
                           <Medal size={12} /> #2
                         </span>
                       ) : isThird ? (
-                        <span className="text-amber-600 font-bold flex items-center justify-center gap-1">
+                        <span className="text-orange-500 font-bold flex items-center justify-center gap-1">
                           <Medal size={12} /> #3
                         </span>
                       ) : (
-                        <span className="text-gray-500">#{i + 1}</span>
+                        <span className={isDark ? 'text-slate-500' : 'text-slate-400'}>#{i + 1}</span>
                       )}
                     </td>
 
                     {/* Member Name + Alias */}
                     <td className="py-3 px-4">
                       <div className="flex flex-col">
-                        <span className="font-mono text-sm text-white font-medium group-hover:text-neon-red transition-colors truncate">
+                        <span className={`font-mono text-sm font-medium transition-colors truncate ${
+                          isDark ? 'text-white group-hover:text-rose-400' : 'text-slate-900 group-hover:text-rose-600'
+                        }`}>
                           {item.member.nickname}
                         </span>
                         {memberAlias && (
-                          <span className="font-mono text-[10px] text-gray-500 truncate" title={`Alias: ${memberAlias}`}>
+                          <span className={`font-mono text-[10px] truncate ${isDark ? 'text-slate-500' : 'text-slate-500'}`} title={`Alias: ${memberAlias}`}>
                             aka: {memberAlias}
                           </span>
                         )}
@@ -887,18 +975,20 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
                     {/* Rank */}
                     <td className="py-3 px-3 text-center">
-                      <span className="font-mono text-xs bg-white/5 border border-gray-800 px-2 py-0.5 rounded text-gray-300">
+                      <span className={`font-mono text-xs border px-2 py-0.5 rounded-md ${
+                        isDark ? 'bg-white/5 border-slate-800 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-600'
+                      }`}>
                         {item.member.rank}
                       </span>
                     </td>
 
                     {/* Old Value */}
-                    <td className="py-3 px-4 font-mono text-xs text-gray-400">
+                    <td className={`py-3 px-4 font-mono text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
                       {config.format(item.oldVal)}
                     </td>
 
                     {/* New Value */}
-                    <td className="py-3 px-4 font-mono text-xs text-white font-semibold">
+                    <td className={`py-3 px-4 font-mono text-xs font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>
                       {config.format(item.newVal)}
                     </td>
 
@@ -906,17 +996,17 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                     <td className="py-3 px-4 text-right font-mono text-xs">
                       <div className="flex items-center justify-end gap-1.5">
                         {item.growth > 0 ? (
-                          <span className="text-emerald-400 font-bold flex items-center gap-1">
+                          <span className="text-emerald-500 font-bold flex items-center gap-1">
                             <TrendingUp size={12} />
                             +{config.format(item.growth)}
                           </span>
                         ) : item.growth < 0 ? (
-                          <span className="text-red-400 font-bold flex items-center gap-1">
+                          <span className="text-rose-500 font-bold flex items-center gap-1">
                             <TrendingDown size={12} />
                             {config.format(item.growth)}
                           </span>
                         ) : (
-                          <span className="text-gray-600 font-mono">-</span>
+                          <span className={isDark ? 'text-slate-600 font-mono' : 'text-slate-300 font-mono'}>-</span>
                         )}
                       </div>
                     </td>

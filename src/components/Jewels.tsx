@@ -58,20 +58,20 @@ export default function Jewels() {
   );
 
   return (
-    <div className="max-w-6xl mx-auto px-4 md:px-0 mt-8 mb-16 relative z-10">
-      <div className="bg-[#0a0a0a]/90 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-gray-800 shadow-2xl relative overflow-hidden">
+    <div className="max-w-6xl mx-auto px-2 sm:px-4 md:px-0 mt-6 sm:mt-8 mb-12 sm:mb-16 relative z-10 w-full overflow-x-hidden">
+      <div className="bg-[#0a0a0a]/90 backdrop-blur-md rounded-2xl p-4 sm:p-6 md:p-8 border border-gray-800 shadow-2xl relative overflow-hidden">
         
         <div className="absolute -top-32 -right-32 w-64 h-64 bg-red-900/20 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="mb-8 border-b border-gray-800 pb-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mb-6 sm:mb-8 border-b border-gray-800 pb-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
-            <h2 className="font-bebas text-4xl md:text-5xl text-white tracking-widest uppercase">
+            <h2 className="font-bebas text-3xl sm:text-4xl md:text-5xl text-white tracking-wider sm:tracking-widest uppercase break-words">
               {t('jewels.title', 'CALCULADORA DE GEMAS')}
             </h2>
           </div>
           <button
             onClick={resetAll}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900/80 hover:bg-red-950/40 text-gray-400 hover:text-red-400 border border-gray-800 hover:border-red-800/60 font-mono text-xs transition-all duration-200"
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-900/80 hover:bg-red-950/40 text-gray-400 hover:text-red-400 border border-gray-800 hover:border-red-800/60 font-mono text-xs transition-all duration-200 cursor-pointer"
           >
             <RotateCcw size={14} />
             <span>{t('tools_page.reset_all', 'REINICIAR TODO')}</span>
@@ -79,14 +79,14 @@ export default function Jewels() {
         </div>
 
         {/* The 6 Treasures Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12">
           {Array.from({ length: 6 }).map((_, treasureIndex) => (
-            <div key={treasureIndex} className="bg-black/40 p-4 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors">
+            <div key={treasureIndex} className="bg-black/40 p-3 sm:p-4 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors">
               <h3 className="text-gray-500 font-mono text-xs text-center border-b border-gray-800 pb-2 mb-4 uppercase tracking-wider">
                 TREASURE {treasureIndex + 1}
               </h3>
               
-              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-center justify-between gap-3 sm:gap-4">
                 
                 {/* Current State Box */}
                 <div className="flex-1 flex flex-col items-center p-3 rounded-xl border border-gray-800 bg-[#0d0d0d] relative overflow-hidden w-full">

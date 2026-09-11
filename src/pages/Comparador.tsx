@@ -176,7 +176,7 @@ const Comparador = () => {
   ];
 
   return (
-    <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col">
+    <div className="pt-24 pb-12 px-4 sm:px-6 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col w-full overflow-x-hidden">
       <OnboardingTour run={run} steps={steps} stepIndex={stepIndex} handleJoyrideCallback={handleJoyrideCallback} />
       {/* Top Action Bar */}
       <div className="flex justify-center sm:justify-end mb-4">
@@ -186,11 +186,11 @@ const Comparador = () => {
         />
       </div>
 
-      <div className="text-center mb-12">
-        <h1 className="font-bebas text-5xl md:text-7xl tracking-widest text-white uppercase drop-shadow-lg mb-2">
+      <div className="text-center mb-8 sm:mb-12">
+        <h1 className="font-bebas text-4xl sm:text-5xl md:text-7xl tracking-wider sm:tracking-widest text-white uppercase drop-shadow-lg mb-2 break-words">
           {t('comparador.title_main', 'Análisis Comparativo')}
         </h1>
-        <p className="font-mono text-gray-400 text-sm max-w-2xl mx-auto uppercase tracking-widest">
+        <p className="font-mono text-gray-400 text-xs sm:text-sm max-w-2xl mx-auto uppercase tracking-wider sm:tracking-widest px-2 leading-relaxed">
           {t('comparador.subtitle_main', 'Simulación de combate directo. Solo operativos de la misma clase táctica son elegibles para comparación.')}
         </p>
       </div>
@@ -217,47 +217,47 @@ const Comparador = () => {
           animate={{ opacity: 1, y: 0 }}
           className={`bg-[#050505] border border-gray-800 p-6 md:p-12 mb-12 tour-comparador-stats ${(!slot1 || !slot2) ? "opacity-0 pointer-events-none" : ""}`}
         >
-          <h3 className="font-bebas text-3xl tracking-widest text-center mb-8 border-b border-gray-800 pb-4">{t('comparador.base_performance', 'Desempeño Base (Nivel 1)')}</h3>
+          <h3 className="font-bebas text-2xl sm:text-3xl tracking-wider sm:tracking-widest text-center mb-6 sm:mb-8 border-b border-gray-800 pb-4">{t('comparador.base_performance', 'Desempeño Base (Nivel 1)')}</h3>
           
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {/* Health */}
-            <div className="grid grid-cols-3 items-center gap-4 border-b border-gray-800/50 pb-4">
-              <div className={`text-right font-mono text-lg md:text-xl ${compareStats(slot1?.stats.health ?? 0, slot2?.stats.health ?? 0, true)}`}>
+            <div className="grid grid-cols-3 items-center gap-2 sm:gap-4 border-b border-gray-800/50 pb-4">
+              <div className={`text-right font-mono text-base sm:text-lg md:text-xl ${compareStats(slot1?.stats.health ?? 0, slot2?.stats.health ?? 0, true)}`}>
                 {slot1?.stats.health.toLocaleString()}
               </div>
               <div className="flex flex-col items-center justify-center text-gray-500">
-                <Heart size={20} className="mb-1" />
+                <Heart size={18} className="mb-1 shrink-0" />
                 <span className="text-[10px] uppercase tracking-widest">{t('heroes.health')}</span>
               </div>
-              <div className={`font-mono text-lg md:text-xl ${compareStats(slot1?.stats.health ?? 0, slot2?.stats.health ?? 0, false)}`}>
+              <div className={`font-mono text-base sm:text-lg md:text-xl ${compareStats(slot1?.stats.health ?? 0, slot2?.stats.health ?? 0, false)}`}>
                 {slot2?.stats.health.toLocaleString()}
               </div>
             </div>
 
             {/* Attack */}
-            <div className="grid grid-cols-3 items-center gap-4 border-b border-gray-800/50 pb-4">
-              <div className={`text-right font-mono text-lg md:text-xl ${compareStats(slot1?.stats.attack ?? 0, slot2?.stats.attack ?? 0, true)}`}>
+            <div className="grid grid-cols-3 items-center gap-2 sm:gap-4 border-b border-gray-800/50 pb-4">
+              <div className={`text-right font-mono text-base sm:text-lg md:text-xl ${compareStats(slot1?.stats.attack ?? 0, slot2?.stats.attack ?? 0, true)}`}>
                 {slot1?.stats.attack.toLocaleString()}
               </div>
               <div className="flex flex-col items-center justify-center text-gray-500">
-                <Crosshair size={20} className="mb-1" />
+                <Crosshair size={18} className="mb-1 shrink-0" />
                 <span className="text-[10px] uppercase tracking-widest">{t('heroes.attack')}</span>
               </div>
-              <div className={`font-mono text-lg md:text-xl ${compareStats(slot1?.stats.attack ?? 0, slot2?.stats.attack ?? 0, false)}`}>
+              <div className={`font-mono text-base sm:text-lg md:text-xl ${compareStats(slot1?.stats.attack ?? 0, slot2?.stats.attack ?? 0, false)}`}>
                 {slot2?.stats.attack.toLocaleString()}
               </div>
             </div>
 
             {/* Defense */}
-            <div className="grid grid-cols-3 items-center gap-4 border-b border-gray-800/50 pb-4">
-              <div className={`text-right font-mono text-lg md:text-xl ${compareStats(slot1?.stats.defense ?? 0, slot2?.stats.defense ?? 0, true)}`}>
+            <div className="grid grid-cols-3 items-center gap-2 sm:gap-4 border-b border-gray-800/50 pb-4">
+              <div className={`text-right font-mono text-base sm:text-lg md:text-xl ${compareStats(slot1?.stats.defense ?? 0, slot2?.stats.defense ?? 0, true)}`}>
                 {slot1?.stats.defense.toLocaleString()}
               </div>
               <div className="flex flex-col items-center justify-center text-gray-500">
-                <Shield size={20} className="mb-1" />
+                <Shield size={18} className="mb-1 shrink-0" />
                 <span className="text-[10px] uppercase tracking-widest">{t('heroes.defense')}</span>
               </div>
-              <div className={`font-mono text-lg md:text-xl ${compareStats(slot1?.stats.defense ?? 0, slot2?.stats.defense ?? 0, false)}`}>
+              <div className={`font-mono text-base sm:text-lg md:text-xl ${compareStats(slot1?.stats.defense ?? 0, slot2?.stats.defense ?? 0, false)}`}>
                 {slot2?.stats.defense.toLocaleString()}
               </div>
             </div>
@@ -267,7 +267,7 @@ const Comparador = () => {
           {/* Field Stats */}
           <div className="mt-8 border-t border-gray-800 pt-8">
             <h4 className="font-bebas text-xl text-blood-red tracking-widest text-center mb-6">{t('comparador.field_percentages', 'Porcentajes de Campo (Habilidades)')}</h4>
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
               {/* Slot 1 Field Stats */}
               <div className="space-y-3">
                 {slot1?.fieldStats?.map((stat, i) => (

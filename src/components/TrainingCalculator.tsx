@@ -230,26 +230,26 @@ const TrainingCalculator = () => {
   ];
 
   return (
-    <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative z-10 py-12 px-6 max-w-7xl mx-auto">
+    <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="relative z-10 py-6 sm:py-12 px-3 sm:px-6 max-w-7xl mx-auto w-full overflow-x-hidden">
       <OnboardingTour run={run} steps={steps} stepIndex={stepIndex} handleJoyrideCallback={handleJoyrideCallback} />
-      <div className="bg-[#050505] border border-gray-800 shadow-[0_0_30px_rgba(0,0,0,0.8)] overflow-hidden mt-8 relative">
+      <div className="bg-[#050505] border border-gray-800 shadow-[0_0_30px_rgba(0,0,0,0.8)] overflow-hidden mt-4 sm:mt-8 relative rounded-xl sm:rounded-none">
         
         {/* Header */}
-        <div className="bg-gradient-to-r from-blood-red/20 to-transparent border-b border-gray-800 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="bg-gradient-to-r from-blood-red/20 to-transparent border-b border-gray-800 p-4 sm:p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="flex items-center gap-3">
-            <Calculator className="text-neon-red" size={28} />
-            <h2 className="font-bebas text-3xl tracking-widest text-white m-0">{t('calculator.title')}</h2>
+            <Calculator className="text-neon-red shrink-0" size={26} />
+            <h2 className="font-bebas text-2xl sm:text-3xl tracking-wider sm:tracking-widest text-white m-0 break-words">{t('calculator.title')}</h2>
           </div>
-          <div className="flex items-center gap-4">
-            <TutorialButton onClick={startTour} className="relative z-20 flex items-center gap-2 bg-black/60 hover:bg-blood-red/20 border border-gray-700 hover:border-blood-red text-gray-400 hover:text-white px-3 py-1.5 rounded-full transition-colors cursor-pointer group" />
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 w-full md:w-auto justify-between md:justify-end">
+            <TutorialButton onClick={startTour} className="relative z-20 flex items-center gap-2 bg-black/60 hover:bg-blood-red/20 border border-gray-700 hover:border-blood-red text-gray-400 hover:text-white px-3 py-1.5 rounded-full transition-colors cursor-pointer group text-xs" />
             <div className="flex bg-black border border-gray-800 p-1 rounded-sm tour-training-mode">
-              <button onClick={() => { setEventMode('cumbres'); if (run && stepIndex === 0) advanceTour(); }} className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors ${eventMode === 'cumbres' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>{t('calculator.cumbres')}</button>
-              <button onClick={() => { setEventMode('svs'); if (run && stepIndex === 0) advanceTour(); }} className={`px-4 py-2 font-mono text-[10px] uppercase tracking-widest transition-colors border-l border-gray-800 ${eventMode === 'svs' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>{t('calculator.svs')}</button>
+              <button onClick={() => { setEventMode('cumbres'); if (run && stepIndex === 0) advanceTour(); }} className={`px-3 sm:px-4 py-1.5 sm:py-2 font-mono text-[10px] uppercase tracking-wider sm:tracking-widest transition-colors cursor-pointer ${eventMode === 'cumbres' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>{t('calculator.cumbres')}</button>
+              <button onClick={() => { setEventMode('svs'); if (run && stepIndex === 0) advanceTour(); }} className={`px-3 sm:px-4 py-1.5 sm:py-2 font-mono text-[10px] uppercase tracking-wider sm:tracking-widest transition-colors border-l border-gray-800 cursor-pointer ${eventMode === 'svs' ? 'bg-blood-red text-white' : 'text-gray-500 hover:text-gray-300'}`}>{t('calculator.svs')}</button>
             </div>
           </div>
         </div>
 
-        <div className="p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div className="p-3 sm:p-6 grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6">
           
           {/* Panel Izquierdo: Entradas del Optimizador */}
           <div className="lg:col-span-3 space-y-6">
@@ -343,11 +343,11 @@ const TrainingCalculator = () => {
                   <span className="font-mono text-blood-red text-xs uppercase tracking-widest animate-pulse">{t('calculator.ai_analyzing_img', 'Red Queen analizando imagen...')}</span>
                 </div>
               )}
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2.5 mb-4">
                 <label className="font-mono text-neon-red text-xs uppercase tracking-widest flex items-center gap-2">
                   {t('calculator.speedup_inventory', 'Inventario de Aceleradores')}
                 </label>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3">
                   <input 
                     type="file" 
                     accept="image/*" 

@@ -132,7 +132,7 @@ export default function Guias() {
   };
 
   return (
-    <div className="pt-28 sm:pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1540px] mx-auto min-h-screen relative z-10 flex flex-col min-w-0">
+    <div className="pt-28 sm:pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1540px] mx-auto min-h-screen relative z-10 flex flex-col min-w-0 w-full overflow-x-hidden">
       
       {/* Subtle Ambient HUD Lighting */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px_32px]" />
@@ -249,11 +249,11 @@ export default function Guias() {
         >
           {/* Priority Switcher Tabs */}
           {spotlightGuides.length > 1 && (
-            <div className="flex items-center gap-2 mb-2.5">
-              <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest flex items-center gap-1.5">
+            <div className="flex items-center gap-2 mb-2.5 flex-wrap">
+              <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest flex items-center gap-1.5 shrink-0">
                 <Radio size={11} className="text-red-500 animate-pulse" /> OPERACIÓN:
               </span>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 flex-wrap">
                 {spotlightGuides.map((guide, idx) => (
                   <button
                     key={guide.id}
@@ -276,7 +276,7 @@ export default function Guias() {
           )}
 
           {/* Seamless Integrated Hero Container with Vivid Full-Color Artwork */}
-          <div className="relative rounded-2xl overflow-hidden bg-[#070709] border border-white/[0.08] hover:border-red-500/30 transition-colors p-6 sm:p-8 lg:p-10 shadow-2xl group">
+          <div className="relative rounded-2xl overflow-hidden bg-[#070709] border border-white/[0.08] hover:border-red-500/30 transition-colors p-4 sm:p-8 lg:p-10 shadow-2xl group">
             
             {/* Top Specular Destello de Luz */}
             <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-red-500/50 to-transparent" />
@@ -320,7 +320,7 @@ export default function Guias() {
               </div>
 
               {/* Title */}
-              <h2 className="font-bebas text-3xl sm:text-5xl lg:text-6xl text-white tracking-wide leading-tight mb-3 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+              <h2 className="font-bebas text-2xl sm:text-4xl lg:text-6xl text-white tracking-wide leading-tight mb-3 drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] break-words">
                 {currentSpotlight.title}
               </h2>
 
@@ -377,7 +377,7 @@ export default function Guias() {
          ========================================================= */}
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         {/* Category Tabs */}
-        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-1 touch-pan-x">
+        <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none pb-1 touch-pan-x w-full max-w-full min-w-0">
           {categories.map(cat => {
             const Icon = cat.icon;
             const count = getCategoryCount(cat.id);
