@@ -376,7 +376,88 @@
     "luminio_step1": "Haz clic en cualquier nodo para configurar su nivel actual y el nivel meta. Puedes seguir las tres ramas: Atacante, Defensor y Ranger.",
     "luminio_step2": "Aquí verás el costo total calculado automáticamente.",
     "comparador_step1": "Selecciona a los dos operativos que deseas comparar. Tienen que ser de la misma clase táctica.",
-    "comparador_step2": "Compara sus estadísticas base y escalado de combate lado a lado.",
-    "comparador_step3": "Lee el reporte táctico generado para entender los pros y contras de cada operativo."
+    "comparador_step2": "Compara sus estadísticas base y escalado de combate lado a lado."
+  },
+  "admin": {
+    "command_center": "Centro de Mando",
+    "protocol": "Protocolo Umbrella v2.7",
+    "sidebar": {
+      "activity": "Actividad Semanal",
+      "analytics": "Análisis Crecimiento",
+      "members": "Gestión Operativos",
+      "access_control": "Control de Accesos",
+      "logs": "Registro Sistema",
+      "public_base": "Base Pública",
+      "logout": "Desconectar",
+      "active_alliance": "Alianza Activa",
+      "new_alliance": "Nueva Alianza",
+      "level5": "Nivel 5: Acceso Total",
+      "events_assigned": "eventos asignados"
+    },
+    "master_tabs": {
+      "rewards": "Auditoría & Botín",
+      "rewards_sub": "Top 50",
+      "operations": "Carga de Operaciones",
+      "operations_sub": "8 Eventos",
+      "growth": "Crecimiento & Poder",
+      "growth_sub": "Deltas"
+    },
+    "tiers": {
+      "elite": "Recompensa Completa",
+      "elite_desc": "100% Botín de Alianza",
+      "reduced": "Recompensa Reducida",
+      "reduced_desc": "Botín Estándar",
+      "basic": "Recompensa Básica",
+      "basic_desc": "<50% Botín",
+      "none": "Sin Recompensa",
+      "none_desc": "Excluido de Botín",
+      "quota": "Cupo"
+    },
+    "risk_alert": {
+      "title": "Alerta Táctica: Operativos en Riesgo de Expulsión (0 Pts)",
+      "desc": "operativos sin actividad registrada en este ciclo.",
+      "filter_only": "Solo en Riesgo",
+      "show_all": "Ver Todos los Operativos"
+    },
+    "buttons": {
+      "excel_template": "Plantilla Excel",
+      "ai_ocr": "Asistente OCR (IA)",
+      "save_cycle": "Guardar Ciclo",
+      "save_changes": "Guardar Cambios",
+      "saving": "Guardando...",
+      "clone_prev": "Clonar Ciclo Anterior",
+      "export_discord": "Exportar Discord"
+    },
+    "growth_kpis": {
+      "total_power": "Poder Total Alianza",
+      "total_power_desc": "Fuerza combinada del clan",
+      "net_growth": "Crecimiento Semanal Neto",
+      "net_growth_desc": "Variación neta vs ciclo previo",
+      "top_grower": "Mayor Subida de la Semana",
+      "coverage": "Cobertura de Auditoría",
+      "coverage_desc": "Operativos con registro activo"
+    },
+    "table": {
+      "operative": "Operativo",
+      "rank": "Rango",
+      "type": "Tipo",
+      "total_points": "Puntos Totales",
+      "loot_tier": "Asignación Botín",
+      "events_breakdown": "Eventos y Aportes",
+      "prev_power": "Poder Ant.",
+      "curr_power": "Poder Nuevo",
+      "weekly_delta": "Delta Semanal",
+      "mansion": "Mansión",
+      "search_placeholder": "BUSCAR OPERATIVO O ALIAS...",
+      "all": "TODOS"
+    },
+    "theme": {
+      "dark": "Modo Oscuro",
+      "light": "Modo Claro"
+    },
+    "lang": {
+      "es": "Español",
+      "en": "English"
+    }
   }
 }

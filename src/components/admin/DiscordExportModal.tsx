@@ -53,7 +53,16 @@ interface DiscordExportModalProps {
   vacunasTeams?: Record<string, string>;
   mortemData?: Record<string, MortemMemberData>;
   mortemAllianceMeta?: MortemAllianceMeta;
-  participationScores?: Record<string, { total: number; max: number; level: string }>;
+  participationScores?: Record<string, {
+    total: number;
+    max?: number;
+    level?: string;
+    items?: { name: string; pts: number }[];
+    rankPos?: number;
+    tier?: 'elite' | 'reduced' | 'basic' | 'none';
+    tierLabel?: string;
+    tierDescription?: string;
+  }>;
   initialTab?: string;
 }
 
@@ -300,49 +309,68 @@ export const DiscordExportModal: React.FC<DiscordExportModalProps> = ({
 
       case 'participation': {
         const sorted = [...members]
-          .map(m => ({ member: m, score: participationScores[m.id] || { total: 0, max: 7, level: 'Baja' } }))
-          .sort((a, b) => b.score.total - a.score.total);
+          .map(m => {
+            const score = participationScores[m.id] || { 
+              total: 0, 
+              items: [], 
+              rankPos: 999, 
+              tier: 'none' as const, 
+              tierLabel: 'Sin Recompensa' 
+            };
+            return { member: m, score };
+          })
+          .sort((a, b) => {
+            const posA = a.score.rankPos || 999;
+            const posB = b.score.rankPos || 999;
+            if (posA !== posB) return posA - posB;
+            return b.score.total - a.score.total;
+          });
 
-        const elite = sorted.filter(s => s.score.total >= 7);
-        const high = sorted.filter(s => s.score.total >= 5 && s.score.total < 7);
-        const regular = sorted.filter(s => s.score.total >= 3 && s.score.total < 5);
-        const low = sorted.filter(s => s.score.total < 3);
+        const elite = sorted.filter(s => s.score.tier === 'elite' || (s.score.total > 0 && (s.score.rankPos || 999) <= 10));
+        const reduced = sorted.filter(s => s.score.tier === 'reduced' || (s.score.total > 0 && (s.score.rankPos || 999) > 10 && (s.score.rankPos || 999) <= 30));
+        const basic = sorted.filter(s => s.score.tier === 'basic' || (s.score.total > 0 && (s.score.rankPos || 999) > 30 && (s.score.rankPos || 999) <= 50));
+        const none = sorted.filter(s => s.score.total === 0 || (s.score.rankPos || 999) > 50);
 
         let out = `\`\`\`asciidoc\n`;
-        out += `=== [RANKING DE PARTICIPACIÓN & RECOMPENSAS] ===\n`;
+        out += `=== [TOP RECOMPENSAS & PARTICIPACIÓN DE ALIANZA] ===\n`;
         out += `Alianza: ${activeAlliance} | Ciclo: ${selectedDate}\n`;
-        out += `Puntaje Máximo Posible: 7 Puntos de Compromiso\n`;
+        out += `Criterio Pts: Vacunas (+5), Saint Vale (+5), Wesker (+4), Unión (+1..+4),\n`;
+        out += `              Mortem (+3), Centros (+2), TAC (+2), Némesis (+2), Cocodrilo (+1)\n`;
         out += `${subDivider}\n\n`;
 
-        out += `[NIVEL 1] ÉLITE SUPREMO (7/7 Puntos - Prioridad Máxima de Recompensas):\n`;
+        out += `[TOP 1-10] RECOMPENSAS COMPLETAS (100% Botín - 10 Plazas):\n`;
         if (elite.length > 0) {
           elite.forEach(s => {
-            out += `  * [${s.member.rank}] ${s.member.nickname} (${s.score.total}/7 pts)\n`;
+            const evStr = (s.score.items || []).map(i => `${i.name} +${i.pts}`).join(', ');
+            out += `  * #${s.score.rankPos || '-'} [${s.member.rank}] ${s.member.nickname} - ${s.score.total} pts ${evStr ? `(${evStr})` : ''}\n`;
           });
         } else {
-          out += `  (Sin operativos en este rango)\n`;
+          out += `  (Sin operativos en este corte)\n`;
         }
 
-        out += `\n[NIVEL 2] MUY ACTIVOS (5-6/7 Puntos - Candidatos a Cajas):\n`;
-        if (high.length > 0) {
-          high.forEach(s => {
-            out += `  - [${s.member.rank}] ${s.member.nickname} (${s.score.total}/7 pts)\n`;
+        out += `\n[TOP 11-30] RECOMPENSAS REDUCIDAS (Botín Estándar - 20 Plazas):\n`;
+        if (reduced.length > 0) {
+          reduced.forEach(s => {
+            const evStr = (s.score.items || []).map(i => `${i.name} +${i.pts}`).join(', ');
+            out += `  - #${s.score.rankPos || '-'} [${s.member.rank}] ${s.member.nickname} - ${s.score.total} pts ${evStr ? `(${evStr})` : ''}\n`;
           });
         } else {
-          out += `  (Sin operativos en este rango)\n`;
+          out += `  (Sin operativos en este corte)\n`;
         }
 
-        out += `\n[NIVEL 3] ACTIVIDAD REGULAR (3-4/7 Puntos):\n`;
-        if (regular.length > 0) {
-          regular.forEach(s => {
-            out += `  - [${s.member.rank}] ${s.member.nickname} (${s.score.total}/7 pts)\n`;
+        out += `\n[TOP 31-50] RECOMPENSAS BÁSICAS (< 50% Botín - 20 Plazas):\n`;
+        if (basic.length > 0) {
+          basic.forEach(s => {
+            out += `  - #${s.score.rankPos || '-'} [${s.member.rank}] ${s.member.nickname} - ${s.score.total} pts\n`;
           });
+        } else {
+          out += `  (Sin operativos en este corte)\n`;
         }
 
-        out += `\n[NIVEL 4] BAJA PARTICIPACIÓN (0-2/7 Puntos - En Observación):\n`;
-        if (low.length > 0) {
-          low.forEach(s => {
-            out += `  - [${s.member.rank}] ${s.member.nickname} (${s.score.total}/7 pts)\n`;
+        out += `\n[SIN RECOMPENSA] (Puesto > 50 o 0 Puntos - En Observación):\n`;
+        if (none.length > 0) {
+          none.forEach(s => {
+            out += `  - #${s.score.rankPos || '-'} [${s.member.rank}] ${s.member.nickname} - ${s.score.total} pts\n`;
           });
         }
 

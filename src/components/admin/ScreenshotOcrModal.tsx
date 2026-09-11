@@ -1,14 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Camera, Upload, Sparkles, Check, AlertCircle, Trash2, Plus, 
-  Key, RefreshCw, X, CheckCircle2, Shield, Edit3
+  Key, RefreshCw, X, CheckCircle2, Shield, Edit3, FileSpreadsheet,
+  Clipboard, ArrowRight
 } from 'lucide-react';
 import { 
-  analyzeGameRankingScreenshot, 
+  analyzeGameRankingScreenshots, 
   getGeminiApiKey, 
   setGeminiApiKey, 
 } from '../../services/geminiService';
+import {
+  parseExcelFile,
+  parseClipboardTableText,
+  extractRowsFromData,
+  type DetectedColumns
+} from '../../utils/excelParser';
 import { useSound } from '../../contexts/SoundContext';
+
+export interface UploadedImage {
+  id: string;
+  preview: string;
+  mimeType: string;
+  name: string;
+}
 
 export interface ClanMember {
   id: string;
@@ -40,14 +54,15 @@ interface ScreenshotOcrModalProps {
     newAliases: Record<string, string[]>
   ) => void;
   defaultEvent?: EventTargetType;
+  allowedEvents?: string[];
 }
 
-const EVENT_OPTIONS: { id: EventTargetType; label: string; field: string; desc: string }[] = [
-  { id: 'crocodile', label: 'Caza del Caimán', field: 'crocodile_damage', desc: 'Asigna puntos como Daño de Cocodrilo' },
-  { id: 'lab', label: 'Vacunas (Lab)', field: 'lab_points', desc: 'Asigna puntos de Vacunas y marca participación (✅)' },
-  { id: 'tac', label: 'TAC (Torneo)', field: 'tac_power', desc: 'Asigna poder de TAC y marca participación (✅)' },
-  { id: 'mortem', label: 'Repeler a Mortem', field: 'mortem_damage', desc: 'Asigna daño principal infligido a Mortem' },
-  { id: 'wesker', label: 'Wesker', field: 'wesker_points', desc: 'Asigna puntos de Wesker' },
+const EVENT_OPTIONS: { id: EventTargetType; label: string; field: string; desc: string; eventKey?: string }[] = [
+  { id: 'crocodile', label: 'Caza del Caimán', field: 'crocodile_damage', desc: 'Asigna puntos como Daño de Cocodrilo', eventKey: 'crocodile' },
+  { id: 'lab', label: 'Vacunas (Lab)', field: 'lab_points', desc: 'Asigna puntos de Vacunas y marca participación', eventKey: 'vacunas' },
+  { id: 'tac', label: 'TAC (Torneo)', field: 'tac_power', desc: 'Asigna poder de TAC y marca participación', eventKey: 'tac' },
+  { id: 'mortem', label: 'Repeler a Mortem', field: 'mortem_damage', desc: 'Asigna daño principal infligido a Mortem', eventKey: 'mortem' },
+  { id: 'wesker', label: 'Wesker', field: 'wesker_points', desc: 'Asigna puntos de Wesker', eventKey: 'wesker' },
   { id: 'power', label: 'Poder de Operativos', field: 'power', desc: 'Actualiza el poder general de los miembros' },
 ];
 
@@ -58,15 +73,30 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
   knownAliases,
   onApply,
   defaultEvent = 'crocodile',
+  allowedEvents,
 }) => {
   const { playClick, playHover } = useSound();
   const [selectedEvent, setSelectedEvent] = useState<EventTargetType>(defaultEvent);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [mimeType, setMimeType] = useState<string>('image/png');
+  const [importMode, setImportMode] = useState<'ocr' | 'excel'>('ocr');
+  
+  // OCR Images queue
+  const [images, setImages] = useState<UploadedImage[]>([]);
   const [isDragging, setIsDragging] = useState(false);
   const [scanning, setScanning] = useState(false);
   const [scanError, setScanError] = useState<string | null>(null);
   const [detectedTitle, setDetectedTitle] = useState('');
+  
+  // Excel / CSV state
+  const [excelRawRows, setExcelRawRows] = useState<Record<string, any>[]>([]);
+  const [excelDetected, setExcelDetected] = useState<DetectedColumns | null>(null);
+  const [excelFileName, setExcelFileName] = useState<string>('');
+  const [selectedNameCol, setSelectedNameCol] = useState<string>('');
+  const [selectedPointsCol, setSelectedPointsCol] = useState<string>('');
+  const [selectedRankCol, setSelectedRankCol] = useState<string>('');
+  const [clipboardText, setClipboardText] = useState<string>('');
+  const [excelLoading, setExcelLoading] = useState(false);
+
+  // Common Review step
   const [extractedRows, setExtractedRows] = useState<EditableOcrRow[]>([]);
   const [step, setStep] = useState<'upload' | 'review'>('upload');
 
@@ -75,54 +105,95 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
   const [showKeyInput, setShowKeyInput] = useState(!getGeminiApiKey());
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const excelInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (isOpen) {
-      setSelectedEvent(defaultEvent);
+      const validOptions = EVENT_OPTIONS.filter(opt => {
+        if (!allowedEvents) return true;
+        if (!opt.eventKey) return false;
+        return allowedEvents.includes(opt.eventKey);
+      });
+      const initial = validOptions.some(o => o.id === defaultEvent) 
+        ? defaultEvent 
+        : (validOptions[0]?.id || 'crocodile');
+      setSelectedEvent(initial);
       setApiKey(getGeminiApiKey());
       setShowKeyInput(!getGeminiApiKey());
       setScanError(null);
     }
-  }, [isOpen, defaultEvent]);
+  }, [isOpen, defaultEvent, allowedEvents]);
 
-  // Clipboard paste listener (Ctrl+V)
+  // Global Clipboard paste listener (Ctrl+V)
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen || step === 'review') return;
 
     const handlePaste = (e: ClipboardEvent) => {
+      // If user is typing/pasting into an input or textarea, let it handle natively
+      if (document.activeElement?.tagName === 'TEXTAREA' || document.activeElement?.tagName === 'INPUT') {
+        return;
+      }
+
       const items = e.clipboardData?.items;
       if (!items) return;
 
+      let foundImage = false;
       for (let i = 0; i < items.length; i++) {
         if (items[i].type.indexOf('image') !== -1) {
           const file = items[i].getAsFile();
           if (file) {
-            processFile(file);
+            processImageFiles([file]);
+            foundImage = true;
+            setImportMode('ocr');
             break;
           }
+        }
+      }
+
+      // If tabular text was copied from spreadsheet, handle as table paste
+      if (!foundImage) {
+        const text = e.clipboardData?.getData('text');
+        if (text && text.includes('\t')) {
+          handlePasteText(text);
+          setImportMode('excel');
         }
       }
     };
 
     window.addEventListener('paste', handlePaste);
     return () => window.removeEventListener('paste', handlePaste);
-  }, [isOpen]);
+  }, [isOpen, step]);
 
   if (!isOpen) return null;
 
-  const processFile = (file: File) => {
-    if (!file.type.startsWith('image/')) {
-      setScanError('Por favor selecciona un archivo de imagen válido.');
+  // Process image files
+  const processImageFiles = (files: FileList | File[]) => {
+    const validFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+    if (validFiles.length === 0) {
+      setScanError('Por favor selecciona archivos de imagen válidos (PNG, JPG, WEBP).');
       return;
     }
-    setMimeType(file.type);
     setScanError(null);
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      setImagePreview(e.target?.result as string);
-    };
-    reader.readAsDataURL(file);
+    validFiles.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImages(prev => [
+          ...prev,
+          {
+            id: `img-${Date.now()}-${Math.random().toString(36).substring(2, 7)}`,
+            preview: e.target?.result as string,
+            mimeType: file.type,
+            name: file.name
+          }
+        ]);
+      };
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const removeImage = (id: string) => {
+    setImages(prev => prev.filter(img => img.id !== id));
   };
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -138,8 +209,12 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      processFile(e.dataTransfer.files[0]);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      if (importMode === 'ocr') {
+        processImageFiles(e.dataTransfer.files);
+      } else {
+        handleExcelUpload(e.dataTransfer.files[0]);
+      }
     }
   };
 
@@ -176,16 +251,17 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
     return { memberId: '', matchedByAlias: false };
   };
 
+  // Scan multiple images with Gemini Vision
   const handleScan = async () => {
-    if (!imagePreview) {
-      setScanError('Primero carga o pega una captura de pantalla.');
+    if (images.length === 0) {
+      setScanError('Primero carga o pega al menos una captura de pantalla.');
       return;
     }
 
     const currentKey = getGeminiApiKey();
     if (!currentKey) {
       setShowKeyInput(true);
-      setScanError('Se requiere una clave API de Gemini para procesar la imagen.');
+      setScanError('Se requiere una clave API de Gemini para procesar las imágenes.');
       return;
     }
 
@@ -194,9 +270,9 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
     setScanError(null);
 
     try {
-      const result = await analyzeGameRankingScreenshot(
-        imagePreview,
-        mimeType,
+      const inputImages = images.map(img => ({ base64: img.preview, mimeType: img.mimeType }));
+      const result = await analyzeGameRankingScreenshots(
+        inputImages,
         EVENT_OPTIONS.find(e => e.id === selectedEvent)?.label
       );
 
@@ -229,10 +305,81 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
       setStep('review');
     } catch (err: any) {
       console.error('OCR Error:', err);
-      setScanError(err.message || 'Error al procesar la imagen. Verifica tu conexión y API Key.');
+      setScanError(err.message || 'Error al procesar las capturas con Gemini. Verifica tu conexión y API Key.');
     } finally {
       setScanning(false);
     }
+  };
+
+  // Process Excel File
+  const handleExcelUpload = async (file: File) => {
+    setExcelLoading(true);
+    setScanError(null);
+    try {
+      const { rawRows, detected } = await parseExcelFile(file);
+      setExcelFileName(file.name);
+      setExcelRawRows(rawRows);
+      setExcelDetected(detected);
+      setSelectedNameCol(detected.nameCol);
+      setSelectedPointsCol(detected.pointsCol);
+      setSelectedRankCol(detected.rankCol || '');
+    } catch (err: any) {
+      setScanError(err.message || 'Error al leer el archivo Excel.');
+    } finally {
+      setExcelLoading(false);
+    }
+  };
+
+  // Process Pasted Tabular Text
+  const handlePasteText = (textToParse?: string) => {
+    const text = textToParse || clipboardText;
+    if (!text.trim()) {
+      setScanError('Ingresa o pega texto tabular primero.');
+      return;
+    }
+    setScanError(null);
+    try {
+      const { rawRows, detected } = parseClipboardTableText(text);
+      setExcelFileName('Datos de Portapapeles');
+      setExcelRawRows(rawRows);
+      setExcelDetected(detected);
+      setSelectedNameCol(detected.nameCol);
+      setSelectedPointsCol(detected.pointsCol);
+      setSelectedRankCol(detected.rankCol || '');
+    } catch (err: any) {
+      setScanError(err.message || 'No se pudo interpretar el formato de los datos pegados.');
+    }
+  };
+
+  // Convert Excel raw rows to review rows
+  const handleProcessExcelData = () => {
+    if (!selectedNameCol || !selectedPointsCol) {
+      setScanError('Por favor selecciona las columnas de Operativo y Puntuación.');
+      return;
+    }
+
+    const parsed = extractRowsFromData(
+      excelRawRows,
+      selectedNameCol,
+      selectedPointsCol,
+      selectedRankCol || undefined
+    );
+
+    const rows: EditableOcrRow[] = parsed.map((r, idx) => {
+      const match = matchMember(r.rawName);
+      return {
+        id: `row-excel-${idx}-${Date.now()}`,
+        rank: r.rank || idx + 1,
+        rawName: r.rawName,
+        points: r.points,
+        memberId: match.memberId,
+        saveAlias: !match.matchedByAlias && Boolean(match.memberId),
+      };
+    });
+
+    setDetectedTitle(excelFileName || 'Importación de Excel');
+    setExtractedRows(rows);
+    setStep('review');
   };
 
   const handleSaveApiKey = () => {
@@ -323,32 +470,36 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
         <div className="p-4 sm:p-5 border-b border-gray-800 flex items-center justify-between bg-black/50">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 bg-blood-red/20 border border-blood-red/50 flex items-center justify-center rounded-sm text-neon-red">
-              <Camera size={18} />
+              {importMode === 'ocr' ? <Camera size={18} /> : <FileSpreadsheet size={18} />}
             </div>
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 <h3 className="font-bebas text-xl sm:text-2xl tracking-widest text-white">
-                  ASISTENTE OCR TÁCTICO (IA)
+                  {importMode === 'ocr' ? 'ASISTENTE OCR TÁCTICO (IA MULTI-CAPTURA)' : 'IMPORTADOR EXCEL Y PORTAPAPELES'}
                 </h3>
                 <span className="bg-blood-red/20 border border-blood-red/40 text-neon-red font-mono text-[10px] px-2 py-0.5 uppercase tracking-widest">
-                  Gemini Vision
+                  {importMode === 'ocr' ? 'Gemini Vision' : 'SheetJS Engine'}
                 </span>
               </div>
               <p className="font-mono text-xs text-gray-400">
-                Extracción automática y edición previa de capturas de ranking
+                {importMode === 'ocr' 
+                  ? 'Sube una o varias capturas continuas de ranking con deduplicación automática'
+                  : 'Carga archivos .xlsx / .csv o pega celdas directamente de Excel'}
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => setShowKeyInput(!showKeyInput)}
-              className="font-mono text-[11px] text-gray-400 hover:text-white border border-gray-800 px-2.5 py-1.5 flex items-center gap-1.5 transition-colors"
-              title="Configuración API Key"
-            >
-              <Key size={13} />
-              <span className="hidden sm:inline">API Key</span>
-            </button>
+            {importMode === 'ocr' && (
+              <button
+                onClick={() => setShowKeyInput(!showKeyInput)}
+                className="font-mono text-[11px] text-gray-400 hover:text-white border border-gray-800 px-2.5 py-1.5 flex items-center gap-1.5 transition-colors"
+                title="Configuración API Key"
+              >
+                <Key size={13} />
+                <span className="hidden sm:inline">API Key</span>
+              </button>
+            )}
             <button
               onClick={onClose}
               className="text-gray-500 hover:text-white p-1.5 transition-colors"
@@ -358,8 +509,38 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
           </div>
         </div>
 
+        {/* Mode Selector Tabs (only visible in upload step) */}
+        {step === 'upload' && (
+          <div className="px-4 sm:px-6 pt-3 pb-0 bg-black/40 border-b border-gray-800 flex items-center gap-2">
+            <button
+              onClick={() => { playClick(); setImportMode('ocr'); setScanError(null); }}
+              className={`px-4 py-2 font-mono text-xs uppercase tracking-wider flex items-center gap-2 border-b-2 transition-all ${importMode === 'ocr' ? 'border-neon-red text-white font-bold bg-blood-red/10' : 'border-transparent text-gray-400 hover:text-gray-200'}`}
+            >
+              <Camera size={14} />
+              Capturas IA (Múltiples)
+              {images.length > 0 && (
+                <span className="ml-1 bg-neon-red text-black text-[10px] font-bold px-1.5 py-0.2 rounded-full">
+                  {images.length}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={() => { playClick(); setImportMode('excel'); setScanError(null); }}
+              className={`px-4 py-2 font-mono text-xs uppercase tracking-wider flex items-center gap-2 border-b-2 transition-all ${importMode === 'excel' ? 'border-neon-red text-white font-bold bg-blood-red/10' : 'border-transparent text-gray-400 hover:text-gray-200'}`}
+            >
+              <FileSpreadsheet size={14} />
+              Excel / CSV / Portapapeles
+              {excelRawRows.length > 0 && (
+                <span className="ml-1 bg-green-500 text-black text-[10px] font-bold px-1.5 py-0.2 rounded-full">
+                  {excelRawRows.length}
+                </span>
+              )}
+            </button>
+          </div>
+        )}
+
         {/* API Key Banner */}
-        {showKeyInput && (
+        {showKeyInput && importMode === 'ocr' && (
           <div className="p-4 bg-[#141414] border-b border-gray-800 flex flex-col sm:flex-row gap-3 items-center justify-between">
             <div className="w-full sm:w-auto flex-1">
               <label className="block font-mono text-[10px] text-gray-400 uppercase tracking-wider mb-1">
@@ -403,12 +584,18 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
           
           {step === 'upload' && (
             <div className="flex flex-col gap-6">
+              
+              {/* Event selection */}
               <div>
                 <label className="block font-mono text-xs text-gray-400 uppercase tracking-widest mb-2">
-                  1. Selecciona el evento de la captura:
+                  1. Selecciona el evento de destino:
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
-                  {EVENT_OPTIONS.map(opt => (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+                  {EVENT_OPTIONS.filter(opt => {
+                    if (!allowedEvents) return true;
+                    if (!opt.eventKey) return false;
+                    return allowedEvents.includes(opt.eventKey);
+                  }).map(opt => (
                     <button
                       key={opt.id}
                       onClick={() => { playClick(); setSelectedEvent(opt.id); }}
@@ -422,61 +609,272 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
                 </div>
               </div>
 
-              <div>
-                <label className="block font-mono text-xs text-gray-400 uppercase tracking-widest mb-2">
-                  2. Carga o Pega (<kbd className="bg-gray-800 text-gray-300 px-1 py-0.5 rounded text-[10px]">Ctrl+V</kbd>) la captura:
-                </label>
-                
-                <div
-                  onDragOver={handleDragOver}
-                  onDragLeave={handleDragLeave}
-                  onDrop={handleDrop}
-                  onClick={() => fileInputRef.current?.click()}
-                  className={`border-2 border-dashed rounded-sm p-8 flex flex-col items-center justify-center cursor-pointer transition-colors relative min-h-[220px] ${isDragging ? 'border-neon-red bg-blood-red/10' : 'border-gray-800 bg-[#070707] hover:border-gray-600'}`}
-                >
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={(e) => e.target.files?.[0] && processFile(e.target.files[0])}
-                    accept="image/*"
-                    className="hidden"
-                  />
-
-                  {imagePreview ? (
-                    <div className="flex flex-col items-center gap-3">
-                      <div className="relative max-h-52 overflow-hidden border border-gray-700 rounded-sm shadow-lg">
-                        <img 
-                          src={imagePreview} 
-                          alt="Screenshot Preview" 
-                          className="max-h-52 object-contain"
-                        />
-                      </div>
-                      <p className="font-mono text-xs text-gray-400 flex items-center gap-2">
-                        <Check size={14} className="text-green-500" />
-                        Captura cargada. Haz clic en 'Escanear con IA' o arrastra otra imagen para reemplazarla.
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col items-center text-center gap-3">
-                      <div className="w-14 h-14 bg-gray-900 border border-gray-800 rounded-full flex items-center justify-center text-gray-400">
-                        <Upload size={24} />
-                      </div>
-                      <div>
-                        <p className="font-mono text-sm text-white font-medium">
-                          Arrastra tu captura aquí o haz clic para explorar
-                        </p>
-                        <p className="font-mono text-xs text-gray-500 mt-1">
-                          También puedes presionar <strong className="text-neon-red">Ctrl + V</strong> en cualquier parte de esta ventana
-                        </p>
-                      </div>
-                      <span className="font-mono text-[10px] text-gray-600 border border-gray-800 px-2 py-1 uppercase">
-                        Formatos soportados: PNG, JPG, WEBP
+              {/* MODE 1: OCR MULTI-SCREENSHOT */}
+              {importMode === 'ocr' && (
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <label className="block font-mono text-xs text-gray-400 uppercase tracking-widest">
+                      2. Carga o Pega (<kbd className="bg-gray-800 text-gray-300 px-1 py-0.5 rounded text-[10px]">Ctrl+V</kbd>) tus capturas:
+                    </label>
+                    {images.length > 0 && (
+                      <span className="font-mono text-xs text-neon-red">
+                        {images.length} {images.length === 1 ? 'captura lista' : 'capturas listas (secuencial)'}
                       </span>
+                    )}
+                  </div>
+
+                  {/* Multi-image dropzone */}
+                  <div
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    onClick={() => images.length === 0 && fileInputRef.current?.click()}
+                    className={`border-2 border-dashed rounded-sm p-5 flex flex-col items-center justify-center transition-colors relative min-h-[180px] ${images.length === 0 ? 'cursor-pointer' : ''} ${isDragging ? 'border-neon-red bg-blood-red/10' : 'border-gray-800 bg-[#070707] hover:border-gray-700'}`}
+                  >
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      onChange={(e) => e.target.files && processImageFiles(e.target.files)}
+                      accept="image/*"
+                      multiple
+                      className="hidden"
+                    />
+
+                    {images.length > 0 ? (
+                      <div className="w-full flex flex-col gap-4">
+                        {/* Thumbnail gallery */}
+                        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-3 max-h-56 overflow-y-auto p-1 custom-scrollbar">
+                          {images.map((img, idx) => (
+                            <div key={img.id} className="relative group bg-black border border-gray-800 rounded-sm overflow-hidden shadow">
+                              <img 
+                                src={img.preview} 
+                                alt={img.name} 
+                                className="w-full h-24 object-cover object-top" 
+                              />
+                              <div className="absolute top-1 left-1 bg-black/80 font-mono text-[9px] text-white px-1 rounded">
+                                #{idx + 1}
+                              </div>
+                              <button
+                                onClick={(e) => { e.stopPropagation(); removeImage(img.id); }}
+                                className="absolute top-1 right-1 bg-red-600/90 text-white p-1 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500"
+                                title="Eliminar captura"
+                              >
+                                <Trash2 size={11} />
+                              </button>
+                              <div className="p-1 bg-[#111] font-mono text-[9px] text-gray-400 truncate text-center">
+                                {img.name}
+                              </div>
+                            </div>
+                          ))}
+
+                          {/* Add More Button */}
+                          <div
+                            onClick={() => fileInputRef.current?.click()}
+                            className="h-24 border border-dashed border-gray-700 hover:border-neon-red hover:bg-white/5 flex flex-col items-center justify-center cursor-pointer transition-colors p-2 text-center"
+                          >
+                            <Plus size={20} className="text-gray-400 mb-1" />
+                            <span className="font-mono text-[10px] text-gray-400 uppercase">+ Agregar Más</span>
+                          </div>
+                        </div>
+
+                        <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-gray-800/80 font-mono text-xs text-gray-400">
+                          <span className="flex items-center gap-1 text-green-400">
+                            <Check size={13} /> {images.length} capturas en cola para consolidación y deduplicación.
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setImages([])}
+                            className="text-gray-500 hover:text-red-400 text-[11px] underline"
+                          >
+                            Limpiar todas
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col items-center text-center gap-3">
+                        <div className="w-12 h-12 bg-gray-900 border border-gray-800 rounded-full flex items-center justify-center text-gray-400">
+                          <Upload size={20} />
+                        </div>
+                        <div>
+                          <p className="font-mono text-sm text-white font-medium">
+                            Arrastra una o varias capturas aquí o haz clic para explorar
+                          </p>
+                          <p className="font-mono text-xs text-gray-500 mt-1">
+                            Soporta capturas continuas de scroll. También puedes presionar <strong className="text-neon-red">Ctrl + V</strong> repetidamente
+                          </p>
+                        </div>
+                        <span className="font-mono text-[10px] text-gray-600 border border-gray-800 px-2 py-1 uppercase">
+                          Formatos: PNG, JPG, WEBP • Múltiples archivos simultáneos
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* MODE 2: EXCEL / CSV / CLIPBOARD */}
+              {importMode === 'excel' && (
+                <div className="flex flex-col gap-4">
+                  <label className="block font-mono text-xs text-gray-400 uppercase tracking-widest">
+                    2. Carga un archivo Excel (.xlsx, .csv) o pega celdas copiadas:
+                  </label>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Excel File Dropzone */}
+                    <div
+                      onDragOver={handleDragOver}
+                      onDragLeave={handleDragLeave}
+                      onDrop={handleDrop}
+                      onClick={() => excelInputRef.current?.click()}
+                      className={`border border-dashed rounded-sm p-6 flex flex-col items-center justify-center cursor-pointer transition-colors text-center ${isDragging ? 'border-neon-red bg-blood-red/10' : 'border-gray-800 bg-[#070707] hover:border-gray-700'}`}
+                    >
+                      <input
+                        type="file"
+                        ref={excelInputRef}
+                        onChange={(e) => e.target.files?.[0] && handleExcelUpload(e.target.files[0])}
+                        accept=".xlsx, .xls, .csv, .tsv"
+                        className="hidden"
+                      />
+                      {excelLoading ? (
+                        <div className="flex flex-col items-center gap-2 py-4">
+                          <RefreshCw size={24} className="animate-spin text-green-400" />
+                          <span className="font-mono text-xs text-gray-300">Leyendo hoja de cálculo...</span>
+                        </div>
+                      ) : (
+                        <>
+                          <FileSpreadsheet size={28} className="text-green-500 mb-2" />
+                          <p className="font-mono text-xs text-white font-bold uppercase">
+                            Subir Archivo Excel o CSV
+                          </p>
+                          <p className="font-mono text-[11px] text-gray-500 mt-1">
+                            Formatos soportados: .xlsx, .xls, .csv
+                          </p>
+                          {excelFileName && (
+                            <div className="mt-3 px-2 py-1 bg-green-950/40 border border-green-800 text-green-300 font-mono text-[11px] truncate max-w-full">
+                              {excelFileName} ({excelRawRows.length} filas)
+                            </div>
+                          )}
+                        </>
+                      )}
+                    </div>
+
+                    {/* Clipboard Paste Box */}
+                    <div className="border border-gray-800 bg-[#070707] rounded-sm p-4 flex flex-col gap-2">
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-[11px] text-gray-400 flex items-center gap-1">
+                          <Clipboard size={12} /> Pegar celdas copiadas (Ctrl+V):
+                        </span>
+                        {clipboardText && (
+                          <button
+                            onClick={() => handlePasteText()}
+                            className="text-[10px] font-mono text-neon-red hover:underline"
+                          >
+                            Procesar texto
+                          </button>
+                        )}
+                      </div>
+                      <textarea
+                        value={clipboardText}
+                        onChange={(e) => setClipboardText(e.target.value)}
+                        placeholder="Ejemplo: copia y pega filas directo de Google Sheets o Excel:&#10;Nick&#9;Daño&#10;MariluMark&#9;290708166&#10;fa.cof&#9;147957882"
+                        className="w-full h-24 bg-black border border-gray-800 focus:border-neon-red text-white p-2 font-mono text-[11px] resize-none outline-none"
+                      />
+                      <button
+                        onClick={() => handlePasteText()}
+                        disabled={!clipboardText.trim()}
+                        className="self-end px-3 py-1 font-mono text-xs bg-white/5 border border-gray-700 hover:bg-white/10 text-white disabled:opacity-40"
+                      >
+                        Interpretar Texto
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Column Mapping Section (When rows are parsed) */}
+                  {excelRawRows.length > 0 && excelDetected && (
+                    <div className="p-4 bg-[#111] border border-gray-800 rounded-sm flex flex-col gap-4">
+                      <div className="flex items-center justify-between border-b border-gray-800 pb-2">
+                        <span className="font-mono text-xs text-white font-bold uppercase flex items-center gap-2">
+                          <CheckCircle2 size={15} className="text-green-400" />
+                          Columnas Detectadas ({excelRawRows.length} filas leídas)
+                        </span>
+                        <span className="font-mono text-[11px] text-gray-400">
+                          Verifica las columnas correspondientes
+                        </span>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        {/* Name Column */}
+                        <div>
+                          <label className="block font-mono text-[10px] text-gray-400 uppercase mb-1">
+                            Columna Operativo / Nick:
+                          </label>
+                          <select
+                            value={selectedNameCol}
+                            onChange={(e) => setSelectedNameCol(e.target.value)}
+                            className="w-full bg-black border border-gray-700 text-white px-2 py-1.5 text-xs font-mono focus:border-neon-red outline-none"
+                          >
+                            {excelDetected.allColumns.map(col => (
+                              <option key={col} value={col}>{col}</option>
+                            ))}
+                          </select>
+                        </div>
+
+                        {/* Points Column */}
+                        <div>
+                          <label className="block font-mono text-[10px] text-gray-400 uppercase mb-1">
+                            Columna Puntos / Daño:
+                          </label>
+                          <select
+                            value={selectedPointsCol}
+                            onChange={(e) => setSelectedPointsCol(e.target.value)}
+                            className="w-full bg-black border border-gray-700 text-white px-2 py-1.5 text-xs font-mono focus:border-neon-red outline-none"
+                          >
+                            {excelDetected.allColumns.map(col => (
+                              <option key={col} value={col}>{col}</option>
+                            ))}
+                          </select>
+                        </div>
+
+                        {/* Rank Column */}
+                        <div>
+                          <label className="block font-mono text-[10px] text-gray-400 uppercase mb-1">
+                            Columna Rank (Opcional):
+                          </label>
+                          <select
+                            value={selectedRankCol}
+                            onChange={(e) => setSelectedRankCol(e.target.value)}
+                            className="w-full bg-black border border-gray-700 text-white px-2 py-1.5 text-xs font-mono focus:border-neon-red outline-none"
+                          >
+                            <option value="">-- No incluir / Auto 1, 2, 3... --</option>
+                            {excelDetected.allColumns.map(col => (
+                              <option key={col} value={col}>{col}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* Mini Preview of First 2 rows */}
+                      <div className="text-[11px] font-mono text-gray-400 bg-black/60 p-2 border border-gray-800 overflow-x-auto">
+                        <span className="text-gray-500 uppercase">Vista previa fila 1:</span>{' '}
+                        Operativo: <strong className="text-white">{String(excelRawRows[0]?.[selectedNameCol] ?? '')}</strong> |{' '}
+                        Puntos: <strong className="text-neon-red">{String(excelRawRows[0]?.[selectedPointsCol] ?? '')}</strong>
+                      </div>
+
+                      <div className="flex justify-end">
+                        <button
+                          onClick={handleProcessExcelData}
+                          className="px-5 py-2 font-mono text-xs uppercase tracking-widest bg-blood-red/30 border border-blood-red text-neon-red hover:bg-blood-red hover:text-white transition-colors flex items-center gap-2"
+                        >
+                          Continuar a Revisión ({excelRawRows.length} registros)
+                          <ArrowRight size={14} />
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>
-              </div>
+              )}
 
+              {/* Upload footer actions */}
               <div className="flex justify-end gap-3 pt-2">
                 <button
                   onClick={onClose}
@@ -484,23 +882,26 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
                 >
                   Cancelar
                 </button>
-                <button
-                  onClick={handleScan}
-                  disabled={!imagePreview || scanning}
-                  className={`px-6 py-2.5 font-mono text-xs uppercase tracking-widest flex items-center gap-2 transition-all ${!imagePreview || scanning ? 'bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-blood-red/30 border border-blood-red text-neon-red hover:bg-blood-red hover:text-white shadow-[0_0_15px_rgba(255,42,42,0.3)]'}`}
-                >
-                  {scanning ? (
-                    <>
-                      <RefreshCw size={14} className="animate-spin" />
-                      Extrayendo Datos...
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles size={14} />
-                      Escanear con IA
-                    </>
-                  )}
-                </button>
+                
+                {importMode === 'ocr' && (
+                  <button
+                    onClick={handleScan}
+                    disabled={images.length === 0 || scanning}
+                    className={`px-6 py-2.5 font-mono text-xs uppercase tracking-widest flex items-center gap-2 transition-all ${images.length === 0 || scanning ? 'bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-blood-red/30 border border-blood-red text-neon-red hover:bg-blood-red hover:text-white shadow-[0_0_15px_rgba(255,42,42,0.3)]'}`}
+                  >
+                    {scanning ? (
+                      <>
+                        <RefreshCw size={14} className="animate-spin" />
+                        Analizando {images.length} {images.length === 1 ? 'Captura' : 'Capturas'} con IA...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles size={14} />
+                        Escanear {images.length > 0 ? `${images.length} ` : ''}con IA
+                      </>
+                    )}
+                  </button>
+                )}
               </div>
             </div>
           )}
@@ -544,11 +945,11 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
                 </div>
               </div>
 
-              {/* Japanese names hint */}
+              {/* Japanese names and alias hint */}
               <div className="p-3 bg-black/60 border border-gray-800/80 rounded-sm flex items-start gap-3">
                 <Shield size={16} className="text-blue-400 shrink-0 mt-0.5" />
                 <div className="font-mono text-[11px] text-gray-300">
-                  <strong className="text-blue-400">Mapeo de Nombres Especiales / Japoneses:</strong> Si el nombre en la captura tiene caracteres japoneses (ej. <code className="text-gray-200">ヤスノリ-アルカナ</code>), selecciónalo en el menú desplegable. La casilla <em>"Recordar alias"</em> guardará la equivalencia en el sistema para que futuras capturas se reconozcan solas.
+                  <strong className="text-blue-400">Mapeo Inteligente de Alias:</strong> Si el nombre en la captura o archivo Excel tiene caracteres especiales, japoneses o apodos (ej. <code className="text-gray-200">ヤスノリ-アルカナ</code>), selecciónalo en el menú desplegable. La casilla <em>"Recordar alias"</em> guardará la equivalencia en el sistema para que futuros registros se reconozcan automáticamente.
                 </div>
               </div>
 
@@ -558,7 +959,7 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
                   <thead className="sticky top-0 bg-[#161616] border-b border-gray-800 z-10 text-[11px] font-mono text-gray-400 uppercase tracking-wider">
                     <tr>
                       <th className="py-3 px-3 w-16 text-center">Rank</th>
-                      <th className="py-3 px-3 w-48">Nombre Detectado (OCR)</th>
+                      <th className="py-3 px-3 w-48">Nombre Detectado (OCR / Excel)</th>
                       <th className="py-3 px-3 w-56">Operativo en Base de Datos</th>
                       <th className="py-3 px-3 w-40 text-right">Puntaje / Daño</th>
                       <th className="py-3 px-3 w-32 text-center">Recordar Alias</th>

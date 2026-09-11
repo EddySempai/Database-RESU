@@ -230,6 +230,85 @@ export const analyzeGameRankingScreenshot = async (
   throw lastError || new Error("No se pudo procesar la captura con Gemini.");
 };
 
+export interface ScreenshotInput {
+  base64: string;
+  mimeType: string;
+}
+
+export const analyzeGameRankingScreenshots = async (
+  images: ScreenshotInput[],
+  eventTypeHint?: string
+): Promise<ExtractedReportResult> => {
+  if (!images || images.length === 0) {
+    throw new Error("No se proporcionaron imágenes para analizar.");
+  }
+  
+  if (images.length === 1) {
+    return analyzeGameRankingScreenshot(images[0].base64, images[0].mimeType, eventTypeHint);
+  }
+
+  const genAI = getGenAIClient();
+  const imageParts = images.map(img => fileToGenerativePart(img.base64, img.mimeType));
+
+  const multiImagePrompt = `
+${GAME_REPORT_OCR_PROMPT}
+
+INSTRUCCIÓN ESPECIAL MULTI-CAPTURA:
+El usuario ha subido ${images.length} capturas de pantalla secuenciales del mismo ranking de evento (capturadas haciendo scroll en la lista del juego).
+- Extrae y combina TODAS las filas de participantes de todas las capturas.
+- Si un participante aparece en dos capturas adyacentes por solapamiento del scroll, DEDUPLÍCALO (conserva una sola fila con su mejor puntuación y su puesto de ranking correcto).
+- Asegúrate de ordenar el listado final por puesto ("rank": 1, 2, 3...) ascendentemente.
+${eventTypeHint ? `\nPista adicional del usuario: Este reporte pertenece al evento '${eventTypeHint}'.` : ''}
+`;
+
+  const modelsToTry = ['gemini-3.5-flash', 'gemini-3.5-flash-lite', 'gemini-3.8-flash'];
+  let lastError: any = null;
+
+  for (const modelName of modelsToTry) {
+    try {
+      const model = genAI.getGenerativeModel({ model: modelName });
+      const result = await model.generateContent([multiImagePrompt, ...imageParts]);
+      const responseText = result.response.text().trim();
+      
+      const match = responseText.match(/\{[\s\S]*\}/);
+      if (match) {
+        const parsed = JSON.parse(match[0]);
+        const rows: ExtractedRankRow[] = Array.isArray(parsed.rows) ? parsed.rows.map((r: any) => ({
+          rank: Number(r.rank) || 0,
+          rawName: String(r.rawName || '').trim(),
+          points: Number(r.points) || 0,
+        })) : [];
+
+        // In-memory deduplication by name keeping highest points or first occurrence
+        const seen = new Map<string, ExtractedRankRow>();
+        for (const r of rows) {
+          const key = r.rawName.toLowerCase();
+          if (!key) continue;
+          if (!seen.has(key) || (seen.get(key)!.points < r.points)) {
+            seen.set(key, r);
+          }
+        }
+
+        const dedupedRows = Array.from(seen.values()).sort((a, b) => {
+          if (a.rank && b.rank && a.rank !== b.rank) return a.rank - b.rank;
+          return b.points - a.points;
+        });
+
+        return {
+          eventType: parsed.eventType || 'unknown',
+          detectedEventTitle: parsed.detectedEventTitle || '',
+          rows: dedupedRows
+        };
+      }
+    } catch (err: any) {
+      console.warn(`Model ${modelName} failed for multi-image, trying next...`, err);
+      lastError = err;
+    }
+  }
+
+  throw lastError || new Error("No se pudieron procesar las capturas con Gemini.");
+};
+
 // -------------------------------------------------------------
 // RED QUEEN AUDIT ANALYZER
 // -------------------------------------------------------------

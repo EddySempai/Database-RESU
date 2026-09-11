@@ -352,7 +352,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   }
 
   return (
-    <div className="h-full flex flex-col gap-5 overflow-hidden">
+    <div className="flex flex-col gap-5">
       
       {/* ------------------------------------------------------------- */}
       {/* TOP COMMAND HUD BANNER (REMODELED) */}
@@ -782,7 +782,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       {/* ------------------------------------------------------------- */}
       {/* RANKING TABLE WITH TACTICAL FILTERS */}
       {/* ------------------------------------------------------------- */}
-      <div className="bg-[#090909] border border-gray-800/80 rounded-sm flex-1 min-h-0 overflow-hidden flex flex-col">
+      <div className="bg-[#090909] border border-gray-800/80 rounded-sm flex flex-col shadow-lg">
         
         {/* Table Toolbar: Search + Rank Pills */}
         <div className="p-3 sm:p-4 border-b border-gray-800 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 bg-black/40">
@@ -831,9 +831,9 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         </div>
 
         {/* Scrollable Data Table */}
-        <div className="flex-1 overflow-auto custom-scrollbar">
+        <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse min-w-[700px]">
-            <thead className="sticky top-0 bg-[#111] z-10 border-b border-gray-800">
+            <thead className="bg-[#111] border-b border-gray-800 shadow-md">
               <tr>
                 <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-3 w-16 text-center">Pos</th>
                 <th className="font-mono text-[11px] text-gray-400 uppercase tracking-widest py-3 px-4">Operativo</th>

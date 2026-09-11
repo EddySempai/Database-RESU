@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { Analytics } from '@vercel/analytics/react';
 import { SoundProvider } from './contexts/SoundContext';
 import { AdminAuthProvider } from './contexts/AdminAuthContext';
+import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
 // Code Splitting for performance optimization
@@ -29,14 +30,19 @@ const AppContent = () => {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith('/admin');
   const { t } = useTranslation();
+  const { isDark } = useTheme();
   
   return (
-    <div className={`text-white font-inter relative overflow-hidden flex flex-col ${isAdmin ? 'h-screen w-screen bg-[#050505]' : 'min-h-screen bg-umbrella-black'}`}>
+    <div className={`font-inter relative flex flex-col transition-colors duration-200 ${
+      isAdmin 
+        ? (isDark ? 'min-h-screen bg-[#0c0e14] text-slate-100' : 'min-h-screen bg-[#f8fafc] text-slate-800') 
+        : 'min-h-screen bg-umbrella-black text-white overflow-hidden'
+    }`}>
       {!isAdmin && <Particles />}
       <Analytics />
       {!isAdmin && <Navbar />}
       
-      <main className={`flex-1 ${isAdmin ? 'h-full overflow-hidden' : ''}`}>
+      <main className="flex-1">
         <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
           <Suspense fallback={<LoadingScreen />}>
             <Routes location={location} key={location.pathname}>
@@ -85,13 +91,15 @@ const AppContent = () => {
 
 function App() {
   return (
-    <SoundProvider>
-      <AdminAuthProvider>
-        <Router>
-          <AppContent />
-        </Router>
-      </AdminAuthProvider>
-    </SoundProvider>
+    <ThemeProvider>
+      <SoundProvider>
+        <AdminAuthProvider>
+          <Router>
+            <AppContent />
+          </Router>
+        </AdminAuthProvider>
+      </SoundProvider>
+    </ThemeProvider>
   );
 }
 

@@ -9,14 +9,16 @@ export const PortalDropdown = ({
   onChange, 
   className,
   menuWidth,
-  alignRight
+  alignRight,
+  disabled
 }: { 
   value: any, 
   options: {val: any, label: string}[], 
   onChange: (val: any) => void, 
   className?: string,
   menuWidth?: string,
-  alignRight?: boolean
+  alignRight?: boolean,
+  disabled?: boolean
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -86,17 +88,21 @@ export const PortalDropdown = ({
       <AdminModal isOpen={modal.isOpen} type={modal.type} title={modal.title} message={modal.message} onConfirm={closeModal} onClose={closeModal} />
       <div
         ref={containerRef}
-        className={className || "w-full border-b border-transparent hover:border-gray-600 focus-within:border-neon-red text-gray-300 font-mono text-[10px] sm:text-xs flex justify-between items-center transition-colors relative"}
+        className={`${className || "w-full border-b border-transparent hover:border-slate-500 focus-within:border-rose-500 dark:text-slate-200 text-slate-800 font-mono text-[10px] sm:text-xs flex justify-between items-center transition-colors relative"} ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''}`}
       >
         <input
           ref={inputRef}
           type="text"
+          disabled={disabled}
           value={inputValue}
           onChange={(e) => {
+            if (disabled) return;
             setInputValue(e.target.value);
             if (!isOpen) setIsOpen(true);
           }}
-          onFocus={() => setIsOpen(true)}
+          onFocus={() => {
+            if (!disabled) setIsOpen(true);
+          }}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
               e.preventDefault();
@@ -104,16 +110,24 @@ export const PortalDropdown = ({
             }
           }}
           onBlur={handleBlurOrEnter}
-          className="bg-transparent w-full outline-none px-2 pb-1"
+          className={`bg-transparent w-full outline-none px-2 pb-1 ${disabled ? 'cursor-not-allowed' : ''}`}
         />
-        <button type="button" onClick={() => setIsOpen(!isOpen)} className="px-1" tabIndex={-1}>
-          <ChevronDown size={12} className={`transition-transform ${isOpen ? 'rotate-180 text-neon-red' : 'text-gray-500'}`} />
+        <button 
+          type="button" 
+          disabled={disabled}
+          onClick={() => {
+            if (!disabled) setIsOpen(!isOpen);
+          }} 
+          className="px-1 disabled:opacity-40" 
+          tabIndex={-1}
+        >
+          <ChevronDown size={12} className={`transition-transform ${isOpen ? 'rotate-180 text-rose-500' : 'text-slate-400'}`} />
         </button>
       </div>
 
       {isOpen && createPortal(
         <div 
-          className="absolute z-[9999] bg-[#0a0a0a] border border-gray-800 shadow-xl max-h-48 overflow-y-auto custom-scrollbar"
+          className="absolute z-[9999] rounded-xl border shadow-xl max-h-48 overflow-y-auto custom-scrollbar dark:bg-[#121623] dark:border-slate-800 bg-white border-slate-200 py-1"
           style={{ 
             top: coords.top, 
             left: alignRight ? `calc(${coords.left}px - ${menuWidth || '100px'})` : coords.left, 
@@ -130,12 +144,16 @@ export const PortalDropdown = ({
                 setInputValue(String(o.label));
                 setIsOpen(false);
               }}
-              className={`px-3 py-2 cursor-pointer font-mono text-xs hover:bg-blood-red/20 hover:text-neon-red transition-colors ${o.val === value ? 'bg-blood-red/10 text-neon-red border-l-2 border-neon-red' : 'text-gray-300'}`}
+              className={`px-3 py-1.5 cursor-pointer font-mono text-xs transition-colors ${
+                o.val === value 
+                  ? 'dark:bg-rose-500/20 dark:text-rose-300 bg-rose-50 text-rose-600 font-semibold border-l-2 border-rose-500' 
+                  : 'dark:text-slate-300 text-slate-700 dark:hover:bg-slate-800/60 hover:bg-slate-100 hover:text-rose-500'
+              }`}
             >
               {o.label}
             </div>
           )) : (
-            <div className="px-3 py-2 font-mono text-xs text-gray-500 italic">No encontrado</div>
+            <div className="px-3 py-2 font-mono text-xs text-slate-400 italic">No encontrado</div>
           )}
         </div>,
         document.body

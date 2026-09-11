@@ -376,7 +376,88 @@
     "luminio_step1": "Click any node to configure its current level and target level. You can follow the three branches: Attacker, Defender, and Ranger.",
     "luminio_step2": "Here you will see the total calculated cost automatically.",
     "comparador_step1": "Select the two operatives you want to compare. They must be of the same tactical class.",
-    "comparador_step2": "Compare their base stats and combat scaling side by side.",
-    "comparador_step3": "Read the generated tactical report to understand the pros and cons of each operative."
+    "comparador_step2": "Compare their base stats and combat scaling side by side."
+  },
+  "admin": {
+    "command_center": "Command Center",
+    "protocol": "Umbrella Protocol v2.7",
+    "sidebar": {
+      "activity": "Weekly Activity",
+      "analytics": "Growth Analytics",
+      "members": "Operatives Directory",
+      "access_control": "Access Control",
+      "logs": "System Logs",
+      "public_base": "Public Database",
+      "logout": "Disconnect",
+      "active_alliance": "Active Alliance",
+      "new_alliance": "New Alliance",
+      "level5": "Level 5: Full Access",
+      "events_assigned": "assigned events"
+    },
+    "master_tabs": {
+      "rewards": "Audit & Loot",
+      "rewards_sub": "Top 50",
+      "operations": "Event Operations",
+      "operations_sub": "8 Events",
+      "growth": "Growth & Power",
+      "growth_sub": "Deltas"
+    },
+    "tiers": {
+      "elite": "Full Reward",
+      "elite_desc": "100% Alliance Loot",
+      "reduced": "Reduced Reward",
+      "reduced_desc": "Standard Loot",
+      "basic": "Basic Reward",
+      "basic_desc": "<50% Loot",
+      "none": "No Reward",
+      "none_desc": "Excluded from Loot",
+      "quota": "Quota"
+    },
+    "risk_alert": {
+      "title": "Tactical Alert: Operatives at Risk of Expulsion (0 Pts)",
+      "desc": "operatives without registered activity in this cycle.",
+      "filter_only": "At Risk Only",
+      "show_all": "Show All Operatives"
+    },
+    "buttons": {
+      "excel_template": "Excel Template",
+      "ai_ocr": "AI Assistant (OCR)",
+      "save_cycle": "Save Cycle",
+      "save_changes": "Save Changes",
+      "saving": "Saving...",
+      "clone_prev": "Clone Previous Cycle",
+      "export_discord": "Export Discord"
+    },
+    "growth_kpis": {
+      "total_power": "Total Alliance Power",
+      "total_power_desc": "Combined clan strength",
+      "net_growth": "Net Weekly Growth",
+      "net_growth_desc": "Net variation vs previous cycle",
+      "top_grower": "Top Grower of the Week",
+      "coverage": "Audit Coverage",
+      "coverage_desc": "Operatives with active record"
+    },
+    "table": {
+      "operative": "Operative",
+      "rank": "Rank",
+      "type": "Type",
+      "total_points": "Total Points",
+      "loot_tier": "Loot Tier",
+      "events_breakdown": "Events & Points",
+      "prev_power": "Prev Power",
+      "curr_power": "New Power",
+      "weekly_delta": "Weekly Delta",
+      "mansion": "Mansion",
+      "search_placeholder": "SEARCH OPERATIVE OR ALIAS...",
+      "all": "ALL"
+    },
+    "theme": {
+      "dark": "Dark Mode",
+      "light": "Light Mode"
+    },
+    "lang": {
+      "es": "Español",
+      "en": "English"
+    }
   }
 }

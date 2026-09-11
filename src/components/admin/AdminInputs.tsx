@@ -3,7 +3,7 @@ import { PortalDropdown } from './PortalDropdown';
 import { Star, Check } from 'lucide-react';
 import { useSound } from '../../contexts/SoundContext';
 
-export const MansionSelect = ({ value, onChange, className }: { value: number, onChange: (val: number) => void, className?: string }) => {
+export const MansionSelect = ({ value, onChange, className, disabled }: { value: number, onChange: (val: number) => void, className?: string, disabled?: boolean }) => {
   const options = [];
   for (let i = 1; i <= 30; i++) {
     options.push({ val: i, label: `${i}` });
@@ -11,7 +11,7 @@ export const MansionSelect = ({ value, onChange, className }: { value: number, o
   for (let i = 1; i <= 8; i++) {
     options.push({ val: 30 + i, label: `P${i}` });
   }
-  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="100px" />;
+  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="100px" disabled={disabled} />;
 };
 
 // Convert legacy difficulty text to 1-5 number
@@ -31,32 +31,35 @@ export const parseNemesisStars = (val: string | number | undefined): number => {
 export const NemesisStarsSelect = ({ 
   value, 
   onChange, 
-  className 
+  className,
+  disabled
 }: { 
   value: string | number; 
   onChange: (val: string) => void; 
   className?: string; 
+  disabled?: boolean;
 }) => {
   const currentStars = parseNemesisStars(value);
   const labels = ['', '1★ Fácil', '2★ Normal', '3★ Difícil', '4★ Pesadilla', '5★ Infierno'];
 
   return (
-    <div className={`inline-flex items-center gap-1 bg-black/60 border border-gray-800 px-2 py-1 rounded-sm ${className || ''}`}>
+    <div className={`inline-flex items-center gap-1 dark:bg-slate-900/80 bg-slate-100 border dark:border-slate-800 border-slate-300 px-2.5 py-1 rounded-xl shadow-sm ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''} ${className || ''}`}>
       {[1, 2, 3, 4, 5].map((star) => {
         const isFilled = star <= currentStars;
         return (
           <button
             key={star}
             type="button"
-            onClick={() => onChange(`${star}★`)}
-            className={`transition-transform hover:scale-125 focus:outline-none p-0.5 ${isFilled ? 'text-amber-400 drop-shadow-[0_0_6px_rgba(251,191,36,0.5)]' : 'text-gray-700 hover:text-gray-500'}`}
+            disabled={disabled}
+            onClick={() => !disabled && onChange(`${star}★`)}
+            className={`transition-transform hover:scale-125 focus:outline-none p-0.5 ${isFilled ? 'text-amber-400 drop-shadow-[0_0_6px_rgba(251,191,36,0.4)]' : 'dark:text-slate-700 text-slate-300 hover:text-amber-400/60'} ${disabled ? 'hover:scale-100 cursor-not-allowed' : ''}`}
             title={labels[star]}
           >
             <Star size={13} fill={isFilled ? 'currentColor' : 'none'} strokeWidth={isFilled ? 0 : 2} />
           </button>
         );
       })}
-      <span className="font-mono text-[10px] text-gray-400 ml-1 select-none hidden sm:inline">
+      <span className="font-mono text-[10px] dark:text-slate-400 text-slate-600 ml-1 select-none hidden sm:inline">
         {currentStars}★
       </span>
     </div>
@@ -64,7 +67,8 @@ export const NemesisStarsSelect = ({
 };
 
 // Backwards-compatible dropdown
-export const NemesisSelect = ({ value, onChange, className }: { value: string, onChange: (val: string) => void, className?: string }) => {
+// Backwards-compatible dropdown
+export const NemesisSelect = ({ value, onChange, className, disabled }: { value: string, onChange: (val: string) => void, className?: string, disabled?: boolean }) => {
   const options = [
     { val: '1★', label: '1★ (Fácil)' },
     { val: '2★', label: '2★ (Normal)' },
@@ -72,28 +76,28 @@ export const NemesisSelect = ({ value, onChange, className }: { value: string, o
     { val: '4★', label: '4★ (Pesadilla)' },
     { val: '5★', label: '5★ (Infierno)' },
   ];
-  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="120px" />;
+  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="120px" disabled={disabled} />;
 };
 
-export const PhaseSelect = ({ value, onChange, className }: { value: number, onChange: (val: number) => void, className?: string }) => {
+export const PhaseSelect = ({ value, onChange, className, disabled }: { value: number, onChange: (val: number) => void, className?: string, disabled?: boolean }) => {
   const options = [
     { val: 1, label: 'Fase 1' },
     { val: 2, label: 'Fase 2' }
   ];
-  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="100px" />;
+  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="100px" disabled={disabled} />;
 };
 
-export const RankSelect = ({ value, onChange, className }: { value: string, onChange: (val: string) => void, className?: string }) => {
+export const RankSelect = ({ value, onChange, className, disabled }: { value: string, onChange: (val: string) => void, className?: string, disabled?: boolean }) => {
   const options = ['R1', 'R2', 'R3', 'R4', 'R5'].map(o => ({ val: o, label: o }));
-  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="80px" />;
+  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="80px" disabled={disabled} />;
 };
 
-export const AccountTypeSelect = ({ value, onChange, className }: { value: string, onChange: (val: string) => void, className?: string }) => {
+export const AccountTypeSelect = ({ value, onChange, className, disabled }: { value: string, onChange: (val: string) => void, className?: string, disabled?: boolean }) => {
   const options = [
     { val: 'main', label: 'Principal' },
     { val: 'alt', label: 'Secundaria' }
   ];
-  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="120px" alignRight />;
+  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="120px" alignRight disabled={disabled} />;
 };
 
 // Formats number with commas: 146433591 -> 146,433,591
@@ -106,12 +110,14 @@ export const PowerInput = ({
   value, 
   onChange, 
   className,
-  onEnterPress
+  onEnterPress,
+  disabled
 }: { 
   value: number; 
   onChange: (val: number) => void; 
   className?: string;
   onEnterPress?: () => void;
+  disabled?: boolean;
 }) => {
   const [localStr, setLocalStr] = useState(formatPower(value));
   const [isFocused, setIsFocused] = useState(false);
@@ -130,16 +136,19 @@ export const PowerInput = ({
   };
 
   const handleFocus = () => {
+    if (disabled) return;
     setIsFocused(true);
     setLocalStr(value ? value.toString() : '');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (disabled) return;
     const val = e.target.value.replace(/[^0-9,]/g, '');
     setLocalStr(val);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (disabled) return;
     if (e.key === 'Enter') {
       const num = parseInt(localStr.replace(/,/g, ''), 10) || 0;
       onChange(num);
@@ -153,13 +162,14 @@ export const PowerInput = ({
   return (
     <input 
       type="text" 
+      disabled={disabled}
       value={localStr}
       onChange={handleChange}
       onFocus={handleFocus}
       onBlur={handleBlur}
       onKeyDown={handleKeyDown}
       placeholder="0"
-      className={className || "w-full bg-transparent border-b border-transparent hover:border-gray-600 focus:border-neon-red focus:bg-black text-gray-300 font-mono text-[10px] sm:text-xs focus:outline-none transition-colors"}
+      className={`${className || "w-full bg-transparent border-b border-transparent hover:border-slate-500 focus:border-rose-500 focus:bg-rose-500/10 dark:text-slate-200 text-slate-800 font-mono text-[10px] sm:text-xs focus:outline-none transition-colors"} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
     />
   );
 };
@@ -173,22 +183,26 @@ export const TacticalCheckbox = ({
   onChange,
   label,
   title,
-  className
+  className,
+  disabled
 }: {
   checked: boolean;
   onChange: (checked: boolean) => void;
   label?: string;
   title?: string;
   className?: string;
+  disabled?: boolean;
 }) => {
   const { playClick } = useSound();
 
   const handleToggle = () => {
+    if (disabled) return;
     playClick();
     onChange(!checked);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (disabled) return;
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       handleToggle();
@@ -199,23 +213,23 @@ export const TacticalCheckbox = ({
     <div
       role="checkbox"
       aria-checked={checked}
-      tabIndex={0}
+      tabIndex={disabled ? -1 : 0}
       onClick={handleToggle}
       onKeyDown={handleKeyDown}
       title={title}
-      className={`inline-flex items-center gap-2 cursor-pointer select-none group focus:outline-none ${className || ''}`}
+      className={`inline-flex items-center gap-2 select-none group focus:outline-none ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'cursor-pointer'} ${className || ''}`}
     >
       <div 
-        className={`w-5 h-5 rounded-sm border flex items-center justify-center transition-all duration-150 ${
+        className={`w-5 h-5 rounded-lg border flex items-center justify-center transition-all duration-150 ${
           checked 
-            ? 'bg-blood-red/30 border-neon-red text-neon-red shadow-[0_0_8px_rgba(255,42,42,0.4)] group-hover:bg-blood-red/50' 
-            : 'bg-black/60 border-gray-700 text-transparent group-hover:border-gray-500'
-        } group-focus:ring-1 group-focus:ring-neon-red`}
+            ? 'bg-rose-500/20 border-rose-500 text-rose-400 shadow-[0_0_8px_rgba(244,63,94,0.3)] group-hover:bg-rose-500/30' 
+            : 'dark:bg-slate-900/80 dark:border-slate-700 bg-slate-100 border-slate-300 text-transparent group-hover:border-slate-400'
+        } ${!disabled && 'group-focus:ring-2 group-focus:ring-rose-500/40'}`}
       >
-        <Check size={12} strokeWidth={3} className={`transition-transform ${checked ? 'scale-100 text-neon-red' : 'scale-0'}`} />
+        <Check size={12} strokeWidth={3} className={`transition-transform ${checked ? 'scale-100 text-rose-400' : 'scale-0'}`} />
       </div>
       {label && (
-        <span className={`font-mono text-xs ${checked ? 'text-white font-medium' : 'text-gray-400 group-hover:text-gray-300'}`}>
+        <span className={`font-mono text-xs ${checked ? 'dark:text-white text-slate-900 font-medium' : 'dark:text-slate-400 text-slate-600 group-hover:text-slate-800 dark:group-hover:text-slate-300'}`}>
           {label}
         </span>
       )}
@@ -232,11 +246,13 @@ export type VacunasRole = 'none' | 'team1_titular' | 'team1_suplente' | 'team2_t
 export const VacunasRoleSelect = ({
   value,
   onChange,
-  className
+  className,
+  disabled
 }: {
   value: VacunasRole;
   onChange: (role: VacunasRole) => void;
   className?: string;
+  disabled?: boolean;
 }) => {
   const options: { val: VacunasRole; label: string }[] = [
     { val: 'none', label: 'Sin Asignar' },
@@ -253,6 +269,7 @@ export const VacunasRoleSelect = ({
       onChange={(v) => onChange(v as VacunasRole)}
       className={className}
       menuWidth="150px"
+      disabled={disabled}
     />
   );
 };
