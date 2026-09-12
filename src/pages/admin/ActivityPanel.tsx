@@ -63,6 +63,16 @@ interface ActivityRecord {
   vacunas_role?: string;
 }
 
+const generateUUID = () => {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+};
+
 const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   const { playHover, playClick } = useSound();
   const { user, isAdmin, canEditEvent } = useAdminAuth();
@@ -354,6 +364,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     setActivities(prev => {
       const member = members.find(m => m.id === memberId);
       const current = prev[memberId] || {
+        id: generateUUID(),
         member_id: memberId,
         cycle_date: selectedDate,
         power: member?.power || 0,
@@ -510,6 +521,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     members.forEach(m => {
       if (!newActivities[m.id]) {
         newActivities[m.id] = {
+          id: generateUUID(),
           member_id: m.id,
           cycle_date: selectedDate,
           power: m.power || 0,
@@ -569,6 +581,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         members.forEach(m => {
           const prev = prevActivities[m.id];
           const curr = updated[m.id] || {
+            id: generateUUID(),
             member_id: m.id,
             cycle_date: selectedDate,
             power: m.power || 0,
@@ -644,6 +657,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
       const member = members.find(m => m.id === u.memberId);
       const curr = newActs[u.memberId] || {
+        id: generateUUID(),
         member_id: u.memberId,
         cycle_date: selectedDate,
         power: member?.power || 0,
