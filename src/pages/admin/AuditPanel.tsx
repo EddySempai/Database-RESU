@@ -82,6 +82,7 @@ const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       case 'KICK_MEMBER': return { label: 'EXPULSIÓN', color: 'text-red-500' };
       case 'RESTORE_MEMBER': return { label: 'REINCORPORACIÓN', color: 'text-blue-500' };
       case 'INACTIVE_MEMBER': return { label: 'SUSPENSIÓN', color: 'text-yellow-500' };
+      case 'UPDATED_CYCLE': return { label: 'ACTUALIZACIÓN', color: 'text-purple-500' };
       default: return { label: action, color: 'text-gray-400' };
     }
   };
@@ -145,6 +146,7 @@ const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             <option value="KICK_MEMBER">Expulsiones</option>
             <option value="INACTIVE_MEMBER">Suspensiones</option>
             <option value="RESTORE_MEMBER">Reincorporaciones</option>
+            <option value="UPDATED_CYCLE">Registros de Eventos</option>
           </select>
         </div>
 

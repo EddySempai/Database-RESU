@@ -263,17 +263,21 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       }
       setPrevActivities(prevActMap);
 
-      // 8. Calculate weekly score for the last 7 dates
+      // 8. Calculate weekly score for the strict 7-day chronological window ending on selectedDate
+      const selectedObj = new Date(selectedDate);
+      selectedObj.setUTCHours(0, 0, 0, 0);
+      selectedObj.setDate(selectedObj.getDate() - 6);
+      const sevenDaysAgo = selectedObj.toISOString().split('T')[0];
+
       const { data: allActData } = await supabase
         .from('guild_activity_cycles')
         .select('*')
         .lte('cycle_date', selectedDate)
-        .order('cycle_date', { ascending: false });
+        .gte('cycle_date', sevenDaysAgo);
 
       if (allActData) {
-        const uniqueDates = Array.from(new Set(allActData.map(a => a.cycle_date))).slice(0, 7);
         // Exclude the currently selected date so we can add its live version dynamically
-        const historicalActs = allActData.filter(a => uniqueDates.includes(a.cycle_date) && a.cycle_date !== selectedDate);
+        const historicalActs = allActData.filter(a => a.cycle_date !== selectedDate);
         const scoreMap: Record<string, { total: number; items: { name: string; pts: number }[] }> = {};
         
         validMembers.forEach(m => {
@@ -529,6 +533,16 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           }
         });
       
+      // 3. Log the action to audit_logs
+      const adminName = user ? user.displayName : 'Sistema';
+      await supabase.from('audit_logs').insert([{
+        alliance_name: activeAlliance,
+        admin_name: adminName,
+        action_type: 'UPDATED_CYCLE',
+        target_name: `Ciclo: ${selectedDate}`,
+        details: `Actualizó o registró los datos del ciclo de actividades.`
+      }]);
+
       setHasChanges(false);
 
       if (columnFallback) {
