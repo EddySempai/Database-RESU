@@ -31,6 +31,11 @@ interface ActivityRecord {
   mortem_damage?: number;
   mortem_shield_damage?: number;
   mortem_prep_points?: number;
+  saint_valley?: boolean;
+  security_centers?: boolean;
+  security_centers_data?: any[];
+  tac_joined?: boolean;
+  lab_joined?: boolean;
 }
 
 export type MetricType = 
@@ -43,7 +48,8 @@ export type MetricType =
   | 'mortem_prep_points'
   | 'nemesis_level'
   | 'wesker_points'
-  | 'alliance_points';
+  | 'alliance_points'
+  | 'all_time_score';
 
 const METRIC_CONFIG: Record<MetricType, {
   title: string;
@@ -132,6 +138,14 @@ const METRIC_CONFIG: Record<MetricType, {
     oldLabel: 'Pts Ant.',
     newLabel: 'Nuevos Pts',
     format: (n) => n.toLocaleString(),
+  },
+  all_time_score: {
+    title: 'Aportes Históricos (Puntuación Total)',
+    shortTitle: 'Aporte Global',
+    icon: Medal,
+    oldLabel: 'No aplica',
+    newLabel: 'Total Histórico',
+    format: (n) => `${n} Pts`,
   },
 };
 
@@ -270,6 +284,23 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     }
   };
 
+  // Helper for historical score calculation
+  const calcScore = (act: ActivityRecord | undefined) => {
+    if (!act) return 0;
+    let score = 0;
+    if (act.crocodile_damage > 0) score += 1;
+    if (act.saint_valley) score += 5;
+    if (act.security_centers || (act as any).security_centers_data?.length > 0) score += 2;
+    if (act.tac_joined || act.tac_power > 0) score += 2;
+    if ((act.mortem_damage && act.mortem_damage > 0) || (act.mortem_shield_damage && act.mortem_shield_damage > 0) || (act.mortem_prep_points && act.mortem_prep_points > 0)) score += 3;
+    if (act.wesker_points > 0) score += 4;
+    if (act.lab_joined || act.lab_points > 0) score += 5;
+    const unionScore = Math.min(4, Math.floor((act.alliance_points || 0) / 1000));
+    if (unionScore > 0) score += unionScore;
+    if (Number(act.nemesis_level) > 0) score += 2;
+    return score;
+  };
+
   // Calculate analysis data based on selected cycle dates and metric
   const getAnalysis = () => {
     const analysisMap = new Map<string, { 
@@ -294,6 +325,11 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         } else {
           oldVal = priorAct.power ?? m.power;
         }
+      } else if (metric === 'all_time_score') {
+        // Sum up all scores from all dates for this member
+        const allActs = activities.filter(a => a.member_id === m.id);
+        newVal = allActs.reduce((acc, act) => acc + calcScore(act), 0);
+        oldVal = 0;
       } else {
         newVal = (recentAct as any)?.[metric] || 0;
         oldVal = (priorAct as any)?.[metric] || 0;
