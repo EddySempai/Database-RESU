@@ -141,6 +141,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   
   const [selectedDate, setSelectedDate] = useState(getInitialDate());
   const [hasChanges, setHasChanges] = useState(false);
+  const [weeklyScores, setWeeklyScores] = useState<Record<string, { total: number; items: { name: string; pts: number }[] }>>({});
 
   useEffect(() => {
     fetchData();
@@ -261,6 +262,46 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         });
       }
       setPrevActivities(prevActMap);
+
+      // 8. Calculate weekly score for the last 7 dates
+      const { data: allActData } = await supabase
+        .from('guild_activity_cycles')
+        .select('*')
+        .lte('cycle_date', selectedDate)
+        .order('cycle_date', { ascending: false });
+
+      if (allActData) {
+        const uniqueDates = Array.from(new Set(allActData.map(a => a.cycle_date))).slice(0, 7);
+        // Exclude the currently selected date so we can add its live version dynamically
+        const historicalActs = allActData.filter(a => uniqueDates.includes(a.cycle_date) && a.cycle_date !== selectedDate);
+        const scoreMap: Record<string, { total: number; items: { name: string; pts: number }[] }> = {};
+        
+        validMembers.forEach(m => {
+          let score = 0;
+          const itemTotals: Record<string, number> = {};
+
+          historicalActs.filter(a => a.member_id === m.id).forEach(act => {
+            if (act.crocodile_damage > 0) { score += 1; itemTotals['Cocodrilo'] = (itemTotals['Cocodrilo'] || 0) + 1; }
+            if (act.saint_valley) { score += 5; itemTotals['Saint Vale'] = (itemTotals['Saint Vale'] || 0) + 5; }
+            if (act.security_centers || (act as any).security_centers_data?.length > 0) { score += 2; itemTotals['Centros Seg.'] = (itemTotals['Centros Seg.'] || 0) + 2; }
+            if (act.tac_joined || act.tac_power > 0) { score += 2; itemTotals['T.A.C.'] = (itemTotals['T.A.C.'] || 0) + 2; }
+            if ((act.mortem_damage && act.mortem_damage > 0) || (act.mortem_shield_damage && act.mortem_shield_damage > 0) || (act.mortem_prep_points && act.mortem_prep_points > 0)) { score += 3; itemTotals['Mortem'] = (itemTotals['Mortem'] || 0) + 3; }
+            if (act.wesker_points > 0) { score += 4; itemTotals['Wesker'] = (itemTotals['Wesker'] || 0) + 4; }
+            if (act.lab_joined || act.lab_points > 0) { score += 5; itemTotals['Vacunas'] = (itemTotals['Vacunas'] || 0) + 5; }
+            const unionScore = Math.min(4, Math.floor((act.alliance_points || 0) / 1000));
+            if (unionScore > 0) { score += unionScore; itemTotals['Unión'] = (itemTotals['Unión'] || 0) + unionScore; }
+            if (Number(act.nemesis_level) > 0) { score += 2; itemTotals['Némesis'] = (itemTotals['Némesis'] || 0) + 2; }
+          });
+          
+          scoreMap[m.id] = {
+            total: score,
+            items: Object.entries(itemTotals).map(([name, pts]) => ({ name, pts }))
+          };
+        });
+        setWeeklyScores(scoreMap);
+      } else {
+        setWeeklyScores({});
+      }
 
     } catch (err) {
       console.error('Error fetching activity data:', err);
@@ -753,85 +794,36 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   // Unión Alianza = +4 máx (1 pt por cada 1k)
   // Némesis = +2
   const calculateParticipationScore = (memberId: string) => {
+    const historical = weeklyScores[memberId] || { total: 0, items: [] };
     const act = activities[memberId];
     const role = vacunasTeams[memberId];
     const mort = mortemData[memberId];
 
-    let score = 0;
-    const items: { name: string; pts: number }[] = [];
+    let liveTotal = historical.total;
+    const itemTotals: Record<string, number> = {};
+    historical.items.forEach(it => { itemTotals[it.name] = it.pts; });
 
-    // 1. Cocodrilo (+1)
-    if (act && act.crocodile_damage > 0) {
-      score += 1;
-      items.push({ name: 'Cocodrilo', pts: 1 });
-    }
-
-    // 2. Saint Vale / Valle Santo (+5)
-    if (act && act.saint_valley) {
-      score += 5;
-      items.push({ name: 'Saint Vale', pts: 5 });
-    }
-
-    // 3. Centros de Seguridad (+2)
-    const hasSecurityCenters = Boolean(
-      (act?.security_centers_data && act.security_centers_data.length > 0) ||
-      act?.security_centers
-    );
-    if (hasSecurityCenters) {
-      score += 2;
-      items.push({ name: 'Centros Seg.', pts: 2 });
-    }
-
-    // 4. T.A.C. (+2)
-    if (act && (act.tac_joined || act.tac_power > 0)) {
-      score += 2;
-      items.push({ name: 'T.A.C.', pts: 2 });
-    }
-
-    // 5. Mortem (+3)
-    const hasMortem = Boolean(
-      (mort && ((mort.damage || 0) > 0 || (mort.shield_damage || 0) > 0 || (mort.prep_points || 0) > 0)) ||
-      (act && ((act.mortem_damage || 0) > 0 || (act.mortem_shield_damage || 0) > 0 || (act.mortem_prep_points || 0) > 0))
-    );
-    if (hasMortem) {
-      score += 3;
-      items.push({ name: 'Mortem', pts: 3 });
-    }
-
-    // 6. Wesker (+4)
-    if (act && act.wesker_points > 0) {
-      score += 4;
-      items.push({ name: 'Wesker', pts: 4 });
-    }
-
-    // 7. Vacunas (+5)
-    const hasVacunas = Boolean(
-      (role && role !== 'none') ||
-      (act && (act.lab_joined || act.lab_points > 0))
-    );
-    if (hasVacunas) {
-      score += 5;
-      items.push({ name: 'Vacunas', pts: 5 });
-    }
-
-    // 8. Unión Alianza (+4 máx, 1 pt por cada 1k)
+    // Live daily checks
+    if (act && act.crocodile_damage > 0) { liveTotal += 1; itemTotals['Cocodrilo'] = (itemTotals['Cocodrilo'] || 0) + 1; }
+    if (act && act.saint_valley) { liveTotal += 5; itemTotals['Saint Vale'] = (itemTotals['Saint Vale'] || 0) + 5; }
+    const hasSecurityCenters = Boolean((act?.security_centers_data && act.security_centers_data.length > 0) || act?.security_centers);
+    if (hasSecurityCenters) { liveTotal += 2; itemTotals['Centros Seg.'] = (itemTotals['Centros Seg.'] || 0) + 2; }
+    if (act && (act.tac_joined || act.tac_power > 0)) { liveTotal += 2; itemTotals['T.A.C.'] = (itemTotals['T.A.C.'] || 0) + 2; }
+    const hasMortem = Boolean((mort && ((mort.damage || 0) > 0 || (mort.shield_damage || 0) > 0 || (mort.prep_points || 0) > 0)) || (act && ((act.mortem_damage || 0) > 0 || (act.mortem_shield_damage || 0) > 0 || (act.mortem_prep_points || 0) > 0)));
+    if (hasMortem) { liveTotal += 3; itemTotals['Mortem'] = (itemTotals['Mortem'] || 0) + 3; }
+    if (act && act.wesker_points > 0) { liveTotal += 4; itemTotals['Wesker'] = (itemTotals['Wesker'] || 0) + 4; }
+    const hasVacunas = Boolean((role && role !== 'none') || (act && (act.lab_joined || act.lab_points > 0)));
+    if (hasVacunas) { liveTotal += 5; itemTotals['Vacunas'] = (itemTotals['Vacunas'] || 0) + 5; }
     const alliancePts = act?.alliance_points || 0;
     const unionScore = Math.min(4, Math.floor(alliancePts / 1000));
-    if (unionScore > 0) {
-      score += unionScore;
-      items.push({ name: `Unión (${unionScore}k)`, pts: unionScore });
-    }
+    if (unionScore > 0) { liveTotal += unionScore; itemTotals['Unión'] = (itemTotals['Unión'] || 0) + unionScore; }
+    const hasNemesis = Boolean(act && (Number(act.nemesis_level) > 0));
+    if (hasNemesis) { liveTotal += 2; itemTotals['Némesis'] = (itemTotals['Némesis'] || 0) + 2; }
 
-    // 9. Némesis (+2) - Solo si tiene nivel superado en Némesis (> 0)
-    const hasNemesis = Boolean(
-      act && (Number(act.nemesis_level) > 0)
-    );
-    if (hasNemesis) {
-      score += 2;
-      items.push({ name: 'Némesis', pts: 2 });
-    }
-
-    return { total: score, items };
+    return {
+      total: liveTotal,
+      items: Object.entries(itemTotals).map(([name, pts]) => ({ name, pts }))
+    };
   };
 
   // 1. Raw scores map
