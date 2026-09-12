@@ -3,7 +3,7 @@ import { supabase } from '../../lib/supabase';
 import { 
   TrendingUp, TrendingDown, Loader2, Activity, Zap, Target, Swords,
   FlaskConical, Skull, Shield, Boxes, Flame, Biohazard, Award, Crown, Medal,
-  Search, ChevronLeft, ChevronRight, BarChart3, Users
+  Search, ChevronLeft, ChevronRight, BarChart3, Users, CalendarDays
 } from 'lucide-react';
 import { useSound } from '../../contexts/SoundContext';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -49,7 +49,8 @@ export type MetricType =
   | 'nemesis_level'
   | 'wesker_points'
   | 'alliance_points'
-  | 'all_time_score';
+  | 'all_time_score'
+  | 'weekly_score';
 
 const METRIC_CONFIG: Record<MetricType, {
   title: string;
@@ -145,6 +146,14 @@ const METRIC_CONFIG: Record<MetricType, {
     icon: Medal,
     oldLabel: 'No aplica',
     newLabel: 'Total Histórico',
+    format: (n) => `${n} Pts`,
+  },
+  weekly_score: {
+    title: 'Aporte Semanal (Últimos 7 días)',
+    shortTitle: 'Aporte Semanal',
+    icon: CalendarDays,
+    oldLabel: 'No aplica',
+    newLabel: 'Total Semanal',
     format: (n) => `${n} Pts`,
   },
 };
@@ -325,6 +334,11 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         } else {
           oldVal = priorAct.power ?? m.power;
         }
+      } else if (metric === 'weekly_score') {
+        const last7Dates = availableDates.slice(0, 7);
+        const weeklyActs = activities.filter(a => a.member_id === m.id && last7Dates.includes(a.cycle_date));
+        newVal = weeklyActs.reduce((acc, act) => acc + calcScore(act), 0);
+        oldVal = 0;
       } else if (metric === 'all_time_score') {
         // Sum up all scores from all dates for this member
         const allActs = activities.filter(a => a.member_id === m.id);

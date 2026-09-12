@@ -437,7 +437,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     try {
       // 1. Prepare records for guild_activity_cycles with Mortem and Vacunas columns
       const fullRecords = Object.values(activities).map(act => {
-        const { mansion_level, ...rest } = act as any;
+        const { mansion_level, created_at, ...rest } = act as any;
         return {
           ...rest,
           cycle_date: selectedDate,
@@ -453,7 +453,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       if (fullRecords.length > 0) {
         const { error } = await supabase
           .from('guild_activity_cycles')
-          .upsert(fullRecords, { onConflict: 'cycle_date,member_id' });
+          .upsert(fullRecords);
           
         if (error) {
           // If Supabase table does not yet have the new columns, fallback to baseline and save in settings
@@ -465,7 +465,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             });
             const { error: fErr } = await supabase
               .from('guild_activity_cycles')
-              .upsert(fallbackRecords, { onConflict: 'cycle_date,member_id' });
+              .upsert(fallbackRecords);
             if (fErr) throw fErr;
           } else {
             throw error;
