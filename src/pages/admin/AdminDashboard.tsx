@@ -6,7 +6,7 @@ import { supabase } from '../../lib/supabase';
 import { useNavigate } from 'react-router-dom';
 import { 
   LogOut, Users, Activity, Shield, LineChart, ChevronDown, 
-  Plus, ShieldAlert, ArrowLeft, Radio, ShieldCheck, UserCheck,
+  Plus, ShieldAlert, ArrowLeft, Radio, ShieldCheck,
   Sun, Moon, Globe, ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { useSound } from '../../contexts/SoundContext';
