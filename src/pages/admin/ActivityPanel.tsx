@@ -11,7 +11,7 @@ import {
   Crown, Medal, Award, Boxes, AlertCircle, Lock,
   TrendingUp, Crosshair, AlertTriangle, Download,
   ArrowUpRight, ArrowDownRight, ShieldAlert, Zap, Filter,
-  ChevronLeft, ChevronRight
+  ChevronLeft, ChevronRight, CheckSquare, Settings
 } from 'lucide-react';
 import { 
   MansionSelect, 
@@ -106,6 +106,22 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   const [filterRiskOnly, setFilterRiskOnly] = useState(false);
   const [activeEventTab, setActiveEventTab] = useState('crocodile');
   const [activeCenters, setActiveCenters] = useState<string[]>(['Centro 1', 'Centro 2']);
+
+  const handleConfigureCenters = async () => {
+    const current = activeCenters.join(', ');
+    const input = prompt('Ingrese los nombres de los Centros de Seguridad separados por comas:', current);
+    if (input !== null) {
+      const newCenters = input.split(',').map(s => s.trim()).filter(s => s);
+      setActiveCenters(newCenters);
+      try {
+        await supabase
+          .from('guild_settings')
+          .upsert({ key: 'security_centers', value: newCenters });
+      } catch (err) {
+        console.error('Error saving centers:', err);
+      }
+    }
+  };
 
   const getInitialDate = () => {
     const d = new Date();
@@ -409,14 +425,17 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     
     try {
       // 1. Prepare records for guild_activity_cycles with Mortem and Vacunas columns
-      const fullRecords = Object.values(activities).map(act => ({
-        ...act,
-        cycle_date: selectedDate,
-        mortem_prep_points: mortemData[act.member_id]?.prep_points || 0,
-        mortem_damage: mortemData[act.member_id]?.damage || 0,
-        mortem_shield_damage: mortemData[act.member_id]?.shield_damage || 0,
-        vacunas_role: vacunasTeams[act.member_id] || 'none'
-      }));
+      const fullRecords = Object.values(activities).map(act => {
+        const { mansion_level, ...rest } = act as any;
+        return {
+          ...rest,
+          cycle_date: selectedDate,
+          mortem_prep_points: mortemData[act.member_id]?.prep_points || 0,
+          mortem_damage: mortemData[act.member_id]?.damage || 0,
+          mortem_shield_damage: mortemData[act.member_id]?.shield_damage || 0,
+          vacunas_role: vacunasTeams[act.member_id] || 'none'
+        };
+      });
       
       let columnFallback = false;
 
@@ -429,9 +448,9 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           // If Supabase table does not yet have the new columns, fallback to baseline and save in settings
           if (error.message && (error.message.includes('mortem') || error.message.includes('vacunas') || error.message.includes('column'))) {
             columnFallback = true;
-            const fallbackRecords = Object.values(activities).map(act => {
+            const fallbackRecords = fullRecords.map(act => {
               const { mortem_prep_points, mortem_damage, mortem_shield_damage, vacunas_role, ...rest } = act as any;
-              return { ...rest, cycle_date: selectedDate };
+              return rest;
             });
             const { error: fErr } = await supabase
               .from('guild_activity_cycles')
@@ -1004,7 +1023,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   };
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="h-full overflow-y-auto p-4 md:p-6 custom-scrollbar flex flex-col gap-5">
       
       {/* Top Header & Alliance Stats */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
@@ -1736,35 +1755,46 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                 {activeEventTab === 'tac' && (isAdmin || canEditEvent('tac')) && (
                   <button 
                     onClick={() => toggleColumnAll('tac_joined', true)} 
-                    className={`text-[11px] font-mono border px-2.5 py-1.5 transition-colors rounded-xl ${
+                    className={`font-mono border p-2 transition-colors rounded-xl flex items-center justify-center ${
                       isDark ? 'border-slate-800 text-slate-300 hover:bg-white/5' : 'border-slate-200 text-slate-700 bg-white hover:bg-slate-100'
                     }`}
                     title="Marcar asistencia para todos en TAC"
                   >
-                    + Todo TAC
+                    <CheckSquare size={16} />
                   </button>
                 )}
                 {activeEventTab === 'vacunas' && (isAdmin || canEditEvent('vacunas')) && (
                   <button 
                     onClick={() => toggleColumnAll('lab_joined', true)} 
-                    className={`text-[11px] font-mono border px-2.5 py-1.5 transition-colors rounded-xl ${
+                    className={`font-mono border p-2 transition-colors rounded-xl flex items-center justify-center ${
                       isDark ? 'border-slate-800 text-slate-300 hover:bg-white/5' : 'border-slate-200 text-slate-700 bg-white hover:bg-slate-100'
                     }`}
                     title="Marcar asistencia para todos en Vacunas"
                   >
-                    + Todo Vacunas
+                    <CheckSquare size={16} />
                   </button>
                 )}
                 {activeEventTab === 'valley' && (isAdmin || canEditEvent('valley')) && (
-                  <button 
-                    onClick={() => toggleColumnAll('saint_valley', true)} 
-                    className={`text-[11px] font-mono border px-2.5 py-1.5 transition-colors rounded-xl ${
-                      isDark ? 'border-slate-800 text-slate-300 hover:bg-white/5' : 'border-slate-200 text-slate-700 bg-white hover:bg-slate-100'
-                    }`}
-                    title="Marcar asistencia para todos en Valle"
-                  >
-                    + Todo Valle
-                  </button>
+                  <>
+                    <button 
+                      onClick={() => toggleColumnAll('saint_valley', true)} 
+                      className={`font-mono border p-2 transition-colors rounded-xl flex items-center justify-center ${
+                        isDark ? 'border-slate-800 text-slate-300 hover:bg-white/5' : 'border-slate-200 text-slate-700 bg-white hover:bg-slate-100'
+                      }`}
+                      title="Marcar asistencia para todos en Valle"
+                    >
+                      <CheckSquare size={16} />
+                    </button>
+                    <button 
+                      onClick={handleConfigureCenters} 
+                      className={`font-mono border p-2 transition-colors rounded-xl flex items-center justify-center ${
+                        isDark ? 'border-amber-500/30 text-amber-400 hover:bg-amber-950/30' : 'border-amber-300 text-amber-700 bg-amber-50 hover:bg-amber-100'
+                      }`}
+                      title="Configurar columnas de Centros de Seguridad"
+                    >
+                      <Settings size={16} />
+                    </button>
+                  </>
                 )}
               </div>
             </div>

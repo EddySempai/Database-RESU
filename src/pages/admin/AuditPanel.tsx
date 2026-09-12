@@ -87,7 +87,7 @@ const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   };
 
   return (
-    <div className="h-full flex flex-col gap-6">
+    <div className="h-full flex flex-col gap-6 p-3 sm:p-5">
       <div className="flex justify-between items-end">
         <div>
           <h2 className="font-bebas text-3xl tracking-widest text-white flex items-center gap-2">

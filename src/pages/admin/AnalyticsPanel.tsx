@@ -354,7 +354,8 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   }
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="h-full overflow-y-auto p-3 sm:p-5 custom-scrollbar">
+      <div className="flex flex-col gap-4 sm:gap-5 max-w-[1600px] mx-auto">
       
       {/* ------------------------------------------------------------- */}
       {/* TOP COMMAND HUD BANNER (REMODELED) */}
@@ -1025,6 +1026,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           </table>
         </div>
       </div>
+    </div>
     </div>
   );
 };

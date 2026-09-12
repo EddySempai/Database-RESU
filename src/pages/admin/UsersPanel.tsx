@@ -216,7 +216,8 @@ export const UsersPanel = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="h-full overflow-y-auto p-3 sm:p-5 custom-scrollbar">
+      <div className="flex flex-col gap-6 max-w-[1600px] mx-auto">
       
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-[#090909] border border-gray-800/80 p-4 rounded-sm shadow-md">
@@ -778,6 +779,7 @@ export const UsersPanel = () => {
         onConfirm={modal.onConfirm || closeModal}
         onClose={closeModal}
       />
+    </div>
     </div>
   );
 };

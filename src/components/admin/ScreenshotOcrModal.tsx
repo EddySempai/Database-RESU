@@ -121,6 +121,15 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
       setApiKey(getGeminiApiKey());
       setShowKeyInput(!getGeminiApiKey());
       setScanError(null);
+      
+      // Reset state for a fresh session
+      setImages([]);
+      setExtractedRows([]);
+      setStep('upload');
+      setExcelRawRows([]);
+      setExcelDetected(null);
+      setExcelFileName('');
+      setClipboardText('');
     }
   }, [isOpen, defaultEvent, allowedEvents]);
 
@@ -467,29 +476,29 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
       <div className="bg-[#0c0c0c] border border-gray-800 w-full max-w-4xl shadow-[0_0_50px_rgba(255,42,42,0.15)] flex flex-col max-h-[92vh] rounded-sm relative">
         
         {/* Header */}
-        <div className="p-4 sm:p-5 border-b border-gray-800 flex items-center justify-between bg-black/50">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-blood-red/20 border border-blood-red/50 flex items-center justify-center rounded-sm text-neon-red">
+        <div className="p-4 sm:p-5 border-b border-gray-800 flex flex-col sm:flex-row items-start sm:items-center justify-between bg-black/50 gap-4 sm:gap-0">
+          <div className="flex items-start sm:items-center gap-3">
+            <div className="w-9 h-9 shrink-0 bg-blood-red/20 border border-blood-red/50 flex items-center justify-center rounded-sm text-neon-red">
               {importMode === 'ocr' ? <Camera size={18} /> : <FileSpreadsheet size={18} />}
             </div>
             <div>
               <div className="flex items-center gap-2 flex-wrap">
-                <h3 className="font-bebas text-xl sm:text-2xl tracking-widest text-white">
-                  {importMode === 'ocr' ? 'ASISTENTE OCR TÁCTICO (IA MULTI-CAPTURA)' : 'IMPORTADOR EXCEL Y PORTAPAPELES'}
+                <h3 className="font-bebas text-xl sm:text-2xl tracking-widest text-white leading-none">
+                  {importMode === 'ocr' ? 'ASISTENTE OCR TÁCTICO' : 'IMPORTADOR EXCEL'}
                 </h3>
                 <span className="bg-blood-red/20 border border-blood-red/40 text-neon-red font-mono text-[10px] px-2 py-0.5 uppercase tracking-widest">
                   {importMode === 'ocr' ? 'Gemini Vision' : 'SheetJS Engine'}
                 </span>
               </div>
-              <p className="font-mono text-xs text-gray-400">
+              <p className="font-mono text-[10px] sm:text-xs text-gray-400 mt-1">
                 {importMode === 'ocr' 
-                  ? 'Sube una o varias capturas continuas de ranking con deduplicación automática'
-                  : 'Carga archivos .xlsx / .csv o pega celdas directamente de Excel'}
+                  ? 'Sube capturas de ranking con deduplicación automática'
+                  : 'Carga archivos o pega celdas directamente de Excel'}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 self-end sm:self-auto">
             {importMode === 'ocr' && (
               <button
                 onClick={() => setShowKeyInput(!showKeyInput)}
@@ -497,7 +506,7 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
                 title="Configuración API Key"
               >
                 <Key size={13} />
-                <span className="hidden sm:inline">API Key</span>
+                <span>API Key</span>
               </button>
             )}
             <button
@@ -511,10 +520,10 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
 
         {/* Mode Selector Tabs (only visible in upload step) */}
         {step === 'upload' && (
-          <div className="px-4 sm:px-6 pt-3 pb-0 bg-black/40 border-b border-gray-800 flex items-center gap-2">
+          <div className="px-4 sm:px-6 pt-3 pb-0 bg-black/40 border-b border-gray-800 flex overflow-x-auto gap-2 custom-scrollbar">
             <button
               onClick={() => { playClick(); setImportMode('ocr'); setScanError(null); }}
-              className={`px-4 py-2 font-mono text-xs uppercase tracking-wider flex items-center gap-2 border-b-2 transition-all ${importMode === 'ocr' ? 'border-neon-red text-white font-bold bg-blood-red/10' : 'border-transparent text-gray-400 hover:text-gray-200'}`}
+              className={`px-4 py-2 shrink-0 font-mono text-xs uppercase tracking-wider flex items-center gap-2 border-b-2 transition-all ${importMode === 'ocr' ? 'border-neon-red text-white font-bold bg-blood-red/10' : 'border-transparent text-gray-400 hover:text-gray-200'}`}
             >
               <Camera size={14} />
               Capturas IA (Múltiples)
@@ -526,7 +535,7 @@ export const ScreenshotOcrModal: React.FC<ScreenshotOcrModalProps> = ({
             </button>
             <button
               onClick={() => { playClick(); setImportMode('excel'); setScanError(null); }}
-              className={`px-4 py-2 font-mono text-xs uppercase tracking-wider flex items-center gap-2 border-b-2 transition-all ${importMode === 'excel' ? 'border-neon-red text-white font-bold bg-blood-red/10' : 'border-transparent text-gray-400 hover:text-gray-200'}`}
+              className={`px-4 py-2 shrink-0 font-mono text-xs uppercase tracking-wider flex items-center gap-2 border-b-2 transition-all ${importMode === 'excel' ? 'border-neon-red text-white font-bold bg-blood-red/10' : 'border-transparent text-gray-400 hover:text-gray-200'}`}
             >
               <FileSpreadsheet size={14} />
               Excel / CSV / Portapapeles

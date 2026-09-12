@@ -220,7 +220,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   }, {} as Record<string, number>);
 
   return (
-    <div className="h-full flex flex-col gap-6">
+    <div className="h-full overflow-y-auto p-4 md:p-6 custom-scrollbar flex flex-col gap-6">
       {/* Header & Stats */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
         <div>
@@ -334,17 +334,13 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       </form>
 
       {/* Modern Filter Toolbar */}
-      <div className={`border rounded-2xl flex-1 overflow-hidden flex flex-col transition-colors shadow-sm ${
-        isDark ? 'bg-[#0d1017]/60 border-slate-800/80' : 'bg-slate-50/70 border-slate-200'
-      }`}>
-        <div className={`p-4 border-b flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center transition-colors ${
-          isDark ? 'border-slate-800/80' : 'border-slate-200'
-        }`}>
+      <div className="flex flex-col">
+        <div className={`py-4 flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center transition-colors`}>
           
           {/* Search + Status */}
           <div className="flex gap-3 items-center flex-1">
-            <div className="relative flex-1 max-w-xs">
-              <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 ${isDark ? 'text-slate-500' : 'text-slate-400'}`} />
+            <div className="relative flex-1 max-w-sm">
+              <Search className={`absolute left-3 top-1/2 -translate-y-1/2 ${isDark ? 'text-slate-500' : 'text-slate-400'}`} size={14} />
               <input 
                 type="text" 
                 value={searchTerm}
@@ -407,7 +403,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         </div>
 
         {/* Members Table */}
-        <div className="flex-1 overflow-y-auto p-0 custom-scrollbar">
+        <div className="w-full">
           {loading ? (
             <div className="flex justify-center items-center h-48">
               <Loader2 className={`animate-spin ${isDark ? 'text-rose-400' : 'text-rose-500'}`} size={28} />
@@ -434,16 +430,9 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                       {/* Nickname & Japanese/In-game Aliases */}
                       <td className="py-3 px-4">
                         <div className="flex flex-col gap-1.5">
-                          <input 
-                            type="text" 
-                            value={member.nickname}
-                            onChange={(e) => updateMember(member.id, 'nickname', e.target.value)}
-                            className={`bg-transparent border-b border-transparent w-full font-mono text-sm font-medium focus:outline-none transition-colors py-0.5 px-1 rounded-sm ${
-                              isDark 
-                                ? 'text-white hover:border-slate-700 focus:border-rose-500 focus:bg-[#141824]' 
-                                : 'text-slate-900 hover:border-slate-300 focus:border-rose-500 focus:bg-white'
-                            }`}
-                          />
+                          <div className={`font-bebas text-lg tracking-wide ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                            {member.nickname}
+                          </div>
 
                           {/* Aliases Tag Cloud */}
                           <div className="flex flex-wrap items-center gap-1.5 pt-0.5">

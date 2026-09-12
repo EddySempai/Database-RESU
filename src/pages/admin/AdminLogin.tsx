@@ -82,10 +82,10 @@ const AdminLogin = () => {
             }`}>
               <ShieldAlert className={isDark ? 'text-rose-500' : 'text-rose-600'} size={32} />
             </motion.div>
-            <h1 className={`font-bebas text-4xl tracking-widest uppercase ${isDark ? 'text-white' : 'text-slate-900'}`}>
+            <h1 className={`font-bebas text-3xl md:text-4xl text-center tracking-widest uppercase ${isDark ? 'text-white' : 'text-slate-900'}`}>
               Centro Táctico
             </h1>
-            <p className={`font-mono text-xs tracking-widest mt-1 uppercase text-center ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
+            <p className={`font-mono text-[9px] md:text-xs tracking-wider md:tracking-widest mt-1 uppercase text-center ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
               Acceso Restringido • Protocolo Umbrella
             </p>
           </div>
@@ -104,8 +104,8 @@ const AdminLogin = () => {
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  placeholder="admin o tu nombre de usuario..."
-                  className={`w-full pl-10 pr-4 py-2.5 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/50 transition-all rounded-xl border ${
+                  placeholder="admin o usuario..."
+                  className={`w-full pl-10 pr-4 py-2.5 font-mono text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/50 transition-all rounded-xl border ${
                     isDark 
                       ? 'bg-[#10131d] border-slate-800 text-white placeholder-slate-600 focus:border-rose-500' 
                       : 'bg-slate-50 border-slate-300 text-slate-900 placeholder-slate-400 focus:border-rose-400 shadow-sm'
@@ -127,7 +127,7 @@ const AdminLogin = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className={`w-full pl-10 pr-4 py-2.5 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/50 transition-all rounded-xl border ${
+                  className={`w-full pl-10 pr-4 py-2.5 font-mono text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/50 transition-all rounded-xl border ${
                     isDark 
                       ? 'bg-[#10131d] border-slate-800 text-white placeholder-slate-600 focus:border-rose-500' 
                       : 'bg-slate-50 border-slate-300 text-slate-900 placeholder-slate-400 focus:border-rose-400 shadow-sm'
