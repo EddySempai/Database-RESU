@@ -36,8 +36,31 @@ const MASTER_PASSWORD_KEY = 'admin_master_password_hash';
 const GUILD_SETTINGS_ORGANIZERS_KEY = 'guild_organizers';
 
 export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<OrganizerUser | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState<OrganizerUser | null>(() => {
+    const storedSession = localStorage.getItem('admin_user_session');
+    if (storedSession) {
+      try { return JSON.parse(storedSession) as OrganizerUser; } catch { return null; }
+    }
+    const storedAuth = localStorage.getItem('admin_authenticated');
+    if (storedAuth === 'true') {
+      return {
+        id: 'admin-master',
+        username: 'admin',
+        displayName: 'Comandante Supremo',
+        passwordHash: '',
+        role: 'admin',
+        allowedEvents: ['crocodile', 'saint_valley', 'security_centers', 'tac', 'mortem', 'wesker', 'vacunas', 'union', 'nemesis'],
+        canManageMembers: true,
+        isActive: true,
+        createdAt: new Date().toISOString(),
+      };
+    }
+    return null;
+  });
+  
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return localStorage.getItem('admin_authenticated') === 'true' || Boolean(localStorage.getItem('admin_user_session'));
+  });
   const [users, setUsers] = useState<OrganizerUser[]>([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [masterPasswordHash, setMasterPasswordHash] = useState<string | null>(null);
@@ -138,38 +161,8 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     }
   }, []);
 
-  // On initial mount: restore stored session & fetch users
+  // On initial mount: fetch users
   useEffect(() => {
-    const storedSession = localStorage.getItem('admin_user_session');
-    const storedAuth = localStorage.getItem('admin_authenticated');
-
-    if (storedSession) {
-      try {
-        const parsed = JSON.parse(storedSession) as OrganizerUser;
-        setUser(parsed);
-        setIsAuthenticated(true);
-      } catch {
-        localStorage.removeItem('admin_user_session');
-      }
-    } else if (storedAuth === 'true') {
-      // Legacy session fallback
-      setUser({
-        id: 'admin-master',
-        username: 'admin',
-        displayName: 'Comandante Supremo',
-        passwordHash: '',
-        role: 'admin',
-        allowedEvents: [
-          'crocodile', 'saint_valley', 'security_centers', 'tac', 
-          'mortem', 'wesker', 'vacunas', 'union', 'nemesis'
-        ],
-        canManageMembers: true,
-        isActive: true,
-        createdAt: new Date().toISOString(),
-      });
-      setIsAuthenticated(true);
-    }
-
     loadUsersAndSettings();
   }, [loadUsersAndSettings]);
 

@@ -220,7 +220,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   }, {} as Record<string, number>);
 
   return (
-    <div className="h-full overflow-y-auto p-4 md:p-6 custom-scrollbar flex flex-col gap-6">
+    <div className="h-full w-full min-w-0 overflow-y-auto overflow-x-hidden p-4 md:p-6 custom-scrollbar flex flex-col gap-6">
       {/* Header & Stats */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
         <div>
@@ -234,7 +234,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           </div>
           <div 
             className={`font-mono text-xs flex items-center gap-2 w-max px-3 py-1.5 rounded-xl border cursor-help ${
-              isDark ? 'bg-[#141824] border-slate-800 text-slate-400' : 'bg-slate-50 border-slate-200 text-slate-600'
+              isDark ? 'bg-[#141824] border-slate-800 text-slate-400' : 'bg-white border-black text-slate-800 shadow-sm'
             }`}
             title="Total de operativos en la base de datos sincronizados con el Mapeo OCR"
           >
@@ -247,16 +247,16 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
       {/* Add Operative Quick Card */}
       <form onSubmit={handleAddMember} className={`p-5 rounded-2xl border transition-colors shadow-sm ${
-        isDark ? 'bg-gradient-to-b from-[#141824] to-[#10131d] border-slate-800/80' : 'bg-gradient-to-b from-white to-slate-50 border-slate-200'
+        isDark ? 'bg-gradient-to-b from-[#141824] to-[#10131d] border-slate-800/80' : 'bg-gradient-to-b from-white to-slate-50 border-black'
       }`}>
         <div className={`text-xs font-mono uppercase tracking-widest mb-4 flex items-center gap-2 font-bold ${
-          isDark ? 'text-slate-400' : 'text-slate-600'
+          isDark ? 'text-slate-400' : 'text-slate-700'
         }`}>
           <Plus size={16} className={isDark ? 'text-rose-400' : 'text-rose-500'} /> Nuevo Registro de Operativo
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-4">
           <div>
-            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Nombre</label>
+            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-600 font-semibold'}`}>Nombre</label>
             <input 
               type="text" 
               value={newNickname}
@@ -264,56 +264,56 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
               className={`w-full border font-mono text-xs focus:outline-none rounded-xl transition-all px-3 py-2 ${
                 isDark 
                   ? 'bg-[#10131d] border-slate-800 hover:border-slate-700 focus:border-rose-500 text-white placeholder-slate-600' 
-                  : 'bg-white border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-900 placeholder-slate-400 shadow-sm'
+                  : 'bg-white border-black hover:border-slate-700 focus:border-rose-500 text-slate-900 placeholder-slate-400 shadow-sm'
               }`}
               placeholder="Ej: CondePatula"
             />
           </div>
           <div>
-            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Rango</label>
+            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-600 font-semibold'}`}>Rango</label>
             <RankSelect 
               value={newRank}
               onChange={(val) => setNewRank(val)}
               className={`w-full border font-mono text-xs text-left px-3 py-2 rounded-xl flex justify-between items-center transition-all ${
                 isDark 
                   ? 'bg-[#10131d] border-slate-800 hover:border-slate-700 focus:border-rose-500 text-slate-200' 
-                  : 'bg-white border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-800 shadow-sm'
+                  : 'bg-white border-black hover:border-slate-700 focus:border-rose-500 text-slate-800 shadow-sm'
               }`}
             />
           </div>
           <div>
-            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Tipo Cuenta</label>
+            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-600 font-semibold'}`}>Tipo Cuenta</label>
             <AccountTypeSelect 
               value={newType}
               onChange={(val) => setNewType(val as 'main'|'alt')}
               className={`w-full border font-mono text-xs text-left px-3 py-2 rounded-xl flex justify-between items-center transition-all ${
                 isDark 
                   ? 'bg-[#10131d] border-slate-800 hover:border-slate-700 focus:border-rose-500 text-slate-200' 
-                  : 'bg-white border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-800 shadow-sm'
+                  : 'bg-white border-black hover:border-slate-700 focus:border-rose-500 text-slate-800 shadow-sm'
               }`}
             />
           </div>
           <div>
-            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Poder</label>
+            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-600 font-semibold'}`}>Poder</label>
             <PowerInput 
               value={newPower}
               onChange={setNewPower}
               className={`w-full border font-mono text-xs focus:outline-none rounded-xl transition-all px-3 py-2 ${
                 isDark 
                   ? 'bg-[#10131d] border-slate-800 hover:border-slate-700 focus:border-rose-500 text-white' 
-                  : 'bg-white border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-900 shadow-sm'
+                  : 'bg-white border-black hover:border-slate-700 focus:border-rose-500 text-slate-900 shadow-sm'
               }`}
             />
           </div>
           <div>
-            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Mansión</label>
+            <label className={`block font-mono text-[10px] uppercase tracking-wider mb-1 ${isDark ? 'text-slate-500' : 'text-slate-600 font-semibold'}`}>Mansión</label>
             <MansionSelect 
               value={newMansionLevel}
               onChange={setNewMansionLevel}
               className={`w-full border font-mono text-xs text-left px-3 py-2 rounded-xl flex justify-between items-center transition-all ${
                 isDark 
                   ? 'bg-[#10131d] border-slate-800 hover:border-slate-700 focus:border-rose-500 text-slate-200' 
-                  : 'bg-white border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-800 shadow-sm'
+                  : 'bg-white border-black hover:border-slate-700 focus:border-rose-500 text-slate-800 shadow-sm'
               }`}
             />
           </div>
@@ -334,8 +334,8 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       </form>
 
       {/* Modern Filter Toolbar */}
-      <div className="flex flex-col">
-        <div className={`py-4 flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center transition-colors`}>
+      <div className="flex flex-col gap-4">
+        <div className={`flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center transition-colors`}>
           
           {/* Search + Status */}
           <div className="flex gap-3 items-center flex-1">
@@ -349,7 +349,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                 className={`w-full border pl-9 pr-3 py-1.5 font-mono text-xs focus:outline-none rounded-xl transition-all ${
                   isDark 
                     ? 'bg-[#141824] border-slate-800 text-white focus:border-rose-500 placeholder-slate-500' 
-                    : 'bg-white border-slate-300 text-slate-900 focus:border-rose-500 placeholder-slate-400 shadow-sm'
+                    : 'bg-white border-black text-slate-900 focus:border-rose-500 placeholder-slate-400 shadow-sm'
                 }`}
               />
             </div>
@@ -360,7 +360,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
               className={`border font-mono text-xs focus:outline-none py-1.5 px-3 rounded-xl transition-all ${
                 isDark 
                   ? 'bg-[#141824] border-slate-800 text-slate-300 focus:border-rose-500' 
-                  : 'bg-white border-slate-300 text-slate-700 focus:border-rose-500 shadow-sm'
+                  : 'bg-white border-black text-slate-700 focus:border-rose-500 shadow-sm'
               }`}
             >
               <option value="active">Activos</option>
@@ -376,8 +376,8 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
               onClick={() => { playClick(); setFilterRank('ALL'); }}
               className={`px-3 py-1 font-mono text-[11px] uppercase tracking-wider transition-all border rounded-xl ${
                 filterRank === 'ALL' 
-                  ? (isDark ? 'bg-rose-500/20 border-rose-500/50 text-rose-300 font-bold' : 'bg-rose-50 border-rose-400 text-rose-700 font-bold shadow-sm')
-                  : (isDark ? 'border-slate-800 text-slate-400 hover:border-slate-700 bg-[#10131d]' : 'border-slate-200 text-slate-600 hover:border-slate-300 bg-white shadow-sm')
+                  ? (isDark ? 'bg-rose-500/20 border-rose-500/50 text-rose-300 font-bold' : 'bg-rose-100 border-black text-rose-700 font-bold shadow-sm')
+                  : (isDark ? 'border-slate-800 text-slate-400 hover:border-slate-700 bg-[#10131d]' : 'border-black/40 text-slate-700 hover:border-black bg-white shadow-sm')
               }`}
             >
               Todos ({members.length})
@@ -388,8 +388,8 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                 onClick={() => { playClick(); setFilterRank(r); }}
                 className={`px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider transition-all border rounded-xl flex items-center gap-1 ${
                   filterRank === r 
-                    ? (isDark ? 'bg-rose-500/20 border-rose-500/50 text-rose-300 font-bold' : 'bg-rose-50 border-rose-400 text-rose-700 font-bold shadow-sm')
-                    : (isDark ? 'border-slate-800 text-slate-400 hover:border-slate-700 bg-[#10131d]' : 'border-slate-200 text-slate-600 hover:border-slate-300 bg-white shadow-sm')
+                    ? (isDark ? 'bg-rose-500/20 border-rose-500/50 text-rose-300 font-bold' : 'bg-rose-100 border-black text-rose-700 font-bold shadow-sm')
+                    : (isDark ? 'border-slate-800 text-slate-400 hover:border-slate-700 bg-[#10131d]' : 'border-black/40 text-slate-700 hover:border-black bg-white shadow-sm')
                 }`}
               >
                 {r} <span className={`text-[9px] px-1 py-0.5 rounded-md ${
@@ -403,20 +403,22 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         </div>
 
         {/* Members Table */}
-        <div className="w-full">
+        <div className={`w-full rounded-2xl overflow-hidden shadow-sm border ${
+          isDark ? 'border-slate-800/80 bg-[#10131d]' : 'border-black bg-white'
+        }`}>
           {loading ? (
             <div className="flex justify-center items-center h-48">
               <Loader2 className={`animate-spin ${isDark ? 'text-rose-400' : 'text-rose-500'}`} size={28} />
             </div>
           ) : (
             <table className="w-full text-left border-collapse">
-              <thead className={`sticky top-0 z-10 border-b backdrop-blur-md ${isDark ? 'bg-[#10131d]/95 border-slate-800' : 'bg-slate-50/95 border-slate-200'}`}>
+              <thead className={`sticky top-0 z-10 border-b backdrop-blur-md ${isDark ? 'bg-[#10131d]/95 border-slate-800' : 'bg-slate-50/95 border-black'}`}>
                 <tr>
-                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Operativo & Apodos OCR</th>
-                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-28 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Rango</th>
-                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-32 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Tipo</th>
-                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-40 text-right ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Poder Base</th>
-                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-36 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Estado & Mansión</th>
+                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 ${isDark ? 'text-slate-400' : 'text-slate-600 font-bold'}`}>Operativo & Apodos OCR</th>
+                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-28 text-center ${isDark ? 'text-slate-400' : 'text-slate-600 font-bold'}`}>Rango</th>
+                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-32 text-center ${isDark ? 'text-slate-400' : 'text-slate-600 font-bold'}`}>Tipo</th>
+                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-40 text-right ${isDark ? 'text-slate-400' : 'text-slate-600 font-bold'}`}>Poder Base</th>
+                  <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 w-36 text-center ${isDark ? 'text-slate-400' : 'text-slate-600 font-bold'}`}>Estado & Mansión</th>
                 </tr>
               </thead>
               <tbody className={`divide-y ${isDark ? 'divide-slate-800/40' : 'divide-slate-200'}`}>
@@ -524,6 +526,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                         <AccountTypeSelect 
                           value={member.account_type}
                           onChange={(val) => updateMember(member.id, 'account_type', val)}
+                          className="min-w-[105px]"
                         />
                       </td>
 

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { useSound } from '../../contexts/SoundContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import { AdminModal, type AdminModalType } from '../../components/admin/AdminModal';
-import { Search, Loader2, Cpu, ShieldAlert, FileText, Bot } from 'lucide-react';
+import { Search, Loader2, Cpu, FileText, Bot } from 'lucide-react';
 import { getAuditReport } from '../../services/geminiService';
 
 interface AuditLog {
@@ -17,6 +18,7 @@ interface AuditLog {
 
 const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   const { playClick, playHover } = useSound();
+  const { isDark } = useTheme();
   const [logs, setLogs] = useState<AuditLog[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -88,21 +90,21 @@ const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   };
 
   return (
-    <div className="h-full flex flex-col gap-6 p-3 sm:p-5">
-      <div className="flex justify-between items-end">
-        <div>
-          <h2 className="font-bebas text-3xl tracking-widest text-white flex items-center gap-2">
-            <ShieldAlert className="text-neon-red" size={28} />
-            Registro del Sistema
-          </h2>
-          <p className="font-mono text-gray-400 text-xs mt-1">Bitácora de seguridad y análisis de IA</p>
-        </div>
+    <div className="h-full w-full min-w-0 overflow-y-auto overflow-x-hidden custom-scrollbar flex flex-col gap-6 p-3 sm:p-5">
+      <div className="flex justify-between items-center">
+        <p className={`font-mono text-xs ${isDark ? 'text-gray-400' : 'text-slate-500'}`}>
+          Bitácora de seguridad y análisis de IA
+        </p>
         
         <button
           onClick={handleGenerateReport}
           onMouseEnter={playHover}
           disabled={generating}
-          className="bg-blood-red/20 border border-blood-red text-neon-red hover:bg-blood-red hover:text-white px-4 py-2 font-mono text-xs uppercase tracking-widest flex items-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className={`px-4 py-2 font-mono text-xs uppercase tracking-widest flex items-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed border rounded-xl ${
+            isDark 
+              ? 'bg-blood-red/20 border-blood-red text-neon-red hover:bg-blood-red hover:text-white'
+              : 'bg-rose-100 border-black text-rose-700 hover:bg-rose-600 hover:text-white shadow-sm'
+          }`}
         >
           {generating ? <Loader2 size={16} className="animate-spin" /> : <Bot size={16} />}
           {generating ? 'PROCESANDO...' : 'REPORTE RED QUEEN'}
@@ -110,22 +112,22 @@ const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       </div>
 
       {aiReport && (
-        <div className="bg-[#0a0a0a] border border-blood-red/50 p-6 relative overflow-hidden">
+        <div className={`border p-6 rounded-2xl relative overflow-hidden ${isDark ? 'bg-[#0a0a0a] border-blood-red/50' : 'bg-rose-50 border-black shadow-sm'}`}>
           <div className="absolute top-0 right-0 p-4 opacity-10">
             <Cpu size={120} />
           </div>
-          <h3 className="font-bebas text-xl text-neon-red mb-4 flex items-center gap-2">
+          <h3 className={`font-bebas text-xl mb-4 flex items-center gap-2 ${isDark ? 'text-neon-red' : 'text-rose-600'}`}>
             <Bot size={20} /> INFORME TÁCTICO GENERADO
           </h3>
-          <div className="font-mono text-sm text-gray-300 whitespace-pre-wrap leading-relaxed relative z-10 custom-scrollbar max-h-64 overflow-y-auto pr-4">
+          <div className={`font-mono text-sm whitespace-pre-wrap leading-relaxed relative z-10 custom-scrollbar max-h-64 overflow-y-auto pr-4 ${isDark ? 'text-gray-300' : 'text-slate-700'}`}>
             {aiReport}
           </div>
         </div>
       )}
 
       {/* List */}
-      <div className="bg-[#0a0a0a] border border-gray-800 flex-1 overflow-hidden flex flex-col">
-        <div className="p-4 border-b border-gray-800 flex gap-4 items-center">
+      <div className={`flex-1 rounded-2xl overflow-hidden shadow-sm flex flex-col border ${isDark ? 'bg-[#0a0a0a] border-gray-800' : 'bg-white border-black'}`}>
+        <div className={`p-4 flex gap-4 items-center border-b ${isDark ? 'border-gray-800' : 'border-black'}`}>
           <div className="relative flex-1 max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
             <input 
@@ -133,13 +135,17 @@ const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Buscar operativo o detalles..."
-              className="w-full bg-black border border-gray-700 text-white pl-9 pr-3 py-1.5 font-mono text-xs focus:outline-none focus:border-neon-red"
+              className={`w-full border pl-9 pr-3 py-1.5 font-mono text-xs focus:outline-none focus:border-rose-500 rounded-xl ${
+                isDark ? 'bg-black border-gray-700 text-white' : 'bg-white border-black text-slate-900 shadow-sm'
+              }`}
             />
           </div>
           <select
             value={filterAction}
             onChange={(e) => setFilterAction(e.target.value)}
-            className="bg-black border border-gray-700 text-gray-300 font-mono text-xs focus:outline-none focus:border-neon-red py-1.5 px-3"
+            className={`border font-mono text-xs focus:outline-none focus:border-rose-500 py-1.5 px-3 rounded-xl ${
+              isDark ? 'bg-black border-gray-700 text-gray-300' : 'bg-white border-black text-slate-700 shadow-sm'
+            }`}
           >
             <option value="all">Todas las Acciones</option>
             <option value="ADD_MEMBER">Altas</option>
@@ -157,7 +163,7 @@ const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             </div>
           ) : (
             <table className="w-full text-left border-collapse">
-            <thead className="sticky top-0 bg-[#111] shadow-md z-10 border-b border-gray-700">
+            <thead className={`sticky top-0 shadow-sm z-10 border-b ${isDark ? 'bg-[#111] border-gray-700' : 'bg-slate-50 border-black'}`}>
               <tr>
                 <th className="font-mono text-xs text-gray-400 uppercase tracking-widest pb-4 pt-4 px-4 w-40">Fecha</th>
                 <th className="font-mono text-xs text-gray-400 uppercase tracking-widest pb-4 pt-4 px-4 w-48">Acción</th>
@@ -170,22 +176,28 @@ const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
               {filteredLogs.map(log => {
                 const action = getActionFormat(log.action_type);
                 return (
-                  <tr key={log.id} className="hover:bg-white/5 even:bg-white/[0.02] border-b border-gray-800/50 transition-colors">
-                    <td className="py-4 px-4 font-mono text-xs text-gray-500">
+                  <tr key={log.id} className={`transition-colors border-b ${
+                    isDark 
+                      ? 'hover:bg-white/5 even:bg-white/[0.02] border-gray-800/50' 
+                      : 'hover:bg-slate-50 even:bg-slate-50/50 border-slate-100'
+                  }`}>
+                    <td className={`py-4 px-4 font-mono text-xs ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>
                       {new Date(log.created_at).toLocaleString('es-ES', { dateStyle: 'short', timeStyle: 'short' })}
                     </td>
                     <td className="py-4 px-4">
-                      <span className={`font-mono text-xs uppercase px-2 py-0.5 rounded-sm bg-black/50 border border-gray-800 ${action.color}`}>
+                      <span className={`font-mono text-xs uppercase px-2 py-0.5 rounded-sm border ${
+                        isDark ? 'bg-black/50 border-gray-800' : 'bg-white border-slate-200'
+                      } ${action.color}`}>
                         {action.label}
                       </span>
                     </td>
-                    <td className="py-4 px-4 font-mono text-sm text-white">
+                    <td className={`py-4 px-4 font-mono text-sm ${isDark ? 'text-white' : 'text-slate-900'}`}>
                       {log.target_name || '-'}
                     </td>
-                    <td className="py-4 px-4 font-mono text-xs text-gray-400">
+                    <td className={`py-4 px-4 font-mono text-xs ${isDark ? 'text-gray-400' : 'text-slate-600'}`}>
                       {log.details || '-'}
                     </td>
-                    <td className="py-4 px-4 font-mono text-xs text-gray-600 text-right">
+                    <td className={`py-4 px-4 font-mono text-xs text-right ${isDark ? 'text-gray-600' : 'text-slate-400'}`}>
                       {log.admin_name}
                     </td>
                   </tr>
@@ -193,9 +205,9 @@ const AuditPanel = ({ activeAlliance }: { activeAlliance: string }) => {
               })}
               {filteredLogs.length === 0 && (
                 <tr>
-                  <td colSpan={5} className="py-12 text-center border-dashed border border-gray-800/50">
-                    <FileText className="mx-auto mb-2 text-gray-600" size={24} />
-                    <p className="font-mono text-gray-500 text-xs uppercase tracking-widest">No se encontraron registros</p>
+                  <td colSpan={5} className={`py-12 text-center border-dashed border ${isDark ? 'border-gray-800/50' : 'border-slate-200'}`}>
+                    <FileText className={`mx-auto mb-2 ${isDark ? 'text-gray-600' : 'text-slate-400'}`} size={24} />
+                    <p className={`font-mono text-xs uppercase tracking-widest ${isDark ? 'text-gray-500' : 'text-slate-500'}`}>No se encontraron registros</p>
                   </td>
                 </tr>
               )}

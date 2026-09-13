@@ -79,21 +79,19 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col md:flex-row font-sans transition-colors duration-200 ${
-      isDark 
-        ? 'bg-[#0c0e14] text-slate-200' 
-        : 'bg-[#f8fafc] text-slate-800'
+    <div className={`fixed inset-0 w-full overflow-hidden flex flex-col md:flex-row font-sans transition-colors duration-200 z-40 ${
+      isDark ? 'bg-[#0c0e14] text-slate-100' : 'bg-slate-50 text-slate-900'
     }`}>
       {/* Sidebar - Horizontal on mobile, vertical on desktop */}
-      <div className={`w-full ${isSidebarCollapsed ? 'md:w-20' : 'md:w-64'} border-b md:border-b-0 md:border-r flex flex-col md:h-screen md:sticky md:top-0 shrink-0 md:self-start backdrop-blur-xl z-30 transition-all duration-300 ${
+      <div className={`w-full ${isSidebarCollapsed ? 'md:w-20' : 'md:w-64'} border-b md:border-b-0 md:border-r flex flex-col h-auto md:h-full shrink-0 backdrop-blur-xl z-30 transition-all duration-300 ${
         isDark 
           ? 'bg-[#0f121a]/95 border-slate-800/80 text-slate-200' 
-          : 'bg-white/95 border-slate-200 text-slate-800 shadow-sm'
+          : 'bg-white/95 border-black text-slate-800 shadow-sm'
       }`}>
         
         {/* Logo / Brand Header */}
-        <div className={`p-3 ${isSidebarCollapsed ? 'md:p-5 flex justify-center' : 'md:p-5 flex justify-between md:justify-start'} border-b items-center gap-3 transition-colors ${
-          isDark ? 'border-slate-800/80' : 'border-slate-200'
+        <div className={`shrink-0 p-3 ${isSidebarCollapsed ? 'md:p-5 flex justify-center' : 'md:p-5 flex justify-between md:justify-start'} border-b items-center gap-3 transition-colors ${
+          isDark ? 'border-slate-800/80' : 'border-black'
         }`}>
           <div className={`flex items-center ${isSidebarCollapsed ? 'justify-center w-full' : 'gap-3'}`}>
             <div className="w-8 h-8 md:w-10 md:h-10 bg-rose-500/15 border border-rose-500/30 flex items-center justify-center rounded-xl shadow-sm shrink-0">
@@ -116,7 +114,7 @@ const AdminDashboard = () => {
               className={`p-1.5 rounded-lg border transition-colors ${
                 isDark 
                   ? 'bg-[#141824] border-slate-700 text-slate-400 hover:text-white' 
-                  : 'bg-white border-slate-200 text-slate-600 hover:text-slate-900 shadow-sm'
+                  : 'bg-white border-black text-slate-600 hover:text-slate-900 shadow-sm'
               }`}
             >
               <Globe size={14} />
@@ -126,7 +124,7 @@ const AdminDashboard = () => {
               className={`p-1.5 rounded-lg border transition-colors ${
                 isDark 
                   ? 'bg-[#141824] border-slate-700 text-amber-400' 
-                  : 'bg-white border-slate-200 text-slate-600 shadow-sm'
+                  : 'bg-white border-black text-slate-600 shadow-sm'
               }`}
             >
               {isDark ? <Sun size={14} /> : <Moon size={14} />}
@@ -135,8 +133,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* User Profile & Alliance Selector */}
-        <div className={`p-3 md:p-5 flex flex-row md:flex-col gap-3 md:gap-4 items-center justify-between md:justify-start md:items-stretch overflow-x-auto md:overflow-visible custom-scrollbar border-b md:border-b-0 ${
-          isDark ? 'border-slate-800/80' : 'border-slate-200'
+        <div className={`shrink-0 p-3 md:p-4 flex flex-row md:flex-col gap-2.5 md:gap-3 items-center justify-between md:justify-start md:items-stretch overflow-x-auto md:overflow-visible custom-scrollbar border-b md:border-b-0 ${
+          isDark ? 'border-slate-800/80' : 'border-black'
         }`}>
           
           <div className={`flex items-center ${isSidebarCollapsed ? 'justify-center w-full' : 'gap-3 shrink-0 min-w-0 flex-1 md:flex-none'}`}>
@@ -166,7 +164,7 @@ const AdminDashboard = () => {
               className={`px-3 py-1.5 md:p-3 border rounded-xl cursor-pointer flex items-center justify-between transition-colors shadow-sm ${
                 isDark 
                   ? 'bg-[#141824] border-slate-800 hover:border-slate-700' 
-                  : 'bg-slate-50 border-slate-200 hover:border-slate-300'
+                  : 'bg-white border-black hover:bg-slate-50'
               }`}
             >
               <div className="flex flex-col text-left mr-2 md:mr-0">
@@ -182,7 +180,7 @@ const AdminDashboard = () => {
             
             {showAllianceMenu && (
               <div className={`absolute top-full left-0 md:left-3 md:right-3 mt-1 min-w-[200px] border rounded-xl shadow-xl z-50 overflow-y-auto max-h-60 custom-scrollbar ${
-                isDark ? 'bg-[#141824] border-slate-700' : 'bg-white border-slate-200'
+                isDark ? 'bg-[#141824] border-slate-700' : 'bg-white border-black'
               }`}>
                 {alliances.map(alliance => (
                   <button
@@ -202,7 +200,7 @@ const AdminDashboard = () => {
                     {activeAlliance === alliance && <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />}
                   </button>
                 ))}
-                <div className={`border-t ${isDark ? 'border-slate-800' : 'border-slate-200'}`}>
+                <div className={`border-t ${isDark ? 'border-slate-800' : 'border-black/20'}`}>
                   <button
                     onClick={() => {
                       handleAddAlliance();
@@ -219,7 +217,7 @@ const AdminDashboard = () => {
         </div>
 
         {/* Navigation links */}
-        <div className="flex-1 p-2 md:p-3 flex flex-row md:flex-col overflow-x-auto md:overflow-y-auto gap-1.5 custom-scrollbar">
+        <div className="flex-1 min-h-0 p-2 md:p-3 flex flex-row md:flex-col overflow-x-auto md:overflow-y-auto gap-1.5 custom-scrollbar">
           <button
             onMouseEnter={playHover}
             onClick={() => { playClick(); setActiveTab('activity'); }}
@@ -310,8 +308,8 @@ const AdminDashboard = () => {
         </div>
 
         {/* Bottom Actions */}
-        <div className={`p-3 md:p-4 border-t flex flex-row md:flex-col gap-2 ${
-          isDark ? 'border-slate-800/80' : 'border-slate-200'
+        <div className={`shrink-0 mt-auto p-3 md:p-4 border-t flex flex-row md:flex-col gap-2 ${
+          isDark ? 'border-slate-800/80' : 'border-black'
         }`}>
           <button
             onMouseEnter={playHover}
@@ -319,7 +317,7 @@ const AdminDashboard = () => {
             className={`flex-1 md:w-full flex items-center justify-center ${isSidebarCollapsed ? 'px-0' : 'gap-2 px-3 md:px-3.5'} py-1.5 md:py-2 border rounded-xl font-mono text-[10px] md:text-xs uppercase tracking-wider transition-colors ${
               isDark 
                 ? 'border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white' 
-                : 'border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900 shadow-sm'
+                : 'border-black text-slate-700 hover:bg-slate-100 hover:text-slate-900 shadow-sm'
             }`}
           >
             <ArrowLeft size={14} /> <span className={isSidebarCollapsed ? 'hidden' : 'hidden sm:inline whitespace-nowrap'}>{t('admin.sidebar.public_base')}</span>
@@ -335,13 +333,13 @@ const AdminDashboard = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col h-[calc(100vh-170px)] md:h-screen relative w-full min-w-0 overflow-hidden">
+      <div className="flex-1 min-w-0 min-h-0 flex flex-col h-full relative overflow-hidden">
         
         {/* Top Title Bar */}
         <div className={`px-4 md:px-6 py-3 md:py-3.5 border-b flex flex-wrap justify-between items-center sticky top-0 z-20 backdrop-blur-md transition-colors duration-200 gap-3 ${
           isDark 
             ? 'bg-[#0c0e14]/90 border-slate-800/80' 
-            : 'bg-white/90 border-slate-200 shadow-sm'
+            : 'bg-white/90 border-black shadow-sm'
         }`}>
           {/* Active Tab Title */}
           <div className="flex items-center gap-2.5">
@@ -370,7 +368,7 @@ const AdminDashboard = () => {
                 className={`p-1.5 rounded-xl border transition-colors shadow-sm backdrop-blur-md ${
                   isDark 
                     ? 'bg-[#141824]/90 border-slate-700 text-slate-400 hover:text-white' 
-                    : 'bg-white/90 border-slate-200 text-slate-600 hover:bg-slate-50'
+                    : 'bg-white/90 border-black text-slate-700 hover:bg-slate-50'
                 }`}
                 title="Ocultar/Mostrar Menú"
               >
@@ -382,7 +380,7 @@ const AdminDashboard = () => {
                 className={`px-3 py-1.5 rounded-xl border transition-colors flex items-center gap-2 font-mono text-xs uppercase tracking-widest ${
                   isDark 
                     ? 'bg-[#141824]/90 border-slate-700 text-slate-300 hover:text-white backdrop-blur-md' 
-                    : 'bg-white/90 border-slate-200 text-slate-700 hover:text-slate-900 shadow-sm backdrop-blur-md'
+                    : 'bg-white/90 border-black text-slate-700 hover:text-slate-900 shadow-sm backdrop-blur-md'
                 }`}
                 title="Cambiar idioma"
               >
@@ -395,7 +393,7 @@ const AdminDashboard = () => {
                 className={`p-1.5 rounded-xl border transition-colors shadow-sm backdrop-blur-md ${
                   isDark 
                     ? 'bg-[#141824]/90 border-slate-700 text-amber-400 hover:bg-slate-800' 
-                    : 'bg-white/90 border-slate-200 text-slate-700 hover:bg-slate-50'
+                    : 'bg-white/90 border-black text-slate-700 hover:bg-slate-50'
                 }`}
                 title={isDark ? t('admin.theme.light') : t('admin.theme.dark')}
               >
@@ -405,7 +403,7 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="flex-1 overflow-hidden relative w-full h-full">
+        <div className="flex-1 min-h-0 min-w-0 overflow-hidden relative w-full h-full">
           {activeTab === 'activity' && <ActivityPanel activeAlliance={activeAlliance} />}
           {activeTab === 'members' && <MembersPanel activeAlliance={activeAlliance} />}
           {activeTab === 'analytics' && <AnalyticsPanel activeAlliance={activeAlliance} />}

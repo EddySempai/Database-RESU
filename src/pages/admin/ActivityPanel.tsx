@@ -846,7 +846,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       acc[m.id] = calculateParticipationScore(m.id);
       return acc;
     }, {} as Record<string, { total: number; items: { name: string; pts: number }[] }>);
-  }, [members, activities, vacunasTeams, mortemData]);
+  }, [members, activities, vacunasTeams, mortemData, weeklyScores]);
 
   // 2. Global ranking sorted by score descending (tie-breaker: power)
   const sortedByParticipation = useMemo(() => {
@@ -1043,7 +1043,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   };
 
   return (
-    <div className="h-full overflow-y-auto p-4 md:p-6 custom-scrollbar flex flex-col gap-5">
+    <div className="h-full w-full min-w-0 overflow-y-auto overflow-x-hidden p-4 md:p-6 custom-scrollbar flex flex-col gap-5">
       
       {/* Top Header & Alliance Stats */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
@@ -1109,7 +1109,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
       {/* 3 MASTER NAVIGATION TABS: Stress-free separated views with Border Radius & Soft Palette */}
       <div className={`grid grid-cols-1 sm:grid-cols-3 gap-2 p-1.5 border rounded-2xl transition-colors ${
-        isDark ? 'bg-[#141824]/90 border-slate-800/80' : 'bg-white border-slate-200 shadow-sm'
+        isDark ? 'bg-[#141824]/90 border-slate-800/80' : 'bg-white border-black shadow-sm'
       }`}>
         {/* 1. Botín y Auditoría */}
         <button
@@ -1119,7 +1119,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             masterView === 'rewards'
               ? (isDark 
                   ? 'bg-amber-500/15 border-amber-500/50 text-amber-300 shadow-sm' 
-                  : 'bg-amber-50 border-amber-400 text-amber-900 shadow-sm font-bold')
+                  : 'bg-amber-50 border-amber-500 text-amber-900 shadow-sm font-bold')
               : (isDark 
                   ? 'border-transparent text-slate-400 hover:text-white hover:bg-white/5' 
                   : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100')
@@ -1132,7 +1132,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           <span className={`font-mono text-[10px] px-2 py-0.5 rounded-full border ${
             masterView === 'rewards' 
               ? (isDark ? 'bg-amber-500/20 border-amber-500/40 text-amber-300' : 'bg-amber-100 border-amber-300 text-amber-800')
-              : (isDark ? 'bg-slate-800/60 border-slate-700/60 text-slate-400' : 'bg-slate-100 border-slate-200 text-slate-600')
+              : (isDark ? 'bg-slate-800/60 border-slate-700/60 text-slate-400' : 'bg-slate-100 border-black/30 text-slate-700')
           }`}>
             {t('admin.master_tabs.rewards_sub')}
           </span>
@@ -1165,7 +1165,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           <span className={`font-mono text-[10px] px-2 py-0.5 rounded-full border ${
             masterView === 'events' 
               ? (isDark ? 'bg-rose-500/20 border-rose-500/40 text-rose-300' : 'bg-rose-100 border-rose-300 text-rose-800')
-              : (isDark ? 'bg-slate-800/60 border-slate-700/60 text-slate-400' : 'bg-slate-100 border-slate-200 text-slate-600')
+              : (isDark ? 'bg-slate-800/60 border-slate-700/60 text-slate-400' : 'bg-slate-100 border-black/30 text-slate-700')
           }`}>
             {t('admin.master_tabs.operations_sub')}
           </span>
@@ -1196,7 +1196,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           <span className={`font-mono text-[10px] px-2 py-0.5 rounded-full border ${
             masterView === 'growth' 
               ? (isDark ? 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300' : 'bg-emerald-100 border-emerald-300 text-emerald-800')
-              : (isDark ? 'bg-slate-800/60 border-slate-700/60 text-slate-400' : 'bg-slate-100 border-slate-200 text-slate-600')
+              : (isDark ? 'bg-slate-800/60 border-slate-700/60 text-slate-400' : 'bg-slate-100 border-black/30 text-slate-700')
           }`}>
             {t('admin.master_tabs.growth_sub')}
           </span>
@@ -1205,12 +1205,12 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
       {/* Main Table Card */}
       <div className={`border rounded-2xl flex flex-col shadow-sm transition-colors ${
-        isDark ? 'bg-[#10131d] border-slate-800/80' : 'bg-white border-slate-200'
+        isDark ? 'bg-[#10131d] border-slate-800/80' : 'bg-white border-black'
       }`}>
         
         {/* VIEW 1: AUDITORÍA & BOTÍN */}
         {masterView === 'rewards' && (
-          <div className={`p-4 border-b flex flex-col gap-4 ${isDark ? 'border-slate-800/80' : 'border-slate-200'}`}>
+          <div className={`p-4 border-b flex flex-col gap-4 ${isDark ? 'border-slate-800/80' : 'border-black'}`}>
             {/* 4 Tier Summary Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {/* TIER 1: TOP 1-10 */}
@@ -1969,17 +1969,17 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         )}
 
         {/* Data Table */}
-        <div className={`overflow-x-auto rounded-2xl border ${isDark ? 'border-slate-800/80 bg-[#10131d]' : 'border-slate-200 bg-white shadow-sm'} transition-colors`}>
+        <div className={`overflow-x-auto overflow-hidden rounded-2xl border ${isDark ? 'border-slate-800/80 bg-[#10131d]' : 'border-black bg-white shadow-sm'} transition-colors`}>
           {loading ? (
             <div className="flex justify-center items-center h-64">
               <Loader2 className="animate-spin text-rose-500" size={32} />
             </div>
           ) : (
             <table className="w-full text-left border-collapse min-w-[780px]">
-              <thead className={`${isDark ? 'bg-[#141824] border-slate-800/80' : 'bg-slate-100 border-slate-200'} border-b shadow-sm transition-colors`}>
+              <thead className={`${isDark ? 'bg-[#141824] border-slate-800/80' : 'bg-slate-100 border-black'} border-b shadow-sm transition-colors`}>
                 <tr>
                   <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 sticky left-0 z-20 w-56 border-r ${
-                    isDark ? 'bg-[#141824] text-slate-400 border-slate-800/60' : 'bg-slate-100 text-slate-600 border-slate-200'
+                    isDark ? 'bg-[#141824] text-slate-400 border-slate-800/60' : 'bg-slate-100 text-slate-600 border-black'
                   }`}>
                     {t('admin.table.operative')}
                   </th>

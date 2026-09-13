@@ -390,14 +390,14 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   }
 
   return (
-    <div className="h-full overflow-y-auto p-3 sm:p-5 custom-scrollbar">
-      <div className="flex flex-col gap-4 sm:gap-5 max-w-[1600px] mx-auto">
+    <div className="h-full w-full min-w-0 overflow-y-auto overflow-x-hidden p-3 sm:p-5 custom-scrollbar">
+      <div className="flex flex-col gap-4 sm:gap-5 max-w-[1600px] w-full min-w-0 mx-auto">
       
       {/* ------------------------------------------------------------- */}
       {/* TOP COMMAND HUD BANNER (REMODELED) */}
       {/* ------------------------------------------------------------- */}
       <div className={`p-4 sm:p-5 flex flex-col gap-4 relative overflow-hidden transition-colors border rounded-2xl ${
-        isDark ? 'bg-[#090909] border-slate-800/90 shadow-sm' : 'bg-white border-slate-300 shadow-md'
+        isDark ? 'bg-[#090909] border-slate-800/90 shadow-sm' : 'bg-white border-black shadow-sm'
       }`}>
         
         {/* Ambient Top Glow Line */}
@@ -410,14 +410,14 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           {/* Title & Division Protocol */}
           <div className="flex items-center gap-3.5">
             <div className={`w-10 h-10 flex items-center justify-center rounded-xl shrink-0 border ${
-              isDark ? 'bg-rose-500/20 border-rose-500/40 text-rose-400' : 'bg-rose-100 border-rose-300 text-rose-600'
+              isDark ? 'bg-rose-500/20 border-rose-500/40 text-rose-400' : 'bg-rose-100 border-black text-rose-600'
             }`}>
               <BarChart3 size={22} />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className={`font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-md border font-bold ${
-                  isDark ? 'text-rose-400 bg-rose-500/15 border-rose-500/30' : 'text-rose-700 bg-rose-100 border-rose-300'
+                  isDark ? 'text-rose-400 bg-rose-500/15 border-rose-500/30' : 'text-rose-700 bg-rose-100 border-black'
                 }`}>
                   Umbrella Intelligence Division
                 </span>
@@ -441,7 +441,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             {/* Cycle Comparison Selectors */}
             {availableDates.length > 1 && (
               <div className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-mono border ${
-                isDark ? 'bg-[#141824] border-slate-800' : 'bg-white border-slate-300 shadow-sm'
+                isDark ? 'bg-[#141824] border-slate-800' : 'bg-white border-black shadow-sm'
               }`}>
                 <span className={`text-[10px] uppercase ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Comparar:</span>
                 <select
@@ -472,7 +472,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
             {/* Sort Toggle: Growth vs Absolute Total */}
             <div className={`flex rounded-xl p-0.5 text-[11px] font-mono border ${
-              isDark ? 'bg-[#141824] border-slate-800' : 'bg-white border-slate-300 shadow-sm'
+              isDark ? 'bg-[#141824] border-slate-800' : 'bg-white border-black shadow-sm'
             }`}>
               <button
                 onClick={() => { playClick(); setSortMode('growth'); }}
@@ -501,14 +501,14 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         </div>
 
         {/* Global Key Impact Metrics Strip */}
-        <div className={`grid grid-cols-2 md:grid-cols-4 gap-3 pt-3 border-t ${
-          isDark ? 'border-slate-800/80' : 'border-slate-200'
+        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-3 border-t ${
+          isDark ? 'border-slate-800/80' : 'border-black/20'
         }`}>
           
           {/* Card 1: Delta Global */}
           <div 
             className={`p-3 rounded-2xl border transition-all cursor-help flex flex-col justify-center ${
-              isDark ? 'bg-[#10131d]/60 border-slate-800/80 hover:bg-[#141824]' : 'bg-white border-slate-300 shadow-sm hover:border-slate-400 hover:shadow-md'
+              isDark ? 'bg-[#10131d]/60 border-slate-800/80 hover:bg-[#141824]' : 'bg-white border-black shadow-sm hover:shadow-md'
             }`}
             title="Suma de variaciones del clan"
           >
@@ -526,7 +526,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           {/* Card 2: Total Ciclo Actual */}
           <div 
             className={`p-3 rounded-2xl border transition-all cursor-help flex flex-col justify-center ${
-              isDark ? 'bg-[#10131d]/60 border-slate-800/80 hover:bg-[#141824]' : 'bg-white border-slate-300 shadow-sm hover:border-slate-400 hover:shadow-md'
+              isDark ? 'bg-[#10131d]/60 border-slate-800/80 hover:bg-[#141824]' : 'bg-white border-black shadow-sm hover:shadow-md'
             }`}
             title="Puntaje acumulado activo"
           >
@@ -544,7 +544,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           {/* Card 3: Balance de Operativos */}
           <div 
             className={`p-3 rounded-2xl border transition-all cursor-help flex flex-col justify-center ${
-              isDark ? 'bg-[#10131d]/60 border-slate-800/80 hover:bg-[#141824]' : 'bg-white border-slate-300 shadow-sm hover:border-slate-400 hover:shadow-md'
+              isDark ? 'bg-[#10131d]/60 border-slate-800/80 hover:bg-[#141824]' : 'bg-white border-black shadow-sm hover:shadow-md'
             }`}
             title={`${data.length} de ${members.length} operativos activos`}
           >
@@ -566,7 +566,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
           {/* Card 4: Promedio por Miembro */}
           <div 
             className={`p-3 rounded-2xl border transition-all cursor-help flex flex-col justify-center ${
-              isDark ? 'bg-[#10131d]/60 border-slate-800/80 hover:bg-[#141824]' : 'bg-white border-slate-300 shadow-sm hover:border-slate-400 hover:shadow-md'
+              isDark ? 'bg-[#10131d]/60 border-slate-800/80 hover:bg-[#141824]' : 'bg-white border-black shadow-sm hover:shadow-md'
             }`}
             title="Media de variación por miembro"
           >
@@ -586,13 +586,13 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         {/* EVENT SELECTOR (ALL 10 EVENTS, ZERO EMOJIS, DRAG-TO-SCROLL) */}
         {/* ------------------------------------------------------------- */}
         <div className={`relative flex items-center border rounded-xl mt-1 shadow-sm ${
-          isDark ? 'bg-[#10131d]/60 border-slate-800' : 'bg-white border-slate-300 shadow-md'
+          isDark ? 'bg-[#10131d]/60 border-slate-800' : 'bg-white border-black shadow-sm'
         }`}>
           {/* Left arrow */}
           <button
             onClick={() => scrollMetrics(-200)}
             className={`p-2 flex items-center justify-center shrink-0 z-10 transition-colors border-r ${
-              isDark ? 'hover:bg-[#141824] text-slate-400 hover:text-rose-500 border-slate-800' : 'hover:bg-slate-50 text-slate-500 hover:text-rose-600 border-slate-300'
+              isDark ? 'hover:bg-[#141824] text-slate-400 hover:text-rose-500 border-slate-800' : 'hover:bg-slate-50 text-slate-500 hover:text-rose-600 border-black'
             }`}
             title="Desplazar eventos a la izquierda"
           >
@@ -653,7 +653,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       {/* ------------------------------------------------------------- */}
       {/* VANGUARD ELITE PODIUM (#1, #2, #3 COMMAND CARDS) */}
       {/* ------------------------------------------------------------- */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 shrink-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 shrink-0 min-w-0">
         
         {/* PODIUM #1 - CHAMPION CARD */}
         {data[0] ? (
@@ -888,12 +888,12 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       {/* RANKING TABLE WITH TACTICAL FILTERS */}
       {/* ------------------------------------------------------------- */}
       <div className={`border rounded-2xl flex flex-col overflow-hidden ${
-        isDark ? 'bg-[#090909] border-slate-800 shadow-sm' : 'bg-white border-slate-300 shadow-md'
+        isDark ? 'bg-[#090909] border-slate-800 shadow-sm' : 'bg-white border-black shadow-sm'
       }`}>
         
         {/* Table Toolbar: Search + Rank Pills */}
         <div className={`p-3 sm:p-4 border-b flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 ${
-          isDark ? 'bg-[#141824]/50 border-slate-800' : 'bg-slate-50 border-slate-300'
+          isDark ? 'bg-[#141824]/50 border-slate-800' : 'bg-slate-50 border-black'
         }`}>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
@@ -901,7 +901,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
               Ranking General: {config.title}
             </h3>
             <span className={`font-mono text-[10px] px-2 py-0.5 rounded-md border ${
-              isDark ? 'text-slate-500 bg-[#10131d] border-slate-800' : 'text-slate-600 bg-white border-slate-300 shadow-sm'
+              isDark ? 'text-slate-500 bg-[#10131d] border-slate-800' : 'text-slate-700 bg-white border-black shadow-sm'
             }`}>
               {filteredData.length} operativos
             </span>
@@ -919,7 +919,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                 className={`w-full pl-8 pr-3 py-1 font-mono text-xs focus:outline-none focus:ring-1 focus:ring-rose-500 rounded-xl transition-all border ${
                   isDark 
                     ? 'bg-[#10131d] border-slate-800 text-white placeholder-slate-600' 
-                    : 'bg-white border-slate-300 text-slate-900 placeholder-slate-400 shadow-sm'
+                    : 'bg-white border-black text-slate-900 placeholder-slate-400 shadow-sm'
                 }`}
               />
             </div>
@@ -930,8 +930,8 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                 onClick={() => { playClick(); setRankFilter('ALL'); }}
                 className={`px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider transition-all border rounded-[10px] ${
                   rankFilter === 'ALL' 
-                    ? (isDark ? 'bg-rose-500/20 border-rose-500/50 text-white font-bold' : 'bg-rose-50 border-rose-300 text-rose-700 font-bold shadow-sm') 
-                    : (isDark ? 'border-slate-800 bg-[#141824] text-slate-400 hover:text-white hover:border-slate-700' : 'border-slate-200 bg-white text-slate-500 hover:text-slate-900 hover:border-slate-300 shadow-sm')
+                    ? (isDark ? 'bg-rose-500/20 border-rose-500/50 text-white font-bold' : 'bg-rose-100 border-black text-rose-700 font-bold shadow-sm') 
+                    : (isDark ? 'border-slate-800 bg-[#141824] text-slate-400 hover:text-white hover:border-slate-700' : 'border-black/30 bg-white text-slate-700 hover:text-slate-900 hover:border-black shadow-sm')
                 }`}
               >
                 Todos
@@ -942,8 +942,8 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                   onClick={() => { playClick(); setRankFilter(r); }}
                   className={`px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider transition-all border rounded-[10px] ${
                     rankFilter === r 
-                      ? (isDark ? 'bg-rose-500/20 border-rose-500/50 text-white font-bold' : 'bg-rose-50 border-rose-300 text-rose-700 font-bold shadow-sm') 
-                      : (isDark ? 'border-slate-800 bg-[#141824] text-slate-400 hover:text-white hover:border-slate-700' : 'border-slate-200 bg-white text-slate-500 hover:text-slate-900 hover:border-slate-300 shadow-sm')
+                      ? (isDark ? 'bg-rose-500/20 border-rose-500/50 text-white font-bold' : 'bg-rose-100 border-black text-rose-700 font-bold shadow-sm') 
+                      : (isDark ? 'border-slate-800 bg-[#141824] text-slate-400 hover:text-white hover:border-slate-700' : 'border-black/30 bg-white text-slate-700 hover:text-slate-900 hover:border-black shadow-sm')
                   }`}
                 >
                   {r}
@@ -956,7 +956,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         {/* Scrollable Data Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse min-w-[700px]">
-            <thead className={`border-b ${isDark ? 'bg-[#10131d] border-slate-800 shadow-sm' : 'bg-slate-50 border-slate-300'}`}>
+            <thead className={`border-b ${isDark ? 'bg-[#10131d] border-slate-800 shadow-sm' : 'bg-slate-50 border-black'}`}>
               <tr>
                 <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-3 w-16 text-center ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Pos</th>
                 <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-4 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Operativo</th>
