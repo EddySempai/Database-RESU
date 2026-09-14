@@ -89,7 +89,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
   // Vacunas (Teams: 2 teams, 30 titular + 10 suplente)
   const [vacunasTeams, setVacunasTeams] = useState<Record<string, VacunasRole>>({});
-  const [vacunasTeamFilter, setVacunasTeamFilter] = useState<'all' | 'team1' | 'team2' | 'unassigned'>('all');
+  const [vacunasTeamFilter, setVacunasTeamFilter] = useState<'all' | 'team1' | 'team2' | 'suplente' | 'unassigned'>('all');
 
   // Mortem Data & Alliance Strategy
   const [mortemData, setMortemData] = useState<Record<string, MortemMemberData>>({});
@@ -117,19 +117,24 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   const [activeEventTab, setActiveEventTab] = useState('crocodile');
   const [activeCenters, setActiveCenters] = useState<string[]>(['Centro 1', 'Centro 2']);
 
-  const handleConfigureCenters = async () => {
-    const current = activeCenters.join(', ');
-    const input = prompt('Ingrese los nombres de los Centros de Seguridad separados por comas:', current);
-    if (input !== null) {
-      const newCenters = input.split(',').map(s => s.trim()).filter(s => s);
-      setActiveCenters(newCenters);
-      try {
-        await supabase
-          .from('guild_settings')
-          .upsert({ key: 'security_centers', value: newCenters });
-      } catch (err) {
-        console.error('Error saving centers:', err);
-      }
+  const [isCentersConfigOpen, setIsCentersConfigOpen] = useState(false);
+  const [centersInput, setCentersInput] = useState('');
+
+  const handleConfigureCenters = () => {
+    setCentersInput(activeCenters.join(', '));
+    setIsCentersConfigOpen(true);
+  };
+
+  const handleSaveCenters = async () => {
+    const newCenters = centersInput.split(',').map(s => s.trim()).filter(s => s);
+    setActiveCenters(newCenters);
+    setIsCentersConfigOpen(false);
+    try {
+      await supabase
+        .from('guild_settings')
+        .upsert({ key: 'security_centers', value: newCenters });
+    } catch (err) {
+      console.error('Error saving centers:', err);
     }
   };
 
@@ -294,7 +299,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
             if (act.lab_joined || act.lab_points > 0) { score += 5; itemTotals['Vacunas'] = (itemTotals['Vacunas'] || 0) + 5; }
             const unionScore = Math.min(4, Math.floor((act.alliance_points || 0) / 1000));
             if (unionScore > 0) { score += unionScore; itemTotals['Unión'] = (itemTotals['Unión'] || 0) + unionScore; }
-            if (Number(act.nemesis_level) > 0) { score += 2; itemTotals['Némesis'] = (itemTotals['Némesis'] || 0) + 2; }
+            if (Number(act.nemesis_level) >= 50) { score += 2; itemTotals['Némesis'] = (itemTotals['Némesis'] || 0) + 2; }
           });
           
           scoreMap[m.id] = {
@@ -601,6 +606,15 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     setActivities(newActivities);
   };
 
+  const handleToggleColumnAll = (field: keyof ActivityRecord) => {
+    if (!canEditField(field)) return;
+    const allChecked = displayedMembers.every(m => {
+      const act = activities[m.id];
+      return act && act[field];
+    });
+    toggleColumnAll(field, !allChecked);
+  };
+
   // Clone baseline data from previous cycle
   const handleClonePreviousCycle = () => {
     if (!isAdmin && !canEditEvent('general')) {
@@ -831,7 +845,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     const alliancePts = act?.alliance_points || 0;
     const unionScore = Math.min(4, Math.floor(alliancePts / 1000));
     if (unionScore > 0) { liveTotal += unionScore; itemTotals['Unión'] = (itemTotals['Unión'] || 0) + unionScore; }
-    const hasNemesis = Boolean(act && (Number(act.nemesis_level) > 0));
+    const hasNemesis = Boolean(act && (Number(act.nemesis_level) >= 50));
     if (hasNemesis) { liveTotal += 2; itemTotals['Némesis'] = (itemTotals['Némesis'] || 0) + 2; }
 
     return {
@@ -925,10 +939,9 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   }, [participationMap]);
 
   // Vacunas team counts
-  const team1Titulares = members.filter(m => vacunasTeams[m.id] === 'team1_titular');
-  const team1Suplentes = members.filter(m => vacunasTeams[m.id] === 'team1_suplente');
-  const team2Titulares = members.filter(m => vacunasTeams[m.id] === 'team2_titular');
-  const team2Suplentes = members.filter(m => vacunasTeams[m.id] === 'team2_suplente');
+  const team1Members = members.filter(m => vacunasTeams[m.id] === 'equipo1');
+  const team2Members = members.filter(m => vacunasTeams[m.id] === 'equipo2');
+  const suplentes = members.filter(m => vacunasTeams[m.id] === 'suplente');
 
   const ranks = ['R5', 'R4', 'R3', 'R2', 'R1'];
 
@@ -979,6 +992,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     });
 
     const netGrowth = totalCurrent - totalPrevious;
+
     return {
       totalCurrent,
       totalPrevious,
@@ -1000,8 +1014,9 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       masterView !== 'events' ||
       activeEventTab !== 'vacunas' ||
       vacunasTeamFilter === 'all' ||
-      (vacunasTeamFilter === 'team1' && (vacunasTeams[m.id] === 'team1_titular' || vacunasTeams[m.id] === 'team1_suplente')) ||
-      (vacunasTeamFilter === 'team2' && (vacunasTeams[m.id] === 'team2_titular' || vacunasTeams[m.id] === 'team2_suplente')) ||
+      (vacunasTeamFilter === 'team1' && vacunasTeams[m.id] === 'equipo1') ||
+      (vacunasTeamFilter === 'team2' && vacunasTeams[m.id] === 'equipo2') ||
+      (vacunasTeamFilter === 'suplente' && vacunasTeams[m.id] === 'suplente') ||
       (vacunasTeamFilter === 'unassigned' && (!vacunasTeams[m.id] || vacunasTeams[m.id] === 'none'));
 
     const search = searchTerm.trim().toLowerCase();
@@ -1609,25 +1624,24 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                   <div className="flex items-center gap-2">
                     <span className="text-blue-400 font-bold">Equipo 1:</span>
                     <span className={`border px-2 py-0.5 rounded-lg ${isDark ? 'bg-[#10131d] border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-700'}`}>
-                      Titulares: <strong className={team1Titulares.length > 30 ? 'text-red-400' : 'text-emerald-500'}>{team1Titulares.length}/30</strong>
-                    </span>
-                    <span className={`border px-2 py-0.5 rounded-lg ${isDark ? 'bg-[#10131d] border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-700'}`}>
-                      Suplentes: <strong className={team1Suplentes.length > 10 ? 'text-red-400' : 'text-blue-400'}>{team1Suplentes.length}/10</strong>
+                      Miembros: <strong className={team1Members.length > 30 ? 'text-red-400' : 'text-emerald-500'}>{team1Members.length}/30</strong>
                     </span>
                   </div>
-
                   <div className="flex items-center gap-2">
                     <span className="text-purple-400 font-bold">Equipo 2:</span>
                     <span className={`border px-2 py-0.5 rounded-lg ${isDark ? 'bg-[#10131d] border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-700'}`}>
-                      Titulares: <strong className={team2Titulares.length > 30 ? 'text-red-400' : 'text-emerald-500'}>{team2Titulares.length}/30</strong>
+                      Miembros: <strong className={team2Members.length > 30 ? 'text-red-400' : 'text-emerald-500'}>{team2Members.length}/30</strong>
                     </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-emerald-400 font-bold">Suplentes Globales:</span>
                     <span className={`border px-2 py-0.5 rounded-lg ${isDark ? 'bg-[#10131d] border-slate-700 text-slate-300' : 'bg-white border-slate-200 text-slate-700'}`}>
-                      Suplentes: <strong className={team2Suplentes.length > 10 ? 'text-red-400' : 'text-purple-400'}>{team2Suplentes.length}/10</strong>
+                      Total: <strong className={suplentes.length > 20 ? 'text-red-400' : 'text-emerald-500'}>{suplentes.length}/20</strong>
                     </span>
                   </div>
                 </div>
 
-                <div className="flex gap-1.5 font-mono text-[11px]">
+                <div className="flex gap-1.5 font-mono text-[11px] flex-wrap">
                   <button
                     onClick={() => setVacunasTeamFilter('all')}
                     className={`px-2.5 py-1 border rounded-xl transition-colors ${vacunasTeamFilter === 'all' ? 'border-rose-500 text-rose-300 bg-rose-500/20' : (isDark ? 'border-slate-800 text-slate-400 hover:text-white' : 'border-slate-200 text-slate-600 bg-white')}`}
@@ -1645,6 +1659,12 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                     className={`px-2.5 py-1 border rounded-xl transition-colors ${vacunasTeamFilter === 'team2' ? 'border-purple-500 text-purple-300 bg-purple-500/15' : (isDark ? 'border-slate-800 text-slate-400 hover:text-white' : 'border-slate-200 text-slate-600 bg-white')}`}
                   >
                     Equipo 2
+                  </button>
+                  <button
+                    onClick={() => setVacunasTeamFilter('suplente')}
+                    className={`px-2.5 py-1 border rounded-xl transition-colors ${vacunasTeamFilter === 'suplente' ? 'border-emerald-500 text-emerald-300 bg-emerald-500/15' : (isDark ? 'border-slate-800 text-slate-400 hover:text-white' : 'border-slate-200 text-slate-600 bg-white')}`}
+                  >
+                    Suplentes
                   </button>
                   <button
                     onClick={() => setVacunasTeamFilter('unassigned')}
@@ -1774,7 +1794,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                 {/* Quick Bulk Action Buttons */}
                 {activeEventTab === 'tac' && (isAdmin || canEditEvent('tac')) && (
                   <button 
-                    onClick={() => toggleColumnAll('tac_joined', true)} 
+                    onClick={() => handleToggleColumnAll('tac_joined')} 
                     className={`font-mono border p-2 transition-colors rounded-xl flex items-center justify-center ${
                       isDark ? 'border-slate-800 text-slate-300 hover:bg-white/5' : 'border-slate-200 text-slate-700 bg-white hover:bg-slate-100'
                     }`}
@@ -1785,7 +1805,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                 )}
                 {activeEventTab === 'vacunas' && (isAdmin || canEditEvent('vacunas')) && (
                   <button 
-                    onClick={() => toggleColumnAll('lab_joined', true)} 
+                    onClick={() => handleToggleColumnAll('lab_joined')} 
                     className={`font-mono border p-2 transition-colors rounded-xl flex items-center justify-center ${
                       isDark ? 'border-slate-800 text-slate-300 hover:bg-white/5' : 'border-slate-200 text-slate-700 bg-white hover:bg-slate-100'
                     }`}
@@ -1797,7 +1817,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                 {activeEventTab === 'valley' && (isAdmin || canEditEvent('valley')) && (
                   <>
                     <button 
-                      onClick={() => toggleColumnAll('saint_valley', true)} 
+                      onClick={() => handleToggleColumnAll('saint_valley')} 
                       className={`font-mono border p-2 transition-colors rounded-xl flex items-center justify-center ${
                         isDark ? 'border-slate-800 text-slate-300 hover:bg-white/5' : 'border-slate-200 text-slate-700 bg-white hover:bg-slate-100'
                       }`}
@@ -2129,10 +2149,10 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                   {masterView === 'events' && activeEventTab === 'wesker' && (
                     <>
                       <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-3 w-32 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                        {t('admin.table.prev_power')}
+                        Puntos Ant.
                       </th>
                       <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-3 w-40 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                        {t('admin.table.new_power')}
+                        Nuevos Puntos
                       </th>
                       <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-3 w-32 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                         {t('admin.table.increase')}
@@ -2310,9 +2330,10 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                         <td className="py-3 px-3">
                           <input 
                             type="number" 
+                            min="0"
                             value={act.alliance_points || ''} 
                             disabled={!isAuthorizedForCurrentTab}
-                            onChange={(e) => handleCellChange(member.id, 'alliance_points', parseInt(e.target.value) || 0)}
+                            onChange={(e) => handleCellChange(member.id, 'alliance_points', Math.max(0, parseInt(e.target.value) || 0))}
                             className={`w-full bg-transparent border-b ${
                               isDark ? 'border-slate-800 hover:border-slate-600 focus:border-rose-500 text-slate-200 focus:bg-slate-900/40' : 'border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-900 focus:bg-slate-100/70'
                             } font-mono text-xs focus:outline-none transition-colors px-2 py-1 ${!isAuthorizedForCurrentTab ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -2375,9 +2396,14 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                           <td className="py-3 px-3">
                             <input 
                               type="number" 
+                              min="0"
                               value={act.lab_points || ''} 
                               disabled={!isAuthorizedForCurrentTab}
-                              onChange={(e) => handleCellChange(member.id, 'lab_points', parseInt(e.target.value) || 0)}
+                              onChange={(e) => {
+                                const val = Math.max(0, parseInt(e.target.value) || 0);
+                                handleCellChange(member.id, 'lab_points', val);
+                                if (val > 0) handleCellChange(member.id, 'lab_joined', true);
+                              }}
                               placeholder="0"
                               className={`w-full bg-transparent border-b ${
                                 isDark ? 'border-slate-800 hover:border-slate-600 focus:border-rose-500 text-slate-200 focus:bg-slate-900/40' : 'border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-900 focus:bg-slate-100/70'
@@ -2393,9 +2419,10 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                           <td className="py-3 px-3">
                             <input 
                               type="number" 
+                              min="0"
                               value={mort.prep_points || ''} 
                               disabled={!isAuthorizedForCurrentTab}
-                              onChange={(e) => handleMortemChange(member.id, 'prep_points', parseInt(e.target.value) || 0)}
+                              onChange={(e) => handleMortemChange(member.id, 'prep_points', Math.max(0, parseInt(e.target.value) || 0))}
                               placeholder="0"
                               className={`w-full bg-transparent border-b ${
                                 isDark ? 'border-slate-800 hover:border-slate-600 focus:border-rose-500 text-slate-200 focus:bg-slate-900/40' : 'border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-900 focus:bg-slate-100/70'
@@ -2449,7 +2476,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                               value={act.nemesis_level || ''} 
                               disabled={!isAuthorizedForCurrentTab}
                               onChange={(e) => {
-                                let val = parseInt(e.target.value) || 0;
+                                let val = Math.max(0, parseInt(e.target.value) || 0);
                                 if (val > 50) val = 50;
                                 handleCellChange(member.id, 'nemesis_level', val);
                               }}
@@ -2523,9 +2550,10 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                           <td className="py-3 px-3">
                             <input 
                               type="number" 
+                              min="0"
                               value={act.wesker_points || ''} 
                               disabled={!isAuthorizedForCurrentTab}
-                              onChange={(e) => handleCellChange(member.id, 'wesker_points', parseInt(e.target.value) || 0)}
+                              onChange={(e) => handleCellChange(member.id, 'wesker_points', Math.max(0, parseInt(e.target.value) || 0))}
                               className={`w-full bg-transparent border-b ${
                                 isDark ? 'border-slate-800 hover:border-slate-600 focus:border-rose-500 text-slate-200 focus:bg-slate-900/40' : 'border-slate-300 hover:border-slate-400 focus:border-rose-500 text-slate-900 focus:bg-slate-100/70'
                               } font-mono text-xs focus:outline-none transition-colors px-2 py-1 ${!isAuthorizedForCurrentTab ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -2587,6 +2615,48 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         initialTab={activeEventTab}
       />
 
+      {/* Centers Config Modal */}
+      {isCentersConfigOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className={`w-full max-w-md p-6 rounded-2xl shadow-2xl border ${isDark ? 'bg-[#10131d] border-slate-800' : 'bg-white border-slate-200'}`}>
+            <h3 className={`font-bebas text-2xl tracking-wide mb-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              Configurar Centros
+            </h3>
+            <p className={`font-mono text-xs mb-4 ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+              Ingrese los nombres de los Centros de Seguridad separados por comas.
+            </p>
+            <textarea
+              autoFocus
+              value={centersInput}
+              onChange={(e) => setCentersInput(e.target.value)}
+              className={`w-full border font-mono text-xs focus:outline-none rounded-xl p-3 mb-4 min-h-[100px] resize-none ${
+                isDark 
+                  ? 'bg-[#141824] border-slate-700 text-white focus:border-amber-500' 
+                  : 'bg-slate-50 border-slate-300 text-slate-900 focus:border-amber-500'
+              }`}
+              placeholder="Ej: Centro de Mando 1, Centro Médico, Armería..."
+            />
+            <div className="flex justify-end gap-3 mt-2">
+              <button
+                onClick={() => setIsCentersConfigOpen(false)}
+                className={`px-4 py-2 font-mono text-xs uppercase tracking-wider rounded-xl border transition-colors ${
+                  isDark ? 'border-slate-700 text-slate-300 hover:bg-slate-800' : 'border-slate-300 text-slate-700 hover:bg-slate-100'
+                }`}
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={handleSaveCenters}
+                className={`px-5 py-2 font-mono text-xs uppercase tracking-wider rounded-xl transition-colors font-bold ${
+                  isDark ? 'bg-amber-500/20 text-amber-400 border border-amber-500/50 hover:bg-amber-500/30' : 'bg-amber-100 text-amber-800 border border-amber-300 hover:bg-amber-200'
+                }`}
+              >
+                Guardar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Alert / Confirm Modal */}
       <AdminModal 

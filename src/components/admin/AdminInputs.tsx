@@ -79,25 +79,47 @@ export const NemesisSelect = ({ value, onChange, className, disabled }: { value:
   return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="120px" disabled={disabled} />;
 };
 
-export const PhaseSelect = ({ value, onChange, className, disabled }: { value: number, onChange: (val: number) => void, className?: string, disabled?: boolean }) => {
-  const options = [
-    { val: 1, label: 'Fase 1' },
-    { val: 2, label: 'Fase 2' }
-  ];
-  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="100px" disabled={disabled} />;
+export const PhaseSelect = ({ value, onChange, className = '', disabled }: { value: number, onChange: (val: number) => void, className?: string, disabled?: boolean }) => {
+  return (
+    <select
+      value={value}
+      onChange={(e) => onChange(Number(e.target.value))}
+      disabled={disabled}
+      className={`w-full bg-transparent border-b border-transparent hover:border-slate-500 focus:border-rose-500 dark:text-slate-200 text-slate-800 font-mono text-[10px] sm:text-xs outline-none cursor-pointer ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+    >
+      <option value={1} className="dark:bg-[#141824] dark:text-slate-200">Fase 1</option>
+      <option value={2} className="dark:bg-[#141824] dark:text-slate-200">Fase 2</option>
+    </select>
+  );
 };
 
-export const RankSelect = ({ value, onChange, className, disabled }: { value: string, onChange: (val: string) => void, className?: string, disabled?: boolean }) => {
-  const options = ['R1', 'R2', 'R3', 'R4', 'R5'].map(o => ({ val: o, label: o }));
-  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="80px" disabled={disabled} searchable={false} />;
+export const RankSelect = ({ value, onChange, className = '', disabled }: { value: string, onChange: (val: string) => void, className?: string, disabled?: boolean }) => {
+  return (
+    <select
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      disabled={disabled}
+      className={`w-full bg-transparent border-b border-transparent hover:border-slate-500 focus:border-rose-500 dark:text-slate-200 text-slate-800 font-mono text-[10px] sm:text-xs outline-none cursor-pointer ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+    >
+      {['R1', 'R2', 'R3', 'R4', 'R5'].map(o => (
+        <option key={o} value={o} className="dark:bg-[#141824] dark:text-slate-200">{o}</option>
+      ))}
+    </select>
+  );
 };
 
-export const AccountTypeSelect = ({ value, onChange, className, disabled }: { value: string, onChange: (val: string) => void, className?: string, disabled?: boolean }) => {
-  const options = [
-    { val: 'main', label: 'Principal' },
-    { val: 'alt', label: 'Secundaria' }
-  ];
-  return <PortalDropdown value={value} options={options} onChange={onChange} className={className} menuWidth="120px" alignRight disabled={disabled} searchable={false} />;
+export const AccountTypeSelect = ({ value, onChange, className = '', disabled }: { value: string, onChange: (val: string) => void, className?: string, disabled?: boolean }) => {
+  return (
+    <select
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      disabled={disabled}
+      className={`w-full bg-transparent border-b border-transparent hover:border-slate-500 focus:border-rose-500 dark:text-slate-200 text-slate-800 font-mono text-[10px] sm:text-xs outline-none cursor-pointer ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+    >
+      <option value="main" className="dark:bg-[#141824] dark:text-slate-200">Principal</option>
+      <option value="alt" className="dark:bg-[#141824] dark:text-slate-200">Secundaria</option>
+    </select>
+  );
 };
 
 // Formats number with commas: 146433591 -> 146,433,591
@@ -241,12 +263,12 @@ export const TacticalCheckbox = ({
 // VACUNAS ROLE SELECTOR (Equipo 1/2, Titulares & Suplentes)
 // -------------------------------------------------------------
 
-export type VacunasRole = 'none' | 'team1_titular' | 'team1_suplente' | 'team2_titular' | 'team2_suplente';
+export type VacunasRole = 'none' | 'equipo1' | 'equipo2' | 'suplente';
 
 export const VacunasRoleSelect = ({
   value,
   onChange,
-  className,
+  className = '',
   disabled
 }: {
   value: VacunasRole;
@@ -254,22 +276,17 @@ export const VacunasRoleSelect = ({
   className?: string;
   disabled?: boolean;
 }) => {
-  const options: { val: VacunasRole; label: string }[] = [
-    { val: 'none', label: 'Sin Asignar' },
-    { val: 'team1_titular', label: 'Eq. 1 - Titular' },
-    { val: 'team1_suplente', label: 'Eq. 1 - Suplente' },
-    { val: 'team2_titular', label: 'Eq. 2 - Titular' },
-    { val: 'team2_suplente', label: 'Eq. 2 - Suplente' },
-  ];
-
   return (
-    <PortalDropdown
+    <select
       value={value || 'none'}
-      options={options}
-      onChange={(v) => onChange(v as VacunasRole)}
-      className={className}
-      menuWidth="150px"
+      onChange={(e) => onChange(e.target.value as VacunasRole)}
       disabled={disabled}
-    />
+      className={`w-full bg-transparent border-b border-transparent hover:border-slate-500 focus:border-rose-500 dark:text-slate-200 text-slate-800 font-mono text-[10px] sm:text-xs outline-none cursor-pointer ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
+    >
+      <option value="none" className="dark:bg-[#141824] dark:text-slate-200">Sin Asignar</option>
+      <option value="equipo1" className="dark:bg-[#141824] dark:text-slate-200">Equipo 1</option>
+      <option value="equipo2" className="dark:bg-[#141824] dark:text-slate-200">Equipo 2</option>
+      <option value="suplente" className="dark:bg-[#141824] dark:text-slate-200">Suplente</option>
+    </select>
   );
 };

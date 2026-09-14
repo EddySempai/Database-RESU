@@ -280,10 +280,7 @@ export const downloadExcelTemplate = (
     '#': idx + 1,
     'Operativo': m.nickname,
     'Rango': m.rank,
-    'Tipo': m.account_type === 'alt' ? 'Secundaria' : 'Principal',
     'Puntos_O_Danio': '',
-    'Poder_Actual': m.power || 0,
-    'ID_Sistema': m.id,
   }));
 
   const worksheet = XLSX.utils.json_to_sheet(data);
@@ -293,10 +290,7 @@ export const downloadExcelTemplate = (
     { wch: 5 },   // #
     { wch: 24 },  // Operativo
     { wch: 8 },   // Rango
-    { wch: 14 },  // Tipo
     { wch: 18 },  // Puntos_O_Danio
-    { wch: 16 },  // Poder_Actual
-    { wch: 38 },  // ID_Sistema
   ];
 
   const workbook = XLSX.utils.book_new();

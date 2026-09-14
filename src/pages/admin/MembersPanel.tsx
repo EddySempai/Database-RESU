@@ -26,7 +26,7 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRank, setFilterRank] = useState<string>('ALL');
-  const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive' | 'kicked'>('active');
+  const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive' | 'kicked'>('all');
   const [editingAliasMemberId, setEditingAliasMemberId] = useState<string | null>(null);
   const [newAliasText, setNewAliasText] = useState('');
 
@@ -363,10 +363,10 @@ const MembersPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                   : 'bg-white border-black text-slate-700 focus:border-rose-500 shadow-sm'
               }`}
             >
-              <option value="active">Activos</option>
-              <option value="inactive">Inactivos</option>
-              <option value="kicked">Ex-Miembros</option>
-              <option value="all">Todos los Estados</option>
+              <option value="active" className="dark:bg-[#141824] dark:text-slate-300">Activos</option>
+              <option value="inactive" className="dark:bg-[#141824] dark:text-slate-300">Inactivos</option>
+              <option value="kicked" className="dark:bg-[#141824] dark:text-slate-300">Ex-Miembros</option>
+              <option value="all" className="dark:bg-[#141824] dark:text-slate-300">Todos los Estados</option>
             </select>
           </div>
 
