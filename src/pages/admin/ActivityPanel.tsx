@@ -523,7 +523,27 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         }
       }
 
-      // 2. Always persist Vacunas teams and Mortem data in guild_settings for guaranteed persistence
+      // 2. Persist power and mansion_level to guild_members
+      const memberUpdates = Object.values(activities).map(act => {
+        const original = members.find(m => m.id === act.member_id);
+        const actMansion = (act as any).mansion_level;
+        if (original && (original.power !== act.power || original.mansion_level !== actMansion)) {
+          return supabase
+            .from('members')
+            .update({ 
+              power: act.power, 
+              mansion_level: actMansion || 1 
+            })
+            .eq('id', act.member_id);
+        }
+        return null;
+      }).filter(Boolean);
+
+      if (memberUpdates.length > 0) {
+        await Promise.all(memberUpdates);
+      }
+
+      // 3. Always persist Vacunas teams and Mortem data in guild_settings for guaranteed persistence
       await supabase
         .from('guild_settings')
         .upsert({ key: `vacunas_teams_${activeAlliance}`, value: vacunasTeams });
@@ -746,10 +766,18 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
         security_centers_data: []
       };
 
-      (curr as any)[u.field] = u.value;
+      if (u.field === 'saint_valley') {
+        curr.saint_valley = Number(u.value) > 0;
+      } else {
+        (curr as any)[u.field] = u.value;
+      }
 
       if (u.field === 'tac_power' && u.value > 0) {
         curr.tac_joined = true;
+      }
+      
+      if (u.field === 'lab_points' && u.value > 0) {
+        curr.lab_joined = true;
       }
 
       if (u.extraFields) {
@@ -789,6 +817,9 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
       vacunas: 'lab',
       mortem: 'mortem',
       wesker: 'wesker',
+      valley: 'valley',
+      union: 'union',
+      nemesis: 'nemesis',
     };
 
     const requested = tabToEvent[activeEventTab] || 'crocodile';
@@ -1054,7 +1085,7 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     const allEvents = [...weeklyEvents, ...rotatingEvents];
     const currentTabObj = allEvents.find(e => e.id === activeEventTab);
     const eventName = currentTabObj ? currentTabObj.label : 'General';
-    downloadExcelTemplate(members, activeAlliance, eventName);
+    downloadExcelTemplate(members, activeAlliance, eventName, activeEventTab);
   };
 
   return (

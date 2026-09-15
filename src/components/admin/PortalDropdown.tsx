@@ -139,7 +139,10 @@ export const PortalDropdown = ({
             left: alignRight ? `calc(${coords.left}px - ${menuWidth || '100px'})` : coords.left, 
             width: menuWidth || Math.max(coords.width, 100)
           }}
-          onMouseDown={(e) => e.stopPropagation()}
+          onMouseDown={(e) => {
+            e.stopPropagation();
+            e.preventDefault(); // Prevents input from losing focus before onClick fires
+          }}
         >
           {filteredOptions.length > 0 ? filteredOptions.map(o => (
             <div

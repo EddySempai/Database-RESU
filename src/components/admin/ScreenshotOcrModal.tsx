@@ -32,7 +32,7 @@ export interface ClanMember {
   power?: number;
 }
 
-export type EventTargetType = 'crocodile' | 'lab' | 'tac' | 'wesker' | 'power' | 'mortem';
+export type EventTargetType = 'crocodile' | 'lab' | 'tac' | 'wesker' | 'power' | 'mortem' | 'valley' | 'union' | 'nemesis';
 
 export interface EditableOcrRow {
   id: string;
@@ -63,6 +63,9 @@ const EVENT_OPTIONS: { id: EventTargetType; label: string; field: string; desc: 
   { id: 'tac', label: 'TAC (Torneo)', field: 'tac_power', desc: 'Asigna poder de TAC y marca participación', eventKey: 'tac' },
   { id: 'mortem', label: 'Repeler a Mortem', field: 'mortem_damage', desc: 'Asigna daño principal infligido a Mortem', eventKey: 'mortem' },
   { id: 'wesker', label: 'Wesker', field: 'wesker_points', desc: 'Asigna puntos de Wesker', eventKey: 'wesker' },
+  { id: 'valley', label: 'Centros & Valle', field: 'saint_valley', desc: 'Marca la asistencia de Valle', eventKey: 'valley' },
+  { id: 'union', label: 'Unión Alianza', field: 'alliance_points', desc: 'Asigna puntos de Unión Alianza', eventKey: 'union' },
+  { id: 'nemesis', label: 'Alianza Némesis', field: 'nemesis_level', desc: 'Asigna nivel alcanzado en Némesis', eventKey: 'nemesis' },
   { id: 'power', label: 'Poder de Operativos', field: 'power', desc: 'Actualiza el poder general de los miembros' },
 ];
 

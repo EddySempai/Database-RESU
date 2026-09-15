@@ -274,24 +274,67 @@ export interface TemplateMember {
 export const downloadExcelTemplate = (
   members: TemplateMember[],
   allianceName: string = 'RESU',
-  eventTitle: string = 'General'
+  eventTitle: string = 'General',
+  eventId?: string
 ) => {
-  const data = members.map((m, idx) => ({
-    '#': idx + 1,
-    'Operativo': m.nickname,
-    'Rango': m.rank,
-    'Puntos_O_Danio': '',
-  }));
+  let data: any[] = [];
+  let cols: any[] = [];
+
+  if (eventId === 'mortem') {
+    data = members.map((m, idx) => ({
+      '#': idx + 1,
+      'Operativo': m.nickname,
+      'Pts_Preparacion': '',
+      'Danio_Escudo': '',
+      'Danio_Base': '',
+    }));
+    cols = [{ wch: 5 }, { wch: 24 }, { wch: 18 }, { wch: 18 }, { wch: 18 }];
+  } else if (eventId === 'crocodile') {
+    data = members.map((m, idx) => ({
+      '#': idx + 1,
+      'Operativo': m.nickname,
+      'Rango': m.rank,
+      'Danio': '',
+    }));
+    cols = [{ wch: 5 }, { wch: 24 }, { wch: 8 }, { wch: 18 }];
+  } else if (eventId === 'vacunas') {
+    data = members.map((m, idx) => ({
+      '#': idx + 1,
+      'Operativo': m.nickname,
+      'Rango': m.rank,
+      'Puntos_Laboratorio': '',
+    }));
+    cols = [{ wch: 5 }, { wch: 24 }, { wch: 8 }, { wch: 22 }];
+  } else if (eventId === 'wesker') {
+    data = members.map((m, idx) => ({
+      '#': idx + 1,
+      'Operativo': m.nickname,
+      'Rango': m.rank,
+      'Puntos_Wesker': '',
+    }));
+    cols = [{ wch: 5 }, { wch: 24 }, { wch: 8 }, { wch: 18 }];
+  } else if (eventId === 'nemesis') {
+    data = members.map((m, idx) => ({
+      '#': idx + 1,
+      'Operativo': m.nickname,
+      'Rango': m.rank,
+      'Nivel_Nemesis': '',
+    }));
+    cols = [{ wch: 5 }, { wch: 24 }, { wch: 8 }, { wch: 18 }];
+  } else {
+    data = members.map((m, idx) => ({
+      '#': idx + 1,
+      'Operativo': m.nickname,
+      'Rango': m.rank,
+      'Puntos_O_Danio': '',
+    }));
+    cols = [{ wch: 5 }, { wch: 24 }, { wch: 8 }, { wch: 18 }];
+  }
 
   const worksheet = XLSX.utils.json_to_sheet(data);
 
   // Set column widths
-  worksheet['!cols'] = [
-    { wch: 5 },   // #
-    { wch: 24 },  // Operativo
-    { wch: 8 },   // Rango
-    { wch: 18 },  // Puntos_O_Danio
-  ];
+  worksheet['!cols'] = cols;
 
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, 'Asistencia');
