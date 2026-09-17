@@ -175,6 +175,35 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     fetchData();
   }, [activeAlliance]);
 
+  // Auto-select latest dates when metric changes or available dates load
+  useEffect(() => {
+    if (availableDates.length === 0) return;
+    
+    // Always default to latest cycle for power and score since they are tracked daily
+    if (metric === 'power' || metric === 'all_time_score') {
+      setSelectedRecentDate(availableDates[0]);
+      setSelectedPriorDate(availableDates[1] || availableDates[0]);
+      return;
+    }
+
+    // For specific events, find the dates where that event actually occurred
+    const metricDates = availableDates.filter(d => {
+      const actsForDate = activities.filter(a => a.cycle_date === d);
+      return actsForDate.some(a => {
+        const val = a[metric as keyof ActivityRecord];
+        return typeof val === 'number' && val > 0;
+      });
+    });
+
+    if (metricDates.length > 0) {
+      setSelectedRecentDate(metricDates[0]);
+      setSelectedPriorDate(metricDates[1] || metricDates[0]);
+    } else {
+      setSelectedRecentDate(availableDates[0]);
+      setSelectedPriorDate(availableDates[1] || availableDates[0]);
+    }
+  }, [metric, availableDates, activities]);
+
   const fetchData = async () => {
     setLoading(true);
     try {
@@ -233,11 +262,6 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
 
       const uniqueDates = Array.from(new Set(augmentedActs.map(a => a.cycle_date))).sort().reverse();
       setAvailableDates(uniqueDates);
-
-      if (uniqueDates.length > 0) {
-        setSelectedRecentDate(uniqueDates[0]);
-        setSelectedPriorDate(uniqueDates[1] || uniqueDates[0]);
-      }
 
       setMembers(memData || []);
       setActivities(augmentedActs);
@@ -299,6 +323,26 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     if (unionScore > 0) score += unionScore;
     if (Number(act.nemesis_level) > 0) score += 2;
     return score;
+  };
+
+  const getDateLabel = (date: string) => {
+    const actsForDate = activities.filter(a => a.cycle_date === date);
+    const events = new Set<string>();
+    for (const a of actsForDate) {
+      if (a.crocodile_damage > 0) events.add("Caimán");
+      if (a.saint_valley) events.add("Valle");
+      if (a.security_centers || (a as any).security_centers_data?.length > 0) events.add("Centros");
+      if (a.lab_joined || a.lab_points > 0) events.add("Vacunas");
+      if (a.tac_joined || a.tac_power > 0) events.add("TAC");
+      if (a.wesker_points > 0) events.add("Wesker");
+      if (Number(a.nemesis_level) > 0) events.add("Némesis");
+      if ((a.mortem_damage && a.mortem_damage > 0) || (a.mortem_shield_damage && a.mortem_shield_damage > 0) || (a.mortem_prep_points && a.mortem_prep_points > 0)) events.add("Mortem");
+      if ((a.alliance_points && a.alliance_points > 0)) events.add("Unión");
+    }
+    const eventList = Array.from(events);
+    if (eventList.length === 0) return date;
+    const labels = eventList.slice(0, 3).join(', ');
+    return `${date} | ${labels}${eventList.length > 3 ? '...' : ''}`;
   };
 
   // Calculate analysis data based on selected cycle dates and metric
@@ -452,7 +496,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                   }`}
                 >
                   {availableDates.map(d => (
-                    <option key={d} value={d} className={isDark ? 'bg-[#141824] text-white' : 'bg-white text-slate-900'}>{d}</option>
+                    <option key={d} value={d} className={isDark ? 'bg-[#141824] text-white' : 'bg-white text-slate-900'}>{getDateLabel(d)}</option>
                   ))}
                 </select>
                 <span className={isDark ? 'text-slate-600' : 'text-slate-400'}>vs</span>
@@ -464,7 +508,7 @@ const AnalyticsPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                   }`}
                 >
                   {availableDates.map(d => (
-                    <option key={d} value={d} className={isDark ? 'bg-[#141824] text-slate-300' : 'bg-white text-slate-700'}>{d}</option>
+                    <option key={d} value={d} className={isDark ? 'bg-[#141824] text-slate-300' : 'bg-white text-slate-700'}>{getDateLabel(d)}</option>
                   ))}
                 </select>
               </div>

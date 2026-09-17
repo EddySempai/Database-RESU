@@ -11,7 +11,7 @@ import {
   Crown, Medal, Award, Boxes, AlertCircle, Lock,
   TrendingUp, Crosshair, AlertTriangle, Download,
   ArrowUpRight, ArrowDownRight, ShieldAlert, Zap, Filter,
-  ChevronLeft, ChevronRight, CheckSquare, Settings
+  ChevronLeft, ChevronRight, CheckSquare, Settings, Calculator
 } from 'lucide-react';
 import { 
   MansionSelect, 
@@ -97,6 +97,11 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     server_rank: '#3 en Servidor',
     strategy_notes: 'Fase 1: Derribar el escudo de Mortem en los primeros 45 segundos usando operativos tácticos de alto daño por segundo. Fase 2: Daño concentrado en puntos débiles.'
   });
+
+  // Loot Calculator
+  const [showLootCalculator, setShowLootCalculator] = useState(false);
+  const [lootTotal, setLootTotal] = useState<string>('');
+  const [lootMaxPerPlayer, setLootMaxPerPlayer] = useState<string>('');
 
   // Modals
   const [modal, setModal] = useState<{
@@ -1033,6 +1038,84 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
     };
   }, [members, activities, prevActivities, rawParticipationMap]);
 
+  // Computed loot allocation
+  const lootAllocation = useMemo(() => {
+    if (!showLootCalculator) return {};
+    const total = parseInt(lootTotal) || 0;
+    const max = parseInt(lootMaxPerPlayer) || 0;
+    
+    if (total <= 0 || max <= 0) return {};
+    
+    const allocation: Record<string, number> = {};
+    let pool = total;
+    
+    const eligibleMembers = [...members].filter(m => {
+      const isSpecial = (m.rank === 'R4' || m.rank === 'R5') && m.account_type === 'main';
+      const hasPoints = participationMap[m.id] && participationMap[m.id].total > 0;
+      return hasPoints || isSpecial;
+    }).sort((a, b) => (participationMap[a.id]?.rankPos ?? 9999) - (participationMap[b.id]?.rankPos ?? 9999));
+      
+    const isSpecial = (m: typeof members[0]) => (m.rank === 'R4' || m.rank === 'R5') && m.account_type === 'main';
+
+    const elite = eligibleMembers.filter(m => participationMap[m.id]?.tier === 'elite' || isSpecial(m));
+    const reduced = eligibleMembers.filter(m => participationMap[m.id]?.tier === 'reduced' && !isSpecial(m));
+    const basic = eligibleMembers.filter(m => participationMap[m.id]?.tier === 'basic' && !isSpecial(m));
+
+    // 1. Asignar Élite (Top-heavy hasta agotar o llegar a max)
+    for (const m of elite) {
+      if (pool <= 0) break;
+      const give = Math.min(max, pool);
+      allocation[m.id] = give;
+      pool -= give;
+    }
+
+    // 2. Asignar Reducido y Básico (Sistema de Pesos)
+    if (pool > 0 && (reduced.length > 0 || basic.length > 0)) {
+      let valR = 0;
+      let valB = 0;
+      
+      const wR = 2; // Peso Reducido
+      const wB = 1; // Peso Básico
+      const totalWeight = (reduced.length * wR) + (basic.length * wB);
+      
+      if (totalWeight > 0) {
+        const unit = Math.floor(pool / totalWeight);
+        
+        valR = Math.min(unit * wR, max);
+        valB = Math.min(unit * wB, max);
+        
+        pool -= (valR * reduced.length + valB * basic.length);
+        
+        // Distribuir el sobrante equitativamente por bloques para no romper el empate de Tier
+        while (pool >= reduced.length && valR < max) {
+          valR++;
+          pool -= reduced.length;
+        }
+        
+        while (pool >= basic.length && valB < max) {
+          if (valB < valR || valR === max) {
+            valB++;
+            pool -= basic.length;
+          } else {
+            break;
+          }
+        }
+      }
+      
+      for (const m of reduced) {
+        allocation[m.id] = valR;
+      }
+      for (const m of basic) {
+        allocation[m.id] = valB;
+      }
+    }
+    
+    // 3. Fallback: Si sobra lote y hay empate exacto de sobra, NO rompemos el Tier.
+    // El sobrante se mostrará en UI como "Sobra: X".
+    
+    return allocation;
+  }, [showLootCalculator, lootTotal, lootMaxPerPlayer, members, participationMap]);
+
   const activeCount = members.filter(m => m.account_type === 'main').length;
   const altCount = members.filter(m => m.account_type === 'alt').length;
   const recordedCount = Object.keys(activities).length;
@@ -1467,6 +1550,85 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                   Cocodrilo: <strong className="text-emerald-500">+1</strong>
                 </span>
               </div>
+            </div>
+
+
+            {/* Loot Calculator Top-Heavy Widget */}
+            <div className={`border p-4 rounded-2xl flex flex-col transition-colors ${
+              isDark ? 'bg-[#141824] border-slate-800/80' : 'bg-slate-50 border-slate-200'
+            }`}>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Calculator size={16} className={showLootCalculator ? "text-amber-500" : (isDark ? "text-slate-500" : "text-slate-400")} />
+                  <h4 className={`font-bebas text-lg tracking-wider ${showLootCalculator ? (isDark ? 'text-amber-400' : 'text-amber-600') : (isDark ? 'text-slate-400' : 'text-slate-500')} transition-colors`}>
+                    Calculadora de Distribución de Botín
+                  </h4>
+                </div>
+                <button
+                  onClick={() => { playClick(); setShowLootCalculator(!showLootCalculator); }}
+                  className={`px-3 py-1 font-mono text-xs uppercase tracking-wider rounded-lg border transition-all ${
+                    showLootCalculator 
+                      ? (isDark ? 'bg-amber-500/10 text-amber-400 border-amber-500/30 hover:bg-amber-500/20' : 'bg-amber-100 text-amber-700 border-amber-300 hover:bg-amber-200') 
+                      : (isDark ? 'bg-[#10131d] text-slate-400 border-slate-700 hover:text-white' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-100 shadow-sm')
+                  }`}
+                >
+                  {showLootCalculator ? 'Ocultar' : 'Abrir'}
+                </button>
+              </div>
+
+              {showLootCalculator && (
+                <>
+                <div className="flex flex-col sm:flex-row gap-4 mt-4 pt-4 border-t border-slate-800/40">
+                  <div className="flex-1">
+                    <label className={`block text-[10px] font-mono uppercase tracking-wider mb-1.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Lote Total de Recompensas (Ej: 600)</label>
+                    <input 
+                      type="number" 
+                      value={lootTotal}
+                      onChange={(e) => setLootTotal(e.target.value)}
+                      placeholder="0"
+                      min="0"
+                      className={`w-full font-mono text-sm px-3 py-2 border rounded-xl focus:outline-none transition-colors ${
+                        isDark 
+                          ? 'bg-[#10131d] border-slate-700 text-white focus:border-amber-500/60' 
+                          : 'bg-white border-slate-300 text-slate-900 focus:border-amber-400 shadow-sm'
+                      }`}
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label className={`block text-[10px] font-mono uppercase tracking-wider mb-1.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Límite Máximo por Operativo (Ej: 20)</label>
+                    <input 
+                      type="number" 
+                      value={lootMaxPerPlayer}
+                      onChange={(e) => setLootMaxPerPlayer(e.target.value)}
+                      placeholder="0"
+                      min="0"
+                      className={`w-full font-mono text-sm px-3 py-2 border rounded-xl focus:outline-none transition-colors ${
+                        isDark 
+                          ? 'bg-[#10131d] border-slate-700 text-white focus:border-amber-500/60' 
+                          : 'bg-white border-slate-300 text-slate-900 focus:border-amber-400 shadow-sm'
+                      }`}
+                    />
+                  </div>
+                </div>
+                
+                {(() => {
+                  const distributed = Object.values(lootAllocation).reduce((acc, val) => acc + val, 0);
+                  const total = parseInt(lootTotal) || 0;
+                  const remaining = Math.max(0, total - distributed);
+                  if (total === 0) return null;
+                  return (
+                    <div className="mt-3 pt-3 border-t border-dashed border-slate-500/30 flex items-center justify-between font-mono text-[11px] uppercase tracking-wider">
+                      <span className={isDark ? 'text-slate-400' : 'text-slate-500'}>
+                        Asignado: <strong className={isDark ? 'text-emerald-400' : 'text-emerald-600'}>{distributed}</strong> / {total}
+                      </span>
+                      <span className={remaining === 0 ? (isDark ? 'text-rose-400 font-bold' : 'text-rose-600 font-bold') : (isDark ? 'text-amber-400 font-bold' : 'text-amber-600 font-bold')}>
+                        {remaining === 0 ? 'Lote Agotado' : `Sobra: ${remaining}`}
+                      </span>
+                    </div>
+                  );
+                })()}
+                </>
+              )}
             </div>
 
             {/* Filter & Export Toolbar */}
@@ -2047,6 +2209,11 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                       <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-3 w-32 text-center ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                         {t('admin.table.total_pts')}
                       </th>
+                      {showLootCalculator && (
+                        <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-3 w-28 text-center ${isDark ? 'text-amber-500' : 'text-amber-600'}`}>
+                          Calculadora
+                        </th>
+                      )}
                       <th className={`font-mono text-[11px] uppercase tracking-widest py-3 px-3 w-52 text-center ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                         {t('admin.table.loot_alloc')}
                       </th>
@@ -2277,6 +2444,25 @@ const ActivityPanel = ({ activeAlliance }: { activeAlliance: string }) => {
                               {partScore.total} <span className={`text-xs font-normal ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>pts</span>
                             </span>
                           </td>
+
+                          {/* Loot Calculator Allocation */}
+                          {showLootCalculator && (
+                            <td className="py-3 px-3 text-center">
+                              {lootAllocation[member.id] > 0 ? (
+                                <span className={`font-mono text-sm font-bold px-2 py-0.5 rounded-lg border ${
+                                  lootAllocation[member.id] === parseInt(lootMaxPerPlayer)
+                                    ? (isDark ? 'bg-amber-500/20 text-amber-400 border-amber-500/50' : 'bg-amber-100 text-amber-700 border-amber-400')
+                                    : (isDark ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-emerald-50 text-emerald-600 border-emerald-300')
+                                }`}>
+                                  +{lootAllocation[member.id]}
+                                </span>
+                              ) : (
+                                <span className={`font-mono text-xs ${isDark ? 'text-slate-600' : 'text-slate-300'}`}>
+                                  -
+                                </span>
+                              )}
+                            </td>
+                          )}
 
                           {/* Reward Tier */}
                           <td className="py-3 px-3 text-center">
