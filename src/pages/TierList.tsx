@@ -220,11 +220,13 @@ export default function TierList() {
   return (
     <div className="pt-24 pb-12 px-4 sm:px-6 max-w-7xl mx-auto min-h-screen relative z-10 w-full overflow-x-hidden">
       <Helmet>
-        <title>Tier List de Héroes | RE: Survival Unit Hub</title>
-        <meta name="description" content="Descubre cuáles son los mejores operativos (SS, S, A, B) en el meta actual. Análisis táctico de vanguardia y retaguardia." />
-        <meta property="og:title" content="Tier List de Héroes | RE: Survival Unit Hub" />
-        <meta property="og:description" content="Descubre cuáles son los mejores operativos (SS, S, A, B) en el meta actual." />
-        <meta property="og:image" content="https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?q=80&w=1200&auto=format&fit=crop" />
+        <title>Tier List de Héroes y Formaciones Meta | Resident Evil: Survival Unit Wiki</title>
+        <meta name="description" content="Tier List actualizada de Resident Evil: Survival Unit. Conoce los mejores operativos (SS, S, A, B, C) en el meta actual de PvP Arena, formaciones meta de vanguardia y retaguardia." />
+        <link rel="canonical" href="https://resudb.com/tier-list" />
+        <meta property="og:title" content="Tier List de Héroes y Equipos Meta | Resident Evil: Survival Unit Wiki" />
+        <meta property="og:description" content="Descubre cuáles son los mejores operativos en el meta actual de Resident Evil: Survival Unit." />
+        <meta property="og:url" content="https://resudb.com/tier-list" />
+        <meta property="og:image" content="https://resudb.com/metadata-img.png" />
       </Helmet>
       
       {/* Header */}

@@ -1,7 +1,7 @@
 {
-  "name": "RE: Survival Unit - Database Hub",
-  "short_name": "RESU Database",
-  "description": "Base de datos táctica completa, comparador de héroes, Tier List y calculadora de aceleradores para RE: Survival Unit.",
+  "name": "Resident Evil: Survival Unit Wiki & Database",
+  "short_name": "RESU Wiki",
+  "description": "Wiki de la comunidad y base de datos completa de Resident Evil: Survival Unit con guías de eventos, tier list y calculadoras tácticas.",
   "icons": [
     {
       "src": "/favicon.png",

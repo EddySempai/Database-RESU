@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import TrainingCalculator from '../components/TrainingCalculator';
 import Treasures from '../components/Treasures';
 import Jewels from '../components/Jewels';
@@ -108,6 +109,15 @@ const Calculadoras = () => {
 
   return (
     <div className="pt-24 min-h-screen relative z-10 w-full overflow-x-hidden">
+      <Helmet>
+        <title>Calculadoras Tácticas (Tropas, Luminio, Tesoros) | Resident Evil: Survival Unit Wiki</title>
+        <meta name="description" content="Calculadoras de Resident Evil: Survival Unit. Simula aceleradores de entrenamiento de tropas para Cumbre de Ases, árbol de investigación de Luminio, tesoros míticos y gemas." />
+        <link rel="canonical" href="https://resudb.com/herramientas" />
+        <meta property="og:title" content="Calculadoras Tácticas | Resident Evil: Survival Unit Wiki" />
+        <meta property="og:description" content="Simuladores y calculadoras tácticas para Resident Evil: Survival Unit." />
+        <meta property="og:url" content="https://resudb.com/herramientas" />
+        <meta property="og:image" content="https://resudb.com/metadata-img.png" />
+      </Helmet>
       <div className="text-center px-4 sm:px-6 mb-8">
         <h1 className="font-bebas text-4xl sm:text-5xl md:text-7xl tracking-wider sm:tracking-widest text-white uppercase mb-4 break-words">{t('tools_page.tactical_tools')}</h1>
         <p className="font-inter text-gray-400 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">{t('tools_page.tools_desc')}</p>

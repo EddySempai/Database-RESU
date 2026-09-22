@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Shield, Key } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import llaverosData from '../data/llaveros.json';
 
 interface Keyring {
@@ -27,6 +28,15 @@ const Llaveros = () => {
 
   return (
     <div className="pt-24 pb-20 px-4 sm:px-6 max-w-7xl mx-auto min-h-screen w-full overflow-x-hidden">
+      <Helmet>
+        <title>Catálogo de 42 Llaveros y Efectos Pasivos | Resident Evil: Survival Unit Wiki</title>
+        <meta name="description" content="Catálogo completo de los 42 llaveros de Resident Evil: Survival Unit. Descubre los efectos pasivos permanentes de inventario y las sub-estadísticas equipadas en las 3 ranuras." />
+        <link rel="canonical" href="https://resudb.com/llaveros" />
+        <meta property="og:title" content="Catálogo de Llaveros (KeyRings) | Resident Evil: Survival Unit Wiki" />
+        <meta property="og:description" content="Efectos pasivos y ranuras de los 42 llaveros de Resident Evil: Survival Unit." />
+        <meta property="og:url" content="https://resudb.com/llaveros" />
+        <meta property="og:image" content="https://resudb.com/metadata-img.png" />
+      </Helmet>
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

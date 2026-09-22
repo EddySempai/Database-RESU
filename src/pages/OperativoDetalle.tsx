@@ -167,18 +167,20 @@ const OperativoDetalle = () => {
   return (
     <div className="w-full pt-24 sm:pt-28 pb-12 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col">
       <Helmet>
-        <title>{`${op.name} | RE: Survival Unit Database`}</title>
-        <meta name="description" content={`Detalles tácticos, estadísticas, habilidades y calculadoras para ${op.name} en Resident Evil: Survival Unit.`} />
-        <meta property="og:title" content={`${op.name} - RE: Survival Unit Database`} />
-        <meta property="og:description" content={`Consulta los datos tácticos de ${op.name}: tipo de unidad, habilidades y calculadoras de optimización.`} />
-        <meta property="og:image" content={op.iconUrl || `https://www.residentevil-survivalunit.com/operativos/${op.imageUrl.split('/').pop()}`} />
+        <title>{`${op.name} - Guía y Estadísticas | Resident Evil: Survival Unit Wiki`}</title>
+        <meta name="description" content={`Guía táctica completa de ${op.name} en Resident Evil: Survival Unit Wiki. Conoce sus habilidades de campo y exploración, estadísticas, talentos y armas exclusivas.`} />
+        <link rel="canonical" href={`https://resudb.com/heroes/${op.id}`} />
+        <meta property="og:title" content={`${op.name} | Resident Evil: Survival Unit Wiki`} />
+        <meta property="og:description" content={`Consulta los datos tácticos de ${op.name}: tipo de unidad, habilidades y calculadoras de optimización en la Wiki de RESU.`} />
+        <meta property="og:url" content={`https://resudb.com/heroes/${op.id}`} />
+        <meta property="og:image" content={op.iconUrl || `https://resudb.com/operativos/${op.imageUrl.split('/').pop()}`} />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
 
       {/* Top Back Link */}
       <div className="mb-6 flex items-center justify-between">
         <Link 
-          to="/operativos" 
+          to="/heroes" 
           onMouseEnter={playHover}
           onClick={playClick}
           className="inline-flex items-center gap-2 text-gray-400 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors bg-black/60 border border-gray-800 hover:border-gray-600 px-3.5 py-2 rounded-sm shadow-md"

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, 
@@ -188,6 +189,16 @@ export default function GuiaDetalle() {
 
   return (
     <div className="pt-28 sm:pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto min-h-screen relative z-10 w-full overflow-x-hidden min-w-0 flex flex-col">
+      <Helmet>
+        <title>{`${guide.title} | Resident Evil: Survival Unit Wiki`}</title>
+        <meta name="description" content={guide.desc} />
+        <link rel="canonical" href={`https://resudb.com/guias/${guide.slug}`} />
+        <meta property="og:title" content={`${guide.title} | Resident Evil: Survival Unit Wiki`} />
+        <meta property="og:description" content={guide.desc} />
+        <meta property="og:url" content={`https://resudb.com/guias/${guide.slug}`} />
+        <meta property="og:image" content={guide.image ? `https://resudb.com${guide.image}` : 'https://resudb.com/metadata-img.png'} />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
       
       {/* Top Reading Progress Bar */}
       <motion.div

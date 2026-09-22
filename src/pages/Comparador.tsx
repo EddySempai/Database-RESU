@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, Crosshair, Heart, Zap, Search, X, Loader2 } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useTranslation } from 'react-i18next';
@@ -177,6 +178,15 @@ const Comparador = () => {
 
   return (
     <div className="pt-24 pb-12 px-4 sm:px-6 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col w-full overflow-x-hidden">
+      <Helmet>
+        <title>Comparador de Héroes y Atributos | Resident Evil: Survival Unit Wiki</title>
+        <meta name="description" content="Compara héroes cara a cara en Resident Evil: Survival Unit. Analiza estadísticas base de vida, ataque, defensa, porcentaje de habilidades de campo y sinergia con IA (Red Queen)." />
+        <link rel="canonical" href="https://resudb.com/comparador" />
+        <meta property="og:title" content="Comparador de Héroes | Resident Evil: Survival Unit Wiki" />
+        <meta property="og:description" content="Comparador táctico de héroes cara a cara para Resident Evil: Survival Unit." />
+        <meta property="og:url" content="https://resudb.com/comparador" />
+        <meta property="og:image" content="https://resudb.com/metadata-img.png" />
+      </Helmet>
       <OnboardingTour run={run} steps={steps} stepIndex={stepIndex} handleJoyrideCallback={handleJoyrideCallback} />
       {/* Top Action Bar */}
       <div className="flex justify-center sm:justify-end mb-4">

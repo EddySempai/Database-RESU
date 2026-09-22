@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Admin routes
+Disallow: /admin/
+Disallow: /admin/*
+
+# Host
+Host: https://resudb.com
+
+# Sitemaps
+Sitemap: https://resudb.com/sitemap.xml

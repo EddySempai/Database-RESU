@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Target, Search, Filter } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useOperativos } from '../hooks/useOperativos';
 import { useSound } from '../contexts/SoundContext';
@@ -45,6 +46,15 @@ const Heroes = () => {
 
   return (
     <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10">
+      <Helmet>
+        <title>Base de Datos de Héroes y Operativos | Resident Evil: Survival Unit Wiki</title>
+        <meta name="description" content="Lista completa de los 31 operativos de Resident Evil: Survival Unit. Consulta estadísticas de combate, habilidades de exploración y campo, talentos y armas exclusivas." />
+        <link rel="canonical" href="https://resudb.com/heroes" />
+        <meta property="og:title" content="Héroes y Operativos | Resident Evil: Survival Unit Wiki" />
+        <meta property="og:description" content="Base de datos con los 31 héroes de Resident Evil: Survival Unit: estadísticas, habilidades y armas exclusivas." />
+        <meta property="og:url" content="https://resudb.com/heroes" />
+        <meta property="og:image" content="https://resudb.com/metadata-img.png" />
+      </Helmet>
       
       {/* Header Bar */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">

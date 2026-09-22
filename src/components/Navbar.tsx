@@ -49,8 +49,8 @@ const Navbar = () => {
               </div>
             </div>
             <div>
-              <h1 className="font-bebas text-2xl text-white tracking-widest leading-none">Survival Unit</h1>
-              <span className="font-mono text-[10px] text-neon-red uppercase tracking-widest">Database Hub</span>
+              <div className="font-bebas text-2xl text-white tracking-widest leading-none">Survival Unit</div>
+              <span className="font-mono text-[10px] text-neon-red uppercase tracking-widest">Wiki & Database Hub</span>
             </div>
           </Link>
 

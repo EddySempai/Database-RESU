@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { GUIAS_DATA, type GuideDossier } from '../data/guiasData';
 import { useSound } from '../contexts/SoundContext';
 
@@ -133,6 +134,15 @@ export default function Guias() {
 
   return (
     <div className="pt-28 sm:pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl 2xl:max-w-[1540px] mx-auto min-h-screen relative z-10 flex flex-col min-w-0 w-full overflow-x-hidden">
+      <Helmet>
+        <title>Centro de Guías Tácticas y Eventos | Resident Evil: Survival Unit Wiki</title>
+        <meta name="description" content="Guías completas de eventos para Resident Evil: Survival Unit. Protocolos de combate para Repeler a Mortem, fases de Cumbre de Ases, Asalto al Laboratorio, defensa de alianza y guía para principiantes." />
+        <link rel="canonical" href="https://resudb.com/guias" />
+        <meta property="og:title" content="Guías Tácticas de Eventos | Resident Evil: Survival Unit Wiki" />
+        <meta property="og:description" content="Protocolos de combate de eventos de alianza, jefes mundiales y optimización táctica." />
+        <meta property="og:url" content="https://resudb.com/guias" />
+        <meta property="og:image" content="https://resudb.com/metadata-img.png" />
+      </Helmet>
       
       {/* Subtle Ambient HUD Lighting */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:32px_32px]" />
