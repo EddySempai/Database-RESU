@@ -186,6 +186,16 @@
     "close_modal": "Close"
   },
   "footer": {
+    "support_badge": "COMMUNITY INITIATIVE // OPEN SOURCE",
+    "support_title": "Is the Database helpful?",
+    "support_desc": "This site is free and ad-free for the entire Resident Evil: Survival Unit community. If you would like to support server maintenance costs or contribute to the source code, you are more than welcome!",
+    "buymeacoffee_btn": "Buy Me a Coffee",
+    "buymeacoffee_sub": "Buy us a coffee",
+    "github_btn": "GitHub Repository",
+    "github_sub": "View code & contribute",
+    "official_web": "Official Website",
+    "twitter": "Twitter (X)",
+    "discord": "Official Discord",
     "disclaimer": "This is an informative fan-made website for educational and guide purposes. Resident Evil: Survival Unit is a game co-developed by Aniplex, JOYCITY, and Capcom."
   },
   "home": {

@@ -186,6 +186,16 @@
     "close_modal": "閉じる"
   },
   "footer": {
+    "support_badge": "コミュニティ主導 // オープンソース",
+    "support_title": "データベースは役に立ちましたか？",
+    "support_desc": "このサイトは完全無料で広告もなく、バイオハザード: サバイバルユニットのコミュニティのために提供されています。サーバー維持費の支援やオープンソースへのコード貢献を歓迎します！",
+    "buymeacoffee_btn": "Buy Me a Coffee",
+    "buymeacoffee_sub": "コーヒーをおごる",
+    "github_btn": "GitHubリポジトリ",
+    "github_sub": "コードを見る・貢献する",
+    "official_web": "公式サイト",
+    "twitter": "Twitter (X)",
+    "discord": "公式Discord",
     "disclaimer": "このサイトは、教育およびガイドを目的としたファン作成の情報ウェブサイトです。Resident Evil: Survival Unitは、Aniplex、JOYCITY、およびカプコンが共同開発したゲームです。"
   },
   "home": {

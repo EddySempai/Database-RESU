@@ -36,21 +36,23 @@ const Navbar = () => {
     <>
       <nav 
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? 'bg-[#050505]/90 backdrop-blur-md border-b border-blood-red/30 py-3' : 'bg-transparent py-5'
+          scrolled 
+            ? 'bg-[#050505]/95 backdrop-blur-md border-b border-blood-red/30 py-2.5 sm:py-3 shadow-[0_4px_20px_rgba(0,0,0,0.8)]' 
+            : 'bg-[#050505]/85 md:bg-transparent backdrop-blur-md md:backdrop-blur-none border-b border-blood-red/20 md:border-transparent py-2.5 sm:py-4 md:py-5'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex justify-between items-center">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 cursor-pointer" onMouseEnter={playHover} onClick={playClick}>
-            <div className="w-8 h-8 bg-blood-red rounded-sm flex items-center justify-center transform rotate-45">
-              <div className="w-6 h-6 border border-black transform -rotate-45 flex items-center justify-center">
-                <span className="font-bebas text-black text-xl leading-none pt-1">RE</span>
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 cursor-pointer shrink-0" onMouseEnter={playHover} onClick={playClick}>
+            <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blood-red rounded-sm flex items-center justify-center transform rotate-45 shrink-0">
+              <div className="w-5 h-5 sm:w-6 sm:h-6 border border-black transform -rotate-45 flex items-center justify-center">
+                <span className="font-bebas text-black text-lg sm:text-xl leading-none pt-0.5 sm:pt-1">RE</span>
               </div>
             </div>
-            <div>
-              <div className="font-bebas text-2xl text-white tracking-widest leading-none">Survival Unit</div>
-              <span className="font-mono text-[10px] text-neon-red uppercase tracking-widest">Wiki & Database Hub</span>
+            <div className="flex flex-col">
+              <div className="font-bebas text-xl sm:text-2xl text-white tracking-wider sm:tracking-widest leading-none whitespace-nowrap">Survival Unit</div>
+              <span className="font-mono text-[9px] sm:text-[10px] text-neon-red uppercase tracking-wider sm:tracking-widest block leading-none mt-0.5">Wiki & Database Hub</span>
             </div>
           </Link>
 
@@ -111,21 +113,21 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Right Controls */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-1 sm:gap-2 md:hidden shrink-0">
             <button 
               onClick={() => changeLanguage(i18n.language === 'es' ? 'en' : i18n.language === 'en' ? 'ja' : 'es')}
-              className="flex items-center gap-1.5 bg-black/80 border border-blood-red/40 text-white font-mono text-xs px-2.5 py-1 rounded-sm uppercase shadow-sm"
+              className="flex items-center gap-1 bg-black/80 border border-blood-red/40 text-white font-mono text-[11px] px-2 py-1 rounded-sm uppercase shadow-sm"
               title="Cambiar idioma / Change language"
             >
-              <Globe size={14} className="text-neon-red" />
+              <Globe size={13} className="text-neon-red" />
               <span>{i18n.language.toUpperCase()}</span>
             </button>
             <Link 
               to="/admin"
-              className="text-gray-300 hover:text-white p-1 ml-1"
+              className="text-gray-300 hover:text-white p-1"
               title="Admin Dashboard"
             >
-              <Settings size={16} className="hover:text-neon-red transition-colors" />
+              <Settings size={15} className="hover:text-neon-red transition-colors" />
             </Link>
             <button 
               onClick={toggleSound}
@@ -135,11 +137,11 @@ const Navbar = () => {
               {soundEnabled ? <Volume2 size={16} className="text-neon-red" /> : <VolumeX size={16} />}
             </button>
             <button 
-              className="text-gray-300 hover:text-white p-1"
+              className="text-gray-300 hover:text-white p-1 ml-0.5"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Abrir menú"
             >
-              {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
@@ -205,6 +207,18 @@ const Navbar = () => {
                   JA 日本語
                 </button>
               </div>
+            </div>
+
+            {/* Admin link inside mobile menu */}
+            <div className="border-t border-gray-800/80 pt-4 mt-2">
+              <Link 
+                to="/admin" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-3 text-gray-400 hover:text-white font-mono text-xs uppercase transition-colors"
+              >
+                <Settings size={15} className="text-neon-red" />
+                <span>Admin Dashboard</span>
+              </Link>
             </div>
           </motion.div>
         )}

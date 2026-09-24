@@ -7,7 +7,7 @@ const Hero = () => {
   const { t } = useTranslation();
   const { soundEnabled } = useSound();
   return (
-    <section className="relative h-[80vh] min-h-[600px] flex flex-col items-center justify-center overflow-hidden z-10 pt-20">
+    <section className="relative min-h-[85vh] md:h-[80vh] md:min-h-[620px] flex flex-col items-center justify-start md:justify-center overflow-hidden z-10 pt-24 sm:pt-28 md:pt-20 pb-16">
       {/* Background Video & Vignette */}
       <div 
         className="absolute inset-0 z-0 opacity-50"
@@ -41,18 +41,18 @@ const Hero = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
-        transition={{ staggerChildren: 0.2 }}
-        className="relative z-10 text-center flex flex-col items-center px-4 mt-10"
+        transition={{ staggerChildren: 0.15 }}
+        className="relative z-10 text-center flex flex-col items-center px-4 max-w-4xl mx-auto w-full pt-4 md:pt-0"
       >
         <motion.span 
-          variants={{ hidden: { opacity: 0, y: 50, scale: 0.9 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 100, damping: 15 } } }}
-          className="font-mono text-neon-red text-sm tracking-[0.3em] uppercase mb-4 border border-neon-red/30 bg-black/50 px-4 py-1"
+          variants={{ hidden: { opacity: 0, y: 30, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 100, damping: 15 } } }}
+          className="font-mono text-neon-red text-[11px] sm:text-xs md:text-sm tracking-wider sm:tracking-[0.2em] md:tracking-[0.25em] uppercase mb-4 border border-neon-red/30 bg-black/80 px-3.5 py-1.5 rounded-sm max-w-[92vw] text-center shadow-[0_0_12px_rgba(255,42,42,0.15)] leading-tight"
         >
           {t('hero.tag')}
         </motion.span>
         <motion.h1 
-          variants={{ hidden: { opacity: 0, y: 50, scale: 0.9 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 100, damping: 15 } } }}
-          className="font-bebas text-6xl md:text-8xl tracking-widest text-white drop-shadow-[0_0_15px_rgba(255,42,42,0.2)] mb-2 uppercase"
+          variants={{ hidden: { opacity: 0, y: 30, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 100, damping: 15 } } }}
+          className="font-bebas text-5xl sm:text-7xl md:text-8xl tracking-wider sm:tracking-widest text-white drop-shadow-[0_0_15px_rgba(255,42,42,0.2)] mb-2 uppercase leading-none"
         >
           RE: Survival Unit
         </motion.h1>
@@ -62,23 +62,23 @@ const Hero = () => {
         />
         
         <motion.p 
-          variants={{ hidden: { opacity: 0, y: 50, scale: 0.9 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 100, damping: 15 } } }}
-          className="font-inter text-gray-300 max-w-2xl text-base md:text-lg mb-10 leading-relaxed"
+          variants={{ hidden: { opacity: 0, y: 30, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 100, damping: 15 } } }}
+          className="font-inter text-gray-300 max-w-2xl text-sm sm:text-base md:text-lg mb-8 md:mb-10 leading-relaxed px-2"
         >
           {t('hero.desc')}
         </motion.p>
 
         <motion.div 
-          variants={{ hidden: { opacity: 0, y: 50, scale: 0.9 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 100, damping: 15 } } }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          variants={{ hidden: { opacity: 0, y: 30, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 100, damping: 15 } } }}
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center w-full max-w-xs sm:max-w-none"
         >
-          <Link to="/heroes" className="bg-blood-red hover:bg-neon-red text-white font-bebas text-xl tracking-widest px-8 py-3 transition-colors duration-300 shadow-[0_0_15px_rgba(158,0,0,0.4)] animate-pulse-slow">
+          <Link to="/heroes" className="w-full sm:w-auto text-center bg-blood-red hover:bg-neon-red text-white font-bebas text-lg sm:text-xl tracking-widest px-6 sm:px-8 py-2.5 sm:py-3 transition-colors duration-300 shadow-[0_0_15px_rgba(158,0,0,0.4)] animate-pulse-slow">
             {t('hero.btn_heroes', 'Explorar Héroes')}
           </Link>
-          <Link to="/tier-list" className="bg-transparent border border-gray-600 hover:border-white text-white font-bebas text-xl tracking-widest px-8 py-3 transition-colors duration-300">
+          <Link to="/tier-list" className="w-full sm:w-auto text-center bg-transparent border border-gray-600 hover:border-white text-white font-bebas text-lg sm:text-xl tracking-widest px-6 sm:px-8 py-2.5 sm:py-3 transition-colors duration-300">
             {t('hero.btn_tierlist')}
           </Link>
-          <a href="https://ko-fi.com/eddsempai" target="_blank" rel="noreferrer" className="bg-transparent border border-neon-red hover:bg-neon-red/10 text-neon-red font-bebas text-xl tracking-widest px-8 py-3 transition-colors duration-300 shadow-[0_0_15px_rgba(255,42,42,0.2)]">
+          <a href="https://ko-fi.com/eddsempai" target="_blank" rel="noreferrer" className="w-full sm:w-auto text-center bg-transparent border border-neon-red hover:bg-neon-red/10 text-neon-red font-bebas text-lg sm:text-xl tracking-widest px-6 sm:px-8 py-2.5 sm:py-3 transition-colors duration-300 shadow-[0_0_15px_rgba(255,42,42,0.2)]">
             {t('hero.btn_donate')}
           </a>
         </motion.div>

@@ -2073,7 +2073,7 @@
         "isVipSkill": true
       }
     ],
-    "iconUrl": "/portraits/PortraitBust_HUNTER_M01.webp",
+    "iconUrl": "/portraits/PortraitBust_HUNTER_M_L01.webp",
     "image": "/recursos/MH_Rathalos.webp"
   },
   {
@@ -2172,7 +2172,7 @@
         "isVipSkill": true
       }
     ],
-    "iconUrl": "/portraits/PortraitBust_HUNTER_F01.webp",
+    "iconUrl": "/portraits/PortraitBust_HUNTER_WM_L01.webp",
     "image": "/recursos/MH_SilverSol.webp"
   },
   {
