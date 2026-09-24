@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useOperativos } from '../hooks/useOperativos';
 import { Link } from 'react-router-dom';
-import { PvP_MidGame_TierList, PvP_EarlyGame_TierList } from '../data/tierlistData';
+import { PvP_MidGame_TierList, PvP_EarlyGame_TierList, PvP_LateGame_TierList } from '../data/tierlistData';
 
 const TIER_COLORS: Record<string, string> = {
   SS: 'bg-red-900 border-red-500 text-red-200',
@@ -17,7 +17,7 @@ const TIER_COLORS: Record<string, string> = {
 };
 
 const MODES = ['PvP Arena'];
-const PHASES = ['Early Game', 'Mid Game'];
+const PHASES = ['Early Game', 'Mid Game', 'Late Game'];
 
 const isDefender = (type: string) => type?.toLowerCase().includes('defen') || type?.includes('ディフェン');
 const isAttacker = (type: string) => type?.toLowerCase().includes('atac') || type?.toLowerCase().includes('attack') || type?.includes('アタッカー');
@@ -51,6 +51,10 @@ export default function TierList() {
         }
       } else if (phase === 'Early Game') {
         for (const [tier, ids] of Object.entries(PvP_EarlyGame_TierList)) {
+          if (ids.includes(id)) return tier;
+        }
+      } else if (phase === 'Late Game') {
+        for (const [tier, ids] of Object.entries(PvP_LateGame_TierList)) {
           if (ids.includes(id)) return tier;
         }
       }

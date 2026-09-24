@@ -13,3 +13,12 @@ export const PvP_EarlyGame_TierList: Record<string, string[]> = {
   C: ['ada', 'brad', 'claire', 'jill', 'cazador', 'mikhail'],
   D: ['alyssa', 'billy', 'katherine', 'jack', 'tyrone']
 };
+
+export const PvP_LateGame_TierList: Record<string, string[]> = {
+  SS: ['jack', 'bsaa-chris', 'leon', 'ashley', 'excella', 'sheva', 'chris'],
+  S: ['luis', 'becca', 'rebecca', 'jill', 'mikhail'],
+  A: ['carlos', 'cazadora', 'murphy', 'ada'],
+  B: ['billy', 'claire', 'cazador'],
+  C: ['mark', 'barry', 'marvin'],
+  D: ['alyssa', 'katherine', 'robert', 'tyrone', 'jake', 'sherry', 'tyrell', 'piers', 'brad']
+};
