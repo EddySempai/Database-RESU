@@ -5,18 +5,19 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useOperativos } from '../hooks/useOperativos';
 import { Link } from 'react-router-dom';
-import { PvP_MidGame_TierList } from '../data/tierlistData';
+import { PvP_MidGame_TierList, PvP_EarlyGame_TierList } from '../data/tierlistData';
 
-const TIER_COLORS = {
+const TIER_COLORS: Record<string, string> = {
   SS: 'bg-red-900 border-red-500 text-red-200',
   S: 'bg-orange-900 border-orange-500 text-orange-200',
   A: 'bg-yellow-900 border-yellow-500 text-yellow-200',
   B: 'bg-blue-900 border-blue-500 text-blue-200',
-  C: 'bg-gray-900 border-gray-500 text-gray-200'
+  C: 'bg-green-900 border-green-500 text-green-200',
+  D: 'bg-gray-900 border-gray-500 text-gray-200'
 };
 
 const MODES = ['PvP Arena'];
-const PHASES = ['Mid Game'];
+const PHASES = ['Early Game', 'Mid Game'];
 
 const isDefender = (type: string) => type?.toLowerCase().includes('defen') || type?.includes('ディフェン');
 const isAttacker = (type: string) => type?.toLowerCase().includes('atac') || type?.toLowerCase().includes('attack') || type?.includes('アタッカー');
@@ -43,11 +44,17 @@ export default function TierList() {
 
   // Función para obtener el tier real basado en el modo y fase
   const getOperativeTier = (id: string, mode: string, phase: string) => {
-    if (mode === 'PvP Arena' && phase === 'Mid Game') {
-      for (const [tier, ids] of Object.entries(PvP_MidGame_TierList)) {
-        if (ids.includes(id)) return tier;
+    if (mode === 'PvP Arena') {
+      if (phase === 'Mid Game') {
+        for (const [tier, ids] of Object.entries(PvP_MidGame_TierList)) {
+          if (ids.includes(id)) return tier;
+        }
+      } else if (phase === 'Early Game') {
+        for (const [tier, ids] of Object.entries(PvP_EarlyGame_TierList)) {
+          if (ids.includes(id)) return tier;
+        }
       }
-      return 'C'; // Fallback for any unmapped characters
+      return 'Unranked'; // Fallback for any unmapped characters
     }
     
     // Fallback aleatorio para otras categorías no implementadas aún
