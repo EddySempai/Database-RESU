@@ -22,3 +22,21 @@ export const PvP_LateGame_TierList: Record<string, string[]> = {
   C: ['mark', 'barry', 'marvin'],
   D: ['alyssa', 'katherine', 'robert', 'tyrone', 'jake', 'sherry', 'tyrell', 'piers', 'brad']
 };
+
+export const PvE_MidGame_TierList: Record<string, string[]> = {
+  SS: ['carlos', 'piers', 'luis', 'ashley', 'sheva', 'rebecca'],
+  S: ['excella', 'bsaa-chris', 'jill', 'chris'],
+  A: ['ada', 'cazadora', 'mikhail', 'jack', 'leon', 'sherry', 'mark'],
+  B: ['barry', 'billy', 'cazador', 'claire'],
+  C: ['marvin', 'tyrell', 'becca'],
+  D: ['alyssa', 'katherine', 'robert', 'tyrone', 'jake', 'murphy', 'brad']
+};
+
+export const PvE_LateGame_TierList: Record<string, string[]> = {
+  SS: ['carlos', 'piers', 'sheva', 'leon', 'ashley', 'rebecca', 'luis', 'excella'],
+  S: ['bsaa-chris', 'jill', 'ada', 'sherry'],
+  A: ['cazadora', 'mikhail', 'jack'],
+  B: ['chris', 'billy', 'claire', 'cazador'],
+  C: ['mark', 'barry', 'marvin', 'tyrell'],
+  D: ['alyssa', 'katherine', 'robert', 'tyrone', 'jake', 'becca', 'murphy', 'brad']
+};
