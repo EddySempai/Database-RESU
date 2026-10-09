@@ -339,3 +339,200 @@ ${JSON.stringify(logs, null, 2)}
     return "ERROR DEL SISTEMA: No se pudo generar el reporte de inteligencia.";
   }
 };
+
+// -------------------------------------------------------------
+// DISCORD ANNOUNCEMENT TO MULTI-LANGUAGE NEWS ARTICLE (AI)
+// -------------------------------------------------------------
+
+import type { NewsArticle, NewsCategory } from '../data/newsData';
+import secondBrainMechanics from '../../docs/second-brain/01_GAME_CONTEXT_AND_MECHANICS.md?raw';
+import secondBrainKeywords from '../../docs/second-brain/03_SITE_ROUTES_AND_KEYWORDS.md?raw';
+
+const BADGE_COLORS: Record<NewsCategory, string> = {
+  patch: 'bg-red-500/20 text-red-300 border-red-500/40',
+  meta: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+  tools: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+  guides: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+};
+
+const ACTION_LABELS: Record<string, { es: string; en: string; ja: string }> = {
+  '/heroes': {
+    es: 'Explorar Base de Datos de Operativos',
+    en: 'Explore Operatives Database',
+    ja: 'オペレーターデータベースを見る'
+  },
+  '/tier-list': {
+    es: 'Consultar Tier List Actualizada',
+    en: 'View Updated Tier List',
+    ja: '最新ティアリストを見る'
+  },
+  '/herramientas': {
+    es: 'Abrir Herramientas Tácticas',
+    en: 'Open Tactical Tools',
+    ja: '戦術ツールを開く'
+  },
+  '/guias': {
+    es: 'Ir al Centro de Guías',
+    en: 'Go to Tactical Guides Hub',
+    ja: '戦術ガイドセンターへ'
+  },
+  '/llaveros': {
+    es: 'Explorar Base de Datos de Llaveros',
+    en: 'Explore Keychains Database',
+    ja: 'キーホルダー一覧を見る'
+  }
+};
+
+export interface GenerateNewsOptions {
+  version?: string;
+  category?: NewsCategory;
+  image?: string;
+  actionHref?: string;
+  isFeatured?: boolean;
+}
+
+export const generateNewsArticleWithAI = async (
+  rawDiscordText: string,
+  options: GenerateNewsOptions = {}
+): Promise<NewsArticle> => {
+  const genAI = getGenAIClient();
+
+  const monthsEs = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
+  const now = new Date();
+  const todayFormatted = `${String(now.getDate()).padStart(2, '0')} ${monthsEs[now.getMonth()]} ${now.getFullYear()}`;
+
+  const prompt = `
+Eres el editor jefe del Newsletter de la Wiki "Resident Evil: Survival Unit" (RESUDB).
+A continuación tienes la memoria de contexto del juego (Second Brain):
+${secondBrainMechanics}
+${secondBrainKeywords}
+
+El administrador ha copiado el siguiente anuncio/nota de parche desde el Discord oficial del juego o de sus notas de datamine:
+
+"""
+${rawDiscordText}
+"""
+
+Tu misión es transformar este texto en un Boletín / Newsletter editorial completo, con explicaciones claras de por qué importa cada cambio y traducido simultáneamente a Español (es), Inglés (en) y Japonés (ja).
+
+Reglas:
+1. Detecta la categoría entre: "patch", "meta", "tools", "guides". ${options.category ? `Usa: "${options.category}".` : ''}
+2. Detecta la versión si se menciona (ej. "v1.10.2"). ${options.version ? `Usa: "${options.version}".` : ''}
+3. Incluye un párrafo de introducción editorial ("intro") explicando el impacto general de la actualización.
+4. En cada sección ("sections"), incluye una mini-explicación ("description") antes de los puntos ("items"), y redacta cada punto con formato "Concepto: Explicación clara para el jugador".
+5. Usa de forma natural las palabras clave del Second Brain (como "Llaveros", "Tier List", "Tesoros Míticos", "Joyas", "Luminio", "Aceleradores", "Cumbre de Ases", "Repeler a Mortem", "Guerra de Hierbas" o nombres de operativos como "Leon S. Kennedy", "Sheva Alomar") porque el sistema las resaltará automáticamente como enlaces interactivos.
+6. Devuelve EXCLUSIVAMENTE un objeto JSON válido con esta estructura exacta (sin bloques markdown \`\`\`json):
+
+{
+  "slug": "parche-v1-10-2-resumen",
+  "version": "v1.10.2",
+  "category": "patch",
+  "tag": {
+    "es": "BOLETÍN DE PARCHE",
+    "en": "PATCH NEWSLETTER",
+    "ja": "パッチニュースレター"
+  },
+  "title": {
+    "es": "Título atractivo estilo Newsletter en español",
+    "en": "Engaging Newsletter title in English",
+    "ja": "日本語の魅力的なタイトル"
+  },
+  "excerpt": {
+    "es": "Resumen corto de 1 o 2 líneas en español.",
+    "en": "Short 1-2 line summary in English.",
+    "ja": "日本語の短い要約。"
+  },
+  "intro": {
+    "es": "Párrafo introductorio editorial explicando qué trae este boletín y cómo afecta al jugador.",
+    "en": "Editorial intro paragraph explaining what this issue covers and how it impacts players.",
+    "ja": "今回のアップデートがプレイヤーに与える影響を解説する導入パラグラフ。"
+  },
+  "highlights": {
+    "es": ["Punto clave 1 con explicación", "Punto clave 2", "Punto clave 3"],
+    "en": ["Key highlight 1 with context", "Key highlight 2", "Key highlight 3"],
+    "ja": ["ハイライト1", "ハイライト2", "ハイライト3"]
+  },
+  "sections": [
+    {
+      "title": {
+        "es": "1. Novedades Principales",
+        "en": "1. Main Additions",
+        "ja": "1. 主な追加要素"
+      },
+      "description": {
+        "es": "Mini explicación introductoria de esta sección para dar contexto al jugador:",
+        "en": "Mini introductory explanation for this section to give players context:",
+        "ja": "このセクションの背景を説明する短い導入文："
+      },
+      "items": {
+        "es": ["Nombre del cambio: Explicación clara de cómo funciona y qué hacer."],
+        "en": ["Feature name: Clear explanation of how it works and what to do."],
+        "ja": ["変更点：具体的な仕組みと対策の解説。"]
+      }
+    }
+  ]
+}
+`;
+
+  const modelsToTry = [
+    'gemini-2.5-flash',
+    'gemini-2.0-flash',
+    'gemini-3.5-flash',
+    'gemini-3.5-flash-lite',
+    'gemini-3.8-flash'
+  ];
+  let lastError: any = null;
+
+  for (const modelName of modelsToTry) {
+    try {
+      const model = genAI.getGenerativeModel({ model: modelName });
+      const result = await model.generateContent(prompt);
+      const responseText = result.response.text().trim();
+      const match = responseText.match(/\{[\s\S]*\}/);
+      if (match) {
+        const parsed = JSON.parse(match[0]);
+        const category: NewsCategory =
+          options.category ||
+          (['patch', 'meta', 'tools', 'guides'].includes(parsed.category) ? parsed.category : 'patch');
+
+        const actionHref = options.actionHref || '/heroes';
+        const actionLabel = ACTION_LABELS[actionHref] || ACTION_LABELS['/heroes'];
+
+        const article: NewsArticle = {
+          id: `${parsed.slug || 'boletin'}-${Date.now().toString().slice(-4)}`,
+          date: todayFormatted,
+          readTime: '4 min',
+          author: 'Red Queen Dispatch',
+          version: options.version || parsed.version || undefined,
+          category,
+          tag: parsed.tag || {
+            es: 'BOLETÍN OFICIAL',
+            en: 'OFFICIAL DISPATCH',
+            ja: '公式ニュースレター'
+          },
+          badgeColor: BADGE_COLORS[category] || BADGE_COLORS.patch,
+          title: parsed.title,
+          excerpt: parsed.excerpt,
+          intro: parsed.intro || undefined,
+          image: options.image || undefined,
+          isFeatured: Boolean(options.isFeatured),
+          actionLink: {
+            href: actionHref,
+            label: actionLabel
+          },
+          highlights: parsed.highlights || { es: [], en: [], ja: [] },
+          sections: Array.isArray(parsed.sections) ? parsed.sections : [],
+          customBlocks: []
+        };
+
+        return article;
+      }
+    } catch (err) {
+      console.warn(`Model ${modelName} failed for news generation, trying next...`, err);
+      lastError = err;
+    }
+  }
+
+  throw lastError || new Error('No se pudo generar la noticia con Gemini. Verifica tu API Key.');
+};
+

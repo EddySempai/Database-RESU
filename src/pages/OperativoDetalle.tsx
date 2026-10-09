@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
-import { BookOpen, Star, Sword, Shield, Heart, ChevronLeft, Users, Volume2 } from 'lucide-react';
+import { BookOpen, Star, Sword, Shield, Heart, ChevronLeft, ChevronRight, Users, Volume2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useOperativos } from '../hooks/useOperativos';
 import { useSound } from '../contexts/SoundContext';
@@ -164,6 +164,105 @@ const OperativoDetalle = () => {
     { id: 'equipment', label: t('op_detail.tab_equipment') }
   ];
 
+  // Drag-to-scroll event handlers for Tab Bar (igual que en Admin)
+  const tabBarRef = useRef<HTMLDivElement>(null);
+  const [isDraggingTabs, setIsDraggingTabs] = useState(false);
+  const startXRef = useRef(0);
+  const scrollLeftRef = useRef(0);
+  const hasMovedRef = useRef(false);
+
+  const handleTabsMouseDown = (e: React.MouseEvent) => {
+    if (!tabBarRef.current) return;
+    setIsDraggingTabs(true);
+    hasMovedRef.current = false;
+    startXRef.current = e.pageX - tabBarRef.current.offsetLeft;
+    scrollLeftRef.current = tabBarRef.current.scrollLeft;
+  };
+
+  const handleTabsMouseMove = (e: React.MouseEvent) => {
+    if (!isDraggingTabs || !tabBarRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - tabBarRef.current.offsetLeft;
+    const walk = (x - startXRef.current) * 1.6;
+    if (Math.abs(walk) > 4) {
+      hasMovedRef.current = true;
+    }
+    tabBarRef.current.scrollLeft = scrollLeftRef.current - walk;
+  };
+
+  const handleTabsMouseUp = () => {
+    setIsDraggingTabs(false);
+  };
+
+  const handleTabsWheel = (e: React.WheelEvent) => {
+    if (tabBarRef.current && e.deltaY !== 0) {
+      tabBarRef.current.scrollLeft += e.deltaY;
+    }
+  };
+
+  const scrollTabs = (amount: number) => {
+    playClick();
+    if (tabBarRef.current) {
+      tabBarRef.current.scrollBy({ left: amount, behavior: 'smooth' });
+    }
+  };
+
+  const renderDraggableTabsBar = (centerOnDesktop = false) => (
+    <div className="w-full mb-6 border-b border-gray-800/80 pb-2 flex items-center gap-1.5">
+      <button
+        type="button"
+        onClick={() => scrollTabs(-220)}
+        className="p-1.5 rounded bg-black/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-600 transition-all shrink-0 cursor-pointer"
+        title="Desplazar a la izquierda"
+      >
+        <ChevronLeft size={15} />
+      </button>
+
+      <div
+        ref={tabBarRef}
+        onMouseDown={handleTabsMouseDown}
+        onMouseMove={handleTabsMouseMove}
+        onMouseUp={handleTabsMouseUp}
+        onMouseLeave={handleTabsMouseUp}
+        onWheel={handleTabsWheel}
+        className={`flex-1 flex items-center gap-1.5 sm:gap-2.5 overflow-x-auto scrollbar-none touch-pan-x cursor-grab active:cursor-grabbing select-none ${
+          centerOnDesktop ? 'justify-start md:justify-center' : 'justify-start'
+        }`}
+      >
+        {tabs.map(tab => (
+          <button
+            key={tab.id}
+            type="button"
+            onMouseEnter={playHover}
+            onClick={() => {
+              if (hasMovedRef.current) return;
+              playClick();
+              setActiveTab(tab.id);
+            }}
+            className={`shrink-0 whitespace-nowrap font-mono text-[11px] sm:text-xs uppercase tracking-wider px-3.5 py-2 sm:px-4 sm:py-2.5 transition-all cursor-pointer rounded-t-sm ${
+              activeTab === tab.id
+                ? (tab.id === 'equipment'
+                    ? 'bg-yellow-500/20 text-yellow-400 border-b-2 border-yellow-500 font-bold shadow-[0_0_15px_rgba(234,179,8,0.3)]'
+                    : 'bg-blood-red/20 text-white border-b-2 border-blood-red font-bold')
+                : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      <button
+        type="button"
+        onClick={() => scrollTabs(220)}
+        className="p-1.5 rounded bg-black/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-600 transition-all shrink-0 cursor-pointer"
+        title="Desplazar a la derecha"
+      >
+        <ChevronRight size={15} />
+      </button>
+    </div>
+  );
+
   return (
     <div className="w-full pt-24 sm:pt-28 pb-12 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-screen relative z-10 flex flex-col">
       <Helmet>
@@ -191,34 +290,7 @@ const OperativoDetalle = () => {
 
       {activeTab === 'equipment' ? (
         <div className="w-full flex flex-col min-w-0">
-          {/* Centered Tab Bar on Desktop & Smooth Native Scroll on Mobile */}
-          <div 
-            className="w-full mb-6 border-b border-gray-800/80 pb-2 flex justify-start md:justify-center overflow-x-auto scrollbar-none touch-pan-x"
-            onWheel={(e) => {
-              if (e.deltaY !== 0) {
-                e.currentTarget.scrollLeft += e.deltaY;
-              }
-            }}
-          >
-            <div className="flex gap-1.5 sm:gap-2.5 items-center">
-              {tabs.map(tab => (
-                <button
-                  key={tab.id}
-                  onMouseEnter={playHover}
-                  onClick={() => { playClick(); setActiveTab(tab.id); }}
-                  className={`shrink-0 whitespace-nowrap font-mono text-[11px] sm:text-xs uppercase tracking-wider px-3.5 py-2 sm:px-5 sm:py-2.5 transition-all cursor-pointer rounded-t-sm ${
-                    activeTab === tab.id 
-                    ? (tab.id === 'equipment' 
-                        ? 'bg-yellow-500/20 text-yellow-400 border-b-2 border-yellow-500 font-bold shadow-[0_0_15px_rgba(234,179,8,0.3)]' 
-                        : 'bg-blood-red/20 text-white border-b-2 border-blood-red font-bold') 
-                    : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
+          {renderDraggableTabsBar(true)}
 
           <EquipamientoView op={op} />
         </div>
@@ -352,30 +424,7 @@ const OperativoDetalle = () => {
             className="w-full md:w-2/3 flex flex-col min-w-0"
           >
             {/* Tabs Header inside Right Column on PC / Mobile */}
-            <div 
-              className="flex border-b border-gray-800/80 pb-2 mb-6 overflow-x-auto scrollbar-none gap-1.5 sm:gap-2.5 items-center justify-start touch-pan-x"
-              onWheel={(e) => {
-                if (e.deltaY !== 0) {
-                  e.currentTarget.scrollLeft += e.deltaY;
-                }
-              }}
-            >
-              {tabs.map(tab => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`shrink-0 whitespace-nowrap font-mono text-[11px] sm:text-xs uppercase tracking-wider px-3.5 py-2 sm:px-4 sm:py-2.5 transition-all cursor-pointer rounded-t-sm ${
-                    activeTab === tab.id 
-                    ? (tab.id === 'equipment' 
-                        ? 'bg-yellow-500/20 text-yellow-400 border-b-2 border-yellow-500 font-bold shadow-[0_0_15px_rgba(234,179,8,0.3)]' 
-                        : 'bg-blood-red/20 text-white border-b-2 border-blood-red font-bold') 
-                    : 'text-gray-400 hover:text-gray-200 hover:bg-white/5'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
+            {renderDraggableTabsBar(false)}
 
             <div className="bg-[#050505] border border-gray-800 p-4 sm:p-6 flex-1 relative overflow-hidden rounded-sm">
               <AnimatePresence mode="wait">

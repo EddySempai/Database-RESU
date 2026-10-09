@@ -45,6 +45,11 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
     return total;
   };
 
+  const calculateTotalStones = () => {
+    const powder = calculateTotalPowder();
+    return Math.round(powder / 1.3);
+  };
+
   const renderBranch = (branch: LuminioBranch) => {
     const nodes = LUMINIO_NODES.filter(n => n.branch === branch);
     
@@ -199,17 +204,12 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
           </div>
 
           {/* Stones */}
-          <div className="bg-gray-900/80 border border-amber-600/40 rounded-2xl p-6 flex flex-col items-center flex-1 min-w-[200px] shadow-[0_0_30px_rgba(217,119,6,0.15)] opacity-60 relative overflow-hidden">
+          <div className="bg-gray-900/80 border border-amber-600/40 rounded-2xl p-6 flex flex-col items-center flex-1 min-w-[200px] shadow-[0_0_30px_rgba(217,119,6,0.15)] relative overflow-hidden group hover:shadow-[0_0_40px_rgba(217,119,6,0.25)] transition-all">
             <div className="absolute inset-0 bg-gradient-to-br from-amber-600/5 to-transparent pointer-events-none" />
-            <span className="text-sm font-mono text-amber-400 mb-2">{t('luminio.stones', 'Piedras de Luminio')}</span>
-            <span className="text-3xl md:text-5xl font-bebas text-transparent bg-clip-text bg-gradient-to-b from-white to-amber-200 tracking-widest">
-              ?
+            <span className="text-sm font-mono text-amber-400 mb-2 drop-shadow-[0_0_5px_rgba(245,158,11,0.5)]">{t('luminio.stones', 'Piedras de Luminio')}</span>
+            <span className="text-3xl md:text-5xl font-bebas text-transparent bg-clip-text bg-gradient-to-b from-white to-amber-200 tracking-widest drop-shadow-[0_2px_10px_rgba(217,119,6,0.5)]">
+              {calculateTotalStones().toLocaleString()}
             </span>
-            <div className="absolute inset-0 bg-black/60 flex items-center justify-center backdrop-blur-[2px]">
-              <span className="text-xs font-mono text-amber-200 bg-amber-950/80 px-4 py-1.5 rounded-full border border-amber-500/50 shadow-[0_0_10px_rgba(217,119,6,0.3)]">
-                Pendiente de Datos
-              </span>
-            </div>
           </div>
 
         </div>

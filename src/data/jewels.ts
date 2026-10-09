@@ -54,13 +54,13 @@ export const JEWEL_COSTS: Record<JewelTier, JewelCost> = {
   'Epic++': { roughJewel: 140, jewelTool: 350, advanceTool: 0 },
   'Legend': { roughJewel: 200, jewelTool: 400, advanceTool: 0 },
   'Legend+': { roughJewel: 300, jewelTool: 430, advanceTool: 0 },
-  'Legend++': { roughJewel: 400, jewelTool: 460, advanceTool: 0 },
-  'Legend+++': { roughJewel: 500, jewelTool: 490, advanceTool: 0 },
+  'Legend++': { roughJewel: 420, jewelTool: 460, advanceTool: 0 },
+  'Legend+++': { roughJewel: 560, jewelTool: 500, advanceTool: 0 },
   'Mythic': { roughJewel: 580, jewelTool: 500, advanceTool: 15 },
-  'Mythic+': { roughJewel: 860, jewelTool: 570, advanceTool: 30 },
-  'Mythic++': { roughJewel: 1140, jewelTool: 640, advanceTool: 45 },
-  'Mythic+++': { roughJewel: 1420, jewelTool: 710, advanceTool: 60 },
-  'Mythic++++': { roughJewel: 1700, jewelTool: 780, advanceTool: 75 }
+  'Mythic+': { roughJewel: 580, jewelTool: 500, advanceTool: 30 },
+  'Mythic++': { roughJewel: 600, jewelTool: 500, advanceTool: 45 },
+  'Mythic+++': { roughJewel: 600, jewelTool: 500, advanceTool: 70 },
+  'Mythic++++': { roughJewel: 650, jewelTool: 550, advanceTool: 100 }
 };
 
 export const getJewelCostBetweenTiers = (currentTier: JewelTier, targetTier: JewelTier): JewelCost => {

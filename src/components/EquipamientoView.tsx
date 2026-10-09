@@ -535,8 +535,15 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
           {/* Grand Totals */}
           <div className="space-y-4 sm:space-y-6">
             <div className="border border-gray-800 p-4 sm:p-6 bg-black/40 text-center rounded-sm">
-              <h3 className="font-mono text-xs text-gray-500 uppercase tracking-widest mb-2">{t('op_detail.total_exp_cost')}</h3>
-              <div className="font-bebas text-4xl sm:text-5xl md:text-6xl text-neon-red tracking-wide sm:tracking-widest mb-4 sm:mb-8 break-all">{totalExp.toLocaleString()}</div>
+              <h3 className="font-mono text-xs text-gray-500 uppercase tracking-widest mb-3">{t('op_detail.total_exp_cost')}</h3>
+              <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-8">
+                <img 
+                  src="/recursos/UI_Icon_Hero_Equip_Exp.webp" 
+                  alt="EXP Equipamiento" 
+                  className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain filter drop-shadow-[0_0_15px_rgba(255,42,42,0.35)] shrink-0" 
+                />
+                <div className="font-bebas text-4xl sm:text-5xl md:text-6xl text-neon-red tracking-wide sm:tracking-widest break-all">{totalExp.toLocaleString()}</div>
+              </div>
               
               {/* Materials Conversion */}
               {totalExp > 0 && (
@@ -555,8 +562,15 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
             </div>
 
             <div className="bg-black border border-gray-800 p-4 text-center rounded-sm">
-              <span className="block font-mono text-xs text-gray-500 uppercase mb-1">{t('op_detail.total_comp_cost')}</span>
-              <span className="font-bebas text-4xl sm:text-5xl text-yellow-500">{totalPlus.toLocaleString()}</span>
+              <span className="block font-mono text-xs text-gray-500 uppercase mb-2">{t('op_detail.total_comp_cost')}</span>
+              <div className="flex items-center justify-center gap-3 sm:gap-4">
+                <img 
+                  src="/recursos/UI_Icon_Hero_Equip_Mod.webp" 
+                  alt="Componentes (+)" 
+                  className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain filter drop-shadow-[0_0_12px_rgba(234,179,8,0.35)] shrink-0" 
+                />
+                <span className="font-bebas text-4xl sm:text-5xl text-yellow-500">{totalPlus.toLocaleString()}</span>
+              </div>
             </div>
 
             {isLegendary && (

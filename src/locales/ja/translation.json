@@ -5,7 +5,10 @@
     "compare": "比較",
     "tools": "ツール",
     "guides": "ガイド",
-    "tierlist": "ティアリスト"
+    "tierlist": "ティアリスト",
+    "news": "ニュース",
+    "keyrings": "キーリング",
+    "converters": "コンバーター"
   },
   "hero": {
     "tag": "グローバル戦術アーカイブ",
@@ -362,5 +365,101 @@
     "comparador_step1": "比較したい2人のオペレーターを選択します。同じ戦術クラスである必要があります。",
     "comparador_step2": "基本統計と戦闘スケーリングを並べて比較します。",
     "comparador_step3": "生成された戦術レポートを読んで、各オペレーターの長所と短所を理解してください。"
+  },
+  "keyrings": {
+    "title": "キーリング データベース",
+    "meta_title": "キーリング＆サブステータス データベース | Resident Evil: Survival Unit Wiki",
+    "meta_desc": "バイオハザード サバイバルユニットのキーリング一覧。パッシブ効果、レアリティ別サブステータス、Lv.30必要EXP計算機。",
+    "subtitle": "アタッシェケース（KeyRing）装備カタログ v1.10.1 (最大: Lv.30)。一度に最大3個まで装備可能。エピックおよびレジェンダリー効果はインベントリからパッシブ適用されます。",
+    "importance": "重要:",
+    "importance_desc": "キーリングのメイン効果は装備しなくても自動適用されます（同一タイプの重複所持は重複しません）。サブステータスは装備中のみ発動し、レベルに応じて強化されます。",
+    "guide_button": "キーリングガイドを読む",
+    "download_excel": "EXCELをダウンロード (1-30)",
+    "mechanics_toggle_show": "20%抽選の仕組み (5候補)",
+    "mechanics_toggle_hide": "20%抽選の説明を閉じる",
+    "mechanics_title": "公式初期抽選仕様（5候補、各20%）",
+    "mechanics_desc": "キーリング獲得時、5つの初期候補から1つが抽選されます（各20%の固定確率）。Lv.30までの成長率は一律のため、初期候補が最終的な最小・最大ステータスを決定します。",
+    "bug_title": "ゲーム内ポップアップ表示バグ (v1.10.1)",
+    "bug_desc": "ゲーム内のツールチップはサブステータスを加算して表示するため、誤って高い数値（例: +3.90%〜+4.30%の代わりに+12.13%）が表示されます。本サイトの数値が実際の戦闘データです。",
+    "tabs": {
+      "catalog": "キーリング",
+      "progression": "EXP＆戦力 (CP)",
+      "substats": "サブステータス"
+    },
+    "search_placeholder": "名前やステータスで検索...",
+    "filter_all": "すべて",
+    "types": {
+      "combat": "戦闘",
+      "defense": "防御",
+      "economy": "経済",
+      "unknown": "未実装"
+    },
+    "card": {
+      "level_max": "Lv.30 (最大)",
+      "min_max": "Min ──► Max",
+      "epic_min": "◆ エピック (MIN)",
+      "leg_max": "★ レジェンダリー (MAX)",
+      "unrevealed": "未公開ステータス",
+      "not_found": "該当するキーリングが見つかりませんでした。"
+    },
+    "progression": {
+      "cp_title": "レアリティとレベル別戦闘力 (Combat Power - CP)",
+      "cp_desc": "キーレベル到達時に各キーリングが付与する純粋な戦力値。",
+      "table": {
+        "rarity": "レアリティ",
+        "slots": "アクティブスロット",
+        "cp_lv10": "CP Lv.10",
+        "cp_lv20": "CP Lv.20",
+        "cp_lv30": "CP Lv.30 (最大)"
+      },
+      "calc_title": "キーリング必要EXP計算機 (Lv.1〜30)",
+      "calc_desc": "現在のレベルと目標レベルを選択して、必要なEXPを確認します。",
+      "current_lvl": "現在のレベル",
+      "target_lvl": "目標レベル",
+      "quick": "クイック:",
+      "exp_needed": "レベルアップ必要EXP:",
+      "from_to": "(Lv. {{from}} から Lv. {{to}})",
+      "calc_formula": "Lv.30総累積193,790 EXPの公式成長曲線に基づき算出。",
+      "progress": "Lv.30への進行度:",
+      "total_exp": "Lv.30総EXP: 193,790",
+      "milestone_title": "到達目標 Lv. {{level}}",
+      "milestone_badge": "目標 LV. {{level}}",
+      "milestone_total": "総EXP {{exp}}"
+    },
+    "substats": {
+      "filter_rarity": "キーリングのレアリティ:",
+      "filter_category": "カテゴリで絞り込み:",
+      "search_placeholder": "サブステータスを検索 (例: 集結, 拠点攻撃, ハーブ)...",
+      "showing_count": "{{count}}件のサブステータスを表示中",
+      "fixed_prob": "各抽選は固定20%の確率",
+      "chance": "出現確率:",
+      "lv1_base": "Lv.1 基本:",
+      "lv30_max": "Lv.30 最大:",
+      "lv1_label": "Lv. 1:",
+      "lv30_label": "Lv. 30:",
+      "candidates_lv1": "Lv.1 (各20%):",
+      "candidates_lv30": "Lv.30 (最大):",
+      "show_rolls": "5つのロール",
+      "hide_rolls": "閉じる",
+      "copy_button": "データをコピー",
+      "copied": "コピー完了!",
+      "not_found": "適用されたフィルターに一致するサブステータスは見つかりませんでした。",
+      "rarity_levels": {
+        "legendary": "レジェンダリー",
+        "epic": "エピック",
+        "rare": "レア",
+        "advanced": "アンコモン",
+        "common": "コモン"
+      },
+      "categories": {
+        "all": "すべて",
+        "rally": "集結",
+        "attack_base": "拠点攻撃",
+        "defend_base": "拠点防衛",
+        "herbs": "ハーブ",
+        "vaccine": "ワクチン",
+        "saint_vale": "SAINT VALE"
+      }
+    }
   }
 }

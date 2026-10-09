@@ -4,293 +4,2003 @@
     "name": "Llavero de Botiquín",
     "icon": "/llaveros/Item_KeyRing_01.webp",
     "mainStat": "Aumento de la velocidad de tratamiento en el hospital",
-    "type": "Economía"
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.74%",
+        "+1.92%",
+        "+2.09%",
+        "+2.26%",
+        "+2.44%"
+      ],
+      "epicGrowthPerLv": "+0.16%",
+      "epicLv10Range": "+3.34% – +4.04%",
+      "epicLv10Candidates": [
+        "+3.34%",
+        "+3.52%",
+        "+3.69%",
+        "+3.86%",
+        "+4.04%"
+      ],
+      "epicLv30Range": "+6.54% – +7.24%",
+      "epicLv30Candidates": [
+        "+6.54%",
+        "+6.72%",
+        "+6.89%",
+        "+7.06%",
+        "+7.24%"
+      ],
+      "legendCandidates": [
+        "+1.80%",
+        "+2.00%",
+        "+2.20%",
+        "+2.40%",
+        "+2.60%"
+      ],
+      "legendGrowthPerLv": "+0.20%",
+      "legendLv10Range": "+3.80% – +4.60%",
+      "legendLv10Candidates": [
+        "+3.80%",
+        "+4.00%",
+        "+4.20%",
+        "+4.40%",
+        "+4.60%"
+      ],
+      "legendLv30Range": "+7.80% – +8.60%",
+      "legendLv30Candidates": [
+        "+7.80%",
+        "+8.00%",
+        "+8.20%",
+        "+8.40%",
+        "+8.60%"
+      ]
+    },
+    "nameEn": "First Aid Kit Keyring",
+    "nameJa": "救急バッグのキーリング",
+    "mainStatEn": "Increases Hospital Healing Speed",
+    "mainStatJa": "病院治療速度上昇"
   },
   {
     "id": "keyring_02",
-    "name": "Llavero de Cuatro Garras",
+    "name": "Llavero de cuatro garras",
     "icon": "/llaveros/Item_KeyRing_02.webp",
-    "mainStat": "Poder de penetración de todas las tropas al concentrar",
-    "type": "Combate"
+    "mainStat": "Aumento de la velocidad de entrenamiento de todas las tropas",
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.30%",
+        "+1.44%",
+        "+1.57%",
+        "+1.70%",
+        "+1.83%"
+      ],
+      "epicGrowthPerLv": "+0.12%",
+      "epicLv10Range": "+2.50% – +3.03%",
+      "epicLv10Candidates": [
+        "+2.50%",
+        "+2.64%",
+        "+2.77%",
+        "+2.90%",
+        "+3.03%"
+      ],
+      "epicLv30Range": "+4.90% – +5.43%",
+      "epicLv30Candidates": [
+        "+4.90%",
+        "+5.04%",
+        "+5.17%",
+        "+5.30%",
+        "+5.43%"
+      ],
+      "legendCandidates": [
+        "+1.35%",
+        "+1.50%",
+        "+1.65%",
+        "+1.80%",
+        "+1.95%"
+      ],
+      "legendGrowthPerLv": "+0.15%",
+      "legendLv10Range": "+2.85% – +3.45%",
+      "legendLv10Candidates": [
+        "+2.85%",
+        "+3.00%",
+        "+3.15%",
+        "+3.30%",
+        "+3.45%"
+      ],
+      "legendLv30Range": "+5.85% – +6.45%",
+      "legendLv30Candidates": [
+        "+5.85%",
+        "+6.00%",
+        "+6.15%",
+        "+6.30%",
+        "+6.45%"
+      ]
+    },
+    "nameEn": "Four-Clawed Keyring",
+    "nameJa": "4つの爪のキーリング",
+    "mainStatEn": "Increases Training Speed for All Troops",
+    "mainStatJa": "兵士訓練時間減少-全兵士"
   },
   {
     "id": "keyring_03",
-    "name": "Llavero de Bengala",
+    "name": "Llavero de bengala",
     "icon": "/llaveros/Item_KeyRing_03.webp",
-    "mainStat": "Aumento de velocidad de entrenamiento de todas las tropas",
-    "type": "Economía"
+    "mainStat": "Aumento de la velocidad de entrenamiento de todas las tropas",
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.30%",
+        "+1.44%",
+        "+1.57%",
+        "+1.70%",
+        "+1.83%"
+      ],
+      "epicGrowthPerLv": "+0.12%",
+      "epicLv10Range": "+2.50% – +3.03%",
+      "epicLv10Candidates": [
+        "+2.50%",
+        "+2.64%",
+        "+2.77%",
+        "+2.90%",
+        "+3.03%"
+      ],
+      "epicLv30Range": "+4.90% – +5.43%",
+      "epicLv30Candidates": [
+        "+4.90%",
+        "+5.04%",
+        "+5.17%",
+        "+5.30%",
+        "+5.43%"
+      ],
+      "legendCandidates": [
+        "+1.35%",
+        "+1.50%",
+        "+1.65%",
+        "+1.80%",
+        "+1.95%"
+      ],
+      "legendGrowthPerLv": "+0.15%",
+      "legendLv10Range": "+2.85% – +3.45%",
+      "legendLv10Candidates": [
+        "+2.85%",
+        "+3.00%",
+        "+3.15%",
+        "+3.30%",
+        "+3.45%"
+      ],
+      "legendLv30Range": "+5.85% – +6.45%",
+      "legendLv30Candidates": [
+        "+5.85%",
+        "+6.00%",
+        "+6.15%",
+        "+6.30%",
+        "+6.45%"
+      ]
+    },
+    "nameEn": "Flare Gun Keyring",
+    "nameJa": "照明弾のキーリング",
+    "mainStatEn": "Increases Training Speed for All Troops",
+    "mainStatJa": "兵士訓練時間減少-全兵士"
   },
   {
     "id": "keyring_04",
-    "name": "Llavero de Emblema de Rider",
+    "name": "Llavero con Emblema de Rider",
     "icon": "/llaveros/Item_KeyRing_04.webp",
-    "mainStat": "Aumento de velocidad de despliegue",
-    "type": "Economía"
+    "mainStat": "Aumento de la velocidad de despliegue",
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+0.87%",
+        "+0.96%",
+        "+1.05%",
+        "+1.13%",
+        "+1.22%"
+      ],
+      "epicGrowthPerLv": "+0.08%",
+      "epicLv10Range": "+1.67% – +2.02%",
+      "epicLv10Candidates": [
+        "+1.67%",
+        "+1.76%",
+        "+1.85%",
+        "+1.93%",
+        "+2.02%"
+      ],
+      "epicLv30Range": "+3.27% – +3.62%",
+      "epicLv30Candidates": [
+        "+3.27%",
+        "+3.36%",
+        "+3.45%",
+        "+3.53%",
+        "+3.62%"
+      ],
+      "legendCandidates": [
+        "+0.90%",
+        "+1.00%",
+        "+1.10%",
+        "+1.20%",
+        "+1.30%"
+      ],
+      "legendGrowthPerLv": "+0.10%",
+      "legendLv10Range": "+1.90% – +2.30%",
+      "legendLv10Candidates": [
+        "+1.90%",
+        "+2.00%",
+        "+2.10%",
+        "+2.20%",
+        "+2.30%"
+      ],
+      "legendLv30Range": "+3.90% – +4.30%",
+      "legendLv30Candidates": [
+        "+3.90%",
+        "+4.00%",
+        "+4.10%",
+        "+4.20%",
+        "+4.30%"
+      ]
+    },
+    "nameEn": "Rider Symbol Keyring",
+    "nameJa": "ライダーのキーリング",
+    "mainStatEn": "Increases Marching Speed",
+    "mainStatJa": "進軍速度上昇"
   },
   {
     "id": "keyring_05",
-    "name": "Llavero de Emblema Raccoon",
+    "name": "Llavero con Emblema de Raccoon",
     "icon": "/llaveros/Item_KeyRing_05.webp",
-    "mainStat": "Aumento de velocidad de despliegue en combates contra creaturas",
-    "type": "Combate"
+    "mainStat": "Aumento de la velocidad de despliegue en combates contra criaturas",
+    "type": "Combate",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.74%",
+        "+1.92%",
+        "+2.09%",
+        "+2.26%",
+        "+2.44%"
+      ],
+      "epicGrowthPerLv": "+0.16%",
+      "epicLv10Range": "+3.34% – +4.04%",
+      "epicLv10Candidates": [
+        "+3.34%",
+        "+3.52%",
+        "+3.69%",
+        "+3.86%",
+        "+4.04%"
+      ],
+      "epicLv30Range": "+6.54% – +7.24%",
+      "epicLv30Candidates": [
+        "+6.54%",
+        "+6.72%",
+        "+6.89%",
+        "+7.06%",
+        "+7.24%"
+      ],
+      "legendCandidates": [
+        "+1.80%",
+        "+2.00%",
+        "+2.20%",
+        "+2.40%",
+        "+2.60%"
+      ],
+      "legendGrowthPerLv": "+0.20%",
+      "legendLv10Range": "+3.80% – +4.60%",
+      "legendLv10Candidates": [
+        "+3.80%",
+        "+4.00%",
+        "+4.20%",
+        "+4.40%",
+        "+4.60%"
+      ],
+      "legendLv30Range": "+7.80% – +8.60%",
+      "legendLv30Candidates": [
+        "+7.80%",
+        "+8.00%",
+        "+8.20%",
+        "+8.40%",
+        "+8.60%"
+      ]
+    },
+    "nameEn": "Raccoon Symbol Keyring",
+    "nameJa": "ラクーンのキーリング",
+    "mainStatEn": "Increases Marching Speed When Battling Creatures",
+    "mainStatJa": "クリーチャー戦闘時の進軍速度上昇"
   },
   {
     "id": "keyring_06",
-    "name": "Llavero de Llave con Forma de luna",
+    "name": "Llavero de Llave con Forma de Luna",
     "icon": "/llaveros/Item_KeyRing_06.webp",
-    "mainStat": "Aumento en el numero de tropas entrenadas por sesion",
-    "type": "Economía"
+    "mainStat": "Aumento en el número de tropas entrenadas por sesión",
+    "type": "Economía",
+    "stats": {
+      "isPercent": false,
+      "epicCandidates": [
+        "+2",
+        "+3",
+        "+3",
+        "+4",
+        "+5"
+      ],
+      "epicGrowthPerLv": "+1",
+      "epicLv10Range": "+19 – +22",
+      "epicLv10Candidates": [
+        "+19",
+        "+20",
+        "+20",
+        "+21",
+        "+22"
+      ],
+      "epicLv30Range": "+39 – +42",
+      "epicLv30Candidates": [
+        "+39",
+        "+40",
+        "+40",
+        "+41",
+        "+42"
+      ],
+      "legendCandidates": [
+        "+2",
+        "+3",
+        "+4",
+        "+5",
+        "+6"
+      ],
+      "legendGrowthPerLv": "+1",
+      "legendLv10Range": "+22 – +26",
+      "legendLv10Candidates": [
+        "+22",
+        "+23",
+        "+24",
+        "+25",
+        "+26"
+      ],
+      "legendLv30Range": "+42 – +46",
+      "legendLv30Candidates": [
+        "+42",
+        "+43",
+        "+44",
+        "+45",
+        "+46"
+      ]
+    },
+    "nameEn": "Moon-Shaped Key Keyring",
+    "nameJa": "月の鍵のキーリング",
+    "mainStatEn": "Increases All Troops Trained per Session",
+    "mainStatJa": "一度に訓練できる兵士数増加"
   },
   {
     "id": "keyring_07",
-    "name": "Llavero de Emblema Del R.P.D.",
+    "name": "Llavero con emblema del R.P.D.",
     "icon": "/llaveros/Item_KeyRing_07.webp",
-    "mainStat": "Aun sin agregar al juego",
-    "type": "Desconocido"
+    "mainStat": "Aún sin agregar al juego",
+    "type": "Desconocido",
+    "nameEn": "R.P.D. Symbol Keyring",
+    "nameJa": "R.P.D.エンブレムのキーリング",
+    "mainStatEn": "Not yet added to the game",
+    "mainStatJa": "ゲーム内未実装"
   },
   {
     "id": "keyring_08",
-    "name": "Llavero de Municiones de Pistola",
+    "name": "Llavero de municiones de pistola",
     "icon": "/llaveros/Item_KeyRing_08.webp",
     "mainStat": "Ataque de Ranger",
-    "type": "Combate"
+    "type": "Combate",
+    "unitIcon": "/UI_Hero_Rifle.webp",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+0.87%",
+        "+0.96%",
+        "+1.05%",
+        "+1.13%",
+        "+1.22%"
+      ],
+      "epicGrowthPerLv": "+0.08%",
+      "epicLv10Range": "+1.67% – +2.02%",
+      "epicLv10Candidates": [
+        "+1.67%",
+        "+1.76%",
+        "+1.85%",
+        "+1.93%",
+        "+2.02%"
+      ],
+      "epicLv30Range": "+3.27% – +3.62%",
+      "epicLv30Candidates": [
+        "+3.27%",
+        "+3.36%",
+        "+3.45%",
+        "+3.53%",
+        "+3.62%"
+      ],
+      "legendCandidates": [
+        "+0.90%",
+        "+1.00%",
+        "+1.10%",
+        "+1.20%",
+        "+1.30%"
+      ],
+      "legendGrowthPerLv": "+0.10%",
+      "legendLv10Range": "+1.90% – +2.30%",
+      "legendLv10Candidates": [
+        "+1.90%",
+        "+2.00%",
+        "+2.10%",
+        "+2.20%",
+        "+2.30%"
+      ],
+      "legendLv30Range": "+3.90% – +4.30%",
+      "legendLv30Candidates": [
+        "+3.90%",
+        "+4.00%",
+        "+4.10%",
+        "+4.20%",
+        "+4.30%"
+      ]
+    },
+    "nameEn": "Handgun Ammo Keyring",
+    "nameJa": "ハンドガンの弾のキーリング",
+    "mainStatEn": "Ranger Attack",
+    "mainStatJa": "攻撃力-レンジャー"
   },
   {
     "id": "keyring_09",
-    "name": "Llavero de Municiones de Subfusil",
+    "name": "Llavero de Municiones de subfusil",
     "icon": "/llaveros/Item_KeyRing_09.webp",
-    "mainStat": "Aun sin agregar al juego",
-    "type": "Desconocido"
+    "mainStat": "Aún sin agregar al juego",
+    "type": "Desconocido",
+    "nameEn": "SMG Ammo Keyring",
+    "nameJa": "サブマシンガンの弾のキーリング",
+    "mainStatEn": "Not yet added to the game",
+    "mainStatJa": "ゲーム内未実装"
   },
   {
     "id": "keyring_10",
-    "name": "Llavero de Municiones de Escopeta",
+    "name": "Llavero de Municiones de escopeta",
     "icon": "/llaveros/Item_KeyRing_10.webp",
-    "mainStat": "Aun sin agregar al juego",
-    "type": "Desconocido"
+    "mainStat": "Aún sin agregar al juego",
+    "type": "Desconocido",
+    "nameEn": "Shotgun Ammo Keyring",
+    "nameJa": "ショットガンの弾のキーリング",
+    "mainStatEn": "Not yet added to the game",
+    "mainStatJa": "ゲーム内未実装"
   },
   {
     "id": "keyring_11",
-    "name": "Llavero de Estuche de Umbrella",
+    "name": "Llavero con estuche de Umbrella",
     "icon": "/llaveros/Item_KeyRing_11.webp",
-    "mainStat": "Aun sin agregar al juego",
-    "type": "Desconocido"
+    "mainStat": "Aún sin agregar al juego",
+    "type": "Desconocido",
+    "nameEn": "Umbrella Case Keyring",
+    "nameJa": "アンブレラケースのキーリング",
+    "mainStatEn": "Not yet added to the game",
+    "mainStatJa": "ゲーム内未実装"
   },
   {
     "id": "keyring_12",
     "name": "Llavero de Mansión",
     "icon": "/llaveros/Item_KeyRing_12.webp",
-    "mainStat": "Aumento de Velocidad de construcción",
-    "type": "Economía"
+    "mainStat": "Aumento de la velocidad de construcción",
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.04%",
+        "+1.15%",
+        "+1.25%",
+        "+1.35%",
+        "+1.46%"
+      ],
+      "epicGrowthPerLv": "+0.10%",
+      "epicLv10Range": "+2.04% – +2.46%",
+      "epicLv10Candidates": [
+        "+2.04%",
+        "+2.15%",
+        "+2.25%",
+        "+2.35%",
+        "+2.46%"
+      ],
+      "epicLv30Range": "+4.04% – +4.46%",
+      "epicLv30Candidates": [
+        "+4.04%",
+        "+4.15%",
+        "+4.25%",
+        "+4.35%",
+        "+4.46%"
+      ],
+      "legendCandidates": [
+        "+1.08%",
+        "+1.20%",
+        "+1.32%",
+        "+1.44%",
+        "+1.56%"
+      ],
+      "legendGrowthPerLv": "+0.12%",
+      "legendLv10Range": "+2.28% – +2.76%",
+      "legendLv10Candidates": [
+        "+2.28%",
+        "+2.40%",
+        "+2.52%",
+        "+2.64%",
+        "+2.76%"
+      ],
+      "legendLv30Range": "+4.68% – +5.16%",
+      "legendLv30Candidates": [
+        "+4.68%",
+        "+4.80%",
+        "+4.92%",
+        "+5.04%",
+        "+5.16%"
+      ]
+    },
+    "nameEn": "Mansion Keyring",
+    "nameJa": "邸宅のキーリング",
+    "mainStatEn": "Increases \nBuilding Construction Speed",
+    "mainStatJa": "建物のアップグレード速度向上"
   },
   {
     "id": "keyring_13",
-    "name": "Llavero de Tienda de Juguetes",
+    "name": "Llavero de la Tienda de Juguetes",
     "icon": "/llaveros/Item_KeyRing_13.webp",
     "mainStat": "Aumento de la velocidad de tratamiento en el hospital",
-    "type": "Economía"
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.74%",
+        "+1.92%",
+        "+2.09%",
+        "+2.26%",
+        "+2.44%"
+      ],
+      "epicGrowthPerLv": "+0.16%",
+      "epicLv10Range": "+3.34% – +4.04%",
+      "epicLv10Candidates": [
+        "+3.34%",
+        "+3.52%",
+        "+3.69%",
+        "+3.86%",
+        "+4.04%"
+      ],
+      "epicLv30Range": "+6.54% – +7.24%",
+      "epicLv30Candidates": [
+        "+6.54%",
+        "+6.72%",
+        "+6.89%",
+        "+7.06%",
+        "+7.24%"
+      ],
+      "legendCandidates": [
+        "+1.80%",
+        "+2.00%",
+        "+2.20%",
+        "+2.40%",
+        "+2.60%"
+      ],
+      "legendGrowthPerLv": "+0.20%",
+      "legendLv10Range": "+3.80% – +4.60%",
+      "legendLv10Candidates": [
+        "+3.80%",
+        "+4.00%",
+        "+4.20%",
+        "+4.40%",
+        "+4.60%"
+      ],
+      "legendLv30Range": "+7.80% – +8.60%",
+      "legendLv30Candidates": [
+        "+7.80%",
+        "+8.00%",
+        "+8.20%",
+        "+8.40%",
+        "+8.60%"
+      ]
+    },
+    "nameEn": "Toy Store Keyring",
+    "nameJa": "おもちゃ屋のキーリング",
+    "mainStatEn": "Increases Hospital Healing Speed",
+    "mainStatJa": "病院治療速度上昇"
   },
   {
     "id": "keyring_14",
     "name": "Llavero de Luminio",
     "icon": "/llaveros/Item_KeyRing_14.webp",
-    "mainStat": "Aun sin agregar al juego",
-    "type": "Desconocido"
+    "mainStat": "Aún sin agregar al juego",
+    "type": "Desconocido",
+    "nameEn": "Luminio Keyring",
+    "nameJa": "ルミニウムのキーリング",
+    "mainStatEn": "Not yet added to the game",
+    "mainStatJa": "ゲーム内未実装"
   },
   {
     "id": "keyring_15",
     "name": "Llavero de Gemas",
     "icon": "/llaveros/Item_KeyRing_15.webp",
-    "mainStat": "Aumento de la velocidad de investigacion en el laboratorio",
-    "type": "Economía"
+    "mainStat": "Aumento de la velocidad de investigación en el laboratorio",
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.04%",
+        "+1.15%",
+        "+1.25%",
+        "+1.35%",
+        "+1.46%"
+      ],
+      "epicGrowthPerLv": "+0.10%",
+      "epicLv10Range": "+2.04% – +2.46%",
+      "epicLv10Candidates": [
+        "+2.04%",
+        "+2.15%",
+        "+2.25%",
+        "+2.35%",
+        "+2.46%"
+      ],
+      "epicLv30Range": "+4.04% – +4.46%",
+      "epicLv30Candidates": [
+        "+4.04%",
+        "+4.15%",
+        "+4.25%",
+        "+4.35%",
+        "+4.46%"
+      ],
+      "legendCandidates": [
+        "+1.08%",
+        "+1.20%",
+        "+1.32%",
+        "+1.44%",
+        "+1.56%"
+      ],
+      "legendGrowthPerLv": "+0.12%",
+      "legendLv10Range": "+2.28% – +2.76%",
+      "legendLv10Candidates": [
+        "+2.28%",
+        "+2.40%",
+        "+2.52%",
+        "+2.64%",
+        "+2.76%"
+      ],
+      "legendLv30Range": "+4.68% – +5.16%",
+      "legendLv30Candidates": [
+        "+4.68%",
+        "+4.80%",
+        "+4.92%",
+        "+5.04%",
+        "+5.16%"
+      ]
+    },
+    "nameEn": "Gem Keyring",
+    "nameJa": "ジェムのキーリング",
+    "mainStatEn": "Increases Research Lab Speed",
+    "mainStatJa": "研究のアップグレード速度向上"
   },
   {
     "id": "keyring_16",
-    "name": "Llavero de Tierra Rara",
+    "name": "Llavero de Tierra rara",
     "icon": "/llaveros/Item_KeyRing_16.webp",
     "mainStat": "Velocidad de recolección de todos los recursos",
-    "type": "Economía"
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.39%",
+        "+1.53%",
+        "+1.67%",
+        "+1.81%",
+        "+1.95%"
+      ],
+      "epicGrowthPerLv": "+0.13%",
+      "epicLv10Range": "+2.69% – +3.25%",
+      "epicLv10Candidates": [
+        "+2.69%",
+        "+2.83%",
+        "+2.97%",
+        "+3.11%",
+        "+3.25%"
+      ],
+      "epicLv30Range": "+5.29% – +5.85%",
+      "epicLv30Candidates": [
+        "+5.29%",
+        "+5.43%",
+        "+5.57%",
+        "+5.71%",
+        "+5.85%"
+      ],
+      "legendCandidates": [
+        "+1.44%",
+        "+1.60%",
+        "+1.76%",
+        "+1.92%",
+        "+2.08%"
+      ],
+      "legendGrowthPerLv": "+0.16%",
+      "legendLv10Range": "+3.04% – +3.68%",
+      "legendLv10Candidates": [
+        "+3.04%",
+        "+3.20%",
+        "+3.36%",
+        "+3.52%",
+        "+3.68%"
+      ],
+      "legendLv30Range": "+6.24% – +6.88%",
+      "legendLv30Candidates": [
+        "+6.24%",
+        "+6.40%",
+        "+6.56%",
+        "+6.72%",
+        "+6.88%"
+      ]
+    },
+    "nameEn": "Rare Earth Keyring",
+    "nameJa": "レアアースのキーリング",
+    "mainStatEn": "All Resources Gathering Speed",
+    "mainStatJa": "採集速度-全資源"
   },
   {
     "id": "keyring_17",
     "name": "Llavero de Leon",
     "icon": "/llaveros/Item_KeyRing_17.webp",
     "mainStat": "Ataque de Defensor",
-    "type": "Combate"
+    "type": "Combate",
+    "unitIcon": "/UI_Hero_Infantry.webp",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+0.87%",
+        "+0.96%",
+        "+1.05%",
+        "+1.13%",
+        "+1.22%"
+      ],
+      "epicGrowthPerLv": "+0.08%",
+      "epicLv10Range": "+1.67% – +2.02%",
+      "epicLv10Candidates": [
+        "+1.67%",
+        "+1.76%",
+        "+1.85%",
+        "+1.93%",
+        "+2.02%"
+      ],
+      "epicLv30Range": "+3.27% – +3.62%",
+      "epicLv30Candidates": [
+        "+3.27%",
+        "+3.36%",
+        "+3.45%",
+        "+3.53%",
+        "+3.62%"
+      ],
+      "legendCandidates": [
+        "+0.90%",
+        "+1.00%",
+        "+1.10%",
+        "+1.20%",
+        "+1.30%"
+      ],
+      "legendGrowthPerLv": "+0.10%",
+      "legendLv10Range": "+1.90% – +2.30%",
+      "legendLv10Candidates": [
+        "+1.90%",
+        "+2.00%",
+        "+2.10%",
+        "+2.20%",
+        "+2.30%"
+      ],
+      "legendLv30Range": "+3.90% – +4.30%",
+      "legendLv30Candidates": [
+        "+3.90%",
+        "+4.00%",
+        "+4.10%",
+        "+4.20%",
+        "+4.30%"
+      ]
+    },
+    "nameEn": "Leon Keyring",
+    "nameJa": "レオンのキーリング",
+    "mainStatEn": "Defender Attack",
+    "mainStatJa": "攻撃力-ディフェンダー"
   },
   {
     "id": "keyring_18",
     "name": "Llavero de Claire",
     "icon": "/llaveros/Item_KeyRing_18.webp",
     "mainStat": "Defensa de Atacante",
-    "type": "Combate"
+    "type": "Combate",
+    "unitIcon": "/UI_Hero_Heavy.webp",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+0.87%",
+        "+0.96%",
+        "+1.05%",
+        "+1.13%",
+        "+1.22%"
+      ],
+      "epicGrowthPerLv": "+0.08%",
+      "epicLv10Range": "+1.67% – +2.02%",
+      "epicLv10Candidates": [
+        "+1.67%",
+        "+1.76%",
+        "+1.85%",
+        "+1.93%",
+        "+2.02%"
+      ],
+      "epicLv30Range": "+3.27% – +3.62%",
+      "epicLv30Candidates": [
+        "+3.27%",
+        "+3.36%",
+        "+3.45%",
+        "+3.53%",
+        "+3.62%"
+      ],
+      "legendCandidates": [
+        "+0.90%",
+        "+1.00%",
+        "+1.10%",
+        "+1.20%",
+        "+1.30%"
+      ],
+      "legendGrowthPerLv": "+0.10%",
+      "legendLv10Range": "+1.90% – +2.30%",
+      "legendLv10Candidates": [
+        "+1.90%",
+        "+2.00%",
+        "+2.10%",
+        "+2.20%",
+        "+2.30%"
+      ],
+      "legendLv30Range": "+3.90% – +4.30%",
+      "legendLv30Candidates": [
+        "+3.90%",
+        "+4.00%",
+        "+4.10%",
+        "+4.20%",
+        "+4.30%"
+      ]
+    },
+    "nameEn": "Claire Keyring",
+    "nameJa": "クレアのキーリング",
+    "mainStatEn": "Attacker Defense",
+    "mainStatJa": "防御力-アタッカー"
   },
   {
     "id": "keyring_19",
     "name": "Llavero de Linterna",
     "icon": "/llaveros/Item_KeyRing_19.webp",
-    "mainStat": "Aun sin agregar al juego",
-    "type": "Desconocido"
+    "mainStat": "Aún sin agregar al juego",
+    "type": "Desconocido",
+    "nameEn": "Flashlight Keyring",
+    "nameJa": "懐中電灯のキーリング",
+    "mainStatEn": "Not yet added to the game",
+    "mainStatJa": "ゲーム内未実装"
   },
   {
     "id": "keyring_20",
     "name": "Llavero de Medallón",
     "icon": "/llaveros/Item_KeyRing_20.webp",
     "mainStat": "Defensa de Ranger",
-    "type": "Combate"
+    "type": "Combate",
+    "unitIcon": "/UI_Hero_Rifle.webp",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+0.87%",
+        "+0.96%",
+        "+1.05%",
+        "+1.13%",
+        "+1.22%"
+      ],
+      "epicGrowthPerLv": "+0.08%",
+      "epicLv10Range": "+1.67% – +2.02%",
+      "epicLv10Candidates": [
+        "+1.67%",
+        "+1.76%",
+        "+1.85%",
+        "+1.93%",
+        "+2.02%"
+      ],
+      "epicLv30Range": "+3.27% – +3.62%",
+      "epicLv30Candidates": [
+        "+3.27%",
+        "+3.36%",
+        "+3.45%",
+        "+3.53%",
+        "+3.62%"
+      ],
+      "legendCandidates": [
+        "+0.90%",
+        "+1.00%",
+        "+1.10%",
+        "+1.20%",
+        "+1.30%"
+      ],
+      "legendGrowthPerLv": "+0.10%",
+      "legendLv10Range": "+1.90% – +2.30%",
+      "legendLv10Candidates": [
+        "+1.90%",
+        "+2.00%",
+        "+2.10%",
+        "+2.20%",
+        "+2.30%"
+      ],
+      "legendLv30Range": "+3.90% – +4.30%",
+      "legendLv30Candidates": [
+        "+3.90%",
+        "+4.00%",
+        "+4.10%",
+        "+4.20%",
+        "+4.30%"
+      ]
+    },
+    "nameEn": "Medallion Keyring",
+    "nameJa": "メダリオンのキーリング",
+    "mainStatEn": "Ranger Defense",
+    "mainStatJa": "防御力-レンジャー"
   },
   {
     "id": "keyring_21",
-    "name": "Llavero de Emblema de D.S.O",
+    "name": "Llavero con emblema de D.S.O.",
     "icon": "/llaveros/Item_KeyRing_21.webp",
-    "mainStat": "Aun sin agregar al juego",
-    "type": "Desconocido"
+    "mainStat": "Aún sin agregar al juego",
+    "type": "Desconocido",
+    "nameEn": "D.S.O. Symbol Keyring",
+    "nameJa": "D.S.O.エンブレムのキーリング",
+    "mainStatEn": "Not yet added to the game",
+    "mainStatJa": "ゲーム内未実装"
   },
   {
     "id": "keyring_22",
-    "name": "Llavero de Ajedrez",
+    "name": "Llavero de Enchufe de trébol",
     "icon": "/llaveros/Item_KeyRing_22.webp",
-    "mainStat": "Aun sin agregar al juego",
-    "type": "Desconocido"
+    "mainStat": "Aún sin agregar al juego",
+    "type": "Desconocido",
+    "nameEn": "Clover Plug Keyring",
+    "nameJa": "クローバープラグのキーリング",
+    "mainStatEn": "Not yet added to the game",
+    "mainStatJa": "ゲーム内未実装"
   },
   {
     "id": "keyring_23",
-    "name": "Llavero de Energía",
+    "name": "Llavero de cápsula de Vacuna",
     "icon": "/llaveros/Item_KeyRing_23.webp",
-    "mainStat": "Aun sin agregar al juego",
-    "type": "Desconocido"
+    "mainStat": "Aún sin agregar al juego",
+    "type": "Desconocido",
+    "nameEn": "Vaccine Capsule Keyring",
+    "nameJa": "ワクチンカプセルのキーリング",
+    "mainStatEn": "Not yet added to the game",
+    "mainStatJa": "ゲーム内未実装"
   },
   {
     "id": "keyring_24",
-    "name": "Llavero de Emblema de Pingüino",
+    "name": "Llavero con Emblema de pingüino",
     "icon": "/llaveros/Item_KeyRing_24.webp",
     "mainStat": "Penetración de Defensor",
-    "type": "Combate"
+    "type": "Combate",
+    "unitIcon": "/UI_Hero_Infantry.webp",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+0.87%",
+        "+0.96%",
+        "+1.05%",
+        "+1.13%",
+        "+1.22%"
+      ],
+      "epicGrowthPerLv": "+0.08%",
+      "epicLv10Range": "+1.67% – +2.02%",
+      "epicLv10Candidates": [
+        "+1.67%",
+        "+1.76%",
+        "+1.85%",
+        "+1.93%",
+        "+2.02%"
+      ],
+      "epicLv30Range": "+3.27% – +3.62%",
+      "epicLv30Candidates": [
+        "+3.27%",
+        "+3.36%",
+        "+3.45%",
+        "+3.53%",
+        "+3.62%"
+      ],
+      "legendCandidates": [
+        "+0.90%",
+        "+1.00%",
+        "+1.10%",
+        "+1.20%",
+        "+1.30%"
+      ],
+      "legendGrowthPerLv": "+0.10%",
+      "legendLv10Range": "+1.90% – +2.30%",
+      "legendLv10Candidates": [
+        "+1.90%",
+        "+2.00%",
+        "+2.10%",
+        "+2.20%",
+        "+2.30%"
+      ],
+      "legendLv30Range": "+3.90% – +4.30%",
+      "legendLv30Candidates": [
+        "+3.90%",
+        "+4.00%",
+        "+4.10%",
+        "+4.20%",
+        "+4.30%"
+      ]
+    },
+    "nameEn": "Penguin Symbol Keyring",
+    "nameJa": "ペンギンのキーリング",
+    "mainStatEn": "Defender Penetration",
+    "mainStatJa": "殺傷力-ディフェンダー"
   },
   {
     "id": "keyring_25",
-    "name": "Llavero de Lámpara de pie",
+    "name": "Llavero de lámpara de pie",
     "icon": "/llaveros/Item_KeyRing_25.webp",
-    "mainStat": "No da ningun efecto principal",
-    "type": "Desconocido"
+    "mainStat": "Salud de Defensor",
+    "type": "Combate",
+    "unitIcon": "/UI_Hero_Infantry.webp",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+0.87%",
+        "+0.96%",
+        "+1.05%",
+        "+1.13%",
+        "+1.22%"
+      ],
+      "epicGrowthPerLv": "+0.08%",
+      "epicLv10Range": "+1.67% – +2.02%",
+      "epicLv10Candidates": [
+        "+1.67%",
+        "+1.76%",
+        "+1.85%",
+        "+1.93%",
+        "+2.02%"
+      ],
+      "epicLv30Range": "+3.27% – +3.62%",
+      "epicLv30Candidates": [
+        "+3.27%",
+        "+3.36%",
+        "+3.45%",
+        "+3.53%",
+        "+3.62%"
+      ],
+      "legendCandidates": [
+        "+0.90%",
+        "+1.00%",
+        "+1.10%",
+        "+1.20%",
+        "+1.30%"
+      ],
+      "legendGrowthPerLv": "+0.10%",
+      "legendLv10Range": "+1.90% – +2.30%",
+      "legendLv10Candidates": [
+        "+1.90%",
+        "+2.00%",
+        "+2.10%",
+        "+2.20%",
+        "+2.30%"
+      ],
+      "legendLv30Range": "+3.90% – +4.30%",
+      "legendLv30Candidates": [
+        "+3.90%",
+        "+4.00%",
+        "+4.10%",
+        "+4.20%",
+        "+4.30%"
+      ]
+    },
+    "nameEn": "Table Lamp Keyring",
+    "nameJa": "スタンドランプのキーリング",
+    "mainStatEn": "Defender HP",
+    "mainStatJa": "体力-ディフェンダー"
   },
   {
     "id": "keyring_26",
-    "name": "Llavero de Emblema de U.B.C.S",
+    "name": "Llavero con emblema de U.B.C.S.",
     "icon": "/llaveros/Item_KeyRing_26.webp",
     "mainStat": "Poder de penetración de Atacante",
-    "type": "Combate"
+    "type": "Combate",
+    "unitIcon": "/UI_Hero_Heavy.webp",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+0.87%",
+        "+0.96%",
+        "+1.05%",
+        "+1.13%",
+        "+1.22%"
+      ],
+      "epicGrowthPerLv": "+0.08%",
+      "epicLv10Range": "+1.67% – +2.02%",
+      "epicLv10Candidates": [
+        "+1.67%",
+        "+1.76%",
+        "+1.85%",
+        "+1.93%",
+        "+2.02%"
+      ],
+      "epicLv30Range": "+3.27% – +3.62%",
+      "epicLv30Candidates": [
+        "+3.27%",
+        "+3.36%",
+        "+3.45%",
+        "+3.53%",
+        "+3.62%"
+      ],
+      "legendCandidates": [
+        "+0.90%",
+        "+1.00%",
+        "+1.10%",
+        "+1.20%",
+        "+1.30%"
+      ],
+      "legendGrowthPerLv": "+0.10%",
+      "legendLv10Range": "+1.90% – +2.30%",
+      "legendLv10Candidates": [
+        "+1.90%",
+        "+2.00%",
+        "+2.10%",
+        "+2.20%",
+        "+2.30%"
+      ],
+      "legendLv30Range": "+3.90% – +4.30%",
+      "legendLv30Candidates": [
+        "+3.90%",
+        "+4.00%",
+        "+4.10%",
+        "+4.20%",
+        "+4.30%"
+      ]
+    },
+    "nameEn": "U.B.C.S. Symbol Keyring",
+    "nameJa": "U.B.C.S.エンブレムのキーリング",
+    "mainStatEn": "Attacker Penetration",
+    "mainStatJa": "殺傷力-アタッカー"
   },
   {
     "id": "keyring_27",
-    "name": "Llavero de Saco de Recursos de Alimentos",
+    "name": "Llavero de recursos de alimentos",
     "icon": "/llaveros/Item_KeyRing_27.webp",
-    "mainStat": "Velocidad de recolección de alimentos",
-    "type": "Economía"
+    "mainStat": "Velocidad de recolección de alimento",
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.74%",
+        "+1.92%",
+        "+2.09%",
+        "+2.26%",
+        "+2.44%"
+      ],
+      "epicGrowthPerLv": "+0.16%",
+      "epicLv10Range": "+3.34% – +4.04%",
+      "epicLv10Candidates": [
+        "+3.34%",
+        "+3.52%",
+        "+3.69%",
+        "+3.86%",
+        "+4.04%"
+      ],
+      "epicLv30Range": "+6.54% – +7.24%",
+      "epicLv30Candidates": [
+        "+6.54%",
+        "+6.72%",
+        "+6.89%",
+        "+7.06%",
+        "+7.24%"
+      ],
+      "legendCandidates": [
+        "+1.80%",
+        "+2.00%",
+        "+2.20%",
+        "+2.40%",
+        "+2.60%"
+      ],
+      "legendGrowthPerLv": "+0.20%",
+      "legendLv10Range": "+3.80% – +4.60%",
+      "legendLv10Candidates": [
+        "+3.80%",
+        "+4.00%",
+        "+4.20%",
+        "+4.40%",
+        "+4.60%"
+      ],
+      "legendLv30Range": "+7.80% – +8.60%",
+      "legendLv30Candidates": [
+        "+7.80%",
+        "+8.00%",
+        "+8.20%",
+        "+8.40%",
+        "+8.60%"
+      ]
+    },
+    "nameEn": "Food Resource Keyring",
+    "nameJa": "食料資源のキーリング",
+    "mainStatEn": "Food Gathering Speed",
+    "mainStatJa": "採集速度-食料"
   },
   {
     "id": "keyring_28",
     "name": "Llavero de recursos de madera",
     "icon": "/llaveros/Item_KeyRing_28.webp",
-    "mainStat": "Velocidad de recoleccion de madera",
-    "type": "Economía"
+    "mainStat": "Velocidad de recolección de madera",
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.74%",
+        "+1.92%",
+        "+2.09%",
+        "+2.26%",
+        "+2.44%"
+      ],
+      "epicGrowthPerLv": "+0.16%",
+      "epicLv10Range": "+3.34% – +4.04%",
+      "epicLv10Candidates": [
+        "+3.34%",
+        "+3.52%",
+        "+3.69%",
+        "+3.86%",
+        "+4.04%"
+      ],
+      "epicLv30Range": "+6.54% – +7.24%",
+      "epicLv30Candidates": [
+        "+6.54%",
+        "+6.72%",
+        "+6.89%",
+        "+7.06%",
+        "+7.24%"
+      ],
+      "legendCandidates": [
+        "+1.80%",
+        "+2.00%",
+        "+2.20%",
+        "+2.40%",
+        "+2.60%"
+      ],
+      "legendGrowthPerLv": "+0.20%",
+      "legendLv10Range": "+3.80% – +4.60%",
+      "legendLv10Candidates": [
+        "+3.80%",
+        "+4.00%",
+        "+4.20%",
+        "+4.40%",
+        "+4.60%"
+      ],
+      "legendLv30Range": "+7.80% – +8.60%",
+      "legendLv30Candidates": [
+        "+7.80%",
+        "+8.00%",
+        "+8.20%",
+        "+8.40%",
+        "+8.60%"
+      ]
+    },
+    "nameEn": "Lumber Resource Keyring",
+    "nameJa": "木材資源のキーリング",
+    "mainStatEn": "Lumber Gathering Speed",
+    "mainStatJa": "採集速度-木材"
   },
   {
     "id": "keyring_29",
     "name": "Llavero de recursos de hierro",
     "icon": "/llaveros/Item_KeyRing_29.webp",
     "mainStat": "Velocidad de recolección de hierro",
-    "type": "Economía"
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.74%",
+        "+1.92%",
+        "+2.09%",
+        "+2.26%",
+        "+2.44%"
+      ],
+      "epicGrowthPerLv": "+0.16%",
+      "epicLv10Range": "+3.34% – +4.04%",
+      "epicLv10Candidates": [
+        "+3.34%",
+        "+3.52%",
+        "+3.69%",
+        "+3.86%",
+        "+4.04%"
+      ],
+      "epicLv30Range": "+6.54% – +7.24%",
+      "epicLv30Candidates": [
+        "+6.54%",
+        "+6.72%",
+        "+6.89%",
+        "+7.06%",
+        "+7.24%"
+      ],
+      "legendCandidates": [
+        "+1.80%",
+        "+2.00%",
+        "+2.20%",
+        "+2.40%",
+        "+2.60%"
+      ],
+      "legendGrowthPerLv": "+0.20%",
+      "legendLv10Range": "+3.80% – +4.60%",
+      "legendLv10Candidates": [
+        "+3.80%",
+        "+4.00%",
+        "+4.20%",
+        "+4.40%",
+        "+4.60%"
+      ],
+      "legendLv30Range": "+7.80% – +8.60%",
+      "legendLv30Candidates": [
+        "+7.80%",
+        "+8.00%",
+        "+8.20%",
+        "+8.40%",
+        "+8.60%"
+      ]
+    },
+    "nameEn": "Iron Resource Keyring",
+    "nameJa": "資材資源のキーリング",
+    "mainStatEn": "Iron Gathering Speed",
+    "mainStatJa": "採集速度-資材"
   },
   {
     "id": "keyring_30",
-    "name": "Llavero de recurso de petroleo",
+    "name": "Llavero de Recursos de Petróleo",
     "icon": "/llaveros/Item_KeyRing_30.webp",
-    "mainStat": "Velocidad de recoleccion de petroleo",
-    "type": "Economía"
+    "mainStat": "Velocidad de recolección de petróleo",
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.74%",
+        "+1.92%",
+        "+2.09%",
+        "+2.26%",
+        "+2.44%"
+      ],
+      "epicGrowthPerLv": "+0.16%",
+      "epicLv10Range": "+3.34% – +4.04%",
+      "epicLv10Candidates": [
+        "+3.34%",
+        "+3.52%",
+        "+3.69%",
+        "+3.86%",
+        "+4.04%"
+      ],
+      "epicLv30Range": "+6.54% – +7.24%",
+      "epicLv30Candidates": [
+        "+6.54%",
+        "+6.72%",
+        "+6.89%",
+        "+7.06%",
+        "+7.24%"
+      ],
+      "legendCandidates": [
+        "+1.80%",
+        "+2.00%",
+        "+2.20%",
+        "+2.40%",
+        "+2.60%"
+      ],
+      "legendGrowthPerLv": "+0.20%",
+      "legendLv10Range": "+3.80% – +4.60%",
+      "legendLv10Candidates": [
+        "+3.80%",
+        "+4.00%",
+        "+4.20%",
+        "+4.40%",
+        "+4.60%"
+      ],
+      "legendLv30Range": "+7.80% – +8.60%",
+      "legendLv30Candidates": [
+        "+7.80%",
+        "+8.00%",
+        "+8.20%",
+        "+8.40%",
+        "+8.60%"
+      ]
+    },
+    "nameEn": "Oil Resource Keyring",
+    "nameJa": "燃料資源のキーリング",
+    "mainStatEn": "Oil Gathering Speed",
+    "mainStatJa": "採集速度-燃料"
   },
   {
     "id": "keyring_31",
-    "name": "Llavero de Notas de estrategia de supervivencia",
+    "name": "Llavero de Energía",
     "icon": "/llaveros/Item_KeyRing_31.webp",
-    "mainStat": "Aumenta la velocidad de investigación en el laboratorio",
-    "type": "Economía"
+    "mainStat": "Aumento de la velocidad de despliegue en combates contra criaturas",
+    "type": "Combate",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.74%",
+        "+1.92%",
+        "+2.09%",
+        "+2.26%",
+        "+2.44%"
+      ],
+      "epicGrowthPerLv": "+0.16%",
+      "epicLv10Range": "+3.34% – +4.04%",
+      "epicLv10Candidates": [
+        "+3.34%",
+        "+3.52%",
+        "+3.69%",
+        "+3.86%",
+        "+4.04%"
+      ],
+      "epicLv30Range": "+6.54% – +7.24%",
+      "epicLv30Candidates": [
+        "+6.54%",
+        "+6.72%",
+        "+6.89%",
+        "+7.06%",
+        "+7.24%"
+      ],
+      "legendCandidates": [
+        "+1.80%",
+        "+2.00%",
+        "+2.20%",
+        "+2.40%",
+        "+2.60%"
+      ],
+      "legendGrowthPerLv": "+0.20%",
+      "legendLv10Range": "+3.80% – +4.60%",
+      "legendLv10Candidates": [
+        "+3.80%",
+        "+4.00%",
+        "+4.20%",
+        "+4.40%",
+        "+4.60%"
+      ],
+      "legendLv30Range": "+7.80% – +8.60%",
+      "legendLv30Candidates": [
+        "+7.80%",
+        "+8.00%",
+        "+8.20%",
+        "+8.40%",
+        "+8.60%"
+      ]
+    },
+    "nameEn": "Action Point Keyring",
+    "nameJa": "スタミナのキーリング",
+    "mainStatEn": "Increases Marching Speed When Battling Creatures",
+    "mainStatJa": "クリーチャー戦闘時の進軍速度上昇"
   },
   {
     "id": "keyring_32",
-    "name": "Llavero Desconocido 1",
+    "name": "Llavero de notas de Estrategia de supervivencia",
     "icon": "/llaveros/Item_KeyRing_32.webp",
-    "mainStat": "Aun sin agregar al juego",
-    "type": "Desconocido"
+    "mainStat": "Aumento de la velocidad de investigación en el laboratorio",
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.04%",
+        "+1.15%",
+        "+1.25%",
+        "+1.35%",
+        "+1.46%"
+      ],
+      "epicGrowthPerLv": "+0.10%",
+      "epicLv10Range": "+2.04% – +2.46%",
+      "epicLv10Candidates": [
+        "+2.04%",
+        "+2.15%",
+        "+2.25%",
+        "+2.35%",
+        "+2.46%"
+      ],
+      "epicLv30Range": "+4.04% – +4.46%",
+      "epicLv30Candidates": [
+        "+4.04%",
+        "+4.15%",
+        "+4.25%",
+        "+4.35%",
+        "+4.46%"
+      ],
+      "legendCandidates": [
+        "+1.08%",
+        "+1.20%",
+        "+1.32%",
+        "+1.44%",
+        "+1.56%"
+      ],
+      "legendGrowthPerLv": "+0.12%",
+      "legendLv10Range": "+2.28% – +2.76%",
+      "legendLv10Candidates": [
+        "+2.28%",
+        "+2.40%",
+        "+2.52%",
+        "+2.64%",
+        "+2.76%"
+      ],
+      "legendLv30Range": "+4.68% – +5.16%",
+      "legendLv30Candidates": [
+        "+4.68%",
+        "+4.80%",
+        "+4.92%",
+        "+5.04%",
+        "+5.16%"
+      ]
+    },
+    "nameEn": "Survival Strategy Notebook Keyring",
+    "nameJa": "生存戦略ノートのキーリング",
+    "mainStatEn": "Increases Research Lab Speed",
+    "mainStatJa": "研究のアップグレード速度向上"
   },
   {
     "id": "keyring_33",
-    "name": "Llavero Desconocido 2",
+    "name": "Llavero de libro de habilidades de exploración",
     "icon": "/llaveros/Item_KeyRing_33.webp",
-    "mainStat": "Aun sin agregar al juego",
-    "type": "Desconocido"
+    "mainStat": "Aún sin agregar al juego",
+    "type": "Desconocido",
+    "nameEn": "Exploration Skill Book Keyring",
+    "nameJa": "探索スキルブックのキーリング",
+    "mainStatEn": "Not yet added to the game",
+    "mainStatJa": "ゲーム内未実装"
   },
   {
     "id": "keyring_34",
-    "name": "Llavero Desconocido 3",
+    "name": "Llavero de libro de habilidades de campo",
     "icon": "/llaveros/Item_KeyRing_34.webp",
-    "mainStat": "Aun sin agregar al juego",
-    "type": "Desconocido"
+    "mainStat": "Aún sin agregar al juego",
+    "type": "Desconocido",
+    "nameEn": "Field Skill Book Keyring",
+    "nameJa": "フィールドスキルブックのキーリング",
+    "mainStatEn": "Not yet added to the game",
+    "mainStatJa": "ゲーム内未実装"
   },
   {
     "id": "keyring_35",
-    "name": "Llavero Desconocido 4",
+    "name": "Llavero de nota de EXP",
     "icon": "/llaveros/Item_KeyRing_35.webp",
-    "mainStat": "Aun sin agregar al juego",
-    "type": "Desconocido"
+    "mainStat": "Aún sin agregar al juego",
+    "type": "Desconocido",
+    "nameEn": "EXP Note Keyring",
+    "nameJa": "EXPノートのキーリング",
+    "mainStatEn": "Not yet added to the game",
+    "mainStatJa": "ゲーム内未実装"
   },
   {
     "id": "keyring_36",
-    "name": "Llavero de Componente electrico",
+    "name": "Llavero de componente eléctrico",
     "icon": "/llaveros/Item_KeyRing_36.webp",
-    "mainStat": "Velocidad de construccion",
-    "type": "Economía"
+    "mainStat": "Aumento de la velocidad de construcción",
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.04%",
+        "+1.15%",
+        "+1.25%",
+        "+1.35%",
+        "+1.46%"
+      ],
+      "epicGrowthPerLv": "+0.10%",
+      "epicLv10Range": "+2.04% – +2.46%",
+      "epicLv10Candidates": [
+        "+2.04%",
+        "+2.15%",
+        "+2.25%",
+        "+2.35%",
+        "+2.46%"
+      ],
+      "epicLv30Range": "+4.04% – +4.46%",
+      "epicLv30Candidates": [
+        "+4.04%",
+        "+4.15%",
+        "+4.25%",
+        "+4.35%",
+        "+4.46%"
+      ],
+      "legendCandidates": [
+        "+1.08%",
+        "+1.20%",
+        "+1.32%",
+        "+1.44%",
+        "+1.56%"
+      ],
+      "legendGrowthPerLv": "+0.12%",
+      "legendLv10Range": "+2.28% – +2.76%",
+      "legendLv10Candidates": [
+        "+2.28%",
+        "+2.40%",
+        "+2.52%",
+        "+2.64%",
+        "+2.76%"
+      ],
+      "legendLv30Range": "+4.68% – +5.16%",
+      "legendLv30Candidates": [
+        "+4.68%",
+        "+4.80%",
+        "+4.92%",
+        "+5.04%",
+        "+5.16%"
+      ]
+    },
+    "nameEn": "Power Console Part Keyring",
+    "nameJa": "電力部品のキーリング",
+    "mainStatEn": "Increases \nBuilding Construction Speed",
+    "mainStatJa": "建物のアップグレード速度向上"
   },
   {
     "id": "keyring_37",
-    "name": "Llavero de brujula",
+    "name": "Llavero de brújula",
     "icon": "/llaveros/Item_KeyRing_37.webp",
     "mainStat": "Salud de Ranger",
-    "type": "Combate"
+    "type": "Combate",
+    "unitIcon": "/UI_Hero_Rifle.webp",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+0.87%",
+        "+0.96%",
+        "+1.05%",
+        "+1.13%",
+        "+1.22%"
+      ],
+      "epicGrowthPerLv": "+0.08%",
+      "epicLv10Range": "+1.67% – +2.02%",
+      "epicLv10Candidates": [
+        "+1.67%",
+        "+1.76%",
+        "+1.85%",
+        "+1.93%",
+        "+2.02%"
+      ],
+      "epicLv30Range": "+3.27% – +3.62%",
+      "epicLv30Candidates": [
+        "+3.27%",
+        "+3.36%",
+        "+3.45%",
+        "+3.53%",
+        "+3.62%"
+      ],
+      "legendCandidates": [
+        "+0.90%",
+        "+1.00%",
+        "+1.10%",
+        "+1.20%",
+        "+1.30%"
+      ],
+      "legendGrowthPerLv": "+0.10%",
+      "legendLv10Range": "+1.90% – +2.30%",
+      "legendLv10Candidates": [
+        "+1.90%",
+        "+2.00%",
+        "+2.10%",
+        "+2.20%",
+        "+2.30%"
+      ],
+      "legendLv30Range": "+3.90% – +4.30%",
+      "legendLv30Candidates": [
+        "+3.90%",
+        "+4.00%",
+        "+4.10%",
+        "+4.20%",
+        "+4.30%"
+      ]
+    },
+    "nameEn": "Compass Keyring",
+    "nameJa": "コンパスのキーリング",
+    "mainStatEn": "Ranger HP",
+    "mainStatJa": "体力-レンジャー"
   },
   {
     "id": "keyring_38",
-    "name": "Llavero de Moneda de Asalto",
+    "name": "Llavero de Moneda de asalto",
     "icon": "/llaveros/Item_KeyRing_38.webp",
-    "mainStat": "No da ningun efecto principal",
-    "type": "Desconocido"
+    "mainStat": "Ataque de Atacante",
+    "type": "Combate",
+    "unitIcon": "/UI_Hero_Heavy.webp",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+0.87%",
+        "+0.96%",
+        "+1.05%",
+        "+1.13%",
+        "+1.22%"
+      ],
+      "epicGrowthPerLv": "+0.08%",
+      "epicLv10Range": "+1.67% – +2.02%",
+      "epicLv10Candidates": [
+        "+1.67%",
+        "+1.76%",
+        "+1.85%",
+        "+1.93%",
+        "+2.02%"
+      ],
+      "epicLv30Range": "+3.27% – +3.62%",
+      "epicLv30Candidates": [
+        "+3.27%",
+        "+3.36%",
+        "+3.45%",
+        "+3.53%",
+        "+3.62%"
+      ],
+      "legendCandidates": [
+        "+0.90%",
+        "+1.00%",
+        "+1.10%",
+        "+1.20%",
+        "+1.30%"
+      ],
+      "legendGrowthPerLv": "+0.10%",
+      "legendLv10Range": "+1.90% – +2.30%",
+      "legendLv10Candidates": [
+        "+1.90%",
+        "+2.00%",
+        "+2.10%",
+        "+2.20%",
+        "+2.30%"
+      ],
+      "legendLv30Range": "+3.90% – +4.30%",
+      "legendLv30Candidates": [
+        "+3.90%",
+        "+4.00%",
+        "+4.10%",
+        "+4.20%",
+        "+4.30%"
+      ]
+    },
+    "nameEn": "Coin of Fierce Strike Keyring",
+    "nameJa": "猛攻のコインのキーリング",
+    "mainStatEn": "Attacker Attack",
+    "mainStatJa": "攻撃力-アタッカー"
   },
   {
     "id": "keyring_39",
-    "name": "Llavero de moneda de trebol",
+    "name": "Llavero de Moneda de Trébol",
     "icon": "/llaveros/Item_KeyRing_39.webp",
     "mainStat": "Poder de defensa de Defensor",
-    "type": "Combate"
+    "type": "Combate",
+    "unitIcon": "/UI_Hero_Infantry.webp",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+0.87%",
+        "+0.96%",
+        "+1.05%",
+        "+1.13%",
+        "+1.22%"
+      ],
+      "epicGrowthPerLv": "+0.08%",
+      "epicLv10Range": "+1.67% – +2.02%",
+      "epicLv10Candidates": [
+        "+1.67%",
+        "+1.76%",
+        "+1.85%",
+        "+1.93%",
+        "+2.02%"
+      ],
+      "epicLv30Range": "+3.27% – +3.62%",
+      "epicLv30Candidates": [
+        "+3.27%",
+        "+3.36%",
+        "+3.45%",
+        "+3.53%",
+        "+3.62%"
+      ],
+      "legendCandidates": [
+        "+0.90%",
+        "+1.00%",
+        "+1.10%",
+        "+1.20%",
+        "+1.30%"
+      ],
+      "legendGrowthPerLv": "+0.10%",
+      "legendLv10Range": "+1.90% – +2.30%",
+      "legendLv10Candidates": [
+        "+1.90%",
+        "+2.00%",
+        "+2.10%",
+        "+2.20%",
+        "+2.30%"
+      ],
+      "legendLv30Range": "+3.90% – +4.30%",
+      "legendLv30Candidates": [
+        "+3.90%",
+        "+4.00%",
+        "+4.10%",
+        "+4.20%",
+        "+4.30%"
+      ]
+    },
+    "nameEn": "Clover Coin Keyring",
+    "nameJa": "クローバーコインのキーリング",
+    "mainStatEn": "Defender Defense",
+    "mainStatJa": "防御力-ディフェンダー"
   },
   {
     "id": "keyring_40",
-    "name": "Llavero de Estuche de oro",
+    "name": "Llavero de estuche de Oro",
     "icon": "/llaveros/Item_KeyRing_40.webp",
     "mainStat": "Velocidad de recolección de todos los recursos",
-    "type": "Economía"
+    "type": "Economía",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+1.39%",
+        "+1.53%",
+        "+1.67%",
+        "+1.81%",
+        "+1.95%"
+      ],
+      "epicGrowthPerLv": "+0.13%",
+      "epicLv10Range": "+2.69% – +3.25%",
+      "epicLv10Candidates": [
+        "+2.69%",
+        "+2.83%",
+        "+2.97%",
+        "+3.11%",
+        "+3.25%"
+      ],
+      "epicLv30Range": "+5.29% – +5.85%",
+      "epicLv30Candidates": [
+        "+5.29%",
+        "+5.43%",
+        "+5.57%",
+        "+5.71%",
+        "+5.85%"
+      ],
+      "legendCandidates": [
+        "+1.44%",
+        "+1.60%",
+        "+1.76%",
+        "+1.92%",
+        "+2.08%"
+      ],
+      "legendGrowthPerLv": "+0.16%",
+      "legendLv10Range": "+3.04% – +3.68%",
+      "legendLv10Candidates": [
+        "+3.04%",
+        "+3.20%",
+        "+3.36%",
+        "+3.52%",
+        "+3.68%"
+      ],
+      "legendLv30Range": "+6.24% – +6.88%",
+      "legendLv30Candidates": [
+        "+6.24%",
+        "+6.40%",
+        "+6.56%",
+        "+6.72%",
+        "+6.88%"
+      ]
+    },
+    "nameEn": "Gold Briefcase Keyring",
+    "nameJa": "ゴールドケースのキーリング",
+    "mainStatEn": "All Resources Gathering Speed",
+    "mainStatJa": "採集速度-全資源"
   },
   {
     "id": "keyring_41",
-    "name": "Llavero de Emblema de S.T.A.R.S",
+    "name": "Llavero con emblema de S.T.A.R.S.",
     "icon": "/llaveros/Item_KeyRing_41.webp",
     "mainStat": "Poder de penetración de Ranger",
-    "type": "Combate"
+    "type": "Combate",
+    "unitIcon": "/UI_Hero_Rifle.webp",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+0.87%",
+        "+0.96%",
+        "+1.05%",
+        "+1.13%",
+        "+1.22%"
+      ],
+      "epicGrowthPerLv": "+0.08%",
+      "epicLv10Range": "+1.67% – +2.02%",
+      "epicLv10Candidates": [
+        "+1.67%",
+        "+1.76%",
+        "+1.85%",
+        "+1.93%",
+        "+2.02%"
+      ],
+      "epicLv30Range": "+3.27% – +3.62%",
+      "epicLv30Candidates": [
+        "+3.27%",
+        "+3.36%",
+        "+3.45%",
+        "+3.53%",
+        "+3.62%"
+      ],
+      "legendCandidates": [
+        "+0.90%",
+        "+1.00%",
+        "+1.10%",
+        "+1.20%",
+        "+1.30%"
+      ],
+      "legendGrowthPerLv": "+0.10%",
+      "legendLv10Range": "+1.90% – +2.30%",
+      "legendLv10Candidates": [
+        "+1.90%",
+        "+2.00%",
+        "+2.10%",
+        "+2.20%",
+        "+2.30%"
+      ],
+      "legendLv30Range": "+3.90% – +4.30%",
+      "legendLv30Candidates": [
+        "+3.90%",
+        "+4.00%",
+        "+4.10%",
+        "+4.20%",
+        "+4.30%"
+      ]
+    },
+    "nameEn": "S.T.A.R.S. Symbol Keyring",
+    "nameJa": "S.T.A.R.S.エンブレムのキーリング",
+    "mainStatEn": "Ranger Penetration",
+    "mainStatJa": "殺傷力-レンジャー"
   },
   {
     "id": "keyring_42",
     "name": "Llavero de radio",
     "icon": "/llaveros/Item_KeyRing_42.webp",
-    "mainStat": "No da ningun efecto principal",
-    "type": "Desconocido"
+    "mainStat": "Salud de Atacante",
+    "type": "Combate",
+    "unitIcon": "/UI_Hero_Heavy.webp",
+    "stats": {
+      "isPercent": true,
+      "epicCandidates": [
+        "+0.87%",
+        "+0.96%",
+        "+1.05%",
+        "+1.13%",
+        "+1.22%"
+      ],
+      "epicGrowthPerLv": "+0.08%",
+      "epicLv10Range": "+1.67% – +2.02%",
+      "epicLv10Candidates": [
+        "+1.67%",
+        "+1.76%",
+        "+1.85%",
+        "+1.93%",
+        "+2.02%"
+      ],
+      "epicLv30Range": "+3.27% – +3.62%",
+      "epicLv30Candidates": [
+        "+3.27%",
+        "+3.36%",
+        "+3.45%",
+        "+3.53%",
+        "+3.62%"
+      ],
+      "legendCandidates": [
+        "+0.90%",
+        "+1.00%",
+        "+1.10%",
+        "+1.20%",
+        "+1.30%"
+      ],
+      "legendGrowthPerLv": "+0.10%",
+      "legendLv10Range": "+1.90% – +2.30%",
+      "legendLv10Candidates": [
+        "+1.90%",
+        "+2.00%",
+        "+2.10%",
+        "+2.20%",
+        "+2.30%"
+      ],
+      "legendLv30Range": "+3.90% – +4.30%",
+      "legendLv30Candidates": [
+        "+3.90%",
+        "+4.00%",
+        "+4.10%",
+        "+4.20%",
+        "+4.30%"
+      ]
+    },
+    "nameEn": "Radio Keyring",
+    "nameJa": "無線機のキーリング",
+    "mainStatEn": "Attacker HP",
+    "mainStatJa": "体力-アタッカー"
   }
 ]

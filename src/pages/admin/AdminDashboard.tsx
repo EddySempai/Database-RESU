@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { 
   LogOut, Users, Activity, Shield, LineChart, ChevronDown, 
   Plus, ShieldAlert, ArrowLeft, Radio, ShieldCheck,
-  Sun, Moon, Globe, ChevronLeft, ChevronRight
+  Sun, Moon, Globe, ChevronLeft, ChevronRight, Sparkles
 } from 'lucide-react';
 import { useSound } from '../../contexts/SoundContext';
 import MembersPanel from './MembersPanel';
@@ -15,6 +15,7 @@ import ActivityPanel from './ActivityPanel';
 import AnalyticsPanel from './AnalyticsPanel';
 import AuditPanel from './AuditPanel';
 import UsersPanel from './UsersPanel';
+import NewsPanel from './NewsPanel';
 
 const AdminDashboard = () => {
   const { user, isAdmin, logout } = useAdminAuth();
@@ -22,7 +23,7 @@ const AdminDashboard = () => {
   const { t, i18n } = useTranslation();
   const { playHover, playClick } = useSound();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'members' | 'activity' | 'analytics' | 'audit' | 'users'>('activity');
+  const [activeTab, setActiveTab] = useState<'members' | 'activity' | 'analytics' | 'audit' | 'users' | 'news'>('activity');
   const [activeAlliance, setActiveAlliance] = useState('Umbrella Network');
   const [alliances, setAlliances] = useState<string[]>(['Umbrella Network']);
   const [showAllianceMenu, setShowAllianceMenu] = useState(false);
@@ -291,6 +292,23 @@ const AdminDashboard = () => {
 
           <button
             onMouseEnter={playHover}
+            onClick={() => { playClick(); setActiveTab('news'); }}
+            className={`shrink-0 flex items-center ${isSidebarCollapsed ? 'justify-center px-0' : 'gap-2 md:gap-3 px-3 md:px-3.5'} py-2 md:py-2.5 font-mono text-[10px] md:text-xs uppercase tracking-wider transition-all rounded-xl border ${
+              activeTab === 'news' 
+                ? (isDark 
+                    ? 'bg-rose-950/25 border-rose-500/40 text-rose-300 font-bold shadow-sm' 
+                    : 'bg-rose-50 border-rose-300 text-rose-700 font-bold shadow-sm')
+                : (isDark 
+                    ? 'border-transparent text-slate-400 hover:text-slate-100 hover:bg-white/5' 
+                    : 'border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-100')
+            }`}
+          >
+            <Sparkles size={14} className={activeTab === 'news' ? 'text-rose-500' : 'text-slate-400'} /> 
+            <span className={isSidebarCollapsed ? 'hidden' : 'block whitespace-nowrap'}>Noticias & Parches IA</span>
+          </button>
+
+          <button
+            onMouseEnter={playHover}
             onClick={() => { playClick(); setActiveTab('audit'); }}
             className={`shrink-0 flex items-center ${isSidebarCollapsed ? 'justify-center px-0' : 'gap-2 md:gap-3 px-3 md:px-3.5'} py-2 md:py-2.5 font-mono text-[10px] md:text-xs uppercase tracking-wider transition-all rounded-xl border ${
               activeTab === 'audit' 
@@ -349,6 +367,7 @@ const AdminDashboard = () => {
                activeTab === 'analytics' ? t('admin.sidebar.analytics') : 
                activeTab === 'members' ? t('admin.sidebar.members') : 
                activeTab === 'users' ? t('admin.sidebar.access_control') :
+               activeTab === 'news' ? 'NOTICIAS & PARCHES (IA)' :
                t('admin.sidebar.logs')}
             </h1>
           </div>
@@ -408,6 +427,7 @@ const AdminDashboard = () => {
           {activeTab === 'members' && <MembersPanel activeAlliance={activeAlliance} />}
           {activeTab === 'analytics' && <AnalyticsPanel activeAlliance={activeAlliance} />}
           {activeTab === 'users' && isAdmin && <UsersPanel />}
+          {activeTab === 'news' && <NewsPanel />}
           {activeTab === 'audit' && <AuditPanel activeAlliance={activeAlliance} />}
         </div>
       </div>

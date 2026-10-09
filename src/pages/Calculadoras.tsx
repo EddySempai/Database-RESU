@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import TrainingCalculator from '../components/TrainingCalculator';
 import Treasures from '../components/Treasures';
 import Jewels from '../components/Jewels';
 import LuminioTree from '../components/LuminioTree';
+import MansionCalculator from '../components/MansionCalculator';
 import { LUMINIO_NODES } from '../data/luminio';
 import RedQueenAI from '../components/RedQueenAI';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +13,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Calculadoras = () => {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState('training');
+  const [activeTab, setActiveTab] = useState('mansion');
   const [luminioBase, setLuminioBase] = useState<Record<string, number>>({});
   const [luminioTarget, setLuminioTarget] = useState<Record<string, number>>({});
 
@@ -126,6 +128,15 @@ const Calculadoras = () => {
       {/* TABS */}
       <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8 px-4 max-w-full">
         <button 
+          onClick={() => setActiveTab('mansion')}
+          className={`px-4 sm:px-6 py-2 font-mono text-xs sm:text-sm uppercase tracking-wider sm:tracking-widest rounded-full transition-all duration-300 cursor-pointer flex items-center gap-2 ${activeTab === 'mansion' ? 'bg-amber-600 text-white shadow-[0_0_15px_rgba(217,119,6,0.55)]' : 'bg-transparent text-gray-500 border border-gray-800 hover:text-white hover:border-gray-500'}`}
+        >
+          <span>{t('tools_page.tab_mansion', 'Mansión')}</span>
+          <span className="px-1.5 py-0.5 text-[9px] rounded bg-black/40 text-amber-300 border border-amber-400/30">
+            NUEVO
+          </span>
+        </button>
+        <button 
           onClick={() => setActiveTab('training')}
           className={`px-4 sm:px-6 py-2 font-mono text-xs sm:text-sm uppercase tracking-wider sm:tracking-widest rounded-full transition-all duration-300 cursor-pointer ${activeTab === 'training' ? 'bg-blood-red text-white shadow-[0_0_15px_rgba(255,0,0,0.5)]' : 'bg-transparent text-gray-500 border border-gray-800 hover:text-white hover:border-gray-500'}`}
         >
@@ -141,11 +152,31 @@ const Calculadoras = () => {
           onClick={() => setActiveTab('luminio')}
           className={`px-4 sm:px-6 py-2 font-mono text-xs sm:text-sm uppercase tracking-wider sm:tracking-widest rounded-full transition-all duration-300 cursor-pointer ${activeTab === 'luminio' ? 'bg-yellow-600 text-white shadow-[0_0_15px_rgba(202,138,4,0.5)]' : 'bg-transparent text-gray-500 border border-gray-800 hover:text-white hover:border-gray-500'}`}
         >
-          {t('tools_page.tab_luminio', 'Luminio')}
+          {t('tools_page.tab_luminio', 'Luminio (Árbol)')}
         </button>
+        <Link 
+          to="/conversores"
+          className="px-4 sm:px-6 py-2 font-mono text-xs sm:text-sm uppercase tracking-wider sm:tracking-widest rounded-full transition-all duration-300 cursor-pointer flex items-center gap-2 bg-gradient-to-r from-purple-900/60 to-amber-900/60 text-purple-200 border border-purple-500/40 hover:text-white hover:border-purple-400 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]"
+        >
+          <span>Conversores Tácticos</span>
+          <span className="px-1.5 py-0.5 text-[9px] rounded bg-purple-500/30 text-purple-200 border border-purple-400/30">
+            NUEVO
+          </span>
+        </Link>
       </div>
 
       <AnimatePresence mode="wait">
+        {activeTab === 'mansion' && (
+          <motion.div
+            key="mansion"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+          >
+            <MansionCalculator />
+          </motion.div>
+        )}
+
         {activeTab === 'training' && (
           <motion.div
             key="training"

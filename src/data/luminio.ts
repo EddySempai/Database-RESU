@@ -14,14 +14,14 @@ export interface LuminioNodeConfig {
   powderCosts: number[];
 }
 
-const COST_LEADER = [16, 25, 41, 74, 108];
-const COST_PRECISION_HP = [25, 56, 74, 102, 136, 184, 248, 334];
+const COST_LEADER = [16, 25, 41, 68, 108];
+const COST_PRECISION_HP = [40, 56, 74, 102, 136, 184, 248, 334];
 const COST_TROOPS = [83, 102, 125, 150, 184, 225, 276, 334, 418, 502, 602, 744];
-const COST_FOCUSED_ARMOR = [54, 66, 81, 97, 118, 145, 178, 216, 470, 324, 388, 489];
+const COST_FOCUSED_ARMOR = [54, 66, 81, 97, 118, 145, 178, 216, 270, 324, 388, 480];
 const COST_TIER_11 = [2236];
-const COST_RECOVERY = Array(10).fill(102);
-const COST_HEALING = Array(10).fill(51);
-const COST_TRAINING = Array(10).fill(102);
+const COST_RECOVERY = [102, 137, 188, 255, 341, 459, 612, 836, 1122, 1500];
+const COST_HEALING = [51, 68, 94, 127, 170, 229, 306, 418, 561, 765];
+const COST_TRAINING = [102, 137, 188, 255, 341, 459, 612, 836, 1122, 1500];
 
 export const LUMINIO_NODES: LuminioNodeConfig[] = [
   // --- BLUE BRANCH (Atacante) ---

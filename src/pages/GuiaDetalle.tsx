@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowLeft, 
   Clock, 
@@ -23,12 +23,15 @@ import {
   Shield, 
   Zap, 
   Sparkles, 
-  Radio,
-  Lock,
-  Unlock,
-  RotateCcw
+  Radio, 
+  Lock, 
+  Unlock, 
+  RotateCcw,
+  Castle,
+  Search
 } from 'lucide-react';
 import { GUIAS_DATA } from '../data/guiasData';
+import { BASE_MANSION_LEVELS_1_TO_30, formatResourceNumber, type BaseMansionLevel } from '../data/mansionData';
 import { useSound } from '../contexts/SoundContext';
 
 export default function GuiaDetalle() {
@@ -48,6 +51,27 @@ export default function GuiaDetalle() {
 
   // Interactive Keyring Mode State
   const [activeKeyringTab, setActiveKeyringTab] = useState<'passive' | 'active'>('passive');
+
+  // Interactive Mansion Guide State
+  const [mansionRangeFilter, setMansionRangeFilter] = useState<'all' | '1-10' | '11-20' | '21-30'>('all');
+  const [mansionSearchTerm, setMansionSearchTerm] = useState<string>('');
+
+  const filteredMansionLevels = useMemo(() => {
+    return BASE_MANSION_LEVELS_1_TO_30.filter((item) => {
+      if (mansionRangeFilter === '1-10' && (item.level < 1 || item.level > 10)) return false;
+      if (mansionRangeFilter === '11-20' && (item.level < 11 || item.level > 20)) return false;
+      if (mansionRangeFilter === '21-30' && (item.level < 21 || item.level > 30)) return false;
+      if (mansionSearchTerm.trim()) {
+        const q = mansionSearchTerm.toLowerCase();
+        return (
+          item.requirements.toLowerCase().includes(q) ||
+          `nv. ${item.level}`.includes(q) ||
+          `${item.level}` === q
+        );
+      }
+      return true;
+    });
+  }, [mansionRangeFilter, mansionSearchTerm]);
 
   // Bookmarking
   const [bookmarkedIds, setBookmarkedIds] = useState<number[]>(() => {
@@ -70,14 +94,6 @@ export default function GuiaDetalle() {
     } catch {
       return {};
     }
-  });
-
-  // Reading progress bar
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
   });
 
   useEffect(() => {
@@ -199,12 +215,6 @@ export default function GuiaDetalle() {
         <meta property="og:image" content={guide.image ? `https://resudb.com${guide.image}` : 'https://resudb.com/metadata-img.png'} />
         <meta name="twitter:card" content="summary_large_image" />
       </Helmet>
-      
-      {/* Top Reading Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-amber-500 to-neon-red origin-left z-50 shadow-[0_0_10px_rgba(255,42,42,0.8)]"
-        style={{ scaleX }}
-      />
 
       {/* Top Breadcrumb & Actions Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-6 pb-4 border-b border-white/[0.08] min-w-0">
@@ -593,6 +603,120 @@ export default function GuiaDetalle() {
               </>
             )}
           </motion.div>
+        </div>
+      )}
+
+      {/* 4. Mansión Nivel 1 a 30: Interactive Table & Road Map Visualizer */}
+      {guide.slug === 'mansion-nivel-1-a-30' && (
+        <div className="mb-10 p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-amber-950/20 via-black to-black border border-amber-500/30 shadow-xl">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-4 border-b border-white/[0.06]">
+            <div>
+              <div className="flex items-center gap-2">
+                <Castle size={20} className="text-amber-400" />
+                <h3 className="font-bebas text-2xl sm:text-3xl text-white tracking-wide m-0 uppercase">
+                  Hoja de Ruta de Mansión: Niveles 1 a 30
+                </h3>
+              </div>
+              <p className="text-gray-400 text-xs sm:text-sm mt-1">
+                Tiempos oficiales base (sin aceleradores) y recursos comunes para cada nivel de Mansión.
+              </p>
+            </div>
+
+            <Link
+              to="/herramientas"
+              onClick={playClick}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-mono text-xs font-bold transition-all shadow-[0_0_15px_rgba(245,158,11,0.3)] shrink-0 self-start sm:self-auto"
+            >
+              <Calculator size={15} />
+              <span>Calcular Prestigio (P1–P10)</span>
+            </Link>
+          </div>
+
+          {/* Filtros de Rango y Búsqueda */}
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div className="flex flex-wrap items-center gap-1.5">
+              {[
+                { id: 'all', label: 'Todos (1–30)' },
+                { id: '1-10', label: 'Niveles 1–10' },
+                { id: '11-20', label: 'Niveles 11–20' },
+                { id: '21-30', label: 'Niveles 21–30' }
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => {
+                    playClick();
+                    setMansionRangeFilter(tab.id as any);
+                  }}
+                  className={`px-3 py-1.5 rounded-lg font-mono text-xs transition-all cursor-pointer ${
+                    mansionRangeFilter === tab.id
+                      ? 'bg-amber-500 text-black font-bold shadow-[0_0_10px_rgba(245,158,11,0.4)]'
+                      : 'bg-white/[0.04] text-gray-400 hover:text-white border border-white/10'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="relative min-w-[200px]">
+              <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
+              <input
+                type="text"
+                placeholder="Buscar por requisito..."
+                value={mansionSearchTerm}
+                onChange={(e) => setMansionSearchTerm(e.target.value)}
+                className="w-full bg-white/[0.04] border border-white/10 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-amber-400 font-mono"
+              />
+            </div>
+          </div>
+
+          {/* Tabla Interactiva */}
+          <div className="overflow-x-auto rounded-xl border border-white/10 bg-black/60 custom-scrollbar max-h-[500px]">
+            <table className="w-full text-left font-mono text-xs">
+              <thead className="sticky top-0 z-10 bg-[#121318] border-b border-white/10 text-[11px] text-gray-400 uppercase">
+                <tr>
+                  <th className="py-3 px-3">Nivel</th>
+                  <th className="py-3 px-4">Requisitos Previos</th>
+                  <th className="py-3 px-3 text-right">Tiempo Base</th>
+                  <th className="py-3 px-3 text-right text-emerald-300">Poder (CP)</th>
+                  <th className="py-3 px-3 text-right text-emerald-400">Comida</th>
+                  <th className="py-3 px-3 text-right text-amber-400">Madera</th>
+                  <th className="py-3 px-3 text-right text-slate-300">Hierro</th>
+                  <th className="py-3 px-3 text-right text-red-400">Petróleo</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {filteredMansionLevels.map((item: BaseMansionLevel) => (
+                  <tr key={item.level} className="hover:bg-white/[0.03] transition-colors">
+                    <td className="py-2.5 px-3 font-bold text-amber-400 font-bebas text-base">
+                      Nv. {item.level}
+                    </td>
+                    <td className="py-2.5 px-4 font-sans text-gray-200 text-xs">
+                      {item.requirements}
+                    </td>
+                    <td className="py-2.5 px-3 text-right text-gray-300">
+                      {item.timeFormatted}
+                    </td>
+                    <td className="py-2.5 px-3 text-right text-emerald-300 font-bold">
+                      {item.combatPower.toLocaleString()}
+                    </td>
+                    <td className="py-2.5 px-3 text-right text-gray-300">
+                      {item.food > 0 ? formatResourceNumber(item.food) : '—'}
+                    </td>
+                    <td className="py-2.5 px-3 text-right text-gray-300">
+                      {item.wood > 0 ? formatResourceNumber(item.wood) : '—'}
+                    </td>
+                    <td className="py-2.5 px-3 text-right text-gray-300">
+                      {item.iron > 0 ? formatResourceNumber(item.iron) : '—'}
+                    </td>
+                    <td className="py-2.5 px-3 text-right text-gray-300">
+                      {item.oil > 0 ? formatResourceNumber(item.oil) : '—'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 

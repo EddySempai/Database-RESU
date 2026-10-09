@@ -1,11 +1,14 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { ChevronRight } from 'lucide-react';
 import { useSound } from '../contexts/SoundContext';
 
 const Hero = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { soundEnabled } = useSound();
+  const lang = i18n.language?.slice(0, 2).toLowerCase() || 'es';
+
   return (
     <section className="relative min-h-[85vh] md:h-[80vh] md:min-h-[620px] flex flex-col items-center justify-start md:justify-center overflow-hidden z-10 pt-24 sm:pt-28 md:pt-20 pb-16">
       {/* Background Video & Vignette */}
@@ -44,6 +47,30 @@ const Hero = () => {
         transition={{ staggerChildren: 0.15 }}
         className="relative z-10 text-center flex flex-col items-center px-4 max-w-4xl mx-auto w-full pt-4 md:pt-0"
       >
+        {/* Barra de Noticias Destacada / Major Update Banner Pill */}
+        <motion.div
+          variants={{ hidden: { opacity: 0, y: -15 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}
+          className="mb-3"
+        >
+          <Link
+            to="/noticias/sistema-llaveros-exp-v1-10-1"
+            className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/40 hover:border-amber-400 hover:bg-amber-500/20 text-amber-300 font-mono text-[10px] sm:text-xs transition-all shadow-[0_0_15px_rgba(245,158,11,0.25)]"
+          >
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+            </span>
+            <span className="font-semibold tracking-wide uppercase">
+              {lang === 'ja'
+                ? '⚡ 最新アップデート v1.10.1: キーリング完全DB＆EXP計算機'
+                : lang === 'en'
+                ? '⚡ MAJOR UPDATE v1.10.1: Keyrings Database & EXP Calculator'
+                : '⚡ NUEVA ACTUALIZACIÓN v1.10.1: Base de Datos de Llaveros & Calc EXP'}
+            </span>
+            <ChevronRight size={13} className="group-hover:translate-x-1 transition-transform text-amber-400" />
+          </Link>
+        </motion.div>
+
         <motion.span 
           variants={{ hidden: { opacity: 0, y: 30, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 100, damping: 15 } } }}
           className="font-mono text-neon-red text-[11px] sm:text-xs md:text-sm tracking-wider sm:tracking-[0.2em] md:tracking-[0.25em] uppercase mb-4 border border-neon-red/30 bg-black/80 px-3.5 py-1.5 rounded-sm max-w-[92vw] text-center shadow-[0_0_12px_rgba(255,42,42,0.15)] leading-tight"

@@ -395,5 +395,65 @@ export const GUIAS_DATA: GuideDossier[] = [
       'Ignorar el modo de oleadas 5v5 perdiendo la oportunidad de desbloquear el primer slot gratuito.',
       'Intentar acumular el mismo llavero exacto esperando que el efecto principal se duplique.'
     ]
+  },
+  {
+    id: 13,
+    slug: 'mansion-nivel-1-a-30',
+    category: 'economy',
+    categoryLabel: 'Economía & Asentamiento',
+    badge: 'HOJA DE RUTA',
+    badgeColor: 'bg-amber-500/20 text-amber-400 border-amber-500/40',
+    title: 'Guía Maestra: Mansión Nivel 1 a 30 y Salto al Prestigio',
+    desc: 'Requisitos de edificios troncales, rotación militar previa, costes exactos de comida, madera, hierro, petróleo, tiempos base y transición al Luminio (P1–P10).',
+    image: '/edificios/UI_L_Headquarter_01.webp',
+    readTime: '6 min',
+    difficulty: 'Recluta',
+    difficultyLevel: 'Recluta',
+    color: 'from-amber-950/40 via-[#0e0a05] to-[#050505]',
+    borderColor: 'border-amber-500/30 hover:border-amber-500/70',
+    glowColor: 'group-hover:shadow-[0_0_30px_rgba(245,158,11,0.15)]',
+    iconBg: 'bg-amber-500/20 text-amber-400 border-amber-500/40',
+    iconName: 'Castle',
+    gridSpan: 'col-span-12 sm:col-span-6 lg:col-span-6 min-h-[240px]',
+    takeaways: [
+      'El Centro de Alianza es el requisito troncal: a partir de Nivel 9 se repite en cada nivel de Mansión.',
+      'Rotación militar en niveles altos: el segundo requisito alterna entre Cuartel de Infantería, Taller Pesado, Campo de Tiro y Laboratorio.',
+      'El salto a Nivel 30 requiere Centro de Alianza Nv.29 y Taller Pesado Nv.29.',
+      'La Mansión P1 (Prestigio 1) pide tener Mansión Nv.30, Centro de Alianza Nv.30 y Laboratorio Nv.30 con 660 Piedras de Luminio.'
+    ],
+    sections: [
+      {
+        title: '1. Regla Troncal: El Centro de Alianza (Alliance Center)',
+        points: [
+          'Desde el nivel 9 hasta el 30, **el Centro de Alianza siempre debe subirse primero**, exactamente a un nivel por debajo del objetivo de la Mansión (ej. Mansión Nv.25 requiere Alianza Nv.24).',
+          'Tener el Centro de Alianza al máximo además aumenta la cantidad y efectividad de las ayudas de alianza recibidas, recortando drásticamente el tiempo de todas tus obras.',
+          'Regla de oro: Nunca inicies la mejora de la Mansión sin tener el Centro de Alianza en marcha o finalizado.'
+        ]
+      },
+      {
+        title: '2. El Patrón Cíclico de Rotación Militar y Laboratorio',
+        points: [
+          'Junto al Centro de Alianza, el juego te exige un segundo edificio obligatorio que va rotando de forma cíclica y predecible:',
+          '• **Cuartel de Infantería (Barracks):** Requerido en Mansión Niveles 8, 13, 17, 21, 25 y 29.',
+          '• **Taller Pesado (Garage):** Requerido en Mansión Niveles 10, 14, 18, 22, 26 y 30.',
+          '• **Campo de Tiro (Shooting Range):** Requerido en Mansión Niveles 11, 15, 19, 23 y 27.',
+          '• **Laboratorio de Investigación (Research Lab):** Requerido en Mansión Niveles 10, 16, 20, 24, 28, y finalmente Nv.30 para desbloquear el Prestigio 1 (P1).'
+        ]
+      },
+      {
+        title: '3. Transición al Sistema de Prestigio (Lumi Level P1 a P10)',
+        points: [
+          'Al completar Mansión Nivel 30, se desbloquea el árbol de Luminio y los niveles de Prestigio (P1–P10).',
+          'Cada nivel de Prestigio se compone de 5 sub-etapas (20% por etapa) y requiere **Piedras de Luminio** acumuladas mediante misiones, radar y eventos.',
+          'A partir de Mansión P6, además de Luminio se requiere **Luminium Composite** refinado.',
+          'Utiliza nuestra **Calculadora de Mansión de Luminio** en /herramientas para planificar tus rutas por fases con el plano táctico interactivo.'
+        ]
+      }
+    ],
+    mistakes: [
+      'Subir edificios secundarios aleatorios antes de asegurar el Centro de Alianza del nivel correspondiente.',
+      'No acumular reservas masivas de Hierro y Petróleo a partir de Nivel 22, donde el coste en decenas de millones de recursos se dispara exponencialmente.',
+      'Gastar aceleradores universales en edificios que no son requisitos previos directos para el siguiente nivel de Mansión.'
+    ]
   }
 ];

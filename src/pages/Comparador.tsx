@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Crosshair, Heart, Zap, Search, X, Loader2 } from 'lucide-react';
+import { Shield, Crosshair, Heart, Zap, Search, X, Loader2, Compass, Sparkles } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -9,6 +9,15 @@ import { useOperativos } from '../hooks/useOperativos';
 import { getRedQueenResponse } from '../services/geminiService';
 import { useOnboarding, OnboardingTour, TutorialButton } from '../components/OnboardingTour';
 import type { Step } from 'react-joyride';
+
+interface SkillItem {
+  name: string;
+  description: string;
+  type: string;
+  iconUrl?: string;
+  isArmaEspecial?: boolean;
+  isVipSkill?: boolean;
+}
 
 interface Operativo {
   id: string;
@@ -22,7 +31,7 @@ interface Operativo {
     defense: number;
   };
   fieldStats?: { label: string, value: string }[];
-  skills?: { name: string, description: string, type: string }[];
+  skills?: SkillItem[];
 }
 
 const Comparador = () => {
@@ -33,6 +42,7 @@ const Comparador = () => {
   const [slot2, setSlot2] = useState<Operativo | null>(null);
   const [selectingSlot, setSelectingSlot] = useState<1 | 2 | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [skillFilter, setSkillFilter] = useState<'all' | 'campo' | 'exploracion'>('all');
   
   const [aiAnalysis, setAiAnalysis] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -81,13 +91,203 @@ const Comparador = () => {
     }
   };
 
-  const compareStats = (val1: number, val2: number, isSlot1: boolean) => {
-    if (val1 === val2) return 'text-gray-400';
-    if (isSlot1) {
-      return val1 > val2 ? 'text-green-500 font-bold' : 'text-red-500';
-    } else {
-      return val2 > val1 ? 'text-green-500 font-bold' : 'text-red-500';
+
+  const renderBaseStatComparison = (
+    label: string, 
+    icon: React.ReactNode, 
+    val1: number, 
+    val2: number
+  ) => {
+    const isTie = val1 === val2;
+    const slot1Wins = val1 > val2;
+    const slot2Wins = val2 > val1;
+    const maxVal = Math.max(val1, val2, 1);
+    const diff = Math.abs(val1 - val2);
+
+    // If tie: both bars at 50% width meeting at the center punto medio
+    // If winner: winner is 100%, loser is proportional to max
+    const pct1 = isTie ? 50 : (slot1Wins ? 100 : Math.max(14, Math.round((val1 / maxVal) * 100)));
+    const pct2 = isTie ? 50 : (slot2Wins ? 100 : Math.max(14, Math.round((val2 / maxVal) * 100)));
+
+    const leftBarGradient = isTie
+      ? 'bg-gradient-to-l from-gray-500 to-gray-700'
+      : slot1Wins
+        ? 'bg-gradient-to-l from-emerald-400 via-emerald-500 to-emerald-700 shadow-[0_0_12px_rgba(16,185,129,0.35)]'
+        : 'bg-gradient-to-l from-rose-600 via-rose-700 to-rose-900/60';
+
+    const rightBarGradient = isTie
+      ? 'bg-gradient-to-r from-gray-500 to-gray-700'
+      : slot2Wins
+        ? 'bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-700 shadow-[0_0_12px_rgba(16,185,129,0.35)]'
+        : 'bg-gradient-to-r from-rose-600 via-rose-700 to-rose-900/60';
+
+    return (
+      <div className="border-b border-gray-800/60 pb-5 pt-1">
+        <div className="flex items-center gap-2 sm:gap-4">
+          {/* Slot 1 Stat Value */}
+          <div className="w-16 sm:w-28 text-right shrink-0">
+            <span className={`font-mono text-base sm:text-xl font-bold tracking-tight block ${
+              isTie 
+                ? 'text-gray-300' 
+                : slot1Wins 
+                  ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.35)]' 
+                  : 'text-rose-500/80'
+            }`}>
+              {val1.toLocaleString()}
+            </span>
+            {!isTie && slot1Wins && (
+              <span className="text-[10px] font-mono font-semibold text-emerald-400/90 hidden sm:block">
+                +{diff.toLocaleString()}
+              </span>
+            )}
+          </div>
+
+          {/* Left Bar (Slot 1) */}
+          <div className="flex-1 bg-gray-950/90 border border-gray-800/90 rounded-sm h-3 sm:h-3.5 overflow-hidden flex justify-end">
+            <div 
+              style={{ width: `${pct1}%` }} 
+              className={`h-full rounded-sm transition-all duration-500 ${leftBarGradient}`} 
+            />
+          </div>
+
+          {/* Center Column: Icon + Label + Punto Medio Indicator */}
+          <div className="w-20 sm:w-28 flex flex-col items-center justify-center shrink-0 text-center px-1">
+            <div className={`mb-1 shrink-0 ${isTie ? 'text-amber-400' : 'text-gray-400'}`}>
+              {icon}
+            </div>
+            <span className="text-[10px] uppercase tracking-widest text-gray-400 font-semibold line-clamp-1">
+              {label}
+            </span>
+            {isTie ? (
+              <span className="mt-1 text-[8px] sm:text-[9px] font-mono font-bold uppercase tracking-wider text-amber-400 bg-amber-950/50 border border-amber-600/40 px-1.5 py-0.5 rounded shadow-sm">
+                Punto Medio
+              </span>
+            ) : (
+              <span className="mt-0.5 text-[9px] font-mono text-gray-500">
+                Δ {diff.toLocaleString()}
+              </span>
+            )}
+          </div>
+
+          {/* Right Bar (Slot 2) */}
+          <div className="flex-1 bg-gray-950/90 border border-gray-800/90 rounded-sm h-3 sm:h-3.5 overflow-hidden flex justify-start">
+            <div 
+              style={{ width: `${pct2}%` }} 
+              className={`h-full rounded-sm transition-all duration-500 ${rightBarGradient}`} 
+            />
+          </div>
+
+          {/* Slot 2 Stat Value */}
+          <div className="w-16 sm:w-28 text-left shrink-0">
+            <span className={`font-mono text-base sm:text-xl font-bold tracking-tight block ${
+              isTie 
+                ? 'text-gray-300' 
+                : slot2Wins 
+                  ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.35)]' 
+                  : 'text-rose-500/80'
+            }`}>
+              {val2.toLocaleString()}
+            </span>
+            {!isTie && slot2Wins && (
+              <span className="text-[10px] font-mono font-semibold text-emerald-400/90 hidden sm:block">
+                +{diff.toLocaleString()}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const getCleanIconUrl = (url?: string) => {
+    if (!url) return '';
+    let cleanUrl = url.trim();
+    if (cleanUrl.startsWith('/public')) {
+      cleanUrl = cleanUrl.replace('/public', '');
+    } else if (cleanUrl.startsWith('public/')) {
+      cleanUrl = cleanUrl.replace('public/', '/');
     }
+    if (!cleanUrl.startsWith('/') && !cleanUrl.startsWith('http')) {
+      cleanUrl = '/' + cleanUrl;
+    }
+    return cleanUrl;
+  };
+
+  const isSkillInCampo = (s: SkillItem) => {
+    const tp = (s.type || '').toLowerCase();
+    return (tp.includes('campo') || tp.includes('field') || tp.includes('フィールド')) && !s.isVipSkill;
+  };
+
+  const isSkillInExplora = (s: SkillItem) => {
+    const tp = (s.type || '').toLowerCase();
+    return (tp.includes('explor') || tp.includes('探索')) && !s.isVipSkill;
+  };
+
+  const renderSkillCard = (skill: SkillItem, idx: number, theme: 'campo' | 'exploracion') => {
+    const isCampo = theme === 'campo';
+    const borderColor = isCampo 
+      ? 'border-blood-red/40 group-hover:border-blood-red/80' 
+      : 'border-emerald-500/40 group-hover:border-emerald-500/80';
+    const shadowColor = isCampo 
+      ? 'shadow-[0_0_12px_rgba(220,38,38,0.25)] group-hover:shadow-[0_0_18px_rgba(220,38,38,0.45)]' 
+      : 'shadow-[0_0_12px_rgba(16,185,129,0.25)] group-hover:shadow-[0_0_18px_rgba(16,185,129,0.45)]';
+    const accentText = isCampo ? 'text-neon-red' : 'text-emerald-400';
+    const tagBg = isCampo 
+      ? 'bg-red-950/40 text-red-400 border-red-800/40' 
+      : 'bg-emerald-950/40 text-emerald-400 border-emerald-800/40';
+
+    return (
+      <div 
+        key={idx} 
+        className="group bg-[#060606] hover:bg-[#0b0b0b] border border-gray-800/80 hover:border-gray-700 p-3.5 sm:p-4 rounded-lg transition-all duration-300 flex items-start gap-3.5 sm:gap-4 relative overflow-hidden"
+      >
+        {/* Circular Skill Icon */}
+        <div className="relative shrink-0 flex items-center justify-center mt-0.5">
+          {skill.iconUrl ? (
+            <img 
+              src={getCleanIconUrl(skill.iconUrl)} 
+              alt={skill.name} 
+              className={`w-12 h-12 sm:w-14 sm:h-14 object-contain rounded-full border-2 ${borderColor} ${shadowColor} bg-black/80 transition-all duration-300 group-hover:scale-105`}
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                const fallback = e.currentTarget.parentElement?.querySelector('.skill-fallback-icon');
+                if (fallback) (fallback as HTMLElement).style.display = 'flex';
+              }}
+            />
+          ) : null}
+          <div 
+            style={{ display: skill.iconUrl ? 'none' : 'flex' }}
+            className={`skill-fallback-icon w-12 h-12 sm:w-14 sm:h-14 bg-gray-900 border-2 ${borderColor} rounded-full items-center justify-center font-bebas ${accentText} text-sm sm:text-base ${shadowColor}`}
+          >
+            {isCampo ? `C${idx + 1}` : `E${idx + 1}`}
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-1 flex-wrap">
+            <span className={`text-[9px] font-mono uppercase tracking-widest px-2 py-0.5 rounded border ${tagBg}`}>
+              {skill.isArmaEspecial 
+                ? t('op_detail.special_weapon', 'Arma Especial') 
+                : skill.isVipSkill 
+                  ? t('op_detail.vip_skill', 'VIP') 
+                  : (isCampo ? t('heroes.field', 'Campo') : t('heroes.exploration', 'Exploración'))}
+            </span>
+            {skill.isArmaEspecial && (
+              <span className="text-[9px] font-mono uppercase tracking-widest px-1.5 py-0.5 rounded bg-purple-950/40 text-purple-400 border border-purple-800/40">
+                Exclusiva
+              </span>
+            )}
+          </div>
+          <h4 className="font-bebas text-base sm:text-lg text-white tracking-wider group-hover:text-gray-100 transition-colors">
+            {skill.name}
+          </h4>
+          <p className="font-inter text-gray-400 text-xs leading-relaxed mt-1 break-words">
+            {skill.description}
+          </p>
+        </div>
+      </div>
+    );
   };
 
   const renderSlot = (slot: 1 | 2, op: Operativo | null) => {
@@ -231,119 +431,532 @@ const Comparador = () => {
           
           <div className="space-y-4 sm:space-y-6">
             {/* Health */}
-            <div className="grid grid-cols-3 items-center gap-2 sm:gap-4 border-b border-gray-800/50 pb-4">
-              <div className={`text-right font-mono text-base sm:text-lg md:text-xl ${compareStats(slot1?.stats.health ?? 0, slot2?.stats.health ?? 0, true)}`}>
-                {slot1?.stats.health.toLocaleString()}
-              </div>
-              <div className="flex flex-col items-center justify-center text-gray-500">
-                <Heart size={18} className="mb-1 shrink-0" />
-                <span className="text-[10px] uppercase tracking-widest">{t('heroes.health')}</span>
-              </div>
-              <div className={`font-mono text-base sm:text-lg md:text-xl ${compareStats(slot1?.stats.health ?? 0, slot2?.stats.health ?? 0, false)}`}>
-                {slot2?.stats.health.toLocaleString()}
-              </div>
-            </div>
+            {renderBaseStatComparison(
+              t('heroes.health', 'Salud'),
+              <Heart size={18} />,
+              slot1?.stats.health ?? 0,
+              slot2?.stats.health ?? 0
+            )}
 
             {/* Attack */}
-            <div className="grid grid-cols-3 items-center gap-2 sm:gap-4 border-b border-gray-800/50 pb-4">
-              <div className={`text-right font-mono text-base sm:text-lg md:text-xl ${compareStats(slot1?.stats.attack ?? 0, slot2?.stats.attack ?? 0, true)}`}>
-                {slot1?.stats.attack.toLocaleString()}
-              </div>
-              <div className="flex flex-col items-center justify-center text-gray-500">
-                <Crosshair size={18} className="mb-1 shrink-0" />
-                <span className="text-[10px] uppercase tracking-widest">{t('heroes.attack')}</span>
-              </div>
-              <div className={`font-mono text-base sm:text-lg md:text-xl ${compareStats(slot1?.stats.attack ?? 0, slot2?.stats.attack ?? 0, false)}`}>
-                {slot2?.stats.attack.toLocaleString()}
-              </div>
-            </div>
+            {renderBaseStatComparison(
+              t('heroes.attack', 'Ataque'),
+              <Crosshair size={18} />,
+              slot1?.stats.attack ?? 0,
+              slot2?.stats.attack ?? 0
+            )}
 
             {/* Defense */}
-            <div className="grid grid-cols-3 items-center gap-2 sm:gap-4 border-b border-gray-800/50 pb-4">
-              <div className={`text-right font-mono text-base sm:text-lg md:text-xl ${compareStats(slot1?.stats.defense ?? 0, slot2?.stats.defense ?? 0, true)}`}>
-                {slot1?.stats.defense.toLocaleString()}
-              </div>
-              <div className="flex flex-col items-center justify-center text-gray-500">
-                <Shield size={18} className="mb-1 shrink-0" />
-                <span className="text-[10px] uppercase tracking-widest">{t('heroes.defense')}</span>
-              </div>
-              <div className={`font-mono text-base sm:text-lg md:text-xl ${compareStats(slot1?.stats.defense ?? 0, slot2?.stats.defense ?? 0, false)}`}>
-                {slot2?.stats.defense.toLocaleString()}
-              </div>
-            </div>
-
+            {renderBaseStatComparison(
+              t('heroes.defense', 'Defensa'),
+              <Shield size={18} />,
+              slot1?.stats.defense ?? 0,
+              slot2?.stats.defense ?? 0
+            )}
           </div>
 
           {/* Field Stats */}
-          <div className="mt-8 border-t border-gray-800 pt-8">
-            <h4 className="font-bebas text-xl text-blood-red tracking-widest text-center mb-6">{t('comparador.field_percentages', 'Porcentajes de Campo (Habilidades)')}</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8">
-              {/* Slot 1 Field Stats */}
-              <div className="space-y-3">
-                {slot1?.fieldStats?.map((stat, i) => (
-                  <div key={i} className="flex flex-col bg-gray-900/30 p-3 border border-gray-800/50">
-                    <span className="text-[10px] text-gray-500 uppercase tracking-widest">{stat.label}</span>
-                    <span className="font-mono text-white text-sm">{stat.value}</span>
-                  </div>
-                ))}
-              </div>
-              {/* Slot 2 Field Stats */}
-              <div className="space-y-3">
-                {slot2?.fieldStats?.map((stat, i) => (
-                  <div key={i} className="flex flex-col bg-gray-900/30 p-3 border border-gray-800/50">
-                    <span className="text-[10px] text-gray-500 uppercase tracking-widest">{stat.label}</span>
-                    <span className="font-mono text-white text-sm">{stat.value}</span>
-                  </div>
-                ))}
-              </div>
+          <div className="mt-10 border-t border-gray-800 pt-8">
+            <h4 className="font-bebas text-xl text-blood-red tracking-widest text-center mb-6">
+              {t('comparador.field_percentages', 'Porcentajes de Campo (Habilidades)')}
+            </h4>
+            
+            <div className="space-y-4">
+              {(() => {
+                const list1 = slot1?.fieldStats || [];
+                const list2 = slot2?.fieldStats || [];
+                const maxLen = Math.max(list1.length, list2.length);
+
+                if (maxLen === 0) {
+                  return (
+                    <div className="text-center text-gray-500 font-mono text-xs py-4">
+                      {t('comparador.no_field_stats', 'Sin estadísticas de campo registradas')}
+                    </div>
+                  );
+                }
+
+                return Array.from({ length: maxLen }).map((_, i) => {
+                  const s1 = list1[i];
+                  const s2 = list2[i];
+
+                  const num1 = s1 ? parseFloat(s1.value.replace('%', '').replace(',', '.').trim()) || 0 : 0;
+                  const num2 = s2 ? parseFloat(s2.value.replace('%', '').replace(',', '.').trim()) || 0 : 0;
+
+                  const isTie = Math.abs(num1 - num2) < 0.001;
+                  const s1Wins = num1 > num2;
+                  const s2Wins = num2 > num1;
+                  const diff = Math.abs(num1 - num2);
+
+                  const combinedLabel = `${s1?.label || ''} ${s2?.label || ''}`.toLowerCase();
+                  const isAttack = combinedLabel.includes('ataque') || combinedLabel.includes('attack');
+                  const isDefense = combinedLabel.includes('defensa') || combinedLabel.includes('defense');
+
+                  const categoryTitle = isAttack 
+                    ? t('heroes.field_attack', 'Poder de Ataque') 
+                    : isDefense 
+                      ? t('heroes.field_defense', 'Poder de Defensa') 
+                      : (s1?.label || s2?.label || t('comparador.field_stat', 'Estadística'));
+
+                  const totalNum = num1 + num2;
+                  const pctShare1 = totalNum > 0 ? (num1 / totalNum) * 100 : 50;
+                  const pctShare2 = totalNum > 0 ? (num2 / totalNum) * 100 : 50;
+
+                  return (
+                    <div key={i} className="bg-[#080808] border border-gray-800/80 p-4 sm:p-5 rounded-sm space-y-3">
+                      {/* Header */}
+                      <div className="flex items-center justify-between border-b border-gray-800/80 pb-2.5">
+                        <div className="flex items-center gap-2">
+                          {isAttack ? (
+                            <Crosshair size={17} className="text-neon-red shrink-0" />
+                          ) : isDefense ? (
+                            <Shield size={17} className="text-blue-400 shrink-0" />
+                          ) : (
+                            <Zap size={17} className="text-amber-400 shrink-0" />
+                          )}
+                          <span className="font-bebas text-lg sm:text-xl tracking-wider text-white">
+                            {categoryTitle}
+                          </span>
+                        </div>
+
+                        {/* Status Badge */}
+                        <div>
+                          {isTie ? (
+                            <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-amber-400 bg-amber-950/40 border border-amber-600/40 px-2 py-0.5 rounded shadow-sm">
+                              Punto Medio (Empate)
+                            </span>
+                          ) : s1Wins ? (
+                            <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-950/50 border border-emerald-500/40 px-2 py-0.5 rounded shadow-sm">
+                              Ventaja: {slot1?.name} (+{diff.toFixed(2)}%)
+                            </span>
+                          ) : (
+                            <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-950/50 border border-emerald-500/40 px-2 py-0.5 rounded shadow-sm">
+                              Ventaja: {slot2?.name} (+{diff.toFixed(2)}%)
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Side-by-side Cards with Background Colors */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        {/* Slot 1 Card */}
+                        <div className={`p-4 rounded-sm border transition-all flex flex-col justify-between ${
+                          isTie 
+                            ? 'bg-gray-900/40 border-gray-700/60' 
+                            : s1Wins 
+                              ? 'bg-emerald-950/30 border-emerald-500/60 shadow-[0_0_15px_rgba(16,185,129,0.12)]' 
+                              : 'bg-rose-950/20 border-rose-900/50'
+                        }`}>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-[10px] font-mono uppercase tracking-widest text-gray-400 font-semibold truncate max-w-[120px] sm:max-w-[160px]">
+                              {slot1?.name}
+                            </span>
+                            {isTie ? (
+                              <span className="text-[10px] font-mono font-bold text-gray-400 bg-gray-800/80 px-2 py-0.5 rounded border border-gray-700">
+                                EMPATE
+                              </span>
+                            ) : s1Wins ? (
+                              <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/40">
+                                ▲ GANADOR (+{diff.toFixed(2)}%)
+                              </span>
+                            ) : (
+                              <span className="text-[10px] font-mono text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-900/40">
+                                ▼ PERDEDOR (-{diff.toFixed(2)}%)
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-xs text-gray-400 uppercase tracking-wider mb-2 truncate">
+                            {s1?.label || '—'}
+                          </div>
+                          <div className={`font-mono text-xl sm:text-2xl font-bold tracking-tight ${
+                            isTie ? 'text-gray-200' : s1Wins ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.3)]' : 'text-rose-400/90'
+                          }`}>
+                            {s1?.value || '0.00%'}
+                          </div>
+                        </div>
+
+                        {/* Slot 2 Card */}
+                        <div className={`p-4 rounded-sm border transition-all flex flex-col justify-between ${
+                          isTie 
+                            ? 'bg-gray-900/40 border-gray-700/60' 
+                            : s2Wins 
+                              ? 'bg-emerald-950/30 border-emerald-500/60 shadow-[0_0_15px_rgba(16,185,129,0.12)]' 
+                              : 'bg-rose-950/20 border-rose-900/50'
+                        }`}>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-[10px] font-mono uppercase tracking-widest text-gray-400 font-semibold truncate max-w-[120px] sm:max-w-[160px]">
+                              {slot2?.name}
+                            </span>
+                            {isTie ? (
+                              <span className="text-[10px] font-mono font-bold text-gray-400 bg-gray-800/80 px-2 py-0.5 rounded border border-gray-700">
+                                EMPATE
+                              </span>
+                            ) : s2Wins ? (
+                              <span className="text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/40">
+                                ▲ GANADOR (+{diff.toFixed(2)}%)
+                              </span>
+                            ) : (
+                              <span className="text-[10px] font-mono text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-900/40">
+                                ▼ PERDEDOR (-{diff.toFixed(2)}%)
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-xs text-gray-400 uppercase tracking-wider mb-2 truncate">
+                            {s2?.label || '—'}
+                          </div>
+                          <div className={`font-mono text-xl sm:text-2xl font-bold tracking-tight ${
+                            isTie ? 'text-gray-200' : s2Wins ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(52,211,153,0.3)]' : 'text-rose-400/90'
+                          }`}>
+                            {s2?.value || '0.00%'}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Comparative Balance Gauge */}
+                      <div className="pt-2">
+                        <div className="h-2 w-full bg-gray-950 rounded-full border border-gray-800/80 overflow-hidden flex relative">
+                          <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/40 z-10 -translate-x-1/2" />
+                          <div 
+                            style={{ width: `${pctShare1}%` }}
+                            className={`h-full transition-all duration-500 ${
+                              isTie 
+                                ? 'bg-gray-600' 
+                                : s1Wins 
+                                  ? 'bg-gradient-to-r from-emerald-600 to-emerald-400' 
+                                  : 'bg-gradient-to-r from-rose-700 to-rose-600'
+                            }`}
+                          />
+                          <div 
+                            style={{ width: `${pctShare2}%` }}
+                            className={`h-full transition-all duration-500 ${
+                              isTie 
+                                ? 'bg-gray-600' 
+                                : s2Wins 
+                                  ? 'bg-gradient-to-l from-emerald-600 to-emerald-400' 
+                                  : 'bg-gradient-to-l from-rose-700 to-rose-600'
+                            }`}
+                          />
+                        </div>
+                        <div className="flex justify-between text-[9px] font-mono text-gray-500 mt-1">
+                          <span className={s1Wins ? 'text-emerald-400 font-bold' : ''}>
+                            {slot1?.name}: {pctShare1.toFixed(1)}%
+                          </span>
+                          <span className={isTie ? 'text-amber-400 font-bold' : 'text-gray-400'}>
+                            PUNTO MEDIO 50/50
+                          </span>
+                          <span className={s2Wins ? 'text-emerald-400 font-bold' : ''}>
+                            {slot2?.name}: {pctShare2.toFixed(1)}%
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                });
+              })()}
             </div>
           </div>
 
           {/* Hero Skills Comparison */}
-          <div className="mt-16 text-center max-w-5xl mx-auto border-t border-gray-800 pt-12">
-            <h2 className="font-bebas text-3xl tracking-widest text-neon-red mb-12 uppercase">
-              {t('comparador.skill_archives')}
+          <div className="mt-16 max-w-5xl mx-auto border-t border-gray-800 pt-12">
+            <h2 className="font-bebas text-3xl sm:text-4xl tracking-widest text-center text-neon-red mb-4 uppercase drop-shadow-[0_0_12px_rgba(255,42,42,0.4)]">
+              {t('comparador.skill_archives', 'Archivos de Habilidades')}
             </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Slot 1 Skills */}
-              <div className="bg-[#080808] border border-gray-800 p-6 min-h-[200px] flex flex-col relative group">
-                <div className="absolute inset-0 bg-blood-red/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                {slot1?.skills && slot1?.skills.length > 0 ? (
-                  <div className="space-y-4 text-left relative z-10">
-                    {slot1?.skills.map((skill, i) => (
-                      <div key={i} className="border-l-2 border-gray-700 pl-3">
-                        <span className="font-mono text-neon-red text-[9px] uppercase tracking-widest mb-1 block">{skill.type}</span>
-                        <h4 className="font-bebas text-lg text-white tracking-wider mb-1">{skill.name}</h4>
-                        <p className="font-inter text-gray-400 text-xs leading-relaxed">{skill.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="h-full flex items-center justify-center relative z-10">
-                    <span className="font-mono text-gray-600 text-xs uppercase tracking-widest">{t('comparador.no_skills')}</span>
-                  </div>
-                )}
-              </div>
-              {/* Slot 2 Skills */}
-              <div className="bg-[#080808] border border-gray-800 p-6 min-h-[200px] flex flex-col relative group">
-                <div className="absolute inset-0 bg-blood-red/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                {slot2?.skills && slot2?.skills.length > 0 ? (
-                  <div className="space-y-4 text-left relative z-10">
-                    {slot2?.skills.map((skill, i) => (
-                      <div key={i} className="border-l-2 border-gray-700 pl-3">
-                        <span className="font-mono text-neon-red text-[9px] uppercase tracking-widest mb-1 block">{skill.type}</span>
-                        <h4 className="font-bebas text-lg text-white tracking-wider mb-1">{skill.name}</h4>
-                        <p className="font-inter text-gray-400 text-xs leading-relaxed">{skill.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="h-full flex items-center justify-center relative z-10">
-                    <span className="font-mono text-gray-600 text-xs uppercase tracking-widest">{t('comparador.no_skills')}</span>
-                  </div>
-                )}
-              </div>
+            <p className="text-gray-400 font-mono text-xs text-center max-w-2xl mx-auto mb-8">
+              {t('comparador.skill_archives_subtitle', 'Comparación detallada de habilidades activas y pasivas entre ambos operativos según su contexto táctico.')}
+            </p>
+
+            {/* Filter Tabs: Todas, Campo, Exploración */}
+            <div className="flex items-center justify-center gap-2 sm:gap-3 mb-10 flex-wrap">
+              <button
+                type="button"
+                onClick={() => setSkillFilter('all')}
+                className={`px-4 py-2 font-mono text-xs uppercase tracking-wider rounded-sm border transition-all cursor-pointer ${
+                  skillFilter === 'all'
+                    ? 'bg-blood-red text-white border-neon-red shadow-[0_0_15px_rgba(255,42,42,0.4)] font-bold'
+                    : 'bg-black/60 text-gray-400 border-gray-800 hover:text-white hover:border-gray-700'
+                }`}
+              >
+                {t('comparador.all_skills', 'Todas las Habilidades')}
+              </button>
+              <button
+                type="button"
+                onClick={() => setSkillFilter('campo')}
+                className={`px-4 py-2 font-mono text-xs uppercase tracking-wider rounded-sm border transition-all cursor-pointer flex items-center gap-2 ${
+                  skillFilter === 'campo'
+                    ? 'bg-red-950/70 text-red-200 border-blood-red shadow-[0_0_15px_rgba(220,38,38,0.4)] font-bold'
+                    : 'bg-black/60 text-gray-400 border-gray-800 hover:text-white hover:border-gray-700'
+                }`}
+              >
+                <Shield size={14} className="text-blood-red" />
+                {t('heroes.field', 'Sección Campo')}
+              </button>
+              <button
+                type="button"
+                onClick={() => setSkillFilter('exploracion')}
+                className={`px-4 py-2 font-mono text-xs uppercase tracking-wider rounded-sm border transition-all cursor-pointer flex items-center gap-2 ${
+                  skillFilter === 'exploracion'
+                    ? 'bg-emerald-950/70 text-emerald-200 border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.4)] font-bold'
+                    : 'bg-black/60 text-gray-400 border-gray-800 hover:text-white hover:border-gray-700'
+                }`}
+              >
+                <Compass size={14} className="text-emerald-400" />
+                {t('heroes.exploration', 'Sección Exploración')}
+              </button>
             </div>
+
+            {/* SECCIÓN CAMPO */}
+            {(skillFilter === 'all' || skillFilter === 'campo') && (() => {
+              const s1Campo = (slot1?.skills || []).filter(isSkillInCampo);
+              const s2Campo = (slot2?.skills || []).filter(isSkillInCampo);
+
+              return (
+                <div className="mb-12">
+                  <div className="flex items-center justify-between border-b border-blood-red/40 pb-3 mb-6">
+                    <div className="flex items-center gap-3">
+                      <span className="w-2.5 h-2.5 bg-blood-red rounded-full shadow-[0_0_10px_#ff0000] shrink-0" />
+                      <h3 className="font-bebas text-2xl tracking-widest text-white uppercase flex items-center gap-2">
+                        <Shield size={20} className="text-blood-red" />
+                        {t('comparador.field_skills_title', 'Sección Campo (Combate Táctico)')}
+                      </h3>
+                    </div>
+                    <span className="text-[11px] font-mono text-blood-red/80 uppercase tracking-widest hidden sm:inline font-semibold">
+                      {t('comparador.battle_bonuses', 'Bonificaciones de Batalla')}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                    {/* Slot 1 Campo */}
+                    <div className="bg-[#070707] border border-gray-800 p-4 sm:p-5 rounded-lg flex flex-col shadow-lg">
+                      <div className="flex items-center justify-between border-b border-gray-800/80 pb-3 mb-4">
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <img 
+                            src={`/operativos/${slot1?.imageUrl.split('/').pop()}`} 
+                            alt={slot1?.name} 
+                            className="w-8 h-8 rounded-full object-cover border border-blood-red/50 shrink-0"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                          />
+                          <span className="font-mono text-xs uppercase tracking-wider text-gray-200 font-bold truncate">
+                            {slot1?.name}
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest shrink-0">
+                          {s1Campo.length} {t('comparador.skills_count', 'Habilidades')}
+                        </span>
+                      </div>
+
+                      <div className="space-y-3.5 flex-1">
+                        {s1Campo.length > 0 ? (
+                          s1Campo.map((skill, i) => renderSkillCard(skill, i, 'campo'))
+                        ) : (
+                          <div className="h-32 flex items-center justify-center text-gray-600 font-mono text-xs uppercase tracking-widest">
+                            {t('comparador.no_skills', 'Sin habilidades de campo registradas')}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Slot 2 Campo */}
+                    <div className="bg-[#070707] border border-gray-800 p-4 sm:p-5 rounded-lg flex flex-col shadow-lg">
+                      <div className="flex items-center justify-between border-b border-gray-800/80 pb-3 mb-4">
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <img 
+                            src={`/operativos/${slot2?.imageUrl.split('/').pop()}`} 
+                            alt={slot2?.name} 
+                            className="w-8 h-8 rounded-full object-cover border border-blood-red/50 shrink-0"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                          />
+                          <span className="font-mono text-xs uppercase tracking-wider text-gray-200 font-bold truncate">
+                            {slot2?.name}
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest shrink-0">
+                          {s2Campo.length} {t('comparador.skills_count', 'Habilidades')}
+                        </span>
+                      </div>
+
+                      <div className="space-y-3.5 flex-1">
+                        {s2Campo.length > 0 ? (
+                          s2Campo.map((skill, i) => renderSkillCard(skill, i, 'campo'))
+                        ) : (
+                          <div className="h-32 flex items-center justify-center text-gray-600 font-mono text-xs uppercase tracking-widest">
+                            {t('comparador.no_skills', 'Sin habilidades de campo registradas')}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* SECCIÓN EXPLORACIÓN */}
+            {(skillFilter === 'all' || skillFilter === 'exploracion') && (() => {
+              const s1Explore = (slot1?.skills || []).filter(isSkillInExplora);
+              const s2Explore = (slot2?.skills || []).filter(isSkillInExplora);
+
+              return (
+                <div className="mb-12">
+                  <div className="flex items-center justify-between border-b border-emerald-500/40 pb-3 mb-6">
+                    <div className="flex items-center gap-3">
+                      <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.8)] shrink-0" />
+                      <h3 className="font-bebas text-2xl tracking-widest text-white uppercase flex items-center gap-2">
+                        <Compass size={20} className="text-emerald-400" />
+                        {t('comparador.explore_skills_title', 'Sección Exploración (Aventura y Mapa)')}
+                      </h3>
+                    </div>
+                    <span className="text-[11px] font-mono text-emerald-400/80 uppercase tracking-widest hidden sm:inline font-semibold">
+                      {t('comparador.adventure_effects', 'Efectos en Aventura')}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                    {/* Slot 1 Exploración */}
+                    <div className="bg-[#070707] border border-gray-800 p-4 sm:p-5 rounded-lg flex flex-col shadow-lg">
+                      <div className="flex items-center justify-between border-b border-gray-800/80 pb-3 mb-4">
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <img 
+                            src={`/operativos/${slot1?.imageUrl.split('/').pop()}`} 
+                            alt={slot1?.name} 
+                            className="w-8 h-8 rounded-full object-cover border border-emerald-500/50 shrink-0"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                          />
+                          <span className="font-mono text-xs uppercase tracking-wider text-gray-200 font-bold truncate">
+                            {slot1?.name}
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest shrink-0">
+                          {s1Explore.length} {t('comparador.skills_count', 'Habilidades')}
+                        </span>
+                      </div>
+
+                      <div className="space-y-3.5 flex-1">
+                        {s1Explore.length > 0 ? (
+                          s1Explore.map((skill, i) => renderSkillCard(skill, i, 'exploracion'))
+                        ) : (
+                          <div className="h-32 flex items-center justify-center text-gray-600 font-mono text-xs uppercase tracking-widest">
+                            {t('comparador.no_skills', 'Sin habilidades de exploración registradas')}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Slot 2 Exploración */}
+                    <div className="bg-[#070707] border border-gray-800 p-4 sm:p-5 rounded-lg flex flex-col shadow-lg">
+                      <div className="flex items-center justify-between border-b border-gray-800/80 pb-3 mb-4">
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <img 
+                            src={`/operativos/${slot2?.imageUrl.split('/').pop()}`} 
+                            alt={slot2?.name} 
+                            className="w-8 h-8 rounded-full object-cover border border-emerald-500/50 shrink-0"
+                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                          />
+                          <span className="font-mono text-xs uppercase tracking-wider text-gray-200 font-bold truncate">
+                            {slot2?.name}
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest shrink-0">
+                          {s2Explore.length} {t('comparador.skills_count', 'Habilidades')}
+                        </span>
+                      </div>
+
+                      <div className="space-y-3.5 flex-1">
+                        {s2Explore.length > 0 ? (
+                          s2Explore.map((skill, i) => renderSkillCard(skill, i, 'exploracion'))
+                        ) : (
+                          <div className="h-32 flex items-center justify-center text-gray-600 font-mono text-xs uppercase tracking-widest">
+                            {t('comparador.no_skills', 'Sin habilidades de exploración registradas')}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {/* SECCIÓN HABILIDADES VIP (Si alguno de los dos tiene) */}
+            {(() => {
+              const s1Vip = (slot1?.skills || []).filter(s => s.isVipSkill);
+              const s2Vip = (slot2?.skills || []).filter(s => s.isVipSkill);
+
+              if (s1Vip.length === 0 && s2Vip.length === 0) return null;
+
+              return (
+                <div className="mb-12 border-t border-purple-900/30 pt-8">
+                  <div className="flex items-center justify-between border-b border-purple-500/30 pb-3 mb-6">
+                    <div className="flex items-center gap-3">
+                      <span className="w-2.5 h-2.5 bg-purple-500 rounded-full shadow-[0_0_10px_rgba(168,85,247,0.8)] shrink-0" />
+                      <h3 className="font-bebas text-2xl tracking-widest text-white uppercase flex items-center gap-2">
+                        <Sparkles size={20} className="text-purple-400" />
+                        {t('op_detail.vip_skill', 'Habilidades VIP (Estrellas)')}
+                      </h3>
+                    </div>
+                    <span className="text-[11px] font-mono text-purple-400 uppercase tracking-widest hidden sm:inline">
+                      {t('op_detail.vip_stars_unlock', 'Desbloqueo por Estrellas')}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                    {/* Slot 1 VIP */}
+                    <div className="bg-[#070707] border border-purple-500/20 p-4 sm:p-5 rounded-lg flex flex-col shadow-lg">
+                      <div className="flex items-center justify-between border-b border-gray-800 pb-3 mb-4">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <img 
+                            src={`/operativos/${slot1?.imageUrl.split('/').pop()}`} 
+                            alt={slot1?.name} 
+                            className="w-7 h-7 rounded-full object-cover border border-purple-500/40 shrink-0" 
+                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                          />
+                          <span className="font-mono text-xs uppercase tracking-wider text-gray-200 font-bold truncate">
+                            {slot1?.name}
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-mono text-purple-400 uppercase tracking-widest shrink-0">
+                          {s1Vip.length} {t('comparador.skills_count', 'Habilidades')}
+                        </span>
+                      </div>
+                      <div className="space-y-3.5 flex-1">
+                        {s1Vip.length > 0 ? (
+                          s1Vip.map((skill, i) => renderSkillCard(skill, i, 'campo'))
+                        ) : (
+                          <div className="h-24 flex items-center justify-center text-gray-600 font-mono text-xs uppercase tracking-widest">
+                            {t('comparador.no_vip_skills', 'Sin habilidad VIP')}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Slot 2 VIP */}
+                    <div className="bg-[#070707] border border-purple-500/20 p-4 sm:p-5 rounded-lg flex flex-col shadow-lg">
+                      <div className="flex items-center justify-between border-b border-gray-800 pb-3 mb-4">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <img 
+                            src={`/operativos/${slot2?.imageUrl.split('/').pop()}`} 
+                            alt={slot2?.name} 
+                            className="w-7 h-7 rounded-full object-cover border border-purple-500/40 shrink-0" 
+                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                          />
+                          <span className="font-mono text-xs uppercase tracking-wider text-gray-200 font-bold truncate">
+                            {slot2?.name}
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-mono text-purple-400 uppercase tracking-widest shrink-0">
+                          {s2Vip.length} {t('comparador.skills_count', 'Habilidades')}
+                        </span>
+                      </div>
+                      <div className="space-y-3.5 flex-1">
+                        {s2Vip.length > 0 ? (
+                          s2Vip.map((skill, i) => renderSkillCard(skill, i, 'campo'))
+                        ) : (
+                          <div className="h-24 flex items-center justify-center text-gray-600 font-mono text-xs uppercase tracking-widest">
+                            {t('comparador.no_vip_skills', 'Sin habilidad VIP')}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
           </div>
 
           {/* AI Analysis */}

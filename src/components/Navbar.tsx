@@ -1,15 +1,25 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, BookOpen, Calculator, Trophy, Users, BarChart2, Globe, Volume2, VolumeX, Settings, Key } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { Menu, X, BookOpen, Calculator, Trophy, Users, BarChart2, Globe, Volume2, VolumeX, Settings, Key, Radio } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSound } from '../contexts/SoundContext';
 
 const Navbar = () => {
   const { t, i18n } = useTranslation();
+  const location = useLocation();
   const { soundEnabled, toggleSound, playHover, playClick } = useSound();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const showReadingProgress =
+    location.pathname.startsWith('/noticias/') || location.pathname.startsWith('/guias/');
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,11 +31,12 @@ const Navbar = () => {
 
   const navLinks = [
     { name: t('nav.heroes'), icon: <Users size={20} />, href: '/heroes' },
-    { name: 'LLAVEROS', icon: <Key size={20} />, href: '/llaveros' },
+    { name: t('nav.keyrings', 'Llaveros'), icon: <Key size={20} />, href: '/llaveros' },
     { name: t('nav.compare'), icon: <BarChart2 size={20} />, href: '/comparador' },
     { name: t('nav.tools'), icon: <Calculator size={20} />, href: '/herramientas' },
     { name: t('nav.guides'), icon: <BookOpen size={20} />, href: '/guias' },
     { name: t('nav.tierlist'), icon: <Trophy size={20} />, href: '/tier-list' },
+    { name: t('nav.news', 'Noticias'), icon: <Radio size={20} />, href: '/noticias' },
   ];
 
   const changeLanguage = (lng: string) => {
@@ -36,7 +47,9 @@ const Navbar = () => {
     <>
       <nav 
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          scrolled 
+          showReadingProgress
+            ? 'bg-[#0a0a0c]/80 backdrop-blur-[12px] border-b border-white/[0.06] py-3 shadow-[0_4px_24px_rgba(0,0,0,0.5)]'
+            : scrolled 
             ? 'bg-[#050505]/95 backdrop-blur-md border-b border-blood-red/30 py-2.5 sm:py-3 shadow-[0_4px_20px_rgba(0,0,0,0.8)]' 
             : 'bg-[#050505]/85 md:bg-transparent backdrop-blur-md md:backdrop-blur-none border-b border-blood-red/20 md:border-transparent py-2.5 sm:py-4 md:py-5'
         }`}
@@ -145,6 +158,15 @@ const Navbar = () => {
             </button>
           </div>
         </div>
+
+        {/* Reading Progress Bar attached to bottom edge of Header so it is never covered */}
+        {showReadingProgress && (
+          <motion.div
+            aria-hidden="true"
+            style={{ scaleX }}
+            className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-blood-red via-neon-red to-amber-500 origin-left pointer-events-none"
+          />
+        )}
       </nav>
 
       {/* Mobile Menu Overlay */}

@@ -75,16 +75,16 @@ export const TREASURE_TIERS: TreasureTier[] = [
   { id: 'Mythic++ T4', rarity: 'Mythic++', level: 4, index: 38, cost: { goldFrag: 74000, polish: 900, bluePrint: 148, advancePolish: 20 } },
 
   // MYTHIC+++
-  { id: 'Mythic+++ T1', rarity: 'Mythic+++', level: 1, index: 39, cost: { goldFrag: 78000, polish: 956, bluePrint: 156, advancePolish: 24 } },
+  { id: 'Mythic+++ T1', rarity: 'Mythic+++', level: 1, index: 39, cost: { goldFrag: 77000, polish: 948, bluePrint: 160, advancePolish: 24 } },
   { id: 'Mythic+++ T2', rarity: 'Mythic+++', level: 2, index: 40, cost: { goldFrag: 80000, polish: 988, bluePrint: 164, advancePolish: 24 } },
-  { id: 'Mythic+++ T3', rarity: 'Mythic+++', level: 3, index: 41, cost: { goldFrag: 82000, polish: 1016, bluePrint: 168, advancePolish: 24 } },
-  { id: 'Mythic+++ T4', rarity: 'Mythic+++', level: 4, index: 42, cost: { goldFrag: 84000, polish: 1048, bluePrint: 172, advancePolish: 24 } },
+  { id: 'Mythic+++ T3', rarity: 'Mythic+++', level: 3, index: 41, cost: { goldFrag: 83000, polish: 1028, bluePrint: 168, advancePolish: 24 } },
+  { id: 'Mythic+++ T4', rarity: 'Mythic+++', level: 4, index: 42, cost: { goldFrag: 86000, polish: 1068, bluePrint: 180, advancePolish: 24 } },
 
   // MYTHIC++++
-  { id: 'Mythic++++ T1', rarity: 'Mythic++++', level: 1, index: 43, cost: { goldFrag: 88000, polish: 1100, bluePrint: 180, advancePolish: 28 } },
-  { id: 'Mythic++++ T2', rarity: 'Mythic++++', level: 2, index: 44, cost: { goldFrag: 92000, polish: 1150, bluePrint: 190, advancePolish: 28 } },
-  { id: 'Mythic++++ T3', rarity: 'Mythic++++', level: 3, index: 45, cost: { goldFrag: 96000, polish: 1200, bluePrint: 200, advancePolish: 28 } },
-  { id: 'Mythic++++ T4', rarity: 'Mythic++++', level: 4, index: 46, cost: { goldFrag: 100000, polish: 1250, bluePrint: 210, advancePolish: 28 } }
+  { id: 'Mythic++++ T1', rarity: 'Mythic++++', level: 1, index: 43, cost: { goldFrag: 120000, polish: 1500, bluePrint: 250, advancePolish: 40 } },
+  { id: 'Mythic++++ T2', rarity: 'Mythic++++', level: 2, index: 44, cost: { goldFrag: 140000, polish: 1650, bluePrint: 275, advancePolish: 40 } },
+  { id: 'Mythic++++ T3', rarity: 'Mythic++++', level: 3, index: 45, cost: { goldFrag: 160000, polish: 1800, bluePrint: 300, advancePolish: 40 } },
+  { id: 'Mythic++++ T4', rarity: 'Mythic++++', level: 4, index: 46, cost: { goldFrag: 180000, polish: 1950, bluePrint: 325, advancePolish: 40 } }
 ];
 
 export const getCostBetweenTiers = (startIdx: number, endIdx: number) => {
