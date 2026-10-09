@@ -3,7 +3,7 @@
 ## 1. Rutas Principales de la Web (`resudb.com`)
 - `/` — Página de Inicio (Hero, Últimas Noticias, Accesos Rápidos, Operativos Destacados).
 - `/noticias` — Portada del Newsletter y Notas de Parche.
-- `/noticias/:id` — Vista de lectura completa estilo Newsletter / Editorial de cada noticia o parche (incluye `sistema-llaveros-exp-v1-10-1`, `patch-1-10-1-datamine`, `tierlist-meta-pvp-pve-update`, etc.).
+- `/noticias/:id` — Vista de lectura completa estilo Newsletter / Editorial de cada noticia o parche (incluye `gran-actualizacion-3-fases-wiki`, `patch-1-10-1-datamine`, `tierlist-meta-pvp-pve-update`, etc.).
 - `/heroes` — Base de Datos de Operativos.
 - `/heroes/:id` — Expediente detallado del operativo, habilidades y calculadoras de nivel/ascenso/armas.
 - `/llaveros` — Base de Datos interactiva de Llaveros por rareza con calculadora de EXP a Nivel 30, tabla de CP y 96 sub-stats.
