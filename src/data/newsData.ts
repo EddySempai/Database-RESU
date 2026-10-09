@@ -51,41 +51,57 @@ export interface NewsArticle {
 
 export const NEWS_DATA: NewsArticle[] = [
   {
-    id: 'sistema-llaveros-exp-v1-10-1',
+    id: 'gran-actualizacion-3-fases-wiki',
     date: '09 OCT 2026',
-    readTime: '4 min',
+    readTime: '6 min',
     author: 'Red Queen Intelligence',
     version: 'v1.10.1',
     category: 'tools',
     tag: {
-      es: 'ACTUALIZACIÓN & BASE DE DATOS',
-      en: 'MAJOR UPDATE & DATABASE',
-      ja: '大型アップデート＆データベース'
+      es: 'MEGA-ACTUALIZACIÓN & 3 FASES',
+      en: 'MAJOR EXPANSION & 3 PHASES',
+      ja: '超大型アップデート＆3大フェーズ'
     },
-    badgeColor: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
+    badgeColor: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
     title: {
-      es: 'Expansión Completa del Sistema de Llaveros: Catálogo v1.10.1, Calculadora de EXP y 96 Sub-Estadísticas',
-      en: 'Complete Keyrings System Expansion: v1.10.1 Catalog, EXP Calculator & 96 Sub-Stats',
-      ja: 'キーリング完全システム拡張：v1.10.1カタログ、EXP計算機、96種サブステータス'
+      es: 'Gran Despliegue de la Base de Datos: Las 3 Fases Tácticas (Mansión P1–P10, Conversores y Llaveros)',
+      en: 'Major Database Expansion: The 3 Tactical Phases (Mansion P1–P10, Converters & Keyrings)',
+      ja: '大型データベース配備：3大戦術フェーズの完全実装（邸宅P1〜P10、換算機、キーリング）'
     },
     excerpt: {
-      es: 'Lanzamiento oficial de la base de datos de Llaveros (KeyRings): 42 modelos con efectos pasivos, calculadora interactiva de 1 a 30 con 193,790 EXP acumulada, tabla de Poder de Combate (CP), catálogo de 96 sub-estadísticas con mecánica de 5 candidatos al 20%, y 100% traducido en ES, EN y JA.',
-      en: 'Official release of the complete Keyrings database: 42 models with passive effects, interactive 1 to 30 EXP calculator with 193,790 cumulative curve, Combat Power (CP) table, 96 equippable sub-stats with 20% candidate roll mechanics, and 100% localization in ES, EN, and JA.',
-      ja: 'キーリング完全データベースを正式リリース：パッシブ効果付き42モデル、総累積193,790 EXP対応のLv.1〜30対話型EXP計算機、戦力（CP）表、20%候補ロール仕様の96種サブステータス、日・英・西の100%多言語対応。'
+      es: 'Completada la integración de las 3 Fases del plan táctico: Fase 1 con calibración milimétrica de Calculadoras (Mansión P1–P10 con recursos comunes y tiempos base, Investigación de Luminio, Tesoros y Joyas Míticas), Fase 2 con el Centro de Conversores Tácticos (/conversores: Intercambio de Tesoros semanal, Optimizador de Aceleradores, Mochila Segura anti-saqueo), y Fase 3 con la enciclopedia interactiva de Llaveros (/llaveros: 42 modelos, 193,790 EXP a Nv.30, 255K CP y 96 sub-stats).',
+      en: 'Full deployment concluded across all 3 Tactical Phases: Phase 1 brings calibrated Calculators (Mansion P1–P10 with common resources and build times, Luminio Research, Mythic Treasures & Jewels), Phase 2 introduces the Tactical Converters Hub (/conversores: Weekly Treasure Exchange, Speedup Optimizer, Safe Backpack anti-raid protection), and Phase 3 launches the Keyrings encyclopedia (/llaveros: 42 models, 193,790 EXP to Lv. 30, 255K CP & 96 sub-stats).',
+      ja: '戦術計画の3大フェーズを完全実装：フェーズ1の高精度計算機群（邸宅P1〜P10の基本資材・所要時間、ルミニオ研究、神話秘宝＆宝石）、フェーズ2の新設・戦術換算ハブ（/conversores：週間秘宝交換、加速アイテム最適化、略奪保護セーフバックパック）、フェーズ3のキーリング大百科（/llaveros：全42種、Lv.30累計193,790 EXP、最大255K CP、96種サブステ）。'
     },
     intro: {
-      es: 'El sistema de Llaveros del Maletín Attaché representa uno de los saltos de poder y optimización más decisivos en Resident Evil: Survival Unit v1.10.1. Para garantizar una planificación milimétrica de tus recursos, hemos integrado en la web la base de datos definitiva con todos los modelos extraídos, la progresión oficial de EXP hasta Nivel 30, las tablas de Poder de Combate (CP) por hito, el desglose de sub-stats y localización total en tres idiomas.',
-      en: 'The Attaché Case Keyring system represents one of the most critical power boosts in Resident Evil: Survival Unit v1.10.1. To empower tactical squad optimization, our database now features all 42 extracted keyrings, official Lv. 30 EXP progression curves, Combat Power (CP) milestone tables, sub-stat candidate roll breakdowns, and full trilingual localization.',
-      ja: 'アタッシェケースのキーリングシステムは、『バイオハザード サバイバルユニット』v1.10.1における最重要育成要素の一つです。戦術資源の計画を完璧に行えるよう、全42種のモデル、Lv.30公式EXP成長曲線、節目別戦闘力（CP）テーブル、サブステータス抽選仕様、および3言語完全ローカライズを統合しました。'
+      es: 'Durante las últimas jornadas hemos ejecutado una reestructuración y calibración sin precedentes en toda la suite de herramientas y base de datos de Resident Evil: Survival Unit. Para responder a las exigencias estratégicas de los comandantes, desglosamos aquí en detalle las 3 Fases completadas que transforman la planificación de tu base, optimizan la conversión de tus recursos y dominan el equipamiento supremo del Maletín Attaché.',
+      en: 'Over recent cycles, we executed an unprecedented overhaul and calibration across the entire database suite for Resident Evil: Survival Unit. To empower commanders with peak strategic planning, this comprehensive dispatch details all 3 completed phases, revamping base progression, resource conversion economics, and Attaché Case gear mastery.',
+      ja: 'ここ数週間にわたり、『バイオハザード サバイバルユニット』のデータベースツール群に対して全面改修と精密較正を実施しました。指揮官の皆様の高度な戦術的要求に応えるべく、基地発展計画、資材換算経済、アタッシェケース装備の運用を一変させる完了済みの「3大フェーズ」の全容をここに公開します。'
     },
     image: '/llaveros/keyrings_upgrade_showcase.webp',
     gallery: [
       {
         src: '/llaveros/keyrings_upgrade_showcase.png',
         caption: {
-          es: 'Calculadora táctica de EXP para subir Llaveros de Nivel 1 a 30 en /llaveros',
-          en: 'Tactical Keyring EXP Calculator (Level 1 to 30) in /llaveros',
-          ja: '/llaveros のキーリングLv.1〜30戦術EXP計算機'
+          es: 'Fase 3: Calculadora táctica de EXP para subir Llaveros de Nivel 1 a 30 en /llaveros',
+          en: 'Phase 3: Tactical Keyring EXP Calculator (Level 1 to 30) in /llaveros',
+          ja: 'フェーズ3：/llaveros のキーリングLv.1〜30戦術EXP計算機'
+        }
+      },
+      {
+        src: '/noticias/Banner_Hottime_Troop_Main.webp',
+        caption: {
+          es: 'Fase 2: Centro de Conversores Tácticos, Aceleradores y Mochila Segura en /conversores',
+          en: 'Phase 2: Tactical Converters Hub, Speedups & Safe Backpack in /conversores',
+          ja: 'フェーズ2：/conversores の戦術換算ハブ、加速計算機、セーフバックパック'
+        }
+      },
+      {
+        src: '/noticias/Event_BingoSeason01_bg_C.webp',
+        caption: {
+          es: 'Fase 1: Calibración de Mansión P1–P10 y Guía Completa de Nivel 1 a 30 en /guias/mansion-nivel-1-a-30',
+          en: 'Phase 1: Mansion P1–P10 Calibration and Comprehensive Lv. 1 to 30 Guide at /guias/mansion-nivel-1-a-30',
+          ja: 'フェーズ1：邸宅P1〜P10較正および /guias/mansion-nivel-1-a-30 のLv.1〜30完全攻略ガイド'
         }
       }
     ],
@@ -93,128 +109,196 @@ export const NEWS_DATA: NewsArticle[] = [
     actionLink: {
       href: '/llaveros',
       label: {
-        es: 'Abrir Base de Datos de Llaveros',
-        en: 'Open Keyrings Database',
-        ja: 'キーリングデータベースを開く'
+        es: 'Explorar Sistema de Llaveros',
+        en: 'Explore Keyrings System',
+        ja: 'キーリングシステムを開く'
       }
     },
     highlights: {
       es: [
-        'Catálogo visual de los 42 Llaveros extraídos con rangos exactos de Nivel 30 para rarezas Épica y Legendaria.',
-        'Calculadora interactiva de EXP de Llaveros calibrada con la curva oficial de 193,790 EXP acumulada a Nv. 30 y selectores rápidos.',
-        'Tabla oficial de Poder de Combate (CP) en hitos clave (Nv. 10, Nv. 20, Nv. 30) para las 5 rarezas (hasta 255,420 CP por llavero Legendario).',
-        'Catálogo exhaustivo de 96 Sub-Estadísticas equipables con desglose de los 5 candidatos iniciales y finales (20% de probabilidad fija c/u).',
-        'Internacionalización completa (i18n): catálogo, herramientas, descripciones de hitos y copiado rápido al portapapeles en Español, Inglés y Japonés.'
+        'Fase 1: Mansión P1–P10 con recursos comunes (Comida, Madera, Hierro, Petróleo), tiempos de construcción base y Guía interactiva de Nivel 1 a 30 en /guias/mansion-nivel-1-a-30.',
+        'Fase 1: Calibración oficial de Árbol de Luminio (ratio exacto 1.3 Polvo/Piedras), Tesoros Míticos (Mythic++++ calibrado) y Joyas Míticas (costos de gemas en bruto).',
+        'Fase 2: Lanzamiento del Centro de Conversores Tácticos (/conversores) con Tienda de Intercambio de Tesoros (cupo semanal), Mochila de Recursos Seguros y Optimizador de Aceleradores.',
+        'Fase 2: Estimador de puntos para Cumbre de Ases (~30 pts/min) y comprobador inverso de aceleración para construcciones e investigaciones.',
+        'Fase 3: Base de Datos de Llaveros (/llaveros) con 42 modelos extraídos, calculadora de EXP Nivel 1 a 30 (193,790 EXP acumulada) y tabla de Poder de Combate hasta 255,420 CP.',
+        'Fase 3: Catálogo interactivo de 96 Sub-Estadísticas con desglose del 20% para los 5 candidatos iniciales/finales y descarga oficial del Excel de 30 niveles.',
+        '100% Internacionalización (i18n): Todas las calculadoras, conversores, fichas técnicas y compuertas de seguridad Umbrella verificadas en Español, Inglés y Japonés.'
       ],
       en: [
-        'Visual catalog of all 42 extracted Keyrings with exact Lv. 30 ranges for Epic and Legendary rarities.',
-        'Interactive Keyring EXP Calculator calibrated with the official 193,790 cumulative EXP curve at Lv. 30 with quick presets.',
-        'Official Combat Power (CP) table across milestones (Lv. 10, Lv. 20, Lv. 30) for all 5 rarities (up to 255,420 CP for Legendary).',
-        'Exhaustive catalog of 96 equippable Sub-Stats detailing all 5 initial and final candidate rolls (20% fixed probability each).',
-        '100% Internationalization (i18n): catalog, tools, milestone dossiers, and clipboard copy fully translated in Spanish, English, and Japanese.'
+        'Phase 1: Mansion P1–P10 with common resources (Food, Wood, Iron, Oil), base build times, and comprehensive Lv. 1 to 30 Guide at /guias/mansion-nivel-1-a-30.',
+        'Phase 1: Official calibration of Luminio Tree (exact 1.3 Powder/Stone ratio), Mythic Treasures (Mythic++++ benchmarks), and Mythic Jewels (rough gem costs).',
+        'Phase 2: Launch of the Tactical Converters Hub (/conversores) featuring Treasure Exchange (weekly cap tracker), Safe Resource Backpack, and Speedup Optimizer.',
+        'Phase 2: Ace Commander point scoring estimator (~30 pts/min) and reverse project speedup verifier for construction & research.',
+        'Phase 3: Keyrings Database (/llaveros) with 42 extracted models, Level 1 to 30 EXP Calculator (193,790 cumulative EXP), and Combat Power table up to 255,420 CP.',
+        'Phase 3: Interactive 96 Sub-Stats catalog breaking down 20% chances across 5 roll candidates, plus official 30-level Excel spreadsheet download.',
+        '100% Internationalization (i18n): All calculators, converters, milestone dossiers, and Umbrella blast door transitions verified in Spanish, English, and Japanese.'
       ],
       ja: [
-        'エピックおよびレジェンダリーのLv.30正確な範囲を含む全42種キーリングのビジュアルカタログ。',
-        '総累積193,790 EXPの公式成長曲線に対応した対話型EXP計算機（Lv.1〜30）とクイック選択プリセット。',
-        '全5レアリティの節目別（Lv.10、Lv.20、Lv.30）戦闘力（CP）表（レジェンダリー最大255,420 CP）。',
-        '各ロール20%固定確率の初期・最終5候補を含む装備可能サブステータス96種の完全カタログ。',
-        '100%多言語対応（i18n）：カタログ、計算ツール、節目解説、クリップボードコピーが日本語・英語・スペイン語に完全対応。'
+        'フェーズ1：邸宅P1〜P10の基本資材（食糧、木材、鉄、石油）、基礎所要時間、および /guias/mansion-nivel-1-a-30 のLv.1〜30完全攻略ガイド。',
+        'フェーズ1：ルミニオ研究樹（粉末/原石 比率1.3）、神話秘宝（Mythic++++実測値）、神話宝石（原石コスト）の公式データ較正。',
+        'フェーズ2：戦術換算ハブ（/conversores）の開設（週間秘宝交換上限チェック、略奪保護セーフバックパック、加速最適化ツール）。',
+        'フェーズ2：エース司令官イベントの獲得ポイント試算（約30 pt/分）および建設・研究の逆算所要時間チェッカー。',
+        'フェーズ3：キーリング完全DB（/llaveros）の公開（全42モデル、Lv.1〜30累計193,790 EXP計算機、最大255,420 CP表）。',
+        'フェーズ3：各20%の5候補抽選を網羅した96種サブステータスカタログ、および公式30レベルExcel直接ダウンロード。',
+        '100%多言語対応（i18n）：全計算ツール、換算機、詳細解説、アンブレラ防壁ドア演出が日本語・英語・スペイン語で完全動作。'
       ]
     },
     sections: [
       {
         title: {
-          es: '1. Catálogo Completo de 42 Llaveros y Efectos Pasivos en Posesión',
-          en: '1. Complete 42 Keyrings Catalog & Passive In-Possession Effects',
-          ja: '1. 全42種キーリングカタログ＆所持パッシブ効果'
+          es: '1. Fase 1: Calibración Milimétrica de Calculadoras (Mansión P1–P10, Luminio, Tesoros y Joyas)',
+          en: '1. Phase 1: Millimetric Calculator Calibration (Mansion P1–P10, Luminio, Treasures & Jewels)',
+          ja: '1. フェーズ1：高精度計算機群の較正（邸宅P1〜P10、ルミニオ、秘宝、宝石）'
         },
         description: {
-          es: 'Los llaveros son accesorios del Maletín Attaché que otorgan bonificaciones sustanciales a tu cuenta. Solo puedes equipar hasta 3 llaveros simultáneamente (el 1º al pasar Oleada 1, el 2º al pasar Oleada 200, y el 3º mediante paquete de tienda), pero sus efectos más poderosos aplican de forma global:',
-          en: 'Keyrings are Attaché Case items that grant massive account-wide bonuses. You can equip up to 3 keyrings at once (1st upon clearing Wave 1, 2nd upon Wave 200, 3rd via shop bundle), but their strongest perks apply globally:',
-          ja: 'キーリングはアタッシェケースにセットして強力なボーナスを得られる装備です。同時に最大3個まで装備可能（1個目はウェーブ1クリア、2個目はウェーブ200クリア、3個目はショップパックで解放）ですが、最強の恩恵は全体に適用されます：'
+          es: 'Eliminamos cualquier placeholder o estimación en las herramientas actuales, calibrando los valores con datos 100% verificados del juego:',
+          en: 'We eliminated all placeholders and estimates from existing tools, recalibrating values with 100% verified in-game mechanics:',
+          ja: '既存ツール内のプレースホルダーや推測値を全廃し、100%検証済みのゲーム内数値で再較正しました：'
+        },
+        image: '/noticias/Event_BingoSeason01_bg_C.webp',
+        imageCaption: {
+          es: 'Calibración de Mansión P1–P10 y Guía Nivel 1 a 30 en /herramientas',
+          en: 'Mansion P1–P10 calibration and Lv. 1 to 30 Guide in /herramientas',
+          ja: '/herramientas の邸宅P1〜P10較正およびLv.1〜30ガイド'
+        },
+        items: {
+          es: [
+            'Mansión P1–P10 con Recursos Comunes y Tiempos Base: La calculadora de Mansión en /herramientas ahora suma en tiempo real Comida, Madera, Hierro, Petróleo y Tiempo Base de Construcción en cada paso y fase.',
+            'Corrección del Algoritmo de Requisitos: Al calcular Mansión Nivel N (ej. P3 a P4), los requisitos asumen por defecto el nivel anterior (P3), mostrando únicamente los edificios faltantes (Centro de Alianza y Taller Pesado) sin arrastrar pasos innecesarios de P1 o P2.',
+            'Guía Completa de Mansión Nivel 1 a 30: Publicada la guía táctica en /guias/mansion-nivel-1-a-30 con buscador interactivo, filtros por rango (1-10, 11-20, 21-30) y tabla comparativa de Poder de Combate.',
+            'Árbol de Investigación de Luminio: Sustituidos valores preliminares por las curvas oficiales (Recuperación 102-1500, Tratamiento 51-765, Entrenamiento 102-1500) y cálculo en vivo de Piedras con el ratio exacto (Polvo / 1.3).',
+            'Tesoros Míticos y Joyas Míticas: Calibración de rarezas superiores (Mythic+++ y Mythic++++) y costos reales de gemas en bruto (hasta 650 Rough Jewels en Mythic++++).'
+          ],
+          en: [
+            'Mansion P1–P10 with Common Resources & Base Build Times: The Mansion Calculator at /herramientas now tracks Food, Wood, Iron, Oil, and Base Construction Time live across all phases.',
+            'Dependency Algorithm Rectification: Upgrading to Mansion Level N (e.g. P3 to P4) correctly defaults missing buildings to Level N-1 (P3), displaying only immediate requirements (Alliance Center & Heavy Workshop) without dragging unnecessary legacy steps.',
+            'Comprehensive Mansion Level 1 to 30 Guide: Published the complete tactical dossier at /guias/mansion-nivel-1-a-30 featuring interactive search, milestone filters (1-10, 11-20, 21-30), and Combat Power charts.',
+            'Luminio Research Tree: Replaced preliminary numbers with verified curves (Recovery 102-1500, Treatment 51-765, Training 102-1500) and live Stone conversion using the exact 1.3 ratio (Powder / 1.3).',
+            'Mythic Treasures & Mythic Jewels: Recalibrated top-tier milestones (Mythic+++ and Mythic++++) alongside authentic rough gem costs (up to 650 Rough Jewels for Mythic++++).'
+          ],
+          ja: [
+            '邸宅P1〜P10の基本資材＆基礎所要時間：/herramientas の邸宅計算機が、食糧・木材・鉄・石油および基礎建設時間を全フェーズでリアルタイム算出。',
+            '前提条件アルゴリズムの是正：邸宅Lv.N（例：P3→P4）への強化時、未指定施設は前レベル（P3）を自動適用し、必須となる同盟センターや重機工場のみを正確に抽出。',
+            '邸宅Lv.1〜30完全攻略ガイド：/guias/mansion-nivel-1-a-30 にリアルタイム検索、ランクフィルター（1-10、11-20、21-30）、戦力（CP）一覧表を備えた特設ガイドを公開。',
+            'ルミニオ研究樹の精密化：回収（102-1500）、治療（51-765）、訓練（102-1500）の公式成長曲線を反映し、比率1.3（粉末/1.3）による原石リアルタイム換算を実装。',
+            '神話秘宝＆神話宝石：上位ランク（Mythic+++、Mythic++++）の正確な数値と、Mythic++++に必要な最大650個の原石コストを精密較正。'
+          ]
+        }
+      },
+      {
+        title: {
+          es: '2. Fase 2: Nuevo Centro de Conversores Tácticos (/conversores)',
+          en: '2. Phase 2: New Tactical Converters Hub (/conversores)',
+          ja: '2. フェーズ2：新設・戦術換算ハブ（/conversores）'
+        },
+        description: {
+          es: 'Creamos una suite integral de conversores tácticos para optimizar tus decisiones de inventario y compras semanales:',
+          en: 'We established an all-in-one tactical conversion suite to optimize inventory decisions and weekly shop investments:',
+          ja: 'インベントリ管理や週間ショップ購入の意思決定を最適化するため、包括的な戦術換算ハブを開設しました：'
+        },
+        image: '/noticias/Banner_Hottime_Troop_Main.webp',
+        imageCaption: {
+          es: 'Suite de Conversores Tácticos, Intercambio de Tesoros y Aceleradores en /conversores',
+          en: 'Tactical Converters Suite, Treasure Exchange & Speedups at /conversores',
+          ja: '/conversores の戦術換算ハブ、秘宝交換、加速最適化'
+        },
+        items: {
+          es: [
+            'Tienda de Intercambio de Tesoros Míticos: Conversión bidireccional ("Tengo" vs "Necesito") con ratios oficiales (Cheat Sheet R23-R30), comprobador de cupo semanal (Weekly Cap), semanas de reseteo requeridas y evaluación de eficiencia Red Queen.',
+            'Calculadora y Optimizador de Aceleradores: Cuantificación en 10 denominaciones (1m a 3d) y 5 categorías (Construcción, Investigación, Entrenamiento, Curación, Universal), cálculo en Días/Horas/Minutos y estimador de puntos para el evento Cumbre de Ases (~30 pts/min).',
+            'Comprobador Inverso de Aceleradores: Ingresa los días y horas de un proyecto pendiente para verificar al instante si tus reservas de aceleradores cubren la totalidad de la obra.',
+            'Mochila de Recursos Seguros (Safe Resource Packs): Cuantificador de cajas cerradas (1K a 5M) para Comida, Madera, Hierro, Petróleo y Maletines de Selección, comparativa con Mansión P1–P10 y alerta de blindaje anti-saqueos (recursos protegidos de incursiones enemigas hasta el momento de construir).',
+            'Conversor de Luminio: Conversor bidireccional instantáneo entre Polvo de Luminio y Piedras de Luminio (ratio exacto 1.3).',
+            'Acceso a Equipamiento y Armas Exclusivas (+1 a +20): Integrada tarjeta de acceso directo a la calculadora de equipo exclusivo de operativos.'
+          ],
+          en: [
+            'Mythic Treasure Exchange Shop: Bidirectional conversion ("I Have" vs "I Need") using official cheat sheet ratios, weekly cap tracker, reset weeks counter, and Red Queen efficiency ratings.',
+            'Speedup Calculator & Optimizer: Breakdown across 10 denominations (1m to 3d) and 5 categories (Building, Research, Training, Healing, Universal), total Days/Hours/Minutes calculation, and Ace Commander event scoring estimation (~30 pts/min).',
+            'Reverse Speedup Verifier: Enter the remaining days and hours of any project to immediately check whether your speedup stockpile covers the entire upgrade.',
+            'Safe Resource Backpack (Packs): Quantifies sealed resource boxes (1K to 5M) for Food, Wood, Iron, Oil, and Selection Chests, compares reserves against Mansion P1–P10 costs, and provides anti-raid shielding advisories (resources remain completely safe from enemy scouts until opened).',
+            'Luminio Converter: Instant bidirectional calculation between Luminio Powder and Luminio Stones (exact 1.3 ratio).',
+            'Hero Exclusive Gear & Weapons (+1 to +20): Direct link and preview card for operative exclusive gear progression.'
+          ],
+          ja: [
+            '神話秘宝交換ショップ：公式交換比率に基づく双方向換算（「所持」vs「必要」）、週間交換上限（Weekly Cap）追跡、リセット週数カウンター、Red Queen効率判定。',
+            '加速アイテム計算機＆最適化ツール：10種類の期間区分（1分〜3日）と5分類（建設、研究、訓練、治療、共通）を集計し、総日数・時間・分を算出。エース司令官イベントのポイント試算（約30 pt/分）にも対応。',
+            '逆算所要時間チェッカー：建設や研究の残り所要時間を入力するだけで、手持ちの加速アイテムで即時完了可能かを一発判定。',
+            '略奪保護セーフバックパック：食糧・木材・鉄・石油・選択箱（1K〜5M）の未開封ボックスを集計し、邸宅P1〜P10の必要資材と比較。着工直前まで開封しない鉄壁の略奪対策を支援。',
+            'ルミニオ換算機：ルミニオ粉末とルミニオ原石の双方向即時換算（精密比率1.3）。',
+            '英雄専用装備＆武器（+1〜+20）：専用装備育成計算機へのダイレクトリンクと解説カードを統合。'
+          ]
+        }
+      },
+      {
+        title: {
+          es: '3. Fase 3: Expansión de Llaveros, EXP Nivel 1 a 30 y 96 Sub-Estadísticas (/llaveros)',
+          en: '3. Phase 3: Keyrings Expansion, Level 1 to 30 EXP & 96 Sub-Stats (/llaveros)',
+          ja: '3. フェーズ3：キーリング大百科、Lv.1〜30 EXP計算機＆96種サブステ（/llaveros）'
+        },
+        description: {
+          es: 'El sistema de Llaveros del Maletín Attaché representa uno de los mayores saltos de poder en v1.10.1. Integramos su enciclopedia completa:',
+          en: 'The Attaché Case Keyring system delivers one of the most substantial combat power leaps in v1.10.1. We integrated its definitive encyclopedia:',
+          ja: 'アタッシェケースのキーリングシステムは、v1.10.1において最大級の戦力強化をもたらします。その完全百科を構築しました：'
         },
         image: '/llaveros/keyrings_upgrade_showcase.webp',
         imageCaption: {
-          es: 'Catálogo de Llaveros con rangos exactos de combate en /llaveros',
-          en: 'Keyrings catalog with exact combat ranges in /llaveros',
-          ja: '/llaveros で実際の戦闘数値を確認可能'
+          es: 'Catálogo de Llaveros y Calculadora de EXP a Nivel 30 en /llaveros',
+          en: 'Keyrings Catalog & Level 30 EXP Calculator in /llaveros',
+          ja: '/llaveros のキーリングカタログおよびLv.30 EXP計算機'
         },
         items: {
           es: [
-            'Efectos Pasivos en Posesión: Los efectos principales de rarezas Épica y Legendaria aplican pasivamente desde el inventario sin necesidad de equiparlos (no se acumulan duplicados del mismo modelo exacto).',
-            'Bug Visual del Popup In-Game (v1.10.1): El juego muestra erróneamente valores inflados (ej. +12,13% en vez de +3,90% a +4,30%) porque suma sub-stats al tooltip. Los datos de nuestra base de datos reflejan los valores reales de combate.',
-            'Clasificación Táctica: Filtros rápidos por Combate (ataque, defensa, salud, penetración), Defensa y Economía (recolección, construcción, investigación y hospital).'
+            'Catálogo Completo de 42 Llaveros: Efectos pasivos en posesión (las piezas Épicas y Legendarias aplican sus bonificaciones desde el inventario sin equipar), rangos de combate verificados y filtros tácticos por Combate, Defensa y Economía.',
+            'Aclaración del Bug Visual In-Game (v1.10.1): El juego infla erróneamente los números del tooltip sumando sub-stats (ej. +12,13% en vez de +3,90% a +4,30%). Nuestra base de datos expone los valores reales de combate.',
+            'Calculadora Interactiva de EXP de Nivel 1 a 30: Curva oficial de 193,790 EXP acumulada (6,480 a Nv.10, 43,600 a Nv.20, y 150,190 adicionales para Nv.30) con selectores de nivel rápidos y porcentaje de avance.',
+            'Tabla Oficial de Poder de Combate (CP): Hitos de poder para las 5 rarezas, alcanzando hasta 255,420 CP por llavero Legendario a Nivel 30.',
+            'Catálogo de 96 Sub-Estadísticas Equipables: Desglose matemático de los 5 candidatos iniciales y finales (V1 a V5 con 20% de probabilidad fija cada uno), filtros por eventos (Rally, Ataque a base, Guerra de Hierbas, Lab. Vacunas, Saint Vale) y copiado rápido al portapapeles.',
+            'Descarga Oficial en Excel: Enlace en cabecera para descargar la matriz completa "Llaveros_EXP_Poder_30_Niveles.xlsx".'
           ],
           en: [
-            'Passive In-Possession Effects: Epic and Legendary main perks apply passively from your inventory without needing to be equipped (duplicates of the same model do not stack).',
-            'In-Game Tooltip Visual Bug (v1.10.1): The internal client mistakenly displays inflated numbers (e.g. +12.13% instead of +3.90% to +4.30%) due to sub-stats being added to the popup. Our database provides verified in-game combat numbers.',
-            'Tactical Categorization: Instant filters for Combat (attack, defense, HP, penetration), Defense, and Economy (gathering, construction, research, hospital).'
+            'Complete 42 Keyrings Catalog: Passive in-possession effects (Epic and Legendary items apply bonuses straight from inventory without equipping), verified combat ranges, and quick filters for Combat, Defense, and Economy.',
+            'In-Game Tooltip Visual Bug Explained: The internal client mistakenly displays inflated values due to sub-stats being added to the popup. Our database provides verified in-game combat numbers.',
+            'Interactive Level 1 to 30 EXP Calculator: Calibrated with the official 193,790 cumulative EXP curve (6,480 at Lv.10, 43,600 at Lv.20, and 150,190 additional for Lv.30) with quick presets and progress trackers.',
+            'Official Combat Power (CP) Table: Power benchmarks across all 5 rarities, topping out at 255,420 CP for a Level 30 Legendary keyring.',
+            '96 Equippable Sub-Stats Catalog: Mathematical breakdown of all 5 candidate rolls (V1 to V5 with fixed 20% probability each), event filters (Rally, Base Attack, Herb War, Vaccine Lab, Saint Vale), and instant clipboard copying.',
+            'Official Excel Spreadsheet Download: Header direct download for "Llaveros_EXP_Poder_30_Niveles.xlsx".'
           ],
           ja: [
-            '所持パッシブ効果：エピックおよびレジェンダリーのメイン効果は装備しなくてもインベントリから自動適用（同種重複不可）。',
-            'ゲーム内ポップアップ表示バグ（v1.10.1）：ゲーム内のツールチップはサブステータスを加算して誤表示（+3.90%〜+4.30%の代わりに+12.13%）。当データベースは検証済みの実戦闘数値を掲載。',
-            '戦術分類：戦闘（攻撃、防御、HP、殺傷力）、防衛、経済（採集、建設、研究、病院）の高速フィルター。'
+            '全42種キーリング完全カタログ：所持パッシブ効果（エピックおよびレジェンダリーは未装備でもインベントリから自動発動）、検証済み戦闘数値、戦闘・防衛・経済フィルター。',
+            'ゲーム内ポップアップ表示バグの解明：ゲーム内ツールチップがサブステを加算して数値を誤表示（+3.90%〜+4.30%の代わりに+12.13%）。当DBでは検証済みの実戦闘数値を掲載。',
+            '対話型Lv.1〜30 EXP計算機：総累積193,790 EXPの公式成長曲線（Lv.10で6,480、Lv.20で43,600、Lv.30で追加150,190 EXP）に対応し、クイック選択と進捗ゲージを搭載。',
+            '公式戦闘力（CP）一覧表：全5レアリティの節目別戦闘力を網羅し、Lv.30レジェンダリーで最大255,420 CPに到達。',
+            '装備可能サブステータス96種カタログ：各ロール20%固定確率の初期・最終5候補（V1〜V5）の完全展開、イベント別フィルター、ワンクリッククリップボードコピー。',
+            '公式Excelダウンロード：ヘッダーから「Llaveros_EXP_Poder_30_Niveles.xlsx」をワンクリックでダウンロード可能。'
           ]
         }
       },
       {
         title: {
-          es: '2. Calculadora de EXP (1 a 30) y Tabla Oficial de Poder de Combate (CP)',
-          en: '2. EXP Calculator (1 to 30) & Official Combat Power (CP) Benchmarks',
-          ja: '2. EXP計算機（Lv.1〜30）＆公式戦闘力（CP）基準表'
+          es: '4. Compuertas de Seguridad Umbrella e Internacionalización Global (ES / EN / JA)',
+          en: '4. Umbrella Security Blast Doors & Global Trilingual Experience (ES / EN / JA)',
+          ja: '4. アンブレラ防壁セキュリティ演出＆3言語完全対応（日・英・西）'
         },
         description: {
-          es: 'Subir un llavero a Nivel 30 requiere una planificación cuidadosa de experiencia táctica. Hemos integrado una calculadora interactiva y la tabla de Poder de Combate por hitos:',
-          en: 'Upgrading a keyring to Level 30 requires disciplined tactical EXP resource management. We integrated an interactive calculator alongside milestone Combat Power values:',
-          ja: 'キーリングをLv.30まで強化するには、計画的な戦術EXPの投入が不可欠です。対話型計算機と節目別戦闘力表を統合しました：'
+          es: 'La experiencia de navegación ha sido elevada con estética cinematográfica y soporte idiomático total:',
+          en: 'The browsing experience has been elevated with cinematic aesthetics and flawless multilingual fidelity:',
+          ja: '重厚な世界観を表現する演出と、妥協のない多言語サポートによって閲覧体験を刷新しました：'
         },
         items: {
           es: [
-            'Curva de EXP Acumulada: Nivel 1 a 10 consume 6,480 EXP; Nivel 11 a 20 consume 37,120 EXP adicionales (43,600 total); y Nivel 21 a 30 consume 150,190 EXP adicionales (193,790 EXP total).',
-            'Escalamiento de Poder de Combate (CP): Un llavero Común otorga 36,660 CP a Nv.30; Poco Común 85,560 CP; Raro 123,900 CP; Épico 212,970 CP; y Legendario 255,420 CP.',
-            'Ranuras Equipables Desbloqueadas: Aumentan de 1 ranura (Común) hasta 3-4 ranuras equipables (Épico y Legendario).',
-            'Descarga Oficial en Excel: Enlace directo en cabecera para descargar la hoja completa "Llaveros_EXP_Poder_30_Niveles.xlsx".'
+            'Transición Física de Compuertas Umbrella: Animación táctica de doble compuerta de acero de Umbrella que se cierra y se abre al alternar entre páginas y módulos de la base de datos.',
+            'Localización Trilingüe 100%: Cada herramienta, conversor, tooltip, hito de EXP y ficha operativa ha sido auditada y traducida con precisión militar en Español, Inglés y Japonés.',
+            'Hipervínculos Inteligentes (SmartText): Enlace dinámico automático en los boletines de noticias para términos clave como Llaveros, Mansión, Conversores, Aceleradores, Luminio, Tesoros y Joyas.'
           ],
           en: [
-            'Cumulative EXP Curve: Level 1 to 10 requires 6,480 EXP; Level 11 to 20 requires 37,120 additional EXP (43,600 total); and Level 21 to 30 requires 150,190 additional EXP (193,790 EXP total).',
-            'Combat Power (CP) Scaling: A Common keyring grants 36,660 CP at Lv.30; Advanced 85,560 CP; Rare 123,900 CP; Epic 212,970 CP; and Legendary 255,420 CP.',
-            'Equippable Slots Unlocked: Scales from 1 slot (Common) up to 3-4 active slots (Epic and Legendary).',
-            'Official Excel Spreadsheet: Direct one-click download for "Llaveros_EXP_Poder_30_Niveles.xlsx".'
+            'Umbrella Physical Blast Door Transition: High-tech dual steel security blast doors closing and parting smoothly during page navigation across the database.',
+            '100% Trilingual Localization: Every tool, converter, tooltip, EXP milestone, and technical card has been rigorously audited and translated in Spanish, English, and Japanese.',
+            'Intelligent SmartText Auto-Linking: Dynamic automatic cross-links across news dispatches for key game concepts such as Keyrings, Mansion, Converters, Speedups, Luminio, Treasures, and Jewels.'
           ],
           ja: [
-            '累積EXP曲線：Lv.1〜10で6,480 EXP、Lv.11〜20で追加37,120 EXP（累計43,600）、Lv.21〜30で追加150,190 EXP（累計193,790 EXP）。',
-            '戦闘力（CP）上昇：Lv.30時点でコモン36,660 CP、アンコモン85,560 CP、レア123,900 CP、エピック212,970 CP、レジェンダリー255,420 CP。',
-            '装備スロット解放：コモンの1スロットから、エピック・レジェンダリーの3〜4スロットまで拡張。',
-            '公式Excelダウンロード：ヘッダーから「Llaveros_EXP_Poder_30_Niveles.xlsx」を直接ダウンロード可能。'
-          ]
-        }
-      },
-      {
-        title: {
-          es: '3. Catálogo de 96 Sub-Estadísticas y Mecánica de 5 Candidatos (20% c/u)',
-          en: '3. 96 Sub-Stats Catalog & 5 Candidates Roll Mechanics (20% each)',
-          ja: '3. 96種サブステータスカタログ＆5候補ロール仕様（各20%）'
-        },
-        description: {
-          es: 'Las sub-estadísticas se activan únicamente cuando el llavero está equipado en una de tus ranuras activas. En v1.10.1 existen 96 variantes por rareza estructuradas con una regla matemática fija:',
-          en: 'Sub-stats activate exclusively when the keyring is slotted into an active briefcase slot. In v1.10.1 there are 96 variants per rarity governed by fixed mathematical rules:',
-          ja: 'サブステータスはキーリングをアクティブスロットに装備している時のみ発動します。v1.10.1には各レアリティ96種類が存在し、固定確率で抽選されます：'
-        },
-        items: {
-          es: [
-            'Sorteo de 5 Candidatos: Al obtener un llavero o forjar rolls, se sortea 1 de 5 candidatos iniciales con un 20% de probabilidad fija cada uno (V1 a V5). El candidato inicial determina si terminará en el rango mínimo o máximo a Nivel 30.',
-            'Categorías Estratégicas: Filtros dedicados para Concentración (Rally), Ataque a Base, Defensa de Base, Guerra de Hierbas, Lab. de Vacunas y Saint Vale.',
-            'Copiado Táctico Rápido: Botón para copiar la ficha técnica completa al portapapeles formateada automáticamente en tu idioma actual.'
-          ],
-          en: [
-            '5 Candidates Roll Mechanics: Upon obtaining a keyring, 1 of 5 initial candidates is rolled with fixed 20% probability (V1 to V5). This initial roll determines whether the stat lands at the minimum or maximum Lv. 30 value.',
-            'Strategic Categories: Dedicated filters for Rally, Base Attack, Base Defense, Herb War, Vaccine Lab, and Saint Vale.',
-            'One-Click Tactical Copy: Instantly copies the full sub-stat data card to your clipboard formatted in your current language.'
-          ],
-          ja: [
-            '5候補抽選仕様：キーリング獲得時、5つの初期候補から各20%固定確率で1つが抽選（V1〜V5）。この初期候補がLv.30での最小・最大値を決定。',
-            '戦略カテゴリ：集結（ラリー）、拠点攻撃、拠点防衛、ハーブを求めて、ワクチン研究所、SAINT VALE専用フィルター。',
-            'ワンクリック戦術コピー：選択中言語で整形されたサブステータス情報をクリップボードへ即座にコピー。'
+            'アンブレラ防壁ドアによる画面遷移：データベース各ページやツールの移動時に、二重鋼鉄セキュリティ防壁がスムーズに開閉する戦術的アニメーションを導入。',
+            '3言語100%完全ローカライズ：全ツール、換算機、ツールチップ、EXP節目、解説カードを日本語・英語・スペイン語で徹底検証・実装。',
+            'SmartTextスマートリンク：ニュース記事内の「キーリング」「邸宅」「換算機」「加速アイテム」「ルミニオ」「神話秘宝」「宝石」などの重要語句を自動で相互リンク。'
           ]
         }
       }

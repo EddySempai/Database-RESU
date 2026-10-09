@@ -53,21 +53,21 @@ const Hero = () => {
           className="mb-3"
         >
           <Link
-            to="/noticias/sistema-llaveros-exp-v1-10-1"
-            className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/40 hover:border-amber-400 hover:bg-amber-500/20 text-amber-300 font-mono text-[10px] sm:text-xs transition-all shadow-[0_0_15px_rgba(245,158,11,0.25)]"
+            to="/noticias/gran-actualizacion-3-fases-wiki"
+            className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/40 hover:border-emerald-400 hover:bg-emerald-500/20 text-emerald-300 font-mono text-[10px] sm:text-xs transition-all shadow-[0_0_15px_rgba(16,185,129,0.25)]"
           >
             <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span className="font-semibold tracking-wide uppercase">
               {lang === 'ja'
-                ? '⚡ 最新アップデート v1.10.1: キーリング完全DB＆EXP計算機'
+                ? '⚡ 超大型アップデート：全3大戦術フェーズ配備（邸宅、換算機、キーリング）'
                 : lang === 'en'
-                ? '⚡ MAJOR UPDATE v1.10.1: Keyrings Database & EXP Calculator'
-                : '⚡ NUEVA ACTUALIZACIÓN v1.10.1: Base de Datos de Llaveros & Calc EXP'}
+                ? '⚡ MAJOR EXPANSION: All 3 Tactical Phases Deployed (Mansion, Converters & Keyrings)'
+                : '⚡ MEGA-ACTUALIZACIÓN: Despliegue de las 3 Fases (Mansión, Conversores y Llaveros)'}
             </span>
-            <ChevronRight size={13} className="group-hover:translate-x-1 transition-transform text-amber-400" />
+            <ChevronRight size={13} className="group-hover:translate-x-1 transition-transform text-emerald-400" />
           </Link>
         </motion.div>
 
