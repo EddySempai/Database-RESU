@@ -20,9 +20,14 @@
 - **Banners Hot Time:** `Banner_Hottime_Build_Main.webp`, `Banner_Hottime_Research_Main.webp`, `Banner_Hottime_Troop_Main.webp`.
 - **Tienda:** `LinkStore_Item_Roulette_Ticket_Gold.webp`.
 - **Gran Despliegue de las 3 Fases Tácticas:** Integración de Fase 1 (Mansión P1–P10 con recursos comunes y tiempos base, Luminio, Tesoros y Joyas calibradas, y guía en `/guias/mansion-nivel-1-a-30`), Fase 2 (Centro de Conversores Tácticos en `/conversores` con Tienda de Intercambio, Aceleradores y Mochila Segura) y Fase 3 (Base de Datos de 42 Llaveros en `/llaveros`, curva de 193,790 EXP a Nv.30, tabla de CP de 255K y 96 sub-estadísticas con mecánica del 20%). Noticia editorial de portada publicada en `/noticias/gran-actualizacion-3-fases-wiki`.
-- **Iconografía Oficial de Recursos y Equipamiento:**
+- **Iconografía Oficial de Recursos, Aceleradores y Equipamiento:**
   - `Item_Custom_Box_Equipment_02.webp`: Maletín de Arma Legendaria a Elección (Tier 10+ en `/operativos`).
   - `Item_Food.webp`: Saco de Comida / Granos (utilizado en `/herramientas` > Mansión y `/conversores`).
   - `Item_Wood.webp`: Tablones de Madera con precinto de seguridad.
   - `Item_Iron.webp`: Piezas y engranajes de Hierro / Bloque motor.
   - `Item_Oil.webp`: Bidón de Gasolina / Petróleo rojo de 20L.
+  - `Item_USB_06.webp`: Acelerador Universal (flechas doradas sin distintivo).
+  - `Item_USB_07.webp`: Acelerador de Construcción (distintivo de martillo).
+  - `Item_USB_01.webp`: Acelerador de Investigación (distintivo de matraz/tubo).
+  - `Item_USB_02.webp`: Acelerador de Entrenamiento de Tropas (distintivo de arma de fuego).
+  - `Item_Therapy.webp`: Acelerador de Curación / Hospital (distintivo de jeringa).

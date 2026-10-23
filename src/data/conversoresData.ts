@@ -138,6 +138,7 @@ export interface SpeedupCategoryMeta {
   name: string;
   nameEn: string;
   iconName: string;
+  image?: string;
   color: string;
   accent: string;
   badge: string;
@@ -150,6 +151,7 @@ export const SPEEDUP_CATEGORIES: Record<SpeedupCategory, SpeedupCategoryMeta> = 
     name: 'Universal',
     nameEn: 'Universal',
     iconName: 'Zap',
+    image: '/recursos/Item_USB_06.webp',
     color: '#f97316',
     accent: 'border-orange-500/40 bg-orange-500/10 text-orange-400',
     badge: 'bg-orange-500/20 text-orange-300 border-orange-500/30',
@@ -160,6 +162,7 @@ export const SPEEDUP_CATEGORIES: Record<SpeedupCategory, SpeedupCategoryMeta> = 
     name: 'Construcción',
     nameEn: 'Building',
     iconName: 'Hammer',
+    image: '/recursos/Item_USB_07.webp',
     color: '#eab308',
     accent: 'border-amber-500/40 bg-amber-500/10 text-amber-400',
     badge: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
@@ -170,6 +173,7 @@ export const SPEEDUP_CATEGORIES: Record<SpeedupCategory, SpeedupCategoryMeta> = 
     name: 'Investigación',
     nameEn: 'Research',
     iconName: 'FlaskConical',
+    image: '/recursos/Item_USB_01.webp',
     color: '#06b6d4',
     accent: 'border-cyan-500/40 bg-cyan-500/10 text-cyan-400',
     badge: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
@@ -180,6 +184,7 @@ export const SPEEDUP_CATEGORIES: Record<SpeedupCategory, SpeedupCategoryMeta> = 
     name: 'Entrenamiento',
     nameEn: 'Training',
     iconName: 'Swords',
+    image: '/recursos/Item_USB_02.webp',
     color: '#ef4444',
     accent: 'border-red-500/40 bg-red-500/10 text-red-400',
     badge: 'bg-red-500/20 text-red-300 border-red-500/30',
@@ -190,6 +195,7 @@ export const SPEEDUP_CATEGORIES: Record<SpeedupCategory, SpeedupCategoryMeta> = 
     name: 'Curación / Hospital',
     nameEn: 'Healing',
     iconName: 'HeartPulse',
+    image: '/recursos/Item_Therapy.webp',
     color: '#10b981',
     accent: 'border-emerald-500/40 bg-emerald-500/10 text-emerald-400',
     badge: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',

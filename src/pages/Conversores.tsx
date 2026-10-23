@@ -776,26 +776,39 @@ ${t('converters.clipboard.source')}`;
                     </span>
                   </div>
 
-                  <div className="p-4 rounded-xl bg-neutral-900/60 border border-neutral-800">
-                    <span className="text-[11px] font-mono uppercase text-gray-400 block mb-1">
-                      {t('converters.speedups.universal_title')}
-                    </span>
-                    <div className="text-xl sm:text-2xl font-mono font-bold text-orange-400">
-                      {formatMinutesToDuration(speedupTotals.categoryTotals.universal).formattedString}
+                  <div className="p-4 rounded-xl bg-neutral-900/60 border border-neutral-800 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between gap-1 mb-1">
+                        <span className="text-[11px] font-mono uppercase text-gray-400">
+                          {t('converters.speedups.universal_title')}
+                        </span>
+                        <img src="/recursos/Item_USB_06.webp" alt="Universal" className="w-5 h-5 object-contain" />
+                      </div>
+                      <div className="text-xl sm:text-2xl font-mono font-bold text-orange-400">
+                        {formatMinutesToDuration(speedupTotals.categoryTotals.universal).formattedString}
+                      </div>
                     </div>
-                    <span className="text-[10px] text-gray-500 font-mono">
+                    <span className="text-[10px] text-gray-500 font-mono mt-1">
                       {t('converters.speedups.universal_subtitle')}
                     </span>
                   </div>
 
-                  <div className="p-4 rounded-xl bg-neutral-900/60 border border-neutral-800">
-                    <span className="text-[11px] font-mono uppercase text-gray-400 block mb-1">
-                      {t('converters.speedups.building_universal_title')}
-                    </span>
-                    <div className="text-xl sm:text-2xl font-mono font-bold text-yellow-400">
-                      {formatMinutesToDuration(speedupTotals.categoryTotals.building + speedupTotals.categoryTotals.universal).formattedString}
+                  <div className="p-4 rounded-xl bg-neutral-900/60 border border-neutral-800 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between gap-1 mb-1">
+                        <span className="text-[11px] font-mono uppercase text-gray-400">
+                          {t('converters.speedups.building_universal_title')}
+                        </span>
+                        <div className="flex items-center -space-x-1">
+                          <img src="/recursos/Item_USB_07.webp" alt="Construcción" className="w-5 h-5 object-contain" />
+                          <img src="/recursos/Item_USB_06.webp" alt="Universal" className="w-5 h-5 object-contain" />
+                        </div>
+                      </div>
+                      <div className="text-xl sm:text-2xl font-mono font-bold text-yellow-400">
+                        {formatMinutesToDuration(speedupTotals.categoryTotals.building + speedupTotals.categoryTotals.universal).formattedString}
+                      </div>
                     </div>
-                    <span className="text-[10px] text-gray-500 font-mono">
+                    <span className="text-[10px] text-gray-500 font-mono mt-1">
                       {t('converters.speedups.building_universal_subtitle')}
                     </span>
                   </div>
@@ -832,11 +845,14 @@ ${t('converters.clipboard.source')}`;
                       <button
                         key={catKey}
                         onClick={() => setSelectedSpeedupCategory(catKey)}
-                        className={`px-3 py-1.5 rounded-lg font-mono text-xs transition-colors cursor-pointer border ${
+                        className={`px-3 py-1.5 rounded-lg font-mono text-xs transition-colors cursor-pointer border flex items-center gap-1.5 ${
                           isSelected ? cat.badge : 'bg-neutral-900 text-gray-400 hover:text-white border-neutral-800'
                         }`}
                       >
-                        {getSpeedupCatName(catKey)}
+                        {cat.image && (
+                          <img src={cat.image} alt="" className="w-4 h-4 object-contain" />
+                        )}
+                        <span>{getSpeedupCatName(catKey)}</span>
                       </button>
                     );
                   })}
@@ -855,6 +871,9 @@ ${t('converters.clipboard.source')}`;
                         <div key={catKey} className="p-4 sm:p-5 rounded-2xl bg-neutral-900/40 border border-neutral-800">
                           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 border-b border-neutral-800/60 pb-3">
                             <div className="flex items-center gap-2.5">
+                              {cat.image && (
+                                <img src={cat.image} alt="" className="w-6 h-6 object-contain shrink-0 drop-shadow" />
+                              )}
                               <span className={`px-2.5 py-1 rounded text-xs font-mono font-bold border ${cat.accent}`}>
                                 {getSpeedupCatName(catKey).toUpperCase()}
                               </span>
@@ -871,7 +890,12 @@ ${t('converters.clipboard.source')}`;
                               return (
                                 <div key={denom.minutes} className="p-2.5 rounded-xl bg-neutral-950 border border-neutral-800 flex flex-col justify-between">
                                   <div className="flex items-center justify-between mb-1.5">
-                                    <span className="text-xs font-mono font-bold text-gray-300">{denom.label}</span>
+                                    <span className="text-xs font-mono font-bold text-gray-300 flex items-center gap-1.5">
+                                      {cat.image && (
+                                        <img src={cat.image} alt="" className="w-4 h-4 object-contain opacity-85 shrink-0" />
+                                      )}
+                                      {denom.label}
+                                    </span>
                                     <span className="text-[10px] font-mono text-gray-500">{denom.minutes} min</span>
                                   </div>
                                   <input
