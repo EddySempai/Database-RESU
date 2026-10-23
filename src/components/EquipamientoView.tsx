@@ -555,28 +555,27 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
           </div>
         </div>
 
-        {/* 1. DASHBOARD DE TOTALES EJECUTIVOS (3 o 4 CARDS EN GRID BALANCEADO) */}
-        <div className={`grid grid-cols-2 ${isLegendary || totalLegendWeapons > 0 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-3 sm:gap-4 mb-6`}>
+        {/* 1. DASHBOARD DE TOTALES EJECUTIVOS (3 o 4 CARDS EN GRID BALANCEADO CON ICONOS GRANDES Y MARCA DE AGUA) */}
+        <div className={`grid grid-cols-1 sm:grid-cols-2 ${isLegendary || totalLegendWeapons > 0 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-3.5 sm:gap-4 mb-6`}>
           
           {/* Card 1: Costo Total EXP */}
-          <div className="p-3.5 sm:p-4 rounded-xl bg-neutral-950/80 border border-red-950/60 hover:border-red-500/40 transition-all flex flex-col justify-between shadow-inner">
-            <div className="flex items-center justify-between gap-2 mb-2">
-              <span className="text-[10px] sm:text-[11px] font-mono uppercase text-gray-400 tracking-wider font-semibold truncate">
+          <div className="group relative p-4 rounded-xl bg-gradient-to-br from-red-950/40 via-[#100707] to-neutral-950 border border-red-500/30 hover:border-red-500/70 transition-all flex items-center justify-between shadow-[0_0_20px_rgba(239,68,68,0.12)] hover:shadow-[0_0_25px_rgba(239,68,68,0.25)] overflow-hidden">
+            {/* Watermark de Fondo */}
+            <img 
+              src="/recursos/UI_Icon_Hero_Equip_Exp.webp" 
+              alt="" 
+              className="absolute -right-2 -bottom-2 w-24 h-24 sm:w-28 sm:h-28 object-contain opacity-25 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300 pointer-events-none select-none filter drop-shadow" 
+            />
+            <div className="relative z-10 flex-1 min-w-0 pr-3">
+              <span className="text-[10px] sm:text-[11px] font-mono uppercase text-gray-400 tracking-wider font-semibold block mb-1">
                 {t('op_detail.total_exp_cost', 'EXP TOTAL')}
               </span>
-              <img 
-                src="/recursos/UI_Icon_Hero_Equip_Exp.webp" 
-                alt="EXP" 
-                className="w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-[0_0_8px_rgba(255,42,42,0.4)] shrink-0" 
-              />
-            </div>
-            <div>
-              <div className="font-bebas text-2xl sm:text-3xl md:text-4xl text-neon-red tracking-wide leading-tight">
+              <div className="font-bebas text-2xl sm:text-3xl md:text-4xl text-neon-red tracking-wide leading-none">
                 {totalExp.toLocaleString()}
               </div>
               <button
                 onClick={() => setShowExpEquivalents(prev => !prev)}
-                className="mt-1 text-[10px] font-mono text-gray-400 hover:text-white flex items-center gap-1 transition-colors cursor-pointer"
+                className="mt-2 text-[10px] font-mono text-gray-400 hover:text-white flex items-center gap-1 transition-colors cursor-pointer"
               >
                 <span>{showExpEquivalents ? '▾ Ocultar materiales' : '▸ Ver materiales'}</span>
               </button>
@@ -584,55 +583,53 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
           </div>
 
           {/* Card 2: Total Componentes (+) */}
-          <div className="p-3.5 sm:p-4 rounded-xl bg-neutral-950/80 border border-yellow-950/60 hover:border-yellow-500/40 transition-all flex flex-col justify-between shadow-inner">
-            <div className="flex items-center justify-between gap-2 mb-2">
-              <span className="text-[10px] sm:text-[11px] font-mono uppercase text-gray-400 tracking-wider font-semibold truncate">
+          <div className="group relative p-4 rounded-xl bg-gradient-to-br from-yellow-950/40 via-[#120f06] to-neutral-950 border border-yellow-500/30 hover:border-yellow-500/70 transition-all flex items-center justify-between shadow-[0_0_20px_rgba(234,179,8,0.12)] hover:shadow-[0_0_25px_rgba(234,179,8,0.25)] overflow-hidden">
+            {/* Watermark de Fondo */}
+            <img 
+              src="/recursos/UI_Icon_Hero_Equip_Mod.webp" 
+              alt="" 
+              className="absolute -right-2 -bottom-2 w-24 h-24 sm:w-28 sm:h-28 object-contain opacity-25 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300 pointer-events-none select-none filter drop-shadow" 
+            />
+            <div className="relative z-10 flex-1 min-w-0 pr-3">
+              <span className="text-[10px] sm:text-[11px] font-mono uppercase text-gray-400 tracking-wider font-semibold block mb-1">
                 {t('op_detail.total_comp_cost', 'COMPONENTES (+)')}
               </span>
-              <img 
-                src="/recursos/UI_Icon_Hero_Equip_Mod.webp" 
-                alt="Componentes" 
-                className="w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-[0_0_8px_rgba(234,179,8,0.4)] shrink-0" 
-              />
-            </div>
-            <div>
-              <div className="font-bebas text-2xl sm:text-3xl md:text-4xl text-yellow-400 tracking-wide leading-tight">
+              <div className="font-bebas text-2xl sm:text-3xl md:text-4xl text-yellow-400 tracking-wide leading-none">
                 {totalPlus.toLocaleString()}
               </div>
-              <span className="text-[10px] font-mono text-gray-500 block mt-1">
+              <span className="text-[10px] font-mono text-gray-500 block mt-2">
                 Nivel +1 a +20
               </span>
             </div>
           </div>
 
           {/* Card 3: Armas Legendarias (Tier 10+) */}
-          <div className={`p-3.5 sm:p-4 rounded-xl transition-all flex flex-col justify-between shadow-inner ${
+          <div className={`group relative p-4 rounded-xl transition-all flex items-center justify-between overflow-hidden ${
             totalLegendWeapons > 0 
-              ? 'bg-gradient-to-b from-yellow-950/30 to-neutral-950/90 border border-yellow-500/50 shadow-[0_0_20px_rgba(234,179,8,0.15)]' 
-              : 'bg-neutral-950/80 border border-neutral-800'
+              ? 'bg-gradient-to-br from-amber-950/60 via-yellow-950/40 to-neutral-950 border border-amber-400/60 hover:border-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.25)] hover:shadow-[0_0_35px_rgba(245,158,11,0.45)]' 
+              : 'bg-gradient-to-br from-neutral-900/60 to-neutral-950 border border-neutral-800 hover:border-neutral-700 shadow-inner'
           }`}>
-            <div className="flex items-center justify-between gap-2 mb-2">
-              <div className="flex items-center gap-1.5 min-w-0">
-                <span className="text-[10px] sm:text-[11px] font-mono uppercase text-gray-400 tracking-wider font-semibold truncate">
+            {/* Watermark de Fondo */}
+            <img 
+              src="/recursos/Item_Custom_Box_Equipment_02.webp" 
+              alt="" 
+              className="absolute -right-2 -bottom-2 w-24 h-24 sm:w-28 sm:h-28 object-contain opacity-25 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300 pointer-events-none select-none filter drop-shadow" 
+            />
+            <div className="relative z-10 flex-1 min-w-0 pr-3">
+              <div className="flex items-center gap-1.5 mb-1 flex-wrap">
+                <span className="text-[10px] sm:text-[11px] font-mono uppercase text-gray-400 tracking-wider font-semibold">
                   {t('op_detail.legendary_weapons_abbr', 'ARMAS LEG.')}
                 </span>
-                <span className="text-[9px] font-mono px-1 rounded bg-yellow-500/20 text-yellow-400 border border-yellow-500/40 font-bold shrink-0">
+                <span className="text-[9px] font-mono px-1 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/50 font-bold shrink-0">
                   10+
                 </span>
               </div>
-              <img 
-                src="/recursos/Item_Custom_Box_Equipment_02.webp" 
-                alt="Maletín Legendario" 
-                className="w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-[0_0_8px_rgba(234,179,8,0.5)] shrink-0" 
-              />
-            </div>
-            <div>
-              <div className={`font-bebas text-2xl sm:text-3xl md:text-4xl tracking-wide leading-tight ${
-                totalLegendWeapons > 0 ? 'text-amber-300 font-bold' : 'text-gray-500'
+              <div className={`font-bebas text-2xl sm:text-3xl md:text-4xl tracking-wide leading-none ${
+                totalLegendWeapons > 0 ? 'text-amber-300 font-bold' : 'text-gray-400'
               }`}>
                 {totalLegendWeapons.toLocaleString()} <span className="font-mono text-xs uppercase font-normal text-gray-400">uds</span>
               </div>
-              <span className="text-[10px] font-mono text-gray-500 block mt-1 truncate">
+              <span className="text-[10px] font-mono text-gray-500 block mt-2 truncate">
                 {totalLegendWeapons > 0 ? t('op_detail.legendary_weapon_box') : 'Requerido en +11 a +20'}
               </span>
             </div>
@@ -640,22 +637,21 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
 
           {/* Card 4: Fragmentos Exclusivos (Solo si es personaje legendario) */}
           {isLegendary && (
-            <div className="p-3.5 sm:p-4 rounded-xl bg-neutral-950/80 border border-amber-950/60 hover:border-amber-500/40 transition-all flex flex-col justify-between shadow-inner">
-              <div className="flex items-center justify-between gap-2 mb-2">
-                <span className="text-[10px] sm:text-[11px] font-mono uppercase text-gray-400 tracking-wider font-semibold truncate">
+            <div className="group relative p-4 rounded-xl bg-gradient-to-br from-yellow-950/45 via-[#141005] to-neutral-950 border border-yellow-500/40 hover:border-yellow-400/80 transition-all flex items-center justify-between shadow-[0_0_20px_rgba(234,179,8,0.15)] hover:shadow-[0_0_30px_rgba(234,179,8,0.3)] overflow-hidden">
+              {/* Watermark de Fondo */}
+              <img 
+                src={getUniqueWeaponPieceIcon(op.id)} 
+                alt="" 
+                className="absolute -right-2 -bottom-2 w-24 h-24 sm:w-28 sm:h-28 object-contain opacity-25 group-hover:opacity-40 group-hover:scale-105 transition-all duration-300 pointer-events-none select-none filter drop-shadow" 
+              />
+              <div className="relative z-10 flex-1 min-w-0 pr-3">
+                <span className="text-[10px] sm:text-[11px] font-mono uppercase text-gray-400 tracking-wider font-semibold block mb-1">
                   {t('op_detail.weapon_exclusive', 'EXCLUSIVA')}
                 </span>
-                <img 
-                  src={getUniqueWeaponPieceIcon(op.id)} 
-                  alt="Fragmentos Exclusivos" 
-                  className="w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-[0_0_8px_rgba(234,179,8,0.4)] shrink-0" 
-                />
-              </div>
-              <div>
-                <div className="font-bebas text-2xl sm:text-3xl md:text-4xl text-yellow-400 tracking-wide leading-tight">
+                <div className="font-bebas text-2xl sm:text-3xl md:text-4xl text-yellow-400 tracking-wide leading-none">
                   {uniqueFrags.toLocaleString()} <span className="font-mono text-xs uppercase font-normal text-yellow-500/70">frags</span>
                 </div>
-                <span className="text-[10px] font-mono text-gray-500 block mt-1">
+                <span className="text-[10px] font-mono text-gray-500 block mt-2">
                   Nivel 0 ➔ 10
                 </span>
               </div>
@@ -722,7 +718,7 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
             {slotCosts.map((s) => {
               const correspondingSlot = slots.find(slot => slot.id === s.id);
               const iconUrl = s.isUnique 
@@ -732,23 +728,53 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
               const isPenetration = correspondingSlot?.type === 'Penetración';
               const isHighTier = (correspondingSlot?.targetPlus || 0) > 10;
 
+              // Monocromático dorado/ámbar táctico con sutiles variaciones de tono y jerarquía
+              const cardBgGradient = s.isUnique
+                ? 'bg-gradient-to-r from-yellow-950/70 via-[#1c1505]/95 to-black/95 border-yellow-400/70 hover:border-yellow-300 shadow-[0_0_22px_rgba(234,179,8,0.25)] hover:shadow-[0_0_35px_rgba(234,179,8,0.45)]'
+                : isHighTier
+                  ? 'bg-gradient-to-r from-amber-950/75 via-[#1a1205]/95 to-black/95 border-amber-400/60 hover:border-amber-300 shadow-[0_0_20px_rgba(245,158,11,0.2)] hover:shadow-[0_0_32px_rgba(245,158,11,0.4)]'
+                  : isPenetration
+                    ? 'bg-gradient-to-r from-[#291c09]/75 via-[#130e05]/95 to-black/95 border-amber-500/40 hover:border-amber-400 shadow-[0_0_18px_rgba(245,158,11,0.12)] hover:shadow-[0_0_28px_rgba(245,158,11,0.25)]'
+                    : 'bg-gradient-to-r from-[#221a08]/75 via-[#110d04]/95 to-black/95 border-yellow-600/40 hover:border-yellow-500 shadow-[0_0_18px_rgba(202,138,4,0.12)] hover:shadow-[0_0_28px_rgba(202,138,4,0.25)]';
+
               return (
                 <div 
                   key={s.id}
                   onClick={() => setSelectedSlotId(s.id)}
-                  className="group p-3.5 sm:p-4 rounded-xl bg-neutral-900/60 border border-neutral-800 hover:border-yellow-500/60 hover:bg-neutral-900/90 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between shadow-md hover:shadow-[0_0_20px_rgba(234,179,8,0.15)]"
+                  className={`group p-3.5 sm:p-4.5 rounded-xl border ${cardBgGradient} transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between ${
+                    isHighTier ? 'ring-1 ring-amber-400/50' : ''
+                  }`}
                 >
+                  {/* Marca de Agua de Fondo del Arma */}
+                  <img 
+                    src={iconUrl} 
+                    alt="" 
+                    className="absolute -right-2 -bottom-2 w-28 h-28 sm:w-32 sm:h-32 object-contain opacity-15 group-hover:opacity-30 group-hover:scale-105 transition-all duration-500 pointer-events-none select-none filter drop-shadow blur-[0.2px]" 
+                  />
+
                   {/* Top Row: Icon + Name + Type + Range Badges */}
-                  <div className="flex items-center justify-between gap-3 mb-3">
+                  <div className="relative z-10 flex items-center justify-between gap-3 mb-3">
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg bg-black/80 border border-neutral-700 group-hover:border-yellow-500/60 flex items-center justify-center shrink-0 relative overflow-hidden shadow-inner transition-colors">
+                      {/* Marco Biselado Dorado / Táctico Monocromático */}
+                      <div className={`w-13 h-13 sm:w-14 sm:h-14 rounded-md bg-gradient-to-br from-[#3b2e0c] via-[#1a1405] to-[#0a0803] border-2 ${
+                        isHighTier 
+                          ? 'border-amber-400 shadow-[0_0_15px_rgba(245,158,11,0.5)]' 
+                          : s.isUnique 
+                            ? 'border-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.45)]' 
+                            : isPenetration 
+                              ? 'border-amber-500/80 shadow-[0_0_12px_rgba(245,158,11,0.3)]' 
+                              : 'border-yellow-600/80 shadow-[0_0_12px_rgba(234,179,8,0.25)]'
+                      } flex items-center justify-center shrink-0 relative overflow-hidden transition-all duration-300 group-hover:scale-105`}>
                         <img 
                           src={iconUrl} 
                           alt={s.name} 
-                          className="w-9 h-9 sm:w-10 sm:h-10 object-contain filter drop-shadow group-hover:scale-110 transition-transform duration-300" 
+                          className="w-10 h-10 sm:w-11 sm:h-11 object-contain filter drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] group-hover:scale-110 transition-transform duration-300" 
                         />
+                        <div className="absolute bottom-0 w-full bg-black/90 font-mono text-[8px] sm:text-[9px] text-yellow-400 font-bold text-center py-0.2 border-t border-yellow-500/40">
+                          {t('op_detail.lvl_prefix', 'Nv.')}{correspondingSlot?.currentLevel}
+                        </div>
                         {isHighTier && (
-                          <div className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-black/90 border border-yellow-500 flex items-center justify-center">
+                          <div className="absolute top-0.5 right-0.5 w-4 h-4 rounded-full bg-black/95 border border-amber-400 flex items-center justify-center shadow-[0_0_8px_rgba(245,158,11,0.8)]">
                             <img src="/recursos/Item_Custom_Box_Equipment_02.webp" alt="10+" className="w-2.5 h-2.5 object-contain" />
                           </div>
                         )}
@@ -761,14 +787,14 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                         <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
                           <span className={`text-[9px] font-mono px-1.5 py-0.2 rounded border uppercase font-medium ${
                             s.isUnique 
-                              ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30'
+                              ? 'bg-yellow-500/20 text-yellow-300 border-yellow-500/50'
                               : isPenetration
-                                ? 'bg-red-950/40 text-red-400 border-red-800/40'
-                                : 'bg-blue-950/40 text-blue-400 border-blue-800/40'
+                                ? 'bg-amber-500/15 text-amber-300 border-amber-500/40'
+                                : 'bg-yellow-600/15 text-yellow-300/90 border-yellow-600/40'
                           }`}>
                             {s.isUnique ? 'Exclusiva' : isPenetration ? 'Penetración' : 'Vida'}
                           </span>
-                          <span className="text-[10px] font-mono text-gray-400">
+                          <span className="text-[10px] font-mono text-gray-300">
                             {s.isUnique 
                               ? `Nv.${correspondingSlot?.currentLevel} ➔ Nv.${correspondingSlot?.targetLevel}`
                               : `Nv.${correspondingSlot?.currentLevel} ➔ ${correspondingSlot?.targetLevel}`}
@@ -776,7 +802,7 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                           {!s.isUnique && (
                             <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded font-bold ${
                               isHighTier 
-                                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' 
+                                ? 'bg-amber-500/25 text-amber-300 border border-amber-500/50 shadow-[0_0_8px_rgba(245,158,11,0.3)]' 
                                 : 'bg-neutral-800 text-gray-300'
                             }`}>
                               +{correspondingSlot?.currentPlus} ➔ +{correspondingSlot?.targetPlus}
@@ -787,14 +813,14 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                     </div>
 
                     {/* Edit Affordance */}
-                    <div className="shrink-0 text-gray-500 group-hover:text-yellow-400 group-hover:translate-x-0.5 transition-all text-xs font-mono hidden sm:flex items-center gap-0.5">
+                    <div className="shrink-0 text-gray-400 group-hover:text-yellow-400 group-hover:translate-x-0.5 transition-all text-xs font-mono hidden sm:flex items-center gap-0.5">
                       <span>{t('op_detail.edit', 'Editar')}</span>
                       <ChevronRight size={14} />
                     </div>
                   </div>
 
                   {/* Bottom Row: Metrics & Costs Pills */}
-                  <div className="pt-2.5 border-t border-neutral-800/80 flex items-center justify-between gap-2 flex-wrap">
+                  <div className="relative z-10 pt-2.5 border-t border-white/10 flex items-center justify-between gap-2 flex-wrap">
                     {s.isUnique ? (
                       <div className="flex items-center justify-between w-full">
                         <span className="text-xs font-mono text-gray-400">Fragmentos Requeridos:</span>
@@ -808,7 +834,7 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                         {/* EXP Needed */}
                         <div className="flex items-baseline gap-1">
                           <span className="text-[10px] font-mono text-gray-400">EXP:</span>
-                          <span className="text-neon-red font-mono text-xs sm:text-sm font-bold tracking-tight">
+                          <span className="text-amber-200 font-mono text-xs sm:text-sm font-bold tracking-tight">
                             {s.exp.toLocaleString()}
                           </span>
                         </div>
@@ -823,18 +849,18 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
 
                         {/* Legendary Weapons (Only when > 0) */}
                         {s.legendWeapons > 0 ? (
-                          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-yellow-500/15 border border-yellow-500/40">
+                          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-500/20 border border-amber-500/50 shadow-[0_0_10px_rgba(245,158,11,0.25)]">
                             <img 
                               src="/recursos/Item_Custom_Box_Equipment_02.webp" 
                               alt="Arma Legendaria" 
-                              className="w-3.5 h-3.5 object-contain shrink-0" 
+                              className="w-4 h-4 object-contain shrink-0" 
                             />
                             <span className="text-amber-300 font-mono text-xs font-bold">
                               {s.legendWeapons} {t('op_detail.legendary_weapons_abbr', 'Armas Leg.')}
                             </span>
                           </div>
                         ) : (
-                          <span className="text-[10px] font-mono text-gray-600 hidden sm:inline">
+                          <span className="text-[10px] font-mono text-gray-500 hidden sm:inline">
                             (0 Armas Leg.)
                           </span>
                         )}

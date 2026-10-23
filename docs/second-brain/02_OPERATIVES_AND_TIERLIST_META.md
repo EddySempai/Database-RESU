@@ -1,4 +1,4 @@
-# 🦸 Operativos y Meta de Tier List (PvP & PvE)
+﻿# 🦸 Operativos y Meta de Tier List (PvP & PvE)
 
 ## 1. Lista de los 31 Operativos (`src/data/operativos.json`)
 | ID (`id`) | Nombre Completo | Ruta de Ficha |
@@ -63,3 +63,7 @@
 - **Páginas Clave:**
   - Catálogo: `src/pages/Operativos.tsx` (rutas `/operativos` y `/heroes`) con filtros por IDs normalizados (`ALL`, `DEFENDER`, etc.) para preservar estado al cambiar de idioma.
   - Ficha: `src/pages/OperativoDetalle.tsx` (rutas `/heroes/:id`) con breadcrumbs, botones de voz y tabs accesibles y traducidos.
+  - Calculadora de Equipamiento: src/components/EquipamientoView.tsx integrada en /heroes/:id.
+    - Soporte completo para Tier +1 a +20. A partir de Tier 10+ (+11 a +20) cada nivel adicional requiere 1 Arma Legendaria a elección (ítem oficial: Item_Custom_Box_Equipment_02.webp - *Maletín de Arma Legendaria a Elección*).
+    - HUD superior de 4 tarjetas con marcas de agua tácticas (sin cajas frontales para máxima legibilidad sin truncamiento de texto): EXP Total, Componentes (+), Armas Legendarias 10+ y Fragmentos de Exclusiva.
+    - Desglose por Arma inferior con diseño monocromático dorado/ámbar (Champagne para Exclusiva, Oro fundido para Tier 10+, Ámbar para Penetración y Bronce antiguo para Vida), biseles tácticos, marcas de agua expandidas y adaptabilidad móvil responsive.
