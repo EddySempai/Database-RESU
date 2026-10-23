@@ -52,7 +52,7 @@ const LuminioNode: React.FC<LuminioNodeProps> = ({ node, baseLevel, targetLevel,
           <div className="absolute inset-0 rounded-full overflow-hidden">
             <img 
               src={`/icons/skill/${node.icon}`} 
-              alt={node.defaultName} 
+              alt={t(node.nameKey, node.defaultName)} 
               className={`w-full h-full object-cover scale-[1.35] transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-40 grayscale'} ${iconColor}`} 
             />
           </div>

@@ -21,6 +21,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useSound } from '../contexts/SoundContext';
 import { 
   TREASURE_ITEMS, 
@@ -37,6 +38,7 @@ import {
   LUMINIO_BOX_PRESETS
 } from '../data/conversoresData';
 import type { 
+  TreasureItemType,
   SpeedupCategory, 
   ResourceType 
 } from '../data/conversoresData';
@@ -44,8 +46,36 @@ import { MANSION_LUMI_STATS } from '../data/mansionData';
 import type { PrestigeLevel } from '../data/mansionData';
 
 const Conversores: React.FC = () => {
+  const { t } = useTranslation();
   const { playHover, playClick } = useSound();
   const [activeTab, setActiveTab] = useState<'treasures' | 'speedups' | 'resources' | 'luminio' | 'equipment'>('treasures');
+
+  // Helpers de localización
+  const getItemName = (itemKey: TreasureItemType) => {
+    return t(`converters.items.${itemKey}.name`, { defaultValue: TREASURE_ITEMS[itemKey].name });
+  };
+
+  const getItemShortName = (itemKey: TreasureItemType) => {
+    return t(`converters.items.${itemKey}.short`, { defaultValue: TREASURE_ITEMS[itemKey].name.split('(')[0].trim() });
+  };
+
+  const getRuleEfficiencyNote = (ruleId: string) => {
+    return t(`converters.rules.${ruleId}`, { 
+      defaultValue: TREASURE_EXCHANGE_RULES.find(r => r.id === ruleId)?.efficiencyNote || '' 
+    });
+  };
+
+  const getSpeedupCatName = (catKey: SpeedupCategory) => {
+    return t(`converters.speedup_categories.${catKey}.name`, { defaultValue: SPEEDUP_CATEGORIES[catKey].name });
+  };
+
+  const getSpeedupCatDesc = (catKey: SpeedupCategory) => {
+    return t(`converters.speedup_categories.${catKey}.desc`, { defaultValue: SPEEDUP_CATEGORIES[catKey].description });
+  };
+
+  const getResourceName = (resKey: ResourceType) => {
+    return t(`converters.resource_types.${resKey}`, { defaultValue: RESOURCE_TYPES[resKey].name });
+  };
 
   // ==========================================
   // TAB 1: TREASURE EXCHANGE STATE
@@ -91,12 +121,26 @@ const Conversores: React.FC = () => {
   }, [currentRule, exchangeMode, exchangeAmount]);
 
   const handleCopyTreasure = () => {
-    const text = `[RE:SU Tienda de Intercambio]
-Conversión: ${treasureCalculation.calculatedInput.toLocaleString()} ${treasureCalculation.inputItem.name} ➔ ${treasureCalculation.calculatedOutput.toLocaleString()} ${treasureCalculation.outputItem.name}
-Ratio: ${currentRule.inputAmount} ${treasureCalculation.inputItem.id} = ${currentRule.outputAmount} ${treasureCalculation.outputItem.id}
-Límite Semanal: ${currentRule.weeklyLimit.toLocaleString()} ops (${(currentRule.weeklyLimit * currentRule.outputAmount).toLocaleString()} ${treasureCalculation.outputItem.id})
-Semanas de cupo requeridas: ${treasureCalculation.weeksNeeded} semana(s)
-Fuente: resudb.com/conversores`;
+    const text = `${t('converters.clipboard.treasure_header')}
+${t('converters.clipboard.treasure_conv', {
+  input: treasureCalculation.calculatedInput.toLocaleString(),
+  inputItem: getItemShortName(currentRule.inputItem),
+  output: treasureCalculation.calculatedOutput.toLocaleString(),
+  outputItem: getItemShortName(currentRule.outputItem)
+})}
+${t('converters.clipboard.treasure_ratio', {
+  inAmt: currentRule.inputAmount,
+  inId: currentRule.inputItem,
+  outAmt: currentRule.outputAmount,
+  outId: currentRule.outputItem
+})}
+${t('converters.clipboard.treasure_cap', {
+  cap: currentRule.weeklyLimit.toLocaleString(),
+  max: (currentRule.weeklyLimit * currentRule.outputAmount).toLocaleString(),
+  outId: currentRule.outputItem
+})}
+${t('converters.clipboard.treasure_weeks', { weeks: treasureCalculation.weeksNeeded })}
+${t('converters.clipboard.source')}`;
     navigator.clipboard.writeText(text);
     setCopiedTreasure(true);
     setTimeout(() => setCopiedTreasure(false), 2000);
@@ -192,15 +236,18 @@ Fuente: resudb.com/conversores`;
   };
 
   const handleCopySpeedup = () => {
-    const text = `[RE:SU Inventario de Aceleradores]
-Tiempo Total Acumulado: ${speedupTotals.grandDuration.formattedString} (${speedupTotals.grandDuration.totalHours} horas)
-- Universales: ${formatMinutesToDuration(speedupTotals.categoryTotals.universal).formattedString}
-- Construcción: ${formatMinutesToDuration(speedupTotals.categoryTotals.building).formattedString}
-- Investigación: ${formatMinutesToDuration(speedupTotals.categoryTotals.research).formattedString}
-- Entrenamiento: ${formatMinutesToDuration(speedupTotals.categoryTotals.training).formattedString}
-- Curación: ${formatMinutesToDuration(speedupTotals.categoryTotals.healing).formattedString}
-Puntos estimados en Cumbre de Ases: ${speedupTotals.aceSummitPoints.toLocaleString()} pts
-Fuente: resudb.com/conversores`;
+    const text = `${t('converters.clipboard.speedup_header')}
+${t('converters.clipboard.speedup_total', {
+  formatted: speedupTotals.grandDuration.formattedString,
+  hours: speedupTotals.grandDuration.totalHours
+})}
+- ${getSpeedupCatName('universal')}: ${formatMinutesToDuration(speedupTotals.categoryTotals.universal).formattedString}
+- ${getSpeedupCatName('building')}: ${formatMinutesToDuration(speedupTotals.categoryTotals.building).formattedString}
+- ${getSpeedupCatName('research')}: ${formatMinutesToDuration(speedupTotals.categoryTotals.research).formattedString}
+- ${getSpeedupCatName('training')}: ${formatMinutesToDuration(speedupTotals.categoryTotals.training).formattedString}
+- ${getSpeedupCatName('healing')}: ${formatMinutesToDuration(speedupTotals.categoryTotals.healing).formattedString}
+${t('converters.clipboard.speedup_ace', { pts: speedupTotals.aceSummitPoints.toLocaleString() })}
+${t('converters.clipboard.source')}`;
     navigator.clipboard.writeText(text);
     setCopiedSpeedup(true);
     setTimeout(() => setCopiedSpeedup(false), 2000);
@@ -269,14 +316,14 @@ Fuente: resudb.com/conversores`;
   };
 
   const handleCopyResources = () => {
-    const text = `[RE:SU Reservas Protegidas en Mochila]
-- Comida 🌾: ${formatResourceNumber(resourceTotals.totals.food)}
-- Madera 🪵: ${formatResourceNumber(resourceTotals.totals.wood)}
-- Hierro ⛓️: ${formatResourceNumber(resourceTotals.totals.iron)}
-- Petróleo 🛢️: ${formatResourceNumber(resourceTotals.totals.oil)}
-- Cajas de Selección 🎁: ${formatResourceNumber(resourceTotals.totals.choice)}
-Total de Recursos Seguros no saqueables: ${formatResourceNumber(resourceTotals.grandTotal)}
-Fuente: resudb.com/conversores`;
+    const text = `${t('converters.clipboard.resource_header')}
+- ${getResourceName('food')} 🌾: ${formatResourceNumber(resourceTotals.totals.food)}
+- ${getResourceName('wood')} 🪵: ${formatResourceNumber(resourceTotals.totals.wood)}
+- ${getResourceName('iron')} ⛓️: ${formatResourceNumber(resourceTotals.totals.iron)}
+- ${getResourceName('oil')} 🛢️: ${formatResourceNumber(resourceTotals.totals.oil)}
+- ${getResourceName('choice')} 🎁: ${formatResourceNumber(resourceTotals.totals.choice)}
+${t('converters.clipboard.resource_safe_total', { total: formatResourceNumber(resourceTotals.grandTotal) })}
+${t('converters.clipboard.source')}`;
     navigator.clipboard.writeText(text);
     setCopiedResources(true);
     setTimeout(() => setCopiedResources(false), 2000);
@@ -311,14 +358,11 @@ Fuente: resudb.com/conversores`;
   return (
     <div className="pt-24 min-h-screen relative z-10 w-full overflow-x-hidden pb-16">
       <Helmet>
-        <title>Centro de Conversores Tácticos (Tesoros, Aceleradores, Recursos) | Resident Evil: Survival Unit Wiki</title>
-        <meta 
-          name="description" 
-          content="Hub de herramientas y conversores tácticos para Resident Evil: Survival Unit. Simula la Tienda de Intercambio de Tesoros Míticos con cupos semanales, desglosa aceleradores en días/horas, gestiona maletines de recursos seguros y convierte Polvo en Piedras de Luminio." 
-        />
+        <title>{t('converters.seo_title')}</title>
+        <meta name="description" content={t('converters.seo_desc')} />
         <link rel="canonical" href="https://resudb.com/conversores" />
-        <meta property="og:title" content="Centro de Conversores Tácticos | RE:SU Database" />
-        <meta property="og:description" content="Calculadoras de intercambio de tesoros, optimizador de aceleradores y mochila de recursos para Resident Evil: Survival Unit." />
+        <meta property="og:title" content={t('converters.og_title')} />
+        <meta property="og:description" content={t('converters.og_desc')} />
         <meta property="og:url" content="https://resudb.com/conversores" />
       </Helmet>
 
@@ -326,14 +370,13 @@ Fuente: resudb.com/conversores`;
       <div className="text-center px-4 sm:px-6 mb-8 max-w-5xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blood-red/10 border border-blood-red/30 text-blood-red text-xs font-mono uppercase tracking-widest mb-3">
           <Sparkles size={14} />
-          <span>V1.10.1 // HERRAMIENTAS Y CONVERSORES DE INVENTARIO</span>
+          <span>{t('converters.badge')}</span>
         </div>
         <h1 className="font-bebas text-4xl sm:text-6xl md:text-7xl tracking-wider text-white uppercase mb-3">
-          Centro de Conversores Tácticos
+          {t('converters.title')}
         </h1>
         <p className="font-inter text-gray-400 text-xs sm:text-sm max-w-3xl mx-auto leading-relaxed">
-          Optimiza la economía de tu asentamiento. Calcula intercambios oficiales de artefactos con límites semanales, 
-          proyecta la duración de tus aceleradores, cuantifica tus reservas seguras de recursos y calcula equivalencias de Luminio.
+          {t('converters.description')}
         </p>
       </div>
 
@@ -350,7 +393,7 @@ Fuente: resudb.com/conversores`;
             }`}
           >
             <ArrowRightLeft size={16} />
-            <span>Tienda de Tesoros</span>
+            <span>{t('converters.tabs.treasures')}</span>
           </button>
 
           <button
@@ -363,7 +406,7 @@ Fuente: resudb.com/conversores`;
             }`}
           >
             <Clock size={16} />
-            <span>Aceleradores</span>
+            <span>{t('converters.tabs.speedups')}</span>
           </button>
 
           <button
@@ -376,7 +419,7 @@ Fuente: resudb.com/conversores`;
             }`}
           >
             <Package size={16} />
-            <span>Maletines de Recursos</span>
+            <span>{t('converters.tabs.resources')}</span>
           </button>
 
           <button
@@ -389,7 +432,7 @@ Fuente: resudb.com/conversores`;
             }`}
           >
             <Gem size={16} />
-            <span>Luminio (Polvo ⇄ Piedras)</span>
+            <span>{t('converters.tabs.luminio')}</span>
           </button>
 
           <button
@@ -402,7 +445,7 @@ Fuente: resudb.com/conversores`;
             }`}
           >
             <Crosshair size={16} />
-            <span>Equipo & Armas</span>
+            <span>{t('converters.tabs.equipment')}</span>
           </button>
         </div>
       </div>
@@ -429,10 +472,10 @@ Fuente: resudb.com/conversores`;
                   <div>
                     <h2 className="text-xl sm:text-2xl font-bebas tracking-wide text-white flex items-center gap-2.5">
                       <Sparkles className="text-purple-400" size={24} />
-                      Tienda de Intercambio de Tesoros (Treasure Exchange)
+                      {t('converters.treasures.title')}
                     </h2>
                     <p className="text-xs sm:text-sm text-gray-400 font-inter">
-                      Rutas oficiales de canje extraídas del sistema del juego. Incluye cupos semanales y consejos de rentabilidad.
+                      {t('converters.treasures.desc')}
                     </p>
                   </div>
 
@@ -442,7 +485,7 @@ Fuente: resudb.com/conversores`;
                       className="px-3.5 py-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-xs font-mono text-gray-300 flex items-center gap-1.5 transition-colors cursor-pointer"
                     >
                       {copiedTreasure ? <Check size={14} className="text-green-400" /> : <Copy size={14} />}
-                      <span>{copiedTreasure ? '¡Copiado!' : 'Copiar Canje'}</span>
+                      <span>{copiedTreasure ? t('converters.treasures.btn_copied') : t('converters.treasures.btn_copy')}</span>
                     </button>
                   </div>
                 </div>
@@ -450,12 +493,11 @@ Fuente: resudb.com/conversores`;
                 {/* SELECTOR DE RUTA DE INTERCAMBIO */}
                 <div className="mb-6">
                   <label className="block text-xs font-mono uppercase text-gray-400 tracking-wider mb-2.5">
-                    Selecciona la Operación Oficial de Canje:
+                    {t('converters.treasures.select_operation')}
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
                     {TREASURE_EXCHANGE_RULES.map(rule => {
                       const inMeta = TREASURE_ITEMS[rule.inputItem];
-                      const outMeta = TREASURE_ITEMS[rule.outputItem];
                       const isSelected = rule.id === selectedRuleId;
 
                       return (
@@ -472,16 +514,16 @@ Fuente: resudb.com/conversores`;
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs font-mono font-semibold text-white flex items-center gap-1.5">
                               <span className={`w-2.5 h-2.5 rounded-full ${inMeta.rarity === 'gold' ? 'bg-amber-400' : inMeta.rarity === 'purple' ? 'bg-purple-400' : 'bg-red-400'}`} />
-                              {inMeta.name.split('(')[0]}
+                              {getItemShortName(rule.inputItem)}
                               <ArrowRight size={12} className="text-gray-500" />
-                              {outMeta.name.split('(')[0]}
+                              {getItemShortName(rule.outputItem)}
                             </span>
                             <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-black/60 text-purple-300 border border-purple-500/30">
-                              Límite: {rule.weeklyLimit}/sem
+                              {t('converters.treasures.limit_weekly', { limit: rule.weeklyLimit })}
                             </span>
                           </div>
                           <div className="text-[11px] font-mono text-gray-400">
-                            Ratio: <strong className="text-amber-400">{rule.inputAmount}</strong> ➔ <strong className="text-purple-300">{rule.outputAmount}</strong>
+                            {t('converters.treasures.ratio_label')} <strong className="text-amber-400">{rule.inputAmount}</strong> ➔ <strong className="text-purple-300">{rule.outputAmount}</strong>
                           </div>
                         </button>
                       );
@@ -494,7 +536,7 @@ Fuente: resudb.com/conversores`;
                   {/* CONFIGURACIÓN Y INPUT */}
                   <div className="lg:col-span-6 space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono text-gray-400 uppercase">Modo de Cálculo:</span>
+                      <span className="text-xs font-mono text-gray-400 uppercase">{t('converters.treasures.calc_mode')}</span>
                       <div className="inline-flex p-1 rounded-lg bg-black/60 border border-neutral-800 text-xs font-mono">
                         <button
                           onClick={() => setExchangeMode('input')}
@@ -502,7 +544,7 @@ Fuente: resudb.com/conversores`;
                             exchangeMode === 'input' ? 'bg-purple-600 text-white' : 'text-gray-400 hover:text-white'
                           }`}
                         >
-                          Tengo (Material de Entrada)
+                          {t('converters.treasures.mode_have')}
                         </button>
                         <button
                           onClick={() => setExchangeMode('output')}
@@ -510,7 +552,7 @@ Fuente: resudb.com/conversores`;
                             exchangeMode === 'output' ? 'bg-purple-600 text-white' : 'text-gray-400 hover:text-white'
                           }`}
                         >
-                          Necesito (Material Objetivo)
+                          {t('converters.treasures.mode_need')}
                         </button>
                       </div>
                     </div>
@@ -518,8 +560,8 @@ Fuente: resudb.com/conversores`;
                     <div>
                       <label className="block text-xs font-mono text-gray-300 mb-1.5">
                         {exchangeMode === 'input' 
-                          ? `Cantidad de ${treasureCalculation.inputItem.name} en tu posesión:` 
-                          : `Cantidad de ${treasureCalculation.outputItem.name} que deseas conseguir:`}
+                          ? t('converters.treasures.input_have', { item: getItemName(currentRule.inputItem) }) 
+                          : t('converters.treasures.input_need', { item: getItemName(currentRule.outputItem) })}
                       </label>
                       <div className="relative">
                         <input
@@ -531,14 +573,14 @@ Fuente: resudb.com/conversores`;
                           className="w-full px-4 py-3 bg-neutral-950 border border-neutral-700 rounded-xl font-mono text-lg text-white focus:outline-none focus:border-purple-500 transition-colors"
                         />
                         <div className="absolute right-3 top-3.5 text-xs font-mono text-gray-500 uppercase">
-                          {exchangeMode === 'input' ? treasureCalculation.inputItem.id : treasureCalculation.outputItem.id}
+                          {exchangeMode === 'input' ? currentRule.inputItem : currentRule.outputItem}
                         </div>
                       </div>
                     </div>
 
                     {/* PRESETS RÁPIDOS */}
                     <div className="flex flex-wrap gap-2 pt-1">
-                      <span className="text-[11px] font-mono text-gray-500 self-center">Añadir rápido:</span>
+                      <span className="text-[11px] font-mono text-gray-500 self-center">{t('converters.treasures.quick_add')}</span>
                       {[10, 50, 100, 500, 1000].map(val => (
                         <button
                           key={val}
@@ -552,20 +594,22 @@ Fuente: resudb.com/conversores`;
                         onClick={() => setExchangeAmount(currentRule.inputAmount)}
                         className="px-2.5 py-1 rounded bg-neutral-950 border border-neutral-800 hover:border-neutral-700 text-xs font-mono text-amber-400 transition-colors cursor-pointer"
                       >
-                        Mínimo ({currentRule.inputAmount})
+                        {t('converters.treasures.min_rule', { amount: currentRule.inputAmount })}
                       </button>
                     </div>
 
                     <div className="p-3.5 rounded-xl bg-neutral-950/60 border border-neutral-800 text-xs text-gray-400 font-inter leading-relaxed flex items-start gap-2.5">
                       <Info size={16} className="text-purple-400 shrink-0 mt-0.5" />
-                      <span>{currentRule.efficiencyNote}</span>
+                      <span>{getRuleEfficiencyNote(currentRule.id)}</span>
                     </div>
                   </div>
 
                   {/* RESULTADO Y ANÁLISIS DE CUPO SEMANAL */}
                   <div className="lg:col-span-6 flex flex-col justify-between space-y-4 bg-black/40 p-4 sm:p-5 rounded-xl border border-neutral-800/80">
                     <div>
-                      <div className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-2">Resultado del Canje:</div>
+                      <div className="text-xs font-mono text-gray-500 uppercase tracking-wider mb-2">
+                        {t('converters.treasures.result_title')}
+                      </div>
                       
                       <div className="flex items-center justify-between p-3.5 rounded-xl bg-neutral-950 border border-neutral-800 mb-3">
                         <div className="flex items-center gap-3">
@@ -573,11 +617,11 @@ Fuente: resudb.com/conversores`;
                             <Sparkles size={20} />
                           </div>
                           <div>
-                            <div className="text-xs text-gray-400 font-mono">Consumirás:</div>
+                            <div className="text-xs text-gray-400 font-mono">{t('converters.treasures.will_consume')}</div>
                             <div className="text-lg sm:text-xl font-mono font-bold text-amber-400">
                               {treasureCalculation.calculatedInput.toLocaleString()}
                             </div>
-                            <div className="text-[11px] text-gray-500 font-inter">{treasureCalculation.inputItem.name.split('(')[0]}</div>
+                            <div className="text-[11px] text-gray-500 font-inter">{getItemShortName(currentRule.inputItem)}</div>
                           </div>
                         </div>
 
@@ -585,11 +629,11 @@ Fuente: resudb.com/conversores`;
 
                         <div className="flex items-center gap-3 text-right">
                           <div>
-                            <div className="text-xs text-gray-400 font-mono">Obtendrás:</div>
+                            <div className="text-xs text-gray-400 font-mono">{t('converters.treasures.will_get')}</div>
                             <div className="text-lg sm:text-xl font-mono font-bold text-purple-400">
                               {treasureCalculation.calculatedOutput.toLocaleString()}
                             </div>
-                            <div className="text-[11px] text-gray-500 font-inter">{treasureCalculation.outputItem.name.split('(')[0]}</div>
+                            <div className="text-[11px] text-gray-500 font-inter">{getItemShortName(currentRule.outputItem)}</div>
                           </div>
                           <div className={`p-2 rounded-lg border ${treasureCalculation.outputItem.iconBg}`}>
                             <Gem size={20} />
@@ -608,18 +652,14 @@ Fuente: resudb.com/conversores`;
                         {treasureCalculation.exceedsWeekly ? <ShieldAlert size={16} /> : <ShieldCheck size={16} />}
                         <span>
                           {treasureCalculation.exceedsWeekly 
-                            ? `Excede el cupo semanal de la tienda (${(currentRule.weeklyLimit * currentRule.outputAmount).toLocaleString()} máx/sem)` 
-                            : `Dentro del cupo semanal permitido (${(currentRule.weeklyLimit * currentRule.outputAmount).toLocaleString()} máx/sem)`}
+                            ? t('converters.treasures.cap_exceeded_title', { max: (currentRule.weeklyLimit * currentRule.outputAmount).toLocaleString() })
+                            : t('converters.treasures.cap_ok_title', { max: (currentRule.weeklyLimit * currentRule.outputAmount).toLocaleString() })}
                         </span>
                       </div>
                       <div className="text-xs font-inter text-gray-300 leading-relaxed">
-                        {treasureCalculation.exceedsWeekly ? (
-                          <>
-                            Necesitarás <strong className="text-amber-400 font-mono">{treasureCalculation.weeksNeeded} reseteos semanales</strong> (cada lunes a las 00:00 UTC) para completar este volumen de intercambio.
-                          </>
-                        ) : (
-                          'Puedes canjear todo este volumen de forma inmediata dentro de una misma semana de juego.'
-                        )}
+                        {treasureCalculation.exceedsWeekly 
+                          ? t('converters.treasures.cap_exceeded_desc', { weeks: treasureCalculation.weeksNeeded })
+                          : t('converters.treasures.cap_ok_desc')}
                       </div>
                     </div>
 
@@ -629,7 +669,7 @@ Fuente: resudb.com/conversores`;
                         to="/herramientas"
                         className="text-xs font-mono text-purple-400 hover:text-purple-300 flex items-center gap-1 transition-colors"
                       >
-                        <span>Ver Calculadora de Tesoros y Joyas Míticas</span>
+                        <span>{t('converters.treasures.link_calc')}</span>
                         <ChevronRight size={14} />
                       </Link>
                     </div>
@@ -641,35 +681,33 @@ Fuente: resudb.com/conversores`;
               <div className="bg-neutral-950/80 border border-neutral-800 rounded-2xl p-6 backdrop-blur-md">
                 <h3 className="text-lg font-bebas tracking-wide text-white mb-3 flex items-center gap-2">
                   <Layers size={18} className="text-gray-400" />
-                  Matriz Oficial de Conversión de la Tienda de Tesoros
+                  {t('converters.treasures.matrix_title')}
                 </h3>
                 <div className="overflow-x-auto">
                   <table className="w-full text-left font-mono text-xs">
                     <thead>
                       <tr className="border-b border-neutral-800 text-gray-400 uppercase">
-                        <th className="py-2.5 px-3">Ítem Origen</th>
-                        <th className="py-2.5 px-3">Ítem Destino</th>
-                        <th className="py-2.5 px-3 text-center">Tasa / Ratio</th>
-                        <th className="py-2.5 px-3 text-center">Límite Semanal</th>
-                        <th className="py-2.5 px-3">Evaluación Táctica</th>
+                        <th className="py-2.5 px-3">{t('converters.treasures.th_source')}</th>
+                        <th className="py-2.5 px-3">{t('converters.treasures.th_target')}</th>
+                        <th className="py-2.5 px-3 text-center">{t('converters.treasures.th_ratio')}</th>
+                        <th className="py-2.5 px-3 text-center">{t('converters.treasures.th_weekly_limit')}</th>
+                        <th className="py-2.5 px-3">{t('converters.treasures.th_evaluation')}</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-neutral-900">
                       {TREASURE_EXCHANGE_RULES.map(rule => {
-                        const inMeta = TREASURE_ITEMS[rule.inputItem];
-                        const outMeta = TREASURE_ITEMS[rule.outputItem];
                         return (
                           <tr key={rule.id} className="hover:bg-neutral-900/50 transition-colors">
-                            <td className="py-3 px-3 text-amber-300 font-semibold">{inMeta.name}</td>
-                            <td className="py-3 px-3 text-purple-300 font-semibold">{outMeta.name}</td>
+                            <td className="py-3 px-3 text-amber-300 font-semibold">{getItemName(rule.inputItem)}</td>
+                            <td className="py-3 px-3 text-purple-300 font-semibold">{getItemName(rule.outputItem)}</td>
                             <td className="py-3 px-3 text-center font-bold">
                               <span className="text-amber-400">{rule.inputAmount}</span> : <span className="text-purple-400">{rule.outputAmount}</span>
                             </td>
                             <td className="py-3 px-3 text-center text-gray-300">
-                              {rule.weeklyLimit.toLocaleString()} ops
+                              {t('converters.treasures.ops_per_week', { count: rule.weeklyLimit.toLocaleString() })}
                             </td>
                             <td className="py-3 px-3 text-gray-400 font-inter text-[11px]">
-                              {rule.efficiencyNote}
+                              {getRuleEfficiencyNote(rule.id)}
                             </td>
                           </tr>
                         );
@@ -699,10 +737,10 @@ Fuente: resudb.com/conversores`;
                   <div>
                     <h2 className="text-xl sm:text-2xl font-bebas tracking-wide text-white flex items-center gap-2.5">
                       <Clock className="text-amber-400" size={24} />
-                      Calculadora & Optimizador de Aceleradores
+                      {t('converters.speedups.title')}
                     </h2>
                     <p className="text-xs sm:text-sm text-gray-400 font-inter">
-                      Suma y desglosa tus ítems de aceleración por categoría (Universales, Construcción, Investigación, Tropa, Hospital).
+                      {t('converters.speedups.desc')}
                     </p>
                   </div>
 
@@ -712,14 +750,14 @@ Fuente: resudb.com/conversores`;
                       className="px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-xs font-mono text-gray-400 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
                     >
                       <RotateCcw size={14} />
-                      <span>Limpiar Todo</span>
+                      <span>{t('converters.speedups.btn_clear')}</span>
                     </button>
                     <button
                       onClick={handleCopySpeedup}
                       className="px-3.5 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-xs font-mono text-white flex items-center gap-1.5 transition-colors shadow-lg shadow-amber-600/20 cursor-pointer"
                     >
                       {copiedSpeedup ? <Check size={14} /> : <Copy size={14} />}
-                      <span>{copiedSpeedup ? '¡Copiado!' : 'Copiar Resumen'}</span>
+                      <span>{copiedSpeedup ? t('converters.speedups.btn_copied') : t('converters.speedups.btn_copy')}</span>
                     </button>
                   </div>
                 </div>
@@ -727,37 +765,51 @@ Fuente: resudb.com/conversores`;
                 {/* RESUMEN GLOBAL EN TIEMPO REAL */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
                   <div className="p-4 rounded-xl bg-neutral-900/60 border border-neutral-800">
-                    <span className="text-[11px] font-mono uppercase text-gray-400 block mb-1">Tiempo Total Acumulado</span>
+                    <span className="text-[11px] font-mono uppercase text-gray-400 block mb-1">
+                      {t('converters.speedups.total_accumulated')}
+                    </span>
                     <div className="text-xl sm:text-2xl font-mono font-bold text-amber-400">
                       {speedupTotals.grandDuration.formattedString}
                     </div>
                     <span className="text-[10px] text-gray-500 font-mono">
-                      {speedupTotals.grandDuration.totalHours} horas totales
+                      {t('converters.speedups.total_hours', { hours: speedupTotals.grandDuration.totalHours })}
                     </span>
                   </div>
 
                   <div className="p-4 rounded-xl bg-neutral-900/60 border border-neutral-800">
-                    <span className="text-[11px] font-mono uppercase text-gray-400 block mb-1">Aceleración Universal</span>
+                    <span className="text-[11px] font-mono uppercase text-gray-400 block mb-1">
+                      {t('converters.speedups.universal_title')}
+                    </span>
                     <div className="text-xl sm:text-2xl font-mono font-bold text-orange-400">
                       {formatMinutesToDuration(speedupTotals.categoryTotals.universal).formattedString}
                     </div>
-                    <span className="text-[10px] text-gray-500 font-mono">Comodín para cualquier tarea</span>
+                    <span className="text-[10px] text-gray-500 font-mono">
+                      {t('converters.speedups.universal_subtitle')}
+                    </span>
                   </div>
 
                   <div className="p-4 rounded-xl bg-neutral-900/60 border border-neutral-800">
-                    <span className="text-[11px] font-mono uppercase text-gray-400 block mb-1">Construcción + Universal</span>
+                    <span className="text-[11px] font-mono uppercase text-gray-400 block mb-1">
+                      {t('converters.speedups.building_universal_title')}
+                    </span>
                     <div className="text-xl sm:text-2xl font-mono font-bold text-yellow-400">
                       {formatMinutesToDuration(speedupTotals.categoryTotals.building + speedupTotals.categoryTotals.universal).formattedString}
                     </div>
-                    <span className="text-[10px] text-gray-500 font-mono">Para Mansión y Edificios</span>
+                    <span className="text-[10px] text-gray-500 font-mono">
+                      {t('converters.speedups.building_universal_subtitle')}
+                    </span>
                   </div>
 
                   <div className="p-4 rounded-xl bg-neutral-900/60 border border-neutral-800">
-                    <span className="text-[11px] font-mono uppercase text-gray-400 block mb-1">Pts Cumbre de Ases (Est.)</span>
+                    <span className="text-[11px] font-mono uppercase text-gray-400 block mb-1">
+                      {t('converters.speedups.ace_title')}
+                    </span>
                     <div className="text-xl sm:text-2xl font-mono font-bold text-purple-400">
                       {speedupTotals.aceSummitPoints.toLocaleString()}
                     </div>
-                    <span className="text-[10px] text-gray-500 font-mono">Días de evento (30 pts/min)</span>
+                    <span className="text-[10px] text-gray-500 font-mono">
+                      {t('converters.speedups.ace_subtitle')}
+                    </span>
                   </div>
                 </div>
 
@@ -771,7 +823,7 @@ Fuente: resudb.com/conversores`;
                         : 'bg-neutral-900 text-gray-400 hover:text-white border border-neutral-800'
                     }`}
                   >
-                    Ver Todas las Categorías
+                    {t('converters.speedups.view_all')}
                   </button>
                   {(Object.keys(SPEEDUP_CATEGORIES) as SpeedupCategory[]).map(catKey => {
                     const cat = SPEEDUP_CATEGORIES[catKey];
@@ -784,7 +836,7 @@ Fuente: resudb.com/conversores`;
                           isSelected ? cat.badge : 'bg-neutral-900 text-gray-400 hover:text-white border-neutral-800'
                         }`}
                       >
-                        {cat.name}
+                        {getSpeedupCatName(catKey)}
                       </button>
                     );
                   })}
@@ -804,12 +856,12 @@ Fuente: resudb.com/conversores`;
                           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 border-b border-neutral-800/60 pb-3">
                             <div className="flex items-center gap-2.5">
                               <span className={`px-2.5 py-1 rounded text-xs font-mono font-bold border ${cat.accent}`}>
-                                {cat.name.toUpperCase()}
+                                {getSpeedupCatName(catKey).toUpperCase()}
                               </span>
-                              <span className="text-xs text-gray-400 font-inter">{cat.description}</span>
+                              <span className="text-xs text-gray-400 font-inter">{getSpeedupCatDesc(catKey)}</span>
                             </div>
                             <div className="text-xs font-mono text-gray-300">
-                              Subtotal: <strong className="text-amber-400">{catDuration.formattedString}</strong> ({catDuration.totalHours} h)
+                              {t('converters.speedups.subtotal')} <strong className="text-amber-400">{catDuration.formattedString}</strong> {t('converters.speedups.subtotal_hours', { hours: catDuration.totalHours })}
                             </div>
                           </div>
 
@@ -855,26 +907,26 @@ Fuente: resudb.com/conversores`;
                 <div className="mt-8 p-5 rounded-2xl bg-gradient-to-r from-amber-950/30 to-neutral-900/60 border border-amber-500/30">
                   <h3 className="text-base font-bebas tracking-wide text-white mb-2 flex items-center gap-2">
                     <TrendingUp className="text-amber-400" size={18} />
-                    Comprobador Inverso de Proyecto Táctico
+                    {t('converters.speedups.reverse_title')}
                   </h3>
                   <p className="text-xs text-gray-400 font-inter mb-4">
-                    Ingresa el tiempo que demanda tu próxima construcción o tecnología para comprobar si tus aceleradores actuales cubren el proyecto al 100%.
+                    {t('converters.speedups.reverse_desc')}
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
                     <div>
-                      <label className="block text-[11px] font-mono text-gray-400 mb-1">Días requeridos del proyecto:</label>
+                      <label className="block text-[11px] font-mono text-gray-400 mb-1">{t('converters.speedups.project_days')}</label>
                       <input
                         type="number"
                         min="0"
                         value={targetProjectDays}
                         onChange={e => setTargetProjectDays(Math.max(0, parseInt(e.target.value) || 0))}
                         className="w-full px-3 py-2 bg-neutral-950 border border-neutral-700 rounded-lg font-mono text-sm text-white"
-                        placeholder="Ej. 14 días"
+                        placeholder={t('converters.speedups.project_days_placeholder')}
                       />
                     </div>
                     <div>
-                      <label className="block text-[11px] font-mono text-gray-400 mb-1">Horas adicionales:</label>
+                      <label className="block text-[11px] font-mono text-gray-400 mb-1">{t('converters.speedups.project_hours')}</label>
                       <input
                         type="number"
                         min="0"
@@ -882,13 +934,13 @@ Fuente: resudb.com/conversores`;
                         value={targetProjectHours}
                         onChange={e => setTargetProjectHours(Math.max(0, parseInt(e.target.value) || 0))}
                         className="w-full px-3 py-2 bg-neutral-950 border border-neutral-700 rounded-lg font-mono text-sm text-white"
-                        placeholder="Ej. 12 horas"
+                        placeholder={t('converters.speedups.project_hours_placeholder')}
                       />
                     </div>
                     <div className="p-3 rounded-lg bg-neutral-950 border border-neutral-800">
-                      <div className="text-[11px] font-mono text-gray-400">Cobertura de tu inventario:</div>
+                      <div className="text-[11px] font-mono text-gray-400">{t('converters.speedups.inventory_coverage')}</div>
                       <div className="text-lg font-mono font-bold text-amber-400">
-                        {speedupTotals.targetCoverageRatio}% cubierto
+                        {t('converters.speedups.covered_ratio', { ratio: speedupTotals.targetCoverageRatio })}
                       </div>
                     </div>
                   </div>
@@ -915,10 +967,10 @@ Fuente: resudb.com/conversores`;
                   <div>
                     <h2 className="text-xl sm:text-2xl font-bebas tracking-wide text-white flex items-center gap-2.5">
                       <Package className="text-emerald-400" size={24} />
-                      Mochila de Recursos Seguros (Maletines no Saqueables)
+                      {t('converters.resources.title')}
                     </h2>
                     <p className="text-xs sm:text-sm text-gray-400 font-inter">
-                      Calcula exactamente cuántos millones de Comida, Madera, Hierro y Petróleo tienes acumulados en cajas sin abrirlos en tu inventario.
+                      {t('converters.resources.desc')}
                     </p>
                   </div>
 
@@ -928,14 +980,14 @@ Fuente: resudb.com/conversores`;
                       className="px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-700 text-xs font-mono text-gray-400 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
                     >
                       <RotateCcw size={14} />
-                      <span>Limpiar Todo</span>
+                      <span>{t('converters.resources.btn_clear')}</span>
                     </button>
                     <button
                       onClick={handleCopyResources}
                       className="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-xs font-mono text-white flex items-center gap-1.5 transition-colors shadow-lg shadow-emerald-600/20 cursor-pointer"
                     >
                       {copiedResources ? <Check size={14} /> : <Copy size={14} />}
-                      <span>{copiedResources ? '¡Copiado!' : 'Copiar Mochila'}</span>
+                      <span>{copiedResources ? t('converters.resources.btn_copied') : t('converters.resources.btn_copy')}</span>
                     </button>
                   </div>
                 </div>
@@ -944,9 +996,7 @@ Fuente: resudb.com/conversores`;
                 <div className="p-4 rounded-xl bg-amber-950/20 border border-amber-500/30 text-amber-300 mb-6 flex items-start gap-3">
                   <ShieldAlert size={20} className="shrink-0 mt-0.5 text-amber-400" />
                   <div className="text-xs font-inter leading-relaxed">
-                    <strong>Directriz Táctica de Supervivencia:</strong> Nunca abras maletines de recursos directamente a tu almacén 
-                    hasta que tengas todos los requisitos completos y vayas a dar clic a "Mejorar" o "Investigar". Los recursos en mochila 
-                    están <strong>100% blindados contra saqueos</strong> si otro jugador ataca tu asentamiento.
+                    <strong>{t('converters.resources.directive_title')}</strong> {t('converters.resources.directive_body')}
                   </div>
                 </div>
 
@@ -958,14 +1008,18 @@ Fuente: resudb.com/conversores`;
                     return (
                       <div key={resKey} className="p-3.5 rounded-xl bg-neutral-900/60 border border-neutral-800">
                         <div className="flex items-center gap-1.5 text-xs font-mono text-gray-400 mb-1">
-                          <span>{res.icon}</span>
-                          <span>{res.name}</span>
+                          {res.image ? (
+                            <img src={res.image} alt="" className="w-4 h-4 object-contain" />
+                          ) : (
+                            <span>{res.icon}</span>
+                          )}
+                          <span>{getResourceName(resKey)}</span>
                         </div>
                         <div className="text-lg sm:text-xl font-mono font-bold" style={{ color: res.color }}>
                           {formatResourceNumber(amount)}
                         </div>
                         <div className="text-[10px] font-mono text-gray-500">
-                          {amount.toLocaleString()} uds
+                          {t('converters.resources.units', { count: amount.toLocaleString() })}
                         </div>
                       </div>
                     );
@@ -980,11 +1034,15 @@ Fuente: resudb.com/conversores`;
                       <div key={resKey} className="p-4 rounded-2xl bg-neutral-900/40 border border-neutral-800">
                         <div className="flex items-center justify-between mb-3 border-b border-neutral-800 pb-2">
                           <span className="text-xs font-mono font-bold flex items-center gap-2" style={{ color: res.color }}>
-                            <span>{res.icon}</span>
-                            <span>{res.name.toUpperCase()}</span>
+                            {res.image ? (
+                              <img src={res.image} alt="" className="w-4 h-4 object-contain" />
+                            ) : (
+                              <span>{res.icon}</span>
+                            )}
+                            <span>{getResourceName(resKey).toUpperCase()}</span>
                           </span>
                           <span className="text-xs font-mono text-gray-300">
-                            Total seguro: <strong style={{ color: res.color }}>{formatResourceNumber(resourceTotals.totals[resKey])}</strong>
+                            {t('converters.resources.safe_total')} <strong style={{ color: res.color }}>{formatResourceNumber(resourceTotals.totals[resKey])}</strong>
                           </span>
                         </div>
 
@@ -994,7 +1052,7 @@ Fuente: resudb.com/conversores`;
                             return (
                               <div key={denom.amount} className="p-2 rounded-xl bg-neutral-950 border border-neutral-800">
                                 <div className="text-[11px] font-mono text-gray-400 mb-1 text-center font-bold">
-                                  Caja {denom.label}
+                                  {t('converters.resources.box_denom', { label: denom.label })}
                                 </div>
                                 <input
                                   type="number"
@@ -1019,17 +1077,17 @@ Fuente: resudb.com/conversores`;
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                     <h3 className="text-base font-bebas tracking-wide text-white flex items-center gap-2">
                       <TrendingUp size={18} className="text-emerald-400" />
-                      Comprobador de Materiales para Mansión de Luminio
+                      {t('converters.resources.mansion_checker_title')}
                     </h3>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-mono text-gray-400">Nivel de Mansión:</span>
+                      <span className="text-xs font-mono text-gray-400">{t('converters.resources.mansion_level')}</span>
                       <select
                         value={selectedMansionPrestigeCompare}
                         onChange={e => setSelectedMansionPrestigeCompare(parseInt(e.target.value))}
                         className="px-3 py-1 bg-neutral-950 border border-neutral-700 rounded font-mono text-xs text-white cursor-pointer"
                       >
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(p => (
-                          <option key={p} value={p}>Prestigio {p} (P{p})</option>
+                          <option key={p} value={p}>{t('converters.resources.prestige_label', { level: p })}</option>
                         ))}
                       </select>
                     </div>
@@ -1038,39 +1096,51 @@ Fuente: resudb.com/conversores`;
                   {resourceTotals.mansionReq && (
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                       <div className="p-3 rounded-xl bg-neutral-950 border border-neutral-800">
-                        <span className="text-[11px] font-mono text-gray-400 block mb-1">Comida Requerida</span>
+                        <span className="text-[11px] font-mono text-gray-400 flex items-center gap-1.5 mb-1">
+                          <img src="/recursos/Item_Food.webp" alt="" className="w-3.5 h-3.5 object-contain" />
+                          {t('converters.resources.req_food')}
+                        </span>
                         <div className="text-sm font-mono font-bold text-lime-400">
                           {formatResourceNumber(resourceTotals.mansionReq.food)}
                         </div>
                         <span className="text-[10px] font-mono text-gray-500">
-                          Tienes: {formatResourceNumber(resourceTotals.totals.food)}
+                          {t('converters.resources.you_have', { amount: formatResourceNumber(resourceTotals.totals.food) })}
                         </span>
                       </div>
                       <div className="p-3 rounded-xl bg-neutral-950 border border-neutral-800">
-                        <span className="text-[11px] font-mono text-gray-400 block mb-1">Madera Requerida</span>
+                        <span className="text-[11px] font-mono text-gray-400 flex items-center gap-1.5 mb-1">
+                          <img src="/recursos/Item_Wood.webp" alt="" className="w-3.5 h-3.5 object-contain" />
+                          {t('converters.resources.req_wood')}
+                        </span>
                         <div className="text-sm font-mono font-bold text-amber-400">
                           {formatResourceNumber(resourceTotals.mansionReq.wood)}
                         </div>
                         <span className="text-[10px] font-mono text-gray-500">
-                          Tienes: {formatResourceNumber(resourceTotals.totals.wood)}
+                          {t('converters.resources.you_have', { amount: formatResourceNumber(resourceTotals.totals.wood) })}
                         </span>
                       </div>
                       <div className="p-3 rounded-xl bg-neutral-950 border border-neutral-800">
-                        <span className="text-[11px] font-mono text-gray-400 block mb-1">Hierro Requerido</span>
+                        <span className="text-[11px] font-mono text-gray-400 flex items-center gap-1.5 mb-1">
+                          <img src="/recursos/Item_Iron.webp" alt="" className="w-3.5 h-3.5 object-contain" />
+                          {t('converters.resources.req_iron')}
+                        </span>
                         <div className="text-sm font-mono font-bold text-slate-300">
                           {formatResourceNumber(resourceTotals.mansionReq.iron)}
                         </div>
                         <span className="text-[10px] font-mono text-gray-500">
-                          Tienes: {formatResourceNumber(resourceTotals.totals.iron)}
+                          {t('converters.resources.you_have', { amount: formatResourceNumber(resourceTotals.totals.iron) })}
                         </span>
                       </div>
                       <div className="p-3 rounded-xl bg-neutral-950 border border-neutral-800">
-                        <span className="text-[11px] font-mono text-gray-400 block mb-1">Petróleo Requerido</span>
+                        <span className="text-[11px] font-mono text-gray-400 flex items-center gap-1.5 mb-1">
+                          <img src="/recursos/Item_Oil.webp" alt="" className="w-3.5 h-3.5 object-contain" />
+                          {t('converters.resources.req_oil')}
+                        </span>
                         <div className="text-sm font-mono font-bold text-sky-400">
                           {formatResourceNumber(resourceTotals.mansionReq.oil)}
                         </div>
                         <span className="text-[10px] font-mono text-gray-500">
-                          Tienes: {formatResourceNumber(resourceTotals.totals.oil)}
+                          {t('converters.resources.you_have', { amount: formatResourceNumber(resourceTotals.totals.oil) })}
                         </span>
                       </div>
                     </div>
@@ -1098,10 +1168,10 @@ Fuente: resudb.com/conversores`;
                   <div>
                     <h2 className="text-xl sm:text-2xl font-bebas tracking-wide text-white flex items-center gap-2.5">
                       <Gem className="text-yellow-400" size={24} />
-                      Conversor de Luminio (Polvo ⇄ Piedras)
+                      {t('converters.luminio.title')}
                     </h2>
                     <p className="text-xs sm:text-sm text-gray-400 font-inter">
-                      Relación oficial matemática del juego: 1 Piedra de Luminio = 1.3 Polvo de Luminio (Ratio: 1.3).
+                      {t('converters.luminio.desc')}
                     </p>
                   </div>
 
@@ -1109,7 +1179,7 @@ Fuente: resudb.com/conversores`;
                     to="/herramientas"
                     className="px-3.5 py-1.5 rounded-lg bg-yellow-600 hover:bg-yellow-500 text-xs font-mono text-white flex items-center gap-1.5 transition-colors shadow-lg shadow-yellow-600/20"
                   >
-                    <span>Ir al Árbol de Luminio</span>
+                    <span>{t('converters.luminio.btn_goto_tree')}</span>
                     <ChevronRight size={14} />
                   </Link>
                 </div>
@@ -1118,7 +1188,7 @@ Fuente: resudb.com/conversores`;
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 rounded-2xl bg-neutral-900/50 border border-neutral-800">
                   <div className="lg:col-span-6 space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono text-gray-400 uppercase">Dirección de Conversión:</span>
+                      <span className="text-xs font-mono text-gray-400 uppercase">{t('converters.luminio.direction_label')}</span>
                       <div className="inline-flex p-1 rounded-lg bg-black/60 border border-neutral-800 text-xs font-mono">
                         <button
                           onClick={() => setLuminioInputMode('powder')}
@@ -1126,7 +1196,7 @@ Fuente: resudb.com/conversores`;
                             luminioInputMode === 'powder' ? 'bg-yellow-600 text-white' : 'text-gray-400 hover:text-white'
                           }`}
                         >
-                          Polvo ➔ Piedras
+                          {t('converters.luminio.dir_powder_to_stones')}
                         </button>
                         <button
                           onClick={() => setLuminioInputMode('stones')}
@@ -1134,14 +1204,14 @@ Fuente: resudb.com/conversores`;
                             luminioInputMode === 'stones' ? 'bg-yellow-600 text-white' : 'text-gray-400 hover:text-white'
                           }`}
                         >
-                          Piedras ➔ Polvo
+                          {t('converters.luminio.dir_stones_to_powder')}
                         </button>
                       </div>
                     </div>
 
                     <div>
                       <label className="block text-xs font-mono text-gray-300 mb-1.5">
-                        {luminioInputMode === 'powder' ? 'Cantidad de Polvo de Luminio:' : 'Cantidad de Piedras de Luminio:'}
+                        {luminioInputMode === 'powder' ? t('converters.luminio.powder_input_label') : t('converters.luminio.stones_input_label')}
                       </label>
                       <input
                         type="number"
@@ -1154,7 +1224,9 @@ Fuente: resudb.com/conversores`;
 
                     {/* PRESETS DE CAJAS */}
                     <div>
-                      <span className="text-[11px] font-mono text-gray-500 block mb-1.5">Paquetes / Cajas estándar de Luminio:</span>
+                      <span className="text-[11px] font-mono text-gray-500 block mb-1.5">
+                        {t('converters.luminio.presets_label')}
+                      </span>
                       <div className="flex flex-wrap gap-2">
                         {LUMINIO_BOX_PRESETS.map(preset => (
                           <button
@@ -1171,16 +1243,18 @@ Fuente: resudb.com/conversores`;
 
                   <div className="lg:col-span-6 flex flex-col justify-between bg-black/40 p-5 rounded-xl border border-neutral-800/80">
                     <div>
-                      <span className="text-xs font-mono text-gray-500 uppercase tracking-wider block mb-3">Equivalencia Táctica:</span>
+                      <span className="text-xs font-mono text-gray-500 uppercase tracking-wider block mb-3">
+                        {t('converters.luminio.tactical_equiv')}
+                      </span>
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div className="p-4 rounded-xl bg-neutral-950 border border-neutral-800 text-center">
-                          <span className="text-[11px] font-mono text-gray-400 block mb-1">Polvo de Luminio</span>
+                          <span className="text-[11px] font-mono text-gray-400 block mb-1">{t('converters.luminio.card_powder')}</span>
                           <div className="text-2xl font-mono font-bold text-yellow-400">
                             {luminioCalculated.powder.toLocaleString()}
                           </div>
                         </div>
                         <div className="p-4 rounded-xl bg-neutral-950 border border-neutral-800 text-center">
-                          <span className="text-[11px] font-mono text-gray-400 block mb-1">Piedras de Luminio</span>
+                          <span className="text-[11px] font-mono text-gray-400 block mb-1">{t('converters.luminio.card_stones')}</span>
                           <div className="text-2xl font-mono font-bold text-amber-300">
                             {luminioCalculated.stones.toLocaleString()}
                           </div>
@@ -1189,9 +1263,7 @@ Fuente: resudb.com/conversores`;
                     </div>
 
                     <div className="p-3.5 rounded-xl bg-neutral-950 border border-neutral-800 text-xs text-gray-400 font-inter leading-relaxed">
-                      💡 <strong>Dato del Datamine:</strong> Investigar por completo una rama de tecnología de Luminio requiere exactamente 
-                      <strong> 27,314 de Polvo</strong> y <strong>21,010 Piedras</strong>. Para las 3 ramas combinadas, el coste asciende a 
-                      <strong> 81,942 de Polvo</strong> y <strong>63,032 Piedras</strong>.
+                      {t('converters.luminio.datamine_note')}
                     </div>
                   </div>
                 </div>
@@ -1215,10 +1287,10 @@ Fuente: resudb.com/conversores`;
                   <div>
                     <h2 className="text-xl sm:text-2xl font-bebas tracking-wide text-white flex items-center gap-2.5">
                       <Crosshair className="text-blood-red" size={24} />
-                      Calculadora de Equipamiento (+1 a +20) y Armas Exclusivas
+                      {t('converters.equipment.title')}
                     </h2>
                     <p className="text-xs sm:text-sm text-gray-400 font-inter">
-                      Cada uno de los 31 operativos del juego cuenta con su simulador interactivo completo de ranuras de armas y arma exclusiva.
+                      {t('converters.equipment.desc')}
                     </p>
                   </div>
 
@@ -1226,7 +1298,7 @@ Fuente: resudb.com/conversores`;
                     to="/heroes"
                     className="px-4 py-2 rounded-xl bg-blood-red hover:bg-red-700 text-xs font-mono text-white flex items-center gap-2 transition-colors shadow-lg shadow-blood-red/30"
                   >
-                    <span>Explorar Operativos</span>
+                    <span>{t('converters.equipment.btn_explore')}</span>
                     <ChevronRight size={14} />
                   </Link>
                 </div>
@@ -1235,19 +1307,19 @@ Fuente: resudb.com/conversores`;
                   <div className="p-5 rounded-2xl bg-neutral-900/50 border border-neutral-800">
                     <h3 className="text-base font-bebas tracking-wide text-white mb-2 flex items-center gap-2">
                       <Sparkles size={18} className="text-amber-400" />
-                      Mejora de Equipamiento Normal (+1 a +20)
+                      {t('converters.equipment.normal_title')}
                     </h3>
                     <p className="text-xs text-gray-400 font-inter leading-relaxed mb-4">
-                      Cada operativo dispone de 4 ranuras de equipo militar (Arma Grande, Pistola, Revólver, Cuchillo) con niveles del 1 al 100.
+                      {t('converters.equipment.normal_desc')}
                     </p>
                     <div className="space-y-2 font-mono text-xs text-gray-300">
                       <div className="flex justify-between p-2 rounded bg-neutral-950">
-                        <span>Partes de Mejora (+1 a +20):</span>
-                        <strong className="text-amber-400">2,100 partes totales</strong>
+                        <span>{t('converters.equipment.upgrade_parts_label')}</span>
+                        <strong className="text-amber-400">{t('converters.equipment.upgrade_parts_val')}</strong>
                       </div>
                       <div className="flex justify-between p-2 rounded bg-neutral-950">
-                        <span>Armas Legendarias requeridas (+11 a +20):</span>
-                        <strong className="text-purple-400">55 armas legendarias</strong>
+                        <span>{t('converters.equipment.legend_weapons_label')}</span>
+                        <strong className="text-purple-400">{t('converters.equipment.legend_weapons_val')}</strong>
                       </div>
                     </div>
                   </div>
@@ -1255,19 +1327,19 @@ Fuente: resudb.com/conversores`;
                   <div className="p-5 rounded-2xl bg-neutral-900/50 border border-neutral-800">
                     <h3 className="text-base font-bebas tracking-wide text-white mb-2 flex items-center gap-2">
                       <Gem size={18} className="text-blood-red" />
-                      Armas Exclusivas Legendarias (Nv. 0 a 10)
+                      {t('converters.equipment.exclusive_title')}
                     </h3>
                     <p className="text-xs text-gray-400 font-inter leading-relaxed mb-4">
-                      Desbloquean efectos pasivos que alteran las habilidades activas de los operativos Legendarios.
+                      {t('converters.equipment.exclusive_desc')}
                     </p>
                     <div className="space-y-2 font-mono text-xs text-gray-300">
                       <div className="flex justify-between p-2 rounded bg-neutral-950">
-                        <span>Desbloqueo Inicial (Nv. 1):</span>
-                        <strong className="text-blood-red">10 Fragmentos</strong>
+                        <span>{t('converters.equipment.unlock_label')}</span>
+                        <strong className="text-blood-red">{t('converters.equipment.unlock_val')}</strong>
                       </div>
                       <div className="flex justify-between p-2 rounded bg-neutral-950">
-                        <span>Máximo Nivel (Nv. 10):</span>
-                        <strong className="text-amber-400">275 Fragmentos Totales</strong>
+                        <span>{t('converters.equipment.max_label')}</span>
+                        <strong className="text-amber-400">{t('converters.equipment.max_val')}</strong>
                       </div>
                     </div>
                   </div>
@@ -1275,7 +1347,7 @@ Fuente: resudb.com/conversores`;
 
                 <div className="mt-6 p-4 rounded-xl bg-neutral-900/30 border border-neutral-800 text-center">
                   <p className="text-xs text-gray-400 font-inter mb-3">
-                    Para interactuar con la calculadora de equipamiento para un operativo específico, dirígete a su ficha en la base de datos:
+                    {t('converters.equipment.explore_prompt')}
                   </p>
                   <div className="flex flex-wrap justify-center gap-2">
                     {['leon', 'bsaa-chris', 'sheva', 'cazadora', 'hunk'].map(id => (

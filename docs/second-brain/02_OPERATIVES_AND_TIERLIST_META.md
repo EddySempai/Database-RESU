@@ -43,3 +43,23 @@
 - **PvP Late Game:** Tier SS compuesto por `jack`, `bsaa-chris`, `leon`, `ashley`, `excella`, `sheva`, `chris`.
 - **PvE Mid Game:** Tier SS compuesto por `carlos`, `piers`, `luis`, `ashley`, `sheva`, `rebecca`.
 - **PvE Late Game:** Tier SS compuesto por `carlos`, `piers`, `sheva`, `leon`, `ashley`, `rebecca`, `luis`, `excella`.
+
+---
+
+## 3. Localización e Internacionalización (`i18n` Trilingüe: ES, EN, JA)
+- **Archivos Fuente:**
+  - Español (Base): `src/data/operativos.json`
+  - Inglés: `src/locales/en/operativos.json`
+  - Japonés: `src/locales/ja/operativos.json`
+  - Diccionarios generales: `src/locales/{es,en,ja}/translation.json`
+- **Hook `useOperativos` (`src/hooks/useOperativos.ts`):**
+  - Fusiona dinámicamente según el idioma activo (`i18n.language`):
+    - `name`, `unitType`, `rarity`
+    - `fieldStats` con mapeo automático de etiquetas canónicas:
+      - Defender ATK/DEF Power ⇄ ディフェンダー攻撃力/防御力 ⇄ Poder de ataque/defensa de Defensor
+      - Attacker ATK/DEF Power ⇄ アタッカー攻撃力/防御力 ⇄ Poder de ataque/defensa de Atacante
+      - Ranger ATK/DEF Power ⇄ レンジャー攻撃力/防御力 ⇄ Poder de ataque/defensa de Ranger
+    - `skills`: Nombre, descripción, tipo e iconos combinados sin perder metadatos (`isArmaEspecial`, `isVipSkill`).
+- **Páginas Clave:**
+  - Catálogo: `src/pages/Operativos.tsx` (rutas `/operativos` y `/heroes`) con filtros por IDs normalizados (`ALL`, `DEFENDER`, etc.) para preservar estado al cambiar de idioma.
+  - Ficha: `src/pages/OperativoDetalle.tsx` (rutas `/heroes/:id`) con breadcrumbs, botones de voz y tabs accesibles y traducidos.

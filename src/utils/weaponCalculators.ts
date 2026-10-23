@@ -124,6 +124,20 @@ export const calculateWeaponPlus = (currentPlus: number, targetPlus: number): nu
   return totalComponents;
 };
 
+// Armas Legendarias requeridas a partir de +11 (Tier 10+): +11=1, +12=2, ..., +20=10 (Total = 55)
+export const calculateLegendaryWeapons = (currentPlus: number, targetPlus: number): number => {
+  if (currentPlus >= targetPlus || currentPlus < 0 || targetPlus > 20) return 0;
+  
+  let totalLegendWeapons = 0;
+  for (let i = currentPlus; i < targetPlus; i++) {
+    const nextLevel = i + 1;
+    if (nextLevel > 10) {
+      totalLegendWeapons += (nextLevel - 10);
+    }
+  }
+  return totalLegendWeapons;
+};
+
 // Conversiones de materiales de arma
 export const weaponExpMaterials = {
   materialVerde: 10,

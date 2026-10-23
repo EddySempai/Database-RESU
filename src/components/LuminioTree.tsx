@@ -22,9 +22,9 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
   const [selectedNode, setSelectedNode] = useState<LuminioNodeConfig | null>(null);
 
   const branches: { id: LuminioBranch, title: string, color: string, icon: any, imageIcon: string }[] = [
-    { id: 'blue', title: 'ATACANTE', color: 'blue', icon: Droplet, imageIcon: 'UI_Hero_Heavy.webp' },
-    { id: 'green', title: 'DEFENSOR', color: 'green', icon: Shield, imageIcon: 'UI_Hero_Infantry.webp' },
-    { id: 'red', title: 'RANGER', color: 'red', icon: Crosshair, imageIcon: 'UI_Hero_Rifle.webp' },
+    { id: 'blue', title: t('luminio.branch_attacker', 'ATACANTE'), color: 'blue', icon: Droplet, imageIcon: 'UI_Hero_Heavy.webp' },
+    { id: 'green', title: t('luminio.branch_defender', 'DEFENSOR'), color: 'green', icon: Shield, imageIcon: 'UI_Hero_Infantry.webp' },
+    { id: 'red', title: t('luminio.branch_ranger', 'RANGER'), color: 'red', icon: Crosshair, imageIcon: 'UI_Hero_Rifle.webp' },
   ];
 
   const calculateTotalPowder = () => {
@@ -256,7 +256,7 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
                         </span>
                         <span className="text-gray-600">•</span>
                         <span className="text-[10px] font-mono text-gray-400 tracking-wider">
-                          MAX: <strong className="text-white">{selectedNode.maxLevel}</strong>
+                          {t('luminio.max_label', 'MAX:')} <strong className="text-white">{selectedNode.maxLevel}</strong>
                         </span>
                       </div>
                     </div>
@@ -276,7 +276,7 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
                     <div className="flex justify-between items-center mb-2 font-mono text-xs">
                       <span className="text-gray-400 uppercase tracking-widest">{t('luminio.current_level', 'Nivel Actual')}</span>
                       <span className="text-white font-bold bg-black/60 px-2 py-0.5 rounded border border-gray-800">
-                        Nv. {baseLevels[selectedNode.id] || 0}
+                        {t('luminio.level_prefix', 'Nv.')} {baseLevels[selectedNode.id] || 0}
                       </span>
                     </div>
                     <div className="flex justify-between items-center bg-black/50 rounded-lg p-2 border border-gray-800">
@@ -310,7 +310,7 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
                     <div className="flex justify-between items-center mb-2 font-mono text-xs">
                       <span className="text-yellow-500 font-bold uppercase tracking-widest">{t('luminio.target_level', 'Nivel Objetivo (Meta)')}</span>
                       <span className="text-yellow-400 font-bold bg-yellow-500/10 px-2 py-0.5 rounded border border-yellow-500/30">
-                        Nv. {targetLevels[selectedNode.id] || 0}
+                        {t('luminio.level_prefix', 'Nv.')} {targetLevels[selectedNode.id] || 0}
                       </span>
                     </div>
                     <div className="flex justify-between items-center bg-black/50 rounded-lg p-2 border border-gray-800">
@@ -364,7 +364,7 @@ const LuminioTree: React.FC<LuminioTreeProps> = ({ baseLevels, targetLevels, onB
                       className="px-4 py-1.5 flex items-center gap-1.5 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors shadow-lg"
                     >
                       <Check size={16} strokeWidth={2.5} />
-                      <span>Listo</span>
+                      <span>{t('luminio.btn_done', 'Listo')}</span>
                     </button>
                   </div>
                 </div>

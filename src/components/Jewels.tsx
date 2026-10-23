@@ -83,7 +83,7 @@ export default function Jewels() {
           {Array.from({ length: 6 }).map((_, treasureIndex) => (
             <div key={treasureIndex} className="bg-black/40 p-3 sm:p-4 rounded-xl border border-gray-800 hover:border-gray-700 transition-colors">
               <h3 className="text-gray-500 font-mono text-xs text-center border-b border-gray-800 pb-2 mb-4 uppercase tracking-wider">
-                TREASURE {treasureIndex + 1}
+                {t('jewels.treasure_box_title', { num: treasureIndex + 1 })}
               </h3>
               
               <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row items-center justify-between gap-3 sm:gap-4">
@@ -114,7 +114,7 @@ export default function Jewels() {
                               ? 'bg-[#181818] border-gray-700 hover:border-gray-500 hover:bg-[#222]' 
                               : 'bg-black/40 border-dashed border-gray-800 hover:border-gray-600'
                           }`}
-                          title={`Socket ${colIndex + 1}: ${gem.current}`}
+                          title={t('jewels.socket_tooltip', { col: colIndex + 1, tier: gem.current })}
                         >
                           {isSet ? (
                             <img src={getJewelImageUrl(gem.current, colorIndex)} alt="Gem" className="w-8 h-8 object-contain filter drop-shadow-md" />
@@ -157,7 +157,7 @@ export default function Jewels() {
                               ? 'bg-[#221010] border-red-900/60 hover:border-red-500 hover:bg-[#2e1515] shadow-[0_0_10px_rgba(239,68,68,0.15)]' 
                               : 'bg-black/40 border-dashed border-red-950/40 hover:border-red-900/60'
                           }`}
-                          title={`Socket ${colIndex + 1}: ${gem.target}`}
+                          title={t('jewels.socket_tooltip', { col: colIndex + 1, tier: gem.target })}
                         >
                           {isSet ? (
                             <img src={getJewelImageUrl(gem.target, colorIndex)} alt="Gem" className="w-8 h-8 object-contain filter drop-shadow-md" />
@@ -276,7 +276,7 @@ export default function Jewels() {
                         {tier !== 'None' ? (
                           <img src={getJewelImageUrl(tier, colorIndex)} alt={tier} className="w-9 h-9 object-contain filter drop-shadow-md" />
                         ) : (
-                          <span className="text-gray-500 font-mono text-xs py-2">NINGUNO</span>
+                          <span className="text-gray-500 font-mono text-xs py-2">{t('jewels.none_option', 'NINGUNO')}</span>
                         )}
                         <span className="tracking-wide text-xs md:text-sm">{tier}</span>
                       </button>

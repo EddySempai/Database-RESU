@@ -119,7 +119,7 @@ const OperativoDetalle = () => {
     return (
       <div className="min-h-[80vh] flex flex-col items-center justify-center p-4">
         <h1 className="font-bebas text-4xl text-neon-red mb-4">{t('op_detail.not_found')}</h1>
-        <Link to="/operativos" className="inline-flex items-center gap-2 font-mono text-sm text-gray-400 hover:text-white border border-gray-800 px-4 py-2 bg-black">
+        <Link to="/heroes" className="inline-flex items-center gap-2 font-mono text-sm text-gray-400 hover:text-white border border-gray-800 px-4 py-2 bg-black">
           <ChevronLeft size={16} /> {t('op_detail.back_to_db')}
         </Link>
       </div>
@@ -213,7 +213,7 @@ const OperativoDetalle = () => {
         type="button"
         onClick={() => scrollTabs(-220)}
         className="p-1.5 rounded bg-black/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-600 transition-all shrink-0 cursor-pointer"
-        title="Desplazar a la izquierda"
+        title={t('op_detail.scroll_left', 'Desplazar a la izquierda')}
       >
         <ChevronLeft size={15} />
       </button>
@@ -256,7 +256,7 @@ const OperativoDetalle = () => {
         type="button"
         onClick={() => scrollTabs(220)}
         className="p-1.5 rounded bg-black/60 border border-gray-800 text-gray-400 hover:text-white hover:border-gray-600 transition-all shrink-0 cursor-pointer"
-        title="Desplazar a la derecha"
+        title={t('op_detail.scroll_right', 'Desplazar a la derecha')}
       >
         <ChevronRight size={15} />
       </button>
@@ -321,7 +321,7 @@ const OperativoDetalle = () => {
                   onClick={() => { playClick(); playVoice(op.id, i18n.language); }}
                   onMouseEnter={playHover}
                   className="text-gray-400 hover:text-white transition-colors"
-                  title={t('nav.home') /* Using this for now, though it should be localized 'Play Voice' */}
+                  title={t('op_detail.play_voice', 'Reproducir voz')}
                 >
                   <Volume2 size={24} />
                 </button>

@@ -21,37 +21,59 @@ const getUnitIcon = (type: string) => {
 };
 
 const Heroes = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { playHover, playClick } = useSound();
   const operativosData = useOperativos();
   const [searchTerm, setSearchTerm] = useState('');
   const [showFilters, setShowFilters] = useState(false);
-  const [filterType, setFilterType] = useState('Todos');
-  const [filterRarity, setFilterRarity] = useState('Todos');
+  const [filterType, setFilterType] = useState('ALL');
+  const [filterRarity, setFilterRarity] = useState('ALL');
   
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const getRarity = (op: any) => {
-    return op.rarity || 'Épico';
+    return op.rarity || (i18n.language.startsWith('ja') ? 'エピック' : (i18n.language.startsWith('en') ? 'Epic' : 'Épico'));
   };
+
+  const classFilterOptions = [
+    { id: 'ALL', label: t('heroes.all') },
+    { id: 'DEFENDER', label: i18n.language.startsWith('ja') ? 'ディフェンダー' : (i18n.language.startsWith('en') ? 'Defender' : 'Defensor') },
+    { id: 'ATTACKER', label: i18n.language.startsWith('ja') ? 'アタッカー' : (i18n.language.startsWith('en') ? 'Attacker' : 'Atacante') },
+    { id: 'RANGER', label: i18n.language.startsWith('ja') ? 'レンジャー' : 'Ranger' }
+  ];
+
+  const rarityFilterOptions = [
+    { id: 'ALL', label: t('heroes.all') },
+    { id: 'LEGENDARY', label: i18n.language.startsWith('ja') ? 'レジェンダリー' : (i18n.language.startsWith('en') ? 'Legendary' : 'Legendario') },
+    { id: 'EPIC', label: i18n.language.startsWith('ja') ? 'エピック' : (i18n.language.startsWith('en') ? 'Epic' : 'Épico') },
+    { id: 'COMMON', label: i18n.language.startsWith('ja') ? 'コモン' : (i18n.language.startsWith('en') ? 'Common' : 'Común') }
+  ];
 
   const filteredOperativos = operativosData.filter(op => {
     const matchesSearch = op.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesType = filterType === 'Todos' || op.unitType === filterType;
-    const matchesRarity = filterRarity === 'Todos' || getRarity(op) === filterRarity;
+    const matchesType = filterType === 'ALL' || (
+      filterType === 'DEFENDER' && isDefender(op.unitType) ||
+      filterType === 'ATTACKER' && isAttacker(op.unitType) ||
+      filterType === 'RANGER' && isRanger(op.unitType)
+    );
+    const matchesRarity = filterRarity === 'ALL' || (
+      filterRarity === 'LEGENDARY' && isLegendary(getRarity(op)) ||
+      filterRarity === 'COMMON' && isCommon(getRarity(op)) ||
+      filterRarity === 'EPIC' && !isLegendary(getRarity(op)) && !isCommon(getRarity(op))
+    );
     return matchesSearch && matchesType && matchesRarity;
   });
 
   return (
     <div className="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen relative z-10">
       <Helmet>
-        <title>Base de Datos de Héroes y Operativos | Resident Evil: Survival Unit Wiki</title>
-        <meta name="description" content="Lista completa de los 31 operativos de Resident Evil: Survival Unit. Consulta estadísticas de combate, habilidades de exploración y campo, talentos y armas exclusivas." />
+        <title>{t('heroes.page_title')}</title>
+        <meta name="description" content={t('heroes.meta_description')} />
         <link rel="canonical" href="https://resudb.com/heroes" />
-        <meta property="og:title" content="Héroes y Operativos | Resident Evil: Survival Unit Wiki" />
-        <meta property="og:description" content="Base de datos con los 31 héroes de Resident Evil: Survival Unit: estadísticas, habilidades y armas exclusivas." />
+        <meta property="og:title" content={t('heroes.page_title')} />
+        <meta property="og:description" content={t('heroes.meta_description')} />
         <meta property="og:url" content="https://resudb.com/heroes" />
         <meta property="og:image" content="https://resudb.com/metadata-img.png" />
       </Helmet>
@@ -72,7 +94,7 @@ const Heroes = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
             <input 
               type="text" 
-              placeholder="Buscar operativo..." 
+              placeholder={t('heroes.search_placeholder')} 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full bg-black/50 border border-gray-800 text-white pl-10 pr-4 py-2 font-mono text-sm focus:outline-none focus:border-neon-red transition-colors"
@@ -100,32 +122,32 @@ const Heroes = () => {
           >
             <div className="bg-[#050505] border border-gray-800 p-6 flex flex-wrap gap-6">
               <div>
-                <h4 className="font-mono text-gray-500 text-[10px] uppercase tracking-widest mb-3">Clase</h4>
+                <h4 className="font-mono text-gray-500 text-[10px] uppercase tracking-widest mb-3">{t('heroes.class')}</h4>
                 <div className="flex flex-wrap gap-2">
-                  {['Todos', ...Array.from(new Set(operativosData.map((o:any) => o.unitType).filter(t => t && !t.includes('Desconocido') && !t.includes('Unknown') && !t.includes('不明'))))].map(type => (
+                  {classFilterOptions.map(opt => (
                     <button
-                      key={type}
+                      key={opt.id}
                       onMouseEnter={playHover}
-                      onClick={() => { playClick(); setFilterType(type); }}
-                      className={`text-xs font-mono px-2 py-1 border transition-colors ${filterType === type ? 'bg-white/10 border-white text-white' : 'bg-black border-gray-800 text-gray-400 hover:border-gray-500'}`}
+                      onClick={() => { playClick(); setFilterType(opt.id); }}
+                      className={`text-xs font-mono px-2 py-1 border transition-colors ${filterType === opt.id ? 'bg-white/10 border-white text-white' : 'bg-black border-gray-800 text-gray-400 hover:border-gray-500'}`}
                     >
-                      {type}
+                      {opt.label}
                     </button>
                   ))}
                 </div>
               </div>
 
               <div>
-                <h4 className="font-mono text-gray-500 text-[10px] uppercase tracking-widest mb-3">Rareza</h4>
+                <h4 className="font-mono text-gray-500 text-[10px] uppercase tracking-widest mb-3">{t('heroes.rarity')}</h4>
                 <div className="flex flex-wrap gap-2">
-                  {['Todos', ...Array.from(new Set(operativosData.map((o:any) => getRarity(o))))].map(rarity => (
+                  {rarityFilterOptions.map(opt => (
                     <button
-                      key={rarity}
+                      key={opt.id}
                       onMouseEnter={playHover}
-                      onClick={() => { playClick(); setFilterRarity(rarity); }}
-                      className={`text-xs font-mono px-2 py-1 border transition-colors ${filterRarity === rarity ? 'bg-white/10 border-white text-white' : 'bg-black border-gray-800 text-gray-400 hover:border-gray-500'}`}
+                      onClick={() => { playClick(); setFilterRarity(opt.id); }}
+                      className={`text-xs font-mono px-2 py-1 border transition-colors ${filterRarity === opt.id ? 'bg-white/10 border-white text-white' : 'bg-black border-gray-800 text-gray-400 hover:border-gray-500'}`}
                     >
-                      {rarity}
+                      {opt.label}
                     </button>
                   ))}
                 </div>
@@ -187,7 +209,7 @@ const Heroes = () => {
                   {op.stats && (
                     <div className="absolute inset-0 bg-black/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-6 z-20 backdrop-blur-sm">
                       <h4 className="font-mono text-neon-red text-[10px] md:text-xs uppercase tracking-widest mb-4 border-b border-neon-red/30 pb-2 w-full text-center">
-                        {t('heroes.stats')} (Nv. 80)
+                        {t('heroes.stats')} ({i18n.language.startsWith('es') ? 'Nv. 80' : 'Lv. 80'})
                       </h4>
                       <div className="w-full space-y-3 font-mono text-[10px] md:text-xs">
                         <div className="flex justify-between items-center">
@@ -220,7 +242,7 @@ const Heroes = () => {
       
       {filteredOperativos.length === 0 && (
         <div className="text-center py-20 font-mono text-gray-500">
-          No se encontraron operativos con los parámetros especificados.
+          {t('heroes.no_results')}
         </div>
       )}
     </div>

@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   SETTLEMENT_BUILDINGS,
@@ -84,6 +85,7 @@ const LumiLevelBadge: React.FC<{
   size?: 'xs' | 'sm' | 'md' | 'lg';
   className?: string;
 }> = ({ level, size = 'md', className = '' }) => {
+  const { t } = useTranslation();
   const sizeClasses = {
     xs: 'w-5 h-5 text-[9px]',
     sm: 'w-7 h-7 text-[11px]',
@@ -96,7 +98,7 @@ const LumiLevelBadge: React.FC<{
       <div
         className={`relative inline-flex items-center justify-center rounded-full bg-zinc-900/90 border border-zinc-600 text-zinc-300 shrink-0 select-none ${sizeClasses} ${className}`}
         style={{ fontFamily: "'Roboto', 'Inter', sans-serif", fontWeight: 300 }}
-        title="Nivel 30 (Base)"
+        title={t('mansion.level_30_base', 'Nv. 30 (Base)')}
       >
         <span className="leading-none">30</span>
       </div>
@@ -108,7 +110,7 @@ const LumiLevelBadge: React.FC<{
   return (
     <div
       className={`relative inline-flex items-center justify-center shrink-0 select-none ${sizeClasses} ${className}`}
-      title={`Prestigio P${level} (Lumi Level ${level})`}
+      title={`${t('mansion.legend_mansion', 'Mansión')} P${level} (Lumi Level ${level})`}
     >
       <img
         src={frameUrl}
@@ -131,6 +133,7 @@ const LumiLevelBadge: React.FC<{
 };
 
 const MansionCalculator: React.FC = () => {
+  const { t } = useTranslation();
   // Nivel actual y objetivo de la Mansión
   const [mansionCurrent, setMansionCurrent] = useState<PrestigeLevel>(0);
   const [mansionTarget, setMansionTarget] = useState<Exclude<PrestigeLevel, 0>>(3);
@@ -623,15 +626,13 @@ const MansionCalculator: React.FC = () => {
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 font-mono text-[11px] uppercase tracking-widest mb-3">
               <Castle className="w-3.5 h-3.5" />
-              <span>Planificador de Asentamiento • Lumi Level 1 a 10 (P1–P10)</span>
+              <span>{t('mansion.tag_planner', 'Planificador de Asentamiento • Lumi Level 1 a 10 (P1–P10)')}</span>
             </div>
             <h2 className="font-bebas text-3xl sm:text-4xl tracking-wider text-white uppercase">
-              Mapa & Calculadora de Mansión de Luminio
+              {t('mansion.title', 'Mapa & Calculadora de Mansión de Luminio')}
             </h2>
             <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mt-1">
-              Calcula el <strong className="text-amber-400">Luminio</strong> exacto (y{' '}
-              <strong className="text-cyan-300">Luminium Composite</strong> desde P6). Haz zoom en el mini-mapa y toca
-              cualquier edificio para abrir su selector rápido en la parte inferior.
+              {t('mansion.description', 'Calcula el Luminio exacto (y Luminium Composite desde P6). Haz zoom en el mini-mapa y toca cualquier edificio para abrir su selector rápido en la parte inferior.')}
             </p>
           </div>
 
@@ -639,7 +640,7 @@ const MansionCalculator: React.FC = () => {
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 bg-black/60 border border-white/10 p-4 rounded-xl">
             <div>
               <label className="block font-mono text-[10px] uppercase tracking-widest text-gray-400 mb-1.5">
-                Mansión Actual
+                {t('mansion.current_mansion', 'Mansión Actual')}
               </label>
               <div className="flex items-center gap-2">
                 <LumiLevelBadge level={mansionCurrent} size="sm" />
@@ -650,7 +651,7 @@ const MansionCalculator: React.FC = () => {
                 >
                   {ALL_LEVELS.slice(0, 10).map((lvl) => (
                     <option key={lvl} value={lvl}>
-                      {PRESTIGE_LABELS[lvl]}
+                      {lvl === 0 ? t('mansion.level_30_base', 'Nv. 30 (Base)') : PRESTIGE_LABELS[lvl]}
                     </option>
                   ))}
                 </select>
@@ -663,7 +664,7 @@ const MansionCalculator: React.FC = () => {
 
             <div>
               <label className="block font-mono text-[10px] uppercase tracking-widest text-amber-400 mb-1.5">
-                Mansión Objetivo
+                {t('mansion.target_mansion', 'Mansión Objetivo')}
               </label>
               <div className="flex items-center gap-2.5">
                 <select
@@ -690,7 +691,7 @@ const MansionCalculator: React.FC = () => {
 
             <button
               onClick={handleResetPlan}
-              title="Reiniciar configuración"
+              title={t('mansion.reset_plan_title', 'Reiniciar configuración')}
               className="mt-5 p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white border border-white/10 transition-colors cursor-pointer"
             >
               <RotateCcw className="w-4 h-4" />
@@ -703,15 +704,15 @@ const MansionCalculator: React.FC = () => {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex flex-wrap items-center gap-2">
               <span className="font-mono text-[10px] uppercase tracking-widest text-gray-500 mr-1">
-                Marcos de Mansión:
+                {t('mansion.frames_label', 'Marcos de Mansión:')}
               </span>
               {[
-                { label: 'Marco 1 (1–3)', from: 0 as PrestigeLevel, to: 3 as Exclude<PrestigeLevel, 0> },
-                { label: 'Marco 2 (4–5)', from: 3 as PrestigeLevel, to: 5 as Exclude<PrestigeLevel, 0> },
-                { label: 'Marco 3 (6–8)', from: 5 as PrestigeLevel, to: 8 as Exclude<PrestigeLevel, 0> },
-                { label: 'Marco 4 (9–10)', from: 8 as PrestigeLevel, to: 10 as Exclude<PrestigeLevel, 0> },
-                { label: 'Nv.30 ➔ P8', from: 0 as PrestigeLevel, to: 8 as Exclude<PrestigeLevel, 0> },
-                { label: 'Nv.30 ➔ P10', from: 0 as PrestigeLevel, to: 10 as Exclude<PrestigeLevel, 0> }
+                { label: t('mansion.preset_frame_1', 'Marco 1 (1–3)'), from: 0 as PrestigeLevel, to: 3 as Exclude<PrestigeLevel, 0> },
+                { label: t('mansion.preset_frame_2', 'Marco 2 (4–5)'), from: 3 as PrestigeLevel, to: 5 as Exclude<PrestigeLevel, 0> },
+                { label: t('mansion.preset_frame_3', 'Marco 3 (6–8)'), from: 5 as PrestigeLevel, to: 8 as Exclude<PrestigeLevel, 0> },
+                { label: t('mansion.preset_frame_4', 'Marco 4 (9–10)'), from: 8 as PrestigeLevel, to: 10 as Exclude<PrestigeLevel, 0> },
+                { label: `${t('mansion.level_prefix', 'Nv.')}30 ➔ P8`, from: 0 as PrestigeLevel, to: 8 as Exclude<PrestigeLevel, 0> },
+                { label: `${t('mansion.level_prefix', 'Nv.')}30 ➔ P10`, from: 0 as PrestigeLevel, to: 10 as Exclude<PrestigeLevel, 0> }
               ].map((preset) => {
                 const isActive = mansionCurrent === preset.from && mansionTarget === preset.to;
                 return (
@@ -736,7 +737,7 @@ const MansionCalculator: React.FC = () => {
 
             <div className="flex flex-wrap items-center gap-2">
               <span className="font-mono text-[10px] uppercase tracking-widest text-gray-500 mr-1">
-                Incluir en el Plan:
+                {t('mansion.include_in_plan', 'Incluir en el Plan:')}
               </span>
               <button
                 type="button"
@@ -748,7 +749,7 @@ const MansionCalculator: React.FC = () => {
                 }`}
               >
                 <Castle className="w-3.5 h-3.5" />
-                <span>Solo Requisitos Mansión</span>
+                <span>{t('mansion.mode_prereq_only', 'Solo Requisitos Mansión')}</span>
               </button>
               <button
                 type="button"
@@ -756,7 +757,7 @@ const MansionCalculator: React.FC = () => {
                 className="px-3 py-1 rounded-md font-mono text-xs flex items-center gap-1.5 bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30 transition-all cursor-pointer"
               >
                 <Swords className="w-3.5 h-3.5" />
-                <span>+ Subir las 3 Tropas ({SHORT_PRESTIGE_LABELS[mansionTarget]})</span>
+                <span>{t('mansion.mode_plus_troops', { lvl: SHORT_PRESTIGE_LABELS[mansionTarget] })}</span>
               </button>
               <button
                 type="button"
@@ -764,7 +765,7 @@ const MansionCalculator: React.FC = () => {
                 className="px-3 py-1 rounded-md font-mono text-xs flex items-center gap-1.5 bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border border-cyan-500/30 transition-all cursor-pointer"
               >
                 <Building2 className="w-3.5 h-3.5" />
-                <span>Todo el Asentamiento ({SHORT_PRESTIGE_LABELS[mansionTarget]})</span>
+                <span>{t('mansion.mode_all_settlement', { lvl: SHORT_PRESTIGE_LABELS[mansionTarget] })}</span>
               </button>
             </div>
           </div>
@@ -779,7 +780,7 @@ const MansionCalculator: React.FC = () => {
               />
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-wider text-amber-400/90">
-                  Luminio Requerido
+                  {t('mansion.luminio_needed', 'Luminio Requerido')}
                 </div>
                 <div className="font-bebas text-2xl sm:text-3xl tracking-wider text-white leading-none mt-0.5">
                   {calculationResult.activeLuminioNeeded.toLocaleString()}
@@ -801,26 +802,26 @@ const MansionCalculator: React.FC = () => {
               />
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-wider text-cyan-300">
-                  Luminium Composite (P6–P10)
+                  {t('mansion.composite_title', 'Luminium Composite (P6–P10)')}
                 </div>
                 <div className="font-bebas text-2xl sm:text-3xl tracking-wider text-cyan-200 leading-none mt-0.5">
                   {calculationResult.activeCompositeNeeded > 0
                     ? calculationResult.activeCompositeNeeded.toLocaleString()
-                    : '0 (No requiere)'}
+                    : t('mansion.composite_not_required', '0 (No requiere)')}
                 </div>
               </div>
             </div>
 
             <div className="bg-black/50 border border-white/10 rounded-xl px-4 py-2.5 flex flex-col justify-center">
               <label className="block font-mono text-[10px] uppercase tracking-wider text-gray-400 mb-1">
-                Tu Inventario Actual (Luminio / Comp.)
+                {t('mansion.inventory_title', 'Tu Inventario Actual (Luminio / Comp.)')}
               </label>
               <div className="grid grid-cols-2 gap-2">
                 <input
                   type="number"
                   min={0}
                   value={ownedLuminio || ''}
-                  placeholder="Luminio: 0"
+                  placeholder={`${t('mansion.lumi_short', 'Luminio')}: 0`}
                   onChange={(e) => setOwnedLuminio(Math.max(0, Number(e.target.value) || 0))}
                   className="w-full bg-white/5 text-white font-mono text-xs px-2.5 py-1.5 rounded border border-gray-700 focus:border-amber-400 focus:outline-none"
                 />
@@ -828,7 +829,7 @@ const MansionCalculator: React.FC = () => {
                   type="number"
                   min={0}
                   value={ownedComposite || ''}
-                  placeholder="Composite: 0"
+                  placeholder={`${t('mansion.comp_short', 'Composite')}: 0`}
                   onChange={(e) => setOwnedComposite(Math.max(0, Number(e.target.value) || 0))}
                   className="w-full bg-white/5 text-cyan-200 font-mono text-xs px-2.5 py-1.5 rounded border border-gray-700 focus:border-cyan-400 focus:outline-none"
                 />
@@ -838,15 +839,15 @@ const MansionCalculator: React.FC = () => {
             <div className="flex items-center justify-between gap-2 bg-black/50 border border-red-500/30 rounded-xl px-4 py-3">
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-wider text-red-400">
-                  Te Falta Conseguir
+                  {t('mansion.missing_title', 'Te Falta Conseguir')}
                 </div>
                 <div className="font-bebas text-2xl tracking-wider text-red-400 leading-none mt-0.5">
                   {calculationResult.missingLuminio.toLocaleString()}{' '}
-                  <span className="text-xs font-mono text-gray-400">Lumi</span>
+                  <span className="text-xs font-mono text-gray-400">{t('mansion.lumi_short', 'Lumi')}</span>
                   {calculationResult.missingComposite > 0 && (
                     <span className="text-cyan-300 ml-2">
                       + {calculationResult.missingComposite.toLocaleString()}{' '}
-                      <span className="text-xs font-mono">Comp.</span>
+                      <span className="text-xs font-mono">{t('mansion.comp_short', 'Comp.')}</span>
                     </span>
                   )}
                 </div>
@@ -862,22 +863,26 @@ const MansionCalculator: React.FC = () => {
             <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
               <span className="font-mono text-[10px] uppercase tracking-widest text-amber-400/90 flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5" />
-                Recursos Comunes Requeridos en tu Plan (P1–P10)
+                {t('mansion.common_resources_title', 'Recursos Comunes Requeridos en tu Plan (P1–P10)')}
               </span>
               <span className="font-mono text-[10px] text-gray-400">
-                ⏱️ Tiempo Base Total: <strong className="text-cyan-300 font-bold">{formatHoursToDays(calculationResult.activeHoursNeeded)}</strong>{' '}
-                <span className="text-gray-500">({calculationResult.activeHoursNeeded.toLocaleString()}h sin aceleradores)</span>
+                {t('mansion.base_time_total', '⏱️ Tiempo Base Total:')} <strong className="text-cyan-300 font-bold">{formatHoursToDays(calculationResult.activeHoursNeeded)}</strong>{' '}
+                <span className="text-gray-500">({calculationResult.activeHoursNeeded.toLocaleString()}h {t('mansion.without_speedups', 'sin aceleradores')})</span>
               </span>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-2.5">
               <div
                 className="bg-black/50 border border-emerald-500/25 rounded-xl px-3.5 py-2.5 flex items-center gap-2.5"
-                title={`Comida Requerida: ${calculationResult.activeFoodNeeded.toLocaleString()}`}
+                title={`${t('mansion.food', 'Comida')}: ${calculationResult.activeFoodNeeded.toLocaleString()}`}
               >
-                <span className="text-xl shrink-0">🌾</span>
+                <img
+                  src="/recursos/Item_Food.webp"
+                  alt="Comida"
+                  className="w-8 h-8 object-contain shrink-0 drop-shadow-md"
+                />
                 <div className="min-w-0">
-                  <div className="font-mono text-[9px] uppercase tracking-wider text-emerald-400">Comida (Food)</div>
+                  <div className="font-mono text-[9px] uppercase tracking-wider text-emerald-400">{t('mansion.food', 'Comida (Food)')}</div>
                   <div className="font-bebas text-lg sm:text-xl text-white tracking-wide leading-none mt-0.5 truncate">
                     {formatResourceNumber(calculationResult.activeFoodNeeded)}
                   </div>
@@ -886,11 +891,15 @@ const MansionCalculator: React.FC = () => {
 
               <div
                 className="bg-black/50 border border-amber-500/25 rounded-xl px-3.5 py-2.5 flex items-center gap-2.5"
-                title={`Madera Requerida: ${calculationResult.activeWoodNeeded.toLocaleString()}`}
+                title={`${t('mansion.wood', 'Madera')}: ${calculationResult.activeWoodNeeded.toLocaleString()}`}
               >
-                <span className="text-xl shrink-0">🪵</span>
+                <img
+                  src="/recursos/Item_Wood.webp"
+                  alt="Madera"
+                  className="w-8 h-8 object-contain shrink-0 drop-shadow-md"
+                />
                 <div className="min-w-0">
-                  <div className="font-mono text-[9px] uppercase tracking-wider text-amber-400">Madera (Wood)</div>
+                  <div className="font-mono text-[9px] uppercase tracking-wider text-amber-400">{t('mansion.wood', 'Madera (Wood)')}</div>
                   <div className="font-bebas text-lg sm:text-xl text-white tracking-wide leading-none mt-0.5 truncate">
                     {formatResourceNumber(calculationResult.activeWoodNeeded)}
                   </div>
@@ -899,11 +908,15 @@ const MansionCalculator: React.FC = () => {
 
               <div
                 className="bg-black/50 border border-slate-400/25 rounded-xl px-3.5 py-2.5 flex items-center gap-2.5"
-                title={`Hierro Requerido: ${calculationResult.activeIronNeeded.toLocaleString()}`}
+                title={`${t('mansion.iron', 'Hierro')}: ${calculationResult.activeIronNeeded.toLocaleString()}`}
               >
-                <span className="text-xl shrink-0">⛓️</span>
+                <img
+                  src="/recursos/Item_Iron.webp"
+                  alt="Hierro"
+                  className="w-8 h-8 object-contain shrink-0 drop-shadow-md"
+                />
                 <div className="min-w-0">
-                  <div className="font-mono text-[9px] uppercase tracking-wider text-slate-300">Hierro (Iron)</div>
+                  <div className="font-mono text-[9px] uppercase tracking-wider text-slate-300">{t('mansion.iron', 'Hierro (Iron)')}</div>
                   <div className="font-bebas text-lg sm:text-xl text-white tracking-wide leading-none mt-0.5 truncate">
                     {formatResourceNumber(calculationResult.activeIronNeeded)}
                   </div>
@@ -912,11 +925,15 @@ const MansionCalculator: React.FC = () => {
 
               <div
                 className="bg-black/50 border border-red-500/25 rounded-xl px-3.5 py-2.5 flex items-center gap-2.5"
-                title={`Petróleo Requerido: ${calculationResult.activeOilNeeded.toLocaleString()}`}
+                title={`${t('mansion.oil', 'Petróleo')}: ${calculationResult.activeOilNeeded.toLocaleString()}`}
               >
-                <span className="text-xl shrink-0">🛢️</span>
+                <img
+                  src="/recursos/Item_Oil.webp"
+                  alt="Petróleo"
+                  className="w-8 h-8 object-contain shrink-0 drop-shadow-md"
+                />
                 <div className="min-w-0">
-                  <div className="font-mono text-[9px] uppercase tracking-wider text-red-400">Petróleo (Oil)</div>
+                  <div className="font-mono text-[9px] uppercase tracking-wider text-red-400">{t('mansion.oil', 'Petróleo (Oil)')}</div>
                   <div className="font-bebas text-lg sm:text-xl text-white tracking-wide leading-none mt-0.5 truncate">
                     {formatResourceNumber(calculationResult.activeOilNeeded)}
                   </div>
@@ -925,11 +942,11 @@ const MansionCalculator: React.FC = () => {
 
               <div
                 className="col-span-2 sm:col-span-4 lg:col-span-1 bg-black/50 border border-cyan-500/25 rounded-xl px-3.5 py-2.5 flex items-center gap-2.5"
-                title={`Tiempo Total de Construcción Base: ${calculationResult.activeHoursNeeded.toLocaleString()} horas`}
+                title={`${t('mansion.base_time', 'Tiempo Base')}: ${calculationResult.activeHoursNeeded.toLocaleString()}h`}
               >
-                <span className="text-xl shrink-0">⏱️</span>
+                <Clock className="w-7 h-7 text-cyan-400 shrink-0 p-1 bg-cyan-950/40 rounded-lg border border-cyan-500/30" />
                 <div className="min-w-0">
-                  <div className="font-mono text-[9px] uppercase tracking-wider text-cyan-300">Tiempo Base</div>
+                  <div className="font-mono text-[9px] uppercase tracking-wider text-cyan-300">{t('mansion.base_time', 'Tiempo Base')}</div>
                   <div className="font-bebas text-lg sm:text-xl text-cyan-100 tracking-wide leading-none mt-0.5 truncate">
                     {formatHoursToDays(calculationResult.activeHoursNeeded)}
                   </div>
@@ -950,21 +967,21 @@ const MansionCalculator: React.FC = () => {
               <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="font-mono text-xs uppercase tracking-widest text-gray-200">
-                  Plano del Asentamiento (Arrastra o haz Zoom)
+                  {t('mansion.map_status', 'Plano del Asentamiento (Arrastra o haz Zoom)')}
                 </span>
               </div>
               <div className="flex items-center gap-3 text-[11px] font-mono">
                 <span className="flex items-center gap-1.5 text-amber-400">
                   <span className="w-2 h-2 rounded-full bg-amber-400 inline-block" />
-                  Mansión
+                  {t('mansion.legend_mansion', 'Mansión')}
                 </span>
                 <span className="flex items-center gap-1.5 text-red-400">
                   <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
-                  Requisito
+                  {t('mansion.legend_prereq', 'Requisito')}
                 </span>
                 <span className="flex items-center gap-1.5 text-emerald-400">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" />
-                  Extra
+                  {t('mansion.legend_extra', 'Extra')}
                 </span>
               </div>
             </div>
@@ -975,7 +992,7 @@ const MansionCalculator: React.FC = () => {
                 type="button"
                 onClick={() => handleMapZoom(0.2)}
                 className="p-1.5 rounded-lg bg-white/5 hover:bg-white/15 text-gray-200 transition-colors cursor-pointer"
-                title="Acercar mapa"
+                title={t('mansion.zoom_in', 'Acercar mapa')}
               >
                 <ZoomIn className="w-4 h-4" />
               </button>
@@ -983,7 +1000,7 @@ const MansionCalculator: React.FC = () => {
                 type="button"
                 onClick={() => handleMapZoom(-0.2)}
                 className="p-1.5 rounded-lg bg-white/5 hover:bg-white/15 text-gray-200 transition-colors cursor-pointer"
-                title="Alejar mapa"
+                title={t('mansion.zoom_out', 'Alejar mapa')}
               >
                 <ZoomOut className="w-4 h-4" />
               </button>
@@ -991,7 +1008,7 @@ const MansionCalculator: React.FC = () => {
                 type="button"
                 onClick={handleResetMapCamera}
                 className="p-1.5 rounded-lg bg-white/5 hover:bg-white/15 text-amber-400 transition-colors cursor-pointer font-mono text-[10px] font-bold"
-                title="Restablecer vista"
+                title={t('mansion.reset_view', 'Restablecer vista')}
               >
                 <Maximize2 className="w-3.5 h-3.5 mx-auto" />
               </button>
@@ -1134,32 +1151,35 @@ const MansionCalculator: React.FC = () => {
                             {selectedMandatoryLvl > selectedCurrentLvl &&
                               selectedBuildingId !== 'mansion' && (
                                 <span className="font-mono text-[9px] uppercase px-1.5 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30 shrink-0">
-                                  Req. {SHORT_PRESTIGE_LABELS[selectedMandatoryLvl]}
+                                  {t('mansion.req_badge', { lvl: SHORT_PRESTIGE_LABELS[selectedMandatoryLvl] })}
                                 </span>
                               )}
                           </div>
                           <span className="font-mono text-[10px] text-gray-400 block">
                             {selectedBuilding.id === 'mansion'
-                              ? `Meta principal: ${SHORT_PRESTIGE_LABELS[mansionCurrent]} ➔ ${SHORT_PRESTIGE_LABELS[mansionTarget]}`
-                              : `Costo nivel: ${
-                                  selectedBuilding.levels[
+                              ? t('mansion.main_goal', {
+                                  from: SHORT_PRESTIGE_LABELS[mansionCurrent],
+                                  to: SHORT_PRESTIGE_LABELS[mansionTarget]
+                                })
+                              : t('mansion.level_cost', {
+                                  cost: selectedBuilding.levels[
                                     Math.max(1, selectedFinalLvl) as Exclude<PrestigeLevel, 0>
                                   ].luminioCost
-                                } Lumi`}
+                                })}
                           </span>
                           {selectedBuilding.id === 'mansion' && MANSION_LUMI_STATS[mansionTarget] && (
                             <div className="flex flex-wrap items-center gap-1.5 text-[9px] font-mono text-gray-400 mt-0.5">
-                              <span className="text-amber-300 font-semibold flex items-center gap-1" title="Tiempo base sin potenciadores / buffs">
-                                <Clock className="w-2.5 h-2.5 inline" /> {MANSION_LUMI_STATS[mansionTarget].baseTotalHours}h ({Math.round(MANSION_LUMI_STATS[mansionTarget].baseTotalHours / 24)}d) <span className="text-[8px] text-gray-500 font-sans">(base sin buffs)</span>
+                              <span className="text-amber-300 font-semibold flex items-center gap-1" title={t('mansion.base_without_buffs', 'base sin buffs')}>
+                                <Clock className="w-2.5 h-2.5 inline" /> {MANSION_LUMI_STATS[mansionTarget].baseTotalHours}h ({Math.round(MANSION_LUMI_STATS[mansionTarget].baseTotalHours / 24)}d) <span className="text-[8px] text-gray-500 font-sans">({t('mansion.base_without_buffs', 'base sin buffs')})</span>
                               </span>
                               <span className="text-gray-600">•</span>
-                              <span>🌾 {(MANSION_LUMI_STATS[mansionTarget].food / 1e6).toFixed(0)}M</span>
+                              <span className="inline-flex items-center gap-0.5"><img src="/recursos/Item_Food.webp" alt="" className="w-3 h-3 object-contain" /> {(MANSION_LUMI_STATS[mansionTarget].food / 1e6).toFixed(0)}M</span>
                               <span className="text-gray-600">•</span>
-                              <span>🪵 {(MANSION_LUMI_STATS[mansionTarget].wood / 1e6).toFixed(0)}M</span>
+                              <span className="inline-flex items-center gap-0.5"><img src="/recursos/Item_Wood.webp" alt="" className="w-3 h-3 object-contain" /> {(MANSION_LUMI_STATS[mansionTarget].wood / 1e6).toFixed(0)}M</span>
                               <span className="text-gray-600">•</span>
-                              <span>⚙️ {(MANSION_LUMI_STATS[mansionTarget].iron / 1e6).toFixed(0)}M</span>
+                              <span className="inline-flex items-center gap-0.5"><img src="/recursos/Item_Iron.webp" alt="" className="w-3 h-3 object-contain" /> {(MANSION_LUMI_STATS[mansionTarget].iron / 1e6).toFixed(0)}M</span>
                               <span className="text-gray-600">•</span>
-                              <span>🛢️ {(MANSION_LUMI_STATS[mansionTarget].oil / 1e6).toFixed(1)}M</span>
+                              <span className="inline-flex items-center gap-0.5"><img src="/recursos/Item_Oil.webp" alt="" className="w-3 h-3 object-contain" /> {(MANSION_LUMI_STATS[mansionTarget].oil / 1e6).toFixed(1)}M</span>
                             </div>
                           )}
                         </div>
@@ -1169,6 +1189,7 @@ const MansionCalculator: React.FC = () => {
                         type="button"
                         onClick={() => setSelectedBuildingId(null)}
                         className="sm:hidden p-1 text-gray-400 hover:text-white cursor-pointer"
+                        title={t('mansion.close', 'Cerrar')}
                       >
                         <X className="w-4 h-4" />
                       </button>
@@ -1186,7 +1207,7 @@ const MansionCalculator: React.FC = () => {
                         >
                           {ALL_LEVELS.slice(0, 10).map((lvl) => (
                             <option key={lvl} value={lvl}>
-                              Actual: {SHORT_PRESTIGE_LABELS[lvl]}
+                              {t('mansion.current_label', 'Actual')}: {lvl === 0 ? t('mansion.level_30_base', 'Nv.30') : SHORT_PRESTIGE_LABELS[lvl]}
                             </option>
                           ))}
                         </select>
@@ -1207,7 +1228,7 @@ const MansionCalculator: React.FC = () => {
                               disabled={lvl <= mansionCurrent}
                               className="bg-[#181920] text-white"
                             >
-                              Meta: {SHORT_PRESTIGE_LABELS[lvl]}
+                              {t('mansion.target_label', 'Meta')}: {SHORT_PRESTIGE_LABELS[lvl]}
                             </option>
                           ))}
                         </select>
@@ -1215,7 +1236,7 @@ const MansionCalculator: React.FC = () => {
                           type="button"
                           onClick={() => setSelectedBuildingId(null)}
                           className="hidden sm:inline-flex p-1.5 text-gray-400 hover:text-white rounded-lg hover:bg-white/5 cursor-pointer"
-                          title="Cerrar"
+                          title={t('mansion.close', 'Cerrar')}
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -1224,7 +1245,7 @@ const MansionCalculator: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <div className="flex-1 sm:flex-initial">
                           <span className="block font-mono text-[9px] uppercase text-gray-400 mb-0.5">
-                            Nivel Actual
+                            {t('mansion.current_label', 'Nivel Actual')}
                           </span>
                           <select
                             value={selectedCurrentLvl}
@@ -1239,7 +1260,7 @@ const MansionCalculator: React.FC = () => {
                           >
                             {ALL_LEVELS.map((lvl) => (
                               <option key={lvl} value={lvl}>
-                                {SHORT_PRESTIGE_LABELS[lvl]}
+                                {lvl === 0 ? t('mansion.level_30_base', 'Nv.30') : SHORT_PRESTIGE_LABELS[lvl]}
                               </option>
                             ))}
                           </select>
@@ -1249,7 +1270,7 @@ const MansionCalculator: React.FC = () => {
 
                         <div className="flex-1 sm:flex-initial">
                           <span className="block font-mono text-[9px] uppercase text-emerald-400 mb-0.5">
-                            Nivel Objetivo
+                            {t('mansion.target_label', 'Nivel Objetivo')}
                           </span>
                           <select
                             value={Math.max(selectedFinalLvl, extraTargetLevels[selectedBuildingId] || 0)}
@@ -1270,7 +1291,7 @@ const MansionCalculator: React.FC = () => {
                                 className="bg-[#181920] text-white"
                               >
                                 {lvl === 0
-                                  ? 'Sin extra'
+                                  ? t('mansion.no_extra', 'Sin extra')
                                   : `${SHORT_PRESTIGE_LABELS[lvl]}${
                                       lvl === selectedMandatoryLvl ? ' (Req)' : ''
                                     }`}
@@ -1283,7 +1304,7 @@ const MansionCalculator: React.FC = () => {
                           type="button"
                           onClick={() => setSelectedBuildingId(null)}
                           className="hidden sm:inline-flex mt-3.5 p-1.5 text-gray-400 hover:text-white rounded-lg hover:bg-white/5 cursor-pointer"
-                          title="Cerrar"
+                          title={t('mansion.close', 'Cerrar')}
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -1303,10 +1324,10 @@ const MansionCalculator: React.FC = () => {
               <div>
                 <span className="font-mono text-[10px] uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5" />
-                  Caja de Objetivos por Nivel
+                  {t('mansion.roadmap_badge', 'Caja de Objetivos por Nivel')}
                 </span>
                 <h3 className="font-bebas text-2xl sm:text-3xl tracking-wider text-white uppercase mt-0.5 flex items-center gap-2">
-                  <span>Hoja de Ruta</span>
+                  <span>{t('mansion.roadmap_title', 'Hoja de Ruta')}</span>
                   <LumiLevelBadge level={mansionCurrent} size="sm" />
                   <span className="text-amber-400">➔</span>
                   <LumiLevelBadge level={mansionTarget} size="sm" />
@@ -1320,19 +1341,19 @@ const MansionCalculator: React.FC = () => {
                 {copiedPlan ? (
                   <>
                     <Check className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-emerald-300">¡Copiado!</span>
+                    <span className="text-emerald-300">{t('mansion.btn_copied', '¡Copiado!')}</span>
                   </>
                 ) : (
                   <>
                     <Copy className="w-3.5 h-3.5" />
-                    <span>Copiar Plan</span>
+                    <span>{t('mansion.btn_copy_plan', 'Copiar Plan')}</span>
                   </>
                 )}
               </button>
             </div>
 
             <p className="text-xs text-gray-400 mt-3 mb-4 leading-relaxed">
-              Cada edificio consta de <strong>5 sub-etapas</strong> por nivel. Haz clic sobre cualquier objetivo ya completado para descontarlo del total.
+              {t('mansion.roadmap_desc', 'Cada edificio consta de 5 sub-etapas por nivel. Haz clic sobre cualquier objetivo ya completado para descontarlo del total.')}
             </p>
 
             {/* Lista de Fases por Nivel de Mansión */}
@@ -1346,7 +1367,7 @@ const MansionCalculator: React.FC = () => {
                     <div className="flex items-center gap-2.5">
                       <LumiLevelBadge level={phase.mansionLevel} size="sm" />
                       <span className="font-bebas text-xl tracking-wider text-white">
-                        Objetivo {PRESTIGE_LABELS[phase.mansionLevel]}
+                        {t('mansion.goal_prefix', 'Objetivo')} {PRESTIGE_LABELS[phase.mansionLevel]}
                       </span>
                     </div>
                     <div className="flex items-center gap-2.5">
@@ -1373,12 +1394,22 @@ const MansionCalculator: React.FC = () => {
 
                   {/* Sub-barra de recursos comunes para esta fase */}
                   <div className="px-4 py-1.5 bg-black/40 border-b border-white/5 flex flex-wrap items-center gap-2.5 text-[10px] font-mono text-gray-400">
-                    <span className="text-gray-500 uppercase font-semibold">Fase {SHORT_PRESTIGE_LABELS[phase.mansionLevel]}:</span>
-                    <span className="text-emerald-300" title={`Comida: ${phase.phaseFoodTotal.toLocaleString()}`}>🌾 {formatResourceNumber(phase.phaseFoodTotal)}</span>
-                    <span className="text-amber-300" title={`Madera: ${phase.phaseWoodTotal.toLocaleString()}`}>🪵 {formatResourceNumber(phase.phaseWoodTotal)}</span>
-                    <span className="text-slate-300" title={`Hierro: ${phase.phaseIronTotal.toLocaleString()}`}>⛓️ {formatResourceNumber(phase.phaseIronTotal)}</span>
-                    <span className="text-red-300" title={`Petróleo: ${phase.phaseOilTotal.toLocaleString()}`}>🛢️ {formatResourceNumber(phase.phaseOilTotal)}</span>
-                    <span className="text-cyan-300" title={`Tiempo base: ${phase.phaseHoursTotal} horas`}>⏱️ {formatHoursToDays(phase.phaseHoursTotal)}</span>
+                    <span className="text-gray-500 uppercase font-semibold">{t('mansion.phase_prefix', 'Fase')} {SHORT_PRESTIGE_LABELS[phase.mansionLevel]}:</span>
+                    <span className="inline-flex items-center gap-1 text-emerald-300" title={`Comida: ${phase.phaseFoodTotal.toLocaleString()}`}>
+                      <img src="/recursos/Item_Food.webp" alt="" className="w-3.5 h-3.5 object-contain" /> {formatResourceNumber(phase.phaseFoodTotal)}
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-amber-300" title={`Madera: ${phase.phaseWoodTotal.toLocaleString()}`}>
+                      <img src="/recursos/Item_Wood.webp" alt="" className="w-3.5 h-3.5 object-contain" /> {formatResourceNumber(phase.phaseWoodTotal)}
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-slate-300" title={`Hierro: ${phase.phaseIronTotal.toLocaleString()}`}>
+                      <img src="/recursos/Item_Iron.webp" alt="" className="w-3.5 h-3.5 object-contain" /> {formatResourceNumber(phase.phaseIronTotal)}
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-red-300" title={`Petróleo: ${phase.phaseOilTotal.toLocaleString()}`}>
+                      <img src="/recursos/Item_Oil.webp" alt="" className="w-3.5 h-3.5 object-contain" /> {formatResourceNumber(phase.phaseOilTotal)}
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-cyan-300" title={`Tiempo base: ${phase.phaseHoursTotal} horas`}>
+                      <Clock className="w-3 h-3 text-cyan-400" /> {formatHoursToDays(phase.phaseHoursTotal)}
+                    </span>
                   </div>
 
                   <div className="p-3 space-y-2">
@@ -1428,7 +1459,7 @@ const MansionCalculator: React.FC = () => {
                                       : 'bg-red-500/15 text-red-300 border border-red-500/25'
                                   }`}
                                 >
-                                  {step.isMansion ? 'Mansión' : 'Requisito'}
+                                  {step.isMansion ? t('mansion.legend_mansion', 'Mansión') : t('mansion.legend_prereq', 'Requisito')}
                                 </span>
                               </div>
                               <div className="font-mono text-[11px] text-gray-400">
@@ -1436,25 +1467,35 @@ const MansionCalculator: React.FC = () => {
                                 <strong className="text-amber-300">
                                   {SHORT_PRESTIGE_LABELS[step.toLevel]}
                                 </strong>{' '}
-                                <span className="text-gray-500">({step.stepCost}/etapa)</span>
+                                <span className="text-gray-500">({step.stepCost}{t('mansion.per_stage', '/etapa')})</span>
                               </div>
                               <div className="flex items-center gap-2 mt-1 font-mono text-[10px] text-gray-400 flex-wrap">
-                                <span title={`Comida: ${step.foodCost.toLocaleString()}`}>🌾 {formatResourceNumber(step.foodCost)}</span>
-                                <span title={`Madera: ${step.woodCost.toLocaleString()}`}>🪵 {formatResourceNumber(step.woodCost)}</span>
-                                <span title={`Hierro: ${step.ironCost.toLocaleString()}`}>⛓️ {formatResourceNumber(step.ironCost)}</span>
-                                <span title={`Petróleo: ${step.oilCost.toLocaleString()}`}>🛢️ {formatResourceNumber(step.oilCost)}</span>
-                                <span className="text-cyan-300/90" title={`Tiempo base: ${step.baseHours} horas`}>⏱️ {formatHoursToDays(step.baseHours)}</span>
+                                <span className="inline-flex items-center gap-1" title={`Comida: ${step.foodCost.toLocaleString()}`}>
+                                  <img src="/recursos/Item_Food.webp" alt="" className="w-3 h-3 object-contain" /> {formatResourceNumber(step.foodCost)}
+                                </span>
+                                <span className="inline-flex items-center gap-1" title={`Madera: ${step.woodCost.toLocaleString()}`}>
+                                  <img src="/recursos/Item_Wood.webp" alt="" className="w-3 h-3 object-contain" /> {formatResourceNumber(step.woodCost)}
+                                </span>
+                                <span className="inline-flex items-center gap-1" title={`Hierro: ${step.ironCost.toLocaleString()}`}>
+                                  <img src="/recursos/Item_Iron.webp" alt="" className="w-3 h-3 object-contain" /> {formatResourceNumber(step.ironCost)}
+                                </span>
+                                <span className="inline-flex items-center gap-1" title={`Petróleo: ${step.oilCost.toLocaleString()}`}>
+                                  <img src="/recursos/Item_Oil.webp" alt="" className="w-3 h-3 object-contain" /> {formatResourceNumber(step.oilCost)}
+                                </span>
+                                <span className="inline-flex items-center gap-1 text-cyan-300/90" title={`Tiempo base: ${step.baseHours} horas`}>
+                                  <Clock className="w-3 h-3 text-cyan-400" /> {formatHoursToDays(step.baseHours)}
+                                </span>
                               </div>
                             </div>
                           </div>
 
                           <div className="text-right shrink-0">
                             <span className="font-mono text-xs font-bold text-amber-300 block">
-                              {step.luminioCost.toLocaleString()} Lumi
+                              {step.luminioCost.toLocaleString()} {t('mansion.lumi_short', 'Lumi')}
                             </span>
                             {step.compositeCost > 0 && (
                               <span className="font-mono text-[10px] font-bold text-cyan-300 block">
-                                +{step.compositeCost.toLocaleString()} Comp.
+                                +{step.compositeCost.toLocaleString()} {t('mansion.comp_short', 'Comp.')}
                               </span>
                             )}
                           </div>
@@ -1465,7 +1506,7 @@ const MansionCalculator: React.FC = () => {
                     {phase.unlockNote && (
                       <div className="px-2.5 pt-1 text-[11px] text-gray-400 flex items-center gap-1.5">
                         <ShieldAlert className="w-3.5 h-3.5 text-amber-400/80 shrink-0" />
-                        <span>{phase.unlockNote}</span>
+                        <span>{t(`mansion.unlock_notes.p${phase.mansionLevel}`, phase.unlockNote)}</span>
                       </div>
                     )}
                   </div>
@@ -1479,16 +1520,16 @@ const MansionCalculator: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <Layers className="w-4 h-4 text-emerald-400" />
                       <span className="font-bebas text-xl tracking-wider text-emerald-300">
-                        Edificios Adicionales en tu Plan
+                        {t('mansion.extra_buildings_title', 'Edificios Adicionales en tu Plan')}
                       </span>
                     </div>
                     <div className="text-right font-mono text-xs font-bold">
                       <span className="text-emerald-300">
-                        +{calculationResult.extraLuminioTotal.toLocaleString()} Lumi
+                        +{calculationResult.extraLuminioTotal.toLocaleString()} {t('mansion.lumi_short', 'Lumi')}
                       </span>
                       {calculationResult.extraCompositeTotal > 0 && (
                         <span className="text-cyan-300 ml-2">
-                          +{calculationResult.extraCompositeTotal.toLocaleString()} Comp.
+                          +{calculationResult.extraCompositeTotal.toLocaleString()} {t('mansion.comp_short', 'Comp.')}
                         </span>
                       )}
                     </div>
@@ -1532,25 +1573,35 @@ const MansionCalculator: React.FC = () => {
                                 <strong className="text-emerald-300">
                                   {SHORT_PRESTIGE_LABELS[step.toLevel]}
                                 </strong>{' '}
-                                <span className="text-gray-500">({step.stepCost}/etapa)</span>
+                                <span className="text-gray-500">({step.stepCost}{t('mansion.per_stage', '/etapa')})</span>
                               </div>
                               <div className="flex items-center gap-2 mt-1 font-mono text-[10px] text-gray-400 flex-wrap">
-                                <span title={`Comida: ${step.foodCost.toLocaleString()}`}>🌾 {formatResourceNumber(step.foodCost)}</span>
-                                <span title={`Madera: ${step.woodCost.toLocaleString()}`}>🪵 {formatResourceNumber(step.woodCost)}</span>
-                                <span title={`Hierro: ${step.ironCost.toLocaleString()}`}>⛓️ {formatResourceNumber(step.ironCost)}</span>
-                                <span title={`Petróleo: ${step.oilCost.toLocaleString()}`}>🛢️ {formatResourceNumber(step.oilCost)}</span>
-                                <span className="text-cyan-300/90" title={`Tiempo base: ${step.baseHours} horas`}>⏱️ {formatHoursToDays(step.baseHours)}</span>
+                                <span className="inline-flex items-center gap-1" title={`Comida: ${step.foodCost.toLocaleString()}`}>
+                                  <img src="/recursos/Item_Food.webp" alt="" className="w-3 h-3 object-contain" /> {formatResourceNumber(step.foodCost)}
+                                </span>
+                                <span className="inline-flex items-center gap-1" title={`Madera: ${step.woodCost.toLocaleString()}`}>
+                                  <img src="/recursos/Item_Wood.webp" alt="" className="w-3 h-3 object-contain" /> {formatResourceNumber(step.woodCost)}
+                                </span>
+                                <span className="inline-flex items-center gap-1" title={`Hierro: ${step.ironCost.toLocaleString()}`}>
+                                  <img src="/recursos/Item_Iron.webp" alt="" className="w-3 h-3 object-contain" /> {formatResourceNumber(step.ironCost)}
+                                </span>
+                                <span className="inline-flex items-center gap-1" title={`Petróleo: ${step.oilCost.toLocaleString()}`}>
+                                  <img src="/recursos/Item_Oil.webp" alt="" className="w-3 h-3 object-contain" /> {formatResourceNumber(step.oilCost)}
+                                </span>
+                                <span className="inline-flex items-center gap-1 text-cyan-300/90" title={`Tiempo base: ${step.baseHours} horas`}>
+                                  <Clock className="w-3 h-3 text-cyan-400" /> {formatHoursToDays(step.baseHours)}
+                                </span>
                               </div>
                             </div>
                           </div>
 
                           <div className="text-right shrink-0">
                             <span className="font-mono text-xs font-bold text-emerald-300 block">
-                              {step.luminioCost.toLocaleString()} Lumi
+                              {step.luminioCost.toLocaleString()} {t('mansion.lumi_short', 'Lumi')}
                             </span>
                             {step.compositeCost > 0 && (
                               <span className="font-mono text-[10px] font-bold text-cyan-300 block">
-                                +{step.compositeCost.toLocaleString()} Comp.
+                                +{step.compositeCost.toLocaleString()} {t('mansion.comp_short', 'Comp.')}
                               </span>
                             )}
                           </div>
@@ -1565,7 +1616,7 @@ const MansionCalculator: React.FC = () => {
             {/* CAJA RÁPIDA PARA AGREGAR OTRO EDIFICIO AL PLAN (RESPONSIVE SIN OVERFLOW) */}
             <div className="mt-5 pt-4 border-t border-white/10">
               <label className="block font-mono text-[10px] uppercase tracking-widest text-emerald-400 mb-2">
-                + Añadir Otro Edificio Individual al Cálculo
+                {t('mansion.add_extra_label', '+ Añadir Otro Edificio Individual al Cálculo')}
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-2">
                 <select
@@ -1575,7 +1626,7 @@ const MansionCalculator: React.FC = () => {
                 >
                   {SETTLEMENT_BUILDINGS.filter((b) => b.id !== 'mansion').map((b) => (
                     <option key={b.id} value={b.id} className="bg-[#16171d] text-white">
-                      {b.shortName || b.name}
+                      {t(`mansion.buildings.${b.id}`, b.shortName || b.name)}
                     </option>
                   ))}
                 </select>
@@ -1600,7 +1651,7 @@ const MansionCalculator: React.FC = () => {
                   className="sm:col-span-3 min-w-0 w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-mono text-xs font-bold transition-colors cursor-pointer"
                 >
                   <Plus className="w-4 h-4 shrink-0" />
-                  <span className="truncate">Agregar</span>
+                  <span className="truncate">{t('mansion.btn_add', 'Agregar')}</span>
                 </button>
               </div>
             </div>
@@ -1619,15 +1670,15 @@ const MansionCalculator: React.FC = () => {
             <SlidersHorizontal className="w-4 h-4 text-amber-400" />
             <div>
               <span className="font-bebas text-xl tracking-wider text-white uppercase">
-                Tabla Oficial de Costos por Nivel (Lumi Level 1 a Lumi Level 10)
+                {t('mansion.cost_table_title', 'Tabla Oficial de Costos por Nivel (Lumi Level 1 a Lumi Level 10)')}
               </span>
               <span className="block text-xs text-gray-400">
-                Incluye costo por sub-etapa (Per Level / Starting Cost), nivel completo (Full Level Total), 3 Troop Buildings y Luminium Composite.
+                {t('mansion.cost_table_desc', 'Incluye costo por sub-etapa (Per Level / Starting Cost), nivel completo (Full Level Total), 3 Troop Buildings y Luminium Composite.')}
               </span>
             </div>
           </div>
           <span className="font-mono text-xs text-amber-400 border border-amber-500/30 px-3 py-1 rounded-full">
-            {showCostTable ? 'Ocultar Tablas' : 'Ver Tablas Completas'}
+            {showCostTable ? t('mansion.btn_hide_tables', 'Ocultar Tablas') : t('mansion.btn_show_tables', 'Ver Tablas Completas')}
           </span>
         </button>
 
@@ -1636,14 +1687,14 @@ const MansionCalculator: React.FC = () => {
             <div className="flex items-center gap-2 text-xs text-amber-300/90 font-mono">
               <Wrench className="w-4 h-4" />
               <span>
-                Datos sincronizados con la hoja de cálculo oficial de Lumi Level 1 (P1) hasta Lumi Level 10 (P10).
+                {t('mansion.cost_table_sync', 'Datos sincronizados con la hoja de cálculo oficial de Lumi Level 1 (P1) hasta Lumi Level 10 (P10).')}
               </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {TARGET_LEVELS.map((lvl) => {
                 const m = buildingMap.mansion.levels[lvl];
-                const t = buildingMap.barracks.levels[lvl];
+                const tBuilding = buildingMap.barracks.levels[lvl];
                 const a = buildingMap.alliance.levels[lvl];
                 const h = buildingMap.hero_center.levels[lvl];
                 const c = buildingMap.command.levels[lvl];
@@ -1652,7 +1703,7 @@ const MansionCalculator: React.FC = () => {
 
                 const rows = [
                   { name: 'Mansion', step: m.stepCost, total: m.luminioCost, troops3: null, comp: m.compositeCost },
-                  { name: 'Training (x1 / x3)', step: t.stepCost, total: t.luminioCost, troops3: t.luminioCost * 3, comp: t.compositeCost },
+                  { name: 'Training (x1 / x3)', step: tBuilding.stepCost, total: tBuilding.luminioCost, troops3: tBuilding.luminioCost * 3, comp: tBuilding.compositeCost },
                   { name: 'Alliance', step: a.stepCost, total: a.luminioCost, troops3: null, comp: a.compositeCost },
                   { name: 'Helipad', step: h.stepCost, total: h.luminioCost, troops3: null, comp: h.compositeCost },
                   { name: 'Command', step: c.stepCost, total: c.luminioCost, troops3: null, comp: c.compositeCost },
@@ -1662,7 +1713,7 @@ const MansionCalculator: React.FC = () => {
 
                 const sum1Troop =
                   m.luminioCost +
-                  t.luminioCost +
+                  tBuilding.luminioCost +
                   a.luminioCost +
                   h.luminioCost +
                   c.luminioCost +
@@ -1670,7 +1721,7 @@ const MansionCalculator: React.FC = () => {
                   lab.luminioCost;
                 const sum3Troops =
                   m.luminioCost +
-                  t.luminioCost * 3 +
+                  tBuilding.luminioCost * 3 +
                   a.luminioCost +
                   h.luminioCost +
                   c.luminioCost +
@@ -1678,7 +1729,7 @@ const MansionCalculator: React.FC = () => {
                   lab.luminioCost;
                 const sumComposite3Troops =
                   m.compositeCost +
-                  t.compositeCost * 3 +
+                  tBuilding.compositeCost * 3 +
                   a.compositeCost +
                   h.compositeCost +
                   c.compositeCost +
@@ -1698,18 +1749,18 @@ const MansionCalculator: React.FC = () => {
                         </span>
                       </div>
                       <span className="font-mono text-[11px] text-gray-300">
-                        Total (1 Tropa): <strong>{sum1Troop.toLocaleString()}</strong> | (3 Tropas):{' '}
+                        {t('mansion.total_1_troop', 'Total (1 Tropa):')} <strong>{sum1Troop.toLocaleString()}</strong> | {t('mansion.total_3_troops', '(3 Tropas):')}{' '}
                         <strong className="text-amber-300">{sum3Troops.toLocaleString()}</strong>
                       </span>
                     </div>
                     <table className="w-full text-left font-mono text-xs">
                       <thead>
                         <tr className="border-b border-white/10 text-[10px] text-gray-400 uppercase bg-white/[0.02]">
-                          <th className="py-2 px-3">Building</th>
-                          <th className="py-2 px-2 text-right">Per Step</th>
-                          <th className="py-2 px-2 text-right">Full Total</th>
-                          <th className="py-2 px-2 text-right">3 Troops</th>
-                          <th className="py-2 px-3 text-right text-cyan-300">Composite</th>
+                          <th className="py-2 px-3">{t('mansion.th_building', 'Building')}</th>
+                          <th className="py-2 px-2 text-right">{t('mansion.th_per_step', 'Per Step')}</th>
+                          <th className="py-2 px-2 text-right">{t('mansion.th_full_total', 'Full Total')}</th>
+                          <th className="py-2 px-2 text-right">{t('mansion.th_3_troops', '3 Troops')}</th>
+                          <th className="py-2 px-3 text-right text-cyan-300">{t('mansion.th_composite', 'Composite')}</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-white/5">
@@ -1763,15 +1814,15 @@ const MansionCalculator: React.FC = () => {
             <Castle className="w-4 h-4 text-amber-400" />
             <div>
               <span className="font-bebas text-xl tracking-wider text-white uppercase">
-                Guía de Requisitos & Tiempos: Mansión Nivel 1 a 30 (Base)
+                {t('mansion.guide_title', 'Guía de Requisitos & Tiempos: Mansión Nivel 1 a 30 (Base)')}
               </span>
               <span className="block text-xs text-gray-400">
-                Consulta los edificios previos obligatorios, recursos comunes (Comida, Madera, Hierro, Petróleo) y tiempo de construcción (tiempo base sin buffs) para llegar al Nivel 30.
+                {t('mansion.guide_desc', 'Consulta los edificios previos obligatorios, recursos comunes (Comida, Madera, Hierro, Petróleo) y tiempo de construcción (tiempo base sin buffs) para llegar al Nivel 30.')}
               </span>
             </div>
           </div>
           <span className="font-mono text-xs text-amber-400 border border-amber-500/30 px-3 py-1 rounded-full shrink-0">
-            {showBase1To30Table ? 'Ocultar Guía 1–30' : 'Ver Guía Nv. 1 a 30'}
+            {showBase1To30Table ? t('mansion.btn_hide_guide', 'Ocultar Guía 1–30') : t('mansion.btn_show_guide', 'Ver Guía Nv. 1 a 30')}
           </span>
         </button>
 
@@ -1781,7 +1832,7 @@ const MansionCalculator: React.FC = () => {
               <div className="flex items-center gap-2 text-xs text-amber-300 font-mono">
                 <Clock className="w-4 h-4 shrink-0" />
                 <span>
-                  *Tiempos base del juego (sin potenciadores de velocidad, talentos ni ayudas de alianza).
+                  {t('mansion.guide_note', '*Tiempos base del juego (sin potenciadores de velocidad, talentos ni ayudas de alianza).')}
                 </span>
               </div>
               <a
@@ -1789,7 +1840,7 @@ const MansionCalculator: React.FC = () => {
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-black font-mono text-xs font-bold transition-all shadow-[0_0_12px_rgba(245,158,11,0.3)] shrink-0"
               >
                 <Castle className="w-3.5 h-3.5" />
-                <span>Ver Guía Completa en /guias</span>
+                <span>{t('mansion.btn_full_guide', 'Ver Guía Completa en /guias')}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -1798,21 +1849,21 @@ const MansionCalculator: React.FC = () => {
               <table className="w-full text-left font-mono text-xs">
                 <thead>
                   <tr className="border-b border-white/10 text-[11px] text-gray-400 uppercase bg-white/[0.03]">
-                    <th className="py-3 px-3">Nivel</th>
-                    <th className="py-3 px-4">Requisitos Previos</th>
-                    <th className="py-3 px-3 text-right">Tiempo Base</th>
-                    <th className="py-3 px-3 text-right text-emerald-300">Poder (CP)</th>
-                    <th className="py-3 px-3 text-right text-amber-200">Comida</th>
-                    <th className="py-3 px-3 text-right text-amber-200">Madera</th>
-                    <th className="py-3 px-3 text-right text-amber-200">Hierro</th>
-                    <th className="py-3 px-3 text-right text-amber-200">Petróleo</th>
+                    <th className="py-3 px-3">{t('mansion.th_level', 'Nivel')}</th>
+                    <th className="py-3 px-4">{t('mansion.th_prereqs', 'Requisitos Previos')}</th>
+                    <th className="py-3 px-3 text-right">{t('mansion.th_base_time', 'Tiempo Base')}</th>
+                    <th className="py-3 px-3 text-right text-emerald-300">{t('mansion.th_cp', 'Poder (CP)')}</th>
+                    <th className="py-3 px-3 text-right text-amber-200">{t('mansion.th_food', 'Comida')}</th>
+                    <th className="py-3 px-3 text-right text-amber-200">{t('mansion.th_wood', 'Madera')}</th>
+                    <th className="py-3 px-3 text-right text-amber-200">{t('mansion.th_iron', 'Hierro')}</th>
+                    <th className="py-3 px-3 text-right text-amber-200">{t('mansion.th_oil', 'Petróleo')}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
                   {BASE_MANSION_LEVELS_1_TO_30.map((item) => (
                     <tr key={item.level} className="hover:bg-white/[0.02] transition-colors">
                       <td className="py-2.5 px-3 font-bold text-amber-400 font-bebas text-base">
-                        Nv. {item.level}
+                        {t('mansion.level_prefix', 'Nv.')} {item.level}
                       </td>
                       <td className="py-2.5 px-4 font-sans text-gray-200 text-xs">
                         {item.requirements}

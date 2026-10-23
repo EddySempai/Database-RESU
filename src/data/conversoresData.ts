@@ -256,6 +256,7 @@ export interface ResourceMeta {
   name: string;
   nameEn: string;
   icon: string;
+  image?: string;
   color: string;
   badgeBg: string;
   borderColor: string;
@@ -267,6 +268,7 @@ export const RESOURCE_TYPES: Record<ResourceType, ResourceMeta> = {
     name: 'Comida',
     nameEn: 'Food',
     icon: '🌾',
+    image: '/recursos/Item_Food.webp',
     color: '#84cc16',
     badgeBg: 'bg-lime-500/10 text-lime-400 border-lime-500/30',
     borderColor: '#84cc16'
@@ -276,6 +278,7 @@ export const RESOURCE_TYPES: Record<ResourceType, ResourceMeta> = {
     name: 'Madera',
     nameEn: 'Wood',
     icon: '🪵',
+    image: '/recursos/Item_Wood.webp',
     color: '#d97706',
     badgeBg: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
     borderColor: '#d97706'
@@ -285,6 +288,7 @@ export const RESOURCE_TYPES: Record<ResourceType, ResourceMeta> = {
     name: 'Hierro',
     nameEn: 'Iron',
     icon: '⛓️',
+    image: '/recursos/Item_Iron.webp',
     color: '#94a3b8',
     badgeBg: 'bg-slate-500/10 text-slate-300 border-slate-500/30',
     borderColor: '#94a3b8'
@@ -294,6 +298,7 @@ export const RESOURCE_TYPES: Record<ResourceType, ResourceMeta> = {
     name: 'Petróleo',
     nameEn: 'Oil',
     icon: '🛢️',
+    image: '/recursos/Item_Oil.webp',
     color: '#38bdf8',
     badgeBg: 'bg-sky-500/10 text-sky-400 border-sky-500/30',
     borderColor: '#38bdf8'

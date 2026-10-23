@@ -212,16 +212,15 @@ const TrainingCalculator = () => {
     {
       target: '.tour-training-mode',
       content: t('tour.training_step1'),
-      
       buttons: ['close', 'skip'],
     },
     {
       target: '.tour-training-queues',
-      content: 'Configura tus filas de entrenamiento. Puedes agregar múltiples filas y establecer límites (por ejemplo, entrenar hasta N tropas).',
+      content: t('tour.training_step2', 'Configura tus filas de entrenamiento. Puedes agregar múltiples filas y establecer límites (por ejemplo, entrenar hasta N tropas).'),
     },
     {
       target: '.tour-training-inventory',
-      content: 'Ingresa la cantidad de aceleradores que tienes. Puedes subir una captura de pantalla y usar la IA para llenarlos automáticamente.',
+      content: t('tour.training_step3_inventory', 'Ingresa la cantidad de aceleradores que tienes. Puedes subir una captura de pantalla y usar la IA para llenarlos automáticamente.'),
     },
     {
       target: '.tour-training-results',
@@ -358,7 +357,7 @@ const TrainingCalculator = () => {
                   <button 
                     onClick={() => fileInputRef.current?.click()}
                     className="flex items-center gap-1 font-mono text-[9px] uppercase tracking-widest bg-blood-red/10 text-neon-red border border-blood-red/30 px-2 py-1 hover:bg-blood-red hover:text-white transition-colors cursor-pointer"
-                    title="Subir captura de pantalla para auto-rellenar"
+                    title={t('calculator.ai_autofill_title', 'Subir captura de pantalla para auto-rellenar')}
                   >
                     <UploadCloud size={12} /> {t('calculator.ai_autofill', 'Auto-Llenado IA')}
                   </button>

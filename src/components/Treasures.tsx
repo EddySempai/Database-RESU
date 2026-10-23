@@ -82,7 +82,7 @@ export default function Treasures() {
           </>
         ) : (
           <span className="text-gray-600 font-mono text-[10px] md:text-xs text-center px-1">
-            {type === 'current' ? 'CLICK (ACTUAL)' : 'CLICK (META)'}
+            {type === 'current' ? t('treasures.click_current', 'CLICK (ACTUAL)') : t('treasures.click_target', 'CLICK (META)')}
           </span>
         )}
       </div>
@@ -131,7 +131,7 @@ export default function Treasures() {
 
         <div className="mb-6 sm:mb-8 border-b border-gray-800 pb-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <h2 className="font-bebas text-3xl sm:text-4xl md:text-5xl text-white tracking-wider sm:tracking-widest text-center flex-1 break-words">
-            SIMULADOR DE <span className="text-neon-red">TESOROS</span>
+            {t('treasures.title_simulator', 'SIMULADOR DE TESOROS')}
           </h2>
           <TutorialButton onClick={startTour} className="relative z-20 flex items-center gap-2 bg-black/60 hover:bg-blood-red/20 border border-gray-700 hover:border-blood-red text-gray-400 hover:text-white px-3 py-1.5 rounded-full transition-colors cursor-pointer group text-xs sm:text-sm" />
         </div>

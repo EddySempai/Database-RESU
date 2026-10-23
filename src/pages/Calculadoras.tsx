@@ -112,11 +112,11 @@ const Calculadoras = () => {
   return (
     <div className="pt-24 min-h-screen relative z-10 w-full overflow-x-hidden">
       <Helmet>
-        <title>Calculadoras Tácticas (Tropas, Luminio, Tesoros) | Resident Evil: Survival Unit Wiki</title>
-        <meta name="description" content="Calculadoras de Resident Evil: Survival Unit. Simula aceleradores de entrenamiento de tropas para Cumbre de Ases, árbol de investigación de Luminio, tesoros míticos y gemas." />
+        <title>{t('tools_page.page_title', 'Calculadoras Tácticas (Tropas, Luminio, Tesoros, Mansión) | Resident Evil: Survival Unit Wiki')}</title>
+        <meta name="description" content={t('tools_page.page_desc', 'Calculadoras y simuladores tácticos de Resident Evil: Survival Unit.')} />
         <link rel="canonical" href="https://resudb.com/herramientas" />
-        <meta property="og:title" content="Calculadoras Tácticas | Resident Evil: Survival Unit Wiki" />
-        <meta property="og:description" content="Simuladores y calculadoras tácticas para Resident Evil: Survival Unit." />
+        <meta property="og:title" content={t('tools_page.page_title', 'Calculadoras Tácticas | Resident Evil: Survival Unit Wiki')} />
+        <meta property="og:description" content={t('tools_page.page_desc', 'Simuladores y calculadoras tácticas para Resident Evil: Survival Unit.')} />
         <meta property="og:url" content="https://resudb.com/herramientas" />
         <meta property="og:image" content="https://resudb.com/metadata-img.png" />
       </Helmet>
@@ -133,7 +133,7 @@ const Calculadoras = () => {
         >
           <span>{t('tools_page.tab_mansion', 'Mansión')}</span>
           <span className="px-1.5 py-0.5 text-[9px] rounded bg-black/40 text-amber-300 border border-amber-400/30">
-            NUEVO
+            {t('tools_page.badge_new', 'NUEVO')}
           </span>
         </button>
         <button 
@@ -158,9 +158,9 @@ const Calculadoras = () => {
           to="/conversores"
           className="px-4 sm:px-6 py-2 font-mono text-xs sm:text-sm uppercase tracking-wider sm:tracking-widest rounded-full transition-all duration-300 cursor-pointer flex items-center gap-2 bg-gradient-to-r from-purple-900/60 to-amber-900/60 text-purple-200 border border-purple-500/40 hover:text-white hover:border-purple-400 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]"
         >
-          <span>Conversores Tácticos</span>
+          <span>{t('tools_page.tab_converters', 'Conversores Tácticos')}</span>
           <span className="px-1.5 py-0.5 text-[9px] rounded bg-purple-500/30 text-purple-200 border border-purple-400/30">
-            NUEVO
+            {t('tools_page.badge_new', 'NUEVO')}
           </span>
         </Link>
       </div>

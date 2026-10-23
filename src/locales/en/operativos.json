@@ -14,11 +14,11 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "Defender ATK Power",
         "value": "260.23%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "Defender DEF Power",
         "value": "260.23%"
       }
     ],
@@ -58,7 +58,7 @@
       {
         "type": "Exploración",
         "name": "Piercing Shot",
-        "description": "Cada 20 segundos, saca el Lightning Hawk y dispara en línea recta, infligiendo daño equivalente al {0} del poder de ataque y aturdiendo a los enemigos durante 2 segundos.",
+        "description": "Every 20 seconds, draws the Lightning Hawk to fire at enemies in a line, dealing damage equal to {0} of Attack and stunning them for 2 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_133000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -66,7 +66,7 @@
       {
         "type": "Campo",
         "name": "Martial Arts Expert",
-        "description": "Every 2 turns, allied defensores in this hero's squad have a {0} chance to stun the target troop type for 1 turn(s). (Max 3 stun attempts per target each turn).",
+        "description": "When an ally squad containing this hero is in battle, every 2 turns, ally Defenders have a {0} chance to stun their targeted enemy type for 1 turn. (Stun attempts may be made on a target up to 3 times a turn.)",
         "iconUrl": "/icons/skill/Icon_Field_Skill_233000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -112,51 +112,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "Attacker ATK Power",
         "value": "200.18%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "Attacker DEF Power",
         "value": "200.18%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Minigun Burst",
-        "description": "Dispara 60 balas de minigun en línea recta. Cada bala que impacta inflige daño equivalente al {0} del poder de ataque.",
+        "name": "Minigun Barrage",
+        "description": "Fires 60 machine gun rounds in a straight line. Each round deals damage equal to {0} of Attack to the hit enemy.",
         "iconUrl": "/icons/skill/Icon_Skill_113001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Suppressing Fire",
-        "description": "Every 2 turns, allied atacantes in this hero's squad have a {0} chance to stun the target troop type for 1 turn(s). (Max 3 stun attempts per target each turn).",
+        "name": "Cluster Fire",
+        "description": "When an ally squad containing this hero is in battle, every 2 turns, ally Attackers have a {0} chance to stun their targeted enemy type for 1 turn. (Stun attempts may be made on a target up to 3 times a turn.)",
         "iconUrl": "/icons/skill/Fuego de supresion (claire).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Electric Shot",
-        "description": "Cada 20 segundos, utiliza el lanzadescargas para infligir daño equivalente al {0} del poder de ataque a 1 enemigo y lo aturde durante 3 segundos. Tras 3 segundos, el objetivo aturdido explota, infligiendo {1} de daño en el área cercana.",
+        "name": "Spark Shot",
+        "description": "Every 20s, uses the Spark Shot to deal damage equal to {0} of ATK to 1 enemy and stuns it for 3s. After 3s, the stunned target explodes, dealing {1} damage in the nearby area.",
         "iconUrl": "/icons/skill/Icon_Skill_123001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Impacto Crítico",
-        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen un 50% de probabilidad de aumentar {0} el daño infligido a los enemigos.",
+        "name": "Critical Impact",
+        "description": "In combat, allied units including this hero have a 50% chance to increase damage dealt to enemies by {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_223001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Determinación Férrea",
-        "description": "Cuando Claire realiza un ataque común, su poder de ataque aumenta en {0} durante 3 segundos. Este efecto puede acumularse hasta 12 veces.",
+        "name": "Iron Determination",
+        "description": "When Claire performs a normal attack, her ATK increases by {0} for 3s. Stacks up to 12 times.",
         "iconUrl": "/icons/skill/Icon_Skill_133001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -171,8 +171,8 @@
       },
       {
         "type": "Exploración",
-        "name": "Power Modification",
-        "description": "Los héroes aliados que combaten junto a Claire infligen {0} más de daño a los enemigos.",
+        "name": "Power Enhancement",
+        "description": "Ally heroes participating in battle with Claire deal {0} increased damage to enemies.",
         "iconUrl": "/icons/skill/Icon_Skill_143001.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -202,11 +202,11 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "Ranger ATK Power",
         "value": "200.18%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "Ranger DEF Power",
         "value": "200.18%"
       }
     ],
@@ -300,19 +300,19 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "Defender ATK Power",
         "value": "200.18%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "Defender DEF Power",
         "value": "200.18%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Enhanced Hand Grenade",
-        "description": "Lanza una granada de mano mejorada que inflige daño equivalente al {0} del poder de ataque a los enemigos dentro de un radio circular.",
+        "name": "Enhanced Grenade",
+        "description": "Throws an enhanced grenade, dealing damage equal to {0} of Attack in a circular area.",
         "iconUrl": "/icons/skill/Icon_Skill_113002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -320,7 +320,7 @@
       {
         "type": "Campo",
         "name": "Flashbang",
-        "description": "Every 2 turns, allied defensores in this hero's squad have a {0} chance to stun the target troop type for 1 turn(s). (Max 3 stun attempts per target each turn).",
+        "description": "When an ally squad containing this hero is in battle, every 2 turns, ally Defenders have a {0} chance to stun their targeted enemy type for 1 turn. (Stun attempts may be made on a target up to 3 times a turn.)",
         "iconUrl": "/icons/skill/Granada cegadora (carlos).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -328,7 +328,7 @@
       {
         "type": "Exploración",
         "name": "Bulletproof Vest",
-        "description": "Si Carlos no recibe daño durante 3 segundos, obtiene un escudo que absorbe daño equivalente al {0} de su salud máxima.",
+        "description": "When an ally squad containing this hero is in battle, reduces damage taken by the squad from the enemy by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_123002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -343,8 +343,8 @@
       },
       {
         "type": "Exploración",
-        "name": "Reinforced Ammo",
-        "description": "Cada 5 ataques normales, el daño del ataque normal contra 1 enemigo aumenta en {0} e ignora su defensa.",
+        "name": "Enhanced Ammo",
+        "description": "After every 5 normal attacks, deals {0} increased normal attack damage and ignores defense against a single enemy.",
         "iconUrl": "/icons/skill/Icon_Skill_133002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -390,58 +390,58 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "Attacker ATK Power",
         "value": "200.18%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "Attacker DEF Power",
         "value": "200.18%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Dispositivo de señuelo",
-        "description": "Ada lanza un señuelo que atrae a los infectados dentro de un área circular durante 3 segundos, para luego detonar causando daño equivalente al {0} del poder de ataque.",
+        "name": "Decoy Device",
+        "description": "Ada throws a decoy that lures Infected in a circular area for 3 seconds before detonating it, dealing damage equal to {0} of Attack.",
         "iconUrl": "/icons/skill/Icon_Skill_113003.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Terreno favorable",
-        "description": "En combate, la defensa de las unidades aliadas que incluyen a este héroe aumenta {0} y su salud aumenta {1}.",
+        "name": "Favorable Terrain",
+        "description": "When an ally squad containing this hero is in battle, increases the Defense of the squad by {0} and HP by {1}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_213003.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Escaneo EMF",
-        "description": "Recoge Información cada 1 segundo. Por cada 1 Información recogida, su poder de ataque aumenta en{0}. (Máximo 20 veces)",
+        "name": "EMF Scan",
+        "description": "Collects Intel every 1 second. For every 1 Intel collected, increases Attack by {0} (up to 20 times).",
         "iconUrl": "/icons/skill/Icon_Skill_123003.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Uso de la información",
-        "description": "Los recursos consumidos en construcción se reducen en {0} y la velocidad de mejoras de edificios aumenta en {1}.",
+        "name": "Information Utilization",
+        "description": "Reduces construction resource costs by {0} and increases building upgrade speed by {1}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_223003.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Visualizador EMF",
-        "description": "Al inicio del combate, analiza el entorno y aumenta el efecto de los objetos colocados en {0}.",
+        "name": "EMF Accelerator",
+        "description": "At the start of battle, analyzes the surroundings to increase the effect of nearby objects by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_133003.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Mente Maestra",
+        "name": "Mastermind",
         "description": "Increases damage dealt to enemies by allied units including this hero by {0} in combat.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_233003.webp",
         "isArmaEspecial": false,
@@ -449,16 +449,16 @@
       },
       {
         "type": "Exploración",
-        "name": "Objeto raro y preciado",
-        "description": "Aumenta el poder de ataque de todos los aliados en {0}, y el poder de defensa en {1}.",
+        "name": "Rare Keepsake",
+        "description": "Increases all allied units' Attack by {0} and Defense by {1}.",
         "iconUrl": "/icons/skill/Icon_Skill_143003.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Información confidencial",
-        "description": "Cuando este héroe es el líder de guarnición, la penetración de las unidades aliadas aumenta {0} en combates defensivos.",
+        "name": "Classified",
+        "description": "If this hero is the Garrison Leader, increases the Penetration of the ally squad by {0} in Garrison Battles.",
         "iconUrl": "/icons/skill/Icon_Skill_243003.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -480,18 +480,18 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "Ranger ATK Power",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "Ranger DEF Power",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 1",
+        "name": "Active Skill 1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_112009.webp",
         "isArmaEspecial": false,
@@ -499,7 +499,7 @@
       },
       {
         "type": "Campo",
-        "name": "Experiencia del veterano",
+        "name": "Veteran’s Experience",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Experiencia del veterano (mikhail).webp",
         "isArmaEspecial": false,
@@ -507,7 +507,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 2",
+        "name": "Active Skill 2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_122009.webp",
         "isArmaEspecial": false,
@@ -515,7 +515,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 2",
+        "name": "Passive Skill 2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222009.webp",
         "isArmaEspecial": false,
@@ -523,8 +523,8 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 3",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "Last Stronghold",
+        "description": "Throws a signboard to push back enemies in a circular area, dealing damage equal to {0} of Attack and stunning them for 0.2 seconds. Enemies hit by the signboard have their Movement Speed reduced by 30% for 5 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_132009.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -546,51 +546,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "Defender ATK Power",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "Defender DEF Power",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Barricada",
-        "description": "Instala una barricada en la zona designada. Su durabilidad equivale al {0} de la salud máxima y el poder de defensa de Marvin.",
+        "name": "Barricade",
+        "description": "Deploys a barricade at the designated area. The barricade has HP equal to {0} of Marvin's Max HP and Defense.",
         "iconUrl": "/icons/skill/Icon_Skill_112002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Instinto policial",
-        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "name": "Cop’s Instinct",
+        "description": "When an ally squad containing this hero is in battle, reduces damage taken by the squad from the enemy by {0}.",
         "iconUrl": "/icons/skill/Instinto Policial (Marvin).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Disparo a la pierna",
-        "description": "Al realizar un ataque común, hay un 50% de probabilidad de apuntar a las piernas del enemigo, causando daño equivalente al {0} del poder de ataque y reduciendo su velocidad de movimiento en un 20%. (Tiempo de recarga: 3 segundos)",
+        "name": "Leg Shot",
+        "description": "On normal attack, has a 50% chance to target the enemy's legs, dealing damage equal to {0} of Attack and reducing their Movement Speed by 20%. (Cooldown: 3 seconds)",
         "iconUrl": "/icons/skill/Icon_Skill_122002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Desarme",
-        "description": "Las unidades aliadas que incluyen a este héroe reducen {0} el ataque de los enemigos en combate.",
+        "name": "Tactical Disarm",
+        "description": "Reduces ATK damage dealt by enemy units.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Empujón",
-        "description": "Cada {0}, inflige {1} de daño de ataque a un enemigo cercano, lo empuja y lo aturde durante 1 segundo.",
+        "name": "Defensive Push",
+        "description": "Pushes back nearby enemies to maintain defensive positions.",
         "iconUrl": "/icons/skill/Icon_Skill_132002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -612,51 +612,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "Attacker ATK Power",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "Attacker DEF Power",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Municiones de tormenta",
-        "description": "Dispara ráfagas de balas en un área en forma de abanico al frente. Los enemigos dentro del área reciben daño equivalente al {0} del poder de ataque.",
+        "name": "Storm Ammo",
+        "description": "Fires bullets in a fan-shaped area, dealing damage equal to {0} of Attack to targets in range.",
         "iconUrl": "/icons/skill/Icon_Skill_112006.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Trance total",
-        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "name": "Trance",
+        "description": "When an ally squad containing this hero is in battle, increases damage dealt by the squad to the enemy by {0}.",
         "iconUrl": "/icons/skill/trance total (becca).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Postura de disparo",
-        "description": "Cada 10 segundos, la velocidad de ataque de Becca aumenta en un {0}. (Durante 7.5 segundos)",
+        "name": "Firing Stance",
+        "description": "Every 10 seconds, Becca's Attack Speed increases by {0} for 7.5 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_122006.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Chaleco antibalas",
-        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "name": "Bulletproof Vest",
+        "description": "When an ally squad containing this hero is in battle, reduces damage taken by the squad from the enemy by {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222006.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Tiro al blanco",
-        "description": "Al realizar un ataque normal, hay un 30% de probabilidad de que el daño del ataque normal aumente {0}.",
+        "name": "Bullseye",
+        "description": "On normal attack, has a 30% chance to deal {0} increased normal attack damage.",
         "iconUrl": "/icons/skill/Icon_Skill_132006.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -678,43 +678,43 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "Defender ATK Power",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "Defender DEF Power",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Patada a la pierna",
-        "description": "Lanza una patada que ataca a los enemigos en una línea frontal, causando daño equivalente al {0} del poder de ataque y aturdiéndolos durante 3.5 segundos.",
+        "name": "Leg Kick",
+        "description": "Delivers a kick in a straight line, dealing damage equal to {0} of Attack to enemies and stunning them for 3.5 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_112000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Tacleo de hombro",
-        "description": "Las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de aumentar {0} el daño infligido a los enemigos durante 3 turnos en combate.",
+        "name": "Shoulder Tackle",
+        "description": "When an ally squad containing this hero is in battle, has a 20% chance to increase damage dealt by the squad to the enemy by {0} for 3 turns.",
         "iconUrl": "/icons/skill/tecleo de hombro (tyrone).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Golpe giratorio",
-        "description": "Cada 3 ataques normales, realiza un gran golpe con el hacha que inflige {0} más de daño de ataque normal a los enemigos en un área circular y los empuja.",
+        "name": "Swing",
+        "description": "After every 3 normal attacks, swings an axe in a circular area, dealing {0} increased normal attack damage and pushing hit enemies back.",
         "iconUrl": "/icons/skill/Icon_Skill_122000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "\"Conocimientos de primeros auxilios",
-        "description": "Aumenta la velocidad de tratamiento en el hospital en {0}.",
+        "name": "First Aid Knowledge",
+        "description": "JIncreases the healing speed of the Hospital by {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -722,7 +722,7 @@
       {
         "type": "Exploración",
         "name": "Rally",
-        "description": "Cada 12 segundos, eleva la moral del equipo y aumenta el poder de defensa de todos los aliados en {0}. (Durante 8 segundos)",
+        "description": "Every 12 seconds, inspires the team and increases the Defense of all allies by {0} for 8 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_132000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -744,51 +744,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "Attacker ATK Power",
         "value": "90.09%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "Attacker DEF Power",
         "value": "90.09%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Dios de la puntería",
-        "description": "Apunta a las piernas de todos los enemigos dentro de un área en forma de abanico, infligiendo daño equivalente al {0} del poder de ataque y reduciendo su velocidad de movimiento en un 30%. (Durante 5 segundos)",
+        "name": "God of Shooting",
+        "description": "Targets the legs of all enemies in a fan-shaped area, dealing damage equal to {0} of Attack and reducing their Movement Speed by 30% for 5 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_111000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Disparo decisivo",
-        "description": "Every 4 turns, allied atacantes in this hero's squad have a {0} chance to stun the target troop type for 1 turn(s). (Max 3 stun attempts per target each turn).",
+        "name": "Critical Shot",
+        "description": "When an ally squad containing this hero is in battle, every 4 turns, ally Attackers have a {0} chance to stun their targeted enemy type for 1 turn. (Stun attempts may be made on a target up to 3 times a turn.)",
         "iconUrl": "/icons/skill/Dios de la puntería (Murphy Seeker) .webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Disparo a la cabeza",
-        "description": "Cada 24 segundos, inflige daño equivalente al {0} del poder de ataque y aturde a los enemigos durante 2 segundos.",
+        "name": "Headshot",
+        "description": "Every 24 seconds, deals damage equal to {0} of Attack and stuns the enemy for 2 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_121000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad de recolección",
-        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de alimentos aumenta {0}.",
+        "name": "Gathering Skill",
+        "description": "When a squad containing this hero is deployed, increases Food Collection Speed by {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_221000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Tiro Penetrante",
-        "description": "Al realizar un ataque normal, hay un 25% de probabilidad de que el daño del ataque normal contra 1 enemigo aumente {0} e ignore su defensa.",
+        "name": "Penetrating Shot",
+        "description": "Every 4 normal attacks, fires a penetrating shot that deals {0} additional normal attack damage.",
         "iconUrl": "/icons/skill/Icon_Skill_131000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -810,19 +810,19 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "Attacker ATK Power",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "Attacker DEF Power",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Ametralladora automática",
-        "description": "Instala una ametralladora automática que ataca de forma autónoma a los enemigos en el área. La ametralladora tiene un poder de ataque equivalente al {0} según el poder de ataque de Tyrell Patrick y una durabilidad igual a {1} de su salud máxima.",
+        "name": "V-JOLT Toss",
+        "description": "Throws a vial of special solution, dealing damage equal to {0} of Attack in a circular area.",
         "iconUrl": "/icons/skill/Icon_Skill_112014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -837,24 +837,24 @@
       },
       {
         "type": "Exploración",
-        "name": "Configuración de base",
-        "description": "Aumenta el poder de ataque de los aliados cercanos a la ametralladora automática en {0}. Este efecto no se acumula.",
+        "name": "Stun Shot",
+        "description": "Fires a taser gun that stuns targets.",
         "iconUrl": "/icons/skill/Icon_Skill_122014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Inteligencia del hacker",
-        "description": "Aumenta la velocidad de investigación del laboratorio en {0}.",
+        "name": "Nimble Step",
+        "description": "Increases march speed when deploying a unit including this hero.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Campo electromagnético",
-        "description": "La ametralladora automática emite un pulso eléctrico hacia un enemigo cercano, inflige {0} de daño de ataque a los enemigos en un área circular alrededor de ella y los aturde durante 2.5 segundos.",
+        "name": "Journalist’s Instinct",
+        "description": "When a squad containing this hero is deployed, increases Marching Speed toward Infected/Aberrations by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_132014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -876,19 +876,19 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "Attacker ATK Power",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "Attacker DEF Power",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Municiones de tormenta",
-        "description": "Dispara ráfagas de balas en un área en forma de abanico al frente. Los enemigos dentro del área reciben daño equivalente al {0} del poder de ataque.",
+        "name": "Flamethrower",
+        "description": "Unleashes a flamethrower, dealing damage equal to {0} of Attack to enemies in a fan-shaped area. Affected enemies are burned, taking continuous damage equal to {1} of Attack per second for 5 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_112010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -903,24 +903,24 @@
       },
       {
         "type": "Exploración",
-        "name": "Postura de disparo",
-        "description": "Cada 10 segundos, la velocidad de ataque de Becca aumenta en un {0}. (Durante 7.5 segundos)",
+        "name": "High-Powered Ammo",
+        "description": "Increases normal attack damage by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_122010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Bulletproof Vest",
-        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "name": "Lumber Collection",
+        "description": "When a squad containing this hero is deployed, increases Lumber Collection Speed by {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Tiro al blanco",
-        "description": "Al realizar un ataque normal, hay un 30% de probabilidad de que el daño del ataque normal aumente {0}.",
+        "name": "Cheer",
+        "description": "HIncreases the Defense of all allied units by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_132010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -942,51 +942,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "Defender ATK Power",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "Defender DEF Power",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Disparo en abanico",
-        "description": "Dispara 6 balas rápidamente, infligiendo daño equivalente al {0} del poder de ataque por cada impacto a los enemigos alcanzados.",
+        "name": "Crushing Blow",
+        "description": "Swings a heavy object dealing blunt damage and stunning enemies.",
         "iconUrl": "/icons/skill/Icon_Skill_112012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Entrenamiento físico",
-        "description": "Al desplegar una unidad que incluya a este héroe, el consumo de energía se reduce en {0}.",
+        "name": "Bulk Up",
+        "description": "When an ally squad containing this hero is in battle, increases the HP of the squad by {0}.",
         "iconUrl": "/icons/skill/Desarrollo muscular (bulk up) - (mark).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Disparo Frenético",
-        "description": "Cuando realiza un ataque normal, su velocidad de ataque aumenta en {0} durante 5 segundos. Este efecto se acumula hasta 3 veces.",
+        "name": "Iron Guard",
+        "description": "Assumes a defensive stance that drastically reduces damage taken for several seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_122012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Liderazgo",
-        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de despliegue contra infectados y mutantes aumenta {0}.",
+        "name": "Sturdy Build",
+        "description": "Increases overall DEF of squad units.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Veterano de combate",
-        "description": "Aumenta el daño infligido de los ataques comunes en {0}.",
+        "name": "Shock Charge",
+        "description": "Charges forward with force, knocking aside enemies in his path.",
         "iconUrl": "/icons/skill/Icon_Skill_132012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1008,19 +1008,19 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "Ranger ATK Power",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "Ranger DEF Power",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Municiones de detención",
-        "description": "Dispara en ráfagas balas de alto poder de contención, empujando a los enemigos dentro de un área en forma de abanico y causando daño equivalente al {0} del poder de ataque. Los enemigos impactados quedan aturdidos por 0.5 segundos y reducen su velocidad de movimiento en un 20%. (Durante 5 segundos)",
+        "name": "Magnum Shot",
+        "description": "Fires a high-caliber Magnum round dealing massive damage.",
         "iconUrl": "/icons/skill/Icon_Skill_112007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1035,24 +1035,24 @@
       },
       {
         "type": "Exploración",
-        "name": "¡Toma esto!",
-        "description": "Cada 20 segundos, coloca una bomba a 1 enemigo cercano y lo empuja hacia atrás. El enemigo repelido queda aturdido por 2 segundos y luego explota, causando daño equivalente al {0} del poder de ataque dentro de un área circular.",
+        "name": "Deadeye Shot",
+        "description": "Barry aims carefully, dealing critical damage to a target.",
         "iconUrl": "/icons/skill/Icon_Skill_122007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Conocimiento de forja",
-        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de hierro aumenta {0}.",
+        "name": "Heavy Ballistics",
+        "description": "Increases firepower of allied Attackers in the unit.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Apoyo de fuego",
-        "description": "Aumenta el poder de ataque de todos los aliados en {0}.",
+        "name": "Cover Fire",
+        "description": "When an ally squad containing this hero is in battle, increases damage dealt by the squad to the enemy by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_132007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1074,51 +1074,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "Ranger ATK Power",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "Ranger DEF Power",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Ametralladora automática",
-        "description": "Instala una ametralladora automática que ataca de forma autónoma a los enemigos en el área. La ametralladora tiene un poder de ataque equivalente al según el poder de ataque de Tyrell Patrick y una durabilidad igual a de su salud máxima.",
+        "name": "Auto Turret",
+        "description": "Deploys a turret that automatically attacks enemies in range. The turret has Attack equal to {0} of Tyrell Patrick’s Attack and HP equal to {1} of his Max HP.",
         "iconUrl": "/icons/skill/Icon_Skill_112008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Análisis de puntos débiles",
-        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta en combate.",
+        "name": "Weak Spot Analysis",
+        "description": "When an ally squad containing this hero is in battle, increases damage dealt by the squad to the enemy by {0}.",
         "iconUrl": "/icons/skill/Analisi de puntos debiles (tyrell).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Configuración de base",
-        "description": "Aumenta el poder de ataque de los aliados cercanos a la ametralladora automática en . Este efecto no se acumula.",
+        "name": "Base Setup",
+        "description": "Allies near the Auto Turret gain {0} Attack. This effect does not stack.",
         "iconUrl": "/icons/skill/Icon_Skill_122008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Inteligencia del hacker",
-        "description": "Aumenta la velocidad de investigación del laboratorio en .",
+        "name": "Hacker’s Intel",
+        "description": "KIncreases research speed at the Research Lab by {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Campo electromagnético",
-        "description": "La ametralladora automática emite un pulso eléctrico hacia un enemigo cercano, inflige de daño de ataque a los enemigos alcanzados y los aturde durante segundos.",
+        "name": "Electromagnetic Field",
+        "description": "The Auto Turret emits an electric pulse, dealing damage equal to {0} of Attack in a circular area around it and stunning them for 2.5 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_132008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1140,51 +1140,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "Defender ATK Power",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "Defender DEF Power",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Barricada",
-        "description": "Instala una barricada en la zona designada. Su durabilidad equivale al {0} de la salud máxima y el poder de defensa de Marvin.",
+        "name": "Suppressive Round",
+        "description": "Fires a series of high stopping power rounds in a fan-shaped area, dealing damage equal to {0} of Attack and pushing enemies back. Enemies that are hit are stunned for 0.5 seconds and have their Movement Speed reduced by 20% for 5 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_112004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Instinto policial",
-        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "name": "Modification Expert",
+        "description": "When an ally squad containing this hero is in battle, increases the Attack of the squad by {0}.",
         "iconUrl": "/icons/skill/Experto en modificacion (robert).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Disparo a la pierna",
-        "description": "Al realizar un ataque común, hay un 50% de probabilidad de apuntar a las piernas del enemigo, causando daño equivalente al {0} del poder de ataque y reduciendo su velocidad de movimiento en un 20%. (Tiempo de recarga: 3 segundos)",
+        "name": "Take That!",
+        "description": "When performing a normal attack, has a 20% chance to deal additional critical damage.",
         "iconUrl": "/icons/skill/Icon_Skill_122004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Desarme",
-        "description": "Las unidades aliadas que incluyen a este héroe reducen {0} el ataque de los enemigos en combate.",
+        "name": "Forging Knowledge",
+        "description": "When a squad containing this hero is deployed, increases Iron Collection Speed by {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Empujón",
-        "description": "Cada {0}, inflige {1} de daño de ataque a un enemigo cercano, lo empuja y lo aturde durante 1 segundo.",
+        "name": "Fire Support",
+        "description": "GIncreases the Attack of all allied units by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_132004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1206,19 +1206,19 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "Ranger ATK Power",
         "value": "90.09%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "Ranger DEF Power",
         "value": "90.09%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Último recurso",
-        "description": "Lanza un letrero que empuja a los enemigos dentro de un área circular, inflige daño equivalente al {0} del poder de ataque y lo aturde durante 0.2 segundos. Los enemigos alcanzados por el letrero reducen su velocidad de movimiento en un 30%. (Durante 5 segundos)",
+        "name": "Last Stronghold",
+        "description": "Throws a signboard to push back enemies in a circular area, dealing damage equal to {0} of Attack and stunning them for 0.2 seconds. Enemies hit by the signboard have their Movement Speed reduced by 30% for 5 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_111001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1233,8 +1233,8 @@
       },
       {
         "type": "Exploración",
-        "name": "Survivor Instinct",
-        "description": "Cada 15 segundos, aumenta el poder de defensa de todos los aliados en {0}. (Durante 8 segundos)",
+        "name": "Coward’s Instinct",
+        "description": "Every 15 seconds, increases the Defense of all allies by {0} for 8 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_121001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1242,7 +1242,7 @@
       {
         "type": "Campo",
         "name": "Fuel Management",
-        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de petróleo aumenta {0}.",
+        "description": "When a squad containing this hero is deployed, increases Oil Collection Speed by {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_221001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1250,7 +1250,7 @@
       {
         "type": "Exploración",
         "name": "Confidence",
-        "description": "El daño del ataque normal contra enemigos con velocidad de movimiento reducida aumenta {0}.",
+        "description": "Deals {0} increased normal attack damage against enemies with reduced Movement Speed.",
         "iconUrl": "/icons/skill/Icon_Skill_131001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1272,18 +1272,18 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "Defender ATK Power",
         "value": "240.21%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "Defender DEF Power",
         "value": "240.21%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 1",
+        "name": "Active Skill 1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_110001.webp",
         "isArmaEspecial": false,
@@ -1291,7 +1291,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 1",
+        "name": "Passive Skill 1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210001.webp",
         "isArmaEspecial": false,
@@ -1299,7 +1299,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 2",
+        "name": "Active Skill 2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_120001.webp",
         "isArmaEspecial": false,
@@ -1307,7 +1307,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 2",
+        "name": "Passive Skill 2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_220001.webp",
         "isArmaEspecial": false,
@@ -1315,7 +1315,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 3",
+        "name": "Active Skill 3",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_130001.webp",
         "isArmaEspecial": false,
@@ -1323,7 +1323,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 3",
+        "name": "Passive Skill 3",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_230001.webp",
         "isArmaEspecial": false,
@@ -1331,7 +1331,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Arma Especial (Activa)",
+        "name": "Special Weapon (Active)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_01.webp",
         "isArmaEspecial": true,
@@ -1339,7 +1339,7 @@
       },
       {
         "type": "Campo",
-        "name": "Arma Especial (Pasiva)",
+        "name": "Special Weapon (Passive)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210001.webp",
         "isArmaEspecial": true,
@@ -1362,18 +1362,18 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "Attacker ATK Power",
         "value": "240.21%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "Attacker DEF Power",
         "value": "240.21%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 1",
+        "name": "Active Skill 1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_110004.webp",
         "isArmaEspecial": false,
@@ -1381,7 +1381,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 1",
+        "name": "Passive Skill 1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210004.webp",
         "isArmaEspecial": false,
@@ -1389,7 +1389,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 2",
+        "name": "Active Skill 2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_120004.webp",
         "isArmaEspecial": false,
@@ -1397,7 +1397,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 2",
+        "name": "Passive Skill 2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_220004.webp",
         "isArmaEspecial": false,
@@ -1405,7 +1405,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 3",
+        "name": "Active Skill 3",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_130004.webp",
         "isArmaEspecial": false,
@@ -1413,7 +1413,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 3",
+        "name": "Passive Skill 3",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_230004.webp",
         "isArmaEspecial": false,
@@ -1421,7 +1421,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Arma Especial (Activa)",
+        "name": "Special Weapon (Active)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_04.webp",
         "isArmaEspecial": true,
@@ -1429,7 +1429,7 @@
       },
       {
         "type": "Campo",
-        "name": "Arma Especial (Pasiva)",
+        "name": "Special Weapon (Passive)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210004.webp",
         "isArmaEspecial": true,
@@ -1452,18 +1452,18 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "Ranger ATK Power",
         "value": "240.21%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "Ranger DEF Power",
         "value": "240.21%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 1",
+        "name": "Active Skill 1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_110005.webp",
         "isArmaEspecial": false,
@@ -1471,7 +1471,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 1",
+        "name": "Passive Skill 1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210005.webp",
         "isArmaEspecial": false,
@@ -1479,7 +1479,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 2",
+        "name": "Active Skill 2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_120005.webp",
         "isArmaEspecial": false,
@@ -1487,7 +1487,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 2",
+        "name": "Passive Skill 2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_220005.webp",
         "isArmaEspecial": false,
@@ -1495,7 +1495,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 3",
+        "name": "Active Skill 3",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_130005.webp",
         "isArmaEspecial": false,
@@ -1503,7 +1503,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 3",
+        "name": "Passive Skill 3",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_230005.webp",
         "isArmaEspecial": false,
@@ -1511,7 +1511,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Arma Especial (Activa)",
+        "name": "Special Weapon (Active)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_05.webp",
         "isArmaEspecial": true,
@@ -1519,7 +1519,7 @@
       },
       {
         "type": "Campo",
-        "name": "Arma Especial (Pasiva)",
+        "name": "Special Weapon (Passive)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210005.webp",
         "isArmaEspecial": true,
@@ -1542,43 +1542,43 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "Ranger ATK Power",
         "value": "290.26%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "Ranger DEF Power",
         "value": "290.26%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Lit Lantern",
-        "description": "Ashley no ataca directamente, pero brinda apoyo a sus aliados con un farol. Su intensa luz aturde a los enemigos dentro del alcance durante {0} y reduce su velocidad de movimiento en {1}, dejándolos prácticamente inmovilizados.",
+        "name": "Shine Lantern",
+        "description": "Ashley supports her allies not with direct attacks, but by hindering the enemy's mobility. Her lantern's powerful light stuns enemies in the area for {0} and reduces their Movement Speed by {1}.",
         "iconUrl": "/icons/skill/Icon_Skill_113010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Luz del Farol",
-        "description": "Identifica al enemigo con la luz del farol y expone su punto débil. La defensa del objetivo se reduce en {1} durante {0}.",
+        "name": "Lantern Light",
+        "description": "Illuminates enemies with lantern light exposing weak points. Reduces target DEF by {1} for {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_213010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Ashley's Armor",
-        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de reducir {0} el daño infligido por los enemigos durante 2 turnos.",
+        "name": "Reborn Courage",
+        "description": "In combat, allied units including this hero have a 20% chance to increase damage dealt to enemies by {0} for 3 turns.",
         "iconUrl": "/icons/skill/Icon_Skill_123010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Apoyo Moral",
-        "description": "Ashley, en proporción a su propio ataque, aumenta en {0} el ataque del aliado más fuerte y le otorga un escudo de {1}.",
+        "name": "Appoint Bodyguard",
+        "description": "Ashley increases the Attack of the ally with the highest Attack by {0} of her Attack and grants them a shield that blocks damage equal to {1} of her Attack.",
         "iconUrl": "/icons/skill/Icon_Skill_223010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1593,23 +1593,23 @@
       },
       {
         "type": "Exploración",
-        "name": "Blue Lantern Light",
-        "description": "La defensa de la unidad aliada aumenta en {0}.",
+        "name": "Bonds of Kindness",
+        "description": "When an ally squad containing this hero is in battle, increases the HP of the squad by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_233010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Will to Survive",
-        "description": "Cuando este héroe es líder de concentración, la salud de las unidades aliadas aumenta {0} en combates de concentración.",
+        "name": "Determination to Survive",
+        "description": "If this hero is the Rally Leader, increases the HP of the ally squad by {0} in Rally Battles.",
         "iconUrl": "/icons/skill/Icon_Skill_143010.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Arma Especial (Pasiva)",
+        "name": "Special Weapon (Passive)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_243010.webp",
         "isArmaEspecial": true,
@@ -1632,66 +1632,66 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "Attacker ATK Power",
         "value": "290.26%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "Attacker DEF Power",
         "value": "290.26%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 1",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "Plant Dynamite",
+        "description": "Lobs dynamite in the designated location, dealing damage equal to {0} of Attack to enemies in the area.",
         "iconUrl": "/icons/skill/Icon_Skill_110007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 1",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "Come, Sancho Panza!",
+        "description": "When an ally squad containing this hero is in battle, has a 50% chance to increase damage taken by the enemy by {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 2",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "SR M1903",
+        "description": "Fires 2 rounds with the SR M1903. Each round deals damage equal to {0} of Attack to targets hit.",
         "iconUrl": "/icons/skill/Icon_Skill_120007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 2",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "Experimental Round",
+        "description": "When an ally squad containing this hero is in battle, has a 50% chance to increase damage dealt by the squad to the enemy by {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_220007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 3",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "Pipe Swing",
+        "description": "Swings a pipe, dealing damage equal to {0} of Attack to all enemies within the area and knocking them back.",
         "iconUrl": "/icons/skill/Icon_Skill_130007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 3",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "Inject Suppressant",
+        "description": "When an ally squad containing this hero is in battle, has a 40% chance to reduce damage taken by the squad from the enemy by {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_230007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Arma Especial (Activa)",
+        "name": "Special Weapon (Active)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_07.webp",
         "isArmaEspecial": true,
@@ -1699,7 +1699,7 @@
       },
       {
         "type": "Campo",
-        "name": "Arma Especial (Pasiva)",
+        "name": "Special Weapon (Passive)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210007.webp",
         "isArmaEspecial": true,
@@ -1722,35 +1722,35 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "Defender ATK Power",
         "value": "290.26%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "Defender DEF Power",
         "value": "290.26%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Mutant Release",
-        "description": "Desata el poder de Las Plagas y muta su brazo para causar 3 golpes con daño equivalente al {0} del ataque al enemigo. Además, recupera HP equivalente al {1} del daño causado.",
+        "name": "Unleash Mutation",
+        "description": "Unleashes the power of the Plaga within to mutate his arm, dealing {0} of Attack as damage 3 times. Additionally recovers HP equal to {1} of damage dealt.",
         "iconUrl": "/icons/skill/Icon_Skill_113008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Rising Slash",
-        "description": "Las unidades aliadas que incluyen a este héroe reducen {0} el ataque de los enemigos en combate.",
+        "name": "Upward Slash",
+        "description": "When an ally squad containing this hero is in battle, reduces the Attack of the enemy by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_213008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Explosive Bow",
-        "description": "Al impactar, la flecha explosiva inflige {0} de daño de ataque a los enemigos cercanos y {1} de daño adicional en el área.",
+        "name": "Explosive Arrows",
+        "description": "When an explosive arrow hits, it deals damage equal to {0} of Attack to nearby enemies and deals {1} bonus damage to the surrounding area.",
         "iconUrl": "/icons/skill/Icon_Skill_123008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1758,15 +1758,15 @@
       {
         "type": "Campo",
         "name": "Instructor",
-        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "description": "When an ally squad containing this hero is in battle, reduces damage taken by the squad from the enemy by {0}.",
         "iconUrl": "/icons/skill/Icon_Skill_223008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Dagger Technique",
-        "description": "Cuando un enemigo se acerca, blande un cuchillo e inflige 2 veces {0} de daño de ataque a los enemigos cercanos.",
+        "name": "Knife Expert",
+        "description": "Swings his knife when an enemy is in melee range, dealing damage equal to {0} of Attack to surrounding enemies 2 times.",
         "iconUrl": "/icons/skill/Icon_Skill_133008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1782,7 +1782,7 @@
       {
         "type": "Exploración",
         "name": "Adrenaline",
-        "description": "Por cada 1% de salud perdida, el ataque aumenta en {0}.",
+        "description": "GIncreases Attack by {0} for every 1% of HP lost.",
         "iconUrl": "/icons/skill/Icon_Skill_143008.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -1812,19 +1812,19 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "Defender ATK Power",
         "value": "370.33%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "Defender DEF Power",
         "value": "370.33%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Charged Attack",
-        "description": "Jake Muller toma impulso y lanza un golpe con la mano, infligiendo daño equivalente al {0} del ataque a los enemigos en un área rectangular frontal.",
+        "name": "Charge-Up Strike",
+        "description": "Jake Muller enters a stance before thrusting his hand forward to deal damage equal to {0} of Attack in a square-shaped area in front of him.",
         "iconUrl": "/icons/skill/Icon_Skill_113011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1832,15 +1832,15 @@
       {
         "type": "Campo",
         "name": "Defensive Melee Stance",
-        "description": "Durante el combate, cada vez que los defensores aliados de la unidad que incluye a este héroe atacan 4 veces, renuncian a atacar en el siguiente turno. A cambio, el daño que reciben los defensores de los enemigos se reduce {0} durante 2 turnos, y el daño que reciben los atacantes y rangers se reduce {1}.",
+        "description": "UWhen an ally squad containing this hero is in battle, ally Defenders in the squad give up their attack on the turn after attacking 4 times, and instead reduce damage taken by Defenders from the enemy by {0} and reduce damage taken by ally Attackers and Rangers from the enemy by {1} for 2 turns.",
         "iconUrl": "/icons/skill/Icon_Skill_213011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Spin Kick",
-        "description": "Jake Muller salta y patea, infligiendo {0} de daño de ataque a todos los objetivos en un área cónica cercana. Luego los empuja y los aturde durante 2 s.",
+        "name": "Spinning Kick",
+        "description": "Jake Muller performs a jump kick in place, dealing damage equal to {0} of Attack to all targets in a fan-shaped area. The targets are knocked back and stunned for 2 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_123011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1855,32 +1855,32 @@
       },
       {
         "type": "Exploración",
-        "name": "No Discounts",
-        "description": "Cuando Jake Muller recibe daño, obtiene inmunidad a estados alterados durante 5 s y reduce el daño recibido en {0}.",
+        "name": "No Discount",
+        "description": "When Jake Muller takes damage, he gains immunity to status effects and receives {0} less damage for 5 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_133011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "That's Extra",
-        "description": "Los defensores aliados de la unidad que incluye a este héroe tienen un {0} de probabilidad de infligir daño adicional al enemigo y aumentar en {1} el daño que recibe en combate.",
+        "name": "Extra Charge",
+        "description": "When an ally squad containing this hero is in battle, ally Defenders in the squad have a {0} chance to deal damage to the enemy one more time and increase damage taken by the enemy by {1}.",
         "iconUrl": "/icons/skill/Icon_Skill_233011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Antibody Gene",
-        "description": "Aumenta el ataque de Jake Muller en {0} y su defensa en {1}.",
+        "name": "Antibody Genes",
+        "description": "Increases Jake Muller's Attack by {0} and Defense by {1}.",
         "iconUrl": "/icons/skill/Icon_Skill_143011.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Resilient Spirit",
-        "description": "Cuando este héroe es líder de guarnición, la salud de las unidades aliadas aumenta {0} en combates defensivos.",
+        "name": "Rebel Spirit",
+        "description": "If this hero is the Garrison Leader, increases the HP of the ally squad by {0} in Garrison Battles.",
         "iconUrl": "/icons/skill/Icon_Skill_243011.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -1902,19 +1902,19 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "Attacker ATK Power",
         "value": "370.33%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "Attacker DEF Power",
         "value": "370.33%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Ráfaga de Rifle BC",
-        "description": "Saca el rifle de asalto BC y dispara 30 balas en línea recta. Cada enemigo alcanzado por las balas recibe daño equivalente al {0} del ataque.",
+        "name": "BC Rifle Barrage",
+        "description": "Draws the BC Assault Rifle and fires 30 rounds in a straight line. Each enemy hit takes damage equal to {0} of ATK.",
         "iconUrl": "/icons/skill/Icon_Skill_113012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1930,7 +1930,7 @@
       {
         "type": "Exploración",
         "name": "Flashbang",
-        "description": "Lanza una granada cegadora y aturde a los objetivos dentro de un área circular durante {0}.",
+        "description": "When an ally squad containing this hero is in battle, every 2 turns, ally Defenders have a {0} chance to stun their targeted enemy type for 1 turn. (Stun attempts may be made on a target up to 3 times a turn.)",
         "iconUrl": "/icons/skill/Icon_Skill_123012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1938,7 +1938,7 @@
       {
         "type": "Campo",
         "name": "Will to Live",
-        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen {0} de probabilidad de evadir los ataques enemigos.",
+        "description": "In combat, allied units including this hero have a 30% chance to reduce damage taken.",
         "iconUrl": "/icons/skill/Icon_Skill_223012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1946,23 +1946,23 @@
       {
         "type": "Exploración",
         "name": "Super Girl",
-        "description": "Sherry Birkin recupera salud equivalente al {0} de su salud máxima cada 15 s.",
+        "description": "RSherry Birkin heals for {0} of her Max HP every 15 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_133012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Burst Mode",
-        "description": "Los atacantes aliados de la unidad que incluye a este héroe tienen un {0} de probabilidad de atacar una vez más al enemigo e infligir daño en combate.",
+        "name": "Burst Fire",
+        "description": "When an ally squad containing this hero is in battle, ally Attackers in the squad have a {0} chance to attack and deal damage to the enemy one more time.",
         "iconUrl": "/icons/skill/Icon_Skill_233012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Rapid Fire",
-        "description": "Al realizar un ataque normal, hay un 25% de probabilidad de que el daño del ataque normal aumente en {0}.",
+        "name": "Quick Shot",
+        "description": "UNormal attacks have a 25% chance to deal {0} increased damage.",
         "iconUrl": "/icons/skill/Icon_Skill_143012.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -1992,66 +1992,66 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "Ranger ATK Power",
         "value": "370.33%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "Ranger DEF Power",
         "value": "370.33%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 1",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "Anti-Materiel Rifle",
+        "description": "Nivans switches to an anti-materiel rifle and fires a shot that penetrates all targets in a narrow straight line, dealing damage equal to {0} of Attack and stunning them for 2 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_110011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 1",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "Extreme Long-Distance Shot",
+        "description": "When an ally squad containing this hero is in battle, reduces damage dealt by the enemy to the squad by {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 2",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "Preternatural Concentration",
+        "description": "Normal attacks increase Attack by {0} for 3 seconds. This effect can stack up to 15 times.",
         "iconUrl": "/icons/skill/Icon_Skill_120011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 2",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "Sight In",
+        "description": "When an ally squad containing this hero is in battle, every 3 attacks by the squad increases the Attack of ally Rangers by {0} on the next turn. This effect stacks and lasts until the end of battle.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_220011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 3",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "Bomb Throw",
+        "description": "Throws a bomb at the farthest target, dealing damage equal to {0} of Attack.",
         "iconUrl": "/icons/skill/Icon_Skill_130011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 3",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "Trigger Discipline",
+        "description": "When an ally squad containing this hero is in battle, has a 40% chance to increase damage dealt by the squad to the enemy by {0}.",
         "iconUrl": "/icons/skill/Icon_Field_Skill_230011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Arma Especial (Activa)",
+        "name": "Special Weapon (Active)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_11.webp",
         "isArmaEspecial": true,
@@ -2059,7 +2059,7 @@
       },
       {
         "type": "Campo",
-        "name": "Arma Especial (Pasiva)",
+        "name": "Special Weapon (Passive)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210011.webp",
         "isArmaEspecial": true,
@@ -2082,27 +2082,27 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "Defender ATK Power",
         "value": "250.00%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "Defender DEF Power",
         "value": "250.00%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Wyvern Fire",
-        "description": "Tras cargar energía con el arma de cuadriga, genera una explosión que causa daño equivalente al {0} del ATQ a los enemigos en un área en abanico y los aturde durante 2 s.",
+        "name": "Wyvern's Fire",
+        "description": "Charges up energy with the Chariot Gun then causes an explosion, dealing damage equal to {0} of Attack to enemies in a fan-shaped area and stunning them for 2 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_113014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Detonating Impact",
-        "description": "Durante el combate, los Defensores aliados de la tropa de este héroe tienen una probabilidad de {0} cada 2 turnos de aturdir al tipo de tropa objetivo durante 1 turno. Si el objetivo es un objetivo de caza de Monster Hunter, se añade una probabilidad de {1}. (Máximo 3 intentos de aturdimiento por turno contra un mismo objetivo)",
+        "name": "Wyrmstake Impact",
+        "description": "When an ally squad containing this hero is in battle, every 2 turns, all Defenders have a {0} chance to stun the targeted unit type for 1 turn. Against hunt targets from Monster Hunter, has a {1} chance instead. (Stun attempts may be made on a target up to 3 times a turn.)",
         "iconUrl": "/icons/skill/Icon_Skill_213014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -2110,15 +2110,15 @@
       {
         "type": "Exploración",
         "name": "Burst Fire",
-        "description": "Descarga un poderoso golpe con un arma de cuadriga sobre los enemigos en un área en abanico e inflige daño equivalente al {0} del ATQ. Después, genera una explosión que causa daño equivalente al {1} del ATQ a los enemigos en un área circular.",
+        "description": "Slams the Chariot Gun down on enemies, dealing damage equal to {0} of Attack in a fan-shaped area. The attack then causes an explosion, dealing damage equal to {1} of Attack in range.",
         "iconUrl": "/icons/skill/Icon_Skill_123014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Armored Guard",
-        "description": "Cuando este héroe forma parte de una tropa aliada, el daño recibido del enemigo disminuye en {0} durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, disminuye en {1} adicionales.",
+        "name": "Armored Protection",
+        "description": "When an ally squad containing this hero is in battle, reduces damage taken by the squad from the enemy by {0}. Against hunt targets from Monster Hunter, reduces by {1} instead.",
         "iconUrl": "/icons/skill/Icon_Skill_223014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -2126,15 +2126,15 @@
       {
         "type": "Exploración",
         "name": "Wyrmstake Blast",
-        "description": "Ataca al objetivo frontal con 2 estocadas poderosas, inflige daño equivalente al {0} del ATQ e instala un nitro de sierpe. Cuando el cazador golpea a un objetivo con el nitro de sierpe, este recibe daño adicional equivalente al {1} del ATQ.",
+        "description": "Stabs a target in front 2 times, dealing damage equal to {0} of Attack before lodging a Wyrmstake Blast into them. When this target affected by the Wyrmstake Blast is hit by the Hunter, it will take additional damage equal to {1} of Attack.",
         "iconUrl": "/icons/skill/Icon_Skill_133014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Fissure Bombardment",
-        "description": "Cuando este héroe forma parte de una tropa aliada, hay un 50% de probabilidad de aumentar en {0} el daño recibido por el enemigo durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en {1} adicionales.",
+        "name": "Rift Bombardment",
+        "description": "When an ally squad containing this hero is in battle, increases damage taken by the enemy by {0}. Against hunt targets from Monster Hunter, increases by {1} instead.",
         "iconUrl": "/icons/skill/Icon_Skill_233014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -2149,8 +2149,8 @@
       },
       {
         "type": "Campo",
-        "name": "Concentrated Fire",
-        "description": "Cuando este héroe lidera la guarnición, la penetración de las tropas aliadas aumenta en {0} en combates defensivos. Además, al recibir recompensas de un objetivo de caza de Monster Hunter, obtienes {1} adicionales.",
+        "name": "Focused Fire",
+        "description": "If this hero is the Garrison Leader, increases the Penetration of the ally squad by {0} in Garrison Battles.",
         "iconUrl": "/icons/skill/Icon_Skill_243014.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -2180,43 +2180,43 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "Ranger ATK Power",
         "value": "260.00%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "Ranger DEF Power",
         "value": "260.00%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Explosive Shot",
-        "description": "Dispara un explosivo perforante a un objetivo dentro del alcance para infligir daño equivalente al {0} del ATQ. Después de 2 s, provoca una explosión que inflige daño equivalente al {1} del ATQ a los enemigos en un área circular y los aturde durante 2 s.",
+        "name": "Sticky Ammo",
+        "description": "Fires a Sticky Ammo at a target in range, dealing damage equal to {0} of Attack. 2 seconds later, the ammo explodes, dealing damage equal to {1} of Attack to enemies in a circular area and stunning them for 2 seconds.",
         "iconUrl": "/icons/skill/Icon_Skill_113015.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Rapid Fire Trigger",
-        "description": "Cuando este héroe forma parte de una tropa aliada, hay una probabilidad de {0} de realizar un ataque adicional contra el enemigo e infligir daño. Si el objetivo es un objetivo de caza de Monster Hunter, se añade una probabilidad de {1}.",
+        "name": "Commence Rapid Fire",
+        "description": "When an ally squad containing this hero is in battle, Rangers have a {0} chance to attack and deal damage to the enemy once more. Against hunt targets from Monster Hunter, have a {1} chance instead.",
         "iconUrl": "/icons/skill/Icon_Skill_213015.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Disparo Perforante",
-        "description": "Dispara un perforante hacia el frente que atraviesa a todos los enemigos en una línea estrecha e inflige daño equivalente al {0} del ATQ.",
+        "name": "Piercing Shot",
+        "description": "Fires a piercing round forward that penetrates all enemies in a narrow line, dealing damage equal to 72.5% of ATK.",
         "iconUrl": "/icons/skill/Icon_Skill_123015.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Piercing Ammo Boost",
-        "description": "Cuando este héroe forma parte de una tropa aliada, su penetración aumenta en {0} durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en {1} adicionales.",
+        "name": "Piercing Shots",
+        "description": "When an ally squad containing this hero is in battle, increases the Penetration of the squad by {0}. Against hunt targets from Monster Hunter, increases by {1} instead.",
         "iconUrl": "/icons/skill/Icon_Skill_223015.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -2224,7 +2224,7 @@
       {
         "type": "Exploración",
         "name": "Slicing Ammo",
-        "description": "Dispara un lacerante a un objetivo dentro del alcance para infligir daño equivalente al {0} del ATQ. Después de 2 s, explota e inflige daño cortante equivalente al {1} del ATQ 5 veces seguidas.",
+        "description": "Blasts a target in range with Slicing Ammo, dealing damage equal to {0} of Attack. 2 seconds later, the ammo erupts, dealing slicing damage equal to {1} of Attack 5 times in a row.",
         "iconUrl": "/icons/skill/Icon_Skill_133015.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -2232,7 +2232,7 @@
       {
         "type": "Campo",
         "name": "Combat Vitality",
-        "description": "Cuando este héroe forma parte de una tropa aliada, su salud aumenta en {0} durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en {1} adicionales.",
+        "description": "When an ally squad containing this hero is in battle, increases the HP of the squad by {0}. Against hunt targets from Monster Hunter, increases by {1} instead.",
         "iconUrl": "/icons/skill/Icon_Skill_233015.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -2247,8 +2247,8 @@
       },
       {
         "type": "Campo",
-        "name": "Ballistics Upgrade",
-        "description": "Cuando este héroe lidera la concentración, la penetración de las tropas aliadas aumenta en {0} en combates de concentración. Además, al recibir recompensas de un objetivo de caza de Monster Hunter, obtienes {1} adicionales.",
+        "name": "Special Ammo Boost",
+        "description": "If this hero is the Rally Leader, increases the Attack of the ally squad by {0} in Rally Battles.",
         "iconUrl": "/icons/skill/Icon_Skill_243015.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -2276,12 +2276,12 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
-        "value": "260.23%"
+        "label": "Attacker ATK Power",
+        "value": "444.35%"
       },
       {
-        "label": "Poder de defensa de Atacante",
-        "value": "260.23%"
+        "label": "Attacker DEF Power",
+        "value": "444.35%"
       }
     ],
     "unitType": "Attacker",
@@ -2289,7 +2289,7 @@
     "skills": [
       {
         "name": "Heavy Blow",
-        "description": "When things get tough, BSAA Chris Redfield punches a boulder with all his might. The boulder is sent rolling forward, dealing damage equal to x% of Attack to enemies in range and stunning them for 2 seconds. Damaged enemies have their Defense reduced by y% for 10 seconds.",
+        "description": "When things get tough, BSAA Chris Redfield punches a boulder with all his might. The boulder rolls forward dealing damage equal to x% of ATK to enemies within range and stunning them for 2s. Damaged enemies have their DEF reduced by y% for 10s.",
         "iconUrl": "/icons/skill/Icon_Skill_113017.webp",
         "type": "Exploración",
         "category": "active"
@@ -2324,7 +2324,7 @@
       },
       {
         "name": "Overwhelming Suppression",
-        "description": "When an ally squad containing this hero is in battle, after attacking 3 times, ally Attackers reduce damage taken from enemies by x% for 2 turns.",
+        "description": "In combat, after allied squad containing this hero attacks 3 times, allied Attackers reduce damage taken from enemies by x% for 2 turns.",
         "iconUrl": "/icons/skill/Icon_Skill_223017.webp",
         "type": "Campo",
         "category": "passive"
@@ -2363,12 +2363,12 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
-        "value": "260.23%"
+        "label": "Ranger ATK Power",
+        "value": "444.35%"
       },
       {
-        "label": "Poder de defensa de Ranger",
-        "value": "260.23%"
+        "label": "Ranger DEF Power",
+        "value": "444.35%"
       }
     ],
     "unitType": "Ranger",
@@ -2404,7 +2404,7 @@
       },
       {
         "name": "Battlefield Instincts",
-        "description": "When an ally squad containing this hero is in battle, has a 25% chance to reduce damage dealt by the enemy to the squad by x%.",
+        "description": "In combat, allied squad containing this hero has a 25% chance to reduce damage dealt by enemies to the squad by x%.",
         "iconUrl": "/icons/skill/Icon_Skill_213016.webp",
         "type": "Campo",
         "category": "passive"
@@ -2450,12 +2450,12 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
-        "value": "260.23%"
+        "label": "Defender ATK Power",
+        "value": "444.35%"
       },
       {
-        "label": "Poder de defensa de Defensor",
-        "value": "260.23%"
+        "label": "Defender DEF Power",
+        "value": "444.35%"
       }
     ],
     "unitType": "Defender",
@@ -2470,7 +2470,7 @@
       },
       {
         "name": "Boost Toxicity",
-        "description": "Reduces the Attack of poisoned enemies by x% and Defense by y%.",
+        "description": "Reduces ATK of poisoned enemies by x% and their DEF by y%.",
         "iconUrl": "/icons/skill/Icon_Skill_123018.webp",
         "type": "Exploración",
         "category": "passive"
@@ -2491,14 +2491,14 @@
       },
       {
         "name": "Know Your Place",
-        "description": "When an ally squad containing this hero is in battle, reduces the Defense of the enemy by x%.",
+        "description": "In combat, allied squad containing this hero reduces enemy DEF by x%.",
         "iconUrl": "/icons/skill/Icon_Skill_213018.webp",
         "type": "Campo",
         "category": "passive"
       },
       {
         "name": "Synapse Sever",
-        "description": "When an ally squad containing this hero is in battle, every 2 turns, ally Rangers have a x% chance to stun their targeted enemy type for 1 turn. (Stun attempts may be made on a target up to 3 times a turn.)",
+        "description": "When an ally squad containing this hero is in battle, every 2 turns, ally rangers have a x% chance to stun their targeted enemy type for 1 turn. (Stun attempts may be made on a target up to 3 times a turn.)",
         "iconUrl": "/icons/skill/Icon_Skill_223018.webp",
         "type": "Campo",
         "category": "passive"

@@ -14,11 +14,11 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "ディフェンダー攻撃力",
         "value": "260.23%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "ディフェンダー防御力",
         "value": "260.23%"
       }
     ],
@@ -58,15 +58,15 @@
       {
         "type": "Exploración",
         "name": "貫通射撃",
-        "description": "Cada 20 segundos, saca el Lightning Hawk y dispara en línea recta, infligiendo daño equivalente al {0} del poder de ataque y aturdiendo a los enemigos durante 2 segundos.",
+        "description": "20秒ごとにライトニングホークを取り出し、直線範囲内の敵に攻撃力の{0}のダメージを与え、2秒間気絶させる",
         "iconUrl": "/icons/skill/Icon_Skill_133000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "体術の達人",
-        "description": "2ターンごとに、この英雄を含む部隊の味方defensoresは{0}の確率で目標兵種を1ターンスタンさせる。（毎ターン目標ごとに最大3回まで試行）。",
+        "name": "体術の専門家",
+        "description": "この英雄が含まれる部隊の味方ディフェンダーが戦闘時、2ターンごとに{0}の確率で1ターンの間ターゲットとなった兵種を気絶させます(1ターゲットにつき1ターン当たり最大3回まで気絶を試みることが可能)",
         "iconUrl": "/icons/skill/Icon_Field_Skill_233000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -112,11 +112,11 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "アタッカー攻撃力",
         "value": "200.18%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "アタッカー防御力",
         "value": "200.18%"
       }
     ],
@@ -124,39 +124,39 @@
       {
         "type": "Exploración",
         "name": "ミニガン乱射",
-        "description": "Dispara 60 balas de minigun en línea recta. Cada bala que impacta inflige daño equivalente al {0} del poder de ataque.",
+        "description": "前方に60発のミニガンを乱射する 当たった敵にそれぞれ攻撃力の{0}のダメージを与える",
         "iconUrl": "/icons/skill/Icon_Skill_113001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "制圧射撃",
-        "description": "2ターンごとに、この英雄を含む部隊の味方atacantesは{0}の確率で目標兵種を1ターンスタンさせる。（毎ターン目標ごとに最大3回まで試行）。",
+        "name": "ダウンショット",
+        "description": "この英雄が含まれる部隊の味方アタッカーが戦闘時、2ターンごとに{0}の確率で1ターンの間ターゲットとなった兵種を気絶させます(1ターゲットにつき1ターン当たり最大3回まで気絶を試みることが可能)",
         "iconUrl": "/icons/skill/Fuego de supresion (claire).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "放電弾",
-        "description": "Cada 20 segundos, utiliza el lanzadescargas para infligir daño equivalente al {0} del poder de ataque a 1 enemigo y lo aturde durante 3 segundos. Tras 3 segundos, el objetivo aturdido explota, infligiendo {1} de daño en el área cercana.",
+        "name": "スパークショット",
+        "description": "20秒ごとにスパークショットを使用して敵1体に攻撃力の{0}に相当するダメージを与え、3秒間スタンさせる。3秒後、スタンした標的が爆発して周囲に{1}のダメージを与える。",
         "iconUrl": "/icons/skill/Icon_Skill_123001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Impacto Crítico",
-        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen un 50% de probabilidad de aumentar {0} el daño infligido a los enemigos.",
+        "name": "クリティカルインパクト",
+        "description": "戦闘時、この英雄を含む味方部隊が50%の確率で敵に与えるダメージが{0}増加する。",
         "iconUrl": "/icons/skill/Icon_Field_Skill_223001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Determinación Férrea",
-        "description": "Cuando Claire realiza un ataque común, su poder de ataque aumenta en {0} durante 3 segundos. Este efecto puede acumularse hasta 12 veces.",
+        "name": "不屈の闘志",
+        "description": "Claireが通常攻撃を行う時、自身の攻撃力が3秒間{0}増加する。最大12回まで累積可能。",
         "iconUrl": "/icons/skill/Icon_Skill_133001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -171,8 +171,8 @@
       },
       {
         "type": "Exploración",
-        "name": "パワーモディファイ",
-        "description": "Los héroes aliados que combaten junto a Claire infligen {0} más de daño a los enemigos.",
+        "name": "改造グリップ",
+        "description": "クレアと戦闘に参加した味方英雄が敵に与えるダメージ量が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_143001.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -202,11 +202,11 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "レンジャー攻撃力",
         "value": "200.18%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "レンジャー防御力",
         "value": "200.18%"
       }
     ],
@@ -222,7 +222,7 @@
       {
         "type": "Campo",
         "name": "テクニカルショット",
-        "description": "2ターンごとに、この英雄を含む部隊の味方rangersは{0}の確率で目標兵種を1ターンスタンさせる。（毎ターン目標ごとに最大3回まで試行）。",
+        "description": "2ターンごとに、この英雄を含む部隊の味方レンジャーは{0}の確率で目標兵種を1ターンスタンさせる。（毎ターン目標ごとに最大3回まで試行）。",
         "iconUrl": "/icons/skill/Icon_Field_Skill_213004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -300,11 +300,11 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "ディフェンダー攻撃力",
         "value": "200.18%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "ディフェンダー防御力",
         "value": "200.18%"
       }
     ],
@@ -312,15 +312,15 @@
       {
         "type": "Exploración",
         "name": "強化手榴弾",
-        "description": "Lanza una granada de mano mejorada que inflige daño equivalente al {0} del poder de ataque a los enemigos dentro de un radio circular.",
+        "description": "強化手榴弾を投げ、円形範囲内の敵に攻撃力の{0}のダメージを与える",
         "iconUrl": "/icons/skill/Icon_Skill_113002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "閃光手榴弾",
-        "description": "2ターンごとに、この英雄を含む部隊の味方defensoresは{0}の確率で目標兵種を1ターンスタンさせる。（毎ターン目標ごとに最大3回まで試行）。",
+        "name": "閃光弾",
+        "description": "この英雄が含まれる部隊の味方ディフェンダーが戦闘時、2ターンごとに{0}の確率で1ターンの間ターゲットとなった兵種を気絶させます(1ターゲットにつき1ターン当たり最大3回まで気絶を試みることが可能)",
         "iconUrl": "/icons/skill/Granada cegadora (carlos).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -328,7 +328,7 @@
       {
         "type": "Exploración",
         "name": "防弾チョッキ",
-        "description": "Si Carlos no recibe daño durante 3 segundos, obtiene un escudo que absorbe daño equivalente al {0} de su salud máxima.",
+        "description": "この英雄が含まれる味方部隊が戦闘時、敵から受けるダメージが{0}減少します",
         "iconUrl": "/icons/skill/Icon_Skill_123002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -343,8 +343,8 @@
       },
       {
         "type": "Exploración",
-        "name": "強化弾薬",
-        "description": "Cada 5 ataques normales, el daño del ataque normal contra 1 enemigo aumenta en {0} e ignora su defensa.",
+        "name": "強化弾",
+        "description": "一般攻撃を5回するたびに、敵1体に与える一般攻撃のダメージ量が{0}上昇し、防御力を無視します",
         "iconUrl": "/icons/skill/Icon_Skill_133002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -390,58 +390,58 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "アタッカー攻撃力",
         "value": "200.18%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "アタッカー防御力",
         "value": "200.18%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Dispositivo de señuelo",
-        "description": "Ada lanza un señuelo que atrae a los infectados dentro de un área circular durante 3 segundos, para luego detonar causando daño equivalente al {0} del poder de ataque.",
+        "name": "リモート爆弾",
+        "description": "エイダが爆弾を投げて3秒間、円形範囲内の敵を引き寄せ、その後に爆発して攻撃力の{0}のダメージを与える",
         "iconUrl": "/icons/skill/Icon_Skill_113003.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Terreno favorable",
-        "description": "En combate, la defensa de las unidades aliadas que incluyen a este héroe aumenta {0} y su salud aumenta {1}.",
+        "name": "有利な戦場",
+        "description": "この英雄が含まれる味方部隊が戦闘時、防御力が{0}、体力が{1}上昇します",
         "iconUrl": "/icons/skill/Icon_Field_Skill_213003.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Escaneo EMF",
-        "description": "Recoge Información cada 1 segundo. Por cada 1 Información recogida, su poder de ataque aumenta en{0}. (Máximo 20 veces)",
+        "name": "アナライズ",
+        "description": "1秒ごとに<情報>を取得する 取得した<情報>1つにつき、自分の攻撃力が{0}上昇する(最大20回まで)",
         "iconUrl": "/icons/skill/Icon_Skill_123003.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Uso de la información",
-        "description": "Los recursos consumidos en construcción se reducen en {0} y la velocidad de mejoras de edificios aumenta en {1}.",
+        "name": "情報活用",
+        "description": "建設に使用される資源が{0}減少し、建物のアップグレード速度が{1}上昇します",
         "iconUrl": "/icons/skill/Icon_Field_Skill_223003.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Visualizador EMF",
-        "description": "Al inicio del combate, analiza el entorno y aumenta el efecto de los objetos colocados en {0}.",
+        "name": "EMFスキャナープロジェクター",
+        "description": "戦闘開始時に周囲を分析して、配置されたオブジェクトの効果が{0}上昇する",
         "iconUrl": "/icons/skill/Icon_Skill_133003.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Mente Maestra",
+        "name": "マスターマインド",
         "description": "戦闘時、この英雄を含む味方部隊が敵に与えるダメージが{0}増加する。",
         "iconUrl": "/icons/skill/Icon_Field_Skill_233003.webp",
         "isArmaEspecial": false,
@@ -449,16 +449,16 @@
       },
       {
         "type": "Exploración",
-        "name": "Objeto raro y preciado",
-        "description": "Aumenta el poder de ataque de todos los aliados en {0}, y el poder de defensa en {1}.",
+        "name": "珍しい愛蔵品",
+        "description": "味方全体の攻撃力が{0}、防御力が{1}増加する",
         "iconUrl": "/icons/skill/Icon_Skill_143003.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Información confidencial",
-        "description": "Cuando este héroe es el líder de guarnición, la penetración de las unidades aliadas aumenta {0} en combates defensivos.",
+        "name": "機密事項",
+        "description": "この英雄が駐屯リーダーのとき、味方部隊の防衛戦闘時の殺傷力が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_243003.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -480,18 +480,18 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "レンジャー攻撃力",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "レンジャー防御力",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 1",
+        "name": "アクティブスキル1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_112009.webp",
         "isArmaEspecial": false,
@@ -499,7 +499,7 @@
       },
       {
         "type": "Campo",
-        "name": "Experiencia del veterano",
+        "name": "老兵の経験",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Experiencia del veterano (mikhail).webp",
         "isArmaEspecial": false,
@@ -507,7 +507,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 2",
+        "name": "アクティブスキル2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_122009.webp",
         "isArmaEspecial": false,
@@ -515,7 +515,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 2",
+        "name": "パッシブスキル2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222009.webp",
         "isArmaEspecial": false,
@@ -523,8 +523,8 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 3",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "最後の機転",
+        "description": "立て看板を投げて円形範囲内の対象を押し出し、攻撃力の{0}のダメージを与え、0.2秒間気絶させる 立て看板に当たった敵は移動速度が30%減少する(5秒間)",
         "iconUrl": "/icons/skill/Icon_Skill_132009.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -546,51 +546,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "ディフェンダー攻撃力",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "ディフェンダー防御力",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Barricada",
-        "description": "Instala una barricada en la zona designada. Su durabilidad equivale al {0} de la salud máxima y el poder de defensa de Marvin.",
+        "name": "バリケード",
+        "description": "指定したエリアにバリケードを設置する バリケードはマービン・ブラナーの最大体力と防御力の{0}に相当する耐久度がある",
         "iconUrl": "/icons/skill/Icon_Skill_112002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Instinto policial",
-        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "name": "警察官の直感",
+        "description": "この英雄が含まれる味方部隊が戦闘時、敵から受けるダメージが{0}減少します",
         "iconUrl": "/icons/skill/Instinto Policial (Marvin).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Disparo a la pierna",
-        "description": "Al realizar un ataque común, hay un 50% de probabilidad de apuntar a las piernas del enemigo, causando daño equivalente al {0} del poder de ataque y reduciendo su velocidad de movimiento en un 20%. (Tiempo de recarga: 3 segundos)",
+        "name": "レッグショット",
+        "description": "一般攻撃時、50%の確率で敵の足を狙い、攻撃力の{0}のダメージを与え、敵の移動速度を20%減少させる(再使用待機時間：3秒)",
         "iconUrl": "/icons/skill/Icon_Skill_122002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Desarme",
-        "description": "Las unidades aliadas que incluyen a este héroe reducen {0} el ataque de los enemigos en combate.",
+        "name": "武装解除",
+        "description": "敵部隊が与える攻撃ダメージを減少させる。",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Empujón",
-        "description": "Cada {0}, inflige {1} de daño de ataque a un enemigo cercano, lo empuja y lo aturde durante 1 segundo.",
+        "name": "防御プッシュ",
+        "description": "近くの敵をノックバックさせて防御陣地を守る。",
         "iconUrl": "/icons/skill/Icon_Skill_132002.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -612,51 +612,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "アタッカー攻撃力",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "アタッカー防御力",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Municiones de tormenta",
-        "description": "Dispara ráfagas de balas en un área en forma de abanico al frente. Los enemigos dentro del área reciben daño equivalente al {0} del poder de ataque.",
+        "name": "銃弾の嵐",
+        "description": "前方の扇形範囲に銃を乱射する 範囲内の対象に攻撃力の{0}のダメージを与える",
         "iconUrl": "/icons/skill/Icon_Skill_112006.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Trance total",
-        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta {0} en combate.",
+        "name": "無我の境地",
+        "description": "この英雄が含まれる味方部隊が戦闘時、敵に与えるダメージが{0}上昇します",
         "iconUrl": "/icons/skill/trance total (becca).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Postura de disparo",
-        "description": "Cada 10 segundos, la velocidad de ataque de Becca aumenta en un {0}. (Durante 7.5 segundos)",
+        "name": "射撃体勢",
+        "description": "Z10秒ごとにベッカの攻撃速度が{0}上昇する(7.5秒間)",
         "iconUrl": "/icons/skill/Icon_Skill_122006.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Chaleco antibalas",
-        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "name": "防弾チョッキ",
+        "description": "この英雄が含まれる味方部隊が戦闘時、敵から受けるダメージが{0}減少します",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222006.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Tiro al blanco",
-        "description": "Al realizar un ataque normal, hay un 30% de probabilidad de que el daño del ataque normal aumente {0}.",
+        "name": "ブルズアイ",
+        "description": "一般攻撃時、30%の確率で一般攻撃のダメージ量が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_132006.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -678,51 +678,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "ディフェンダー攻撃力",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "ディフェンダー防御力",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Patada a la pierna",
-        "description": "Lanza una patada que ataca a los enemigos en una línea frontal, causando daño equivalente al {0} del poder de ataque y aturdiéndolos durante 3.5 segundos.",
+        "name": "突き蹴り",
+        "description": "前方直線範囲内の敵に向かって蹴りを放ち、攻撃力の{0}のダメージを与え、3.5秒間気絶させる",
         "iconUrl": "/icons/skill/Icon_Skill_112000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Tacleo de hombro",
-        "description": "Las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de aumentar {0} el daño infligido a los enemigos durante 3 turnos en combate.",
+        "name": "ショルダータックル",
+        "description": "この英雄が含まれる味方部隊が戦闘時、20%の確率で3ターンの間、敵に与えるダメージが{0}上昇します",
         "iconUrl": "/icons/skill/tecleo de hombro (tyrone).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Golpe giratorio",
-        "description": "Cada 3 ataques normales, realiza un gran golpe con el hacha que inflige {0} más de daño de ataque normal a los enemigos en un área circular y los empuja.",
+        "name": "振り回し",
+        "description": "一般攻撃を3回するたびに、斧を大きく振り回し、円形範囲内の敵に与える一般攻撃のダメージ量が{0}上昇し、当たった敵をノックバックさせます",
         "iconUrl": "/icons/skill/Icon_Skill_122000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "\"Conocimientos de primeros auxilios",
-        "description": "Aumenta la velocidad de tratamiento en el hospital en {0}.",
+        "name": "応急措置の心得",
+        "description": "病院の治療速度が{0}上昇する",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Rally",
-        "description": "Cada 12 segundos, eleva la moral del equipo y aumenta el poder de defensa de todos los aliados en {0}. (Durante 8 segundos)",
+        "name": "サバイバル・エール",
+        "description": "12秒ごとにチームメンバーの士気を鼓舞し、すべての味方の防御力が{0}上昇する(8秒間)",
         "iconUrl": "/icons/skill/Icon_Skill_132000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -744,51 +744,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "アタッカー攻撃力",
         "value": "90.09%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "アタッカー防御力",
         "value": "90.09%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Dios de la puntería",
-        "description": "Apunta a las piernas de todos los enemigos dentro de un área en forma de abanico, infligiendo daño equivalente al {0} del poder de ataque y reduciendo su velocidad de movimiento en un 30%. (Durante 5 segundos)",
+        "name": "射撃の神",
+        "description": "扇状範囲内のすべての敵の足を狙い、攻撃力の{0}のダメージを与え、移動速度を30%減少させる(5秒間)",
         "iconUrl": "/icons/skill/Icon_Skill_111000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Disparo decisivo",
-        "description": "4ターンごとに、この英雄を含む部隊の味方atacantesは{0}の確率で目標兵種を1ターンスタンさせる。（毎ターン目標ごとに最大3回まで試行）。",
+        "name": "決め手の一発",
+        "description": "この英雄が含まれる部隊の味方アタッカーが戦闘時、4ターンごとに{0}の確率で1ターンの間ターゲットとなった兵種を気絶させます(1ターゲットにつき1ターン当たり最大3回まで気絶を試みることが可能)",
         "iconUrl": "/icons/skill/Dios de la puntería (Murphy Seeker) .webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Disparo a la cabeza",
-        "description": "Cada 24 segundos, inflige daño equivalente al {0} del poder de ataque y aturde a los enemigos durante 2 segundos.",
+        "name": "ヘッドショット",
+        "description": "k24秒ごとに敵に攻撃力の{0}のダメージを与え、2秒間気絶させる",
         "iconUrl": "/icons/skill/Icon_Skill_121000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad de recolección",
-        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de alimentos aumenta {0}.",
+        "name": "採集技術",
+        "description": "この英雄が含まれる部隊が出撃時、食料採集速度が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Field_Skill_221000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Tiro Penetrante",
-        "description": "Al realizar un ataque normal, hay un 25% de probabilidad de que el daño del ataque normal contra 1 enemigo aumente {0} e ignore su defensa.",
+        "name": "貫通射撃",
+        "description": "通常攻撃4回ごとに貫通射撃を行い、通常攻撃ダメージが{0}増加する。",
         "iconUrl": "/icons/skill/Icon_Skill_131000.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -810,19 +810,19 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "アタッカー攻撃力",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "アタッカー防御力",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Ametralladora automática",
-        "description": "Instala una ametralladora automática que ataca de forma autónoma a los enemigos en el área. La ametralladora tiene un poder de ataque equivalente al {0} según el poder de ataque de Tyrell Patrick y una durabilidad igual a {1} de su salud máxima.",
+        "name": "V-JOLT投擲",
+        "description": "特殊溶液が入った瓶を投げ、円形範囲内の対象に攻撃力の{0}のダメージを与えます",
         "iconUrl": "/icons/skill/Icon_Skill_112014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -837,24 +837,24 @@
       },
       {
         "type": "Exploración",
-        "name": "Configuración de base",
-        "description": "Aumenta el poder de ataque de los aliados cercanos a la ametralladora automática en {0}. Este efecto no se acumula.",
+        "name": "スタンショット",
+        "description": "スタンガンを発射して標的をスタンさせる。",
         "iconUrl": "/icons/skill/Icon_Skill_122014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Inteligencia del hacker",
-        "description": "Aumenta la velocidad de investigación del laboratorio en {0}.",
+        "name": "軽快な足取り",
+        "description": "この英雄を含む部隊を出陣させる際、行軍速度が増加する。",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Campo electromagnético",
-        "description": "La ametralladora automática emite un pulso eléctrico hacia un enemigo cercano, inflige {0} de daño de ataque a los enemigos en un área circular alrededor de ella y los aturde durante 2.5 segundos.",
+        "name": "記者の本能",
+        "description": "この英雄が含まれる部隊が出撃時、感染者・感染体を対象とした進軍速度が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_132014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -876,19 +876,19 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "アタッカー攻撃力",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "アタッカー防御力",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Municiones de tormenta",
-        "description": "Dispara ráfagas de balas en un área en forma de abanico al frente. Los enemigos dentro del área reciben daño equivalente al {0} del poder de ataque.",
+        "name": "火炎放射",
+        "description": "火炎放射器を取り出し、前方の扇状範囲内の敵に攻撃力の{0}のダメージを与える ダメージを受けた対象は火傷状態になり、毎秒攻撃力の{1}の火傷持続ダメージを受ける(5秒間)",
         "iconUrl": "/icons/skill/Icon_Skill_112010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -903,24 +903,24 @@
       },
       {
         "type": "Exploración",
-        "name": "Postura de disparo",
-        "description": "Cada 10 segundos, la velocidad de ataque de Becca aumenta en un {0}. (Durante 7.5 segundos)",
+        "name": "SLS-60用強化弾",
+        "description": "通常攻撃のダメージが{0}増加する",
         "iconUrl": "/icons/skill/Icon_Skill_122010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "防弾チョッキ",
-        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "name": "木材採集",
+        "description": "この英雄が含まれる部隊が出撃時、木材採集速度が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Tiro al blanco",
-        "description": "Al realizar un ataque normal, hay un 30% de probabilidad de que el daño del ataque normal aumente {0}.",
+        "name": "応援",
+        "description": "味方の防御力が{0}上昇する",
         "iconUrl": "/icons/skill/Icon_Skill_132010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -942,51 +942,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "ディフェンダー攻撃力",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "ディフェンダー防御力",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Disparo en abanico",
-        "description": "Dispara 6 balas rápidamente, infligiendo daño equivalente al {0} del poder de ataque por cada impacto a los enemigos alcanzados.",
+        "name": "粉砕撃",
+        "description": "重量物を振り回して打撃ダメージを与え、敵をスタンさせる。",
         "iconUrl": "/icons/skill/Icon_Skill_112012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Entrenamiento físico",
-        "description": "Al desplegar una unidad que incluya a este héroe, el consumo de energía se reduce en {0}.",
+        "name": "バルクアップ",
+        "description": "この英雄が含まれる味方部隊が戦闘時、体力が{0}上昇します",
         "iconUrl": "/icons/skill/Desarrollo muscular (bulk up) - (mark).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Disparo Frenético",
-        "description": "Cuando realiza un ataque normal, su velocidad de ataque aumenta en {0} durante 5 segundos. Este efecto se acumula hasta 3 veces.",
+        "name": "鉄壁のガード",
+        "description": "防御態勢をとり、数秒間にわたり受けるダメージを大幅に減少させる。",
         "iconUrl": "/icons/skill/Icon_Skill_122012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Liderazgo",
-        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de despliegue contra infectados y mutantes aumenta {0}.",
+        "name": "強靭な肉体",
+        "description": "部隊全体の防御力が増加する。",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Veterano de combate",
-        "description": "Aumenta el daño infligido de los ataques comunes en {0}.",
+        "name": "ショック突撃",
+        "description": "勢いよく突進し、行く手を阻む敵を吹き飛ばす。",
         "iconUrl": "/icons/skill/Icon_Skill_132012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1008,19 +1008,19 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "レンジャー攻撃力",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "レンジャー防御力",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Municiones de detención",
-        "description": "Dispara en ráfagas balas de alto poder de contención, empujando a los enemigos dentro de un área en forma de abanico y causando daño equivalente al {0} del poder de ataque. Los enemigos impactados quedan aturdidos por 0.5 segundos y reducen su velocidad de movimiento en un 20%. (Durante 5 segundos)",
+        "name": "マグナム弾射撃",
+        "description": "大口径の強力なマグナム弾を発射し、大ダメージを与える。",
         "iconUrl": "/icons/skill/Icon_Skill_112007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1035,24 +1035,24 @@
       },
       {
         "type": "Exploración",
-        "name": "¡Toma esto!",
-        "description": "Cada 20 segundos, coloca una bomba a 1 enemigo cercano y lo empuja hacia atrás. El enemigo repelido queda aturdido por 2 segundos y luego explota, causando daño equivalente al {0} del poder de ataque dentro de un área circular.",
+        "name": "精密射撃",
+        "description": "Barryが精密に狙いを定め、目標にクリティカルダメージを与える。",
         "iconUrl": "/icons/skill/Icon_Skill_122007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Conocimiento de forja",
-        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de hierro aumenta {0}.",
+        "name": "重弾道学",
+        "description": "部隊の味方アタッカーの火力を増加させる。",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Apoyo de fuego",
-        "description": "Aumenta el poder de ataque de todos los aliados en {0}.",
+        "name": "援護射撃",
+        "description": "この英雄が含まれる味方部隊が戦闘時、敵に与えるダメージが{0}上昇する",
         "iconUrl": "/icons/skill/Icon_Skill_132007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1074,51 +1074,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "レンジャー攻撃力",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "レンジャー防御力",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Ametralladora automática",
-        "description": "Instala una ametralladora automática que ataca de forma autónoma a los enemigos en el área. La ametralladora tiene un poder de ataque equivalente al según el poder de ataque de Tyrell Patrick y una durabilidad igual a de su salud máxima.",
+        "name": "自動機関銃",
+        "description": "範囲内の敵を自動的に攻撃するタレットを設置する タレットはタイレル・パトリックの攻撃力の{0}分の攻撃力、最大体力の{1}分の耐久度を持つ",
         "iconUrl": "/icons/skill/Icon_Skill_112008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Análisis de puntos débiles",
-        "description": "El daño que infligen a los enemigos las unidades aliadas que incluyen a este héroe aumenta en combate.",
+        "name": "弱点分析",
+        "description": "この英雄が含まれる味方部隊が戦闘時、敵に与えるダメージが{0}上昇します",
         "iconUrl": "/icons/skill/Analisi de puntos debiles (tyrell).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Configuración de base",
-        "description": "Aumenta el poder de ataque de los aliados cercanos a la ametralladora automática en . Este efecto no se acumula.",
+        "name": "拠点構築",
+        "description": "タレット周辺の味方の攻撃力が{0}上昇する この効果は重複して適用されない",
         "iconUrl": "/icons/skill/Icon_Skill_122008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Inteligencia del hacker",
-        "description": "Aumenta la velocidad de investigación del laboratorio en .",
+        "name": "ハッカーの情報力",
+        "description": "研究所での研究速度が{0}上昇する",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Campo electromagnético",
-        "description": "La ametralladora automática emite un pulso eléctrico hacia un enemigo cercano, inflige de daño de ataque a los enemigos alcanzados y los aturde durante segundos.",
+        "name": "電磁場",
+        "description": "タレットが近くの敵に電気パルスを発生させ、タレットの周囲の円形範囲内の敵に攻撃力の{0}のダメージを与え、2.5秒間気絶させます",
         "iconUrl": "/icons/skill/Icon_Skill_132008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1140,51 +1140,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "ディフェンダー攻撃力",
         "value": "140.12%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "ディフェンダー防御力",
         "value": "140.12%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Barricada",
-        "description": "Instala una barricada en la zona designada. Su durabilidad equivale al {0} de la salud máxima y el poder de defensa de Marvin.",
+        "name": "ストッピングショット",
+        "description": "スラッグ弾を連射して扇状範囲内の敵をノックバックさせ、攻撃力の{0}のダメージを与える 被弾した敵は0.5秒間気絶し、移動速度が20%減少する(5秒間)",
         "iconUrl": "/icons/skill/Icon_Skill_112004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Instinto policial",
-        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "name": "改造の専門家",
+        "description": "この英雄が含まれる味方部隊が戦闘時、攻撃力が{0}上昇します",
         "iconUrl": "/icons/skill/Experto en modificacion (robert).webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Disparo a la pierna",
-        "description": "Al realizar un ataque común, hay un 50% de probabilidad de apuntar a las piernas del enemigo, causando daño equivalente al {0} del poder de ataque y reduciendo su velocidad de movimiento en un 20%. (Tiempo de recarga: 3 segundos)",
+        "name": "これでも喰らえ！",
+        "description": "通常攻撃時、20%の確率で追加のクリティカルダメージを与える。",
         "iconUrl": "/icons/skill/Icon_Skill_122004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Desarme",
-        "description": "Las unidades aliadas que incluyen a este héroe reducen {0} el ataque de los enemigos en combate.",
+        "name": "鍛造の知識",
+        "description": "この英雄が含まれる部隊が出撃時、資材採集速度が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Field_Skill_222004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Empujón",
-        "description": "Cada {0}, inflige {1} de daño de ataque a un enemigo cercano, lo empuja y lo aturde durante 1 segundo.",
+        "name": "火力支援",
+        "description": "味方の攻撃力が{0}上昇する",
         "iconUrl": "/icons/skill/Icon_Skill_132004.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1206,19 +1206,19 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "レンジャー攻撃力",
         "value": "90.09%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "レンジャー防御力",
         "value": "90.09%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Último recurso",
-        "description": "Lanza un letrero que empuja a los enemigos dentro de un área circular, inflige daño equivalente al {0} del poder de ataque y lo aturde durante 0.2 segundos. Los enemigos alcanzados por el letrero reducen su velocidad de movimiento en un 30%. (Durante 5 segundos)",
+        "name": "最後の機転",
+        "description": "立て看板を投げて円形範囲内の対象を押し出し、攻撃力の{0}のダメージを与え、0.2秒間気絶させる 立て看板に当たった敵は移動速度が30%減少する(5秒間)",
         "iconUrl": "/icons/skill/Icon_Skill_111001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1226,15 +1226,15 @@
       {
         "type": "Campo",
         "name": "不意の反撃",
-        "description": "4ターンごとに、この英雄を含む部隊の味方rangersは{0}の確率で目標兵種を1ターンスタンさせる。（毎ターン目標ごとに最大3回まで試行）。",
+        "description": "4ターンごとに、この英雄を含む部隊の味方レンジャーは{0}の確率で目標兵種を1ターンスタンさせる。（毎ターン目標ごとに最大3回まで試行）。",
         "iconUrl": "/icons/skill/Contrataque inesperado (Brad) .webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "生還への執念",
-        "description": "Cada 15 segundos, aumenta el poder de defensa de todos los aliados en {0}. (Durante 8 segundos)",
+        "name": "チキンの直感",
+        "description": "R15秒ごとに味方の防御力が{0}上昇する(8秒間)",
         "iconUrl": "/icons/skill/Icon_Skill_121001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1242,15 +1242,15 @@
       {
         "type": "Campo",
         "name": "燃料管理",
-        "description": "Al desplegar una unidad que incluya a este héroe, la velocidad de recolección de petróleo aumenta {0}.",
+        "description": "この英雄が含まれる部隊が出撃時、燃料採集速度が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Field_Skill_221001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "自信回復",
-        "description": "El daño del ataque normal contra enemigos con velocidad de movimiento reducida aumenta {0}.",
+        "name": "自信",
+        "description": "移動速度が減少している敵に与える一般攻撃のダメージ量が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_131001.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1272,18 +1272,18 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "ディフェンダー攻撃力",
         "value": "240.21%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "ディフェンダー防御力",
         "value": "240.21%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 1",
+        "name": "アクティブスキル1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_110001.webp",
         "isArmaEspecial": false,
@@ -1291,7 +1291,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 1",
+        "name": "パッシブスキル1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210001.webp",
         "isArmaEspecial": false,
@@ -1299,7 +1299,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 2",
+        "name": "アクティブスキル2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_120001.webp",
         "isArmaEspecial": false,
@@ -1307,7 +1307,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 2",
+        "name": "パッシブスキル2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_220001.webp",
         "isArmaEspecial": false,
@@ -1315,7 +1315,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 3",
+        "name": "アクティブスキル3",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_130001.webp",
         "isArmaEspecial": false,
@@ -1323,7 +1323,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 3",
+        "name": "パッシブスキル3",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_230001.webp",
         "isArmaEspecial": false,
@@ -1331,7 +1331,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Arma Especial (Activa)",
+        "name": "専用武器 (アクティブ)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_01.webp",
         "isArmaEspecial": true,
@@ -1339,7 +1339,7 @@
       },
       {
         "type": "Campo",
-        "name": "Arma Especial (Pasiva)",
+        "name": "専用武器 (パッシブ)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210001.webp",
         "isArmaEspecial": true,
@@ -1362,18 +1362,18 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "アタッカー攻撃力",
         "value": "240.21%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "アタッカー防御力",
         "value": "240.21%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 1",
+        "name": "アクティブスキル1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_110004.webp",
         "isArmaEspecial": false,
@@ -1381,7 +1381,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 1",
+        "name": "パッシブスキル1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210004.webp",
         "isArmaEspecial": false,
@@ -1389,7 +1389,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 2",
+        "name": "アクティブスキル2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_120004.webp",
         "isArmaEspecial": false,
@@ -1397,7 +1397,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 2",
+        "name": "パッシブスキル2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_220004.webp",
         "isArmaEspecial": false,
@@ -1405,7 +1405,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 3",
+        "name": "アクティブスキル3",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_130004.webp",
         "isArmaEspecial": false,
@@ -1413,7 +1413,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 3",
+        "name": "パッシブスキル3",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_230004.webp",
         "isArmaEspecial": false,
@@ -1421,7 +1421,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Arma Especial (Activa)",
+        "name": "専用武器 (アクティブ)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_04.webp",
         "isArmaEspecial": true,
@@ -1429,7 +1429,7 @@
       },
       {
         "type": "Campo",
-        "name": "Arma Especial (Pasiva)",
+        "name": "専用武器 (パッシブ)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210004.webp",
         "isArmaEspecial": true,
@@ -1452,18 +1452,18 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "レンジャー攻撃力",
         "value": "240.21%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "レンジャー防御力",
         "value": "240.21%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 1",
+        "name": "アクティブスキル1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_110005.webp",
         "isArmaEspecial": false,
@@ -1471,7 +1471,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 1",
+        "name": "パッシブスキル1",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210005.webp",
         "isArmaEspecial": false,
@@ -1479,7 +1479,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 2",
+        "name": "アクティブスキル2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_120005.webp",
         "isArmaEspecial": false,
@@ -1487,7 +1487,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 2",
+        "name": "パッシブスキル2",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_220005.webp",
         "isArmaEspecial": false,
@@ -1495,7 +1495,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 3",
+        "name": "アクティブスキル3",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_130005.webp",
         "isArmaEspecial": false,
@@ -1503,7 +1503,7 @@
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 3",
+        "name": "パッシブスキル3",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_230005.webp",
         "isArmaEspecial": false,
@@ -1511,7 +1511,7 @@
       },
       {
         "type": "Exploración",
-        "name": "Arma Especial (Activa)",
+        "name": "専用武器 (アクティブ)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_05.webp",
         "isArmaEspecial": true,
@@ -1519,7 +1519,7 @@
       },
       {
         "type": "Campo",
-        "name": "Arma Especial (Pasiva)",
+        "name": "専用武器 (パッシブ)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210005.webp",
         "isArmaEspecial": true,
@@ -1542,43 +1542,43 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "レンジャー攻撃力",
         "value": "290.26%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "レンジャー防御力",
         "value": "290.26%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "灯火の光",
-        "description": "Ashley no ataca directamente, pero brinda apoyo a sus aliados con un farol. Su intensa luz aturde a los enemigos dentro del alcance durante {0} y reduce su velocidad de movimiento en {1}, dejándolos prácticamente inmovilizados.",
+        "name": "ランプを照らす",
+        "description": "アシュリーは直接攻撃は行いませんが、ランプを使って味方を支援します ランプを高く掲げ、範囲内の敵を{0}間気絶させ、移動速度を{1}減少させて敵の足を止めます",
         "iconUrl": "/icons/skill/Icon_Skill_113010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Luz del Farol",
-        "description": "Identifica al enemigo con la luz del farol y expone su punto débil. La defensa del objetivo se reduce en {1} durante {0}.",
+        "name": "ランタンの光",
+        "description": "ランタンの光で敵を照らして弱点を露呈させ、目標の防御力を{0}間{1}減少させる。",
         "iconUrl": "/icons/skill/Icon_Skill_213010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "アシュリーの甲冑",
-        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen un 20% de probabilidad de reducir {0} el daño infligido por los enemigos durante 2 turnos.",
+        "name": "蘇る勇気",
+        "description": "戦闘時、この英雄を含む味方部隊が20%の確率で3ターンの間敵に与えるダメージが{0}増加する。",
         "iconUrl": "/icons/skill/Icon_Skill_123010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Apoyo Moral",
-        "description": "Ashley, en proporción a su propio ataque, aumenta en {0} el ataque del aliado más fuerte y le otorga un escudo de {1}.",
+        "name": "専属ガード任命",
+        "description": "アシュリーは自分の攻撃力に応じて、攻撃力が最も高い味方の攻撃力を{0}増加させ、{1}分のシールド効果を付与します",
         "iconUrl": "/icons/skill/Icon_Skill_223010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1593,23 +1593,23 @@
       },
       {
         "type": "Exploración",
-        "name": "蒼き灯火の光",
-        "description": "La defensa de la unidad aliada aumenta en {0}.",
+        "name": "親愛の絆",
+        "description": "この英雄が含まれる味方部隊が戦闘時、体力が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_233010.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "生還への誓い",
-        "description": "Cuando este héroe es líder de concentración, la salud de las unidades aliadas aumenta {0} en combates de concentración.",
+        "name": "生存の意志",
+        "description": "この英雄が集結リーダーのとき、味方部隊の集結戦闘時の体力が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_143010.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Arma Especial (Pasiva)",
+        "name": "専用武器 (パッシブ)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Skill_243010.webp",
         "isArmaEspecial": true,
@@ -1632,66 +1632,66 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "アタッカー攻撃力",
         "value": "290.26%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "アタッカー防御力",
         "value": "290.26%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 1",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "ダイナマイト設置",
+        "description": "指定した位置にダイナマイトを投げ、周囲の敵に攻撃力の{0}のダメージを与えます",
         "iconUrl": "/icons/skill/Icon_Skill_110007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 1",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "参るぞ サンチョ・パンサ！",
+        "description": "この英雄が含まれる味方部隊が戦闘時、50%の確率で敵の受けるダメージが{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 2",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "SR M1903",
+        "description": "SR M1903で2発射撃します 各弾丸は命中した対象に攻撃力の{0}のダメージを与えます",
         "iconUrl": "/icons/skill/Icon_Skill_120007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 2",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "実験用弾丸",
+        "description": "この英雄が含まれる味方部隊が戦闘時、50%の確率で敵に与えるダメージが{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Field_Skill_220007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 3",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "パイプスイング",
+        "description": "パイプを振り回し、範囲内のすべての敵に攻撃力の{0}のダメージを与え、後方へノックバックさせます",
         "iconUrl": "/icons/skill/Icon_Skill_130007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 3",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "抑制剤の投与",
+        "description": "この英雄が含まれる味方部隊が戦闘時、40%の確率で敵から受けるダメージが{0}減少します",
         "iconUrl": "/icons/skill/Icon_Field_Skill_230007.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Arma Especial (Activa)",
+        "name": "専用武器 (アクティブ)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_07.webp",
         "isArmaEspecial": true,
@@ -1699,7 +1699,7 @@
       },
       {
         "type": "Campo",
-        "name": "Arma Especial (Pasiva)",
+        "name": "専用武器 (パッシブ)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210007.webp",
         "isArmaEspecial": true,
@@ -1722,51 +1722,51 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "ディフェンダー攻撃力",
         "value": "290.26%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "ディフェンダー防御力",
         "value": "290.26%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "変異解放",
-        "description": "Desata el poder de Las Plagas y muta su brazo para causar 3 golpes con daño equivalente al {0} del ataque al enemigo. Además, recupera HP equivalente al {1} del daño causado.",
+        "name": "突然変異解放",
+        "description": "プラーガの力を解放して腕を変異させ、敵に攻撃力の{0}のダメージを3回与えます さらに、与えたダメージの{1}分のHPを回復します",
         "iconUrl": "/icons/skill/Icon_Skill_113008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "ライジングスラッシュ",
-        "description": "Las unidades aliadas que incluyen a este héroe reducen {0} el ataque de los enemigos en combate.",
+        "name": "斬り上げ",
+        "description": "この英雄が含まれる味方部隊が戦闘時、敵の攻撃力を{0}減少させます",
         "iconUrl": "/icons/skill/Icon_Skill_213008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "炸裂弓",
-        "description": "Al impactar, la flecha explosiva inflige {0} de daño de ataque a los enemigos cercanos y {1} de daño adicional en el área.",
+        "name": "爆発矢",
+        "description": "爆発矢が命中すると、近くの敵に攻撃力の{0}のダメージを与え、周囲に{1}の追加ダメージを与えます",
         "iconUrl": "/icons/skill/Icon_Skill_123008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "教官の指導",
-        "description": "El daño que reciben de los enemigos las unidades aliadas que incluyen a este héroe se reduce {0} en combate.",
+        "name": "教官",
+        "description": "この英雄が含まれる味方部隊が戦闘時、敵から受けるダメージが{0}減少します",
         "iconUrl": "/icons/skill/Icon_Skill_223008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "ダガー体術",
-        "description": "Cuando un enemigo se acerca, blande un cuchillo e inflige 2 veces {0} de daño de ataque a los enemigos cercanos.",
+        "name": "短剣術",
+        "description": "敵が接近すると、ナイフを振るい、周囲の敵に攻撃力の{0}のダメージを2回与えます",
         "iconUrl": "/icons/skill/Icon_Skill_133008.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1782,7 +1782,7 @@
       {
         "type": "Exploración",
         "name": "アドレナリン",
-        "description": "Por cada 1% de salud perdida, el ataque aumenta en {0}.",
+        "description": "失った体力1%ごとに攻撃力が{0}増加します",
         "iconUrl": "/icons/skill/Icon_Skill_143008.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -1812,35 +1812,35 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "ディフェンダー攻撃力",
         "value": "370.33%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "ディフェンダー防御力",
         "value": "370.33%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "チャージアタック",
-        "description": "Jake Muller toma impulso y lanza un golpe con la mano, infligiendo daño equivalente al {0} del ataque a los enemigos en un área rectangular frontal.",
+        "name": "チャージングストライク",
+        "description": "ジェイク・ミューラーが構えた後、拳を突き出して前方の四角形範囲内の敵に攻撃力の{0}のダメージを与えます",
         "iconUrl": "/icons/skill/Icon_Skill_113011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "近接格闘防御態勢",
-        "description": "Durante el combate, cada vez que los defensores aliados de la unidad que incluye a este héroe atacan 4 veces, renuncian a atacar en el siguiente turno. A cambio, el daño que reciben los defensores de los enemigos se reduce {0} durante 2 turnos, y el daño que reciben los atacantes y rangers se reduce {1}.",
+        "name": "白兵戦防御態勢",
+        "description": "この英雄が含まれる部隊の味方ディフェンダーが戦闘時、4回攻撃するたびに次のターンの攻撃を放棄し、2ターンの間ディフェンダーの受けるダメージが{0}、アタッカーとレンジャーの受けるダメージが{1}減少します",
         "iconUrl": "/icons/skill/Icon_Skill_213011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "回し蹴り",
-        "description": "Jake Muller salta y patea, infligiendo {0} de daño de ataque a todos los objetivos en un área cónica cercana. Luego los empuja y los aturde durante 2 s.",
+        "name": "スピニングキック",
+        "description": "ジェイク・ミューラーがその場でジャンプしてから蹴り攻撃を放ち、周囲の扇状範囲内すべての対象に攻撃力の{0}のダメージを与え、吹き飛ばした後、2秒間気絶させます",
         "iconUrl": "/icons/skill/Icon_Skill_123011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1855,32 +1855,32 @@
       },
       {
         "type": "Exploración",
-        "name": "値引きはしない",
-        "description": "Cuando Jake Muller recibe daño, obtiene inmunidad a estados alterados durante 5 s y reduce el daño recibido en {0}.",
+        "name": "安売りはしてねぇんだよ",
+        "description": "ジェイク・ミューラーが攻撃を受けると、5秒間状態異常に免疫となり、受けるダメージが{0}減少します",
         "iconUrl": "/icons/skill/Icon_Skill_133011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "追加料金だ",
-        "description": "Los defensores aliados de la unidad que incluye a este héroe tienen un {0} de probabilidad de infligir daño adicional al enemigo y aumentar en {1} el daño que recibe en combate.",
+        "name": "これは別料金だ",
+        "description": "この英雄が含まれる部隊の味方ディフェンダーが戦闘時、{0}の確率で敵にもう一度ダメージを与え、敵の受けるダメージを{1}上昇させます",
         "iconUrl": "/icons/skill/Icon_Skill_233011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "抗体遺伝子",
-        "description": "Aumenta el ataque de Jake Muller en {0} y su defensa en {1}.",
+        "name": "抗体の遺伝子",
+        "description": "ジェイク・ミューラーの攻撃力が{0}、防御力が{1}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_143011.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "抵抗の意志",
-        "description": "Cuando este héroe es líder de guarnición, la salud de las unidades aliadas aumenta {0} en combates defensivos.",
+        "name": "抵抗する精神",
+        "description": "この英雄が駐屯リーダーのとき、味方部隊の防衛戦闘時の体力が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_243011.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -1902,19 +1902,19 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
+        "label": "アタッカー攻撃力",
         "value": "370.33%"
       },
       {
-        "label": "Poder de defensa de Atacante",
+        "label": "アタッカー防御力",
         "value": "370.33%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Ráfaga de Rifle BC",
-        "description": "Saca el rifle de asalto BC y dispara 30 balas en línea recta. Cada enemigo alcanzado por las balas recibe daño equivalente al {0} del ataque.",
+        "name": "BCライフル連射",
+        "description": "BCアサルトライフルを取り出して直線上に30発連射する。命中した各敵は攻撃力の{0}に相当するダメージを受ける。",
         "iconUrl": "/icons/skill/Icon_Skill_113012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1929,8 +1929,8 @@
       },
       {
         "type": "Exploración",
-        "name": "閃光手榴弾",
-        "description": "Lanza una granada cegadora y aturde a los objetivos dentro de un área circular durante {0}.",
+        "name": "閃光弾",
+        "description": "この英雄が含まれる部隊の味方ディフェンダーが戦闘時、2ターンごとに{0}の確率で1ターンの間ターゲットとなった兵種を気絶させます(1ターゲットにつき1ターン当たり最大3回まで気絶を試みることが可能)",
         "iconUrl": "/icons/skill/Icon_Skill_123012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1938,7 +1938,7 @@
       {
         "type": "Campo",
         "name": "生き抜く力",
-        "description": "En combate, las unidades aliadas que incluyen a este héroe tienen {0} de probabilidad de evadir los ataques enemigos.",
+        "description": "戦闘時、この英雄を含む味方部隊が30%の確率で受けるダメージを減少させる。",
         "iconUrl": "/icons/skill/Icon_Skill_223012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1946,7 +1946,7 @@
       {
         "type": "Exploración",
         "name": "スーパーガール",
-        "description": "Sherry Birkin recupera salud equivalente al {0} de su salud máxima cada 15 s.",
+        "description": "シェリー・バーキンは15秒ごとに自分の最大体力の{0}を回復します",
         "iconUrl": "/icons/skill/Icon_Skill_133012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -1954,15 +1954,15 @@
       {
         "type": "Campo",
         "name": "バーストモード",
-        "description": "Los atacantes aliados de la unidad que incluye a este héroe tienen un {0} de probabilidad de atacar una vez más al enemigo e infligir daño en combate.",
+        "description": "この英雄が含まれる部隊の味方アタッカーが戦闘時、{0}の確率で敵をもう一度攻撃してダメージを与えます",
         "iconUrl": "/icons/skill/Icon_Skill_233012.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "ラピッドファイア",
-        "description": "Al realizar un ataque normal, hay un 25% de probabilidad de que el daño del ataque normal aumente en {0}.",
+        "name": "クイックショット",
+        "description": "一般攻撃時、25%の確率で一般攻撃のダメージが{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_143012.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -1992,66 +1992,66 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "レンジャー攻撃力",
         "value": "370.33%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "レンジャー防御力",
         "value": "370.33%"
       }
     ],
     "skills": [
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 1",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "対物狙撃銃",
+        "description": "ニヴァンスが対物狙撃銃を取り出して発射します 対物狙撃銃は狭い直線範囲内のすべての対象を貫通し、攻撃力の{0}のダメージを与え、2秒間気絶させます",
         "iconUrl": "/icons/skill/Icon_Skill_110011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 1",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "超遠距離射撃",
+        "description": "この英雄が含まれる味方部隊が戦闘時、敵が与えるダメージを{0}減少させます",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 2",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "天性の集中力",
+        "description": "一般攻撃時、3秒間、攻撃力が{0}上昇します この効果は最大15回まで重複します",
         "iconUrl": "/icons/skill/Icon_Skill_120011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 2",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "照門調整",
+        "description": "この英雄が含まれる味方部隊が3回攻撃するたびに次のターンのレンジャーの攻撃力が{0}上昇します この効果は重複し、戦闘終了時まで持続します",
         "iconUrl": "/icons/skill/Icon_Field_Skill_220011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Habilidad Activa 3",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "爆弾投擲",
+        "description": "最も遠くにいる対象の位置へ爆弾を投げ、爆発を起こして攻撃力の{0}のダメージを与えます",
         "iconUrl": "/icons/skill/Icon_Skill_130011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "Habilidad Pasiva 3",
-        "description": "Descripción pendiente de ingresar...",
+        "name": "射撃タイミング調整",
+        "description": "この英雄が含まれる味方部隊が戦闘時、40%の確率で敵に与えるダメージが{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Field_Skill_230011.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Arma Especial (Activa)",
+        "name": "専用武器 (アクティブ)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Vip_Skill_11.webp",
         "isArmaEspecial": true,
@@ -2059,7 +2059,7 @@
       },
       {
         "type": "Campo",
-        "name": "Arma Especial (Pasiva)",
+        "name": "専用武器 (パッシブ)",
         "description": "Descripción pendiente de ingresar...",
         "iconUrl": "/icons/skill/Icon_Field_Skill_210011.webp",
         "isArmaEspecial": true,
@@ -2082,11 +2082,11 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
+        "label": "ディフェンダー攻撃力",
         "value": "250.00%"
       },
       {
-        "label": "Poder de defensa de Defensor",
+        "label": "ディフェンダー防御力",
         "value": "250.00%"
       }
     ],
@@ -2094,15 +2094,15 @@
       {
         "type": "Exploración",
         "name": "竜撃砲",
-        "description": "Tras cargar energía con el arma de cuadriga, genera una explosión que causa daño equivalente al {0} del ATQ a los enemigos en un área en abanico y los aturde durante 2 s.",
+        "description": "ガンチャリオットで力を溜めた後、爆発を起こして扇状範囲内の敵に攻撃力の{0}のダメージを与え、2秒間気絶させます",
         "iconUrl": "/icons/skill/Icon_Skill_113014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "起爆衝撃",
-        "description": "Durante el combate, los Defensores aliados de la tropa de este héroe tienen una probabilidad de {0} cada 2 turnos de aturdir al tipo de tropa objetivo durante 1 turno. Si el objetivo es un objetivo de caza de Monster Hunter, se añade una probabilidad de {1}. (Máximo 3 intentos de aturdimiento por turno contra un mismo objetivo)",
+        "name": "起爆強打",
+        "description": "この英雄が含まれる部隊の味方ディフェンダーが戦闘時、2ターンごとに{0}の確率で1ターンの間ターゲットとなった兵種を気絶させます 相手がモンスターハンターの狩猟対象の場合、{1}の確率で適用されます(1ターゲットにつき1ターン当たり最大3回まで気絶を試みることが可能)",
         "iconUrl": "/icons/skill/Icon_Skill_213014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -2110,31 +2110,31 @@
       {
         "type": "Exploración",
         "name": "フルバースト",
-        "description": "Descarga un poderoso golpe con un arma de cuadriga sobre los enemigos en un área en abanico e inflige daño equivalente al {0} del ATQ. Después, genera una explosión que causa daño equivalente al {1} del ATQ a los enemigos en un área circular.",
+        "description": "ガンチャリオットで扇状範囲内の敵を強く叩きつけ、攻撃力の{0}のダメージを与えます その後、爆発を起こして範囲内の敵に攻撃力の{1}のダメージを与えます",
         "iconUrl": "/icons/skill/Icon_Skill_123014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "重装ガード",
-        "description": "Cuando este héroe forma parte de una tropa aliada, el daño recibido del enemigo disminuye en {0} durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, disminuye en {1} adicionales.",
+        "name": "鉄甲守護",
+        "description": "この英雄が含まれる味方部隊が戦闘時、敵から受けるダメージが{0}減少し、相手がモンスターハンターの狩猟対象の場合、{1}減少します",
         "iconUrl": "/icons/skill/Icon_Skill_223014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "竜杭弾",
-        "description": "Ataca al objetivo frontal con 2 estocadas poderosas, inflige daño equivalente al {0} del ATQ e instala un nitro de sierpe. Cuando el cazador golpea a un objetivo con el nitro de sierpe, este recibe daño adicional equivalente al {1} del ATQ.",
+        "name": "起爆竜杭",
+        "description": "前方の対象を強く2回突いて攻撃力の{0}のダメージを与え、起爆竜杭を設置します 起爆竜杭が設置された対象は、ハンターから攻撃を受ける時、攻撃力の{1}の追加ダメージを受けます",
         "iconUrl": "/icons/skill/Icon_Skill_133014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Campo",
-        "name": "地裂砲撃",
-        "description": "Cuando este héroe forma parte de una tropa aliada, hay un 50% de probabilidad de aumentar en {0} el daño recibido por el enemigo durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en {1} adicionales.",
+        "name": "亀裂砲撃",
+        "description": "この英雄が含まれる味方部隊が戦闘時、敵の受けるダメージが{0}上昇し、相手がモンスターハンターの狩猟対象の場合、{1}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_233014.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -2150,7 +2150,7 @@
       {
         "type": "Campo",
         "name": "集中砲火",
-        "description": "Cuando este héroe lidera la guarnición, la penetración de las tropas aliadas aumenta en {0} en combates defensivos. Además, al recibir recompensas de un objetivo de caza de Monster Hunter, obtienes {1} adicionales.",
+        "description": "この英雄が駐屯リーダーのとき、味方部隊の防衛戦闘時の殺傷力が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_243014.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -2180,11 +2180,11 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
+        "label": "レンジャー攻撃力",
         "value": "260.00%"
       },
       {
-        "label": "Poder de defensa de Ranger",
+        "label": "レンジャー防御力",
         "value": "260.00%"
       }
     ],
@@ -2192,7 +2192,7 @@
       {
         "type": "Exploración",
         "name": "徹甲榴弾",
-        "description": "Dispara un explosivo perforante a un objetivo dentro del alcance para infligir daño equivalente al {0} del ATQ. Después de 2 s, provoca una explosión que inflige daño equivalente al {1} del ATQ a los enemigos en un área circular y los aturde durante 2 s.",
+        "description": "範囲内の対象1体に徹甲榴弾を発射して攻撃力の{0}のダメージを与え、2秒後に爆発を起こして円形範囲内の敵に攻撃力の{1}のダメージを与え、2秒間気絶させます",
         "iconUrl": "/icons/skill/Icon_Skill_113015.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -2200,15 +2200,15 @@
       {
         "type": "Campo",
         "name": "速射開始",
-        "description": "Cuando este héroe forma parte de una tropa aliada, hay una probabilidad de {0} de realizar un ataque adicional contra el enemigo e infligir daño. Si el objetivo es un objetivo de caza de Monster Hunter, se añade una probabilidad de {1}.",
+        "description": "この英雄が含まれる味方部隊のレンジャーが戦闘時、{0}の確率で敵にもう一度攻撃を加えてダメージを与え、相手がモンスターハンターの狩猟対象の場合、{1}の確率で適用されます",
         "iconUrl": "/icons/skill/Icon_Skill_213015.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
       },
       {
         "type": "Exploración",
-        "name": "Disparo Perforante",
-        "description": "Dispara un perforante hacia el frente que atraviesa a todos los enemigos en una línea estrecha e inflige daño equivalente al {0} del ATQ.",
+        "name": "貫通弾射撃",
+        "description": "前方に直線貫通弾を発射し、細い直線上のすべての敵を貫通して攻撃力の72.5%に相当するダメージを与える。",
         "iconUrl": "/icons/skill/Icon_Skill_123015.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -2216,7 +2216,7 @@
       {
         "type": "Campo",
         "name": "貫通弾強化",
-        "description": "Cuando este héroe forma parte de una tropa aliada, su penetración aumenta en {0} durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en {1} adicionales.",
+        "description": "この英雄が含まれる味方部隊が戦闘時、殺傷力が{0}上昇し、相手がモンスターハンターの狩猟対象の場合、{1}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_223015.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -2224,7 +2224,7 @@
       {
         "type": "Exploración",
         "name": "斬裂弾",
-        "description": "Dispara un lacerante a un objetivo dentro del alcance para infligir daño equivalente al {0} del ATQ. Después de 2 s, explota e inflige daño cortante equivalente al {1} del ATQ 5 veces seguidas.",
+        "description": "範囲内の対象1体に斬裂弾を発射して攻撃力の{0}のダメージを与え、2秒後に爆発を起こして攻撃力の{1}の斬撃ダメージを5回連続で与えます",
         "iconUrl": "/icons/skill/Icon_Skill_133015.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -2232,7 +2232,7 @@
       {
         "type": "Campo",
         "name": "戦闘活力",
-        "description": "Cuando este héroe forma parte de una tropa aliada, su salud aumenta en {0} durante el combate. Si el objetivo es un objetivo de caza de Monster Hunter, aumenta en {1} adicionales.",
+        "description": "この英雄が含まれる味方部隊が戦闘時、体力が{0}上昇し、相手がモンスターハンターの狩猟対象の場合、{1}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_233015.webp",
         "isArmaEspecial": false,
         "isVipSkill": false
@@ -2247,8 +2247,8 @@
       },
       {
         "type": "Campo",
-        "name": "弾道強化",
-        "description": "Cuando este héroe lidera la concentración, la penetración de las tropas aliadas aumenta en {0} en combates de concentración. Además, al recibir recompensas de un objetivo de caza de Monster Hunter, obtienes {1} adicionales.",
+        "name": "弾導強化",
+        "description": "この英雄が集結リーダーのとき、味方部隊の集結戦闘時の攻撃力が{0}上昇します",
         "iconUrl": "/icons/skill/Icon_Skill_243015.webp",
         "isArmaEspecial": true,
         "isVipSkill": false
@@ -2276,12 +2276,12 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Atacante",
-        "value": "260.23%"
+        "label": "アタッカー攻撃力",
+        "value": "444.35%"
       },
       {
-        "label": "Poder de defensa de Atacante",
-        "value": "260.23%"
+        "label": "アタッカー防御力",
+        "value": "444.35%"
       }
     ],
     "unitType": "アタッカー",
@@ -2289,7 +2289,7 @@
     "skills": [
       {
         "name": "強烈な一撃",
-        "description": "状況が困難になると、BSAAクリス・レッドフィールドは全力で岩を殴ります。岩は前方に転がり、範囲内の敵に攻撃力のx%に相当するダメージを与え、2秒間気絶させます。ダメージを受けた敵の防御力は10秒間y%減少します。",
+        "description": "窮地に陥った時、BSAA Chris Redfieldが渾身の力で巨岩を殴り飛ばす。岩は前方に転がり、範囲内の敵に攻撃力のx%に相当するダメージを与えて2秒間スタンさせる。ダメージを受けた敵は10秒間防御力がy%減少する。",
         "iconUrl": "/icons/skill/Icon_Skill_113017.webp",
         "type": "Exploración",
         "category": "active"
@@ -2324,7 +2324,7 @@
       },
       {
         "name": "圧倒的制圧",
-        "description": "このヒーローを含む味方分隊が戦闘中の場合、3回攻撃した後、味方のアタッカーは2ターンの間、敵から受けるダメージをx%減少させます。",
+        "description": "この英雄を含む味方部隊が戦闘中、3回攻撃後、味方アタッカーが敵から受けるダメージが2ターンの間x%減少する。",
         "iconUrl": "/icons/skill/Icon_Skill_223017.webp",
         "type": "Campo",
         "category": "passive"
@@ -2363,12 +2363,12 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Ranger",
-        "value": "260.23%"
+        "label": "レンジャー攻撃力",
+        "value": "444.35%"
       },
       {
-        "label": "Poder de defensa de Ranger",
-        "value": "260.23%"
+        "label": "レンジャー防御力",
+        "value": "444.35%"
       }
     ],
     "unitType": "レンジャー",
@@ -2404,7 +2404,7 @@
       },
       {
         "name": "戦場の直感",
-        "description": "このヒーローを含む味方分隊が戦闘中の場合、25%の確率で敵から分隊へのダメージをx%減少させます。",
+        "description": "この英雄を含む味方部隊が戦闘中、25%の確率で部隊が受ける敵のダメージをx%減少させる。",
         "iconUrl": "/icons/skill/Icon_Skill_213016.webp",
         "type": "Campo",
         "category": "passive"
@@ -2450,12 +2450,12 @@
     },
     "fieldStats": [
       {
-        "label": "Poder de ataque de Defensor",
-        "value": "260.23%"
+        "label": "ディフェンダー攻撃力",
+        "value": "444.35%"
       },
       {
-        "label": "Poder de defensa de Defensor",
-        "value": "260.23%"
+        "label": "ディフェンダー防御力",
+        "value": "444.35%"
       }
     ],
     "unitType": "ディフェンダー",
@@ -2470,7 +2470,7 @@
       },
       {
         "name": "毒性増強",
-        "description": "毒状態の敵の攻撃力をx%、防御力をy%減少させます。",
+        "description": "毒状態の敵の攻撃力をx%、防御力をy%減少させる。",
         "iconUrl": "/icons/skill/Icon_Skill_123018.webp",
         "type": "Exploración",
         "category": "passive"
@@ -2491,7 +2491,7 @@
       },
       {
         "name": "身の程を知れ",
-        "description": "このヒーローを含む味方分隊が戦闘中の場合、敵の防御力をx%減少させます。",
+        "description": "この英雄を含む味方部隊が戦闘中、敵の防御力をx%減少させる。",
         "iconUrl": "/icons/skill/Icon_Skill_213018.webp",
         "type": "Campo",
         "category": "passive"

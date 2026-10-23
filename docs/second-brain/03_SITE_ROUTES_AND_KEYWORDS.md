@@ -9,8 +9,8 @@
 - `/llaveros` — Base de Datos interactiva de Llaveros por rareza con calculadora de EXP a Nivel 30, tabla de CP y 96 sub-stats.
 - `/tier-list` — Tier List competitiva (PvP Arena y PvE Campaign: Early, Mid, Late Game) y Equipos Meta 5v5.
 - `/comparador` — Comparador cara a cara de operativos de la misma clase con análisis de Red Queen IA.
-- `/herramientas` — Calculadoras Tácticas (Mapa & Calculadora de Mansión de Luminio P1–P10, Puntos de Entrenamiento/Aceleradores con OCR, Simulador de Árbol de Luminio, Calculadora de Tesoros Míticos y Calculadora de Joyas).
-- `/conversores` — Centro de Conversores Tácticos (Tienda de Intercambio de Tesoros Míticos con cupos semanales, Calculadora y Optimizador de Aceleradores, Mochila de Recursos Seguros y Conversor de Polvo/Piedras de Luminio).
+- `/herramientas` — Calculadoras Tácticas (Mapa & Calculadora de Mansión de Luminio P1–P10, Puntos de Entrenamiento/Aceleradores con OCR, Simulador de Árbol de Luminio, Calculadora de Tesoros Míticos, Joyas y Consola de IA Red Queen). Totalmente localizada en ES, EN y JA.
+- `/conversores` — Centro de Conversores Tácticos (Tienda de Intercambio de Tesoros Míticos con cupos semanales, Calculadora y Optimizador de Aceleradores, Mochila de Recursos Seguros y Conversor de Polvo/Piedras de Luminio). Totalmente localizada en ES, EN y JA.
 - `/guias` — Centro de Guías y Dossiers Tácticos.
 - `/guias/:slug` — Lectura interactiva de guías (`repeler-a-mortem`, `cumbre-de-ases`, `guerra-de-hierbas`, `dominar-llaveros`, `primeros-7-dias`, `mansion-nivel-1-a-30`).
 

@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Sword, Shield, ChevronRight, Star } from 'lucide-react';
+import { X, Sword, Shield, ChevronRight, Star, Sparkles, Info } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { 
   calculateWeaponExp, 
   calculateWeaponPlus, 
+  calculateLegendaryWeapons,
   convertWeaponExpToMaterials,
   calculateUniqueWeaponFrags
 } from '../utils/weaponCalculators';
@@ -29,7 +30,7 @@ interface EquipamientoViewProps {
   };
 }
 
-// Mapeo de personajes legendarios a su ID de Pieza/Arma Exclusiva (13000 a 13015)
+// Mapeo de personajes legendarios a su ID de Pieza/Arma Exclusiva (13000 a 13018)
 const characterWeaponCodeMap: Record<string, string> = {
   'leon': '13000', // Leon S. Kennedy
   'claire': '13001', // Claire Redfield
@@ -104,6 +105,7 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
 
   const [slots, setSlots] = useState<SlotState[]>(buildInitialSlots);
   const [selectedSlotId, setSelectedSlotId] = useState<string | null>(null);
+  const [showExpEquivalents, setShowExpEquivalents] = useState<boolean>(false);
 
   useEffect(() => {
     setSlots(buildInitialSlots());
@@ -119,19 +121,22 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
   // Calculate totals
   let totalExp = 0;
   let totalPlus = 0;
+  let totalLegendWeapons = 0;
   let uniqueFrags = 0;
 
   const slotCosts = slots.map(slot => {
     if (slot.id === 'armaUnica') {
       const frags = calculateUniqueWeaponFrags(slot.currentLevel, slot.targetLevel);
       uniqueFrags += frags;
-      return { id: slot.id, exp: 0, plus: 0, frags, name: slot.name, isUnique: true };
+      return { id: slot.id, exp: 0, plus: 0, legendWeapons: 0, frags, name: slot.name, isUnique: true };
     }
     const exp = calculateWeaponExp(slot.currentLevel, slot.targetLevel);
     const plus = calculateWeaponPlus(slot.currentPlus, slot.targetPlus);
+    const legendWeapons = calculateLegendaryWeapons(slot.currentPlus, slot.targetPlus);
     totalExp += exp;
     totalPlus += plus;
-    return { id: slot.id, exp, plus, frags: 0, name: slot.name, isUnique: false };
+    totalLegendWeapons += legendWeapons;
+    return { id: slot.id, exp, plus, legendWeapons, frags: 0, name: slot.name, isUnique: false };
   });
 
   const materials = convertWeaponExpToMaterials(totalExp);
@@ -261,10 +266,15 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
               </div>
               <div className="flex-1 min-w-0">
                 <h4 className="font-bebas text-sm text-white tracking-wider truncate leading-tight">{slot.name}</h4>
-                <div className="flex items-center gap-1 mt-1">
+                <div className="flex items-center gap-1 mt-1 flex-wrap">
                   <span className="font-mono text-[9px] text-yellow-500 bg-yellow-500/10 px-1 py-0.2 rounded border border-yellow-500/30">
                     +{slot.currentPlus}
                   </span>
+                  {slot.currentPlus > 10 && (
+                    <span className="font-mono text-[8px] text-amber-300 bg-amber-500/20 px-1 py-0.2 rounded border border-amber-500/40 font-bold">
+                      10+
+                    </span>
+                  )}
                   <span className="font-mono text-[8px] text-gray-400 uppercase truncate">
                     {slot.type === 'Penetración' ? t('op_detail.penetration', 'Penetración') : slot.type === 'Vida' ? t('op_detail.health_stat', 'Vida') : t('op_detail.weapon_exclusive', 'Exclusiva')}
                   </span>
@@ -412,56 +422,94 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
                 </div>
               ) : (
                 /* ARMAS NORMALES */
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 relative z-20">
-                  <div className="border border-gray-800 p-3 sm:p-4 bg-black/60 rounded-md">
-                    <h4 className="font-mono text-gray-400 text-[10px] sm:text-xs uppercase tracking-widest text-center mb-3">{t('op_detail.base_level')}</h4>
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex-1">
-                        <label className="block text-[9px] text-gray-500 font-mono uppercase mb-1 text-center">{t('op_detail.actual_caps')}</label>
-                        <input 
-                          type="number" min="1" max="100" 
-                          value={selectedSlot.currentLevel}
-                          onChange={e => updateSlot(selectedSlot.id, { currentLevel: Math.min(100, Math.max(1, parseInt(e.target.value) || 1)) })}
-                          className="w-full bg-black border-b-2 border-gray-800 text-white text-xl sm:text-2xl font-bebas text-center focus:border-neon-red outline-none pb-1"
-                        />
+                <div className="space-y-3 mb-3 relative z-20">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div className="border border-gray-800 p-3 sm:p-4 bg-black/60 rounded-md">
+                      <h4 className="font-mono text-gray-400 text-[10px] sm:text-xs uppercase tracking-widest text-center mb-3">{t('op_detail.base_level')}</h4>
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex-1">
+                          <label className="block text-[9px] text-gray-500 font-mono uppercase mb-1 text-center">{t('op_detail.actual_caps')}</label>
+                          <input 
+                            type="number" min="1" max="100" 
+                            value={selectedSlot.currentLevel}
+                            onChange={e => updateSlot(selectedSlot.id, { currentLevel: Math.min(100, Math.max(1, parseInt(e.target.value) || 1)) })}
+                            className="w-full bg-black border-b-2 border-gray-800 text-white text-xl sm:text-2xl font-bebas text-center focus:border-neon-red outline-none pb-1"
+                          />
+                        </div>
+                        <ChevronRight className="text-gray-600 shrink-0" size={16} />
+                        <div className="flex-1">
+                          <label className="block text-[9px] text-gray-500 font-mono uppercase mb-1 text-center">{t('op_detail.objective_caps')}</label>
+                          <input 
+                            type="number" min="1" max="100" 
+                            value={selectedSlot.targetLevel}
+                            onChange={e => updateSlot(selectedSlot.id, { targetLevel: Math.min(100, Math.max(1, parseInt(e.target.value) || 1)) })}
+                            className="w-full bg-black border-b-2 border-blood-red text-neon-red text-xl sm:text-2xl font-bebas text-center focus:border-white outline-none pb-1"
+                          />
+                        </div>
                       </div>
-                      <ChevronRight className="text-gray-600 shrink-0" size={16} />
-                      <div className="flex-1">
-                        <label className="block text-[9px] text-gray-500 font-mono uppercase mb-1 text-center">{t('op_detail.objective_caps')}</label>
-                        <input 
-                          type="number" min="1" max="100" 
-                          value={selectedSlot.targetLevel}
-                          onChange={e => updateSlot(selectedSlot.id, { targetLevel: Math.min(100, Math.max(1, parseInt(e.target.value) || 1)) })}
-                          className="w-full bg-black border-b-2 border-blood-red text-neon-red text-xl sm:text-2xl font-bebas text-center focus:border-white outline-none pb-1"
-                        />
+                    </div>
+
+                    <div className="border border-gray-800 p-3 sm:p-4 bg-black/60 rounded-md">
+                      <h4 className="font-mono text-gray-400 text-[10px] sm:text-xs uppercase tracking-widest text-center mb-3">{t('op_detail.plus_level')}</h4>
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex-1">
+                          <label className="block text-[9px] text-gray-500 font-mono uppercase mb-1 text-center">{t('op_detail.actual_caps')}</label>
+                          <input 
+                            type="number" min="0" max="20" 
+                            value={selectedSlot.currentPlus}
+                            onChange={(e) => updateSlot(selectedSlot.id, { currentPlus: Math.min(20, Math.max(0, Number(e.target.value))) })}
+                            className="w-full bg-black border-b-2 border-gray-800 text-white text-xl sm:text-2xl font-bebas text-center focus:border-yellow-500 outline-none pb-1"
+                          />
+                        </div>
+                        <ChevronRight className="text-gray-600 shrink-0" size={16} />
+                        <div className="flex-1">
+                          <label className="block text-[9px] text-gray-500 font-mono uppercase mb-1 text-center">{t('op_detail.objective_caps')}</label>
+                          <input 
+                            type="number" min="0" max="20" 
+                            value={selectedSlot.targetPlus}
+                            onChange={(e) => updateSlot(selectedSlot.id, { targetPlus: Math.min(20, Math.max(0, Number(e.target.value))) })}
+                            className="w-full bg-black border-b-2 border-yellow-500 text-yellow-500 text-xl sm:text-2xl font-bebas text-center focus:border-white outline-none pb-1"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="border border-gray-800 p-3 sm:p-4 bg-black/60 rounded-md">
-                    <h4 className="font-mono text-gray-400 text-[10px] sm:text-xs uppercase tracking-widest text-center mb-3">{t('op_detail.plus_level')}</h4>
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex-1">
-                        <label className="block text-[9px] text-gray-500 font-mono uppercase mb-1 text-center">{t('op_detail.actual_caps')}</label>
-                        <input 
-                          type="number" min="0" max="20" 
-                          value={selectedSlot.currentPlus}
-                          onChange={(e) => updateSlot(selectedSlot.id, { currentPlus: Math.min(20, Math.max(0, Number(e.target.value))) })}
-                          className="w-full bg-black border-b-2 border-gray-800 text-white text-xl sm:text-2xl font-bebas text-center focus:border-yellow-500 outline-none pb-1"
-                        />
+                  {/* REQUISITO DE ARMAS LEGENDARIAS (SOLO CUANDO TARGET > 10) */}
+                  {selectedSlot.targetPlus > 10 && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-3 rounded-md bg-gradient-to-r from-yellow-950/40 via-[#181305] to-[#0a0803] border border-yellow-500/50 flex items-center justify-between gap-3 shadow-[0_0_15px_rgba(234,179,8,0.2)]"
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div className="relative">
+                          <img 
+                            src="/recursos/Item_Custom_Box_Equipment_02.webp" 
+                            alt="Maletín de Arma Legendaria a Elección" 
+                            className="w-9 h-9 object-contain filter drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] shrink-0"
+                          />
+                          <div className="absolute -bottom-1 -right-1 bg-yellow-500 text-black font-mono text-[8px] font-bold px-1 rounded-full leading-tight">
+                            +10
+                          </div>
+                        </div>
+                        <div className="flex flex-col min-w-0">
+                          <span className="font-mono text-[11px] text-yellow-400 font-bold uppercase tracking-wider truncate">
+                            {t('op_detail.legendary_weapon_box')}
+                          </span>
+                          <span className="font-mono text-[9px] text-gray-400">
+                            {t('op_detail.legendary_weapons_note')}
+                          </span>
+                        </div>
                       </div>
-                      <ChevronRight className="text-gray-600 shrink-0" size={16} />
-                      <div className="flex-1">
-                        <label className="block text-[9px] text-gray-500 font-mono uppercase mb-1 text-center">{t('op_detail.objective_caps')}</label>
-                        <input 
-                          type="number" min="0" max="20" 
-                          value={selectedSlot.targetPlus}
-                          onChange={(e) => updateSlot(selectedSlot.id, { targetPlus: Math.min(20, Math.max(0, Number(e.target.value))) })}
-                          className="w-full bg-black border-b-2 border-yellow-500 text-yellow-500 text-xl sm:text-2xl font-bebas text-center focus:border-white outline-none pb-1"
-                        />
+                      <div className="text-right shrink-0">
+                        <span className="font-bebas text-2xl text-yellow-400 tracking-wider">
+                          {calculateLegendaryWeapons(selectedSlot.currentPlus, selectedSlot.targetPlus).toLocaleString()}
+                        </span>
+                        <span className="font-mono text-[10px] text-yellow-500/80 ml-1 uppercase">uds</span>
                       </div>
-                    </div>
-                  </div>
+                    </motion.div>
+                  )}
                 </div>
               )}
 
@@ -479,109 +527,323 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
         )}
       </AnimatePresence>
 
-      {/* Equipment Total Summary */}
-      <div className="w-full max-w-4xl mt-6 sm:mt-10 bg-[#050505] border-t border-gray-900 pt-8 sm:pt-10">
-        <div className="text-center mb-6 sm:mb-8">
-          <h2 className="font-bebas text-3xl sm:text-4xl text-white tracking-widest">{t('op_detail.equip_summary')}</h2>
-          <p className="font-mono text-[10px] sm:text-xs text-gray-500 uppercase tracking-widest">{t('op_detail.proj_resources')}</p>
+      {/* ================================================================= */}
+      {/* REDISEÑO COMPLETO: RESUMEN Y PROYECCIÓN TOTAL DE EQUIPAMIENTO     */}
+      {/* ================================================================= */}
+      <div className="w-full max-w-5xl mt-6 sm:mt-10 bg-[#060608]/90 border border-neutral-800 rounded-2xl p-4 sm:p-7 backdrop-blur-md relative overflow-hidden shadow-2xl">
+        
+        {/* Subtle Glow Accents */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-yellow-500/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-neutral-800/80">
+          <div>
+            <h2 className="font-bebas text-2xl sm:text-3xl md:text-4xl text-white tracking-widest flex items-center gap-2.5">
+              <Sparkles size={24} className="text-yellow-400 shrink-0" />
+              <span>{t('op_detail.equip_summary')}</span>
+            </h2>
+            <p className="font-mono text-[10px] sm:text-xs text-gray-400 uppercase tracking-widest mt-0.5">
+              {t('op_detail.proj_resources')}
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-[10px] sm:text-xs text-yellow-500/90 bg-yellow-500/10 border border-yellow-500/30 px-3 py-1 rounded-full">
+              4 Ranuras Militares {isLegendary ? '+ 1 Exclusiva' : ''}
+            </span>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        {/* 1. DASHBOARD DE TOTALES EJECUTIVOS (3 o 4 CARDS EN GRID BALANCEADO) */}
+        <div className={`grid grid-cols-2 ${isLegendary || totalLegendWeapons > 0 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'} gap-3 sm:gap-4 mb-6`}>
           
-          {/* Detailed Breakdown with Gold Gradients & Weapon Icons */}
-          <div className="border border-gray-800 p-4 sm:p-6 bg-black/40 rounded-sm">
-            <h3 className="font-mono text-xs text-gray-500 uppercase tracking-widest mb-4 sm:mb-6 border-b border-gray-800 pb-2">{t('op_detail.breakdown')}</h3>
-            <div className="space-y-2.5 sm:space-y-3">
-              {slotCosts.map((s, i) => {
-                const iconUrl = s.isUnique 
-                  ? getUniqueWeaponIcon(op.id)
-                  : getNormalWeaponIcon(op.unitType, s.id);
-
-                return (
-                  <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between p-2.5 sm:p-3 border border-yellow-500/30 bg-gradient-to-r from-yellow-500/10 via-[#080808]/50 to-transparent rounded-sm gap-2">
-                    <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center shrink-0">
-                        <img 
-                          src={iconUrl} 
-                          alt={s.name} 
-                          className="w-full h-full object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" 
-                        />
-                      </div>
-                      <span className="font-mono text-xs sm:text-sm text-white capitalize truncate">{s.name.toLowerCase()}</span>
-                    </div>
-
-                    <div className="text-right flex flex-col items-end gap-0.5 sm:gap-1 shrink-0">
-                      {s.isUnique ? (
-                        <div className="flex items-baseline gap-1.5">
-                          <span className="text-yellow-500 font-bebas text-2xl sm:text-3xl tracking-wider leading-none">{s.frags.toLocaleString()}</span>
-                          <span className="text-yellow-500 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest">{t('op_detail.fragments')}</span>
-                        </div>
-                      ) : (
-                        <>
-                          <div className="flex items-baseline gap-1.5">
-                            <span className="text-neon-red font-bebas text-2xl sm:text-3xl tracking-wider leading-none">{s.exp.toLocaleString()}</span>
-                            <span className="text-neon-red font-mono text-[10px] sm:text-xs tracking-widest">EXP</span>
-                          </div>
-                          <span className="text-yellow-500 font-mono text-[9px] sm:text-[10px] uppercase tracking-widest">{s.plus} {t('op_detail.components_caps')}</span>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
+          {/* Card 1: Costo Total EXP */}
+          <div className="p-3.5 sm:p-4 rounded-xl bg-neutral-950/80 border border-red-950/60 hover:border-red-500/40 transition-all flex flex-col justify-between shadow-inner">
+            <div className="flex items-center justify-between gap-2 mb-2">
+              <span className="text-[10px] sm:text-[11px] font-mono uppercase text-gray-400 tracking-wider font-semibold truncate">
+                {t('op_detail.total_exp_cost', 'EXP TOTAL')}
+              </span>
+              <img 
+                src="/recursos/UI_Icon_Hero_Equip_Exp.webp" 
+                alt="EXP" 
+                className="w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-[0_0_8px_rgba(255,42,42,0.4)] shrink-0" 
+              />
+            </div>
+            <div>
+              <div className="font-bebas text-2xl sm:text-3xl md:text-4xl text-neon-red tracking-wide leading-tight">
+                {totalExp.toLocaleString()}
+              </div>
+              <button
+                onClick={() => setShowExpEquivalents(prev => !prev)}
+                className="mt-1 text-[10px] font-mono text-gray-400 hover:text-white flex items-center gap-1 transition-colors cursor-pointer"
+              >
+                <span>{showExpEquivalents ? '▾ Ocultar materiales' : '▸ Ver materiales'}</span>
+              </button>
             </div>
           </div>
 
-          {/* Grand Totals */}
-          <div className="space-y-4 sm:space-y-6">
-            <div className="border border-gray-800 p-4 sm:p-6 bg-black/40 text-center rounded-sm">
-              <h3 className="font-mono text-xs text-gray-500 uppercase tracking-widest mb-3">{t('op_detail.total_exp_cost')}</h3>
-              <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-8">
-                <img 
-                  src="/recursos/UI_Icon_Hero_Equip_Exp.webp" 
-                  alt="EXP Equipamiento" 
-                  className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 object-contain filter drop-shadow-[0_0_15px_rgba(255,42,42,0.35)] shrink-0" 
-                />
-                <div className="font-bebas text-4xl sm:text-5xl md:text-6xl text-neon-red tracking-wide sm:tracking-widest break-all">{totalExp.toLocaleString()}</div>
+          {/* Card 2: Total Componentes (+) */}
+          <div className="p-3.5 sm:p-4 rounded-xl bg-neutral-950/80 border border-yellow-950/60 hover:border-yellow-500/40 transition-all flex flex-col justify-between shadow-inner">
+            <div className="flex items-center justify-between gap-2 mb-2">
+              <span className="text-[10px] sm:text-[11px] font-mono uppercase text-gray-400 tracking-wider font-semibold truncate">
+                {t('op_detail.total_comp_cost', 'COMPONENTES (+)')}
+              </span>
+              <img 
+                src="/recursos/UI_Icon_Hero_Equip_Mod.webp" 
+                alt="Componentes" 
+                className="w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-[0_0_8px_rgba(234,179,8,0.4)] shrink-0" 
+              />
+            </div>
+            <div>
+              <div className="font-bebas text-2xl sm:text-3xl md:text-4xl text-yellow-400 tracking-wide leading-tight">
+                {totalPlus.toLocaleString()}
               </div>
-              
-              {/* Materials Conversion */}
-              {totalExp > 0 && (
-                <div className="mt-4 pt-4 border-t border-gray-800 text-left">
-                  <p className="font-mono text-[10px] text-gray-500 uppercase mb-2">{t('op_detail.exp_equivalents')}</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono">
-                    <div className="bg-green-900/20 text-green-400 border border-green-500/30 p-1.5 flex justify-between"><span>{t('op_detail.mat_green')}</span> <span>{materials.materialesVerdes.toLocaleString()}</span></div>
-                    <div className="bg-purple-900/20 text-purple-400 border border-purple-500/30 p-1.5 flex justify-between"><span>{t('op_detail.mat_purple')}</span> <span>{materials.materialesMorados.toLocaleString()}</span></div>
-                    <div className="bg-gray-800 text-gray-300 border border-gray-600 p-1.5 flex justify-between"><span>{t('op_detail.gun_gray')}</span> <span>{materials.armasGrises.toLocaleString()}</span></div>
-                    <div className="bg-green-900/10 text-green-500 border border-green-700/50 p-1.5 flex justify-between"><span>{t('op_detail.gun_green')}</span> <span>{materials.armasVerdes.toLocaleString()}</span></div>
-                    <div className="bg-blue-900/10 text-blue-400 border border-blue-700/50 p-1.5 flex justify-between"><span>{t('op_detail.gun_blue')}</span> <span>{materials.armasAzules.toLocaleString()}</span></div>
-                    <div className="bg-purple-900/10 text-purple-400 border border-purple-700/50 p-1.5 flex justify-between"><span>{t('op_detail.gun_purple')}</span> <span>{materials.armasMoradas.toLocaleString()}</span></div>
+              <span className="text-[10px] font-mono text-gray-500 block mt-1">
+                Nivel +1 a +20
+              </span>
+            </div>
+          </div>
+
+          {/* Card 3: Armas Legendarias (Tier 10+) */}
+          <div className={`p-3.5 sm:p-4 rounded-xl transition-all flex flex-col justify-between shadow-inner ${
+            totalLegendWeapons > 0 
+              ? 'bg-gradient-to-b from-yellow-950/30 to-neutral-950/90 border border-yellow-500/50 shadow-[0_0_20px_rgba(234,179,8,0.15)]' 
+              : 'bg-neutral-950/80 border border-neutral-800'
+          }`}>
+            <div className="flex items-center justify-between gap-2 mb-2">
+              <div className="flex items-center gap-1.5 min-w-0">
+                <span className="text-[10px] sm:text-[11px] font-mono uppercase text-gray-400 tracking-wider font-semibold truncate">
+                  {t('op_detail.legendary_weapons_abbr', 'ARMAS LEG.')}
+                </span>
+                <span className="text-[9px] font-mono px-1 rounded bg-yellow-500/20 text-yellow-400 border border-yellow-500/40 font-bold shrink-0">
+                  10+
+                </span>
+              </div>
+              <img 
+                src="/recursos/Item_Custom_Box_Equipment_02.webp" 
+                alt="Maletín Legendario" 
+                className="w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-[0_0_8px_rgba(234,179,8,0.5)] shrink-0" 
+              />
+            </div>
+            <div>
+              <div className={`font-bebas text-2xl sm:text-3xl md:text-4xl tracking-wide leading-tight ${
+                totalLegendWeapons > 0 ? 'text-amber-300 font-bold' : 'text-gray-500'
+              }`}>
+                {totalLegendWeapons.toLocaleString()} <span className="font-mono text-xs uppercase font-normal text-gray-400">uds</span>
+              </div>
+              <span className="text-[10px] font-mono text-gray-500 block mt-1 truncate">
+                {totalLegendWeapons > 0 ? t('op_detail.legendary_weapon_box') : 'Requerido en +11 a +20'}
+              </span>
+            </div>
+          </div>
+
+          {/* Card 4: Fragmentos Exclusivos (Solo si es personaje legendario) */}
+          {isLegendary && (
+            <div className="p-3.5 sm:p-4 rounded-xl bg-neutral-950/80 border border-amber-950/60 hover:border-amber-500/40 transition-all flex flex-col justify-between shadow-inner">
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <span className="text-[10px] sm:text-[11px] font-mono uppercase text-gray-400 tracking-wider font-semibold truncate">
+                  {t('op_detail.weapon_exclusive', 'EXCLUSIVA')}
+                </span>
+                <img 
+                  src={getUniqueWeaponPieceIcon(op.id)} 
+                  alt="Fragmentos Exclusivos" 
+                  className="w-7 h-7 sm:w-8 sm:h-8 object-contain filter drop-shadow-[0_0_8px_rgba(234,179,8,0.4)] shrink-0" 
+                />
+              </div>
+              <div>
+                <div className="font-bebas text-2xl sm:text-3xl md:text-4xl text-yellow-400 tracking-wide leading-tight">
+                  {uniqueFrags.toLocaleString()} <span className="font-mono text-xs uppercase font-normal text-yellow-500/70">frags</span>
+                </div>
+                <span className="text-[10px] font-mono text-gray-500 block mt-1">
+                  Nivel 0 ➔ 10
+                </span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* 2. TABLA EXPANDIBLE / RIBBON DE EQUIVALENCIAS DE MATERIALES DE EXP */}
+        <AnimatePresence>
+          {showExpEquivalents && totalExp > 0 && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="mb-6 p-4 rounded-xl bg-neutral-900/60 border border-neutral-800 overflow-hidden"
+            >
+              <div className="flex items-center justify-between mb-2.5">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-gray-300 font-semibold flex items-center gap-1.5">
+                  <Info size={14} className="text-yellow-500 shrink-0" />
+                  <span>{t('op_detail.exp_equivalents', 'Equivalencias en Materiales y Armas:')}</span>
+                </span>
+                <span className="text-[10px] font-mono text-gray-500 hidden sm:inline">
+                  Cualquiera de estas opciones cubre el total de EXP
+                </span>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-xs font-mono">
+                <div className="bg-green-950/30 text-green-400 border border-green-500/30 p-2.5 rounded-lg flex flex-col justify-between">
+                  <span className="text-[10px] text-gray-400">{t('op_detail.mat_green')}</span>
+                  <span className="font-bold text-sm text-green-300">{materials.materialesVerdes.toLocaleString()}</span>
+                </div>
+                <div className="bg-purple-950/30 text-purple-400 border border-purple-500/30 p-2.5 rounded-lg flex flex-col justify-between">
+                  <span className="text-[10px] text-gray-400">{t('op_detail.mat_purple')}</span>
+                  <span className="font-bold text-sm text-purple-300">{materials.materialesMorados.toLocaleString()}</span>
+                </div>
+                <div className="bg-neutral-900 text-gray-300 border border-gray-700 p-2.5 rounded-lg flex flex-col justify-between">
+                  <span className="text-[10px] text-gray-400">{t('op_detail.gun_gray')}</span>
+                  <span className="font-bold text-sm text-gray-200">{materials.armasGrises.toLocaleString()}</span>
+                </div>
+                <div className="bg-green-950/20 text-green-500 border border-green-700/50 p-2.5 rounded-lg flex flex-col justify-between">
+                  <span className="text-[10px] text-gray-400">{t('op_detail.gun_green')}</span>
+                  <span className="font-bold text-sm text-green-400">{materials.armasVerdes.toLocaleString()}</span>
+                </div>
+                <div className="bg-blue-950/20 text-blue-400 border border-blue-700/50 p-2.5 rounded-lg flex flex-col justify-between">
+                  <span className="text-[10px] text-gray-400">{t('op_detail.gun_blue')}</span>
+                  <span className="font-bold text-sm text-blue-300">{materials.armasAzules.toLocaleString()}</span>
+                </div>
+                <div className="bg-purple-950/20 text-purple-400 border border-purple-700/50 p-2.5 rounded-lg flex flex-col justify-between">
+                  <span className="text-[10px] text-gray-400">{t('op_detail.gun_purple')}</span>
+                  <span className="font-bold text-sm text-purple-300">{materials.armasMoradas.toLocaleString()}</span>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* 3. DESGLOSE POR ARMA: CARDS RESPONSIVAS DE 2 COLUMNAS (FULL WIDTH) */}
+        <div>
+          <div className="flex items-center justify-between mb-3.5">
+            <h3 className="font-mono text-xs text-gray-400 uppercase tracking-widest font-semibold flex items-center gap-2">
+              <span>{t('op_detail.breakdown')}</span>
+              <span className="text-[10px] text-gray-500 font-normal font-inter hidden sm:inline">
+                (Toca cualquier arma para modificar sus niveles)
+              </span>
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+            {slotCosts.map((s) => {
+              const correspondingSlot = slots.find(slot => slot.id === s.id);
+              const iconUrl = s.isUnique 
+                ? getUniqueWeaponIcon(op.id)
+                : getNormalWeaponIcon(op.unitType, s.id);
+
+              const isPenetration = correspondingSlot?.type === 'Penetración';
+              const isHighTier = (correspondingSlot?.targetPlus || 0) > 10;
+
+              return (
+                <div 
+                  key={s.id}
+                  onClick={() => setSelectedSlotId(s.id)}
+                  className="group p-3.5 sm:p-4 rounded-xl bg-neutral-900/60 border border-neutral-800 hover:border-yellow-500/60 hover:bg-neutral-900/90 transition-all cursor-pointer relative overflow-hidden flex flex-col justify-between shadow-md hover:shadow-[0_0_20px_rgba(234,179,8,0.15)]"
+                >
+                  {/* Top Row: Icon + Name + Type + Range Badges */}
+                  <div className="flex items-center justify-between gap-3 mb-3">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg bg-black/80 border border-neutral-700 group-hover:border-yellow-500/60 flex items-center justify-center shrink-0 relative overflow-hidden shadow-inner transition-colors">
+                        <img 
+                          src={iconUrl} 
+                          alt={s.name} 
+                          className="w-9 h-9 sm:w-10 sm:h-10 object-contain filter drop-shadow group-hover:scale-110 transition-transform duration-300" 
+                        />
+                        {isHighTier && (
+                          <div className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-black/90 border border-yellow-500 flex items-center justify-center">
+                            <img src="/recursos/Item_Custom_Box_Equipment_02.webp" alt="10+" className="w-2.5 h-2.5 object-contain" />
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="min-w-0">
+                        <h4 className="font-bebas text-lg sm:text-xl text-white tracking-wider truncate leading-tight group-hover:text-yellow-400 transition-colors">
+                          {s.name}
+                        </h4>
+                        <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
+                          <span className={`text-[9px] font-mono px-1.5 py-0.2 rounded border uppercase font-medium ${
+                            s.isUnique 
+                              ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30'
+                              : isPenetration
+                                ? 'bg-red-950/40 text-red-400 border-red-800/40'
+                                : 'bg-blue-950/40 text-blue-400 border-blue-800/40'
+                          }`}>
+                            {s.isUnique ? 'Exclusiva' : isPenetration ? 'Penetración' : 'Vida'}
+                          </span>
+                          <span className="text-[10px] font-mono text-gray-400">
+                            {s.isUnique 
+                              ? `Nv.${correspondingSlot?.currentLevel} ➔ Nv.${correspondingSlot?.targetLevel}`
+                              : `Nv.${correspondingSlot?.currentLevel} ➔ ${correspondingSlot?.targetLevel}`}
+                          </span>
+                          {!s.isUnique && (
+                            <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded font-bold ${
+                              isHighTier 
+                                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' 
+                                : 'bg-neutral-800 text-gray-300'
+                            }`}>
+                              +{correspondingSlot?.currentPlus} ➔ +{correspondingSlot?.targetPlus}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Edit Affordance */}
+                    <div className="shrink-0 text-gray-500 group-hover:text-yellow-400 group-hover:translate-x-0.5 transition-all text-xs font-mono hidden sm:flex items-center gap-0.5">
+                      <span>{t('op_detail.edit', 'Editar')}</span>
+                      <ChevronRight size={14} />
+                    </div>
+                  </div>
+
+                  {/* Bottom Row: Metrics & Costs Pills */}
+                  <div className="pt-2.5 border-t border-neutral-800/80 flex items-center justify-between gap-2 flex-wrap">
+                    {s.isUnique ? (
+                      <div className="flex items-center justify-between w-full">
+                        <span className="text-xs font-mono text-gray-400">Fragmentos Requeridos:</span>
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-yellow-400 font-bebas text-2xl tracking-wider">{s.frags.toLocaleString()}</span>
+                          <span className="text-[10px] font-mono text-yellow-500/80 uppercase">frags</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        {/* EXP Needed */}
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-[10px] font-mono text-gray-400">EXP:</span>
+                          <span className="text-neon-red font-mono text-xs sm:text-sm font-bold tracking-tight">
+                            {s.exp.toLocaleString()}
+                          </span>
+                        </div>
+
+                        {/* Components Needed */}
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-[10px] font-mono text-gray-400">Comp:</span>
+                          <span className="text-yellow-400 font-mono text-xs sm:text-sm font-bold tracking-tight">
+                            {s.plus.toLocaleString()}
+                          </span>
+                        </div>
+
+                        {/* Legendary Weapons (Only when > 0) */}
+                        {s.legendWeapons > 0 ? (
+                          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-yellow-500/15 border border-yellow-500/40">
+                            <img 
+                              src="/recursos/Item_Custom_Box_Equipment_02.webp" 
+                              alt="Arma Legendaria" 
+                              className="w-3.5 h-3.5 object-contain shrink-0" 
+                            />
+                            <span className="text-amber-300 font-mono text-xs font-bold">
+                              {s.legendWeapons} {t('op_detail.legendary_weapons_abbr', 'Armas Leg.')}
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="text-[10px] font-mono text-gray-600 hidden sm:inline">
+                            (0 Armas Leg.)
+                          </span>
+                        )}
+                      </>
+                    )}
                   </div>
                 </div>
-              )}
-            </div>
-
-            <div className="bg-black border border-gray-800 p-4 text-center rounded-sm">
-              <span className="block font-mono text-xs text-gray-500 uppercase mb-2">{t('op_detail.total_comp_cost')}</span>
-              <div className="flex items-center justify-center gap-3 sm:gap-4">
-                <img 
-                  src="/recursos/UI_Icon_Hero_Equip_Mod.webp" 
-                  alt="Componentes (+)" 
-                  className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain filter drop-shadow-[0_0_12px_rgba(234,179,8,0.35)] shrink-0" 
-                />
-                <span className="font-bebas text-4xl sm:text-5xl text-yellow-500">{totalPlus.toLocaleString()}</span>
-              </div>
-            </div>
-
-            {isLegendary && (
-              <div className="bg-yellow-950/20 border border-yellow-500/40 p-4 rounded-sm flex flex-col sm:flex-row items-center justify-between gap-3 px-4 sm:px-6">
-                <div className="flex items-center gap-3">
-                  <img src={getUniqueWeaponPieceIcon(op.id)} alt="Pieza de Arma Exclusiva" className="w-8 h-8 sm:w-10 sm:h-10 object-contain drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] shrink-0" />
-                  <span className="font-mono text-xs text-yellow-400 uppercase tracking-wider text-left">{t('op_detail.total_exclusive_fragments')}</span>
-                </div>
-                <span className="font-bebas text-3xl sm:text-4xl text-yellow-400">{uniqueFrags.toLocaleString()}</span>
-              </div>
-            )}
+              );
+            })}
           </div>
         </div>
       </div>
@@ -592,6 +854,8 @@ export default function EquipamientoView({ op }: EquipamientoViewProps) {
 
 function WeaponSlotNode({ slot, iconUrl, onClick, right = false }: { slot: SlotState, iconUrl: string, onClick: () => void, right?: boolean }) {
   const { t } = useTranslation();
+  const isHighTier = slot.currentPlus > 10;
+
   return (
     <motion.button 
       whileHover={{ scale: 1.06, y: -2 }}
@@ -599,21 +863,37 @@ function WeaponSlotNode({ slot, iconUrl, onClick, right = false }: { slot: SlotS
       onClick={onClick}
       className={`group relative flex items-center gap-3 sm:gap-4 cursor-pointer select-none ${right ? 'flex-row-reverse' : 'flex-row'}`}
     >
-      <div className="w-16 h-16 md:w-18 md:h-18 bg-gradient-to-br from-[#3b2e0c] via-[#1a1405] to-[#0a0803] border-2 border-yellow-500/80 group-hover:border-yellow-400 rounded-md flex items-center justify-center relative overflow-hidden shadow-[0_0_15px_rgba(234,179,8,0.35)] group-hover:shadow-[0_0_25px_rgba(234,179,8,0.85)] transition-shadow duration-300">
+      <div className={`w-16 h-16 md:w-18 md:h-18 bg-gradient-to-br from-[#3b2e0c] via-[#1a1405] to-[#0a0803] border-2 ${isHighTier ? 'border-yellow-400 shadow-[0_0_20px_rgba(234,179,8,0.6)]' : 'border-yellow-500/80'} group-hover:border-yellow-400 rounded-md flex items-center justify-center relative overflow-hidden shadow-[0_0_15px_rgba(234,179,8,0.35)] group-hover:shadow-[0_0_25px_rgba(234,179,8,0.85)] transition-all duration-300`}>
         <img 
           src={iconUrl} 
           alt={slot.name} 
           className="w-11 h-11 md:w-13 md:h-13 object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] group-hover:scale-110 transition-transform duration-300" 
         />
+        {isHighTier && (
+          <div className="absolute top-1 right-1 w-4 h-4 rounded-full bg-black/80 border border-yellow-500/80 flex items-center justify-center shadow">
+            <img 
+              src="/recursos/Item_Custom_Box_Equipment_02.webp" 
+              alt="Tier 10+" 
+              className="w-3 h-3 object-contain" 
+            />
+          </div>
+        )}
         <div className="absolute bottom-0 w-full bg-black/90 font-mono text-[9px] text-yellow-400 font-bold text-center py-0.5 border-t border-yellow-500/40">
           {t('op_detail.lvl_prefix', 'Nv.')}{slot.currentLevel}
         </div>
       </div>
       <div className={`flex flex-col ${right ? 'items-end' : 'items-start'}`}>
         <span className="font-bebas text-lg md:text-xl text-white tracking-widest drop-shadow-md group-hover:text-yellow-400 transition-colors duration-200">{slot.name}</span>
-        <span className="font-mono text-[10px] text-yellow-500 bg-yellow-500/10 px-1.5 py-0.5 border border-yellow-500/30 rounded-sm">
-          +{slot.currentPlus}
-        </span>
+        <div className="flex items-center gap-1">
+          <span className="font-mono text-[10px] text-yellow-500 bg-yellow-500/10 px-1.5 py-0.5 border border-yellow-500/30 rounded-sm">
+            +{slot.currentPlus}
+          </span>
+          {isHighTier && (
+            <span className="font-mono text-[8px] text-amber-300 bg-amber-500/20 px-1 py-0.5 border border-amber-500/40 rounded-sm uppercase tracking-tighter font-bold">
+              10+
+            </span>
+          )}
+        </div>
       </div>
     </motion.button>
   );
